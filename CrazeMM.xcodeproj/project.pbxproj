@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B964F8FC1CC39670003E0D44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F8FB1CC39670003E0D44 /* main.m */; };
+		B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F8FE1CC39670003E0D44 /* AppDelegate.m */; };
+		B964F9021CC39670003E0D44 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9011CC39670003E0D44 /* ViewController.m */; };
+		B964F9051CC39670003E0D44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964F9031CC39670003E0D44 /* Main.storyboard */; };
+		B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964F9061CC39670003E0D44 /* CrazeMM.xcdatamodeld */; };
+		B964F90A1CC39670003E0D44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B964F9091CC39670003E0D44 /* Assets.xcassets */; };
+		B964F90D1CC39670003E0D44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B964F90B1CC39670003E0D44 /* LaunchScreen.storyboard */; };
+		B964F9181CC39671003E0D44 /* CrazeMMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9171CC39671003E0D44 /* CrazeMMTests.m */; };
+		B964F9231CC39671003E0D44 /* CrazeMMUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9221CC39671003E0D44 /* CrazeMMUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B964F9141CC39670003E0D44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B964F8EF1CC39670003E0D44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B964F8F61CC39670003E0D44;
+			remoteInfo = CrazeMM;
+		};
+		B964F91F1CC39671003E0D44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B964F8EF1CC39670003E0D44 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B964F8F61CC39670003E0D44;
+			remoteInfo = CrazeMM;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B964F8F71CC39670003E0D44 /* CrazeMM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazeMM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B964F8FB1CC39670003E0D44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B964F8FD1CC39670003E0D44 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B964F8FE1CC39670003E0D44 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B964F9001CC39670003E0D44 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B964F9011CC39670003E0D44 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B964F9041CC39670003E0D44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B964F9071CC39670003E0D44 /* CrazeMM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CrazeMM.xcdatamodel; sourceTree = "<group>"; };
+		B964F9091CC39670003E0D44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B964F90C1CC39670003E0D44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B964F90E1CC39670003E0D44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B964F9131CC39670003E0D44 /* CrazeMMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrazeMMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B964F9171CC39671003E0D44 /* CrazeMMTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrazeMMTests.m; sourceTree = "<group>"; };
+		B964F9191CC39671003E0D44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B964F91E1CC39671003E0D44 /* CrazeMMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrazeMMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B964F9221CC39671003E0D44 /* CrazeMMUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrazeMMUITests.m; sourceTree = "<group>"; };
+		B964F9241CC39671003E0D44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B964F8F41CC39670003E0D44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B964F9101CC39670003E0D44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B964F91B1CC39671003E0D44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B964F8EE1CC39670003E0D44 = {
+			isa = PBXGroup;
+			children = (
+				B964F8F91CC39670003E0D44 /* CrazeMM */,
+				B964F9161CC39670003E0D44 /* CrazeMMTests */,
+				B964F9211CC39671003E0D44 /* CrazeMMUITests */,
+				B964F8F81CC39670003E0D44 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B964F8F81CC39670003E0D44 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B964F8F71CC39670003E0D44 /* CrazeMM.app */,
+				B964F9131CC39670003E0D44 /* CrazeMMTests.xctest */,
+				B964F91E1CC39671003E0D44 /* CrazeMMUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B964F8F91CC39670003E0D44 /* CrazeMM */ = {
+			isa = PBXGroup;
+			children = (
+				B964F8FD1CC39670003E0D44 /* AppDelegate.h */,
+				B964F8FE1CC39670003E0D44 /* AppDelegate.m */,
+				B964F9001CC39670003E0D44 /* ViewController.h */,
+				B964F9011CC39670003E0D44 /* ViewController.m */,
+				B964F9031CC39670003E0D44 /* Main.storyboard */,
+				B964F9091CC39670003E0D44 /* Assets.xcassets */,
+				B964F90B1CC39670003E0D44 /* LaunchScreen.storyboard */,
+				B964F90E1CC39670003E0D44 /* Info.plist */,
+				B964F9061CC39670003E0D44 /* CrazeMM.xcdatamodeld */,
+				B964F8FA1CC39670003E0D44 /* Supporting Files */,
+			);
+			path = CrazeMM;
+			sourceTree = "<group>";
+		};
+		B964F8FA1CC39670003E0D44 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B964F8FB1CC39670003E0D44 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B964F9161CC39670003E0D44 /* CrazeMMTests */ = {
+			isa = PBXGroup;
+			children = (
+				B964F9171CC39671003E0D44 /* CrazeMMTests.m */,
+				B964F9191CC39671003E0D44 /* Info.plist */,
+			);
+			path = CrazeMMTests;
+			sourceTree = "<group>";
+		};
+		B964F9211CC39671003E0D44 /* CrazeMMUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B964F9221CC39671003E0D44 /* CrazeMMUITests.m */,
+				B964F9241CC39671003E0D44 /* Info.plist */,
+			);
+			path = CrazeMMUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B964F8F61CC39670003E0D44 /* CrazeMM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B964F9271CC39671003E0D44 /* Build configuration list for PBXNativeTarget "CrazeMM" */;
+			buildPhases = (
+				B964F8F31CC39670003E0D44 /* Sources */,
+				B964F8F41CC39670003E0D44 /* Frameworks */,
+				B964F8F51CC39670003E0D44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrazeMM;
+			productName = CrazeMM;
+			productReference = B964F8F71CC39670003E0D44 /* CrazeMM.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B964F9121CC39670003E0D44 /* CrazeMMTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B964F92A1CC39671003E0D44 /* Build configuration list for PBXNativeTarget "CrazeMMTests" */;
+			buildPhases = (
+				B964F90F1CC39670003E0D44 /* Sources */,
+				B964F9101CC39670003E0D44 /* Frameworks */,
+				B964F9111CC39670003E0D44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B964F9151CC39670003E0D44 /* PBXTargetDependency */,
+			);
+			name = CrazeMMTests;
+			productName = CrazeMMTests;
+			productReference = B964F9131CC39670003E0D44 /* CrazeMMTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B964F91D1CC39671003E0D44 /* CrazeMMUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B964F92D1CC39671003E0D44 /* Build configuration list for PBXNativeTarget "CrazeMMUITests" */;
+			buildPhases = (
+				B964F91A1CC39671003E0D44 /* Sources */,
+				B964F91B1CC39671003E0D44 /* Frameworks */,
+				B964F91C1CC39671003E0D44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B964F9201CC39671003E0D44 /* PBXTargetDependency */,
+			);
+			name = CrazeMMUITests;
+			productName = CrazeMMUITests;
+			productReference = B964F91E1CC39671003E0D44 /* CrazeMMUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B964F8EF1CC39670003E0D44 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = 189;
+				TargetAttributes = {
+					B964F8F61CC39670003E0D44 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					B964F9121CC39670003E0D44 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = B964F8F61CC39670003E0D44;
+					};
+					B964F91D1CC39671003E0D44 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = B964F8F61CC39670003E0D44;
+					};
+				};
+			};
+			buildConfigurationList = B964F8F21CC39670003E0D44 /* Build configuration list for PBXProject "CrazeMM" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B964F8EE1CC39670003E0D44;
+			productRefGroup = B964F8F81CC39670003E0D44 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B964F8F61CC39670003E0D44 /* CrazeMM */,
+				B964F9121CC39670003E0D44 /* CrazeMMTests */,
+				B964F91D1CC39671003E0D44 /* CrazeMMUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B964F8F51CC39670003E0D44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B964F90D1CC39670003E0D44 /* LaunchScreen.storyboard in Resources */,
+				B964F90A1CC39670003E0D44 /* Assets.xcassets in Resources */,
+				B964F9051CC39670003E0D44 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B964F9111CC39670003E0D44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B964F91C1CC39671003E0D44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B964F8F31CC39670003E0D44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B964F9021CC39670003E0D44 /* ViewController.m in Sources */,
+				B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */,
+				B964F8FC1CC39670003E0D44 /* main.m in Sources */,
+				B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B964F90F1CC39670003E0D44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B964F9181CC39671003E0D44 /* CrazeMMTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B964F91A1CC39671003E0D44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B964F9231CC39671003E0D44 /* CrazeMMUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B964F9151CC39670003E0D44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B964F8F61CC39670003E0D44 /* CrazeMM */;
+			targetProxy = B964F9141CC39670003E0D44 /* PBXContainerItemProxy */;
+		};
+		B964F9201CC39671003E0D44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B964F8F61CC39670003E0D44 /* CrazeMM */;
+			targetProxy = B964F91F1CC39671003E0D44 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B964F9031CC39670003E0D44 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B964F9041CC39670003E0D44 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B964F90B1CC39670003E0D44 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B964F90C1CC39670003E0D44 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B964F9251CC39671003E0D44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B964F9261CC39671003E0D44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B964F9281CC39671003E0D44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrazeMM/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.189.CrazeMM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B964F9291CC39671003E0D44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrazeMM/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.189.CrazeMM;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B964F92B1CC39671003E0D44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CrazeMMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.189.CrazeMMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrazeMM.app/CrazeMM";
+			};
+			name = Debug;
+		};
+		B964F92C1CC39671003E0D44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CrazeMMTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.189.CrazeMMTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrazeMM.app/CrazeMM";
+			};
+			name = Release;
+		};
+		B964F92E1CC39671003E0D44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CrazeMMUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.189.CrazeMMUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CrazeMM;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		B964F92F1CC39671003E0D44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CrazeMMUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.189.CrazeMMUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CrazeMM;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B964F8F21CC39670003E0D44 /* Build configuration list for PBXProject "CrazeMM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B964F9251CC39671003E0D44 /* Debug */,
+				B964F9261CC39671003E0D44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B964F9271CC39671003E0D44 /* Build configuration list for PBXNativeTarget "CrazeMM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B964F9281CC39671003E0D44 /* Debug */,
+				B964F9291CC39671003E0D44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B964F92A1CC39671003E0D44 /* Build configuration list for PBXNativeTarget "CrazeMMTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B964F92B1CC39671003E0D44 /* Debug */,
+				B964F92C1CC39671003E0D44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B964F92D1CC39671003E0D44 /* Build configuration list for PBXNativeTarget "CrazeMMUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B964F92E1CC39671003E0D44 /* Debug */,
+				B964F92F1CC39671003E0D44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B964F9061CC39670003E0D44 /* CrazeMM.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B964F9071CC39670003E0D44 /* CrazeMM.xcdatamodel */,
+			);
+			currentVersion = B964F9071CC39670003E0D44 /* CrazeMM.xcdatamodel */;
+			path = CrazeMM.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B964F8EF1CC39670003E0D44 /* Project object */;
+}
