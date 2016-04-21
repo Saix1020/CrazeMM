@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController">
+            <connections>
+                <outlet property="buyButton" destination="h7G-bY-zcO" id="eef-TQ-7h0"/>
+                <outlet property="sellButton" destination="CPi-dC-7IK" id="9sG-Zl-asR"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-bg" translatesAutoresizingMaskIntoConstraints="NO" id="j66-5u-a6a">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7G-bY-zcO">
+                    <rect key="frame" x="76" y="201" width="168" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="cy3-hB-cCt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <state key="normal" title="我要买货">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPi-dC-7IK">
+                    <rect key="frame" x="76" y="259" width="168" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Wli-2G-Hgc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <state key="normal" title="我要卖货">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="xzN-yD-hQ8">
+                    <rect key="frame" x="40" y="65" width="240" height="109"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="Kc1-bc-hbE"/>
+                        <constraint firstAttribute="height" constant="109" id="w8c-s3-XTG"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="h7G-bY-zcO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="76" id="3LL-NT-kyH"/>
+                <constraint firstAttribute="bottom" secondItem="j66-5u-a6a" secondAttribute="bottom" id="6hq-OH-o9Z"/>
+                <constraint firstItem="xzN-yD-hQ8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="Kv4-P5-0fP"/>
+                <constraint firstItem="j66-5u-a6a" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MFy-r3-Ibq"/>
+                <constraint firstItem="h7G-bY-zcO" firstAttribute="top" secondItem="xzN-yD-hQ8" secondAttribute="bottom" constant="40" id="YX0-em-Zsz"/>
+                <constraint firstItem="h7G-bY-zcO" firstAttribute="leading" secondItem="CPi-dC-7IK" secondAttribute="leading" id="aoA-1r-4KC"/>
+                <constraint firstItem="CPi-dC-7IK" firstAttribute="trailing" secondItem="h7G-bY-zcO" secondAttribute="trailing" id="c6l-Tv-aMr"/>
+                <constraint firstItem="h7G-bY-zcO" firstAttribute="centerX" secondItem="j66-5u-a6a" secondAttribute="centerX" id="e2Y-3U-SS2"/>
+                <constraint firstItem="h7G-bY-zcO" firstAttribute="centerX" secondItem="xzN-yD-hQ8" secondAttribute="centerX" id="eWE-gz-6Wa"/>
+                <constraint firstItem="CPi-dC-7IK" firstAttribute="top" secondItem="h7G-bY-zcO" secondAttribute="bottom" constant="8" symbolic="YES" id="gJP-xH-DiL"/>
+                <constraint firstItem="j66-5u-a6a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rih-sc-2s3"/>
+                <constraint firstItem="j66-5u-a6a" firstAttribute="centerY" secondItem="CPi-dC-7IK" secondAttribute="centerY" id="uBi-AT-w6k"/>
+                <constraint firstAttribute="trailing" secondItem="j66-5u-a6a" secondAttribute="trailing" id="xDN-QQ-Aod"/>
+            </constraints>
+            <point key="canvasLocation" x="527" y="314"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="home-bg" width="320" height="568"/>
+        <image name="logo" width="2043" height="795"/>
+    </resources>
+</document>
