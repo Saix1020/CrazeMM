@@ -44,6 +44,9 @@
 		B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788F1CC8AD3800990AA4 /* LoginViewController.m */; };
 		B98878921CC8AD3800990AA4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98878901CC8AD3800990AA4 /* LoginViewController.xib */; };
 		B988789B1CC8D26D00990AA4 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B988789A1CC8D26D00990AA4 /* Reveal.framework */; };
+		B98878A01CC90CCA00990AA4 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988789E1CC90CCA00990AA4 /* SignViewController.m */; };
+		B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B988789F1CC90CCA00990AA4 /* SignViewController.xib */; };
+		B98878A31CC9100400990AA4 /* sign_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878A21CC9100400990AA4 /* sign_background.png */; };
 		B99D12C91CC520CB000DFF95 /* prod_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B99D12C81CC520CB000DFF95 /* prod_placeholder.jpg */; };
 		B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */ = {isa = PBXBuildFile; fileRef = B99D12CA1CC522FC000DFF95 /* logo_channel.png */; };
 		B99D12D21CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12D11CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m */; };
@@ -135,6 +138,10 @@
 		B988788F1CC8AD3800990AA4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = login/LoginViewController.m; sourceTree = "<group>"; };
 		B98878901CC8AD3800990AA4 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = login/LoginViewController.xib; sourceTree = "<group>"; };
 		B988789A1CC8D26D00990AA4 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		B988789D1CC90CCA00990AA4 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignViewController.h; path = sign/SignViewController.h; sourceTree = "<group>"; };
+		B988789E1CC90CCA00990AA4 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignViewController.m; path = sign/SignViewController.m; sourceTree = "<group>"; };
+		B988789F1CC90CCA00990AA4 /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignViewController.xib; path = sign/SignViewController.xib; sourceTree = "<group>"; };
+		B98878A21CC9100400990AA4 /* sign_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign_background.png; sourceTree = "<group>"; };
 		B99D12C81CC520CB000DFF95 /* prod_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = prod_placeholder.jpg; sourceTree = "<group>"; };
 		B99D12CA1CC522FC000DFF95 /* logo_channel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_channel.png; sourceTree = "<group>"; };
 		B99D12D01CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+RACSignalSupport.h"; sourceTree = "<group>"; };
@@ -249,6 +256,7 @@
 		B964F8F91CC39670003E0D44 /* CrazeMM */ = {
 			isa = PBXGroup;
 			children = (
+				B988789C1CC90CAD00990AA4 /* sign */,
 				B98878871CC89FE600990AA4 /* login */,
 				B99D13141CC7A6E5000DFF95 /* product */,
 				B964F9791CC4CE84003E0D44 /* resouce */,
@@ -399,6 +407,7 @@
 		B964F9791CC4CE84003E0D44 /* resouce */ = {
 			isa = PBXGroup;
 			children = (
+				B98878A21CC9100400990AA4 /* sign_background.png */,
 				B98878851CC896BE00990AA4 /* product_debug.png */,
 				B99D13181CC7AAB2000DFF95 /* fontawesome-webfont.ttf */,
 				B964F93D1CC3A7FF003E0D44 /* javascript-bridge.html */,
@@ -421,6 +430,16 @@
 				B98878901CC8AD3800990AA4 /* LoginViewController.xib */,
 			);
 			name = login;
+			sourceTree = "<group>";
+		};
+		B988789C1CC90CAD00990AA4 /* sign */ = {
+			isa = PBXGroup;
+			children = (
+				B988789D1CC90CCA00990AA4 /* SignViewController.h */,
+				B988789E1CC90CCA00990AA4 /* SignViewController.m */,
+				B988789F1CC90CCA00990AA4 /* SignViewController.xib */,
+			);
+			name = sign;
 			sourceTree = "<group>";
 		};
 		B99D12DE1CC61AAB000DFF95 /* view */ = {
@@ -600,6 +619,7 @@
 				B964F98C1CC50344003E0D44 /* slide-4.jpg in Resources */,
 				B964F90A1CC39670003E0D44 /* Assets.xcassets in Resources */,
 				B99D12FE1CC66ED3000DFF95 /* SearchHistoryCell.xib in Resources */,
+				B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */,
 				B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */,
 				B98878921CC8AD3800990AA4 /* LoginViewController.xib in Resources */,
 				B964F9881CC50339003E0D44 /* slide-1.jpg in Resources */,
@@ -609,6 +629,7 @@
 				B99D12F91CC66EB9000DFF95 /* KeyWordsCell.xib in Resources */,
 				B99D12C91CC520CB000DFF95 /* prod_placeholder.jpg in Resources */,
 				B99D13031CC66EFB000DFF95 /* ClearHistoryCell.xib in Resources */,
+				B98878A31CC9100400990AA4 /* sign_background.png in Resources */,
 				B964F9511CC49DF2003E0D44 /* WelcomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,6 +736,7 @@
 				B99D13021CC66EFB000DFF95 /* ClearHistoryCell.m in Sources */,
 				B99D12DA1CC5DD7E000DFF95 /* UITabBarController+HideTabBar.m in Sources */,
 				B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */,
+				B98878A01CC90CCA00990AA4 /* SignViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

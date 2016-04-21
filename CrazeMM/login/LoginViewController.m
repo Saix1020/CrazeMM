@@ -9,7 +9,8 @@
 #import "LoginViewController.h"
 #import "BEMCheckBox.h"
 #import "SuggestViewController.h"
-#import "ZZPopoverWindow.h";
+#import "ZZPopoverWindow.h"
+#import "SignViewController.h"
 
 #define kLeadingPad 16.f
 #define kTailingPad 16.f
@@ -36,6 +37,7 @@
 @property (strong, nonatomic) UIView *line3;
 
 @property (strong, nonatomic) SuggestViewController* suggestVC;
+@property (strong, nonatomic) SignViewController* signVC;
 @property (nonatomic, strong) ZZPopoverWindow* popover;
 
 
@@ -66,6 +68,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.title = @"会员登录";
+
     
     [self initLines];
     [self.loginButton bs_configureAsDefaultStyle];
@@ -80,6 +84,13 @@
     self.registerButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [self.registerButton setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
     [self.registerButton setImage:[UIImage imageNamed:@"fast_register"] forState:UIControlStateNormal];
+    
+    self.registerButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        
+        self.signVC = [[SignViewController alloc] init];
+        [self.navigationController pushViewController:self.signVC animated:YES];
+        return [RACSignal empty];
+    }];
     
     self.rememberMeCheckBox.boxType = BEMBoxTypeSquare;
     self.rememberMeCheckBox.onFillColor = [UIColor clearColor];
