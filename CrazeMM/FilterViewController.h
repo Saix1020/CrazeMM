@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol FilterViewDelegate <NSObject>
+@protocol FilterVCDelegate <NSObject>
 
 -(void)didChangeFilterKeywords:(NSArray*)keywords;
 
@@ -16,7 +16,7 @@
 
 @interface FilterViewController : UITableViewController
 
-@property (nonatomic, weak) id<FilterViewDelegate> delegate;
+@property (nonatomic, weak) id<FilterVCDelegate> delegate;
 @property (nonatomic, copy) NSArray* filterKeywords;
 
 @property (nonatomic) CGFloat height;

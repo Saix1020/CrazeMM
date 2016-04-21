@@ -8,6 +8,7 @@
 
 #import "ProductViewController.h"
 #import "LLBootstrap.h"
+#import "LoginViewController.h"
 
 
 #define DEBUG_MODE
