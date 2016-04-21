@@ -14,6 +14,7 @@
 #import "UISearchBar+Utils.h"
 #import "MJRefresh.h"
 #import "SearchViewController.h"
+#import "ProductViewController.h"
 
 
 
@@ -293,6 +294,12 @@
     return self.filtedItems.count;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProductViewController* productVC = [[ProductViewController alloc]  init];
+    
+    [self.navigationController pushViewController:productVC animated:YES];
+}
 
 
 @end

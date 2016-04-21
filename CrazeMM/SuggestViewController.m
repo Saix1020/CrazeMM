@@ -8,6 +8,12 @@
 
 #import "SuggestViewController.h"
 
+@interface SuggestViewController()
+
+//@property (nonatomic, strong) 
+
+@end
+
 @implementation SuggestViewController
 
 -(void)viewDidLoad
@@ -17,10 +23,10 @@
     UIView *footView = [UIView new];
     footView.backgroundColor = [UIColor clearColor];
     
-    UIView *headView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 30)];
-    headView.backgroundColor = RGBCOLOR(150, 150, 150);
-    self.tableView.tableHeaderView = headView;
-    
+//    UIView *headView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 30)];
+//    headView.backgroundColor = RGBCOLOR(150, 150, 150);
+//    self.tableView.tableHeaderView = headView;
+//    
     self.tableView.delegate = self;
     self.tableView.dataSource  = self;
 }
@@ -64,15 +70,15 @@
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if(cell.accessoryType != UITableViewCellAccessoryCheckmark) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+//    if(cell.accessoryType != UITableViewCellAccessoryCheckmark) {
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    }
+//    else {
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//    }
     
     if(self.delegate && [self.delegate respondsToSelector:@selector(didSelectSuggestString:)]){
-        [self.delegate performSelector:@selector(didSelectSuggestString:) withObject:self.suggestedStrings];
+        [self.delegate performSelector:@selector(didSelectSuggestString:) withObject:cell.textLabel.text];
     }
 }
 

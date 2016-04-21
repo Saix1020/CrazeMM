@@ -9,6 +9,8 @@
 #import "ProductViewController.h"
 #import "LLBootstrap.h"
 #import "LoginViewController.h"
+#import "UITabBarController+HideTabBar.h"
+
 
 
 #define DEBUG_MODE
@@ -77,6 +79,10 @@
         [_payButton setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.2] forState:UIControlStateHighlighted];
         
         _payButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            
+            LoginViewController* loginVC = [[LoginViewController alloc] init];
+            loginVC.fromVC = self;
+            [self.navigationController pushViewController:loginVC animated:YES];
                 return [RACSignal empty];
         }];
         
@@ -133,6 +139,12 @@
     self.timeLabel.frame = CGRectMake(0, 0, self.view.bounds.size.width, 20);
     self.payButton.frame = CGRectMake(0, 20, self.view.bounds.size.width/2, 60);
     self.orderButton.frame = CGRectMake(self.view.bounds.size.width/2, 20, self.view.bounds.size.width/2, 60);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
 }
 
 @end

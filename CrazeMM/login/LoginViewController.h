@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SuggestViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController<SuggestVCDelegate>
+
+@property (nonatomic, weak) UIViewController* fromVC;
 
 @end

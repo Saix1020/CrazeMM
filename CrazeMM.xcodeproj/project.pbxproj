@@ -32,7 +32,6 @@
 		B964F9741CC4B073003E0D44 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9731CC4B073003E0D44 /* MineViewController.m */; };
 		B964F9751CC4B073003E0D44 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9731CC4B073003E0D44 /* MineViewController.m */; };
 		B964F9761CC4B073003E0D44 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9731CC4B073003E0D44 /* MineViewController.m */; };
-		B964F9781CC4BBF1003E0D44 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B964F9771CC4BBF1003E0D44 /* Reveal.framework */; };
 		B964F9841CC5030C003E0D44 /* slide-0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B964F9831CC5030C003E0D44 /* slide-0.jpg */; };
 		B964F9861CC50316003E0D44 /* slide-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B964F9851CC50316003E0D44 /* slide-2.jpg */; };
 		B964F9881CC50339003E0D44 /* slide-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B964F9871CC50339003E0D44 /* slide-1.jpg */; };
@@ -44,6 +43,7 @@
 		B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */; };
 		B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788F1CC8AD3800990AA4 /* LoginViewController.m */; };
 		B98878921CC8AD3800990AA4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98878901CC8AD3800990AA4 /* LoginViewController.xib */; };
+		B988789B1CC8D26D00990AA4 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B988789A1CC8D26D00990AA4 /* Reveal.framework */; };
 		B99D12C91CC520CB000DFF95 /* prod_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B99D12C81CC520CB000DFF95 /* prod_placeholder.jpg */; };
 		B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */ = {isa = PBXBuildFile; fileRef = B99D12CA1CC522FC000DFF95 /* logo_channel.png */; };
 		B99D12D21CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12D11CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m */; };
@@ -120,7 +120,6 @@
 		B964F9691CC4AAC6003E0D44 /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Utils.m"; path = "common/UIColor+Utils.m"; sourceTree = "<group>"; };
 		B964F9721CC4B073003E0D44 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineViewController.h; path = mine/MineViewController.h; sourceTree = "<group>"; };
 		B964F9731CC4B073003E0D44 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineViewController.m; path = mine/MineViewController.m; sourceTree = "<group>"; };
-		B964F9771CC4BBF1003E0D44 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		B964F9831CC5030C003E0D44 /* slide-0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "slide-0.jpg"; sourceTree = "<group>"; };
 		B964F9851CC50316003E0D44 /* slide-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "slide-2.jpg"; sourceTree = "<group>"; };
 		B964F9871CC50339003E0D44 /* slide-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "slide-1.jpg"; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		B988788E1CC8AD3800990AA4 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = login/LoginViewController.h; sourceTree = "<group>"; };
 		B988788F1CC8AD3800990AA4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = login/LoginViewController.m; sourceTree = "<group>"; };
 		B98878901CC8AD3800990AA4 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = login/LoginViewController.xib; sourceTree = "<group>"; };
+		B988789A1CC8D26D00990AA4 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		B99D12C81CC520CB000DFF95 /* prod_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = prod_placeholder.jpg; sourceTree = "<group>"; };
 		B99D12CA1CC522FC000DFF95 /* logo_channel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_channel.png; sourceTree = "<group>"; };
 		B99D12D01CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+RACSignalSupport.h"; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0447E4425CC1A1596914F774 /* Pods.framework in Frameworks */,
-				B964F9781CC4BBF1003E0D44 /* Reveal.framework in Frameworks */,
+				B988789B1CC8D26D00990AA4 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +218,7 @@
 		8B36CB4D54E72C4D41168BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B964F9771CC4BBF1003E0D44 /* Reveal.framework */,
+				B988789A1CC8D26D00990AA4 /* Reveal.framework */,
 				14ACAF7E869FA5D74648BBDD /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -556,6 +556,7 @@
 				TargetAttributes = {
 					B964F8F61CC39670003E0D44 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 47793U9PJ9;
 					};
 					B964F9121CC39670003E0D44 = {
 						CreatedOnToolsVersion = 7.2;
@@ -841,6 +842,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: sai xu (G3356M53WH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -851,8 +853,6 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lz",
-					"-framework",
-					Reveal,
 					"$(inherited)",
 					"-framework",
 					"\"AFNetworking\"",
@@ -868,6 +868,8 @@
 					"\"WebViewJavascriptBridge\"",
 					"-framework",
 					"\"iCarousel\"",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.189.CrazeMM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -881,6 +883,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: sai xu (G3356M53WH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -891,8 +894,6 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lz",
-					"-framework",
-					Reveal,
 					"$(inherited)",
 					"-framework",
 					"\"AFNetworking\"",
@@ -908,6 +909,8 @@
 					"\"WebViewJavascriptBridge\"",
 					"-framework",
 					"\"iCarousel\"",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.189.CrazeMM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
