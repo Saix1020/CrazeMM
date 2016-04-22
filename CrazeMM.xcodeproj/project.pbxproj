@@ -47,6 +47,13 @@
 		B98878A01CC90CCA00990AA4 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988789E1CC90CCA00990AA4 /* SignViewController.m */; };
 		B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B988789F1CC90CCA00990AA4 /* SignViewController.xib */; };
 		B98878A31CC9100400990AA4 /* sign_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878A21CC9100400990AA4 /* sign_background.png */; };
+		B98878A61CC98D6200990AA4 /* UIButton+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878A51CC98D6200990AA4 /* UIButton+Utils.m */; };
+		B98878AA1CC98ED300990AA4 /* AvataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878A91CC98ED300990AA4 /* AvataCell.m */; };
+		B98878AC1CC98EFB00990AA4 /* AvataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98878AB1CC98EFB00990AA4 /* AvataCell.xib */; };
+		B98878AF1CC9923800990AA4 /* CDFInitialsAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878AE1CC9923800990AA4 /* CDFInitialsAvatar.m */; };
+		B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878B11CC992FA00990AA4 /* UIView+Utils.m */; };
+		B98878B41CC9993200990AA4 /* avata.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878B31CC9993200990AA4 /* avata.png */; };
+		B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878B61CC99D9200990AA4 /* UIImageView+Utils.m */; };
 		B99D12C91CC520CB000DFF95 /* prod_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B99D12C81CC520CB000DFF95 /* prod_placeholder.jpg */; };
 		B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */ = {isa = PBXBuildFile; fileRef = B99D12CA1CC522FC000DFF95 /* logo_channel.png */; };
 		B99D12D21CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12D11CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m */; };
@@ -142,6 +149,18 @@
 		B988789E1CC90CCA00990AA4 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignViewController.m; path = sign/SignViewController.m; sourceTree = "<group>"; };
 		B988789F1CC90CCA00990AA4 /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignViewController.xib; path = sign/SignViewController.xib; sourceTree = "<group>"; };
 		B98878A21CC9100400990AA4 /* sign_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign_background.png; sourceTree = "<group>"; };
+		B98878A41CC98D6200990AA4 /* UIButton+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Utils.h"; path = "common/UIButton+Utils.h"; sourceTree = "<group>"; };
+		B98878A51CC98D6200990AA4 /* UIButton+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Utils.m"; path = "common/UIButton+Utils.m"; sourceTree = "<group>"; };
+		B98878A81CC98ED300990AA4 /* AvataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvataCell.h; path = mine/AvataCell.h; sourceTree = "<group>"; };
+		B98878A91CC98ED300990AA4 /* AvataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvataCell.m; path = mine/AvataCell.m; sourceTree = "<group>"; };
+		B98878AB1CC98EFB00990AA4 /* AvataCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AvataCell.xib; path = mine/AvataCell.xib; sourceTree = "<group>"; };
+		B98878AD1CC9923800990AA4 /* CDFInitialsAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFInitialsAvatar.h; sourceTree = "<group>"; };
+		B98878AE1CC9923800990AA4 /* CDFInitialsAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFInitialsAvatar.m; sourceTree = "<group>"; };
+		B98878B01CC992FA00990AA4 /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Utils.h"; path = "common/UIView+Utils.h"; sourceTree = "<group>"; };
+		B98878B11CC992FA00990AA4 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Utils.m"; path = "common/UIView+Utils.m"; sourceTree = "<group>"; };
+		B98878B31CC9993200990AA4 /* avata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avata.png; sourceTree = "<group>"; };
+		B98878B51CC99D9200990AA4 /* UIImageView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Utils.h"; path = "common/UIImageView+Utils.h"; sourceTree = "<group>"; };
+		B98878B61CC99D9200990AA4 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Utils.m"; path = "common/UIImageView+Utils.m"; sourceTree = "<group>"; };
 		B99D12C81CC520CB000DFF95 /* prod_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = prod_placeholder.jpg; sourceTree = "<group>"; };
 		B99D12CA1CC522FC000DFF95 /* logo_channel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_channel.png; sourceTree = "<group>"; };
 		B99D12D01CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+RACSignalSupport.h"; sourceTree = "<group>"; };
@@ -346,6 +365,7 @@
 		B964F9581CC4A747003E0D44 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B98878A71CC98E5D00990AA4 /* view */,
 				B964F9721CC4B073003E0D44 /* MineViewController.h */,
 				B964F9731CC4B073003E0D44 /* MineViewController.m */,
 			);
@@ -400,6 +420,12 @@
 				B99D12DC1CC5F8DC000DFF95 /* UISearchBar+Utils.m */,
 				B99D131A1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.h */,
 				B99D131B1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.m */,
+				B98878A41CC98D6200990AA4 /* UIButton+Utils.h */,
+				B98878A51CC98D6200990AA4 /* UIButton+Utils.m */,
+				B98878B01CC992FA00990AA4 /* UIView+Utils.h */,
+				B98878B11CC992FA00990AA4 /* UIView+Utils.m */,
+				B98878B51CC99D9200990AA4 /* UIImageView+Utils.h */,
+				B98878B61CC99D9200990AA4 /* UIImageView+Utils.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -412,6 +438,7 @@
 				B99D13181CC7AAB2000DFF95 /* fontawesome-webfont.ttf */,
 				B964F93D1CC3A7FF003E0D44 /* javascript-bridge.html */,
 				B964F9831CC5030C003E0D44 /* slide-0.jpg */,
+				B98878B31CC9993200990AA4 /* avata.png */,
 				B964F9871CC50339003E0D44 /* slide-1.jpg */,
 				B964F9851CC50316003E0D44 /* slide-2.jpg */,
 				B964F9891CC50344003E0D44 /* slide-3.jpg */,
@@ -442,9 +469,21 @@
 			name = sign;
 			sourceTree = "<group>";
 		};
+		B98878A71CC98E5D00990AA4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B98878A81CC98ED300990AA4 /* AvataCell.h */,
+				B98878A91CC98ED300990AA4 /* AvataCell.m */,
+				B98878AB1CC98EFB00990AA4 /* AvataCell.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		B99D12DE1CC61AAB000DFF95 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B98878AD1CC9923800990AA4 /* CDFInitialsAvatar.h */,
+				B98878AE1CC9923800990AA4 /* CDFInitialsAvatar.m */,
 				B99D13041CC72AD0000DFF95 /* CustomSeperatorLineCell.h */,
 				B99D13051CC72AD0000DFF95 /* CustomSeperatorLineCell.m */,
 				B99D13111CC75B84000DFF95 /* LabelWithSeperatorLine.h */,
@@ -614,10 +653,12 @@
 			files = (
 				B964F93E1CC3A7FF003E0D44 /* javascript-bridge.html in Resources */,
 				B964F9861CC50316003E0D44 /* slide-2.jpg in Resources */,
+				B98878AC1CC98EFB00990AA4 /* AvataCell.xib in Resources */,
 				B964F9911CC50E1E003E0D44 /* BuyItemCell.xib in Resources */,
 				B964F9841CC5030C003E0D44 /* slide-0.jpg in Resources */,
 				B964F98C1CC50344003E0D44 /* slide-4.jpg in Resources */,
 				B964F90A1CC39670003E0D44 /* Assets.xcassets in Resources */,
+				B98878B41CC9993200990AA4 /* avata.png in Resources */,
 				B99D12FE1CC66ED3000DFF95 /* SearchHistoryCell.xib in Resources */,
 				B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */,
 				B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */,
@@ -714,6 +755,7 @@
 				B99D130F1CC743A4000DFF95 /* SearchListViewController.m in Sources */,
 				B964F9371CC39712003E0D44 /* SearchHistory.m in Sources */,
 				B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */,
+				B98878AF1CC9923800990AA4 /* CDFInitialsAvatar.m in Sources */,
 				B99D13231CC86A04000DFF95 /* BaseNavigationController.m in Sources */,
 				B964F9741CC4B073003E0D44 /* MineViewController.m in Sources */,
 				B99D13171CC7A813000DFF95 /* ProductViewController.m in Sources */,
@@ -724,15 +766,19 @@
 				B99D12D21CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m in Sources */,
 				B99D13061CC72AD0000DFF95 /* CustomSeperatorLineCell.m in Sources */,
 				B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */,
+				B98878AA1CC98ED300990AA4 /* AvataCell.m in Sources */,
 				B99D130B1CC73FDA000DFF95 /* SearchListCell.m in Sources */,
 				B99D13201CC7C862000DFF95 /* FilterViewController.m in Sources */,
 				B99D12FD1CC66ED3000DFF95 /* SearchHistoryCell.m in Sources */,
 				B964F96A1CC4AAC6003E0D44 /* UIColor+Utils.m in Sources */,
 				B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */,
+				B98878A61CC98D6200990AA4 /* UIButton+Utils.m in Sources */,
 				B964F9631CC4A81A003E0D44 /* BuyViewController.m in Sources */,
 				B99D131C1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.m in Sources */,
 				B964F9901CC50E1E003E0D44 /* BuyItemCell.m in Sources */,
+				B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */,
 				B99D13131CC75B84000DFF95 /* LabelWithSeperatorLine.m in Sources */,
+				B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */,
 				B99D13021CC66EFB000DFF95 /* ClearHistoryCell.m in Sources */,
 				B99D12DA1CC5DD7E000DFF95 /* UITabBarController+HideTabBar.m in Sources */,
 				B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */,

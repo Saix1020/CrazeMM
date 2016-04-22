@@ -19,8 +19,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ReactiveCocoa.h"
 #import "AppDelegate.h"
+#import "UIView+Utils.h"
 #import "UIColor+Utils.h"
 #import "UIView+FrameEx.h"
+#import "UIImageView+Utils.h"
 #import "LLBootstrap.h"
 
 
@@ -31,6 +33,7 @@
 
 
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define kButtonHightLightColor ([UIColor colorWithRed:255 green:255 blue:255 alpha:0.2])
 
 
 #endif
