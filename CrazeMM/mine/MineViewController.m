@@ -9,6 +9,10 @@
 #import "MineViewController.h"
 #import "UITabBarController+HideTabBar.h"
 #import "AvataCell.h"
+#import "SegmentedCell.h"
+#import "OrderStatusCell.h"
+
+
 
 typedef NS_ENUM(NSInteger, MineTableViewSection){
     kSectionOverview = 0,
@@ -23,6 +27,8 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 @property (nonatomic, strong) UITableView* tableView;
 
 @property (nonatomic, strong) AvataCell* avataCell;
+@property (nonatomic, strong) SegmentedCell* segmentCell;
+@property (nonatomic, strong) OrderStatusCell* orderStatusCell;
 
 
 @end
@@ -37,6 +43,26 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
     }
     
     return _avataCell;
+}
+
+-(OrderStatusCell*)orderStatusCell
+{
+    if(!_orderStatusCell){
+        _orderStatusCell = [[[NSBundle mainBundle]loadNibNamed:@"OrderStatusCell" owner:nil options:nil] firstObject];
+    }
+    
+    return _orderStatusCell;
+}
+
+
+-(SegmentedCell*)segmentCell
+{
+    if(!_segmentCell){
+        _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
+        _segmentCell.titles = @[@"我买的货", @"我卖的货"];
+    }
+    
+    return _segmentCell;
 }
 
 -(void)viewDidLoad
@@ -94,7 +120,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
                 case 0:
                     return 110;
                 case 1:
-                    return 64;
+                    return [SegmentedCell cellHight];
                 case 2:
                     return 32;
                     
@@ -139,9 +165,9 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
                 case 0:
                     return self.avataCell;
                 case 1:
-                    return cell;
+                    return self.segmentCell;
                 case 2:
-                    return cell;
+                    return self.orderStatusCell;
                     
                 default:
                     break;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NHArrowView.h"
+#import "ArrowView.h"
 
 
 
@@ -16,6 +17,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *leftTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
-@property (weak, nonatomic) IBOutlet NHArrowView *arrawView;
-@property (weak, nonatomic) UILabel *arrowLable;
+@property (weak, nonatomic) IBOutlet ArrowView *arrawView;
+@property (copy, nonatomic) NSString* arrawString;
+@property (weak, nonatomic) IBOutlet UIView *bottomLine;
+
+
++(CGFloat)cellHeight;
 @end

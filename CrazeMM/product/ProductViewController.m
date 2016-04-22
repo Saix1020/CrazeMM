@@ -38,7 +38,7 @@
         [self.view addSubview:_buttomView];
         _buttomView.backgroundColor = [UIColor clearColor];
         
-                [_buttomView addSubview:self.timeLabel];
+        [_buttomView addSubview:self.timeLabel];
         [_buttomView addSubview:self.payButton];
         [_buttomView addSubview:self.orderButton];
     }

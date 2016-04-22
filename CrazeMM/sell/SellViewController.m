@@ -26,7 +26,7 @@
 {
     SellItemCell *cell = (SellItemCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
     
-    cell.arrawView.text = @"供货";
+    cell.arrawString = @"供货";
     
     return cell;
 }

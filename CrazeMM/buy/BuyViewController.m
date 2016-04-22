@@ -18,7 +18,7 @@
 
 
 
-#define kTableViewHeadHeight 160.f
+#define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
 #define kNumberOfCellPerPage 3
 #define kTotalSlides 5
@@ -276,15 +276,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ceil(([ UIScreen mainScreen ].applicationFrame.size.height - kTableViewHeadHeight - self.navigationController.navigationBar.bounds.size.height - self.tabBarController.tabBar.bounds.size.height)/kNumberOfCellPerPage);
+//    return ceil(([ UIScreen mainScreen ].applicationFrame.size.height - kTableViewHeadHeight - self.navigationController.navigationBar.bounds.size.height - self.tabBarController.tabBar.bounds.size.height)/kNumberOfCellPerPage);
+    return [BuyItemCell cellHeight];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    UITableViewCell* cell = [[[NSBundle mainBundle]loadNibNamed:@"BuyItemCell" owner:nil options:nil] firstObject];
     BuyItemCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BuyItemCell"];
-    cell.backgroundColor = [UIColor UIColorFromRGB:0xF5F5F5];
+//    cell.backgroundColor = [UIColor UIColorFromRGB:0xF5F5F5];
     cell.titleLabel.text = self.filtedItems[indexPath.row];
+    cell.arrawString = @"求购";
 
     return cell;
 }

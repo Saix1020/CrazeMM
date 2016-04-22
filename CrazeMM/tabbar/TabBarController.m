@@ -24,28 +24,19 @@
     self = [super init];
     if(self){
         
-        self.tabBar.tintColor=[UIColor UIColorFromRGB:(0xff6a00)];
+        self.tabBar.tintColor = [UIColor redColor];
         
         UITabBarItem *buyItem = [[UITabBarItem alloc] init];
-        [buyItem setTitle:@"我要买"];
-        [buyItem setImage:[[UIImage imageNamed:@"shopping-cart"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-//        [buyItem setSelectedImage:[[UIImage imageNamed:@"icon_mine_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [buyItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor UIColorFromRGB:(0xff6a00)] }
-                             forState:UIControlStateSelected];
+        [buyItem setTitle:@"求购"];
+        [buyItem setImage:[[UIImage imageNamed:@"want2"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         
         UITabBarItem *sellItem = [[UITabBarItem alloc] init];
-        [sellItem setTitle:@"我要卖"];
-        [sellItem setImage:[[UIImage imageNamed:@"bus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-//        [sellItem setSelectedImage:[[UIImage imageNamed:@"icon_mine_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [sellItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor UIColorFromRGB:(0xff6a00)] }
-                              forState:UIControlStateSelected];
+        [sellItem setTitle:@"供货"];
+        [sellItem setImage:[[UIImage imageNamed:@"supply1"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         
         UITabBarItem *mineItem = [[UITabBarItem alloc] init];
         [mineItem setTitle:@"我的"];
-        [mineItem setImage:[[UIImage imageNamed:@"icon_account"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-//        [mineItem setSelectedImage:[[UIImage imageNamed:@"icon_mine_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [mineItem setTitleTextAttributes:@{ NSForegroundColorAttributeName: [UIColor UIColorFromRGB:(0xff6a00)] }
-                                forState:UIControlStateSelected];
+        [mineItem setImage:[[UIImage imageNamed:@"mine1"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
 
         
         
@@ -62,7 +53,7 @@
         BaseNavigationController *mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
         
         
-        self.viewControllers = [NSArray arrayWithObjects:buyNavController, sellNavController, mineNavController, nil];
+        self.viewControllers = [NSArray arrayWithObjects:sellNavController, buyNavController, mineNavController, nil];
         
         self.delegate = self;
     }

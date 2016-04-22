@@ -54,6 +54,15 @@
 		B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878B11CC992FA00990AA4 /* UIView+Utils.m */; };
 		B98878B41CC9993200990AA4 /* avata.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878B31CC9993200990AA4 /* avata.png */; };
 		B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878B61CC99D9200990AA4 /* UIImageView+Utils.m */; };
+		B98878BA1CC9B94300990AA4 /* SegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878B91CC9B94300990AA4 /* SegmentedCell.m */; };
+		B98878BF1CC9BB1F00990AA4 /* CustomSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878BE1CC9BB1F00990AA4 /* CustomSegment.m */; };
+		B98878C21CC9BB4100990AA4 /* segment_line_Horizontal_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878C01CC9BB4100990AA4 /* segment_line_Horizontal_orange.png */; };
+		B98878C31CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878C11CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png */; };
+		B98878C61CC9BCBC00990AA4 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878C51CC9BCBC00990AA4 /* UIColor+Helper.m */; };
+		B98878CA1CC9CC3800990AA4 /* OrderStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878C81CC9CC3800990AA4 /* OrderStatusCell.m */; };
+		B98878CB1CC9CC3800990AA4 /* OrderStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98878C91CC9CC3800990AA4 /* OrderStatusCell.xib */; };
+		B98878CE1CC9D0A300990AA4 /* NSAttributedString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878CD1CC9D0A300990AA4 /* NSAttributedString+Utils.m */; };
+		B98878D11CC9ECBB00990AA4 /* ArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878D01CC9ECBB00990AA4 /* ArrowView.m */; };
 		B99D12C91CC520CB000DFF95 /* prod_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B99D12C81CC520CB000DFF95 /* prod_placeholder.jpg */; };
 		B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */ = {isa = PBXBuildFile; fileRef = B99D12CA1CC522FC000DFF95 /* logo_channel.png */; };
 		B99D12D21CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12D11CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m */; };
@@ -161,6 +170,21 @@
 		B98878B31CC9993200990AA4 /* avata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avata.png; sourceTree = "<group>"; };
 		B98878B51CC99D9200990AA4 /* UIImageView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Utils.h"; path = "common/UIImageView+Utils.h"; sourceTree = "<group>"; };
 		B98878B61CC99D9200990AA4 /* UIImageView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Utils.m"; path = "common/UIImageView+Utils.m"; sourceTree = "<group>"; };
+		B98878B81CC9B94300990AA4 /* SegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SegmentedCell.h; path = common/SegmentedCell.h; sourceTree = "<group>"; };
+		B98878B91CC9B94300990AA4 /* SegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentedCell.m; path = common/SegmentedCell.m; sourceTree = "<group>"; };
+		B98878BD1CC9BB1F00990AA4 /* CustomSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegment.h; sourceTree = "<group>"; };
+		B98878BE1CC9BB1F00990AA4 /* CustomSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegment.m; sourceTree = "<group>"; };
+		B98878C01CC9BB4100990AA4 /* segment_line_Horizontal_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segment_line_Horizontal_orange.png; sourceTree = "<group>"; };
+		B98878C11CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segment_line_vertical_gray@2x.png"; sourceTree = "<group>"; };
+		B98878C41CC9BCBC00990AA4 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
+		B98878C51CC9BCBC00990AA4 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
+		B98878C71CC9CC3800990AA4 /* OrderStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderStatusCell.h; path = mine/OrderStatusCell.h; sourceTree = "<group>"; };
+		B98878C81CC9CC3800990AA4 /* OrderStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderStatusCell.m; path = mine/OrderStatusCell.m; sourceTree = "<group>"; };
+		B98878C91CC9CC3800990AA4 /* OrderStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderStatusCell.xib; path = mine/OrderStatusCell.xib; sourceTree = "<group>"; };
+		B98878CC1CC9D0A300990AA4 /* NSAttributedString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Utils.h"; path = "common/NSAttributedString+Utils.h"; sourceTree = "<group>"; };
+		B98878CD1CC9D0A300990AA4 /* NSAttributedString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Utils.m"; path = "common/NSAttributedString+Utils.m"; sourceTree = "<group>"; };
+		B98878CF1CC9ECBB00990AA4 /* ArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrowView.h; path = common/ArrowView.h; sourceTree = "<group>"; };
+		B98878D01CC9ECBB00990AA4 /* ArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArrowView.m; path = common/ArrowView.m; sourceTree = "<group>"; };
 		B99D12C81CC520CB000DFF95 /* prod_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = prod_placeholder.jpg; sourceTree = "<group>"; };
 		B99D12CA1CC522FC000DFF95 /* logo_channel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_channel.png; sourceTree = "<group>"; };
 		B99D12D01CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+RACSignalSupport.h"; sourceTree = "<group>"; };
@@ -412,6 +436,8 @@
 			children = (
 				B99D12D01CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.h */,
 				B99D12D11CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m */,
+				B98878C41CC9BCBC00990AA4 /* UIColor+Helper.h */,
+				B98878C51CC9BCBC00990AA4 /* UIColor+Helper.m */,
 				B964F9681CC4AAC6003E0D44 /* UIColor+Utils.h */,
 				B964F9691CC4AAC6003E0D44 /* UIColor+Utils.m */,
 				B99D12D81CC5DD7E000DFF95 /* UITabBarController+HideTabBar.h */,
@@ -426,6 +452,8 @@
 				B98878B11CC992FA00990AA4 /* UIView+Utils.m */,
 				B98878B51CC99D9200990AA4 /* UIImageView+Utils.h */,
 				B98878B61CC99D9200990AA4 /* UIImageView+Utils.m */,
+				B98878CC1CC9D0A300990AA4 /* NSAttributedString+Utils.h */,
+				B98878CD1CC9D0A300990AA4 /* NSAttributedString+Utils.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -433,6 +461,8 @@
 		B964F9791CC4CE84003E0D44 /* resouce */ = {
 			isa = PBXGroup;
 			children = (
+				B98878C01CC9BB4100990AA4 /* segment_line_Horizontal_orange.png */,
+				B98878C11CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png */,
 				B98878A21CC9100400990AA4 /* sign_background.png */,
 				B98878851CC896BE00990AA4 /* product_debug.png */,
 				B99D13181CC7AAB2000DFF95 /* fontawesome-webfont.ttf */,
@@ -475,6 +505,9 @@
 				B98878A81CC98ED300990AA4 /* AvataCell.h */,
 				B98878A91CC98ED300990AA4 /* AvataCell.m */,
 				B98878AB1CC98EFB00990AA4 /* AvataCell.xib */,
+				B98878C71CC9CC3800990AA4 /* OrderStatusCell.h */,
+				B98878C81CC9CC3800990AA4 /* OrderStatusCell.m */,
+				B98878C91CC9CC3800990AA4 /* OrderStatusCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -482,12 +515,18 @@
 		B99D12DE1CC61AAB000DFF95 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B98878BD1CC9BB1F00990AA4 /* CustomSegment.h */,
+				B98878BE1CC9BB1F00990AA4 /* CustomSegment.m */,
+				B98878B81CC9B94300990AA4 /* SegmentedCell.h */,
+				B98878B91CC9B94300990AA4 /* SegmentedCell.m */,
 				B98878AD1CC9923800990AA4 /* CDFInitialsAvatar.h */,
 				B98878AE1CC9923800990AA4 /* CDFInitialsAvatar.m */,
 				B99D13041CC72AD0000DFF95 /* CustomSeperatorLineCell.h */,
 				B99D13051CC72AD0000DFF95 /* CustomSeperatorLineCell.m */,
 				B99D13111CC75B84000DFF95 /* LabelWithSeperatorLine.h */,
 				B99D13121CC75B84000DFF95 /* LabelWithSeperatorLine.m */,
+				B98878CF1CC9ECBB00990AA4 /* ArrowView.h */,
+				B98878D01CC9ECBB00990AA4 /* ArrowView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -654,6 +693,7 @@
 				B964F93E1CC3A7FF003E0D44 /* javascript-bridge.html in Resources */,
 				B964F9861CC50316003E0D44 /* slide-2.jpg in Resources */,
 				B98878AC1CC98EFB00990AA4 /* AvataCell.xib in Resources */,
+				B98878C21CC9BB4100990AA4 /* segment_line_Horizontal_orange.png in Resources */,
 				B964F9911CC50E1E003E0D44 /* BuyItemCell.xib in Resources */,
 				B964F9841CC5030C003E0D44 /* slide-0.jpg in Resources */,
 				B964F98C1CC50344003E0D44 /* slide-4.jpg in Resources */,
@@ -662,8 +702,10 @@
 				B99D12FE1CC66ED3000DFF95 /* SearchHistoryCell.xib in Resources */,
 				B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */,
 				B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */,
+				B98878CB1CC9CC3800990AA4 /* OrderStatusCell.xib in Resources */,
 				B98878921CC8AD3800990AA4 /* LoginViewController.xib in Resources */,
 				B964F9881CC50339003E0D44 /* slide-1.jpg in Resources */,
+				B98878C31CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png in Resources */,
 				B99D13191CC7AAB2000DFF95 /* fontawesome-webfont.ttf in Resources */,
 				B964F98B1CC50344003E0D44 /* slide-3.jpg in Resources */,
 				B98878861CC896BE00990AA4 /* product_debug.png in Resources */,
@@ -749,6 +791,7 @@
 				B964F9601CC4A800003E0D44 /* SellViewController.m in Sources */,
 				B964F9571CC4A70E003E0D44 /* TabBarController.m in Sources */,
 				B964F9361CC39712003E0D44 /* _SearchHistory.m in Sources */,
+				B98878D11CC9ECBB00990AA4 /* ArrowView.m in Sources */,
 				B99D12E71CC65A73000DFF95 /* SellItemCell.m in Sources */,
 				B99D12EB1CC66045000DFF95 /* SearchViewController.m in Sources */,
 				B99D12DD1CC5F8DC000DFF95 /* UISearchBar+Utils.m in Sources */,
@@ -757,9 +800,11 @@
 				B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */,
 				B98878AF1CC9923800990AA4 /* CDFInitialsAvatar.m in Sources */,
 				B99D13231CC86A04000DFF95 /* BaseNavigationController.m in Sources */,
+				B98878C61CC9BCBC00990AA4 /* UIColor+Helper.m in Sources */,
 				B964F9741CC4B073003E0D44 /* MineViewController.m in Sources */,
 				B99D13171CC7A813000DFF95 /* ProductViewController.m in Sources */,
 				B964F8FC1CC39670003E0D44 /* main.m in Sources */,
+				B98878BA1CC9B94300990AA4 /* SegmentedCell.m in Sources */,
 				B99D12F81CC66EB9000DFF95 /* KeyWordsCell.m in Sources */,
 				B964F94E1CC49DF2003E0D44 /* WelcomeViewController.m in Sources */,
 				B99D12D51CC5D4C5000DFF95 /* BuySlideDetailViewController.m in Sources */,
@@ -776,7 +821,10 @@
 				B964F9631CC4A81A003E0D44 /* BuyViewController.m in Sources */,
 				B99D131C1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.m in Sources */,
 				B964F9901CC50E1E003E0D44 /* BuyItemCell.m in Sources */,
+				B98878CA1CC9CC3800990AA4 /* OrderStatusCell.m in Sources */,
 				B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */,
+				B98878BF1CC9BB1F00990AA4 /* CustomSegment.m in Sources */,
+				B98878CE1CC9D0A300990AA4 /* NSAttributedString+Utils.m in Sources */,
 				B99D13131CC75B84000DFF95 /* LabelWithSeperatorLine.m in Sources */,
 				B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */,
 				B99D13021CC66EFB000DFF95 /* ClearHistoryCell.m in Sources */,

@@ -24,6 +24,7 @@
 #import "UIView+FrameEx.h"
 #import "UIImageView+Utils.h"
 #import "LLBootstrap.h"
+#import "UIColor+Helper.h"
 
 
 #define sharedApplicationDelegate() \
