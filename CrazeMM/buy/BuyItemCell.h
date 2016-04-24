@@ -7,20 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NHArrowView.h"
 #import "ArrowView.h"
-
+#import "M80AttributedLabel.h"
 
 
 @interface BuyItemCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *phoneImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *leftTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
-@property (weak, nonatomic) IBOutlet ArrowView *arrawView;
 @property (copy, nonatomic) NSString* arrawString;
 @property (weak, nonatomic) IBOutlet UIView *bottomLine;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet M80AttributedLabel *timeLeftLabel;
+@property (weak, nonatomic) IBOutlet M80AttributedLabel *detailLabel;
 
+@property (strong, nonatomic) ArrowView* arrowView;
 
 +(CGFloat)cellHeight;
 @end

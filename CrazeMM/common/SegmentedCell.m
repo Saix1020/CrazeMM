@@ -9,7 +9,6 @@
 #import "SegmentedCell.h"
 
 
-
 @implementation SegmentedCell
 
 //-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -23,10 +22,17 @@
     [self.segment setItems:_titles];
 }
 
+-(void)setTitles:(NSArray *)titles andIcons:(NSArray*)icons
+{
+    _titles = titles;
+    [self.segment setItems:titles andIcons:icons andStyle:self.buttonStyle];
+}
+
+
 -(CustomSegment*)segment
 {
     if(!_segment){
-        _segment = [[CustomSegment alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [SegmentedCell cellHight])];
+        _segment = [[CustomSegment alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.height?[self.height floatValue]: [SegmentedCell cellHight])];
         _segment.selectedColor = [UIColor redColor];
         [self addSubview:_segment];
 
@@ -39,6 +45,10 @@
     [super layoutSubviews];
 //    self.segment.frame = self.bounds;
 //    [self.segment layoutIfNeeded];
+    
+//    if (self.buttonStyle == kButtonStyleV) {
+//        
+//    }
 }
 
 +(CGFloat)cellHight

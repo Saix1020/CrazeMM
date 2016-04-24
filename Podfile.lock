@@ -15,9 +15,12 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - BEMCheckBox (1.2.1)
+  - DSCarouselView (1.1.9):
+    - SDWebImage (~> 3.7.3)
   - FontAwesome+iOS (0.1.4)
   - iCarousel (1.8.2)
   - LLBootstrapButton (0.0.1)
+  - M80AttributedLabel (1.3.3)
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.0)
   - MLPAutoCompleteTextField (1.5)
@@ -41,8 +44,14 @@ PODS:
     - ReactiveCocoa/Core
     - Result (~> 1.0.2)
   - Result (1.0.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SMVerticalSegmentedControl (0.1.3)
   - TITokenField (0.9.5)
+  - TTAnimations (1.3)
+  - TTModalView (1.0.1):
+    - TTAnimations
   - UIView+FrameEx (0.0.1)
   - WebViewJavascriptBridge (5.0.5)
   - ZZPopoverWindow (1.0.0)
@@ -50,8 +59,10 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - BEMCheckBox (~> 1.2.1)
+  - DSCarouselView (~> 1.1.9)
   - iCarousel (~> 1.8.2)
   - LLBootstrapButton (~> 0.0.1)
+  - M80AttributedLabel (~> 1.3.3)
   - MBProgressHUD (~> 0.9.2)
   - MJRefresh (~> 3.1.0)
   - MLPAutoCompleteTextField (~> 1.5)
@@ -61,6 +72,7 @@ DEPENDENCIES:
   - ReactiveCocoa (~> 4.0.0)
   - SMVerticalSegmentedControl (~> 0.1.2)
   - TITokenField (~> 0.9.5)
+  - TTModalView (~> 1.0.1)
   - UIView+FrameEx (~> 0.0.1)
   - WebViewJavascriptBridge (~> 5.0.5)
   - ZZPopoverWindow (~> 1.0.0)
@@ -68,9 +80,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
+  DSCarouselView: e155f0482b398c99b4e2dc972881771e81c9c1a4
   FontAwesome+iOS: 9070b682a9255ca0fdc34bcfb129ad0ba2b73b87
   iCarousel: 67c8a43da5a46795b56aadfc96cd36a16f6149b2
   LLBootstrapButton: b4f9735e1684f7525aa3b8aea65c55f0af66348d
+  M80AttributedLabel: 3bcacb2d85e6c66e32fb930aac2f04eca3974106
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MLPAutoCompleteTextField: ba4d507bbff2bd4f139d4197814fc8dd39caf77e
@@ -80,8 +94,11 @@ SPEC CHECKSUMS:
   QuickDialog: 6954450c4c2d003a89fbfee48ec8fa4695436b01
   ReactiveCocoa: f7011630aee4deeb16352fcb1b50d6bde9db4f90
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SMVerticalSegmentedControl: b059bf010277f705ce9dbf15890a4c859bfb0baf
   TITokenField: 39da9ead760009440ffc38602070d2097901430c
+  TTAnimations: 42ab242ecd75b104b90c0ba5fa2b86d1a9c95361
+  TTModalView: f281316e2a88ecf204c5797b0909d0c2cc4b40da
   UIView+FrameEx: ab0c53e158ef0621d7b0b0a26626e175ac17e471
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
   ZZPopoverWindow: 7be86696f95f1f3f5f7ea3aff15409b0acbcebaa

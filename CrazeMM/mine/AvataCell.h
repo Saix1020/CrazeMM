@@ -14,5 +14,8 @@
 //@property (weak, nonatomic) IBOutlet UILabel *avaliableLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *frozenLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avataImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *frozenLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 
 @end

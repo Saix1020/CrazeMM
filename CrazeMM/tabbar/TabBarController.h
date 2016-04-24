@@ -10,6 +10,7 @@
 
 @property (nonatomic, weak) id            tabBarDelegate;
 
+
 - (BOOL)checkUserLoginOrNot;
 - (void)showBadgeValue:(NSString*)number;
 

@@ -11,15 +11,13 @@
 #import "AvataCell.h"
 #import "SegmentedCell.h"
 #import "OrderStatusCell.h"
+#import "MyInfoCell.h"
+#import "ContactCell.h"
+#import "CustomSegment.h"
+#import "MineSellProductViewController.h"
 
 
 
-typedef NS_ENUM(NSInteger, MineTableViewSection){
-    kSectionOverview = 0,
-    kSectionInfo,
-    kSectionContact,
-    kSectionMax
-};
 
 
 @interface MineViewController()
@@ -29,11 +27,37 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 @property (nonatomic, strong) AvataCell* avataCell;
 @property (nonatomic, strong) SegmentedCell* segmentCell;
 @property (nonatomic, strong) OrderStatusCell* orderStatusCell;
+@property (nonatomic, strong) ContactCell* contactCell;
 
 
 @end
 
 @implementation MineViewController
+
++(NSArray*)infoNames
+{
+    return @[
+             @"我的账户",
+             @"我的供货",
+             @"我的求购",
+             @"我的抵押",
+             @"我的站内信息",
+             @"我的收货地址",
+             @"我的自提人"
+             ];
+}
++(NSArray*)infoIcons
+{
+    return @[
+             @"account",
+             @"gonghuo",
+             @"qiugou",
+             @"diya",
+             @"info",
+             @"addr",
+             @"ziti"
+             ];
+}
 
 
 -(AvataCell*)avataCell
@@ -54,12 +78,22 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
     return _orderStatusCell;
 }
 
+-(ContactCell*)contactCell
+{
+    if(!_contactCell){
+        _contactCell = [[[NSBundle mainBundle]loadNibNamed:@"ContactCell" owner:nil options:nil] firstObject];
+    }
+    
+    return _contactCell;
+}
+
 
 -(SegmentedCell*)segmentCell
 {
     if(!_segmentCell){
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
-        _segmentCell.titles = @[@"我买的货", @"我卖的货"];
+        _segmentCell.buttonStyle = kButtonStyleV;
+        [_segmentCell setTitles:@[@"我买的货", @"我卖的货"] andIcons:@[@"buy_product", @"sell_product"]];
     }
     
     return _segmentCell;
@@ -69,7 +103,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Mine";
+    self.navigationItem.title = @"我的189疯狂买卖王";
     
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -81,8 +115,10 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
     
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
+
+    
 }
 
 -(void)viewWillLayoutSubviews
@@ -94,6 +130,19 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 
     
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+//-(void)viewDidDisappear:(BOOL)animated
+//{
+//    
+//}
+
+
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -131,7 +180,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
             break;
         case kSectionInfo:
         {
-            return 44.f;
+            return 34.f;
         }
             break;
         case kSectionContact:
@@ -150,10 +199,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    UITableViewCell* cell = [[[NSBundle mainBundle]loadNibNamed:@"BuyItemCell" owner:nil options:nil] firstObject];
-    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MineCell"];
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"Section %lu, row %lu", indexPath.section, indexPath.row];
+    UITableViewCell* cell;
     
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
@@ -176,12 +222,21 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
             break;
         case kSectionInfo:
         {
-            return cell;
+            cell = [tableView dequeueReusableCellWithIdentifier:@"MyInfoCell"];
+            if(!cell) {
+                cell = [[MyInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyInfoCell"];
+            }
+            NSArray* infoNames = [[self class] infoNames];
+            NSArray* infoIcons = [[self class] infoIcons];
+            
+            cell.textLabel.text = infoNames[row];
+            cell.imageView.image = [UIImage imageNamed:infoIcons[row]];
+            
         }
             break;
         case kSectionContact:
         {
-            return cell;
+            return self.contactCell;
         }
             break;
             
@@ -199,7 +254,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
         case kSectionOverview:
             return 3;
         case kSectionInfo:
-            return 5;
+            return [[self class] infoNames].count;
         case kSectionContact:
             return 1;
         default:
@@ -211,7 +266,18 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    switch (indexPath.section) {
+        case kSectionInfo:
+        {
+            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+            [self.navigationController pushViewController:mineSellProductVC animated:YES];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

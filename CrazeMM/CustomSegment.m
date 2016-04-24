@@ -16,9 +16,8 @@
     BOOL  setupFinished;
 }
 
-@property (nonatomic, strong) NSArray *buttons;
 @property (nonatomic, strong) NSArray *lines;
-
+@property (nonatomic) ButtonStyle buttonStyle;
 @property (nonatomic, strong) UIImageView *bottomLine;
 
 @end
@@ -85,8 +84,36 @@
     
 }
 
+- (void)setItems:(NSArray *)items andIcons:(NSArray*)icons andStyle:(ButtonStyle)style
+{
+
+    [self setItems:items];
+    
+    for (NSUInteger i=0; i<self.buttons.count; ++i) {
+        UIButton* button = self.buttons[i];
+        NSString* icon = [icons objectAtIndex:i];
+        if(icons){
+            [button setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
+            CGSize fontSize = [button.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: button.titleLabel.font}];
+            if (style == kButtonStyleV) {
+                //top, left, bottom, right
+                
+                button.imageEdgeInsets = UIEdgeInsetsMake(-fontSize.height, fontSize.width+button.imageView.bounds.size.width/2, 0, 0);
+                button.titleEdgeInsets = UIEdgeInsetsMake(0, -button.imageView.bounds.size.width/2, -button.imageView.bounds.size.height, 0);
+            }
+            else if (style == kButtonStyleB){
+                [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -button.imageView.frame.size.width-4.f, 0, button.imageView.frame.size.width+4.f)];
+                [button setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
+            }
+        }
+    }
+    
+    self.buttonStyle = style;
+}
+
 - (void)setCurrentIndex:(NSInteger)currentIndex
 {
+    _prevIndex = _currentIndex;
     if (currentIndex != _currentIndex)
     {
         _currentIndex = currentIndex;
@@ -134,7 +161,7 @@
         btn.tag = i;
         [btn setTitle:title forState:UIControlStateNormal];
         [btn setTitleColor:[self getBtnColorAtIndex:i] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:17];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15];
         [btnArr addObject:btn];
         [self addSubview:btn];
         
@@ -156,20 +183,9 @@
 {
     if (!_bottomLine) {
         _bottomLine =[[UIImageView alloc]init];
-        
-//        _bottomLine.image =[UIImage imageNamed:kSegmentBottomLine];
-//        
-//        _bottomLine.userInteractionEnabled =YES;
-//        
-//        NSInteger count = [_items count];
-//        CGFloat width = self.bounds.size.width / count;
-//        CGFloat height = self.bounds.size.height;
-//        self.bottomLine.frame = CGRectMake(0, height-1.5, width, 1.5);
-//        
-//        [self bringSubviewToFront:(UIButton *)[self.buttons objectAtIndex:self.currentIndex]];
-        
+                
         _bottomLine.frame = CGRectMake(0, self.bounds.size.height-1.5, self.bounds.size.width / _items.count, 1.5);
-        _bottomLine.layer.borderWidth = 1.5/2;
+        _bottomLine.layer.borderWidth = 1;
         _bottomLine.layer.borderColor = _selectedColor ? _selectedColor.CGColor : [UIColor redColor].CGColor;
         
         [self addSubview:_bottomLine];
@@ -189,6 +205,11 @@
     }
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+}
 
 #pragma mark -
 #pragma mark actions

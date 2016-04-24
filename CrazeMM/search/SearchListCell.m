@@ -8,14 +8,38 @@
 
 #import "SearchListCell.h"
 
+@interface SearchListCell()
+@property(nonatomic, strong) UIImageView* clockView;
+@end
 
 @implementation SearchListCell
+
+-(UIImageView*)clockView
+{
+    if (!_clockView) {
+        _clockView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 13, 13)];
+        _clockView.image = [UIImage imageNamed:@"Clock-1"];
+        
+    }
+    return _clockView;
+}
+
+-(ArrowView*)typeLabel
+{
+    if (!_typeLabel) {
+        _typeLabel = [[ArrowView alloc] init];
+        _typeLabel.textLabel.text = @"求购";
+        _typeLabel.frame = CGRectMake(0, 0, 38, 16);
+    }
+    
+    return _typeLabel;
+}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andResultItem:(NSUInteger) item
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
-        
+        self.typeName = @"供货";
     }
     
     return self;
@@ -25,6 +49,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self){
+        self.typeName = @"供货";
         [self initAllSubviews];
     }
     
@@ -39,12 +64,13 @@
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.text = @"飞利浦 -V387 黑色 1GB 联通 3G WCDMA";
     
-    self.priceLabel = [[UILabel alloc] init];
-    self.priceLabel.font = [UIFont systemFontOfSize:17];
-    self.priceLabel.numberOfLines = 1;
-    self.priceLabel.adjustsFontSizeToFitWidth = YES;
-    self.priceLabel.textColor = [UIColor redColor];
-    self.priceLabel.text = @"￥1020.00起 10台";
+    self.priceLabel = [[M80AttributedLabel alloc] init];
+    [self fomartPriceLabel];
+//    self.priceLabel.font = [UIFont systemFontOfSize:17];
+//    self.priceLabel.numberOfLines = 1;
+//    self.priceLabel.adjustsFontSizeToFitWidth = YES;
+//    self.priceLabel.textColor = [UIColor redColor];
+//    self.priceLabel.text = @"￥1020.00起 10台";
 
     
     self.seperatorLine = [[UIView alloc] init];
@@ -68,6 +94,9 @@
     self.scopeLabel.textColor = RGBCOLOR(131, 131, 131);
     self.scopeLabel.text = @"供货范围: 北京,北京,北京,北京,北京";
 
+    
+    self.companyImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"company_icon"]];
+    
     self.companyLabel = [[UILabel alloc] init];
     self.companyLabel.font = [UIFont systemFontOfSize:15];
     self.companyLabel.numberOfLines = 1;
@@ -76,22 +105,16 @@
     self.companyLabel.textColor = RGBCOLOR(50, 50, 50);
 //    self.scopeLabel.textColor = RGBCOLOR(131, 131, 131);
     
-    self.leftTimeLabel = [[UILabel alloc] init];
-    self.leftTimeLabel.font = [UIFont systemFontOfSize:13];
-    self.leftTimeLabel.numberOfLines = 1;
-    self.leftTimeLabel.adjustsFontSizeToFitWidth = YES;
-    self.leftTimeLabel.backgroundColor = [UIColor UIColorFromRGB:0xF5FFFF];
-    self.leftTimeLabel.text = @"🕑10天18小时20分钟";
-    self.leftTimeLabel.textAlignment = NSTextAlignmentCenter;
+    self.leftTimeLabel = [[M80AttributedLabel alloc] init];
+    self.leftTimeLabel.backgroundColor = [UIColor lightGrayColor188];
+    self.leftTimeLabel.text = @"10 天 18 小时 20 分钟";
+    [self fomartTimeLeftLabel];
     
-    self.typeLabel = [[UILabel alloc] init];
-    self.typeLabel.numberOfLines = 1;
-    self.typeLabel.adjustsFontSizeToFitWidth = YES;
-    self.typeLabel.textColor = [UIColor greenColor];
-    self.typeLabel.layer.borderWidth = .5f;
-    self.typeLabel.layer.borderColor = [UIColor greenColor].CGColor;
-    self.typeLabel.text = @"求购";
-    self.typeLabel.textAlignment = NSTextAlignmentCenter;
+    self.typeLabel = [[ArrowView alloc] init];
+//    self.typeLabel.numberOfLines = 1;
+//    self.typeLabel.adjustsFontSizeToFitWidth = YES;
+    self.typeLabel.textLabel.textColor = [UIColor greenTextColor];
+    self.typeLabel.textLabel.text = self.typeName;
     
     NSArray* titles = @[@"浏览:10", @"成交:2"];
     self.previewAndTransctionsLabels = [[LabelWithSeperatorLine alloc] init];
@@ -103,6 +126,7 @@
     [self.contentView addSubview:self.seperatorLine];
     [self.contentView addSubview:self.arrivalTime];
     [self.contentView addSubview:self.companyLabel];
+    [self.contentView addSubview:self.companyImageView];
     [self.contentView addSubview:self.scopeLabel];
     [self.contentView addSubview:self.leftTimeLabel];
     [self.contentView addSubview:self.typeLabel];
@@ -111,24 +135,85 @@
     [self layoutAllLabels];
 }
 
+-(void)fomartTimeLeftLabel
+{
+    NSString* timeLeftString = self.leftTimeLabel.text;
+    self.leftTimeLabel.text = @"";
+    self.leftTimeLabel.textAlignment = kCTTextAlignmentCenter;
+    [self.leftTimeLabel appendView:self.clockView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
+    [self.leftTimeLabel appendText:@" "];
+    
+    NSArray *colors = @[[UIColor redColor], [UIColor blackColor]];
+    NSArray *components = [timeLeftString componentsSeparatedByString:@" "];
+    NSInteger index = 0;
+    for (NSString *text in components)
+    {
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
+        [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
+        [attributedText m80_setTextColor:[colors objectAtIndex:index%2]];
+        [self.leftTimeLabel appendAttributedText:attributedText];
+        [self.leftTimeLabel appendText:@""];
+        index ++;
+    }
+    
+    [self.leftTimeLabel sizeToFit];
+}
+
+-(void)fomartPriceLabel
+{
+    NSString* detailString = self.priceLabel.text;
+    self.priceLabel.text = @"";
+    
+    self.priceLabel.textAlignment = kCTTextAlignmentCenter;
+
+    
+    //    self.detailLabel.text = @"￥1020.00起 10台";
+    
+    UIFont* largFont = [UIFont boldSystemFontOfSize:20];
+    UIFont* middleFont = [UIFont systemFontOfSize:14];
+    UIFont* smallFont = [UIFont systemFontOfSize:12];
+    
+    
+    NSArray *colors = @[[UIColor redColor], [UIColor redColor], [UIColor redColor], [UIColor blackColor], [UIColor greenTextColor], [UIColor greenTextColor]];
+    NSArray *fonts = @[smallFont, largFont, smallFont,
+                       smallFont, largFont, middleFont];
+    
+    NSArray* components = @[@"￥", @"1020", @".00", @"起  ", @"10", @"台"];
+    NSInteger index = 0;
+    for (NSString *text in components)
+    {
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
+        [attributedText m80_setFont:[fonts objectAtIndex:index]];
+        [attributedText m80_setTextColor:[colors objectAtIndex:index]];
+        [self.priceLabel appendAttributedText:attributedText];
+        index ++;
+    }
+//    [self.priceLabel appendView:self.typeLabel margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
+    
+    [self.priceLabel sizeToFit];
+}
+
 -(void)layoutAllLabels
 {
     [self.priceLabel sizeToFit];
-    [self.typeLabel sizeToFit];
+    //[self.typeLabel sizeToFit];
     
     CGRect bounds = self.contentView.bounds;
     bounds.size.width = [UIScreen mainScreen].bounds.size.width;
     CGFloat y = 16.f;
-    self.previewAndTransctionsLabels.frame = CGRectMake(bounds.size.width-70-16.f, y, 70, 60);
+    self.previewAndTransctionsLabels.frame = CGRectMake(bounds.size.width-50-16.f, y, 50, 60);
     self.titleLabel.frame = CGRectMake(16.f, y,
                                        bounds.size.width-70-16.f*2, 60.f);
     y += self.titleLabel.frame.size.height;
     
     
     self.priceLabel.frame = CGRectMake(16.f, y,
-                                       self.priceLabel.frame.size.width, 30.f);
+                                       self.priceLabel.frame.size.width, self.priceLabel.height);
     self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.priceLabel.frame)+4.f, self.priceLabel.center.y - self.typeLabel.frame.size.height/2,
-                                      self.typeLabel.frame.size.width+16.f, self.typeLabel.frame.size.height);
+                                      43.f, 18.f);
+    self.typeLabel.y = self.titleLabel.bottom+2.f;
+    //self.typeLabel.height = self.priceLabel.height;
+    
     y += self.priceLabel.frame.size.height+12.f;
     
     self.seperatorLine.frame = CGRectMake(16.f, y, bounds.size.width-2*16.f, 1);
@@ -137,17 +222,17 @@
     self.arrivalTime.frame = CGRectMake(16.f, y,
                                         bounds.size.width-2*16.f, 24.f);
     
-    y += self.arrivalTime.frame.size.height;
+    y += self.arrivalTime.frame.size.height-4.f;
     self.scopeLabel.frame = CGRectMake(16.f, y,
                                        bounds.size.width-2*16.f, 24.f);
     
-    y += self.scopeLabel.frame.size.height + 6.f;
+    y += self.scopeLabel.frame.size.height + 4.f;
     
     self.leftTimeLabel.frame =CGRectMake(bounds.size.width-150.f, y,
-                                         150.f, 24.f);
+                                         150.f, self.leftTimeLabel.height);
     
-    
-    self.companyLabel.frame = CGRectMake(16.f, y,
+    self.companyImageView.frame = CGRectMake(12.f, y, 24.f, 24.f);
+    self.companyLabel.frame = CGRectMake(self.companyImageView.right, y,
                                          bounds.size.width-2*16.f-150.f, 24.f);
 
 }

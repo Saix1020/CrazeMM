@@ -21,24 +21,29 @@
 }
 
 
--(UIButton*)clearHistoryButton
-{
-    if(!_clearHistoryButton){
-        _clearHistoryButton = [[UIButton alloc] init];
-        [_clearHistoryButton setTitle:@"清空搜索历史" forState:UIControlStateNormal];
-        _clearHistoryButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [_clearHistoryButton bs_configureAsDefaultStyle];
-        _clearHistoryButton.backgroundColor = [UIColor clearColor];
-        [_clearHistoryButton setTitleColor:RGBCOLOR(0, 240, 0) forState:UIControlStateNormal];
-        [_clearHistoryButton setTitleColor:RGBCOLOR(131, 131, 131) forState:UIControlStateHighlighted];
-        [self.contentView addSubview:_clearHistoryButton];
-    }
-    
-    return _clearHistoryButton;
-}
+//-(UIButton*)clearHistoryButton
+//{
+//    if(!_clearHistoryButton){
+//        _clearHistoryButton = [[UIButton alloc] init];
+//        [_clearHistoryButton setTitle:@"清空搜索历史" forState:UIControlStateNormal];
+//        //_clearHistoryButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+//        //[_clearHistoryButton configureAsDefaultBord];
+//        //_clearHistoryButton.backgroundColor = [UIColor clearColor];
+//        [_clearHistoryButton setTitleColor:[UIColor greenTextColor] forState:UIControlStateNormal];
+////        [_clearHistoryButton setTitleColor:RGBCOLOR(131, 131, 131) forState:UIControlStateHighlighted];
+//        [self.contentView addSubview:_clearHistoryButton];
+//    }
+//    
+//    return _clearHistoryButton;
+//}
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    [self.clearButton configureAsDefaultBord];
+    [self.clearButton setTitle:@"清空搜索历史" forState:UIControlStateNormal];
+    [self.clearButton setTitleColor:[UIColor greenTextColor] forState:UIControlStateNormal];
+     
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -50,10 +55,10 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.clearHistoryButton.frame = CGRectMake((self.bounds.size.width-kButtonWidth)/2,
-                                               ([ClearHistoryCell cellHeight]- kButtomHight)/2,
-                                               kButtonWidth,
-                                               kButtomHight);
+//    self.clearHistoryButton.frame = CGRectMake((self.bounds.size.width-kButtonWidth)/2,
+//                                               ([ClearHistoryCell cellHeight]- kButtomHight)/2,
+//                                               kButtonWidth,
+//                                               kButtomHight);
     
 }
 

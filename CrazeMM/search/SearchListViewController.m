@@ -18,6 +18,7 @@
 #import "ZZPopoverWindow.h"
 #import "UISearchBar+RACSignalSupport.h"
 #import "ProductViewController.h"
+#import "SegmentedCell.h"
 
 
 
@@ -29,6 +30,7 @@
 @property (nonatomic) NSUInteger segmentedItemClickedNum;
 @property (nonatomic, strong) ZZPopoverWindow* popover;
 @property (nonatomic, strong) FilterViewController* fitlerVC;
+@property (nonatomic, strong) SegmentedCell* segmentCell;
 @end
 
 @implementation SearchListViewController
@@ -51,6 +53,21 @@
 //    
 //    return _popover;
 //}
+
+-(SegmentedCell*)segmentCell
+{
+    if(!_segmentCell){
+        _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
+        _segmentCell.buttonStyle = kButtonStyleB;
+        _segmentCell.height = @(40.0f);
+        [_segmentCell setTitles:@[@"人气", @"价格", @"供货量"] andIcons:@[@"arrow_up", @"arrow_up", @"arrow_up"]];
+//        ((UIButton*)(_segmentCell.segment.buttons[1])).imageView.hidden = ((UIButton*)(_segmentCell.segment.buttons[2])).imageView.hidden = YES;
+        
+        _segmentCell.segment.delegate = self;
+    }
+    
+    return _segmentCell;
+}
 
 +(NSArray*)createItems:(NSUInteger)selectedIndex andNumber:(NSUInteger)number
 {
@@ -133,32 +150,34 @@
         });
     }];
     
-    self.segmentedItemClickedNum = 0;
-    NSArray *items = [SearchListViewController createItems:0 andNumber:self.segmentedItemClickedNum];
-    self.segmented = [[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40)
-                                                              items:items
-                                                       iconPosition:IconPositionRight
-                                                  andSelectionBlock:^(NSUInteger segmentIndex) {
-                                                      @strongify(self);
-                                                      if([self.segmented isSelectedSegmentAtIndex:segmentIndex]){
-                                                          self.segmentedItemClickedNum ++;
-                                                      }
-                                                      else {
-                                                          self.segmentedItemClickedNum = 0;
-                                                      }
-                                                      [self.segmented setItems:[SearchListViewController createItems:segmentIndex andNumber:self.segmentedItemClickedNum]];
-                                                        }
-                                                     iconSeparation:5];
-    
-    self.segmented.color = [UIColor colorWithRed:88.0f/255.0 green:88.0f/255.0 blue:88.0f/255.0 alpha:1];
-    self.segmented.borderWidth = 0.5;
-    self.segmented.borderColor = [UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:147.0f/255.0 alpha:1];
-    self.segmented.selectedColor = [UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:147.0f/255.0 alpha:1];
-    self.segmented.textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18],
-                               NSForegroundColorAttributeName:[UIColor whiteColor]};
-    self.segmented.selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18],
-                                       NSForegroundColorAttributeName:[UIColor whiteColor]};
-    self.tableView.tableHeaderView = self.segmented;
+//    self.segmentedItemClickedNum = 0;
+//    NSArray *items = [SearchListViewController createItems:0 andNumber:self.segmentedItemClickedNum];
+//    self.segmented = [[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40)
+//                                                              items:items
+//                                                       iconPosition:IconPositionRight
+//                                                  andSelectionBlock:^(NSUInteger segmentIndex) {
+//                                                      @strongify(self);
+//                                                      if([self.segmented isSelectedSegmentAtIndex:segmentIndex]){
+//                                                          self.segmentedItemClickedNum ++;
+//                                                      }
+//                                                      else {
+//                                                          self.segmentedItemClickedNum = 0;
+//                                                      }
+//                                                      [self.segmented setItems:[SearchListViewController createItems:segmentIndex andNumber:self.segmentedItemClickedNum]];
+//                                                        }
+//                                                     iconSeparation:5];
+//    
+//    self.segmented.color = [UIColor colorWithRed:88.0f/255.0 green:88.0f/255.0 blue:88.0f/255.0 alpha:1];
+//    self.segmented.borderWidth = 0.5;
+//    self.segmented.borderColor = [UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:147.0f/255.0 alpha:1];
+//    self.segmented.selectedColor = [UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:147.0f/255.0 alpha:1];
+//    self.segmented.textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18],
+//                               NSForegroundColorAttributeName:[UIColor whiteColor]};
+//    self.segmented.selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18],
+//                                       NSForegroundColorAttributeName:[UIColor whiteColor]};
+    //self.tableView.tableHeaderView = self.segmented;
+    self.tableView.tableHeaderView = self.segmentCell;
+
     //self.segmented.
 
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem filterBarButtonItemWithBlock:^(id sender){
@@ -166,6 +185,7 @@
         self.fitlerVC.view.frame = CGRectMake(0, 0, 200, self.fitlerVC.height);
         self.fitlerVC.view.backgroundColor = RGBCOLOR(150, 150, 150);
         self.popover                    = [[ZZPopoverWindow alloc] init];
+        self.popover.showShadow = YES;
         self.popover.popoverPosition = ZZPopoverPositionUp;
         self.popover.contentView        = self.fitlerVC.view;
         self.popover.backgroundColor = RGBCOLOR(150, 150, 150);
@@ -187,6 +207,16 @@
 //    self.segmented.frame = CGRectMake(0, 0, self.view.bounds.size.width, 30);
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    UIButton* btn;
+    btn = self.segmentCell.segment.buttons[1];
+    btn.imageView.hidden = YES;
+    btn = self.segmentCell.segment.buttons[2];
+    btn.imageView.hidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -243,6 +273,29 @@
     ProductViewController* productVC = [[ProductViewController alloc]  init];
     
     [self.navigationController pushViewController:productVC animated:YES];
+}
+
+#pragma -- mark custom segment delegate
+- (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
+{
+    
+    UIButton* button = segment.buttons[index];
+    UIButton* prevButton = segment.buttons[segment.prevIndex];
+    if (segment.prevIndex != index) {
+        button.imageView.transform = CGAffineTransformMakeRotation(0);
+        button.imageView.hidden = NO;
+        prevButton.imageView.hidden = YES;
+    }
+    else {
+        if (CGAffineTransformEqualToTransform(button.imageView.transform,
+                                              CGAffineTransformMakeRotation(0)))
+        {
+            button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+        }
+        else {
+            button.imageView.transform = CGAffineTransformMakeRotation(0);
+        }
+    }
 }
 
 @end

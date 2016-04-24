@@ -84,7 +84,7 @@
 
     return colors;
 }
-
+//0c9145
 + (UIColor *)greenTextColor
 {
     return [UIColor UIColorFromRGB:0x0c9145];
@@ -96,6 +96,9 @@
     return [UIColor UIColorFromRGB:0xf0f0f0];
 }
 
++(UIColor*)grayColorL2 { 
+    return [UIColor UIColorFromRGB:0x666666];
+}
 /*---------------------------------------New  UI  Color------------------------------------------------*/
 
 

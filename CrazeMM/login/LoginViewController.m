@@ -84,13 +84,7 @@
     self.registerButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [self.registerButton setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
     [self.registerButton setImage:[UIImage imageNamed:@"fast_register"] forState:UIControlStateNormal];
-    
-    self.registerButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        
-        self.signVC = [[SignViewController alloc] init];
-        [self.navigationController pushViewController:self.signVC animated:YES];
-        return [RACSignal empty];
-    }];
+    self.registerButton.tintColor = [UIColor redColor];
     
     self.rememberMeCheckBox.boxType = BEMBoxTypeSquare;
     self.rememberMeCheckBox.onFillColor = [UIColor clearColor];
@@ -126,8 +120,14 @@
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.userNameField.leftViewMode = UITextFieldViewModeAlways;
     
-    
     @weakify(self);
+    self.registerButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        self.signVC = [[SignViewController alloc] init];
+        [self.navigationController pushViewController:self.signVC animated:YES];
+        return [RACSignal empty];
+    }];
+    
     RACSignal *validUsernameSignal = [self.userNameField.rac_textSignal
                                       map:^id(NSString *text) {
                                           @strongify(self);
@@ -158,6 +158,15 @@
         }
     }];
     
+    self.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id sender){
+        
+        [[UserCenter defaultCenter] setLogined];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        return [RACSignal empty];
+    }];
+                                    
+    
     self.suggestVC = [[SuggestViewController alloc] init];
     self.suggestVC.suggestedStrings = @[@"Sai Xu", @"Zhou Yu", @"XXXXX", @"YYYYYY"];
     self.suggestVC.delegate = self;
@@ -185,6 +194,9 @@
         
         return [RACSignal empty];
     }];
+    
+    [self.userNameField becomeFirstResponder];
+
 }
 
 -(BOOL)isValidUsername:(NSString*)name
@@ -224,6 +236,7 @@
     self.line1.frame = CGRectMake(kLeadingPad, CGRectGetMaxY(self.userNameField.frame), maxWidth, 1);
     self.line2.frame = CGRectMake(kLeadingPad, CGRectGetMaxY(self.passwordField.frame), maxWidth, 1);
     self.line3.frame = CGRectMake(kLeadingPad, self.wechartIcon.frame.origin.y-8.f, maxWidth, 1);
+    
 }
 
 #pragma -- mark SugguestViewController delegate

@@ -20,4 +20,23 @@
     [self.layer addSublayer:layer];
 }
 
++(UIView*)lineViewWithColor:(UIColor*)color andWidth:(CGFloat)width
+{
+    UIView* line = [[UIView alloc] init];
+    line.layer.borderColor = color.CGColor;
+    line.layer.borderWidth = width;
+    line.height = 1;
+    return line;
+}
+
+
+-(UIImage*)imageForView
+{
+    UIGraphicsBeginImageContextWithOptions(self.frame.size,NO,[[UIScreen mainScreen] scale]);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end

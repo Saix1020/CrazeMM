@@ -61,11 +61,11 @@
                     <rect key="frame" x="30" y="78" width="66" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone-handle" id="jJl-n9-mAh">
-                    <rect key="frame" x="8" y="81" width="24" height="24"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cphone" id="jJl-n9-mAh">
+                    <rect key="frame" x="8" y="85" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
@@ -74,7 +74,7 @@
         </view>
     </objects>
     <resources>
-        <image name="phone-handle" width="24" height="24"/>
+        <image name="cphone" width="14" height="19"/>
         <image name="sign_background.png" width="726" height="702"/>
     </resources>
 </document>

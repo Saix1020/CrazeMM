@@ -3,7 +3,12 @@
     <entity name="SearchHistory" representedClassName="SearchHistory" syncable="YES">
         <attribute name="keyword" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
+        <attribute name="logged" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="SearchHistory" positionX="-54" positionY="-9" width="128" height="60"/>
+        <element name="UserInfo" positionX="-54" positionY="0" width="128" height="75"/>
     </elements>
 </model>

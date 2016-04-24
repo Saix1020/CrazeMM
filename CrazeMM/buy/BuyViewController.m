@@ -18,6 +18,7 @@
 
 
 
+
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
 #define kNumberOfCellPerPage 3
@@ -287,7 +288,6 @@
 //    cell.backgroundColor = [UIColor UIColorFromRGB:0xF5F5F5];
     cell.titleLabel.text = self.filtedItems[indexPath.row];
     cell.arrawString = @"求购";
-
     return cell;
 }
 

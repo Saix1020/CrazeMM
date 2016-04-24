@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomSegment.h"
 
-@interface SearchListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface SearchListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate>
 
 -(instancetype)initWithKeyword:(NSString*)keyword;
 

@@ -10,6 +10,7 @@
 
 @interface ClearHistoryCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *clearButton;
 @property (nonatomic, strong) UIButton* clearHistoryButton;
 
 +(CGFloat)cellHeight;

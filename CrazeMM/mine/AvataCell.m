@@ -13,7 +13,14 @@
 
 -(void)awakeFromNib
 {
-    [self.avataImageView roundImageWithBordWidth:3.0 andBordColor:[UIColor whiteColor]];
+    self.selectionStyle =  UITableViewCellSelectionStyleNone;
+
+    [self.avataImageView roundImageWithBordWidth:3.0 andBordColor:[UIColor UIColorFromRGB:0x4bb8f1]];
+    self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mine_bg"]];
+    
+    self.nameLabel.text = @"疯狂的兔子";
+    self.moneyLabel.text = @"账户可用余额: 8000元";
+    self.frozenLabel.text = @"账户冻结余额: 8000元";
 }
 
 

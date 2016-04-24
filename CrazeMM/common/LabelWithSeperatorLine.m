@@ -23,7 +23,7 @@
     self = [super init];
     if(self){
         self.layer.borderWidth = .25f;
-        self.layer.borderColor = [UIColor greenColor].CGColor;
+        self.layer.borderColor = [UIColor greenTextColor].CGColor;
         self.layer.cornerRadius = 4.f;
     }
     
@@ -67,7 +67,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.text = [strings objectAtIndex:i];
         label.textColor = [UIColor colorWithCGColor:self.layer.borderColor];
-        label.font = [UIFont systemFontOfSize:15];
+        label.font = [UIFont systemFontOfSize:13];
     }
 
     

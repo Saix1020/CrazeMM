@@ -11,6 +11,7 @@
 #import "SellViewController.h"
 #import "MineViewController.h"
 #import "BaseNavigationController.h"
+#import "MineNoLoginViewController.h"
 
 @interface TabBarController ()
 
@@ -48,9 +49,18 @@
         sellVC.tabBarItem = sellItem;
         BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:sellVC];
         
-        MineViewController *mineVC = [[MineViewController alloc] init];
-        mineVC.tabBarItem = mineItem;
-        BaseNavigationController *mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
+        //BaseNavigationController *mineNavController;
+        BaseNavigationController* mineNavController;
+        if ([UserCenter defaultCenter].isLogined) {
+            MineViewController *mineVC = [[MineViewController alloc] init];
+            mineVC.tabBarItem = mineItem;
+            mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
+        }
+        else{
+            MineNoLoginViewController *mineVC = [[MineNoLoginViewController alloc] init];
+            mineVC.tabBarItem = mineItem;
+            mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
+        }
         
         
         self.viewControllers = [NSArray arrayWithObjects:sellNavController, buyNavController, mineNavController, nil];
@@ -76,6 +86,38 @@
 //    transitionView.height = height-tabBarHeight;
 }
 
+
+-(void)loginSuccessed:(id)notifiction
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessBroadCast object:self];
+    UITabBarItem *mineItem = [[UITabBarItem alloc] init];
+    [mineItem setTitle:@"我的"];
+    [mineItem setImage:[[UIImage imageNamed:@"mine1"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+
+    MineViewController *mineVC = [[MineViewController alloc] init];
+    mineVC.tabBarItem = mineItem;
+//    self.mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
+    
+    
+//    MineViewController* mineVC = [[MineViewController alloc] init];
+//    NSArray *vcs = self.navigationController.viewControllers;
+//    //    if ([vcs firstObject] == self) {
+//    //        [self.navigationController popViewControllerAnimated:NO];
+//    //        [self.navigationController pushViewController:mineVC animated:NO];
+//    //    }
+//    NSMutableArray* vcsNew = [[NSMutableArray alloc] init];
+//    for (UIViewController *vc in vcs) {
+//        if(vc == self){
+//            [vcsNew addObject:mineVC];
+//        }
+//        else {
+//            [vcsNew addObject:vc];
+//            
+//        }
+//    }
+//    
+//    self.navigationController.viewControllers = [vcsNew copy];
+}
 
 
 @end

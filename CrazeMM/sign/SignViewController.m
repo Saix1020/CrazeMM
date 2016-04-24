@@ -70,7 +70,7 @@
     
     self.passwordField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_password"] highlightedImage:[UIImage imageNamed:@"icon_password"]];
     self.passwordRightView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
-    [self.passwordRightView setImage:[UIImage imageNamed:@"eye"] forState:UIControlStateNormal];
+    [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
 //    [self.passwordRightView sizeToFit];
     self.passwordField.rightView = self.passwordRightView;
     
@@ -90,7 +90,7 @@
     
     [self.phonePreLabel sizeToFit];
     
-    [self.pinButton setTitle:@"请获取验证码" forState:UIControlStateNormal];
+    [self.pinButton setTitle:@"  获取验证码" forState:UIControlStateNormal];
     [self.pinButton bs_configureAsDefaultStyle];
     [self.pinButton setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
     self.pinButton.backgroundColor = [UIColor clearColor];
@@ -106,7 +106,7 @@
     CGRect bounds = self.view.bounds;
     CGFloat maxWidth = bounds.size.width - kLeadingPad - kTailingPad;
     
-    self.phoneIcon.frame = CGRectMake(0, 0, 24, 24);
+    self.phoneIcon.frame = CGRectMake(0, 0, 14, 20);
     self.phoneTextField.frame = CGRectMake(0, 0, 0, 40);
     self.phonePreLabel.height = 40;
     self.phoneIcon.x = kLeadingPad;

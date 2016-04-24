@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="74" id="KGk-i7-Jjw" customClass="PayBottomView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCC-9a-TVD" customClass="BEMCheckBox">
+                        <rect key="frame" x="8" y="12" width="16" height="16"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全选" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3u-lA-llK">
+                        <rect key="frame" x="32" y="10" width="34" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="c6G-zE-cEh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fs-9R-AK2">
+                        <rect key="frame" x="220" y="0.0" width="100" height="40"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="K2i-r7-nED"/>
+                        </constraints>
+                        <state key="normal" title="付款">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4P-ol-pRq" customClass="M80AttributedLabel">
+                        <rect key="frame" x="74" y="7" width="138" height="26"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="F4P-ol-pRq" firstAttribute="centerY" secondItem="3fs-9R-AK2" secondAttribute="centerY" id="7AT-19-PIZ"/>
+                    <constraint firstItem="3fs-9R-AK2" firstAttribute="leading" secondItem="F4P-ol-pRq" secondAttribute="trailing" constant="8" symbolic="YES" id="CeW-ZB-3Ch"/>
+                    <constraint firstItem="F4P-ol-pRq" firstAttribute="centerY" secondItem="x3u-lA-llK" secondAttribute="centerY" id="FHw-Ve-Eyz"/>
+                    <constraint firstItem="vCC-9a-TVD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="OTD-7K-hNi"/>
+                    <constraint firstItem="F4P-ol-pRq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="PF7-pC-5ha"/>
+                    <constraint firstItem="x3u-lA-llK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Q9f-A0-2I7"/>
+                    <constraint firstItem="vCC-9a-TVD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="QUX-IK-NbY"/>
+                    <constraint firstAttribute="trailing" secondItem="3fs-9R-AK2" secondAttribute="trailing" id="Skq-tt-j42"/>
+                    <constraint firstItem="vCC-9a-TVD" firstAttribute="centerY" secondItem="x3u-lA-llK" secondAttribute="centerY" id="TzE-TX-587"/>
+                    <constraint firstItem="F4P-ol-pRq" firstAttribute="leading" secondItem="x3u-lA-llK" secondAttribute="trailing" constant="8" symbolic="YES" id="aIw-To-Hk1"/>
+                    <constraint firstItem="vCC-9a-TVD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hLj-JN-DRS"/>
+                    <constraint firstItem="x3u-lA-llK" firstAttribute="leading" secondItem="vCC-9a-TVD" secondAttribute="trailing" constant="8" symbolic="YES" id="iNs-Ej-FAF"/>
+                    <constraint firstItem="x3u-lA-llK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="rlP-sr-h9U"/>
+                    <constraint firstItem="3fs-9R-AK2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ywE-Au-xex"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="confirmButton" destination="3fs-9R-AK2" id="yDY-p8-Uxd"/>
+                <outlet property="selectAllCheckBox" destination="vCC-9a-TVD" id="oi3-Lc-HkI"/>
+                <outlet property="selectAllLabel" destination="x3u-lA-llK" id="v1Q-xr-vQ9"/>
+                <outlet property="totalPriceLabel" destination="F4P-ol-pRq" id="syr-GK-EJU"/>
+            </connections>
+            <point key="canvasLocation" x="224" y="229"/>
+        </tableViewCell>
+    </objects>
+</document>

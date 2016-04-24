@@ -12,4 +12,9 @@
 
 -(void)backgroundColorFrom:(UIColor*)fromColor To:(UIColor*)toColor;
 
++(UIView*)lineViewWithColor:(UIColor*)color andWidth:(CGFloat)width;
+
+
+-(UIImage*)imageForView;
+
 @end

@@ -21,6 +21,7 @@
 {
     self = [super init];
     if (self) {
+        [self commInit];
     }
     
     return self;
@@ -30,6 +31,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        //[self commInit];
     }
     
     return self;
@@ -43,7 +45,7 @@
     self.textLabel.numberOfLines = 1;
     self.textLabel.adjustsFontSizeToFitWidth = YES;
     self.textLabel.textAlignment = NSTextAlignmentCenter;
-    self.textLabel.font = [UIFont systemFontOfSize:14];
+    self.textLabel.font = [UIFont systemFontOfSize:12];
     self.textLabel.textColor = [UIColor greenTextColor];
     self.textLabel.text = @"供货";
     [self addSubview:self.arrawView];
@@ -59,6 +61,7 @@
     self.textLabel.frame = self.bounds;
     self.textLabel.x += (self.width/10);
     self.textLabel.width -= (self.width/10);
+    //self.textLabel.height = self.height-2.f;
 }
 
 @end

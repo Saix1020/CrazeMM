@@ -11,6 +11,13 @@
 @interface UIButton (Utils)
 
 +(UIButton*)filterButtonAwesome;
++(UIButton*)arrowUpButtonAwesome;
++(UIButton*)arrowDownButtonAwesome;
+
+
+-(void)moveImageAbove;
+
+-(void)configureAsDefaultBord;
 
 
 @end

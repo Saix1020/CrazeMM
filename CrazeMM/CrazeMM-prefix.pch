@@ -25,6 +25,10 @@
 #import "UIImageView+Utils.h"
 #import "LLBootstrap.h"
 #import "UIColor+Helper.h"
+#import "UIButton+Utils.h"
+#import "UserCenter.h"
+#import "BroadcastMsg.h"
+#import "UITabBarController+HideTabBar.h"
 
 
 #define sharedApplicationDelegate() \

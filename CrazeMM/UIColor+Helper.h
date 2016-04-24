@@ -31,8 +31,10 @@
 + (UIColor *)cellBackViewColor;
 
 + (UIColor *)greenTextColor;
++(UIColor*)greenTextColor189;
 
 +(UIColor*)lightGrayColor188;
++(UIColor*)grayColorL2; //f60f0f
 /*
  黑色 导航 商品名称  #313131
  */
