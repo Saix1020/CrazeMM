@@ -34,4 +34,6 @@
 
 @property (strong, nonatomic) ArrowView* arrowView;
 
++(CGFloat)cellHeight;
+
 @end

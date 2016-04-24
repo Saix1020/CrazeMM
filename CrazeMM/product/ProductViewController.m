@@ -80,8 +80,8 @@
         
         _timeLabel.backgroundColor = RGBCOLOR(133, 133, 133);
         UIImageView* clockView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-        _timeLabel.tintColor = [UIColor whiteColor];
-        clockView.image = [UIImage imageNamed:@"Clock-1"];
+//        _timeLabel.tintColor = [UIColor whiteColor];
+        clockView.image = [UIImage imageNamed:@"clock_white"];
         //_timeLabel.tintColor =
         _timeLabel.textAlignment = kCTTextAlignmentCenter;
         [_timeLabel appendView:clockView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
@@ -235,11 +235,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 226.f;
+    if (indexPath.row%2 == 0) {
+        return 12.f;
+    }
+    return [ProductLadderCell cellHeight];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row%2 == 0) {
+        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HeadViewCell"];
+        cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        return cell;
+    }
+    
     ProductLadderCell* cell;
     
     cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductLadderCell" owner:nil options:nil] firstObject];
@@ -249,7 +259,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-        return 1;
+        return 2;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -274,7 +284,7 @@
 //        return 0.f;
 //    }
 //    
-   return 12.f;
+   return 0.f;
 }
 
 
