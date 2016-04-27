@@ -93,7 +93,8 @@
         UIButton* button = self.buttons[i];
         NSString* icon = [icons objectAtIndex:i];
         if(icons){
-            [button setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
+            UIImage* image = [[UIImage imageNamed:icon] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [button setImage:image forState:UIControlStateNormal];
             CGSize fontSize = [button.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: button.titleLabel.font}];
             if (style == kButtonStyleV) {
                 //top, left, bottom, right
@@ -121,6 +122,7 @@
         for (int i =0; i<[self.buttons count]; i ++) {
             UIButton *btn =(UIButton *)[self.buttons objectAtIndex:i];
             [btn setTitleColor:[self getBtnColorAtIndex:i] forState:UIControlStateNormal];
+            btn.tintColor = [self getBtnColorAtIndex:i];
         }
         
         [UIView animateWithDuration:0.4 animations:^{
@@ -143,6 +145,15 @@
     }
 }
 
+-(UIColor*)selectedTineColor
+{
+    if (!_selectedTineColor) {
+        _selectedTineColor = [UIColor redColor];
+    }
+    
+    return _selectedColor;
+}
+
 - (void)setButtons
 {
     NSInteger count = [_items count];
@@ -161,6 +172,8 @@
         btn.tag = i;
         [btn setTitle:title forState:UIControlStateNormal];
         [btn setTitleColor:[self getBtnColorAtIndex:i] forState:UIControlStateNormal];
+        btn.tintColor = [self getBtnColorAtIndex:i];
+
         btn.titleLabel.font = [UIFont systemFontOfSize:15];
         [btnArr addObject:btn];
         [self addSubview:btn];
@@ -193,11 +206,12 @@
     return _bottomLine;
 }
 
+
 - (UIColor *)getBtnColorAtIndex:(NSInteger)index
 {
     if (self.currentIndex == index)
     {
-        return [UIColor UIColorFromRGB:0x707070];
+        return self.selectedTineColor;
     }
     else
     {

@@ -345,6 +345,13 @@
 {
     ProductViewController* productVC = [[ProductViewController alloc]  init];
     
+    if (indexPath.row%2==0) {
+        productVC.productDisplayMode = kDisplayMode0;
+    }
+    else {
+        productVC.productDisplayMode = kDisplayMode1;
+    }
+    
     [self.navigationController pushViewController:productVC animated:YES];
 }
 

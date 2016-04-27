@@ -95,6 +95,9 @@
     
     self.statusLabel.backgroundColor = [UIColor greenTextColor];
     self.statusLabel.text = @"正常";
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 

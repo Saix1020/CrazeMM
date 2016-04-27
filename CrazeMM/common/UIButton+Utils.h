@@ -19,5 +19,6 @@
 
 -(void)configureAsDefaultBord;
 
+-(void)exchangeImageAndText;
 
 @end

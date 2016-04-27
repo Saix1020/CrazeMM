@@ -45,6 +45,8 @@
     self.layer.borderColor = [UIColor light_Gray_Color].CGColor;
     
     self.seperatorLine.backgroundColor  = [UIColor light_Gray_Color];
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 
 }
 

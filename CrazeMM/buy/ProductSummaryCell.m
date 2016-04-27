@@ -122,11 +122,8 @@
     //self.timeLeftLabel.text = @"10 天 18 小时 20 分钟";
     M80AttributedLabel *label = self.timeLeftLabel;
     
-#define UIColorFromRGB(rgbValue) [UIColor \
-colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-green:((float)((rgbValue & 0x00FF00) >> 8))/255.0 \
-blue:((float)(rgbValue & 0x0000FF))/255.0 \
-alpha:1.0]
+#define UIColorFromRGB(rgbValue) [UIColor UIColorFromRGB:(rgbValue)]
+    
     NSArray *fonts = @[[UIFont systemFontOfSize:12],[UIFont systemFontOfSize:13],[UIFont systemFontOfSize:17],[UIFont systemFontOfSize:25]];
     NSArray *colors= @[UIColorFromRGB(0x000000),UIColorFromRGB(0x0000FF),UIColorFromRGB(0x00FF00),UIColorFromRGB(0xFF0000)];
     
@@ -170,6 +167,9 @@ alpha:1.0]
     
     self.statusLabel.backgroundColor = [UIColor greenTextColor];
     self.statusLabel.text = @"正常";
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 -(void)layoutAllSubviews

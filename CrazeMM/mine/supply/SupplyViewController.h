@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomSegment.h"
 
-@interface SupplyViewController : UIViewController
+@interface SupplyViewController : UIViewController<CustomSegmentDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

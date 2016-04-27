@@ -12,6 +12,17 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.imageView1.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    self.imageView1.layer.borderWidth = .5f;
+    self.imageView2.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    self.imageView2.layer.borderWidth = .5f;
+    self.imageView3.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    self.imageView3.layer.borderWidth = .5f;
+    
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

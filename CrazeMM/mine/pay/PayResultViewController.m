@@ -83,7 +83,6 @@
                     //[self.navigationController po];
                     NSArray* vcs = self.navigationController.viewControllers;
                     NSMutableArray* newVcs = [[NSMutableArray alloc] init];
-                    [newVcs addObject:[vcs firstObject]];
                     //self.navigationController.viewControllers = [newVcs copy];
                     
                     

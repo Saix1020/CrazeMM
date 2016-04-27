@@ -133,6 +133,10 @@
     [self.contentView addSubview:self.previewAndTransctionsLabels];
     
     [self layoutAllLabels];
+    
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 -(void)fomartTimeLeftLabel

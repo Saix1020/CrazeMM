@@ -42,7 +42,9 @@
 		B91896D91CCFAFC90061D0B6 /* TransferAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896D81CCFAFC90061D0B6 /* TransferAlertView.m */; };
 		B91896DB1CCFAFEC0061D0B6 /* TransferAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896DA1CCFAFEC0061D0B6 /* TransferAlertView.xib */; };
 		B91896DF1CCFB3A70061D0B6 /* SupplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896DD1CCFB3A70061D0B6 /* SupplyViewController.m */; };
-		B91896E01CCFB3A70061D0B6 /* SupplyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896DE1CCFB3A70061D0B6 /* SupplyViewController.xib */; };
+		B91896EB1CD07AD50061D0B6 /* SupplyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896E91CD07AD50061D0B6 /* SupplyListCell.m */; };
+		B91896EC1CD07AD50061D0B6 /* SupplyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896EA1CD07AD50061D0B6 /* SupplyListCell.xib */; };
+		B91896EF1CD082A70061D0B6 /* SupplyBottomOffView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896EE1CD082A70061D0B6 /* SupplyBottomOffView.m */; };
 		B964F8FC1CC39670003E0D44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F8FB1CC39670003E0D44 /* main.m */; };
 		B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F8FE1CC39670003E0D44 /* AppDelegate.m */; };
 		B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964F9061CC39670003E0D44 /* CrazeMM.xcdatamodeld */; };
@@ -220,7 +222,11 @@
 		B91896DA1CCFAFEC0061D0B6 /* TransferAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TransferAlertView.xib; path = mine/pay/TransferAlertView.xib; sourceTree = "<group>"; };
 		B91896DC1CCFB3A70061D0B6 /* SupplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyViewController.h; path = mine/supply/SupplyViewController.h; sourceTree = "<group>"; };
 		B91896DD1CCFB3A70061D0B6 /* SupplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyViewController.m; path = mine/supply/SupplyViewController.m; sourceTree = "<group>"; };
-		B91896DE1CCFB3A70061D0B6 /* SupplyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SupplyViewController.xib; path = mine/supply/SupplyViewController.xib; sourceTree = "<group>"; };
+		B91896E81CD07AD50061D0B6 /* SupplyListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyListCell.h; path = mine/supply/SupplyListCell.h; sourceTree = "<group>"; };
+		B91896E91CD07AD50061D0B6 /* SupplyListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyListCell.m; path = mine/supply/SupplyListCell.m; sourceTree = "<group>"; };
+		B91896EA1CD07AD50061D0B6 /* SupplyListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SupplyListCell.xib; path = mine/supply/SupplyListCell.xib; sourceTree = "<group>"; };
+		B91896ED1CD082A70061D0B6 /* SupplyBottomOffView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyBottomOffView.h; path = mine/supply/SupplyBottomOffView.h; sourceTree = "<group>"; };
+		B91896EE1CD082A70061D0B6 /* SupplyBottomOffView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyBottomOffView.m; path = mine/supply/SupplyBottomOffView.m; sourceTree = "<group>"; };
 		B964F8F71CC39670003E0D44 /* CrazeMM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazeMM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B964F8FB1CC39670003E0D44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B964F8FD1CC39670003E0D44 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -528,11 +534,42 @@
 		B91896C91CCF97440061D0B6 /* supply */ = {
 			isa = PBXGroup;
 			children = (
+				B91896E71CD07AA00061D0B6 /* view */,
 				B91896DC1CCFB3A70061D0B6 /* SupplyViewController.h */,
 				B91896DD1CCFB3A70061D0B6 /* SupplyViewController.m */,
-				B91896DE1CCFB3A70061D0B6 /* SupplyViewController.xib */,
 			);
 			name = supply;
+			sourceTree = "<group>";
+		};
+		B91896E51CD0546D0061D0B6 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B964F98D1CC50E1E003E0D44 /* BuyItemCell.h */,
+				B964F98E1CC50E1E003E0D44 /* BuyItemCell.m */,
+				B964F98F1CC50E1E003E0D44 /* BuyItemCell.xib */,
+				B992C5821CCB70B500DC49E8 /* ProductSummaryCell.h */,
+				B992C5831CCB70B500DC49E8 /* ProductSummaryCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		B91896E61CD0547F0061D0B6 /* modal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = modal;
+			sourceTree = "<group>";
+		};
+		B91896E71CD07AA00061D0B6 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B91896E81CD07AD50061D0B6 /* SupplyListCell.h */,
+				B91896E91CD07AD50061D0B6 /* SupplyListCell.m */,
+				B91896EA1CD07AD50061D0B6 /* SupplyListCell.xib */,
+				B91896ED1CD082A70061D0B6 /* SupplyBottomOffView.h */,
+				B91896EE1CD082A70061D0B6 /* SupplyBottomOffView.m */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		B964F8EE1CC39670003E0D44 = {
@@ -683,15 +720,12 @@
 		B964F95A1CC4A75E003E0D44 /* buy */ = {
 			isa = PBXGroup;
 			children = (
+				B91896E61CD0547F0061D0B6 /* modal */,
+				B91896E51CD0546D0061D0B6 /* view */,
 				B964F9611CC4A81A003E0D44 /* BuyViewController.h */,
 				B964F9621CC4A81A003E0D44 /* BuyViewController.m */,
-				B964F98D1CC50E1E003E0D44 /* BuyItemCell.h */,
-				B964F98E1CC50E1E003E0D44 /* BuyItemCell.m */,
-				B964F98F1CC50E1E003E0D44 /* BuyItemCell.xib */,
 				B99D12D31CC5D4C5000DFF95 /* BuySlideDetailViewController.h */,
 				B99D12D41CC5D4C5000DFF95 /* BuySlideDetailViewController.m */,
-				B992C5821CCB70B500DC49E8 /* ProductSummaryCell.h */,
-				B992C5831CCB70B500DC49E8 /* ProductSummaryCell.m */,
 			);
 			name = buy;
 			sourceTree = "<group>";
@@ -1039,7 +1073,6 @@
 				B99D13191CC7AAB2000DFF95 /* fontawesome-webfont.ttf in Resources */,
 				B91896C61CCF38C10061D0B6 /* AddressEditViewController.xib in Resources */,
 				B964F98B1CC50344003E0D44 /* slide-3.jpg in Resources */,
-				B91896E01CCFB3A70061D0B6 /* SupplyViewController.xib in Resources */,
 				B99194801CCCA26C0032A393 /* PayBottomView.xib in Resources */,
 				B98878861CC896BE00990AA4 /* product_debug.png in Resources */,
 				B91896A81CCF01A20061D0B6 /* LastPayMethodCell.xib in Resources */,
@@ -1049,6 +1082,7 @@
 				B99D12C91CC520CB000DFF95 /* prod_placeholder.jpg in Resources */,
 				B99D13031CC66EFB000DFF95 /* ClearHistoryCell.xib in Resources */,
 				B98878A31CC9100400990AA4 /* sign_background.png in Resources */,
+				B91896EC1CD07AD50061D0B6 /* SupplyListCell.xib in Resources */,
 				B91896CE1CCF97AE0061D0B6 /* PaySuccessProductCell.xib in Resources */,
 				B91896DB1CCFAFEC0061D0B6 /* TransferAlertView.xib in Resources */,
 				B964F9511CC49DF2003E0D44 /* WelcomeViewController.xib in Resources */,
@@ -1178,6 +1212,8 @@
 				B98878A61CC98D6200990AA4 /* UIButton+Utils.m in Sources */,
 				B964F9631CC4A81A003E0D44 /* BuyViewController.m in Sources */,
 				B99D131C1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.m in Sources */,
+				B91896EF1CD082A70061D0B6 /* SupplyBottomOffView.m in Sources */,
+				B91896EB1CD07AD50061D0B6 /* SupplyListCell.m in Sources */,
 				B91896D61CCFA0140061D0B6 /* PayResultViewController.m in Sources */,
 				B99194771CCC690E0032A393 /* WaitForPayCell.m in Sources */,
 				B992C57D1CCA6BC300DC49E8 /* NoLoginHeadCell.m in Sources */,

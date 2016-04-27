@@ -43,7 +43,9 @@
     [self.clearButton configureAsDefaultBord];
     [self.clearButton setTitle:@"清空搜索历史" forState:UIControlStateNormal];
     [self.clearButton setTitleColor:[UIColor greenTextColor] forState:UIControlStateNormal];
-     
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

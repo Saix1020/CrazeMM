@@ -59,5 +59,10 @@
 }
 
 
-
+-(void)exchangeImageAndText
+{
+    CGSize fontSize = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
+    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.imageView.frame.size.width-4.f, 0, self.imageView.frame.size.width+4.f)];
+    [self setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
+}
 @end

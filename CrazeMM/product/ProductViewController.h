@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, ProductDisplayMode){
+    kDisplayMode0 = 0,
+    kDisplayMode1
+};
+
 @interface ProductViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic) ProductDisplayMode productDisplayMode;
+
 
 @end

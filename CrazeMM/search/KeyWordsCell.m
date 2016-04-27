@@ -33,6 +33,9 @@
 - (void)awakeFromNib {
     self.enableTopLine = YES;
     self.enableButtomLine = YES;
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 

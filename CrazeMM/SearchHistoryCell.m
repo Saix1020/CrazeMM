@@ -21,6 +21,9 @@
  
     self.textLabel.font = [UIFont systemFontOfSize:13];
     self.textLabel.textColor = RGBCOLOR(131, 131, 131);
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

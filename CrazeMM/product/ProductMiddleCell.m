@@ -49,6 +49,9 @@
     self.contactButton.layer.cornerRadius = 4.f;
     
     self.moreDetailButton.tintColor = [UIColor grayColorL2];
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

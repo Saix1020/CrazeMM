@@ -18,10 +18,7 @@
 #import "ProductMiddleCell.h"
 #import "ProductLastCell.h"
 
-typedef NS_ENUM(NSInteger, ProductDisplayMode){
-    kDisplayMode0 = 0,
-    kDisplayMode1
-};
+
 
 
 #define DEBUG_MODE
@@ -41,7 +38,6 @@ typedef NS_ENUM(NSInteger, ProductDisplayMode){
 @property (nonatomic, strong) UIImageView* imageView;//just for debug
 @property (nonatomic, strong) TTModalView* modalView;
 
-@property (nonatomic) ProductDisplayMode productDisplayMode;
 
 
 @end
@@ -190,14 +186,14 @@ typedef NS_ENUM(NSInteger, ProductDisplayMode){
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.productDisplayMode = kDisplayMode0;
+    //self.productDisplayMode = kDisplayMode0;
     
     self.navigationItem.title = @"商品详情";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"switch"] style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
-        self.productDisplayMode = self.productDisplayMode == kDisplayMode0 ? kDisplayMode1 : kDisplayMode0;
-        [self.tableView reloadData];
+//        self.productDisplayMode = self.productDisplayMode == kDisplayMode0 ? kDisplayMode1 : kDisplayMode0;
+//        [self.tableView reloadData];
         return [RACSignal empty];
     }];
 

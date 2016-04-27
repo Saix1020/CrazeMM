@@ -105,6 +105,8 @@
     self.expressLabel.text = @"快递: 包邮";
     self.expressLabel.textColor = [UIColor grayColorL2];
     self.expressLabel.font = [UIFont systemFontOfSize:12];
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 

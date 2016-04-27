@@ -33,7 +33,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comany_pic" translatesAutoresizingMaskIntoConstraints="NO" id="Glj-12-eD6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="77_cut" translatesAutoresizingMaskIntoConstraints="NO" id="Glj-12-eD6">
                                 <rect key="frame" x="12" y="0.0" width="76" height="76"/>
                             </imageView>
                         </subviews>
@@ -58,7 +58,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comany_pic" translatesAutoresizingMaskIntoConstraints="NO" id="6k8-qL-ce9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="77_cut" translatesAutoresizingMaskIntoConstraints="NO" id="6k8-qL-ce9">
                                 <rect key="frame" x="12" y="0.0" width="76" height="76"/>
                             </imageView>
                         </subviews>
@@ -83,7 +83,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comany_pic" translatesAutoresizingMaskIntoConstraints="NO" id="fSB-Vq-QS9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="77_cut" translatesAutoresizingMaskIntoConstraints="NO" id="fSB-Vq-QS9">
                                 <rect key="frame" x="12" y="0.0" width="76" height="76"/>
                             </imageView>
                         </subviews>
@@ -124,10 +124,15 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="imageView1" destination="Glj-12-eD6" id="eqU-Z4-fI5"/>
+                <outlet property="imageView2" destination="6k8-qL-ce9" id="0LM-cz-6Uc"/>
+                <outlet property="imageView3" destination="fSB-Vq-QS9" id="Aw3-JZ-9I3"/>
+            </connections>
             <point key="canvasLocation" x="269" y="396"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="comany_pic" width="84" height="83"/>
+        <image name="77_cut" width="61" height="61"/>
     </resources>
 </document>

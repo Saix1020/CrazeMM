@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, ButtonStyle){
 @property (nonatomic, strong) UIColor* selectedColor;
 
 @property (nonatomic, strong) NSArray *buttons;
+@property (nonatomic, strong) UIColor *selectedTineColor;
+
 - (void)setItems:(NSArray *)items andIcons:(NSArray*)icons andStyle:(ButtonStyle)style;
 
 

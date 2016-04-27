@@ -65,6 +65,8 @@
 {
     if(!_avataCell){
         _avataCell = [[[NSBundle mainBundle]loadNibNamed:@"AvataCell" owner:nil options:nil] firstObject];
+        
+        _avataCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     return _avataCell;
@@ -74,6 +76,8 @@
 {
     if(!_orderStatusCell){
         _orderStatusCell = [[[NSBundle mainBundle]loadNibNamed:@"OrderStatusCell" owner:nil options:nil] firstObject];
+        _orderStatusCell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         
         @weakify(self);
         _orderStatusCell.payButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
@@ -94,6 +98,8 @@
 {
     if(!_contactCell){
         _contactCell = [[[NSBundle mainBundle]loadNibNamed:@"ContactCell" owner:nil options:nil] firstObject];
+        _contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     }
     
     return _contactCell;
@@ -106,6 +112,8 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleV;
         [_segmentCell setTitles:@[@"我买的货", @"我卖的货"] andIcons:@[@"buy_product", @"sell_product"]];
+        _segmentCell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     }
     
     return _segmentCell;
@@ -256,7 +264,8 @@
             break;
     }
     
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 

@@ -187,7 +187,7 @@
                                     
     
     self.suggestVC = [[SuggestViewController alloc] init];
-    self.suggestVC.suggestedStrings = @[@"Sai Xu", @"Zhou Yu", @"XXXXX", @"YYYYYY"];
+    self.suggestVC.suggestedStrings = @[@"Sai Xu", @"Liang guo", @"Haipeng Luo", @"Taodong Lu"];
     self.suggestVC.delegate = self;
                       
     self.userNameRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
