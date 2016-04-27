@@ -11,6 +11,7 @@
 #import "MineSellProductViewController.h"
 #import "MineViewController.h"
 #import "TabBarController.h"
+#import "LoginViewController.h"
 
 @interface MineNoLoginViewController ()
 
@@ -60,6 +61,16 @@
         _noLoginCell = [[[NSBundle mainBundle]loadNibNamed:@"NoLoginHeadCell" owner:nil options:nil] firstObject];
         _noLoginCell.infoLabel.text = @"欢迎使用189疯狂买卖王";
         [_noLoginCell.loginButton setTitle:@"请点击登录" forState:UIControlStateNormal];
+        
+        @weakify(self);
+        _noLoginCell.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+           
+            @strongify(self);
+            LoginViewController* loginVC = [[LoginViewController alloc] init];
+            
+            [self.navigationController pushViewController:loginVC animated:YES];
+            return [RACSignal empty];
+        }];
     }
     
     return _noLoginCell;
@@ -72,9 +83,14 @@
 
 }
 
--(void)loginSuccessed:(id)notifiction
+-(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessBroadCast object:self];
+}
+
+-(void)loginSuccessed:(id)notifiction
+{
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessBroadCast object:self];
     
     MineViewController* mineVC = [[MineViewController alloc] init];
     UITabBarItem *mineItem = [[UITabBarItem alloc] init];

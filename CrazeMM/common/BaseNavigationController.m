@@ -13,7 +13,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
 }
 
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
@@ -33,6 +33,15 @@
     }
 }
 
-
+- (nullable NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
+{
+    NSArray* vcs = [super popToRootViewControllerAnimated:animated];
+    if (self.nextViewController) {
+        [self pushViewController:self.nextViewController animated:YES];
+        self.nextViewController = nil;
+    }
+    
+    return vcs;
+}
 
 @end

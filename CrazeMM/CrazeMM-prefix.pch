@@ -29,6 +29,7 @@
 #import "UserCenter.h"
 #import "BroadcastMsg.h"
 #import "UITabBarController+HideTabBar.h"
+#import "BaseNavigationController.h"
 
 
 #define sharedApplicationDelegate() \

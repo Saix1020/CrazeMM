@@ -15,6 +15,7 @@
 #import "ContactCell.h"
 #import "CustomSegment.h"
 #import "MineSellProductViewController.h"
+#import "SupplyViewController.h"
 
 
 
@@ -73,6 +74,17 @@
 {
     if(!_orderStatusCell){
         _orderStatusCell = [[[NSBundle mainBundle]loadNibNamed:@"OrderStatusCell" owner:nil options:nil] firstObject];
+        
+        @weakify(self);
+        _orderStatusCell.payButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            
+            @strongify(self);
+//            LoginViewController* loginVC = [[LoginViewController alloc] init];
+            
+            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+            [self.navigationController pushViewController:mineSellProductVC animated:YES];
+            return [RACSignal empty];
+        }];
     }
     
     return _orderStatusCell;
@@ -269,6 +281,13 @@
     switch (indexPath.section) {
         case kSectionInfo:
         {
+            if (indexPath.row == 1) {
+                SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
+                [self.navigationController pushViewController:supplyVC animated:YES];
+                
+                return;
+            }
+            
             MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
             [self.navigationController pushViewController:mineSellProductVC animated:YES];
             

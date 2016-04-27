@@ -10,5 +10,6 @@
 
 @interface BaseNavigationController : UINavigationController
 
+@property (nonatomic, strong) UIViewController* nextViewController;
 
 @end

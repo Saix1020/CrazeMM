@@ -10,6 +10,7 @@
 #import "WaitForPayCell.h"
 #import "SegmentedCell.h"
 #import "PayBottomView.h"
+#import "MinePayViewController.h"
 
 @interface MineSellProductViewController ()
 
@@ -26,6 +27,11 @@
         _payBottomView = [[[NSBundle mainBundle]loadNibNamed:@"PayBottomView" owner:nil options:nil] firstObject];
 ;
         [self.view addSubview:_payBottomView];
+        _payBottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            MinePayViewController* payVC = [MinePayViewController new];
+            [self.navigationController pushViewController:payVC animated:YES];
+            return [RACSignal empty];
+        }];
     }
     
     return _payBottomView;

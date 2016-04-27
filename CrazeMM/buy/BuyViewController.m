@@ -16,9 +16,6 @@
 #import "SearchViewController.h"
 #import "ProductViewController.h"
 
-
-
-
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
 #define kNumberOfCellPerPage 3
@@ -35,6 +32,11 @@
 @property (nonatomic, strong) UIBarButtonItem* searchButtonItem;
 @property (nonatomic, strong) UIBarButtonItem* cancelButtonItem;
 @property (nonatomic) BOOL loadingMore;
+
+@property (nonatomic) BOOL scrollWay;
+@property (nonatomic, strong) RACSignal *updateEventSignal ;
+@property  (nonatomic, strong) RACDisposable *disposable;
+@property (nonatomic) BOOL stopTimer;
 
 @end
 
@@ -169,6 +171,13 @@
     self.filtedItems = [self.items mutableCopy];
     [self.tableView reloadData];
     
+    self.updateEventSignal = [[RACSignal interval:4
+                                       onScheduler:[RACScheduler mainThreadScheduler]
+                                ]
+                              takeUntilBlock:^BOOL (id x){
+                                  return self.stopTimer;
+                              }];
+    
 }
 
 -(void)cancleRefresh
@@ -186,6 +195,28 @@
     [super viewWillLayoutSubviews];
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 
+    self.stopTimer = NO;
+    @weakify(self);
+    
+    
+    
+    self.disposable = [self.updateEventSignal subscribeNext:^(id x){
+        @strongify(self);
+        if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
+            self.scrollWay = YES;
+        }
+        else if(self.carousel.currentItemIndex == 0){
+            self.scrollWay = NO;
+        }
+        if (self.scrollWay) {
+            [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex-1 duration:1];
+
+        }
+        else {
+            [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex+1 duration:1];
+
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -194,6 +225,13 @@
     [self.tabBarController setTabBarHidden:NO animated:YES];
     
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.stopTimer = YES;
+}
+
 
 #pragma mark iCarousel delegate
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel

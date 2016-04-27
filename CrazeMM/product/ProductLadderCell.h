@@ -12,6 +12,7 @@
 #import "ArrowView.h"
 
 @interface ProductLadderCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet ProductFlageView *flageView;
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
 @property (weak, nonatomic) IBOutlet UIView*browserDealView;

@@ -14,6 +14,14 @@
 #import "TTModalView.h"
 #import "M80AttributedLabel.h"
 #import "ProductLadderCell.h"
+#import "ProductDetailCell.h"
+#import "ProductMiddleCell.h"
+#import "ProductLastCell.h"
+
+typedef NS_ENUM(NSInteger, ProductDisplayMode){
+    kDisplayMode0 = 0,
+    kDisplayMode1
+};
 
 
 #define DEBUG_MODE
@@ -28,9 +36,12 @@
 @property (nonatomic, strong) UIButton* orderButton;
 
 @property (nonatomic, strong) BuyProductView* buyProductView;
+@property (nonatomic, strong) ProductDetailCell* productDetailCell;
 
 @property (nonatomic, strong) UIImageView* imageView;//just for debug
 @property (nonatomic, strong) TTModalView* modalView;
+
+@property (nonatomic) ProductDisplayMode productDisplayMode;
 
 
 @end
@@ -46,6 +57,15 @@
     
     return _buyProductView;
 }
+
+//-(ProductDetailCell*)_productDetailCell
+//{
+//    if(!_productDetailCell){
+//        _productDetailCell = self.buyProductView =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
+//    }
+//    
+//    return _buyProductView;
+//}
 
 -(UIView*)buttomView
 {
@@ -170,10 +190,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.productDisplayMode = kDisplayMode0;
     
     self.navigationItem.title = @"商品详情";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"switch"] style:UIBarButtonItemStylePlain target:nil action:nil];
-    
+    self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        
+        self.productDisplayMode = self.productDisplayMode == kDisplayMode0 ? kDisplayMode1 : kDisplayMode0;
+        [self.tableView reloadData];
+        return [RACSignal empty];
+    }];
+
     
 //    self.webView = [[UIWebView alloc] init];
 //    NSString *pathImg = [[NSBundle mainBundle] pathForResource:@"product_debug" ofType:@"png"];
@@ -209,10 +236,10 @@
 //    self.webView.frame = self.view.bounds;
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 
-    self.buttomView.frame = CGRectMake(0, self.view.bounds.size.height-80, self.view.bounds.size.width, 80);
+    self.buttomView.frame = CGRectMake(0, self.view.bounds.size.height-70, self.view.bounds.size.width, 70);
     self.timeLabel.frame = CGRectMake(0, 0, self.view.bounds.size.width, 20);
-    self.payButton.frame = CGRectMake(0, 20, self.view.bounds.size.width/2, 60);
-    self.orderButton.frame = CGRectMake(self.view.bounds.size.width/2, 20, self.view.bounds.size.width/2, 60);
+    self.payButton.frame = CGRectMake(0, 20, self.view.bounds.size.width/2, 50);
+    self.orderButton.frame = CGRectMake(self.view.bounds.size.width/2, 20, self.view.bounds.size.width/2, 50);
     
 //    [self.view bringSubviewToFront:self.buyProductView];
 //    self.buyProductView.frame = [UIScreen mainScreen].bounds;
@@ -236,30 +263,59 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row%2 == 0) {
-        return 12.f;
+        return 10.f;
     }
-    return [ProductLadderCell cellHeight];
+    if (indexPath.row==1) {
+        if (self.productDisplayMode == kDisplayMode0) {
+            return [ProductLadderCell cellHeight];
+        }
+        else {
+            return [ProductDetailCell cellHeight];
+        }
+    }
+    else if(indexPath.row == 3){
+        return [ProductMiddleCell cellHeight];
+    }
+    else {
+        return [ProductLastCell cellHeight];
+    }
+    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell * cell;
     if (indexPath.row%2 == 0) {
-        UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HeadViewCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HeadViewCell"];
         cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         return cell;
     }
     
-    ProductLadderCell* cell;
-    
-    cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductLadderCell" owner:nil options:nil] firstObject];
+    if (indexPath.row == 1) {
+        if(self.productDisplayMode == kDisplayMode0){
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductLadderCell" owner:nil options:nil] firstObject];
+            
+        }
+        else {
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductDetailCell" owner:nil options:nil] firstObject];
+            
+        }
+    }
+    else if(indexPath.row == 3){
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductMiddleView" owner:nil options:nil] firstObject];
+    }
+    else{
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductLastCell" owner:nil options:nil] firstObject];
 
+    }
+    
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-        return 2;
+        return 6;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

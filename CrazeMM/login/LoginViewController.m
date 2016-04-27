@@ -39,11 +39,30 @@
 @property (strong, nonatomic) SuggestViewController* suggestVC;
 @property (strong, nonatomic) SignViewController* signVC;
 @property (nonatomic, strong) ZZPopoverWindow* popover;
+@property (nonatomic, strong) UIScrollView* trueView;
 
+@property (nonatomic) BOOL keyboardShowing;
 
 @end
 
 @implementation LoginViewController
+
+//-(void)loadView
+//{
+//    
+//    
+//}
+//-(void)awakeFromNib
+//{
+////    [super loadView];
+//    
+//    self.trueView = [[UIScrollView alloc] init];
+//    //    UIView* t = self.view;
+//    [self.view.superview addSubview:self.trueView];
+//    [self.view removeFromSuperview];
+//    [self.trueView addSubview:self.view];
+//    self.view = self.trueView;
+//}
 
 -(void)initLines
 {
@@ -195,7 +214,8 @@
         return [RACSignal empty];
     }];
     
-    [self.userNameField becomeFirstResponder];
+    //[self.userNameField becomeFirstResponder];
+    self.loginButton.enabled = false;
 
 }
 
@@ -213,21 +233,25 @@
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    CGRect bounds = [UIScreen mainScreen].bounds;
+
+    
+    // TODO !!!!
+    // use constant value instead of hardcode
+    CGRect bounds = self.view.bounds;
     CGFloat maxWidth = bounds.size.width - kLeadingPad - kTailingPad;
-    CGFloat y = 100.f;
+    CGFloat y = 30.f;
     self.logoImage.frame = CGRectMake((bounds.size.width-self.logoImage.frame.size.width)/2,
                                       y, self.logoImage.frame.size.width, self.logoImage.frame.size.height);
     
     
-    self.wechartLabel.frame = CGRectMake(kLeadingPad, bounds.size.height-40, maxWidth, 30);
+    self.wechartLabel.frame = CGRectMake(kLeadingPad, self.view.bottom-40-64, maxWidth, 30);
     self.wechartIcon.center = CGPointMake(bounds.size.width/2, self.wechartLabel.frame.origin.y-self.wechartIcon.frame.size.height/2);
     
     
-    self.loginButton.frame = CGRectMake(kLeadingPad, bounds.size.height/2+20, maxWidth, 50);
+    self.loginButton.frame = CGRectMake(kLeadingPad, bounds.size.height/2+20-64, maxWidth, 50);
     
-    self.passwordField.frame = CGRectMake(kLeadingPad, bounds.size.height/2-40, maxWidth, 40);
-    self.userNameField.frame = CGRectMake(kLeadingPad, self.passwordField.frame.origin.y-40-16.f, maxWidth, 40);
+    self.passwordField.frame = CGRectMake(kLeadingPad, bounds.size.height/2-36-64, maxWidth, 40);
+    self.userNameField.frame = CGRectMake(kLeadingPad, self.passwordField.frame.origin.y-36-16.f, maxWidth, 40);
     
     self.registerButton.frame = CGRectMake(bounds.size.width-kTailingPad-self.registerButton.frame.size.width, CGRectGetMaxY(self.loginButton.frame)+4.f, self.registerButton.frame.size.width, 40);
     self.rememberMeLabel.frame = CGRectMake(CGRectGetMaxX(self.rememberMeCheckBox.frame)+4.f, CGRectGetMaxY(self.loginButton.frame)+4.f, self.registerButton.frame.size.width, 40);
@@ -239,6 +263,67 @@
     
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+}
+
+#define kOFFSET_FOR_KEYBOARD 140.0f
+#define kScroll_OFFSET 80.f
+
+-(void)keyboardWillHide: (NSNotification *)notification
+{
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+
+    scrollView.contentSize = CGSizeMake(0, 0);
+    self.keyboardShowing = NO;
+}
+
+-(void)keyboardWillShow: (NSNotification *)notification
+{
+//    NSDictionary *userInfo = notification.userInfo;
+//    NSValue *value = [userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
+//    CGSize keyboardSize = [value CGRectValue].size;
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+    if (!self.keyboardShowing) {
+        scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height+kOFFSET_FOR_KEYBOARD);
+        [scrollView setContentOffset:CGPointMake(0, kScroll_OFFSET) animated:YES];
+        self.keyboardShowing = YES;
+    }
+    
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
 #pragma -- mark SugguestViewController delegate
 
 -(void)didSelectSuggestString:(NSString*)selectedString
@@ -246,6 +331,8 @@
     self.userNameField.text = selectedString;
     [self.popover dismiss];
 }
+
+
 
 
 @end

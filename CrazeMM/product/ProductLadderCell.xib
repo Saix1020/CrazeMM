@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="382" height="209"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2IK-m3-zle" id="Atn-m7-5f7">
-                <rect key="frame" x="0.0" y="0.0" width="382" height="208.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="382" height="208"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prod_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="pA6-D4-FbB">
@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iR-gT-8gy">
-                                <rect key="frame" x="50" y="0.0" width="1" height="19"/>
+                                <rect key="frame" x="50" y="0.0" width="1" height="20"/>
                                 <color key="backgroundColor" red="0.0" green="0.68627452850000004" blue="0.31372550129999999" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="sUE-EV-MKD"/>
@@ -48,7 +48,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0iR-gT-8gy" firstAttribute="bottom" secondItem="kgD-8K-zLy" secondAttribute="bottom" constant="-1" id="533-tk-alF"/>
+                            <constraint firstItem="0iR-gT-8gy" firstAttribute="bottom" secondItem="kgD-8K-zLy" secondAttribute="bottom" id="533-tk-alF"/>
                             <constraint firstAttribute="trailing" secondItem="kgD-8K-zLy" secondAttribute="trailing" id="HWc-2q-As9"/>
                             <constraint firstItem="kgD-8K-zLy" firstAttribute="top" secondItem="0iR-gT-8gy" secondAttribute="top" id="KZf-Hd-vt0"/>
                             <constraint firstItem="49q-Tb-CZw" firstAttribute="leading" secondItem="lJ6-AD-J31" secondAttribute="leading" id="P8S-N0-P6B"/>
@@ -81,7 +81,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="He2-35-gaY">
-                        <rect key="frame" x="137" y="77" width="234" height="0.5"/>
+                        <rect key="frame" x="137" y="77" width="234" height="1"/>
                         <color key="backgroundColor" red="0.62466461490000003" green="0.62466461490000003" blue="0.62466461490000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="eFJ-za-dcD"/>
@@ -152,7 +152,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grR-Jk-GgU">
-                        <rect key="frame" x="137" y="136" width="234" height="0.5"/>
+                        <rect key="frame" x="137" y="136" width="234" height="1"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="tOr-yb-dcc"/>
@@ -255,6 +255,7 @@
                 <outlet property="priceLabel3" destination="w5j-U2-8fG" id="SQv-Be-Hot"/>
                 <outlet property="productImageView" destination="pA6-D4-FbB" id="Zvb-Ea-rer"/>
                 <outlet property="sellLabel" destination="kgD-8K-zLy" id="IOF-xU-gBk"/>
+                <outlet property="seperatorLine" destination="0iR-gT-8gy" id="ru8-3N-BOc"/>
                 <outlet property="stockLabel" destination="HlY-wZ-8SO" id="l1q-e6-YI8"/>
                 <outlet property="titleLabel" destination="3Je-X9-bqw" id="9hU-Hp-kfs"/>
             </connections>

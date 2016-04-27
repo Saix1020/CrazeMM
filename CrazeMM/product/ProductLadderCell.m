@@ -47,10 +47,14 @@
 
 -(void)awakeFromNib
 {
+    self.seperatorLine.backgroundColor = [UIColor clearColor];
+    self.seperatorLine.layer.borderWidth = .25f;
+    self.seperatorLine.layer.borderColor = [UIColor greenTextColor].CGColor;
+
     self.productImageView.layer.borderWidth = 1.f;
     self.productImageView.layer.borderColor = [UIColor light_Gray_Color].CGColor;
     
-    self.browserDealView.layer.borderWidth = 1.f;
+    self.browserDealView.layer.borderWidth = .5f;
     self.browserDealView.layer.borderColor = [UIColor greenTextColor].CGColor;
     self.browserDealView.layer.cornerRadius = 2.f;
     self.browseLabel.numberOfLines = 1;
@@ -109,7 +113,7 @@
     if (!_arrowView) {
         _arrowView = [[ArrowView alloc] init];
         _arrowView.textLabel.text = @"供货";
-        _arrowView.frame = CGRectMake(0, 0, 38, 16);
+        _arrowView.frame = CGRectMake(0, 0, 34, 14);
     }
     
     return _arrowView;
