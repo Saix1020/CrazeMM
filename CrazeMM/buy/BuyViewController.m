@@ -34,8 +34,8 @@
 @property (nonatomic) BOOL loadingMore;
 
 @property (nonatomic) BOOL scrollWay;
-@property (nonatomic, strong) RACSignal *updateEventSignal ;
-@property  (nonatomic, strong) RACDisposable *disposable;
+//@property (nonatomic, strong) RACSignal *updateEventSignal ;
+//@property  (nonatomic, strong) RACDisposable *disposable;
 @property (nonatomic) BOOL stopTimer;
 
 @end
@@ -171,12 +171,12 @@
     self.filtedItems = [self.items mutableCopy];
     [self.tableView reloadData];
     
-    self.updateEventSignal = [[RACSignal interval:4
-                                       onScheduler:[RACScheduler mainThreadScheduler]
-                                ]
-                              takeUntilBlock:^BOOL (id x){
-                                  return self.stopTimer;
-                              }];
+//    self.updateEventSignal = [[RACSignal interval:4
+//                                       onScheduler:[RACScheduler mainThreadScheduler]
+//                                ]
+//                              takeUntilBlock:^BOOL (id x){
+//                                  return self.stopTimer;
+//                              }];
     
 }
 
@@ -194,29 +194,36 @@
 {
     [super viewWillLayoutSubviews];
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     self.stopTimer = NO;
     @weakify(self);
     
-    
-    
-    self.disposable = [self.updateEventSignal subscribeNext:^(id x){
-        @strongify(self);
-        if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
-            self.scrollWay = YES;
-        }
-        else if(self.carousel.currentItemIndex == 0){
-            self.scrollWay = NO;
-        }
-        if (self.scrollWay) {
-            [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex-1 duration:1];
-
-        }
-        else {
-            [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex+1 duration:1];
-
-        }
-    }];
+    [[[RACSignal interval:4 onScheduler:[RACScheduler mainThreadScheduler]
+       ]
+      takeUntilBlock:^BOOL (id x){
+          return self.stopTimer;
+      }]
+     subscribeNext:^(id x){
+         @strongify(self);
+         if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
+             self.scrollWay = YES;
+         }
+         else if(self.carousel.currentItemIndex == 0){
+             self.scrollWay = NO;
+         }
+         if (self.scrollWay) {
+             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex-1 duration:1];
+             
+         }
+         else {
+             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex+1 duration:1];
+             
+         }
+     }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
