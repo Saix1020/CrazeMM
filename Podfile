@@ -1,6 +1,6 @@
 platform :ios, '8.0'
 use_frameworks!
-pod 'AFNetworking', '~> 3.1.0'
+#pod 'AFNetworking', '~> 3.1.0'
 pod 'ReactiveCocoa', '~> 4.0.0'
 pod 'MBProgressHUD', '~> 0.9.2'
 pod 'WebViewJavascriptBridge', '~> 5.0.5'
@@ -21,3 +21,5 @@ pod 'M80AttributedLabel', '~> 1.3.3'
 #pod 'TTAnimations', '~> 1.3'
 #pod 'TTModalView', '~> 1.0.1'
 pod 'TPKeyboardAvoiding', '~> 1.3'
+#pod 'PromiseKit', '~> 3.1.1'
+pod 'PromiseKit-AFNetworking', '~> 0.6.0'

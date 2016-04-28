@@ -98,6 +98,11 @@
 		B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B917326F1CD1F5F700C29698 /* QuartzCore.framework */; };
 		B91732731CD1F78900C29698 /* CATransform3DExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732711CD1F78900C29698 /* CATransform3DExtend.m */; };
 		B91732751CD1FC9400C29698 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
+		B91732791CD2036300C29698 /* BaseHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732781CD2036300C29698 /* BaseHttpRequest.m */; };
+		B91732801CD20E9000C29698 /* HttpLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B917327F1CD20E9000C29698 /* HttpLoginRequest.m */; };
+		B91732831CD25F3200C29698 /* NSDictionary+HttpHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732821CD25F3200C29698 /* NSDictionary+HttpHelp.m */; };
+		B91732871CD2685100C29698 /* UIViewController+MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732861CD2685100C29698 /* UIViewController+MBProgressHUD.m */; };
+		B917328A1CD26A7200C29698 /* UIViewController+TTModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732891CD26A7200C29698 /* UIViewController+TTModalView.m */; };
 		B91896781CCDB9050061D0B6 /* ProductDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896761CCDB9050061D0B6 /* ProductDetailCell.m */; };
 		B91896791CCDB9050061D0B6 /* ProductDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896771CCDB9050061D0B6 /* ProductDetailCell.xib */; };
 		B918967F1CCDD8DC0061D0B6 /* ProductMiddleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B918967E1CCDD8DC0061D0B6 /* ProductMiddleView.xib */; };
@@ -445,6 +450,16 @@
 		B91732711CD1F78900C29698 /* CATransform3DExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CATransform3DExtend.m; sourceTree = "<group>"; };
 		B91732721CD1F78900C29698 /* CATransform3DExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransform3DExtend.h; sourceTree = "<group>"; };
 		B91732741CD1FC9400C29698 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		B91732771CD2036300C29698 /* BaseHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseHttpRequest.h; path = restful/BaseHttpRequest.h; sourceTree = "<group>"; };
+		B91732781CD2036300C29698 /* BaseHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseHttpRequest.m; path = restful/BaseHttpRequest.m; sourceTree = "<group>"; };
+		B917327E1CD20E9000C29698 /* HttpLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpLoginRequest.h; path = restful/HttpLoginRequest.h; sourceTree = "<group>"; };
+		B917327F1CD20E9000C29698 /* HttpLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpLoginRequest.m; path = restful/HttpLoginRequest.m; sourceTree = "<group>"; };
+		B91732811CD25F3200C29698 /* NSDictionary+HttpHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+HttpHelp.h"; path = "common/NSDictionary+HttpHelp.h"; sourceTree = "<group>"; };
+		B91732821CD25F3200C29698 /* NSDictionary+HttpHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+HttpHelp.m"; path = "common/NSDictionary+HttpHelp.m"; sourceTree = "<group>"; };
+		B91732851CD2685100C29698 /* UIViewController+MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MBProgressHUD.h"; path = "common/UIViewController+MBProgressHUD.h"; sourceTree = "<group>"; };
+		B91732861CD2685100C29698 /* UIViewController+MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MBProgressHUD.m"; path = "common/UIViewController+MBProgressHUD.m"; sourceTree = "<group>"; };
+		B91732881CD26A7200C29698 /* UIViewController+TTModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+TTModalView.h"; path = "common/UIViewController+TTModalView.h"; sourceTree = "<group>"; };
+		B91732891CD26A7200C29698 /* UIViewController+TTModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+TTModalView.m"; path = "common/UIViewController+TTModalView.m"; sourceTree = "<group>"; };
 		B91896751CCDB9050061D0B6 /* ProductDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDetailCell.h; path = product/ProductDetailCell.h; sourceTree = "<group>"; };
 		B91896761CCDB9050061D0B6 /* ProductDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDetailCell.m; path = product/ProductDetailCell.m; sourceTree = "<group>"; };
 		B91896771CCDB9050061D0B6 /* ProductDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductDetailCell.xib; path = product/ProductDetailCell.xib; sourceTree = "<group>"; };
@@ -512,7 +527,7 @@
 		B91896FA1CD0EF460061D0B6 /* AccountDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountDetailCell.h; path = mine/account/AccountDetailCell.h; sourceTree = "<group>"; };
 		B91896FB1CD0EF460061D0B6 /* AccountDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountDetailCell.m; path = mine/account/AccountDetailCell.m; sourceTree = "<group>"; };
 		B91896FC1CD0EF460061D0B6 /* AccountDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountDetailCell.xib; path = mine/account/AccountDetailCell.xib; sourceTree = "<group>"; };
-		B91896FF1CD10EE00061D0B6 /* HttpRequestURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HttpRequestURL.h; path = common/HttpRequestURL.h; sourceTree = "<group>"; };
+		B91896FF1CD10EE00061D0B6 /* RestURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RestURL.h; path = common/RestURL.h; sourceTree = "<group>"; };
 		B91897001CD117430061D0B6 /* UINib+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINib+Utils.h"; path = "common/UINib+Utils.h"; sourceTree = "<group>"; };
 		B91897011CD117430061D0B6 /* UINib+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINib+Utils.m"; path = "common/UINib+Utils.m"; sourceTree = "<group>"; };
 		B91897031CD117CB0061D0B6 /* UITableView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+Utils.h"; path = "common/UITableView+Utils.h"; sourceTree = "<group>"; };
@@ -1055,6 +1070,18 @@
 			path = zooming_exits;
 			sourceTree = "<group>";
 		};
+		B91732761CD2032600C29698 /* restful */ = {
+			isa = PBXGroup;
+			children = (
+				B91896FF1CD10EE00061D0B6 /* RestURL.h */,
+				B91732771CD2036300C29698 /* BaseHttpRequest.h */,
+				B91732781CD2036300C29698 /* BaseHttpRequest.m */,
+				B917327E1CD20E9000C29698 /* HttpLoginRequest.h */,
+				B917327F1CD20E9000C29698 /* HttpLoginRequest.m */,
+			);
+			name = restful;
+			sourceTree = "<group>";
+		};
 		B91896741CCDB8C60061D0B6 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1242,6 +1269,7 @@
 		B964F8F91CC39670003E0D44 /* CrazeMM */ = {
 			isa = PBXGroup;
 			children = (
+				B91732761CD2032600C29698 /* restful */,
 				B917315A1CD1EF9400C29698 /* third party */,
 				B91731541CD1C90600C29698 /* timer */,
 				B99194701CCC56BD0032A393 /* modal */,
@@ -1418,6 +1446,12 @@
 				B91897041CD117CB0061D0B6 /* UITableView+Utils.m */,
 				B91731511CD1A30100C29698 /* NSDateComponents+Utils.h */,
 				B91731521CD1A30100C29698 /* NSDateComponents+Utils.m */,
+				B91732811CD25F3200C29698 /* NSDictionary+HttpHelp.h */,
+				B91732821CD25F3200C29698 /* NSDictionary+HttpHelp.m */,
+				B91732851CD2685100C29698 /* UIViewController+MBProgressHUD.h */,
+				B91732861CD2685100C29698 /* UIViewController+MBProgressHUD.m */,
+				B91732881CD26A7200C29698 /* UIViewController+TTModalView.h */,
+				B91732891CD26A7200C29698 /* UIViewController+TTModalView.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -1507,7 +1541,6 @@
 			isa = PBXGroup;
 			children = (
 				B99194821CCCA8290032A393 /* BroadcastMsg.h */,
-				B91896FF1CD10EE00061D0B6 /* HttpRequestURL.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1844,12 +1877,14 @@
 				B91732201CD1F05400C29698 /* BounceInLeftAnimation.m in Sources */,
 				B917323B1CD1F05400C29698 /* FlipAnimation.m in Sources */,
 				B964F9361CC39712003E0D44 /* _SearchHistory.m in Sources */,
+				B91732791CD2036300C29698 /* BaseHttpRequest.m in Sources */,
 				B91732561CD1F05500C29698 /* HingeAnimation.m in Sources */,
 				B91896FD1CD0EF460061D0B6 /* AccountDetailCell.m in Sources */,
 				B918968C1CCE1D8E0061D0B6 /* FirstAddrCell.m in Sources */,
 				B91732311CD1F05400C29698 /* FadeInUpBigAnimation.m in Sources */,
 				B98878D11CC9ECBB00990AA4 /* ArrowView.m in Sources */,
 				B992C5811CCA6D5300DC49E8 /* MineNoLoginViewController.m in Sources */,
+				B91732871CD2685100C29698 /* UIViewController+MBProgressHUD.m in Sources */,
 				B992C5791CCA5F3200DC49E8 /* MineSegmentCell.m in Sources */,
 				B91897021CD117430061D0B6 /* UINib+Utils.m in Sources */,
 				B99D12E71CC65A73000DFF95 /* SellItemCell.m in Sources */,
@@ -1875,6 +1910,7 @@
 				B992C5711CCA1DD400DC49E8 /* MyInfoCell.m in Sources */,
 				B91732141CD1F05400C29698 /* BounceAnimation.m in Sources */,
 				B91732271CD1F05400C29698 /* BounceOutUpAnimation.m in Sources */,
+				B91732831CD25F3200C29698 /* NSDictionary+HttpHelp.m in Sources */,
 				B91896D21CCF9E8B0061D0B6 /* PayResultCell.m in Sources */,
 				B91896F81CD0EF260061D0B6 /* AccountSummaryCell.m in Sources */,
 				B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */,
@@ -1919,6 +1955,7 @@
 				B91732591CD1F05500C29698 /* ZoomInAnimation.m in Sources */,
 				B99D13061CC72AD0000DFF95 /* CustomSeperatorLineCell.m in Sources */,
 				B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */,
+				B91732801CD20E9000C29698 /* HttpLoginRequest.m in Sources */,
 				B91732221CD1F05400C29698 /* BounceInUpAnimation.m in Sources */,
 				B98878AA1CC98ED300990AA4 /* AvataCell.m in Sources */,
 				B99D130B1CC73FDA000DFF95 /* SearchListCell.m in Sources */,
@@ -1931,6 +1968,7 @@
 				B991946E1CCC56420032A393 /* _UserInfo.m in Sources */,
 				B964F96A1CC4AAC6003E0D44 /* UIColor+Utils.m in Sources */,
 				B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */,
+				B917328A1CD26A7200C29698 /* UIViewController+TTModalView.m in Sources */,
 				B992C5751CCA282600DC49E8 /* ContactCell.m in Sources */,
 				B918970E1CD11B5F0061D0B6 /* ProductDescriptionDTO.m in Sources */,
 				B98878A61CC98D6200990AA4 /* UIButton+Utils.m in Sources */,

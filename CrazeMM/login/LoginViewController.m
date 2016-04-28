@@ -13,6 +13,7 @@
 #import "SignViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
+#import "HttpLoginRequest.h"
 
 
 #define kLeadingPad 16.f
@@ -145,7 +146,8 @@
     @weakify(self);
     self.registerButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
-        [self.registerButton becomeFirstResponder];
+//        [self.registerButton becomeFirstResponder];
+        
         self.signVC = [[SignViewController alloc] init];
         [self.navigationController pushViewController:self.signVC animated:YES];
         return [RACSignal empty];
@@ -183,9 +185,29 @@
     
     self.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id sender){
         
-        [[UserCenter defaultCenter] setLogined];
-        [self.navigationController popViewControllerAnimated:YES];
-        
+        @strongify(self);
+        HttpLoginRequest* request = [HttpLoginRequest new];
+        [self showProgressIndicatorWithTitle:@"正在登陆..."];
+        [request login].then(^(NSDictionary* responseObject, AFHTTPRequestOperation *operation){
+            [self dismissProgressIndicator];
+
+            if (responseObject.ok) {
+                [[UserCenter defaultCenter] setLogined];
+                [self.navigationController popViewControllerAnimated:YES];
+
+            }
+            else {
+                
+            }
+            
+        }).catch(^(NSError *error){
+            NSLog(@"error happened: %@", error.localizedDescription);
+            NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
+            [self dismissProgressIndicator];
+            
+            [self showAlertView];
+
+        });
         return [RACSignal empty];
     }];
                                     
@@ -307,6 +329,10 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+    scrollView.contentSize = CGSizeMake(0, 0);
+
+    
 }
 
 #define kOFFSET_FOR_KEYBOARD 140.0f
@@ -322,9 +348,6 @@
 
 -(void)keyboardWillShow: (NSNotification *)notification
 {
-//    NSDictionary *userInfo = notification.userInfo;
-//    NSValue *value = [userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
-//    CGSize keyboardSize = [value CGRectValue].size;
     UIScrollView* scrollView = (UIScrollView*)self.view;
     if (!self.keyboardShowing) {
         scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height+kOFFSET_FOR_KEYBOARD);
@@ -348,6 +371,7 @@
                                                   object:nil];
     UIScrollView* scrollView = (UIScrollView*)self.view;
     [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
+    self.keyboardShowing = NO;
 
 }
 

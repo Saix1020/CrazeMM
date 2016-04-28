@@ -1,18 +1,24 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - BEMCheckBox (1.2.1)
   - DSCarouselView (1.1.9):
@@ -29,6 +35,10 @@ PODS:
     - FontAwesome+iOS
   - PPiFlatSegmentedControl (1.4.0):
     - PPiAwesomeButton
+  - PromiseKit-AFNetworking (0.6.0):
+    - AFNetworking (~> 2.0)
+    - PromiseKit/CorePromise (~> 3.0)
+  - PromiseKit/CorePromise (3.1.1)
   - QuickDialog (1.1.0):
     - QuickDialog/Core (= 1.1.0)
   - QuickDialog/Core (1.1.0)
@@ -55,7 +65,6 @@ PODS:
   - ZZPopoverWindow (1.0.0)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.1.0)
   - BEMCheckBox (~> 1.2.1)
   - DSCarouselView (~> 1.1.9)
   - iCarousel (~> 1.8.2)
@@ -66,6 +75,7 @@ DEPENDENCIES:
   - MLPAutoCompleteTextField (~> 1.5)
   - NHArrowView (~> 0.1.0)
   - PPiFlatSegmentedControl (~> 1.4.0)
+  - PromiseKit-AFNetworking (~> 0.6.0)
   - QuickDialog (~> 1.1.0)
   - ReactiveCocoa (~> 4.0.0)
   - SMVerticalSegmentedControl (~> 0.1.2)
@@ -76,7 +86,7 @@ DEPENDENCIES:
   - ZZPopoverWindow (~> 1.0.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   DSCarouselView: e155f0482b398c99b4e2dc972881771e81c9c1a4
   FontAwesome+iOS: 9070b682a9255ca0fdc34bcfb129ad0ba2b73b87
@@ -89,6 +99,8 @@ SPEC CHECKSUMS:
   NHArrowView: 558a4b638d0b280a1b70d254811f51e8510b2c71
   PPiAwesomeButton: 16f7279582fd36f65186b24b83ef876217363eb5
   PPiFlatSegmentedControl: ed706988b57f887fc09852dd0da18b3355cd8bea
+  PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
+  PromiseKit-AFNetworking: d3b2c88f9bb6bd3124454df99feb47e620873ce4
   QuickDialog: 6954450c4c2d003a89fbfee48ec8fa4695436b01
   ReactiveCocoa: f7011630aee4deeb16352fcb1b50d6bde9db4f90
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16

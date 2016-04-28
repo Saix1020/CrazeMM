@@ -35,8 +35,12 @@
 #import "BaseNavigationController.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import "AFNetworking+PromiseKit.h"
+#import "RestURL.h"
 #import "MMTimer.h"
-
+#import "BaseHttpRequest.h"
+#import "UIViewController+MBProgressHUD.h"
+#import "UIViewController+TTModalView.h"
 
 
 #define sharedApplicationDelegate() \
