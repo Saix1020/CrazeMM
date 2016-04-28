@@ -11,6 +11,9 @@
 #import "SuggestViewController.h"
 #import "ZZPopoverWindow.h"
 #import "SignViewController.h"
+#import "TPKeyboardAvoidingScrollView.h"
+#import "UIScrollView+TPKeyboardAvoidingAdditions.h"
+
 
 #define kLeadingPad 16.f
 #define kTailingPad 16.f
@@ -142,6 +145,7 @@
     @weakify(self);
     self.registerButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
+        [self.registerButton becomeFirstResponder];
         self.signVC = [[SignViewController alloc] init];
         [self.navigationController pushViewController:self.signVC animated:YES];
         return [RACSignal empty];
@@ -216,7 +220,16 @@
     
     //[self.userNameField becomeFirstResponder];
     self.loginButton.enabled = false;
+    
+    
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)]];
 
+}
+
+-(void)singleTap
+{
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+    [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
 }
 
 -(BOOL)isValidUsername:(NSString*)name
@@ -229,6 +242,17 @@
 {
     return password.length>0;
 }
+
+//- (BOOL)canBecomeFirstResponder
+//{
+//    return YES;
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    [self becomeFirstResponder];
+//}
 
 -(void)viewWillLayoutSubviews
 {
@@ -322,6 +346,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+    [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
+
 }
 
 #pragma -- mark SugguestViewController delegate

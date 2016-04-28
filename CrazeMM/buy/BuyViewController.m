@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "SearchViewController.h"
 #import "ProductViewController.h"
+#import "ProductDescriptionDTO.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -34,9 +35,11 @@
 @property (nonatomic) BOOL loadingMore;
 
 @property (nonatomic) BOOL scrollWay;
-//@property (nonatomic, strong) RACSignal *updateEventSignal ;
+@property (nonatomic, strong) RACSignal *updateEventSignal ;
 //@property  (nonatomic, strong) RACDisposable *disposable;
 @property (nonatomic) BOOL stopTimer;
+
+@property (nonatomic, strong) NSMutableArray* dataSource;
 
 @end
 
@@ -114,6 +117,15 @@
     return _refreshControl;
 }
 
+-(NSMutableArray*)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [[NSMutableArray alloc] init];
+    }
+    
+    return _dataSource;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -134,13 +146,24 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"BuyItemCell" bundle:nil] forCellReuseIdentifier:@"BuyItemCell"];
     [self.view addSubview:self.tableView];
+    
+    // add some mock data
+    for (int i=0; i<10; i++) {
+        ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
+
+        [self.dataSource addObject:dto];
+    }
+    
 
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.items addObject:[NSString stringWithFormat:@"T 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
-            self.filtedItems = [self.items mutableCopy];
+//            [self.items addObject:[NSString stringWithFormat:@"T 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
+//            self.filtedItems = [self.items mutableCopy];
+            ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
+
+            [self.dataSource addObject:dto];
             [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
         });
@@ -151,8 +174,11 @@
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.items addObject:[NSString stringWithFormat:@"B 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
-            self.filtedItems = [self.items mutableCopy];
+//            [self.items addObject:[NSString stringWithFormat:@"B 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
+//            self.filtedItems = [self.items mutableCopy];
+            ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
+            [self.dataSource addObject:dto];
+
             [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
         });
@@ -202,11 +228,14 @@
     self.stopTimer = NO;
     @weakify(self);
     
-    [[[RACSignal interval:4 onScheduler:[RACScheduler mainThreadScheduler]
-       ]
-      takeUntilBlock:^BOOL (id x){
-          return self.stopTimer;
-      }]
+    self.updateEventSignal = [[RACSignal interval:4
+                                       onScheduler:[RACScheduler mainThreadScheduler]
+                                ]
+                               takeUntilBlock:^BOOL (id x){
+                                   return self.stopTimer;
+                               }];
+    
+    [self.updateEventSignal
      subscribeNext:^(id x){
          @strongify(self);
          if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
@@ -322,23 +351,22 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    return ceil(([ UIScreen mainScreen ].applicationFrame.size.height - kTableViewHeadHeight - self.navigationController.navigationBar.bounds.size.height - self.tabBarController.tabBar.bounds.size.height)/kNumberOfCellPerPage);
     return [BuyItemCell cellHeight];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewCell* cell = [[[NSBundle mainBundle]loadNibNamed:@"BuyItemCell" owner:nil options:nil] firstObject];
     BuyItemCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BuyItemCell"];
-//    cell.backgroundColor = [UIColor UIColorFromRGB:0xF5F5F5];
-    cell.titleLabel.text = self.filtedItems[indexPath.row];
-    cell.arrawString = @"求购";
+    cell.productDescDTO = self.dataSource[indexPath.row];
+    if (!cell.timeSignal) {
+        cell.timeSignal = self.updateEventSignal;
+    }
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.filtedItems.count;
+    return self.dataSource.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

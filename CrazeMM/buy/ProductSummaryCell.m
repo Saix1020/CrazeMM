@@ -174,7 +174,6 @@
 
 -(void)layoutAllSubviews
 {
-    
     [self commInit];
     
     CGFloat maxWidth = [UIScreen mainScreen].bounds.size.width;
@@ -190,6 +189,11 @@
     self.timeLeftLabel.x = self.titleLabel.x;
     //self.timeLeftLabel.height = 22.f;
     self.timeLeftLabel.width = self.titleLabel.width;
+}
+
+-(void)fomartTimeLabel
+{
+    
 }
 
 -(void)layoutSubviews

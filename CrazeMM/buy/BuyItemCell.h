@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ArrowView.h"
 #import "M80AttributedLabel.h"
+#import "ProductDescriptionDTO.h"
 
 
 @interface BuyItemCell : UITableViewCell
@@ -21,6 +22,11 @@
 @property (weak, nonatomic) IBOutlet M80AttributedLabel *detailLabel;
 
 @property (strong, nonatomic) ArrowView* arrowView;
+
+@property (strong, nonatomic) ProductDescriptionDTO* productDescDTO;
+
+@property (weak, nonatomic) RACSignal* timeSignal;
+
 
 +(CGFloat)cellHeight;
 @end

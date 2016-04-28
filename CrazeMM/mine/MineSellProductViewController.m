@@ -82,7 +82,7 @@
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     
     self.payBottomView.frame = CGRectMake(0, self.view.height-[PayBottomView cellHeight], self.view.bounds.size.width, [PayBottomView cellHeight]);
-    [self.view bringSubviewToFront:self.payBottomView];
+    //[self.view bringSubviewToFront:self.payBottomView];
 }
 
 -(void)viewDidLayoutSubviews

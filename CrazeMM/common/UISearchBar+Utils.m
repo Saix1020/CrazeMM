@@ -18,6 +18,7 @@
     [UIView setAnimationDuration:kTimeAnimationDurationDefault];
     self.alpha = enabled ? 1.0f : 0.5f;
     [UIView commitAnimations];
+    
 }
 
 @end

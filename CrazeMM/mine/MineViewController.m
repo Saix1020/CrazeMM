@@ -16,7 +16,7 @@
 #import "CustomSegment.h"
 #import "MineSellProductViewController.h"
 #import "SupplyViewController.h"
-
+#import "AccountViewController.h"
 
 
 
@@ -293,6 +293,12 @@
             if (indexPath.row == 1) {
                 SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
                 [self.navigationController pushViewController:supplyVC animated:YES];
+                
+                return;
+            }
+            else if(indexPath.row == 0){
+                AccountViewController* accountVC = [[AccountViewController alloc] init];
+                [self.navigationController pushViewController:accountVC animated:YES];
                 
                 return;
             }

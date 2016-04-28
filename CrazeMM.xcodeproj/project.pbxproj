@@ -8,6 +8,96 @@
 
 /* Begin PBXBuildFile section */
 		0447E4425CC1A1596914F774 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14ACAF7E869FA5D74648BBDD /* Pods.framework */; };
+		B91731531CD1A30100C29698 /* NSDateComponents+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731521CD1A30100C29698 /* NSDateComponents+Utils.m */; };
+		B91731571CD1C9E600C29698 /* MMTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731561CD1C9E600C29698 /* MMTimer.m */; };
+		B91732111CD1F05400C29698 /* AnimationBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B917315E1CD1F05400C29698 /* AnimationBuilder.m */; };
+		B91732121CD1F05400C29698 /* AnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731611CD1F05400C29698 /* AnimationHelper.m */; };
+		B91732131CD1F05400C29698 /* AnimationParams.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731631CD1F05400C29698 /* AnimationParams.m */; };
+		B91732141CD1F05400C29698 /* BounceAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731661CD1F05400C29698 /* BounceAnimation.m */; };
+		B91732151CD1F05400C29698 /* FlashAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731681CD1F05400C29698 /* FlashAnimation.m */; };
+		B91732161CD1F05400C29698 /* JelloAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917316A1CD1F05400C29698 /* JelloAnimation.m */; };
+		B91732171CD1F05400C29698 /* PulseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917316C1CD1F05400C29698 /* PulseAnimation.m */; };
+		B91732181CD1F05400C29698 /* RubberBandAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917316E1CD1F05400C29698 /* RubberBandAnimation.m */; };
+		B91732191CD1F05400C29698 /* ShakeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731701CD1F05400C29698 /* ShakeAnimation.m */; };
+		B917321A1CD1F05400C29698 /* SwingAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731721CD1F05400C29698 /* SwingAnimation.m */; };
+		B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731741CD1F05400C29698 /* TadaAnimation.m */; };
+		B917321C1CD1F05400C29698 /* WobbleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731761CD1F05400C29698 /* WobbleAnimation.m */; };
+		B917321D1CD1F05400C29698 /* BasicAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731781CD1F05400C29698 /* BasicAnimation.m */; };
+		B917321E1CD1F05400C29698 /* BounceInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917317B1CD1F05400C29698 /* BounceInAnimation.m */; };
+		B917321F1CD1F05400C29698 /* BounceInDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917317D1CD1F05400C29698 /* BounceInDownAnimation.m */; };
+		B91732201CD1F05400C29698 /* BounceInLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917317F1CD1F05400C29698 /* BounceInLeftAnimation.m */; };
+		B91732211CD1F05400C29698 /* BounceInRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731811CD1F05400C29698 /* BounceInRightAnimation.m */; };
+		B91732221CD1F05400C29698 /* BounceInUpAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731831CD1F05400C29698 /* BounceInUpAnimation.m */; };
+		B91732231CD1F05400C29698 /* BounceOutAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731861CD1F05400C29698 /* BounceOutAnimation.m */; };
+		B91732241CD1F05400C29698 /* BounceOutDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731881CD1F05400C29698 /* BounceOutDownAnimation.m */; };
+		B91732251CD1F05400C29698 /* BounceOutLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917318A1CD1F05400C29698 /* BounceOutLeftAnimation.m */; };
+		B91732261CD1F05400C29698 /* BounceOutRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917318C1CD1F05400C29698 /* BounceOutRightAnimation.m */; };
+		B91732271CD1F05400C29698 /* BounceOutUpAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917318E1CD1F05400C29698 /* BounceOutUpAnimation.m */; };
+		B91732291CD1F05400C29698 /* FadeInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731931CD1F05400C29698 /* FadeInAnimation.m */; };
+		B917322A1CD1F05400C29698 /* FadeInDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731951CD1F05400C29698 /* FadeInDownAnimation.m */; };
+		B917322B1CD1F05400C29698 /* FadeInDownBigAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731971CD1F05400C29698 /* FadeInDownBigAnimation.m */; };
+		B917322C1CD1F05400C29698 /* FadeInLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731991CD1F05400C29698 /* FadeInLeftAnimation.m */; };
+		B917322D1CD1F05400C29698 /* FadeInLeftBigAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917319B1CD1F05400C29698 /* FadeInLeftBigAnimation.m */; };
+		B917322E1CD1F05400C29698 /* FadeInRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917319D1CD1F05400C29698 /* FadeInRightAnimation.m */; };
+		B917322F1CD1F05400C29698 /* FadeInRightBigAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917319F1CD1F05400C29698 /* FadeInRightBigAnimation.m */; };
+		B91732301CD1F05400C29698 /* FadeInUpAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731A11CD1F05400C29698 /* FadeInUpAnimation.m */; };
+		B91732311CD1F05400C29698 /* FadeInUpBigAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731A31CD1F05400C29698 /* FadeInUpBigAnimation.m */; };
+		B91732321CD1F05400C29698 /* FadeOutAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731A61CD1F05400C29698 /* FadeOutAnimation.m */; };
+		B91732331CD1F05400C29698 /* FadeOutDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731A81CD1F05400C29698 /* FadeOutDownAnimation.m */; };
+		B91732341CD1F05400C29698 /* FadeOutDownBigAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731AA1CD1F05400C29698 /* FadeOutDownBigAnimation.m */; };
+		B91732351CD1F05400C29698 /* FadeOutLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731AC1CD1F05400C29698 /* FadeOutLeftAnimation.m */; };
+		B91732361CD1F05400C29698 /* FadeOutLeftBigAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731AE1CD1F05400C29698 /* FadeOutLeftBigAnimation.m */; };
+		B91732371CD1F05400C29698 /* FadeOutRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731B01CD1F05400C29698 /* FadeOutRightAnimation.m */; };
+		B91732381CD1F05400C29698 /* FadeOutRightBigAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731B21CD1F05400C29698 /* FadeOutRightBigAnimation.m */; };
+		B91732391CD1F05400C29698 /* FadeOutUpAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731B41CD1F05400C29698 /* FadeOutUpAnimation.m */; };
+		B917323A1CD1F05400C29698 /* FadeOutUpBigAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731B61CD1F05400C29698 /* FadeOutUpBigAnimation.m */; };
+		B917323B1CD1F05400C29698 /* FlipAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731B91CD1F05400C29698 /* FlipAnimation.m */; };
+		B917323C1CD1F05400C29698 /* FlipInXAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731BB1CD1F05400C29698 /* FlipInXAnimation.m */; };
+		B917323D1CD1F05400C29698 /* FlipInYAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731BD1CD1F05400C29698 /* FlipInYAnimation.m */; };
+		B917323E1CD1F05400C29698 /* FlipOutXAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731BF1CD1F05400C29698 /* FlipOutXAnimation.m */; };
+		B917323F1CD1F05400C29698 /* FlipOutYAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731C11CD1F05400C29698 /* FlipOutYAnimation.m */; };
+		B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731C41CD1F05400C29698 /* LightSpeedInAnimation.m */; };
+		B91732411CD1F05400C29698 /* LightSpeedOutAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731C61CD1F05400C29698 /* LightSpeedOutAnimation.m */; };
+		B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731C91CD1F05400C29698 /* RotateInAnimation.m */; };
+		B91732431CD1F05400C29698 /* RotateInDownLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731CB1CD1F05400C29698 /* RotateInDownLeftAnimation.m */; };
+		B91732441CD1F05400C29698 /* RotateInDownRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731CD1CD1F05400C29698 /* RotateInDownRightAnimation.m */; };
+		B91732451CD1F05400C29698 /* RotateInUpLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731CF1CD1F05400C29698 /* RotateInUpLeftAnimation.m */; };
+		B91732461CD1F05400C29698 /* RotateInUpRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731D11CD1F05400C29698 /* RotateInUpRightAnimation.m */; };
+		B91732471CD1F05400C29698 /* RotateOutAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731D41CD1F05400C29698 /* RotateOutAnimation.m */; };
+		B91732481CD1F05400C29698 /* RotateOutDownLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731D61CD1F05400C29698 /* RotateOutDownLeftAnimation.m */; };
+		B91732491CD1F05400C29698 /* RotateOutDownRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731D81CD1F05400C29698 /* RotateOutDownRightAnimation.m */; };
+		B917324A1CD1F05400C29698 /* RotateOutUpRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731DA1CD1F05400C29698 /* RotateOutUpRightAnimation.m */; };
+		B917324B1CD1F05400C29698 /* ScaleLargeInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731DD1CD1F05400C29698 /* ScaleLargeInAnimation.m */; };
+		B917324C1CD1F05400C29698 /* ScaleSmallOutAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731DF1CD1F05400C29698 /* ScaleSmallOutAnimation.m */; };
+		B917324D1CD1F05400C29698 /* SlideInDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731E21CD1F05400C29698 /* SlideInDownAnimation.m */; };
+		B917324E1CD1F05400C29698 /* SlideInLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731E41CD1F05400C29698 /* SlideInLeftAnimation.m */; };
+		B917324F1CD1F05400C29698 /* SlideInRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731E61CD1F05400C29698 /* SlideInRightAnimation.m */; };
+		B91732501CD1F05400C29698 /* SlideInUpAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731E81CD1F05400C29698 /* SlideInUpAnimation.m */; };
+		B91732511CD1F05400C29698 /* RotateOutUpLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731EB1CD1F05400C29698 /* RotateOutUpLeftAnimation.m */; };
+		B91732521CD1F05400C29698 /* SlideOutDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731ED1CD1F05400C29698 /* SlideOutDownAnimation.m */; };
+		B91732531CD1F05500C29698 /* SlideOutLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731EF1CD1F05400C29698 /* SlideOutLeftAnimation.m */; };
+		B91732541CD1F05500C29698 /* SlideOutRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731F11CD1F05400C29698 /* SlideOutRightAnimation.m */; };
+		B91732551CD1F05500C29698 /* SlideOutUpAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731F31CD1F05400C29698 /* SlideOutUpAnimation.m */; };
+		B91732561CD1F05500C29698 /* HingeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731F61CD1F05400C29698 /* HingeAnimation.m */; };
+		B91732571CD1F05500C29698 /* RollInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731F81CD1F05400C29698 /* RollInAnimation.m */; };
+		B91732581CD1F05500C29698 /* RollOutAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731FA1CD1F05400C29698 /* RollOutAnimation.m */; };
+		B91732591CD1F05500C29698 /* ZoomInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731FD1CD1F05400C29698 /* ZoomInAnimation.m */; };
+		B917325A1CD1F05500C29698 /* ZoomInDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731FF1CD1F05400C29698 /* ZoomInDownAnimation.m */; };
+		B917325B1CD1F05500C29698 /* ZoomInLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732011CD1F05400C29698 /* ZoomInLeftAnimation.m */; };
+		B917325C1CD1F05500C29698 /* ZoomInRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732031CD1F05400C29698 /* ZoomInRightAnimation.m */; };
+		B917325D1CD1F05500C29698 /* ZoomInUpAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732051CD1F05400C29698 /* ZoomInUpAnimation.m */; };
+		B917325E1CD1F05500C29698 /* ZoomOutAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732081CD1F05400C29698 /* ZoomOutAnimation.m */; };
+		B917325F1CD1F05500C29698 /* ZoomOutDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917320A1CD1F05400C29698 /* ZoomOutDownAnimation.m */; };
+		B91732601CD1F05500C29698 /* ZoomOutLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917320C1CD1F05400C29698 /* ZoomOutLeftAnimation.m */; };
+		B91732611CD1F05500C29698 /* ZoomOutRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917320E1CD1F05400C29698 /* ZoomOutRightAnimation.m */; };
+		B91732621CD1F05500C29698 /* ZoomOutUpAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732101CD1F05400C29698 /* ZoomOutUpAnimation.m */; };
+		B917326B1CD1F09400C29698 /* TTModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732641CD1F09400C29698 /* TTModalView.m */; };
+		B917326C1CD1F09400C29698 /* TTModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732661CD1F09400C29698 /* TTModalViewController.m */; };
+		B917326D1CD1F09400C29698 /* TTModalWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732681CD1F09400C29698 /* TTModalWindow.m */; };
+		B917326E1CD1F09400C29698 /* TTOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = B917326A1CD1F09400C29698 /* TTOverlayView.m */; };
+		B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B917326F1CD1F5F700C29698 /* QuartzCore.framework */; };
+		B91732731CD1F78900C29698 /* CATransform3DExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732711CD1F78900C29698 /* CATransform3DExtend.m */; };
+		B91732751CD1FC9400C29698 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B91896781CCDB9050061D0B6 /* ProductDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896761CCDB9050061D0B6 /* ProductDetailCell.m */; };
 		B91896791CCDB9050061D0B6 /* ProductDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896771CCDB9050061D0B6 /* ProductDetailCell.xib */; };
 		B918967F1CCDD8DC0061D0B6 /* ProductMiddleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B918967E1CCDD8DC0061D0B6 /* ProductMiddleView.xib */; };
@@ -45,6 +135,15 @@
 		B91896EB1CD07AD50061D0B6 /* SupplyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896E91CD07AD50061D0B6 /* SupplyListCell.m */; };
 		B91896EC1CD07AD50061D0B6 /* SupplyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896EA1CD07AD50061D0B6 /* SupplyListCell.xib */; };
 		B91896EF1CD082A70061D0B6 /* SupplyBottomOffView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896EE1CD082A70061D0B6 /* SupplyBottomOffView.m */; };
+		B91896F31CD0EEC00061D0B6 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896F21CD0EEC00061D0B6 /* AccountViewController.m */; };
+		B91896F81CD0EF260061D0B6 /* AccountSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896F61CD0EF260061D0B6 /* AccountSummaryCell.m */; };
+		B91896F91CD0EF260061D0B6 /* AccountSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896F71CD0EF260061D0B6 /* AccountSummaryCell.xib */; };
+		B91896FD1CD0EF460061D0B6 /* AccountDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896FB1CD0EF460061D0B6 /* AccountDetailCell.m */; };
+		B91896FE1CD0EF460061D0B6 /* AccountDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896FC1CD0EF460061D0B6 /* AccountDetailCell.xib */; };
+		B91897021CD117430061D0B6 /* UINib+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B91897011CD117430061D0B6 /* UINib+Utils.m */; };
+		B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B91897041CD117CB0061D0B6 /* UITableView+Utils.m */; };
+		B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B918970A1CD119D90061D0B6 /* BaseDTO.m */; };
+		B918970E1CD11B5F0061D0B6 /* ProductDescriptionDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */; };
 		B964F8FC1CC39670003E0D44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F8FB1CC39670003E0D44 /* main.m */; };
 		B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F8FE1CC39670003E0D44 /* AppDelegate.m */; };
 		B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B964F9061CC39670003E0D44 /* CrazeMM.xcdatamodeld */; };
@@ -80,7 +179,6 @@
 		B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */; };
 		B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788F1CC8AD3800990AA4 /* LoginViewController.m */; };
 		B98878921CC8AD3800990AA4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B98878901CC8AD3800990AA4 /* LoginViewController.xib */; };
-		B988789B1CC8D26D00990AA4 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B988789A1CC8D26D00990AA4 /* Reveal.framework */; };
 		B98878A01CC90CCA00990AA4 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988789E1CC90CCA00990AA4 /* SignViewController.m */; };
 		B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B988789F1CC90CCA00990AA4 /* SignViewController.xib */; };
 		B98878A31CC9100400990AA4 /* sign_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878A21CC9100400990AA4 /* sign_background.png */; };
@@ -168,6 +266,185 @@
 
 /* Begin PBXFileReference section */
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B91731511CD1A30100C29698 /* NSDateComponents+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateComponents+Utils.h"; path = "common/NSDateComponents+Utils.h"; sourceTree = "<group>"; };
+		B91731521CD1A30100C29698 /* NSDateComponents+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateComponents+Utils.m"; path = "common/NSDateComponents+Utils.m"; sourceTree = "<group>"; };
+		B91731551CD1C9E600C29698 /* MMTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMTimer.h; path = timer/MMTimer.h; sourceTree = "<group>"; };
+		B91731561CD1C9E600C29698 /* MMTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMTimer.m; path = timer/MMTimer.m; sourceTree = "<group>"; };
+		B917315D1CD1F05400C29698 /* AnimationBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationBuilder.h; sourceTree = "<group>"; };
+		B917315E1CD1F05400C29698 /* AnimationBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationBuilder.m; sourceTree = "<group>"; };
+		B917315F1CD1F05400C29698 /* AnimationCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationCommon.h; sourceTree = "<group>"; };
+		B91731601CD1F05400C29698 /* AnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationHelper.h; sourceTree = "<group>"; };
+		B91731611CD1F05400C29698 /* AnimationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationHelper.m; sourceTree = "<group>"; };
+		B91731621CD1F05400C29698 /* AnimationParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationParams.h; sourceTree = "<group>"; };
+		B91731631CD1F05400C29698 /* AnimationParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationParams.m; sourceTree = "<group>"; };
+		B91731651CD1F05400C29698 /* BounceAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceAnimation.h; sourceTree = "<group>"; };
+		B91731661CD1F05400C29698 /* BounceAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceAnimation.m; sourceTree = "<group>"; };
+		B91731671CD1F05400C29698 /* FlashAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashAnimation.h; sourceTree = "<group>"; };
+		B91731681CD1F05400C29698 /* FlashAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlashAnimation.m; sourceTree = "<group>"; };
+		B91731691CD1F05400C29698 /* JelloAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JelloAnimation.h; sourceTree = "<group>"; };
+		B917316A1CD1F05400C29698 /* JelloAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JelloAnimation.m; sourceTree = "<group>"; };
+		B917316B1CD1F05400C29698 /* PulseAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseAnimation.h; sourceTree = "<group>"; };
+		B917316C1CD1F05400C29698 /* PulseAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseAnimation.m; sourceTree = "<group>"; };
+		B917316D1CD1F05400C29698 /* RubberBandAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubberBandAnimation.h; sourceTree = "<group>"; };
+		B917316E1CD1F05400C29698 /* RubberBandAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubberBandAnimation.m; sourceTree = "<group>"; };
+		B917316F1CD1F05400C29698 /* ShakeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeAnimation.h; sourceTree = "<group>"; };
+		B91731701CD1F05400C29698 /* ShakeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeAnimation.m; sourceTree = "<group>"; };
+		B91731711CD1F05400C29698 /* SwingAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwingAnimation.h; sourceTree = "<group>"; };
+		B91731721CD1F05400C29698 /* SwingAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwingAnimation.m; sourceTree = "<group>"; };
+		B91731731CD1F05400C29698 /* TadaAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TadaAnimation.h; sourceTree = "<group>"; };
+		B91731741CD1F05400C29698 /* TadaAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TadaAnimation.m; sourceTree = "<group>"; };
+		B91731751CD1F05400C29698 /* WobbleAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WobbleAnimation.h; sourceTree = "<group>"; };
+		B91731761CD1F05400C29698 /* WobbleAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WobbleAnimation.m; sourceTree = "<group>"; };
+		B91731771CD1F05400C29698 /* BasicAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicAnimation.h; sourceTree = "<group>"; };
+		B91731781CD1F05400C29698 /* BasicAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicAnimation.m; sourceTree = "<group>"; };
+		B917317A1CD1F05400C29698 /* BounceInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceInAnimation.h; sourceTree = "<group>"; };
+		B917317B1CD1F05400C29698 /* BounceInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceInAnimation.m; sourceTree = "<group>"; };
+		B917317C1CD1F05400C29698 /* BounceInDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceInDownAnimation.h; sourceTree = "<group>"; };
+		B917317D1CD1F05400C29698 /* BounceInDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceInDownAnimation.m; sourceTree = "<group>"; };
+		B917317E1CD1F05400C29698 /* BounceInLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceInLeftAnimation.h; sourceTree = "<group>"; };
+		B917317F1CD1F05400C29698 /* BounceInLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceInLeftAnimation.m; sourceTree = "<group>"; };
+		B91731801CD1F05400C29698 /* BounceInRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceInRightAnimation.h; sourceTree = "<group>"; };
+		B91731811CD1F05400C29698 /* BounceInRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceInRightAnimation.m; sourceTree = "<group>"; };
+		B91731821CD1F05400C29698 /* BounceInUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceInUpAnimation.h; sourceTree = "<group>"; };
+		B91731831CD1F05400C29698 /* BounceInUpAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceInUpAnimation.m; sourceTree = "<group>"; };
+		B91731851CD1F05400C29698 /* BounceOutAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceOutAnimation.h; sourceTree = "<group>"; };
+		B91731861CD1F05400C29698 /* BounceOutAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceOutAnimation.m; sourceTree = "<group>"; };
+		B91731871CD1F05400C29698 /* BounceOutDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceOutDownAnimation.h; sourceTree = "<group>"; };
+		B91731881CD1F05400C29698 /* BounceOutDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceOutDownAnimation.m; sourceTree = "<group>"; };
+		B91731891CD1F05400C29698 /* BounceOutLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceOutLeftAnimation.h; sourceTree = "<group>"; };
+		B917318A1CD1F05400C29698 /* BounceOutLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceOutLeftAnimation.m; sourceTree = "<group>"; };
+		B917318B1CD1F05400C29698 /* BounceOutRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceOutRightAnimation.h; sourceTree = "<group>"; };
+		B917318C1CD1F05400C29698 /* BounceOutRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceOutRightAnimation.m; sourceTree = "<group>"; };
+		B917318D1CD1F05400C29698 /* BounceOutUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BounceOutUpAnimation.h; sourceTree = "<group>"; };
+		B917318E1CD1F05400C29698 /* BounceOutUpAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BounceOutUpAnimation.m; sourceTree = "<group>"; };
+		B91731921CD1F05400C29698 /* FadeInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInAnimation.h; sourceTree = "<group>"; };
+		B91731931CD1F05400C29698 /* FadeInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInAnimation.m; sourceTree = "<group>"; };
+		B91731941CD1F05400C29698 /* FadeInDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInDownAnimation.h; sourceTree = "<group>"; };
+		B91731951CD1F05400C29698 /* FadeInDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInDownAnimation.m; sourceTree = "<group>"; };
+		B91731961CD1F05400C29698 /* FadeInDownBigAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInDownBigAnimation.h; sourceTree = "<group>"; };
+		B91731971CD1F05400C29698 /* FadeInDownBigAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInDownBigAnimation.m; sourceTree = "<group>"; };
+		B91731981CD1F05400C29698 /* FadeInLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInLeftAnimation.h; sourceTree = "<group>"; };
+		B91731991CD1F05400C29698 /* FadeInLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInLeftAnimation.m; sourceTree = "<group>"; };
+		B917319A1CD1F05400C29698 /* FadeInLeftBigAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInLeftBigAnimation.h; sourceTree = "<group>"; };
+		B917319B1CD1F05400C29698 /* FadeInLeftBigAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInLeftBigAnimation.m; sourceTree = "<group>"; };
+		B917319C1CD1F05400C29698 /* FadeInRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInRightAnimation.h; sourceTree = "<group>"; };
+		B917319D1CD1F05400C29698 /* FadeInRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInRightAnimation.m; sourceTree = "<group>"; };
+		B917319E1CD1F05400C29698 /* FadeInRightBigAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInRightBigAnimation.h; sourceTree = "<group>"; };
+		B917319F1CD1F05400C29698 /* FadeInRightBigAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInRightBigAnimation.m; sourceTree = "<group>"; };
+		B91731A01CD1F05400C29698 /* FadeInUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInUpAnimation.h; sourceTree = "<group>"; };
+		B91731A11CD1F05400C29698 /* FadeInUpAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInUpAnimation.m; sourceTree = "<group>"; };
+		B91731A21CD1F05400C29698 /* FadeInUpBigAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeInUpBigAnimation.h; sourceTree = "<group>"; };
+		B91731A31CD1F05400C29698 /* FadeInUpBigAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeInUpBigAnimation.m; sourceTree = "<group>"; };
+		B91731A51CD1F05400C29698 /* FadeOutAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutAnimation.h; sourceTree = "<group>"; };
+		B91731A61CD1F05400C29698 /* FadeOutAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutAnimation.m; sourceTree = "<group>"; };
+		B91731A71CD1F05400C29698 /* FadeOutDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutDownAnimation.h; sourceTree = "<group>"; };
+		B91731A81CD1F05400C29698 /* FadeOutDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutDownAnimation.m; sourceTree = "<group>"; };
+		B91731A91CD1F05400C29698 /* FadeOutDownBigAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutDownBigAnimation.h; sourceTree = "<group>"; };
+		B91731AA1CD1F05400C29698 /* FadeOutDownBigAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutDownBigAnimation.m; sourceTree = "<group>"; };
+		B91731AB1CD1F05400C29698 /* FadeOutLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutLeftAnimation.h; sourceTree = "<group>"; };
+		B91731AC1CD1F05400C29698 /* FadeOutLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutLeftAnimation.m; sourceTree = "<group>"; };
+		B91731AD1CD1F05400C29698 /* FadeOutLeftBigAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutLeftBigAnimation.h; sourceTree = "<group>"; };
+		B91731AE1CD1F05400C29698 /* FadeOutLeftBigAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutLeftBigAnimation.m; sourceTree = "<group>"; };
+		B91731AF1CD1F05400C29698 /* FadeOutRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutRightAnimation.h; sourceTree = "<group>"; };
+		B91731B01CD1F05400C29698 /* FadeOutRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutRightAnimation.m; sourceTree = "<group>"; };
+		B91731B11CD1F05400C29698 /* FadeOutRightBigAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutRightBigAnimation.h; sourceTree = "<group>"; };
+		B91731B21CD1F05400C29698 /* FadeOutRightBigAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutRightBigAnimation.m; sourceTree = "<group>"; };
+		B91731B31CD1F05400C29698 /* FadeOutUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutUpAnimation.h; sourceTree = "<group>"; };
+		B91731B41CD1F05400C29698 /* FadeOutUpAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutUpAnimation.m; sourceTree = "<group>"; };
+		B91731B51CD1F05400C29698 /* FadeOutUpBigAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeOutUpBigAnimation.h; sourceTree = "<group>"; };
+		B91731B61CD1F05400C29698 /* FadeOutUpBigAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeOutUpBigAnimation.m; sourceTree = "<group>"; };
+		B91731B81CD1F05400C29698 /* FlipAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipAnimation.h; sourceTree = "<group>"; };
+		B91731B91CD1F05400C29698 /* FlipAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipAnimation.m; sourceTree = "<group>"; };
+		B91731BA1CD1F05400C29698 /* FlipInXAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipInXAnimation.h; sourceTree = "<group>"; };
+		B91731BB1CD1F05400C29698 /* FlipInXAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipInXAnimation.m; sourceTree = "<group>"; };
+		B91731BC1CD1F05400C29698 /* FlipInYAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipInYAnimation.h; sourceTree = "<group>"; };
+		B91731BD1CD1F05400C29698 /* FlipInYAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipInYAnimation.m; sourceTree = "<group>"; };
+		B91731BE1CD1F05400C29698 /* FlipOutXAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipOutXAnimation.h; sourceTree = "<group>"; };
+		B91731BF1CD1F05400C29698 /* FlipOutXAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipOutXAnimation.m; sourceTree = "<group>"; };
+		B91731C01CD1F05400C29698 /* FlipOutYAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipOutYAnimation.h; sourceTree = "<group>"; };
+		B91731C11CD1F05400C29698 /* FlipOutYAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipOutYAnimation.m; sourceTree = "<group>"; };
+		B91731C31CD1F05400C29698 /* LightSpeedInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightSpeedInAnimation.h; sourceTree = "<group>"; };
+		B91731C41CD1F05400C29698 /* LightSpeedInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightSpeedInAnimation.m; sourceTree = "<group>"; };
+		B91731C51CD1F05400C29698 /* LightSpeedOutAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightSpeedOutAnimation.h; sourceTree = "<group>"; };
+		B91731C61CD1F05400C29698 /* LightSpeedOutAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightSpeedOutAnimation.m; sourceTree = "<group>"; };
+		B91731C81CD1F05400C29698 /* RotateInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateInAnimation.h; sourceTree = "<group>"; };
+		B91731C91CD1F05400C29698 /* RotateInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateInAnimation.m; sourceTree = "<group>"; };
+		B91731CA1CD1F05400C29698 /* RotateInDownLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateInDownLeftAnimation.h; sourceTree = "<group>"; };
+		B91731CB1CD1F05400C29698 /* RotateInDownLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateInDownLeftAnimation.m; sourceTree = "<group>"; };
+		B91731CC1CD1F05400C29698 /* RotateInDownRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateInDownRightAnimation.h; sourceTree = "<group>"; };
+		B91731CD1CD1F05400C29698 /* RotateInDownRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateInDownRightAnimation.m; sourceTree = "<group>"; };
+		B91731CE1CD1F05400C29698 /* RotateInUpLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateInUpLeftAnimation.h; sourceTree = "<group>"; };
+		B91731CF1CD1F05400C29698 /* RotateInUpLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateInUpLeftAnimation.m; sourceTree = "<group>"; };
+		B91731D01CD1F05400C29698 /* RotateInUpRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateInUpRightAnimation.h; sourceTree = "<group>"; };
+		B91731D11CD1F05400C29698 /* RotateInUpRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateInUpRightAnimation.m; sourceTree = "<group>"; };
+		B91731D31CD1F05400C29698 /* RotateOutAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateOutAnimation.h; sourceTree = "<group>"; };
+		B91731D41CD1F05400C29698 /* RotateOutAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateOutAnimation.m; sourceTree = "<group>"; };
+		B91731D51CD1F05400C29698 /* RotateOutDownLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateOutDownLeftAnimation.h; sourceTree = "<group>"; };
+		B91731D61CD1F05400C29698 /* RotateOutDownLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateOutDownLeftAnimation.m; sourceTree = "<group>"; };
+		B91731D71CD1F05400C29698 /* RotateOutDownRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateOutDownRightAnimation.h; sourceTree = "<group>"; };
+		B91731D81CD1F05400C29698 /* RotateOutDownRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateOutDownRightAnimation.m; sourceTree = "<group>"; };
+		B91731D91CD1F05400C29698 /* RotateOutUpRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateOutUpRightAnimation.h; sourceTree = "<group>"; };
+		B91731DA1CD1F05400C29698 /* RotateOutUpRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateOutUpRightAnimation.m; sourceTree = "<group>"; };
+		B91731DC1CD1F05400C29698 /* ScaleLargeInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleLargeInAnimation.h; sourceTree = "<group>"; };
+		B91731DD1CD1F05400C29698 /* ScaleLargeInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleLargeInAnimation.m; sourceTree = "<group>"; };
+		B91731DE1CD1F05400C29698 /* ScaleSmallOutAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleSmallOutAnimation.h; sourceTree = "<group>"; };
+		B91731DF1CD1F05400C29698 /* ScaleSmallOutAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleSmallOutAnimation.m; sourceTree = "<group>"; };
+		B91731E11CD1F05400C29698 /* SlideInDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideInDownAnimation.h; sourceTree = "<group>"; };
+		B91731E21CD1F05400C29698 /* SlideInDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideInDownAnimation.m; sourceTree = "<group>"; };
+		B91731E31CD1F05400C29698 /* SlideInLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideInLeftAnimation.h; sourceTree = "<group>"; };
+		B91731E41CD1F05400C29698 /* SlideInLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideInLeftAnimation.m; sourceTree = "<group>"; };
+		B91731E51CD1F05400C29698 /* SlideInRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideInRightAnimation.h; sourceTree = "<group>"; };
+		B91731E61CD1F05400C29698 /* SlideInRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideInRightAnimation.m; sourceTree = "<group>"; };
+		B91731E71CD1F05400C29698 /* SlideInUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideInUpAnimation.h; sourceTree = "<group>"; };
+		B91731E81CD1F05400C29698 /* SlideInUpAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideInUpAnimation.m; sourceTree = "<group>"; };
+		B91731EA1CD1F05400C29698 /* RotateOutUpLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateOutUpLeftAnimation.h; sourceTree = "<group>"; };
+		B91731EB1CD1F05400C29698 /* RotateOutUpLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateOutUpLeftAnimation.m; sourceTree = "<group>"; };
+		B91731EC1CD1F05400C29698 /* SlideOutDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutDownAnimation.h; sourceTree = "<group>"; };
+		B91731ED1CD1F05400C29698 /* SlideOutDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutDownAnimation.m; sourceTree = "<group>"; };
+		B91731EE1CD1F05400C29698 /* SlideOutLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutLeftAnimation.h; sourceTree = "<group>"; };
+		B91731EF1CD1F05400C29698 /* SlideOutLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutLeftAnimation.m; sourceTree = "<group>"; };
+		B91731F01CD1F05400C29698 /* SlideOutRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutRightAnimation.h; sourceTree = "<group>"; };
+		B91731F11CD1F05400C29698 /* SlideOutRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutRightAnimation.m; sourceTree = "<group>"; };
+		B91731F21CD1F05400C29698 /* SlideOutUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideOutUpAnimation.h; sourceTree = "<group>"; };
+		B91731F31CD1F05400C29698 /* SlideOutUpAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideOutUpAnimation.m; sourceTree = "<group>"; };
+		B91731F51CD1F05400C29698 /* HingeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HingeAnimation.h; sourceTree = "<group>"; };
+		B91731F61CD1F05400C29698 /* HingeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HingeAnimation.m; sourceTree = "<group>"; };
+		B91731F71CD1F05400C29698 /* RollInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollInAnimation.h; sourceTree = "<group>"; };
+		B91731F81CD1F05400C29698 /* RollInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollInAnimation.m; sourceTree = "<group>"; };
+		B91731F91CD1F05400C29698 /* RollOutAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollOutAnimation.h; sourceTree = "<group>"; };
+		B91731FA1CD1F05400C29698 /* RollOutAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollOutAnimation.m; sourceTree = "<group>"; };
+		B91731FC1CD1F05400C29698 /* ZoomInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomInAnimation.h; sourceTree = "<group>"; };
+		B91731FD1CD1F05400C29698 /* ZoomInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomInAnimation.m; sourceTree = "<group>"; };
+		B91731FE1CD1F05400C29698 /* ZoomInDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomInDownAnimation.h; sourceTree = "<group>"; };
+		B91731FF1CD1F05400C29698 /* ZoomInDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomInDownAnimation.m; sourceTree = "<group>"; };
+		B91732001CD1F05400C29698 /* ZoomInLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomInLeftAnimation.h; sourceTree = "<group>"; };
+		B91732011CD1F05400C29698 /* ZoomInLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomInLeftAnimation.m; sourceTree = "<group>"; };
+		B91732021CD1F05400C29698 /* ZoomInRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomInRightAnimation.h; sourceTree = "<group>"; };
+		B91732031CD1F05400C29698 /* ZoomInRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomInRightAnimation.m; sourceTree = "<group>"; };
+		B91732041CD1F05400C29698 /* ZoomInUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomInUpAnimation.h; sourceTree = "<group>"; };
+		B91732051CD1F05400C29698 /* ZoomInUpAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomInUpAnimation.m; sourceTree = "<group>"; };
+		B91732071CD1F05400C29698 /* ZoomOutAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomOutAnimation.h; sourceTree = "<group>"; };
+		B91732081CD1F05400C29698 /* ZoomOutAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomOutAnimation.m; sourceTree = "<group>"; };
+		B91732091CD1F05400C29698 /* ZoomOutDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomOutDownAnimation.h; sourceTree = "<group>"; };
+		B917320A1CD1F05400C29698 /* ZoomOutDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomOutDownAnimation.m; sourceTree = "<group>"; };
+		B917320B1CD1F05400C29698 /* ZoomOutLeftAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomOutLeftAnimation.h; sourceTree = "<group>"; };
+		B917320C1CD1F05400C29698 /* ZoomOutLeftAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomOutLeftAnimation.m; sourceTree = "<group>"; };
+		B917320D1CD1F05400C29698 /* ZoomOutRightAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomOutRightAnimation.h; sourceTree = "<group>"; };
+		B917320E1CD1F05400C29698 /* ZoomOutRightAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomOutRightAnimation.m; sourceTree = "<group>"; };
+		B917320F1CD1F05400C29698 /* ZoomOutUpAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomOutUpAnimation.h; sourceTree = "<group>"; };
+		B91732101CD1F05400C29698 /* ZoomOutUpAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomOutUpAnimation.m; sourceTree = "<group>"; };
+		B91732631CD1F09400C29698 /* TTModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTModalView.h; sourceTree = "<group>"; };
+		B91732641CD1F09400C29698 /* TTModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModalView.m; sourceTree = "<group>"; };
+		B91732651CD1F09400C29698 /* TTModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTModalViewController.h; sourceTree = "<group>"; };
+		B91732661CD1F09400C29698 /* TTModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModalViewController.m; sourceTree = "<group>"; };
+		B91732671CD1F09400C29698 /* TTModalWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTModalWindow.h; sourceTree = "<group>"; };
+		B91732681CD1F09400C29698 /* TTModalWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTModalWindow.m; sourceTree = "<group>"; };
+		B91732691CD1F09400C29698 /* TTOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTOverlayView.h; sourceTree = "<group>"; };
+		B917326A1CD1F09400C29698 /* TTOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTOverlayView.m; sourceTree = "<group>"; };
+		B917326F1CD1F5F700C29698 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B91732711CD1F78900C29698 /* CATransform3DExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CATransform3DExtend.m; sourceTree = "<group>"; };
+		B91732721CD1F78900C29698 /* CATransform3DExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransform3DExtend.h; sourceTree = "<group>"; };
+		B91732741CD1FC9400C29698 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		B91896751CCDB9050061D0B6 /* ProductDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDetailCell.h; path = product/ProductDetailCell.h; sourceTree = "<group>"; };
 		B91896761CCDB9050061D0B6 /* ProductDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDetailCell.m; path = product/ProductDetailCell.m; sourceTree = "<group>"; };
 		B91896771CCDB9050061D0B6 /* ProductDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductDetailCell.xib; path = product/ProductDetailCell.xib; sourceTree = "<group>"; };
@@ -227,6 +504,23 @@
 		B91896EA1CD07AD50061D0B6 /* SupplyListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SupplyListCell.xib; path = mine/supply/SupplyListCell.xib; sourceTree = "<group>"; };
 		B91896ED1CD082A70061D0B6 /* SupplyBottomOffView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyBottomOffView.h; path = mine/supply/SupplyBottomOffView.h; sourceTree = "<group>"; };
 		B91896EE1CD082A70061D0B6 /* SupplyBottomOffView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyBottomOffView.m; path = mine/supply/SupplyBottomOffView.m; sourceTree = "<group>"; };
+		B91896F11CD0EEC00061D0B6 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountViewController.h; path = mine/account/AccountViewController.h; sourceTree = "<group>"; };
+		B91896F21CD0EEC00061D0B6 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountViewController.m; path = mine/account/AccountViewController.m; sourceTree = "<group>"; };
+		B91896F51CD0EF260061D0B6 /* AccountSummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountSummaryCell.h; path = mine/account/AccountSummaryCell.h; sourceTree = "<group>"; };
+		B91896F61CD0EF260061D0B6 /* AccountSummaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountSummaryCell.m; path = mine/account/AccountSummaryCell.m; sourceTree = "<group>"; };
+		B91896F71CD0EF260061D0B6 /* AccountSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountSummaryCell.xib; path = mine/account/AccountSummaryCell.xib; sourceTree = "<group>"; };
+		B91896FA1CD0EF460061D0B6 /* AccountDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountDetailCell.h; path = mine/account/AccountDetailCell.h; sourceTree = "<group>"; };
+		B91896FB1CD0EF460061D0B6 /* AccountDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountDetailCell.m; path = mine/account/AccountDetailCell.m; sourceTree = "<group>"; };
+		B91896FC1CD0EF460061D0B6 /* AccountDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AccountDetailCell.xib; path = mine/account/AccountDetailCell.xib; sourceTree = "<group>"; };
+		B91896FF1CD10EE00061D0B6 /* HttpRequestURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HttpRequestURL.h; path = common/HttpRequestURL.h; sourceTree = "<group>"; };
+		B91897001CD117430061D0B6 /* UINib+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINib+Utils.h"; path = "common/UINib+Utils.h"; sourceTree = "<group>"; };
+		B91897011CD117430061D0B6 /* UINib+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINib+Utils.m"; path = "common/UINib+Utils.m"; sourceTree = "<group>"; };
+		B91897031CD117CB0061D0B6 /* UITableView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+Utils.h"; path = "common/UITableView+Utils.h"; sourceTree = "<group>"; };
+		B91897041CD117CB0061D0B6 /* UITableView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+Utils.m"; path = "common/UITableView+Utils.m"; sourceTree = "<group>"; };
+		B91897091CD119D90061D0B6 /* BaseDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseDTO.h; path = modal/BaseDTO.h; sourceTree = "<group>"; };
+		B918970A1CD119D90061D0B6 /* BaseDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseDTO.m; path = modal/BaseDTO.m; sourceTree = "<group>"; };
+		B918970C1CD11B5F0061D0B6 /* ProductDescriptionDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDescriptionDTO.h; path = buy/ProductDescriptionDTO.h; sourceTree = "<group>"; };
+		B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDescriptionDTO.m; path = buy/ProductDescriptionDTO.m; sourceTree = "<group>"; };
 		B964F8F71CC39670003E0D44 /* CrazeMM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazeMM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B964F8FB1CC39670003E0D44 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B964F8FD1CC39670003E0D44 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -273,7 +567,6 @@
 		B988788E1CC8AD3800990AA4 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = login/LoginViewController.h; sourceTree = "<group>"; };
 		B988788F1CC8AD3800990AA4 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = login/LoginViewController.m; sourceTree = "<group>"; };
 		B98878901CC8AD3800990AA4 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = login/LoginViewController.xib; sourceTree = "<group>"; };
-		B988789A1CC8D26D00990AA4 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		B988789D1CC90CCA00990AA4 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignViewController.h; path = sign/SignViewController.h; sourceTree = "<group>"; };
 		B988789E1CC90CCA00990AA4 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignViewController.m; path = sign/SignViewController.m; sourceTree = "<group>"; };
 		B988789F1CC90CCA00990AA4 /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignViewController.xib; path = sign/SignViewController.xib; sourceTree = "<group>"; };
@@ -395,8 +688,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91732751CD1FC9400C29698 /* Reveal.framework in Frameworks */,
+				B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */,
 				0447E4425CC1A1596914F774 /* Pods.framework in Frameworks */,
-				B988789B1CC8D26D00990AA4 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,10 +723,336 @@
 		8B36CB4D54E72C4D41168BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B988789A1CC8D26D00990AA4 /* Reveal.framework */,
+				B91732741CD1FC9400C29698 /* Reveal.framework */,
+				B917326F1CD1F5F700C29698 /* QuartzCore.framework */,
 				14ACAF7E869FA5D74648BBDD /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B91731541CD1C90600C29698 /* timer */ = {
+			isa = PBXGroup;
+			children = (
+				B91731551CD1C9E600C29698 /* MMTimer.h */,
+				B91731561CD1C9E600C29698 /* MMTimer.m */,
+			);
+			name = timer;
+			sourceTree = "<group>";
+		};
+		B917315A1CD1EF9400C29698 /* third party */ = {
+			isa = PBXGroup;
+			children = (
+				B917315C1CD1EFC000C29698 /* TTModalView */,
+				B917315B1CD1EFB400C29698 /* TTAnimations */,
+			);
+			name = "third party";
+			sourceTree = "<group>";
+		};
+		B917315B1CD1EFB400C29698 /* TTAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				B917315D1CD1F05400C29698 /* AnimationBuilder.h */,
+				B917315E1CD1F05400C29698 /* AnimationBuilder.m */,
+				B917315F1CD1F05400C29698 /* AnimationCommon.h */,
+				B91731601CD1F05400C29698 /* AnimationHelper.h */,
+				B91731611CD1F05400C29698 /* AnimationHelper.m */,
+				B91731621CD1F05400C29698 /* AnimationParams.h */,
+				B91731631CD1F05400C29698 /* AnimationParams.m */,
+				B91731641CD1F05400C29698 /* attention_seekers */,
+				B91731771CD1F05400C29698 /* BasicAnimation.h */,
+				B91731781CD1F05400C29698 /* BasicAnimation.m */,
+				B91731791CD1F05400C29698 /* bouncing_entrances */,
+				B91731841CD1F05400C29698 /* bouncing_exits */,
+				B91731911CD1F05400C29698 /* fading_entrances */,
+				B91731A41CD1F05400C29698 /* fading_exits */,
+				B91731B71CD1F05400C29698 /* flippers */,
+				B91731C21CD1F05400C29698 /* lightspeed */,
+				B91731C71CD1F05400C29698 /* rotating_entrances */,
+				B91731D21CD1F05400C29698 /* rotating_exits */,
+				B91731DB1CD1F05400C29698 /* scale */,
+				B91731E01CD1F05400C29698 /* sliding_entrances */,
+				B91731E91CD1F05400C29698 /* sliding_exits */,
+				B91731F41CD1F05400C29698 /* specials */,
+				B91731FB1CD1F05400C29698 /* zooming_entrances */,
+				B91732061CD1F05400C29698 /* zooming_exits */,
+				B91732711CD1F78900C29698 /* CATransform3DExtend.m */,
+				B91732721CD1F78900C29698 /* CATransform3DExtend.h */,
+			);
+			name = TTAnimations;
+			sourceTree = "<group>";
+		};
+		B917315C1CD1EFC000C29698 /* TTModalView */ = {
+			isa = PBXGroup;
+			children = (
+				B91732631CD1F09400C29698 /* TTModalView.h */,
+				B91732641CD1F09400C29698 /* TTModalView.m */,
+				B91732651CD1F09400C29698 /* TTModalViewController.h */,
+				B91732661CD1F09400C29698 /* TTModalViewController.m */,
+				B91732671CD1F09400C29698 /* TTModalWindow.h */,
+				B91732681CD1F09400C29698 /* TTModalWindow.m */,
+				B91732691CD1F09400C29698 /* TTOverlayView.h */,
+				B917326A1CD1F09400C29698 /* TTOverlayView.m */,
+			);
+			name = TTModalView;
+			sourceTree = "<group>";
+		};
+		B91731641CD1F05400C29698 /* attention_seekers */ = {
+			isa = PBXGroup;
+			children = (
+				B91731651CD1F05400C29698 /* BounceAnimation.h */,
+				B91731661CD1F05400C29698 /* BounceAnimation.m */,
+				B91731671CD1F05400C29698 /* FlashAnimation.h */,
+				B91731681CD1F05400C29698 /* FlashAnimation.m */,
+				B91731691CD1F05400C29698 /* JelloAnimation.h */,
+				B917316A1CD1F05400C29698 /* JelloAnimation.m */,
+				B917316B1CD1F05400C29698 /* PulseAnimation.h */,
+				B917316C1CD1F05400C29698 /* PulseAnimation.m */,
+				B917316D1CD1F05400C29698 /* RubberBandAnimation.h */,
+				B917316E1CD1F05400C29698 /* RubberBandAnimation.m */,
+				B917316F1CD1F05400C29698 /* ShakeAnimation.h */,
+				B91731701CD1F05400C29698 /* ShakeAnimation.m */,
+				B91731711CD1F05400C29698 /* SwingAnimation.h */,
+				B91731721CD1F05400C29698 /* SwingAnimation.m */,
+				B91731731CD1F05400C29698 /* TadaAnimation.h */,
+				B91731741CD1F05400C29698 /* TadaAnimation.m */,
+				B91731751CD1F05400C29698 /* WobbleAnimation.h */,
+				B91731761CD1F05400C29698 /* WobbleAnimation.m */,
+			);
+			path = attention_seekers;
+			sourceTree = "<group>";
+		};
+		B91731791CD1F05400C29698 /* bouncing_entrances */ = {
+			isa = PBXGroup;
+			children = (
+				B917317A1CD1F05400C29698 /* BounceInAnimation.h */,
+				B917317B1CD1F05400C29698 /* BounceInAnimation.m */,
+				B917317C1CD1F05400C29698 /* BounceInDownAnimation.h */,
+				B917317D1CD1F05400C29698 /* BounceInDownAnimation.m */,
+				B917317E1CD1F05400C29698 /* BounceInLeftAnimation.h */,
+				B917317F1CD1F05400C29698 /* BounceInLeftAnimation.m */,
+				B91731801CD1F05400C29698 /* BounceInRightAnimation.h */,
+				B91731811CD1F05400C29698 /* BounceInRightAnimation.m */,
+				B91731821CD1F05400C29698 /* BounceInUpAnimation.h */,
+				B91731831CD1F05400C29698 /* BounceInUpAnimation.m */,
+			);
+			path = bouncing_entrances;
+			sourceTree = "<group>";
+		};
+		B91731841CD1F05400C29698 /* bouncing_exits */ = {
+			isa = PBXGroup;
+			children = (
+				B91731851CD1F05400C29698 /* BounceOutAnimation.h */,
+				B91731861CD1F05400C29698 /* BounceOutAnimation.m */,
+				B91731871CD1F05400C29698 /* BounceOutDownAnimation.h */,
+				B91731881CD1F05400C29698 /* BounceOutDownAnimation.m */,
+				B91731891CD1F05400C29698 /* BounceOutLeftAnimation.h */,
+				B917318A1CD1F05400C29698 /* BounceOutLeftAnimation.m */,
+				B917318B1CD1F05400C29698 /* BounceOutRightAnimation.h */,
+				B917318C1CD1F05400C29698 /* BounceOutRightAnimation.m */,
+				B917318D1CD1F05400C29698 /* BounceOutUpAnimation.h */,
+				B917318E1CD1F05400C29698 /* BounceOutUpAnimation.m */,
+			);
+			path = bouncing_exits;
+			sourceTree = "<group>";
+		};
+		B91731911CD1F05400C29698 /* fading_entrances */ = {
+			isa = PBXGroup;
+			children = (
+				B91731921CD1F05400C29698 /* FadeInAnimation.h */,
+				B91731931CD1F05400C29698 /* FadeInAnimation.m */,
+				B91731941CD1F05400C29698 /* FadeInDownAnimation.h */,
+				B91731951CD1F05400C29698 /* FadeInDownAnimation.m */,
+				B91731961CD1F05400C29698 /* FadeInDownBigAnimation.h */,
+				B91731971CD1F05400C29698 /* FadeInDownBigAnimation.m */,
+				B91731981CD1F05400C29698 /* FadeInLeftAnimation.h */,
+				B91731991CD1F05400C29698 /* FadeInLeftAnimation.m */,
+				B917319A1CD1F05400C29698 /* FadeInLeftBigAnimation.h */,
+				B917319B1CD1F05400C29698 /* FadeInLeftBigAnimation.m */,
+				B917319C1CD1F05400C29698 /* FadeInRightAnimation.h */,
+				B917319D1CD1F05400C29698 /* FadeInRightAnimation.m */,
+				B917319E1CD1F05400C29698 /* FadeInRightBigAnimation.h */,
+				B917319F1CD1F05400C29698 /* FadeInRightBigAnimation.m */,
+				B91731A01CD1F05400C29698 /* FadeInUpAnimation.h */,
+				B91731A11CD1F05400C29698 /* FadeInUpAnimation.m */,
+				B91731A21CD1F05400C29698 /* FadeInUpBigAnimation.h */,
+				B91731A31CD1F05400C29698 /* FadeInUpBigAnimation.m */,
+			);
+			path = fading_entrances;
+			sourceTree = "<group>";
+		};
+		B91731A41CD1F05400C29698 /* fading_exits */ = {
+			isa = PBXGroup;
+			children = (
+				B91731A51CD1F05400C29698 /* FadeOutAnimation.h */,
+				B91731A61CD1F05400C29698 /* FadeOutAnimation.m */,
+				B91731A71CD1F05400C29698 /* FadeOutDownAnimation.h */,
+				B91731A81CD1F05400C29698 /* FadeOutDownAnimation.m */,
+				B91731A91CD1F05400C29698 /* FadeOutDownBigAnimation.h */,
+				B91731AA1CD1F05400C29698 /* FadeOutDownBigAnimation.m */,
+				B91731AB1CD1F05400C29698 /* FadeOutLeftAnimation.h */,
+				B91731AC1CD1F05400C29698 /* FadeOutLeftAnimation.m */,
+				B91731AD1CD1F05400C29698 /* FadeOutLeftBigAnimation.h */,
+				B91731AE1CD1F05400C29698 /* FadeOutLeftBigAnimation.m */,
+				B91731AF1CD1F05400C29698 /* FadeOutRightAnimation.h */,
+				B91731B01CD1F05400C29698 /* FadeOutRightAnimation.m */,
+				B91731B11CD1F05400C29698 /* FadeOutRightBigAnimation.h */,
+				B91731B21CD1F05400C29698 /* FadeOutRightBigAnimation.m */,
+				B91731B31CD1F05400C29698 /* FadeOutUpAnimation.h */,
+				B91731B41CD1F05400C29698 /* FadeOutUpAnimation.m */,
+				B91731B51CD1F05400C29698 /* FadeOutUpBigAnimation.h */,
+				B91731B61CD1F05400C29698 /* FadeOutUpBigAnimation.m */,
+			);
+			path = fading_exits;
+			sourceTree = "<group>";
+		};
+		B91731B71CD1F05400C29698 /* flippers */ = {
+			isa = PBXGroup;
+			children = (
+				B91731B81CD1F05400C29698 /* FlipAnimation.h */,
+				B91731B91CD1F05400C29698 /* FlipAnimation.m */,
+				B91731BA1CD1F05400C29698 /* FlipInXAnimation.h */,
+				B91731BB1CD1F05400C29698 /* FlipInXAnimation.m */,
+				B91731BC1CD1F05400C29698 /* FlipInYAnimation.h */,
+				B91731BD1CD1F05400C29698 /* FlipInYAnimation.m */,
+				B91731BE1CD1F05400C29698 /* FlipOutXAnimation.h */,
+				B91731BF1CD1F05400C29698 /* FlipOutXAnimation.m */,
+				B91731C01CD1F05400C29698 /* FlipOutYAnimation.h */,
+				B91731C11CD1F05400C29698 /* FlipOutYAnimation.m */,
+			);
+			path = flippers;
+			sourceTree = "<group>";
+		};
+		B91731C21CD1F05400C29698 /* lightspeed */ = {
+			isa = PBXGroup;
+			children = (
+				B91731C31CD1F05400C29698 /* LightSpeedInAnimation.h */,
+				B91731C41CD1F05400C29698 /* LightSpeedInAnimation.m */,
+				B91731C51CD1F05400C29698 /* LightSpeedOutAnimation.h */,
+				B91731C61CD1F05400C29698 /* LightSpeedOutAnimation.m */,
+			);
+			path = lightspeed;
+			sourceTree = "<group>";
+		};
+		B91731C71CD1F05400C29698 /* rotating_entrances */ = {
+			isa = PBXGroup;
+			children = (
+				B91731C81CD1F05400C29698 /* RotateInAnimation.h */,
+				B91731C91CD1F05400C29698 /* RotateInAnimation.m */,
+				B91731CA1CD1F05400C29698 /* RotateInDownLeftAnimation.h */,
+				B91731CB1CD1F05400C29698 /* RotateInDownLeftAnimation.m */,
+				B91731CC1CD1F05400C29698 /* RotateInDownRightAnimation.h */,
+				B91731CD1CD1F05400C29698 /* RotateInDownRightAnimation.m */,
+				B91731CE1CD1F05400C29698 /* RotateInUpLeftAnimation.h */,
+				B91731CF1CD1F05400C29698 /* RotateInUpLeftAnimation.m */,
+				B91731D01CD1F05400C29698 /* RotateInUpRightAnimation.h */,
+				B91731D11CD1F05400C29698 /* RotateInUpRightAnimation.m */,
+			);
+			path = rotating_entrances;
+			sourceTree = "<group>";
+		};
+		B91731D21CD1F05400C29698 /* rotating_exits */ = {
+			isa = PBXGroup;
+			children = (
+				B91731D31CD1F05400C29698 /* RotateOutAnimation.h */,
+				B91731D41CD1F05400C29698 /* RotateOutAnimation.m */,
+				B91731D51CD1F05400C29698 /* RotateOutDownLeftAnimation.h */,
+				B91731D61CD1F05400C29698 /* RotateOutDownLeftAnimation.m */,
+				B91731D71CD1F05400C29698 /* RotateOutDownRightAnimation.h */,
+				B91731D81CD1F05400C29698 /* RotateOutDownRightAnimation.m */,
+				B91731D91CD1F05400C29698 /* RotateOutUpRightAnimation.h */,
+				B91731DA1CD1F05400C29698 /* RotateOutUpRightAnimation.m */,
+			);
+			path = rotating_exits;
+			sourceTree = "<group>";
+		};
+		B91731DB1CD1F05400C29698 /* scale */ = {
+			isa = PBXGroup;
+			children = (
+				B91731DC1CD1F05400C29698 /* ScaleLargeInAnimation.h */,
+				B91731DD1CD1F05400C29698 /* ScaleLargeInAnimation.m */,
+				B91731DE1CD1F05400C29698 /* ScaleSmallOutAnimation.h */,
+				B91731DF1CD1F05400C29698 /* ScaleSmallOutAnimation.m */,
+			);
+			path = scale;
+			sourceTree = "<group>";
+		};
+		B91731E01CD1F05400C29698 /* sliding_entrances */ = {
+			isa = PBXGroup;
+			children = (
+				B91731E11CD1F05400C29698 /* SlideInDownAnimation.h */,
+				B91731E21CD1F05400C29698 /* SlideInDownAnimation.m */,
+				B91731E31CD1F05400C29698 /* SlideInLeftAnimation.h */,
+				B91731E41CD1F05400C29698 /* SlideInLeftAnimation.m */,
+				B91731E51CD1F05400C29698 /* SlideInRightAnimation.h */,
+				B91731E61CD1F05400C29698 /* SlideInRightAnimation.m */,
+				B91731E71CD1F05400C29698 /* SlideInUpAnimation.h */,
+				B91731E81CD1F05400C29698 /* SlideInUpAnimation.m */,
+			);
+			path = sliding_entrances;
+			sourceTree = "<group>";
+		};
+		B91731E91CD1F05400C29698 /* sliding_exits */ = {
+			isa = PBXGroup;
+			children = (
+				B91731EA1CD1F05400C29698 /* RotateOutUpLeftAnimation.h */,
+				B91731EB1CD1F05400C29698 /* RotateOutUpLeftAnimation.m */,
+				B91731EC1CD1F05400C29698 /* SlideOutDownAnimation.h */,
+				B91731ED1CD1F05400C29698 /* SlideOutDownAnimation.m */,
+				B91731EE1CD1F05400C29698 /* SlideOutLeftAnimation.h */,
+				B91731EF1CD1F05400C29698 /* SlideOutLeftAnimation.m */,
+				B91731F01CD1F05400C29698 /* SlideOutRightAnimation.h */,
+				B91731F11CD1F05400C29698 /* SlideOutRightAnimation.m */,
+				B91731F21CD1F05400C29698 /* SlideOutUpAnimation.h */,
+				B91731F31CD1F05400C29698 /* SlideOutUpAnimation.m */,
+			);
+			path = sliding_exits;
+			sourceTree = "<group>";
+		};
+		B91731F41CD1F05400C29698 /* specials */ = {
+			isa = PBXGroup;
+			children = (
+				B91731F51CD1F05400C29698 /* HingeAnimation.h */,
+				B91731F61CD1F05400C29698 /* HingeAnimation.m */,
+				B91731F71CD1F05400C29698 /* RollInAnimation.h */,
+				B91731F81CD1F05400C29698 /* RollInAnimation.m */,
+				B91731F91CD1F05400C29698 /* RollOutAnimation.h */,
+				B91731FA1CD1F05400C29698 /* RollOutAnimation.m */,
+			);
+			path = specials;
+			sourceTree = "<group>";
+		};
+		B91731FB1CD1F05400C29698 /* zooming_entrances */ = {
+			isa = PBXGroup;
+			children = (
+				B91731FC1CD1F05400C29698 /* ZoomInAnimation.h */,
+				B91731FD1CD1F05400C29698 /* ZoomInAnimation.m */,
+				B91731FE1CD1F05400C29698 /* ZoomInDownAnimation.h */,
+				B91731FF1CD1F05400C29698 /* ZoomInDownAnimation.m */,
+				B91732001CD1F05400C29698 /* ZoomInLeftAnimation.h */,
+				B91732011CD1F05400C29698 /* ZoomInLeftAnimation.m */,
+				B91732021CD1F05400C29698 /* ZoomInRightAnimation.h */,
+				B91732031CD1F05400C29698 /* ZoomInRightAnimation.m */,
+				B91732041CD1F05400C29698 /* ZoomInUpAnimation.h */,
+				B91732051CD1F05400C29698 /* ZoomInUpAnimation.m */,
+			);
+			path = zooming_entrances;
+			sourceTree = "<group>";
+		};
+		B91732061CD1F05400C29698 /* zooming_exits */ = {
+			isa = PBXGroup;
+			children = (
+				B91732071CD1F05400C29698 /* ZoomOutAnimation.h */,
+				B91732081CD1F05400C29698 /* ZoomOutAnimation.m */,
+				B91732091CD1F05400C29698 /* ZoomOutDownAnimation.h */,
+				B917320A1CD1F05400C29698 /* ZoomOutDownAnimation.m */,
+				B917320B1CD1F05400C29698 /* ZoomOutLeftAnimation.h */,
+				B917320C1CD1F05400C29698 /* ZoomOutLeftAnimation.m */,
+				B917320D1CD1F05400C29698 /* ZoomOutRightAnimation.h */,
+				B917320E1CD1F05400C29698 /* ZoomOutRightAnimation.m */,
+				B917320F1CD1F05400C29698 /* ZoomOutUpAnimation.h */,
+				B91732101CD1F05400C29698 /* ZoomOutUpAnimation.m */,
+			);
+			path = zooming_exits;
 			sourceTree = "<group>";
 		};
 		B91896741CCDB8C60061D0B6 /* view */ = {
@@ -556,6 +1176,8 @@
 		B91896E61CD0547F0061D0B6 /* modal */ = {
 			isa = PBXGroup;
 			children = (
+				B918970C1CD11B5F0061D0B6 /* ProductDescriptionDTO.h */,
+				B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -568,6 +1190,29 @@
 				B91896EA1CD07AD50061D0B6 /* SupplyListCell.xib */,
 				B91896ED1CD082A70061D0B6 /* SupplyBottomOffView.h */,
 				B91896EE1CD082A70061D0B6 /* SupplyBottomOffView.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		B91896F01CD0EE890061D0B6 /* account */ = {
+			isa = PBXGroup;
+			children = (
+				B91896F41CD0EEC60061D0B6 /* view */,
+				B91896F11CD0EEC00061D0B6 /* AccountViewController.h */,
+				B91896F21CD0EEC00061D0B6 /* AccountViewController.m */,
+			);
+			name = account;
+			sourceTree = "<group>";
+		};
+		B91896F41CD0EEC60061D0B6 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				B91896F51CD0EF260061D0B6 /* AccountSummaryCell.h */,
+				B91896F61CD0EF260061D0B6 /* AccountSummaryCell.m */,
+				B91896F71CD0EF260061D0B6 /* AccountSummaryCell.xib */,
+				B91896FA1CD0EF460061D0B6 /* AccountDetailCell.h */,
+				B91896FB1CD0EF460061D0B6 /* AccountDetailCell.m */,
+				B91896FC1CD0EF460061D0B6 /* AccountDetailCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -597,6 +1242,8 @@
 		B964F8F91CC39670003E0D44 /* CrazeMM */ = {
 			isa = PBXGroup;
 			children = (
+				B917315A1CD1EF9400C29698 /* third party */,
+				B91731541CD1C90600C29698 /* timer */,
 				B99194701CCC56BD0032A393 /* modal */,
 				B988789C1CC90CAD00990AA4 /* sign */,
 				B98878871CC89FE600990AA4 /* login */,
@@ -692,6 +1339,7 @@
 		B964F9581CC4A747003E0D44 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B91896F01CD0EE890061D0B6 /* account */,
 				B91896C91CCF97440061D0B6 /* supply */,
 				B91896AE1CCF1FCB0061D0B6 /* address */,
 				B91896881CCE18C00061D0B6 /* pay */,
@@ -764,6 +1412,12 @@
 				B98878B61CC99D9200990AA4 /* UIImageView+Utils.m */,
 				B98878CC1CC9D0A300990AA4 /* NSAttributedString+Utils.h */,
 				B98878CD1CC9D0A300990AA4 /* NSAttributedString+Utils.m */,
+				B91897001CD117430061D0B6 /* UINib+Utils.h */,
+				B91897011CD117430061D0B6 /* UINib+Utils.m */,
+				B91897031CD117CB0061D0B6 /* UITableView+Utils.h */,
+				B91897041CD117CB0061D0B6 /* UITableView+Utils.m */,
+				B91731511CD1A30100C29698 /* NSDateComponents+Utils.h */,
+				B91731521CD1A30100C29698 /* NSDateComponents+Utils.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -843,6 +1497,8 @@
 		B99194701CCC56BD0032A393 /* modal */ = {
 			isa = PBXGroup;
 			children = (
+				B91897091CD119D90061D0B6 /* BaseDTO.h */,
+				B918970A1CD119D90061D0B6 /* BaseDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -851,6 +1507,7 @@
 			isa = PBXGroup;
 			children = (
 				B99194821CCCA8290032A393 /* BroadcastMsg.h */,
+				B91896FF1CD10EE00061D0B6 /* HttpRequestURL.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1041,6 +1698,7 @@
 			files = (
 				B964F93E1CC3A7FF003E0D44 /* javascript-bridge.html in Resources */,
 				B964F9861CC50316003E0D44 /* slide-2.jpg in Resources */,
+				B91896F91CD0EF260061D0B6 /* AccountSummaryCell.xib in Resources */,
 				B98878AC1CC98EFB00990AA4 /* AvataCell.xib in Resources */,
 				B992C5761CCA282600DC49E8 /* ContactCell.xib in Resources */,
 				B91896B31CCF20010061D0B6 /* SelectdAddrCell.xib in Resources */,
@@ -1055,6 +1713,7 @@
 				B964F90A1CC39670003E0D44 /* Assets.xcassets in Resources */,
 				B98878B41CC9993200990AA4 /* avata.png in Resources */,
 				B99D12FE1CC66ED3000DFF95 /* SearchHistoryCell.xib in Resources */,
+				B91896FE1CD0EF460061D0B6 /* AccountDetailCell.xib in Resources */,
 				B918968D1CCE1D8E0061D0B6 /* FirstAddrCell.xib in Resources */,
 				B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */,
 				B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */,
@@ -1160,86 +1819,181 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91732391CD1F05400C29698 /* FadeOutUpAnimation.m in Sources */,
+				B91732621CD1F05500C29698 /* ZoomOutUpAnimation.m in Sources */,
+				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
+				B917323F1CD1F05400C29698 /* FlipOutYAnimation.m in Sources */,
+				B91732481CD1F05400C29698 /* RotateOutDownLeftAnimation.m in Sources */,
+				B917324A1CD1F05400C29698 /* RotateOutUpRightAnimation.m in Sources */,
 				B91896821CCDDB790061D0B6 /* ProductMiddleCell.m in Sources */,
+				B91732551CD1F05500C29698 /* SlideOutUpAnimation.m in Sources */,
+				B917324C1CD1F05400C29698 /* ScaleSmallOutAnimation.m in Sources */,
+				B917324D1CD1F05400C29698 /* SlideInDownAnimation.m in Sources */,
+				B917321F1CD1F05400C29698 /* BounceInDownAnimation.m in Sources */,
+				B91732571CD1F05500C29698 /* RollInAnimation.m in Sources */,
+				B91732181CD1F05400C29698 /* RubberBandAnimation.m in Sources */,
 				B991946F1CCC56420032A393 /* UserInfo.m in Sources */,
+				B91732191CD1F05400C29698 /* ShakeAnimation.m in Sources */,
+				B917326E1CD1F09400C29698 /* TTOverlayView.m in Sources */,
 				B99194731CCC56F90032A393 /* UserCenter.m in Sources */,
 				B964F9601CC4A800003E0D44 /* SellViewController.m in Sources */,
+				B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */,
 				B964F9571CC4A70E003E0D44 /* TabBarController.m in Sources */,
+				B91732231CD1F05400C29698 /* BounceOutAnimation.m in Sources */,
+				B91732511CD1F05400C29698 /* RotateOutUpLeftAnimation.m in Sources */,
+				B91732201CD1F05400C29698 /* BounceInLeftAnimation.m in Sources */,
+				B917323B1CD1F05400C29698 /* FlipAnimation.m in Sources */,
 				B964F9361CC39712003E0D44 /* _SearchHistory.m in Sources */,
+				B91732561CD1F05500C29698 /* HingeAnimation.m in Sources */,
+				B91896FD1CD0EF460061D0B6 /* AccountDetailCell.m in Sources */,
 				B918968C1CCE1D8E0061D0B6 /* FirstAddrCell.m in Sources */,
+				B91732311CD1F05400C29698 /* FadeInUpBigAnimation.m in Sources */,
 				B98878D11CC9ECBB00990AA4 /* ArrowView.m in Sources */,
 				B992C5811CCA6D5300DC49E8 /* MineNoLoginViewController.m in Sources */,
 				B992C5791CCA5F3200DC49E8 /* MineSegmentCell.m in Sources */,
+				B91897021CD117430061D0B6 /* UINib+Utils.m in Sources */,
 				B99D12E71CC65A73000DFF95 /* SellItemCell.m in Sources */,
+				B917323C1CD1F05400C29698 /* FlipInXAnimation.m in Sources */,
+				B917321E1CD1F05400C29698 /* BounceInAnimation.m in Sources */,
 				B91896A31CCE67BB0061D0B6 /* ProductWithNumberView.m in Sources */,
+				B91732211CD1F05400C29698 /* BounceInRightAnimation.m in Sources */,
+				B91732111CD1F05400C29698 /* AnimationBuilder.m in Sources */,
+				B91732361CD1F05400C29698 /* FadeOutLeftBigAnimation.m in Sources */,
+				B91732461CD1F05400C29698 /* RotateInUpRightAnimation.m in Sources */,
+				B91896F31CD0EEC00061D0B6 /* AccountViewController.m in Sources */,
+				B917324E1CD1F05400C29698 /* SlideInLeftAnimation.m in Sources */,
 				B991949B1CCCF7AA0032A393 /* BrowserDealView.m in Sources */,
+				B91732471CD1F05400C29698 /* RotateOutAnimation.m in Sources */,
+				B91732541CD1F05500C29698 /* SlideOutRightAnimation.m in Sources */,
+				B917324B1CD1F05400C29698 /* ScaleLargeInAnimation.m in Sources */,
+				B917326D1CD1F09400C29698 /* TTModalWindow.m in Sources */,
 				B991948D1CCCF32F0032A393 /* ProductLadderCell.m in Sources */,
+				B917325B1CD1F05500C29698 /* ZoomInLeftAnimation.m in Sources */,
 				B91896D91CCFAFC90061D0B6 /* TransferAlertView.m in Sources */,
+				B91732521CD1F05400C29698 /* SlideOutDownAnimation.m in Sources */,
+				B91732121CD1F05400C29698 /* AnimationHelper.m in Sources */,
 				B992C5711CCA1DD400DC49E8 /* MyInfoCell.m in Sources */,
+				B91732141CD1F05400C29698 /* BounceAnimation.m in Sources */,
+				B91732271CD1F05400C29698 /* BounceOutUpAnimation.m in Sources */,
 				B91896D21CCF9E8B0061D0B6 /* PayResultCell.m in Sources */,
+				B91896F81CD0EF260061D0B6 /* AccountSummaryCell.m in Sources */,
+				B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */,
+				B91732241CD1F05400C29698 /* BounceOutDownAnimation.m in Sources */,
 				B99D12EB1CC66045000DFF95 /* SearchViewController.m in Sources */,
+				B917323E1CD1F05400C29698 /* FlipOutXAnimation.m in Sources */,
 				B99D12DD1CC5F8DC000DFF95 /* UISearchBar+Utils.m in Sources */,
 				B99D130F1CC743A4000DFF95 /* SearchListViewController.m in Sources */,
 				B964F9371CC39712003E0D44 /* SearchHistory.m in Sources */,
 				B91896991CCE53AB0061D0B6 /* SecondProductDetailCell.m in Sources */,
+				B91732531CD1F05500C29698 /* SlideOutLeftAnimation.m in Sources */,
+				B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */,
+				B917322F1CD1F05400C29698 /* FadeInRightBigAnimation.m in Sources */,
 				B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */,
+				B917322B1CD1F05400C29698 /* FadeInDownBigAnimation.m in Sources */,
 				B98878AF1CC9923800990AA4 /* CDFInitialsAvatar.m in Sources */,
+				B917325C1CD1F05500C29698 /* ZoomInRightAnimation.m in Sources */,
 				B91896B71CCF20240061D0B6 /* AddressListCell.m in Sources */,
 				B99D13231CC86A04000DFF95 /* BaseNavigationController.m in Sources */,
 				B98878C61CC9BCBC00990AA4 /* UIColor+Helper.m in Sources */,
 				B964F9741CC4B073003E0D44 /* MineViewController.m in Sources */,
+				B917321C1CD1F05400C29698 /* WobbleAnimation.m in Sources */,
 				B99D13171CC7A813000DFF95 /* ProductViewController.m in Sources */,
 				B91896781CCDB9050061D0B6 /* ProductDetailCell.m in Sources */,
+				B91732491CD1F05400C29698 /* RotateOutDownRightAnimation.m in Sources */,
 				B964F8FC1CC39670003E0D44 /* main.m in Sources */,
+				B917322D1CD1F05400C29698 /* FadeInLeftBigAnimation.m in Sources */,
 				B91896C51CCF38C10061D0B6 /* AddressEditViewController.m in Sources */,
+				B91732351CD1F05400C29698 /* FadeOutLeftAnimation.m in Sources */,
+				B917323D1CD1F05400C29698 /* FlipInYAnimation.m in Sources */,
 				B98878BA1CC9B94300990AA4 /* SegmentedCell.m in Sources */,
+				B917321A1CD1F05400C29698 /* SwingAnimation.m in Sources */,
+				B91732451CD1F05400C29698 /* RotateInUpLeftAnimation.m in Sources */,
+				B91732321CD1F05400C29698 /* FadeOutAnimation.m in Sources */,
+				B917323A1CD1F05400C29698 /* FadeOutUpBigAnimation.m in Sources */,
 				B99D12F81CC66EB9000DFF95 /* KeyWordsCell.m in Sources */,
 				B964F94E1CC49DF2003E0D44 /* WelcomeViewController.m in Sources */,
+				B917325D1CD1F05500C29698 /* ZoomInUpAnimation.m in Sources */,
+				B91732261CD1F05400C29698 /* BounceOutRightAnimation.m in Sources */,
 				B99D12D51CC5D4C5000DFF95 /* BuySlideDetailViewController.m in Sources */,
 				B99D12D21CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m in Sources */,
+				B91732591CD1F05500C29698 /* ZoomInAnimation.m in Sources */,
 				B99D13061CC72AD0000DFF95 /* CustomSeperatorLineCell.m in Sources */,
 				B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */,
+				B91732221CD1F05400C29698 /* BounceInUpAnimation.m in Sources */,
 				B98878AA1CC98ED300990AA4 /* AvataCell.m in Sources */,
 				B99D130B1CC73FDA000DFF95 /* SearchListCell.m in Sources */,
 				B99D13201CC7C862000DFF95 /* FilterViewController.m in Sources */,
+				B917324F1CD1F05400C29698 /* SlideInRightAnimation.m in Sources */,
 				B91896901CCE20DD0061D0B6 /* MinePayViewController.m in Sources */,
+				B91732301CD1F05400C29698 /* FadeInUpAnimation.m in Sources */,
 				B99194981CCCF70B0032A393 /* ProductFlageView.m in Sources */,
 				B99D12FD1CC66ED3000DFF95 /* SearchHistoryCell.m in Sources */,
 				B991946E1CCC56420032A393 /* _UserInfo.m in Sources */,
 				B964F96A1CC4AAC6003E0D44 /* UIColor+Utils.m in Sources */,
 				B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */,
 				B992C5751CCA282600DC49E8 /* ContactCell.m in Sources */,
+				B918970E1CD11B5F0061D0B6 /* ProductDescriptionDTO.m in Sources */,
 				B98878A61CC98D6200990AA4 /* UIButton+Utils.m in Sources */,
 				B964F9631CC4A81A003E0D44 /* BuyViewController.m in Sources */,
+				B91732601CD1F05500C29698 /* ZoomOutLeftAnimation.m in Sources */,
+				B91732731CD1F78900C29698 /* CATransform3DExtend.m in Sources */,
 				B99D131C1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.m in Sources */,
+				B91732171CD1F05400C29698 /* PulseAnimation.m in Sources */,
+				B91732331CD1F05400C29698 /* FadeOutDownAnimation.m in Sources */,
 				B91896EF1CD082A70061D0B6 /* SupplyBottomOffView.m in Sources */,
 				B91896EB1CD07AD50061D0B6 /* SupplyListCell.m in Sources */,
+				B91732291CD1F05400C29698 /* FadeInAnimation.m in Sources */,
+				B91732441CD1F05400C29698 /* RotateInDownRightAnimation.m in Sources */,
 				B91896D61CCFA0140061D0B6 /* PayResultViewController.m in Sources */,
+				B917325F1CD1F05500C29698 /* ZoomOutDownAnimation.m in Sources */,
+				B91731571CD1C9E600C29698 /* MMTimer.m in Sources */,
+				B91732251CD1F05400C29698 /* BounceOutLeftAnimation.m in Sources */,
+				B917326B1CD1F09400C29698 /* TTModalView.m in Sources */,
+				B917325A1CD1F05500C29698 /* ZoomInDownAnimation.m in Sources */,
+				B91732161CD1F05400C29698 /* JelloAnimation.m in Sources */,
+				B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */,
+				B917322E1CD1F05400C29698 /* FadeInRightAnimation.m in Sources */,
 				B99194771CCC690E0032A393 /* WaitForPayCell.m in Sources */,
 				B992C57D1CCA6BC300DC49E8 /* NoLoginHeadCell.m in Sources */,
+				B91732581CD1F05500C29698 /* RollOutAnimation.m in Sources */,
 				B964F9901CC50E1E003E0D44 /* BuyItemCell.m in Sources */,
 				B991947B1CCC76E60032A393 /* MineSellProductViewController.m in Sources */,
+				B91732341CD1F05400C29698 /* FadeOutDownBigAnimation.m in Sources */,
+				B91732411CD1F05400C29698 /* LightSpeedOutAnimation.m in Sources */,
+				B91732131CD1F05400C29698 /* AnimationParams.m in Sources */,
 				B91896CD1CCF97AE0061D0B6 /* PaySuccessProductCell.m in Sources */,
 				B98878CA1CC9CC3800990AA4 /* OrderStatusCell.m in Sources */,
 				B992C5841CCB70B500DC49E8 /* ProductSummaryCell.m in Sources */,
+				B917325E1CD1F05500C29698 /* ZoomOutAnimation.m in Sources */,
 				B91896DF1CCFB3A70061D0B6 /* SupplyViewController.m in Sources */,
 				B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */,
 				B98878BF1CC9BB1F00990AA4 /* CustomSegment.m in Sources */,
+				B917322A1CD1F05400C29698 /* FadeInDownAnimation.m in Sources */,
+				B917321D1CD1F05400C29698 /* BasicAnimation.m in Sources */,
 				B91896931CCE518F0061D0B6 /* ProductNumberLabel.m in Sources */,
 				B918969C1CCE58B60061D0B6 /* ProductSumLabel.m in Sources */,
+				B91732501CD1F05400C29698 /* SlideInUpAnimation.m in Sources */,
 				B98878CE1CC9D0A300990AA4 /* NSAttributedString+Utils.m in Sources */,
 				B99D13131CC75B84000DFF95 /* LabelWithSeperatorLine.m in Sources */,
+				B91732151CD1F05400C29698 /* FlashAnimation.m in Sources */,
+				B91732381CD1F05400C29698 /* FadeOutRightBigAnimation.m in Sources */,
+				B91732431CD1F05400C29698 /* RotateInDownLeftAnimation.m in Sources */,
 				B91896A71CCF01A20061D0B6 /* LastPayMethodCell.m in Sources */,
 				B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */,
 				B91896B21CCF20010061D0B6 /* SelectdAddrCell.m in Sources */,
+				B91732371CD1F05400C29698 /* FadeOutRightAnimation.m in Sources */,
+				B91731531CD1A30100C29698 /* NSDateComponents+Utils.m in Sources */,
 				B91896AD1CCF0B650061D0B6 /* PayAlertView.m in Sources */,
 				B99D13021CC66EFB000DFF95 /* ClearHistoryCell.m in Sources */,
 				B99D12DA1CC5DD7E000DFF95 /* UITabBarController+HideTabBar.m in Sources */,
 				B91896861CCE05AF0061D0B6 /* ProductLastCell.m in Sources */,
+				B91732611CD1F05500C29698 /* ZoomOutRightAnimation.m in Sources */,
+				B917322C1CD1F05400C29698 /* FadeInLeftAnimation.m in Sources */,
 				B91896BB1CCF28170061D0B6 /* AddressListViewController.m in Sources */,
 				B991947F1CCCA26C0032A393 /* PayBottomView.m in Sources */,
 				B991945D1CCBB4ED0032A393 /* BuyProductView.m in Sources */,
 				B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */,
+				B917326C1CD1F09400C29698 /* TTModalViewController.m in Sources */,
 				B98878A01CC90CCA00990AA4 /* SignViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1285,7 +2039,7 @@
 		B964F9251CC39671003E0D44 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1328,7 +2082,7 @@
 		B964F9261CC39671003E0D44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

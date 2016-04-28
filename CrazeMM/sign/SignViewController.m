@@ -7,6 +7,8 @@
 //
 
 #import "SignViewController.h"
+#import "UIScrollView+TPKeyboardAvoidingAdditions.h"
+
 
 #define kLeadingPad 16.f
 #define kTailingPad 16.f
@@ -96,7 +98,8 @@
     self.pinButton.backgroundColor = [UIColor clearColor];
     self.pinTextFiled.placeholder = @"请输入验证码";
 
-    
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)]];
+
 }
 
 -(void)viewWillLayoutSubviews
@@ -113,7 +116,7 @@
     self.phonePreLabel.x = self.phoneIcon.right + 4.f;
     self.phoneTextField.x = self.phonePreLabel.right + 4.f;
     self.phoneTextField.width = self.view.width - kTailingPad - self.phoneTextField.x;
-    self.phoneIcon.centerY = self.phonePreLabel.centerY = self.phoneTextField.centerY = 110;
+    self.phoneIcon.centerY = self.phonePreLabel.centerY = self.phoneTextField.centerY = 50;
     self.phonePreLabel.centerY -= 2;
     
     self.line1.frame = CGRectMake(kLeadingPad, self.phoneTextField.bottom, maxWidth, 1);
@@ -135,6 +138,23 @@
     self.finishButton.frame = CGRectMake(kLeadingPad, self.passwordField.bottom+24.f, maxWidth, 45);
     
     self.backgroundImage.frame = CGRectMake(0, self.finishButton.bottom+40, bounds.size.width, bounds.size.height-(self.finishButton.bottom+40));
+    
+
+}
+
+-(void)singleTap
+{
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+    [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+    [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
+
 }
 
 @end

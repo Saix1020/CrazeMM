@@ -49,9 +49,7 @@ PODS:
   - SDWebImage/Core (3.7.5)
   - SMVerticalSegmentedControl (0.1.3)
   - TITokenField (0.9.5)
-  - TTAnimations (1.3)
-  - TTModalView (1.0.1):
-    - TTAnimations
+  - TPKeyboardAvoiding (1.3)
   - UIView+FrameEx (0.0.1)
   - WebViewJavascriptBridge (5.0.5)
   - ZZPopoverWindow (1.0.0)
@@ -72,7 +70,7 @@ DEPENDENCIES:
   - ReactiveCocoa (~> 4.0.0)
   - SMVerticalSegmentedControl (~> 0.1.2)
   - TITokenField (~> 0.9.5)
-  - TTModalView (~> 1.0.1)
+  - TPKeyboardAvoiding (~> 1.3)
   - UIView+FrameEx (~> 0.0.1)
   - WebViewJavascriptBridge (~> 5.0.5)
   - ZZPopoverWindow (~> 1.0.0)
@@ -97,8 +95,7 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SMVerticalSegmentedControl: b059bf010277f705ce9dbf15890a4c859bfb0baf
   TITokenField: 39da9ead760009440ffc38602070d2097901430c
-  TTAnimations: 42ab242ecd75b104b90c0ba5fa2b86d1a9c95361
-  TTModalView: f281316e2a88ecf204c5797b0909d0c2cc4b40da
+  TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   UIView+FrameEx: ab0c53e158ef0621d7b0b0a26626e175ac17e471
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
   ZZPopoverWindow: 7be86696f95f1f3f5f7ea3aff15409b0acbcebaa

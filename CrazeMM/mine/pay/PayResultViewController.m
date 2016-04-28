@@ -7,6 +7,7 @@
 //
 
 #import "PayResultViewController.h"
+#import "TPKeyboardAvoidingTableView.h"
 #import "PayBottomView.h"
 #import "PayResultCell.h"
 #import "PaySuccessProductCell.h"
@@ -16,11 +17,13 @@
 #import "MineViewController.h"
 
 @interface PayResultViewController ()
-@property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
 @property (nonatomic, strong) PayBottomView* payBottomView;
 
 @property (nonatomic, strong) TTModalView* confirmModalView;
 @property (nonatomic, strong) TransferAlertView* transferAlertView;
+@property (nonatomic) BOOL keyboardShowing;
+
 @end
 
 @implementation PayResultViewController
@@ -118,7 +121,7 @@
     self.navigationItem.title = @"支付成功";
     
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView = [[TPKeyboardAvoidingTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -141,6 +144,8 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
         return [RACSignal empty];
     }];
+    
+    [self canBecomeFirstResponder];
 }
 
 -(void)viewWillLayoutSubviews
@@ -149,8 +154,32 @@
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     
     self.payBottomView.frame = CGRectMake(0, self.view.height-[PayBottomView cellHeight], self.view.bounds.size.width, [PayBottomView cellHeight]);
-    [self.view bringSubviewToFront:self.payBottomView];
+    //[self.view bringSubviewToFront:self.payBottomView];
+    
+    //self.tableView.contentSize = CGSizeMake(0, 100);
 }
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
 
 
 #pragma mark - Table view data source

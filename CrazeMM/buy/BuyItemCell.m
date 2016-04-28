@@ -40,7 +40,23 @@
 
 - (void)awakeFromNib
 {
-    [self commInit];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.backgroundColor = [UIColor whiteColor];
+    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.detailLabel.font = [UIFont fontWithName:self.detailLabel.font.fontName size:15.f];
+    self.detailLabel.textColor = [UIColor orangeColor];
+    self.timeLeftLabel.backgroundColor = [UIColor lightGrayColor188];
+    self.bottomLine.layer.borderWidth = 0.5;
+    self.bottomLine.layer.borderColor = [UIColor lightGrayColor188].CGColor;
+    self.statusLabel.backgroundColor = [UIColor greenTextColor];
+
+    self.phoneImageView.layer.borderWidth = 1;
+    self.phoneImageView.layer.borderColor = [UIColor lightGrayColor188].CGColor;
+
+    
+    //[self commInit];
+    
+    [self initWithDTO:[ProductDescriptionDTO mockDate]];
 }
 
 -(instancetype)init
@@ -67,38 +83,72 @@
 
 -(void)commInit
 {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    self.backgroundColor = [UIColor whiteColor];
-    
-    self.titleLabel.adjustsFontSizeToFitWidth = YES;
-    
-    //self.arrawView.textLabel.text = @"求购";
-    
-    //self.titleLabel.text = @"飞利浦 -V387 黑色 1GB 联通 3G WCDMA";
     self.detailLabel.text = @"￥1020.00起 10台";
-    self.detailLabel.font = [UIFont fontWithName:self.detailLabel.font.fontName size:15.f];
-    self.detailLabel.textColor = [UIColor orangeColor];
     [self fomartDetailLabel];
 
-    self.timeLeftLabel.backgroundColor = [UIColor lightGrayColor188];
-    self.timeLeftLabel.text = @"10 天 18 小时 20 分钟";
+    self.timeLeftLabel.text = [NSDateComponents timeLabelString:361345]; // 4 days 4 hours 22 mins
     [self fomartTimeLeftLabel];
     
     self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
-    self.phoneImageView.layer.borderWidth = 1;
-    self.phoneImageView.layer.borderColor = [UIColor lightGrayColor188].CGColor;
-    
-    self.bottomLine.layer.borderWidth = 0.5;
-    self.bottomLine.layer.borderColor = [UIColor lightGrayColor188].CGColor;
-    
-    
-    self.statusLabel.backgroundColor = [UIColor greenTextColor];
     self.statusLabel.text = @"正常";
-    
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-
 }
+
+
+-(void)setProductDescDTO:(ProductDescriptionDTO *)productDescDTO
+{
+    [self initWithDTO:productDescDTO];
+}
+
+
+-(void)initWithDTO:(ProductDescriptionDTO*)productDescDTO
+{
+    _productDescDTO = productDescDTO;
+    
+    self.titleLabel.text = productDescDTO.title;
+    self.detailLabel.text = productDescDTO.detail;
+    
+    NSInteger leftSeconds = productDescDTO.remainingTime - productDescDTO.elapseTime;
+    if (leftSeconds < 0) {
+        leftSeconds = 0;
+    }
+    self.timeLeftLabel.text = [NSDateComponents timeLabelString:leftSeconds];
+    [self fomartDetailLabel];
+    [self fomartTimeLeftLabel];
+    
+//    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
+    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[UIImage imageNamed:@"prod_placeholder.jpg"]];
+    self.statusLabel.text = productDescDTO.status;
+    @weakify(self);
+    
+    [[RACObserve(productDescDTO, elapseTime)
+        takeUntil:self.rac_prepareForReuseSignal]
+        subscribeNext:^(id x){
+         @strongify(self);
+         [self fomartTimeLeftLabel];
+     }];
+}
+
+//-(void)setTimeSignal:(RACSignal *)timeSignal
+//{
+//    _timeSignal = timeSignal;
+//    if (_timeSignal) {
+//        @weakify(self);
+//
+//        [_timeSignal subscribeNext:^(id x){
+//            @strongify(self);
+//            if (self.productDescDTO) {
+//                NSDate* now = [NSDate date];
+//                NSTimeInterval interval = [now timeIntervalSinceDate:self.productDescDTO.createTime];
+//                self.productDescDTO.elapseTime = (int)interval*60;
+//                //self.timeLeftLabel.text = [NSDateComponents timeLabelString:self.productDescDTO.remainingTime];
+//                [self fomartTimeLeftLabel];
+//                
+//            }
+//            
+//            //NSLog(@"%@", x);
+//        }];
+//    }
+//}
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -124,7 +174,18 @@
 
 -(void)fomartTimeLeftLabel
 {
-    NSString* timeLeftString = self.timeLeftLabel.text;
+    NSString* timeLeftString;
+    if (self.productDescDTO) {
+        NSInteger leftSeconds = self.productDescDTO.remainingTime - self.productDescDTO.elapseTime;
+        if (leftSeconds < 0) {
+            leftSeconds = 0;
+        }
+
+        timeLeftString = [NSDateComponents timeLabelString:leftSeconds];
+    }
+    else {
+        timeLeftString = @"03 天 00 小时 20 分钟";
+    }
     self.timeLeftLabel.text = @"";
     self.timeLeftLabel.textAlignment = kCTTextAlignmentCenter;
     [self.timeLeftLabel appendView:self.clockView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
@@ -162,7 +223,14 @@
     NSArray *fonts = @[smallFont, largFont, smallFont,
                        smallFont, largFont, middleFont];
 
-    NSArray* components = @[@"￥", @"1020", @".00", @"起  ", @"10", @"台"];
+    NSArray* components;
+    if (_productDescDTO) {
+        components = @[@"￥", self.productDescDTO.miniumPriceString1, self.productDescDTO.miniumPriceString2, @"起  ", self.productDescDTO.minimumNumberString, @"台"];
+    }
+    else {
+        components = @[@"￥", @"2000", @".00", @"起  ", @"10", @"台"];
+
+    }
     NSInteger index = 0;
     for (NSString *text in components)
     {
