@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) SegmentedCell* segmentCell;
 @property (nonatomic, strong) SupplyBottomOffView* bottomView;
+@property (nonatomic) SupplyListCellStyle cellStyle;
+
 @end
 
 
@@ -136,6 +138,7 @@
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SupplyListCell"];
+        ((SupplyListCell*)cell).style = self.cellStyle;
 
     }
     
@@ -159,7 +162,13 @@
     }
     
     else {
-        return [SupplyListCell cellHeight];
+        if (self.segmentCell.segment.currentIndex != 2) {
+            return [SupplyListCell cellHeight];
+
+        }
+        else {
+            return [SupplyListCell cellHeight] - 30;
+        }
 
     }
 }
@@ -167,6 +176,26 @@
 
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
+    if (segment.prevIndex == index) {
+        return;
+    }
+    
+    if (index == 0) {
+        self.cellStyle = kNomalStyle;
+        [self.bottomView.confirmButton setTitle:@"下架" forState:UIControlStateNormal];
+    }
+    else if(index==1){
+        self.cellStyle = kOffShelfStyle;
+        [self.bottomView.confirmButton setTitle:@"上架" forState:UIControlStateNormal];
+
+    }
+    else {
+        self.cellStyle = kDealStyle;
+        [self.bottomView.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
+
+    }
+    
+    [self.tableView reloadData];
     
 //    UIButton* button = segment.buttons[index];
 //    UIButton* prevButton = segment.buttons[segment.prevIndex];

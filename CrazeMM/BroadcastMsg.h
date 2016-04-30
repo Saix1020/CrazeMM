@@ -10,6 +10,7 @@
 #define BroadcastMsg_h
 
 #define kLoginSuccessBroadCast @"189LoginSuccessBroadCast"
+#define kLogutSuccessBroadCast @"189LogoutSuccessBroadCast"
 
 
 #endif /* BroadcastMsg_h */

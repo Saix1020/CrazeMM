@@ -12,6 +12,7 @@
 #import "MineViewController.h"
 #import "BaseNavigationController.h"
 #import "MineNoLoginViewController.h"
+#import "MineWrapViewController.h"
 
 @interface TabBarController ()
 
@@ -57,7 +58,7 @@
             mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
         }
         else{
-            MineNoLoginViewController *mineVC = [[MineNoLoginViewController alloc] init];
+            MineViewController *mineVC = [[MineViewController alloc] init];
             mineVC.tabBarItem = mineItem;
             mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
         }

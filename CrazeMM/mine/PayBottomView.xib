@@ -34,6 +34,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="K2i-r7-nED"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <state key="normal" title="付款">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>

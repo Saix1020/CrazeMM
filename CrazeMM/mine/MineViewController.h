@@ -18,4 +18,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 
 @interface MineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) UITableView* tableView;
+
+
 @end

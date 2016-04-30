@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface UIViewController (TTModalView)
 
 -(void)showAlertView;
+
+-(void)showAlertViewWithTitle:(NSString*)title andMessage:(NSString*)message andDetail:(NSString*)detail;
 
 @end

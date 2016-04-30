@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
 
+typedef NS_ENUM(NSInteger, SupplyListCellStyle){
+    kNomalStyle = 0,
+    kOffShelfStyle,
+    kDealStyle
+};
+
 @interface SupplyListCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectCheckBox;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -19,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet UIButton *offButton;
+@property (nonatomic) SupplyListCellStyle style;
 
 +(CGFloat)cellHeight;
 

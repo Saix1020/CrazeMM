@@ -83,6 +83,12 @@
 
 }
 
+-(void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+}
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessBroadCast object:self];

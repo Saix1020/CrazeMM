@@ -24,9 +24,20 @@ typedef enum {
 @interface UserCenter : NSObject
 
 @property (nonatomic, readonly) BOOL isLogined;
+@property (nonatomic, copy) NSString* userName;
+@property (nonatomic, readonly) NSString* userNameInKeychain;
+@property (nonatomic, readonly) NSString* passwordInKeychain;
+@property (nonatomic, readonly) BOOL accountSaved;
+
 
 + (UserCenter *)defaultCenter;
 //
 -(void)setLogined;
+-(void)setLogouted;
 
+
+-(void)saveToKeychainWithUserName:(NSString*)user andPassword:(NSString*)password;
+//-(NSString*)getUserFromKeychain;
+//-(NSString*)getPasswordFromKeychain;
+-(void)resetKeychainItem;
 @end

@@ -10,25 +10,61 @@
 
 @implementation HttpLoginRequest
 
--(NSString*)url
+-(instancetype)init
 {
-//    if (self.url) {
-        return COMB_URL(LOGIN_PATH);
-//    }
-//    else {
-//        
-//    }
+    self = [super init];
+    if (self) {
+        self.user = @"";
+        self.password = @"";
+        self.remember = NO;
+        
+        self.params =  [@{
+                     @"account" : self.user, //用户账号，可以是用户名/手机号/邮箱，必须
+                     @"pwd" : self.password, //密码，必须
+                     @"remember" : @(self.remember) //是否记录用户名
+                     } mutableCopy];;
+
+    }
+    
+    return self;
 }
 
--(NSDictionary*)params
+-(instancetype)initWithUser:(NSString*)user andPassword:(NSString*)password andRemember:(BOOL)remember
 {
-    return @{
-             //"login_token" -8863622791707940752 //表单TOKEN，防止二次提交, 必须
-             @"account" : @"xuanxuan", //用户账号，可以是用户名/手机号/邮箱，必须
-             @"pwd" : @"123456", //密码，必须
-             @"remember" : @"true" //是否记录用户名
-             };
+    self = [self init];
+    
+    if (self) {
+        self.user = user;
+        self.password = password;
+        self.remember = remember;
+        
+        self.params =  [@{
+                          @"account" : self.user, //用户账号，可以是用户名/手机号/邮箱，必须
+                          @"pwd" : self.password, //密码，必须
+                          @"remember" : @(self.remember) //是否记录用户名
+                          } mutableCopy];;
+
+    }
+    
+
+    return self;
 }
+
+-(Class)responseClass
+{
+    return [HttpLoginResponse class];
+}
+
+-(NSString*)tokenName
+{
+    return @"login_token";
+}
+
+-(NSString*)url
+{
+    return COMB_URL(LOGIN_PATH);
+}
+
 
 -(NSString*)method
 {
@@ -45,11 +81,40 @@
     return [super request];
 }
 
+-(NSDictionary*)getTokenParams
+{
+    return @{
+             @"name":self.tokenName
+             };
+}
 
 -(void)dealloc
 {
     NSLog(@"dealloc");
 }
+
+
+@end
+
+@implementation HttpLoginResponse
+
+-(NSString*)errorTitle
+{
+    return @"Login Failed";
+}
+
+-(NSString*)errorDetail
+{
+    if (self.data[@"lessTimes"]) {
+        NSNumber* leftTime = self.data[@"lessTimes"];
+        return [NSString stringWithFormat:@"剩余尝试机会: %d", [leftTime intValue]]; ;
+    }
+    else {
+        return nil;
+    }
+}
+
+
 
 
 @end

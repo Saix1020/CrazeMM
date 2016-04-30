@@ -22,7 +22,9 @@
 #define GET_TOKEN_PARAMS @"name=login_token"
 #define GET_TOKEN_FULL_URL COMB_URL_ALL(GET_TOKEN_PATH,GET_TOKEN_PARAMS)
 
-
+#define RANDOM_DATA_PATH @"/ui/random_code"
+#define CHECK_PIC_CAPTACHA_PATH @"/rest/checkPictureCaptcha"
+#define GEN_MOBILE_VCODE_PATH @"/rest/genMobileVcode"
 
 
 

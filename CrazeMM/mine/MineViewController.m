@@ -17,47 +17,95 @@
 #import "MineSellProductViewController.h"
 #import "SupplyViewController.h"
 #import "AccountViewController.h"
+#import "LoginViewController.h"
 
-
+#import "NoLoginHeadCell.h"
 
 
 @interface MineViewController()
-
-@property (nonatomic, strong) UITableView* tableView;
 
 @property (nonatomic, strong) AvataCell* avataCell;
 @property (nonatomic, strong) SegmentedCell* segmentCell;
 @property (nonatomic, strong) OrderStatusCell* orderStatusCell;
 @property (nonatomic, strong) ContactCell* contactCell;
+@property (nonatomic, strong) NoLoginHeadCell* noLoginCell;
 
+@property (nonatomic, readonly) BOOL isLogined;
 
 @end
 
 @implementation MineViewController
 
+
 +(NSArray*)infoNames
 {
-    return @[
-             @"我的账户",
-             @"我的供货",
-             @"我的求购",
-             @"我的抵押",
-             @"我的站内信息",
-             @"我的收货地址",
-             @"我的自提人"
-             ];
+    if ([UserCenter defaultCenter].isLogined) {
+        return @[
+                 @"我的账户",
+                 @"我的供货",
+                 @"我的求购",
+                 @"我的抵押",
+                 @"我的站内信息",
+                 @"我的收货地址",
+                 @"我的自提人"
+                 ];
+    }
+    else {
+        return @[
+                 @"我的账户",
+                 @"我的供货",
+                 @"我的求购",
+                 @"我的抵押",
+                 ];
+    }
+    
 }
 +(NSArray*)infoIcons
 {
-    return @[
-             @"account",
-             @"gonghuo",
-             @"qiugou",
-             @"diya",
-             @"info",
-             @"addr",
-             @"ziti"
-             ];
+    if ([UserCenter defaultCenter].isLogined) {
+        return @[
+                 @"account",
+                 @"gonghuo",
+                 @"qiugou",
+                 @"diya",
+                 @"info",
+                 @"addr",
+                 @"ziti"
+                 ];
+    }
+    else {
+        return @[
+                 @"account",
+                 @"gonghuo",
+                 @"qiugou",
+                 @"diya",
+                 ];
+    }
+    
+}
+
+-(NoLoginHeadCell*)noLoginCell
+{
+    if(!_noLoginCell){
+        _noLoginCell = [[[NSBundle mainBundle]loadNibNamed:@"NoLoginHeadCell" owner:nil options:nil] firstObject];
+        _noLoginCell.infoLabel.text = @"欢迎使用189疯狂买卖王";
+        [_noLoginCell.loginButton setTitle:@"请点击登录" forState:UIControlStateNormal];
+        
+        @weakify(self);
+        _noLoginCell.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            
+            @strongify(self);
+            LoginViewController* loginVC = [[LoginViewController alloc] init];
+            
+            [self.navigationController pushViewController:loginVC animated:YES];
+            return [RACSignal empty];
+        }];
+        
+        _noLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    }
+    
+    return _noLoginCell;
 }
 
 
@@ -119,6 +167,20 @@
     return _segmentCell;
 }
 
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        if (![UserCenter defaultCenter].isLogined) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(logoutSuccessed:)
+                                                         name:kLogutSuccessBroadCast object:nil];
+        }
+        
+    }
+    return self;
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -136,24 +198,30 @@
     [self.tableView setTableFooterView:view];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
 
     
+}
+
+-(void)logout
+{
+    [[UserCenter defaultCenter] resetKeychainItem];
+    [[UserCenter defaultCenter] setLogouted];
+    [self.tableView reloadData];
 }
 
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     
-    //[self.avataCell backgroundColorFrom:RGBCOLOR(230, 0, 0) To:RGBCOLOR(255, 255, 255)];
-
-    
+    self.tableView.frame = self.view.bounds;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 //-(void)viewDidDisappear:(BOOL)animated
@@ -181,6 +249,12 @@
 {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
+    
+    if (![UserCenter defaultCenter].isLogined) {
+        if (section == kSectionInfo) {
+            return 44.f;
+        }
+    }
     
     switch (section) {
         case kSectionOverview:
@@ -224,6 +298,12 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     
+    if (![UserCenter defaultCenter].isLogined) {
+        if (indexPath.section == kSectionOverview && row==0) {
+            return self.noLoginCell;
+        }
+    }
+
     switch (section) {
         case kSectionOverview:
         {
@@ -271,15 +351,31 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case kSectionOverview:
-            return 3;
-        case kSectionInfo:
-            return [[self class] infoNames].count;
-        case kSectionContact:
-            return 1;
-        default:
-            break;
+    
+    if ([UserCenter defaultCenter].isLogined) {
+        switch (section) {
+            case kSectionOverview:
+                return 3;
+            case kSectionInfo:
+                return [[self class] infoNames].count;
+            case kSectionContact:
+                return 1;
+            default:
+                break;
+        }
+
+    }
+    else {
+        switch (section) {
+            case kSectionOverview:
+                return 2;
+            case kSectionInfo:
+                return [[self class] infoNames].count;
+            case kSectionContact:
+                return 1;
+            default:
+                break;
+        }
     }
     
     return 0;
@@ -287,6 +383,22 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (![UserCenter defaultCenter].isLogined) {
+        switch (indexPath.section) {
+            case kSectionInfo:
+            {
+                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+                [self.navigationController pushViewController:mineSellProductVC animated:YES];
+                return;
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    
     switch (indexPath.section) {
         case kSectionInfo:
         {

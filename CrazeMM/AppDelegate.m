@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "WelcomeViewController.h"
+#import "NewWelcomeViewController.h"
+#import "TabBarController.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +27,16 @@
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[WelcomeViewController alloc] initWithNibName:nil bundle:nil];//[[UINavigationController alloc] initWithRootViewController:[[WelcomeViewController alloc] init]];
+//    
+//    if (0 &&![UserCenter defaultCenter].accountSaved) {
+//        self.window.rootViewController = [[TabBarController alloc] init];
+//
+//    }
+//    else {
+        self.window.rootViewController = [[NewWelcomeViewController alloc]
+                                          initWithNibName:nil
+                                          bundle:nil];
+//    }
 
     [self.window makeKeyAndVisible];
 

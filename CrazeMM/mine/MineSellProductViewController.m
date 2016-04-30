@@ -43,9 +43,7 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(44.0f);
-        [_segmentCell setTitles:@[@"待支付", @"支付超时", @"代发货"] andIcons:@[@"arrow_up", @"arrow_up", @"arrow_up"]];
-        //        ((UIButton*)(_segmentCell.segment.buttons[1])).imageView.hidden = ((UIButton*)(_segmentCell.segment.buttons[2])).imageView.hidden = YES;
-        
+        [_segmentCell setTitles:@[@"待支付", @"支付超时", @"代发货"]];
         _segmentCell.segment.delegate = self;
     }
     
@@ -137,23 +135,23 @@
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
     
-    UIButton* button = segment.buttons[index];
-    UIButton* prevButton = segment.buttons[segment.prevIndex];
-    if (segment.prevIndex != index) {
-        button.imageView.transform = CGAffineTransformMakeRotation(0);
-        button.imageView.hidden = NO;
-        prevButton.imageView.hidden = YES;
-    }
-    else {
-        if (CGAffineTransformEqualToTransform(button.imageView.transform,
-                                              CGAffineTransformMakeRotation(0)))
-        {
-            button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
-        }
-        else {
-            button.imageView.transform = CGAffineTransformMakeRotation(0);
-        }
-    }
+//    UIButton* button = segment.buttons[index];
+//    UIButton* prevButton = segment.buttons[segment.prevIndex];
+//    if (segment.prevIndex != index) {
+//        button.imageView.transform = CGAffineTransformMakeRotation(0);
+//        button.imageView.hidden = NO;
+//        prevButton.imageView.hidden = YES;
+//    }
+//    else {
+//        if (CGAffineTransformEqualToTransform(button.imageView.transform,
+//                                              CGAffineTransformMakeRotation(0)))
+//        {
+//            button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+//        }
+//        else {
+//            button.imageView.transform = CGAffineTransformMakeRotation(0);
+//        }
+//    }
 }
 
 @end

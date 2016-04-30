@@ -14,6 +14,7 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
 #import "HttpLoginRequest.h"
+#import "HttpRandomCodeRequest.h"
 
 
 #define kLeadingPad 16.f
@@ -97,11 +98,11 @@
     [self initLines];
     [self.loginButton bs_configureAsDefaultStyle];
     self.loginButton.enabled = false;
-    self.loginButton.backgroundColor = RGBCOLOR(200, 200, 200);
+//    self.loginButton.backgroundColor = RGBCOLOR(200, 200, 200);
     [self.loginButton setTitle:@"登录" forState:UIControlStateNormal] ;
-    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-    [self.loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.loginButton setTitleColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6] forState:UIControlStateHighlighted];
+//    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+//    [self.loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [self.loginButton setTitleColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6] forState:UIControlStateHighlighted];
     
     [self.registerButton setTitle:@"快速注册" forState:UIControlStateNormal];
     self.registerButton.titleLabel.font = [UIFont systemFontOfSize:17];
@@ -174,11 +175,13 @@
         @strongify(self);
         self.loginButton.enabled = [signupActive boolValue];
         if(!self.loginButton.enabled){
-            self.loginButton.backgroundColor = RGBCOLOR(200, 200, 200);
+            self.loginButton.backgroundColor = [UIColor whiteColor];
+            [self.loginButton setTitleColor: RGBCOLOR(150, 150, 150)  forState:UIControlStateDisabled];
 
         }
         else {
-            self.loginButton.backgroundColor = [UIColor clearColor];
+            self.loginButton.backgroundColor = [UIColor greenTextColor];
+            [self.loginButton setTitleColor: [UIColor whiteColor]  forState:UIControlStateNormal];
 
         }
     }];
@@ -186,18 +189,26 @@
     self.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id sender){
         
         @strongify(self);
-        HttpLoginRequest* request = [HttpLoginRequest new];
+//        NSString* userName = [self.userNameField.text copy];
+        
+        HttpLoginRequest* request = [[HttpLoginRequest alloc] initWithUser:self.userNameField.text
+                                                               andPassword:self.passwordField.text
+                                                               andRemember:self.rememberMeCheckBox.on];
         [self showProgressIndicatorWithTitle:@"正在登陆..."];
-        [request login].then(^(NSDictionary* responseObject, AFHTTPRequestOperation *operation){
+        [request request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
             [self dismissProgressIndicator];
-
-            if (responseObject.ok) {
+            if (request.response.ok) {
+                [UserCenter defaultCenter].userName = self.userNameField.text;
                 [[UserCenter defaultCenter] setLogined];
                 [self.navigationController popViewControllerAnimated:YES];
+                
+                if (self.rememberMeCheckBox.on) {
+                    [[UserCenter defaultCenter] saveToKeychainWithUserName:self.userNameField.text andPassword:self.passwordField.text];
+                }
 
             }
             else {
-                
+                [self showAlertViewWithTitle:request.response.errorTitle andMessage:request.response.errorMsg andDetail:request.response.errorDetail];
             }
             
         }).catch(^(NSError *error){
@@ -205,12 +216,10 @@
             NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
             [self dismissProgressIndicator];
             
-            [self showAlertView];
-
+            [self showAlertViewWithTitle:@"Login Failed" andMessage:nil andDetail:error.localizedDescription];
         });
         return [RACSignal empty];
     }];
-                                    
     
     self.suggestVC = [[SuggestViewController alloc] init];
     self.suggestVC.suggestedStrings = @[@"Sai Xu", @"Liang guo", @"Haipeng Luo", @"Taodong Lu"];

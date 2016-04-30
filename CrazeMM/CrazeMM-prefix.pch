@@ -41,6 +41,8 @@
 #import "BaseHttpRequest.h"
 #import "UIViewController+MBProgressHUD.h"
 #import "UIViewController+TTModalView.h"
+#import "KeychainItemWrapper.h"
+
 
 
 #define sharedApplicationDelegate() \

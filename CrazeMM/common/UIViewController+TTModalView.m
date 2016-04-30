@@ -8,7 +8,7 @@
 
 #import "UIViewController+TTModalView.h"
 #import "TTModalView.h"
-#import "TransferAlertView.h"
+#import "MMAlertView.h"
 
 @implementation UIViewController (TTModalView)
 
@@ -18,7 +18,7 @@
     confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
     
-    TransferAlertView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"TransferAlertView" owner:nil options:nil] firstObject];
+    MMAlertView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertView" owner:nil options:nil] firstObject];
     transferAlertView.layer.cornerRadius = 6.f;
     
     confirmModalView.contentView = transferAlertView;
@@ -32,7 +32,37 @@
         contentView.centerY = self.view.centerY;
         
         
-        transferAlertView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+        transferAlertView.cancel.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            [confirmModalView dismiss];
+            return [RACSignal empty];
+        }];
+    }];
+}
+
+-(void)showAlertViewWithTitle:(NSString*)title andMessage:(NSString*)message andDetail:(NSString*)detail
+{
+    TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
+    confirmModalView.isCancelAble = YES;
+    confirmModalView.modalWindowLevel = UIWindowLevelNormal;
+    
+    MMAlertView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertView" owner:nil options:nil] firstObject];
+    transferAlertView.layer.cornerRadius = 6.f;
+    
+    transferAlertView.title.text = title;
+    transferAlertView.message.text = message;
+    transferAlertView.detail.text = detail;
+    confirmModalView.contentView = transferAlertView;
+    
+    confirmModalView.presentAnimationStyle = zoomIn;
+    confirmModalView.dismissAnimationStyle = zoomOut ;
+    
+    [confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+        
+        contentView.centerX = self.view.centerX;
+        contentView.centerY = self.view.centerY;
+        
+        
+        transferAlertView.cancel.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             [confirmModalView dismiss];
             return [RACSignal empty];
         }];

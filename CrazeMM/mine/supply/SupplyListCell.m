@@ -70,7 +70,35 @@
     self.priceLabel.attributedText = attributedText;
     
     self.backgroundView.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
+    //self.backgroundView.hidden = YES;
+}
 
+-(void)setStyle:(SupplyListCellStyle)style
+{
+    _style = style;
+    
+    switch (style) {
+        case kNomalStyle:
+            self.backgroundView.hidden = NO;
+            self.shareButton.hidden = NO;
+            [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
+            self.offButton.imageView.transform = CGAffineTransformMakeRotation(0);
+
+            [self.offButton setTitle:@"下架" forState:UIControlStateNormal];
+            break;
+        case kOffShelfStyle:
+            self.shareButton.hidden = YES;
+            self.backgroundView.hidden = NO;
+            [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
+            self.offButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+            [self.offButton setTitle:@"上架" forState:UIControlStateNormal];
+            break;
+        case kDealStyle:
+            self.backgroundView.hidden = YES;
+            break;
+        default:
+            break;
+    }
 }
 
 +(CGFloat)cellHeight

@@ -7,7 +7,7 @@
 //
 
 #import "WelcomeViewController.h"
-#import "LLBootstrap.h"
+#import <LLBootstrapButton/LLBootstrap.h>
 #import "TabBarController.h"
 
 @interface WelcomeViewController ()
