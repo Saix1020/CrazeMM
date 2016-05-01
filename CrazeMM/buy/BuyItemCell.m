@@ -240,6 +240,7 @@
         [self.detailLabel appendAttributedText:attributedText];
         index ++;
     }
+    [self.detailLabel appendText:@" "];
     [self.detailLabel appendView:self.arrowView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
 
 }

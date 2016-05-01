@@ -19,7 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *phonePreLabel;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *pinTextFiled;
+//@property (weak, nonatomic) IBOutlet UIButton *pinButton;
 @property (weak, nonatomic) IBOutlet UIButton *pinButton;
+
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
@@ -31,6 +33,8 @@
 @property (strong, nonatomic) UIView *line2;
 @property (strong, nonatomic) UIView *line3;
 
+@property (strong, nonatomic) RACDisposable* pinButtonDispose;
+@property (nonatomic) NSInteger pinButtonFronzenLeftTime;
 
 @end
 
@@ -73,14 +77,32 @@
     self.passwordField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_password"] highlightedImage:[UIImage imageNamed:@"icon_password"]];
     self.passwordRightView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
     [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
-//    [self.passwordRightView sizeToFit];
-    self.passwordField.rightView = self.passwordRightView;
+    [self.passwordRightView sizeToFit];
+    self.passwordRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
+        NSString *tempString = self.passwordField.text;
+        self.passwordField.text = @"";
+        
+        self.passwordField.secureTextEntry = !self.passwordField.secureTextEntry;
+        if (self.passwordField.secureTextEntry) {
+            [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
+
+        }
+        else {
+            [self.passwordRightView setImage:[UIImage imageNamed:@"icon_password"] forState:UIControlStateNormal];
+
+        }
+        self.passwordField.text = tempString;
+        
+        return [RACSignal empty];
+    }];
     
+    self.passwordField.rightView = self.passwordRightView;
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.rightViewMode = UITextFieldViewModeAlways;
+    self.passwordField.secureTextEntry = YES;
     
     [self.finishButton bs_configureAsDefaultStyle];
-    self.finishButton.enabled = false;
+    self.finishButton.enabled = NO;
     self.finishButton.backgroundColor = RGBCOLOR(200, 200, 200);
     [self.finishButton setTitle:@"完成注册" forState:UIControlStateNormal] ;
     [self.finishButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
@@ -92,14 +114,57 @@
     
     [self.phonePreLabel sizeToFit];
     
-    [self.pinButton setTitle:@"  获取验证码" forState:UIControlStateNormal];
     [self.pinButton bs_configureAsDefaultStyle];
+    [self.pinButton setTitle:@"  获取验证码" forState:UIControlStateNormal];
     [self.pinButton setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
     self.pinButton.backgroundColor = [UIColor clearColor];
+//    self.pinButton.enabled = NO;
+    [self.pinButton addTarget:self action:@selector(pinButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
     self.pinTextFiled.placeholder = @"请输入验证码";
 
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)]];
 
+    
+    // WTF, I can't disable button in rac_command!!!!
+//    @weakify(self)
+//    self.pinButton2.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+//       
+//        @strongify(self);
+//        self.pinButtonFronzenLeftTime = 10;
+//        
+//        self.pinButtonDispose = [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
+//            self.pinButtonFronzenLeftTime--;
+//            if (self.pinButtonFronzenLeftTime == 0) {
+//                [self.pinButtonDispose dispose];
+//                self.pinButton2.enabled = YES;
+////                self.pinButton.userInteractionEnabled = YES;
+//            }
+//            [self.pinButton2 setTitle:[NSString stringWithFormat:@"%ld", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
+//        }];
+//        [self.pinButton2 setEnabled:NO];
+//
+//        return [RACSignal empty];
+//    }];
+}
+
+-(void)pinButtonClicked:(UIButton*)sender
+{
+    sender.enabled = NO;
+    
+    self.pinButtonFronzenLeftTime = 10;
+    [self.pinButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
+    
+    self.pinButtonDispose = [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
+        self.pinButtonFronzenLeftTime--;
+        if (self.pinButtonFronzenLeftTime == 0) {
+            [self.pinButtonDispose dispose];
+            self.pinButton.enabled = YES;
+        }
+        
+        [self.pinButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
+    }];
+    
 }
 
 -(void)viewWillLayoutSubviews
@@ -123,13 +188,17 @@
     
     self.pinButton.x = bounds.size.width - kTailingPad - self.pinButton.width;
     self.pinButton.width = 120.f;
+    
+    
     self.pinTextFiled.x = kLeadingPad;
     self.pinTextFiled.width = maxWidth - self.pinButton.width-4.f;
     self.pinTextFiled.height = 40;
     
     self.pinButton.centerY = self.pinTextFiled.centerY = self.phoneTextField.bottom + 30.f;
+
     self.line2.frame = CGRectMake(kLeadingPad, self.pinTextFiled.bottom, maxWidth, 1);
     self.pinButton.centerY -= 2;
+
     
     self.passwordField.frame = CGRectMake(kLeadingPad, 0, maxWidth, 40);
     self.passwordField.centerY = self.pinTextFiled.bottom + 30.f;

@@ -31,6 +31,8 @@
 @property (nonatomic, strong) ZZPopoverWindow* popover;
 @property (nonatomic, strong) FilterViewController* fitlerVC;
 @property (nonatomic, strong) SegmentedCell* segmentCell;
+
+@property (nonatomic, strong) UIButton* filterButton;
 @end
 
 @implementation SearchListViewController
@@ -180,7 +182,34 @@
 
     //self.segmented.
 
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem filterBarButtonItemWithBlock:^(id sender){
+//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem filterBarButtonItemWithBlock:^(id sender){
+//        @strongify(self);
+//        self.fitlerVC.view.frame = CGRectMake(0, 0, 200, self.fitlerVC.height);
+//        self.fitlerVC.view.backgroundColor = RGBCOLOR(150, 150, 150);
+//        self.popover                    = [[ZZPopoverWindow alloc] init];
+//        self.popover.showShadow = YES;
+//        self.popover.popoverPosition = ZZPopoverPositionUp;
+//        self.popover.contentView        = self.fitlerVC.view;
+//        self.popover.backgroundColor = RGBCOLOR(150, 150, 150);
+//        self.popover.didShowHandler = ^() {
+//            //self.popover.layer.cornerRadius = 0;
+//        };
+//        self.popover.didDismissHandler = ^() {
+//            //NSLog(@"Did dismiss");
+//        };
+//        
+//        [self.popover showAtView:sender];
+//
+//    }];
+    
+    self.filterButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.filterButton setImage:[@"filter" image] forState:UIControlStateNormal];
+    self.filterButton.frame = CGRectMake(0, 0, 24, 24);
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.filterButton];
+    
+    
+    
+    self.filterButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
         @strongify(self);
         self.fitlerVC.view.frame = CGRectMake(0, 0, 200, self.fitlerVC.height);
         self.fitlerVC.view.backgroundColor = RGBCOLOR(150, 150, 150);
@@ -196,8 +225,8 @@
             //NSLog(@"Did dismiss");
         };
         
-        [self.popover showAtView:sender];
-
+        [self.popover showAtView:self.filterButton];
+        return [RACSignal empty];
     }];
 }
 

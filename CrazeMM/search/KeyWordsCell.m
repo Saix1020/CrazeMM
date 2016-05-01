@@ -74,7 +74,7 @@
         
         btn.backgroundColor = [UIColor clearColor];
         [btn setTitleColor:RGBCOLOR(131, 131, 131) forState:UIControlStateNormal];
-        btn.layer.borderColor = RGBCOLOR(235, 235, 235).CGColor;
+        btn.layer.borderColor = [UIColor light_Gray_Color].CGColor;//RGBCOLOR(235, 235, 235).CGColor;
         btn.layer.borderWidth = 1;
         btn.layer.cornerRadius = 4;
         [btn setTitle:str forState:UIControlStateNormal];

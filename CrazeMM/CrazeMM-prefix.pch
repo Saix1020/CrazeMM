@@ -27,6 +27,7 @@
 #import "UIColor+Helper.h"
 #import "UIButton+Utils.h"
 #import "UINib+Utils.h"
+#import "NSString+Utils.h"
 #import "UITableView+Utils.h"
 #import "NSDateComponents+Utils.h"
 #import "UserCenter.h"

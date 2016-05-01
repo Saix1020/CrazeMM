@@ -61,14 +61,27 @@
                         <rect key="frame" x="0.0" y="123" width="320" height="27"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8I-Q5-a2u" customClass="M80AttributedLabel">
-                                <rect key="frame" x="8" y="0.0" width="304" height="27"/>
+                                <rect key="frame" x="138" y="0.0" width="174" height="27"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htv-ez-qVB">
+                                <rect key="frame" x="8" y="0.0" width="81" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="Usq-dX-rM3"/>
+                                </constraints>
+                                <state key="normal" title="重新激活">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="htv-ez-qVB" firstAttribute="top" secondItem="N8I-Q5-a2u" secondAttribute="top" id="4Jx-BS-Hlz"/>
+                            <constraint firstItem="N8I-Q5-a2u" firstAttribute="leading" secondItem="htv-ez-qVB" secondAttribute="trailing" constant="49" id="5Ay-Fv-TpX"/>
+                            <constraint firstAttribute="trailing" secondItem="N8I-Q5-a2u" secondAttribute="trailing" constant="8" id="BGw-hu-Crh"/>
+                            <constraint firstItem="htv-ez-qVB" firstAttribute="leading" secondItem="rrS-3n-RWI" secondAttribute="leadingMargin" id="DFP-Ah-gLI"/>
+                            <constraint firstItem="htv-ez-qVB" firstAttribute="bottom" secondItem="N8I-Q5-a2u" secondAttribute="bottom" id="Wp7-vz-D72"/>
                             <constraint firstItem="N8I-Q5-a2u" firstAttribute="trailing" secondItem="rrS-3n-RWI" secondAttribute="trailingMargin" id="b5e-Dq-vp8"/>
-                            <constraint firstItem="N8I-Q5-a2u" firstAttribute="leading" secondItem="rrS-3n-RWI" secondAttribute="leadingMargin" id="gcg-3V-lDQ"/>
                             <constraint firstAttribute="bottom" secondItem="N8I-Q5-a2u" secondAttribute="bottom" id="lgv-Zl-HNP"/>
                             <constraint firstItem="N8I-Q5-a2u" firstAttribute="top" secondItem="rrS-3n-RWI" secondAttribute="top" id="x4d-Ie-qMg"/>
                             <constraint firstAttribute="height" constant="26.5" id="yPH-zQ-LMN"/>
@@ -117,6 +130,7 @@
                 <outlet property="orderLabel" destination="X2N-FR-yOS" id="ptu-Px-Dti"/>
                 <outlet property="priceLabel" destination="zoH-23-8RJ" id="JmH-WY-uKa"/>
                 <outlet property="productDescLabel" destination="bGx-kb-6yf" id="kex-xV-pUT"/>
+                <outlet property="reactiveButton" destination="htv-ez-qVB" id="Ugb-d1-b4e"/>
                 <outlet property="selectedCheckBox" destination="uqb-Id-Jhs" id="sxY-9h-NgK"/>
                 <outlet property="seperatorLine" destination="8K2-XO-LZf" id="R8z-ho-oex"/>
                 <outlet property="totalPriceLabel" destination="N8I-Q5-a2u" id="ZdS-xb-5IO"/>

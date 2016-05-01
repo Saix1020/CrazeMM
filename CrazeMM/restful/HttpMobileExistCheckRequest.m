@@ -37,7 +37,7 @@
 
 -(NSString*)url
 {
-    return COMB_URL(@"/rest/user/isMobileNotExist");
+    return COMB_URL(@"/rest/user/isMobileNotExist?json");
 }
 
 

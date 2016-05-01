@@ -281,6 +281,21 @@
 		B9AD46041CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46021CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m */; };
 		B9AD460A1CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46091CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m */; };
 		B9AD460B1CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46091CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m */; };
+		B9AD460F1CD4FF0200012B31 /* WaitForDeliverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD460D1CD4FF0200012B31 /* WaitForDeliverCell.m */; };
+		B9AD46111CD4FF0200012B31 /* WaitForDeliverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD460E1CD4FF0200012B31 /* WaitForDeliverCell.xib */; };
+		B9AD46121CD4FF0200012B31 /* WaitForDeliverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD460E1CD4FF0200012B31 /* WaitForDeliverCell.xib */; };
+		B9AD46151CD649E900012B31 /* MMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46141CD649E900012B31 /* MMTextField.m */; };
+		B9AD46161CD649E900012B31 /* MMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46141CD649E900012B31 /* MMTextField.m */; };
+		B9AD461A1CD6509900012B31 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46191CD6509900012B31 /* NSString+Utils.m */; };
+		B9AD461B1CD6509900012B31 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46191CD6509900012B31 /* NSString+Utils.m */; };
+		B9AD46271CD6523100012B31 /* M80AttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD461F1CD6523100012B31 /* M80AttributedLabel.m */; };
+		B9AD46281CD6523100012B31 /* M80AttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD461F1CD6523100012B31 /* M80AttributedLabel.m */; };
+		B9AD46291CD6523100012B31 /* M80AttributedLabelAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46211CD6523100012B31 /* M80AttributedLabelAttachment.m */; };
+		B9AD462A1CD6523100012B31 /* M80AttributedLabelAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46211CD6523100012B31 /* M80AttributedLabelAttachment.m */; };
+		B9AD462B1CD6523100012B31 /* M80AttributedLabelURL.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46241CD6523100012B31 /* M80AttributedLabelURL.m */; };
+		B9AD462C1CD6523100012B31 /* M80AttributedLabelURL.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46241CD6523100012B31 /* M80AttributedLabelURL.m */; };
+		B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
+		B9AD462E1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -753,6 +768,22 @@
 		B9AD46021CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMobileExistCheckRequest.m; path = restful/HttpMobileExistCheckRequest.m; sourceTree = "<group>"; };
 		B9AD46081CD4E7A600012B31 /* HttpCheckMessageCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpCheckMessageCodeRequest.h; path = restful/HttpCheckMessageCodeRequest.h; sourceTree = "<group>"; };
 		B9AD46091CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpCheckMessageCodeRequest.m; path = restful/HttpCheckMessageCodeRequest.m; sourceTree = "<group>"; };
+		B9AD460C1CD4FF0200012B31 /* WaitForDeliverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitForDeliverCell.h; path = mine/WaitForDeliverCell.h; sourceTree = "<group>"; };
+		B9AD460D1CD4FF0200012B31 /* WaitForDeliverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitForDeliverCell.m; path = mine/WaitForDeliverCell.m; sourceTree = "<group>"; };
+		B9AD460E1CD4FF0200012B31 /* WaitForDeliverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WaitForDeliverCell.xib; path = mine/WaitForDeliverCell.xib; sourceTree = "<group>"; };
+		B9AD46131CD649E900012B31 /* MMTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMTextField.h; path = common/MMTextField.h; sourceTree = "<group>"; };
+		B9AD46141CD649E900012B31 /* MMTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMTextField.m; path = common/MMTextField.m; sourceTree = "<group>"; };
+		B9AD46181CD6509900012B31 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utils.h"; path = "common/NSString+Utils.h"; sourceTree = "<group>"; };
+		B9AD46191CD6509900012B31 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utils.m"; path = "common/NSString+Utils.m"; sourceTree = "<group>"; };
+		B9AD461E1CD6523100012B31 /* M80AttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M80AttributedLabel.h; sourceTree = "<group>"; };
+		B9AD461F1CD6523100012B31 /* M80AttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M80AttributedLabel.m; sourceTree = "<group>"; };
+		B9AD46201CD6523100012B31 /* M80AttributedLabelAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M80AttributedLabelAttachment.h; sourceTree = "<group>"; };
+		B9AD46211CD6523100012B31 /* M80AttributedLabelAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M80AttributedLabelAttachment.m; sourceTree = "<group>"; };
+		B9AD46221CD6523100012B31 /* M80AttributedLabelDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M80AttributedLabelDefines.h; sourceTree = "<group>"; };
+		B9AD46231CD6523100012B31 /* M80AttributedLabelURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M80AttributedLabelURL.h; sourceTree = "<group>"; };
+		B9AD46241CD6523100012B31 /* M80AttributedLabelURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M80AttributedLabelURL.m; sourceTree = "<group>"; };
+		B9AD46251CD6523100012B31 /* NSMutableAttributedString+M80.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+M80.h"; sourceTree = "<group>"; };
+		B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+M80.m"; sourceTree = "<group>"; };
 		DA9F9AB367150C29C4B45DF4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F9E586B49553A3F9DA3D89C1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -820,6 +851,7 @@
 		B917315A1CD1EF9400C29698 /* third party */ = {
 			isa = PBXGroup;
 			children = (
+				B9AD461D1CD6523100012B31 /* M80AttributedLabel */,
 				B9AD44171CD39FAA00012B31 /* KeychainItemWrapper */,
 				B917315C1CD1EFC000C29698 /* TTModalView */,
 				B917315B1CD1EFB400C29698 /* TTAnimations */,
@@ -1333,8 +1365,8 @@
 		B964F8F91CC39670003E0D44 /* CrazeMM */ = {
 			isa = PBXGroup;
 			children = (
-				B91732761CD2032600C29698 /* restful */,
 				B917315A1CD1EF9400C29698 /* third party */,
+				B91732761CD2032600C29698 /* restful */,
 				B91731541CD1C90600C29698 /* timer */,
 				B99194701CCC56BD0032A393 /* modal */,
 				B988789C1CC90CAD00990AA4 /* sign */,
@@ -1491,6 +1523,8 @@
 		B964F9651CC4AA58003E0D44 /* category */ = {
 			isa = PBXGroup;
 			children = (
+				B9AD46181CD6509900012B31 /* NSString+Utils.h */,
+				B9AD46191CD6509900012B31 /* NSString+Utils.m */,
 				B99D12D01CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.h */,
 				B99D12D11CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m */,
 				B98878C41CC9BCBC00990AA4 /* UIColor+Helper.h */,
@@ -1597,6 +1631,9 @@
 				B991947C1CCCA26C0032A393 /* PayBottomView.h */,
 				B991947D1CCCA26C0032A393 /* PayBottomView.m */,
 				B991947E1CCCA26C0032A393 /* PayBottomView.xib */,
+				B9AD460C1CD4FF0200012B31 /* WaitForDeliverCell.h */,
+				B9AD460D1CD4FF0200012B31 /* WaitForDeliverCell.m */,
+				B9AD460E1CD4FF0200012B31 /* WaitForDeliverCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1639,6 +1676,8 @@
 				B9AD44091CD3427E00012B31 /* MMAlertView.h */,
 				B9AD440A1CD3427E00012B31 /* MMAlertView.m */,
 				B9AD440C1CD3428F00012B31 /* MMAlertView.xib */,
+				B9AD46131CD649E900012B31 /* MMTextField.h */,
+				B9AD46141CD649E900012B31 /* MMTextField.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1733,6 +1772,22 @@
 				B9AD46091CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m */,
 			);
 			name = signup;
+			sourceTree = "<group>";
+		};
+		B9AD461D1CD6523100012B31 /* M80AttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				B9AD461E1CD6523100012B31 /* M80AttributedLabel.h */,
+				B9AD461F1CD6523100012B31 /* M80AttributedLabel.m */,
+				B9AD46201CD6523100012B31 /* M80AttributedLabelAttachment.h */,
+				B9AD46211CD6523100012B31 /* M80AttributedLabelAttachment.m */,
+				B9AD46221CD6523100012B31 /* M80AttributedLabelDefines.h */,
+				B9AD46231CD6523100012B31 /* M80AttributedLabelURL.h */,
+				B9AD46241CD6523100012B31 /* M80AttributedLabelURL.m */,
+				B9AD46251CD6523100012B31 /* NSMutableAttributedString+M80.h */,
+				B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */,
+			);
+			path = M80AttributedLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1868,6 +1923,7 @@
 				B991949D1CCCF7E40032A393 /* BrowserDealView.xib in Resources */,
 				B98878921CC8AD3800990AA4 /* LoginViewController.xib in Resources */,
 				B91896871CCE05AF0061D0B6 /* ProductLastCell.xib in Resources */,
+				B9AD46111CD4FF0200012B31 /* WaitForDeliverCell.xib in Resources */,
 				B91896AA1CCF09D50061D0B6 /* PayAlertView.xib in Resources */,
 				B964F9881CC50339003E0D44 /* slide-1.jpg in Resources */,
 				B991949F1CCCF9AC0032A393 /* ProductLadderCell.xib in Resources */,
@@ -1902,6 +1958,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9AD46121CD4FF0200012B31 /* WaitForDeliverCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2001,6 +2058,7 @@
 				B9AD46031CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m in Sources */,
 				B9AD44231CD48C7C00012B31 /* HttpSignupRequest.m in Sources */,
 				B918968C1CCE1D8E0061D0B6 /* FirstAddrCell.m in Sources */,
+				B9AD46151CD649E900012B31 /* MMTextField.m in Sources */,
 				B91732311CD1F05400C29698 /* FadeInUpBigAnimation.m in Sources */,
 				B98878D11CC9ECBB00990AA4 /* ArrowView.m in Sources */,
 				B992C5811CCA6D5300DC49E8 /* MineNoLoginViewController.m in Sources */,
@@ -2022,6 +2080,7 @@
 				B91732541CD1F05500C29698 /* SlideOutRightAnimation.m in Sources */,
 				B917324B1CD1F05400C29698 /* ScaleLargeInAnimation.m in Sources */,
 				B917326D1CD1F09400C29698 /* TTModalWindow.m in Sources */,
+				B9AD460F1CD4FF0200012B31 /* WaitForDeliverCell.m in Sources */,
 				B991948D1CCCF32F0032A393 /* ProductLadderCell.m in Sources */,
 				B917325B1CD1F05500C29698 /* ZoomInLeftAnimation.m in Sources */,
 				B91896D91CCFAFC90061D0B6 /* TransferAlertView.m in Sources */,
@@ -2065,9 +2124,11 @@
 				B98878BA1CC9B94300990AA4 /* SegmentedCell.m in Sources */,
 				B917321A1CD1F05400C29698 /* SwingAnimation.m in Sources */,
 				B91732451CD1F05400C29698 /* RotateInUpLeftAnimation.m in Sources */,
+				B9AD46291CD6523100012B31 /* M80AttributedLabelAttachment.m in Sources */,
 				B91732321CD1F05400C29698 /* FadeOutAnimation.m in Sources */,
 				B917323A1CD1F05400C29698 /* FadeOutUpBigAnimation.m in Sources */,
 				B99D12F81CC66EB9000DFF95 /* KeyWordsCell.m in Sources */,
+				B9AD462B1CD6523100012B31 /* M80AttributedLabelURL.m in Sources */,
 				B964F94E1CC49DF2003E0D44 /* WelcomeViewController.m in Sources */,
 				B917325D1CD1F05500C29698 /* ZoomInUpAnimation.m in Sources */,
 				B91732261CD1F05400C29698 /* BounceOutRightAnimation.m in Sources */,
@@ -2139,12 +2200,14 @@
 				B98878CE1CC9D0A300990AA4 /* NSAttributedString+Utils.m in Sources */,
 				B99D13131CC75B84000DFF95 /* LabelWithSeperatorLine.m in Sources */,
 				B91732151CD1F05400C29698 /* FlashAnimation.m in Sources */,
+				B9AD461A1CD6509900012B31 /* NSString+Utils.m in Sources */,
 				B91732381CD1F05400C29698 /* FadeOutRightBigAnimation.m in Sources */,
 				B91732431CD1F05400C29698 /* RotateInDownLeftAnimation.m in Sources */,
 				B91896A71CCF01A20061D0B6 /* LastPayMethodCell.m in Sources */,
 				B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */,
 				B91896B21CCF20010061D0B6 /* SelectdAddrCell.m in Sources */,
 				B91732371CD1F05400C29698 /* FadeOutRightAnimation.m in Sources */,
+				B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */,
 				B91731531CD1A30100C29698 /* NSDateComponents+Utils.m in Sources */,
 				B91896AD1CCF0B650061D0B6 /* PayAlertView.m in Sources */,
 				B99D13021CC66EFB000DFF95 /* ClearHistoryCell.m in Sources */,
@@ -2156,6 +2219,7 @@
 				B9AD44261CD48DAD00012B31 /* HttpRandomCodeRequest.m in Sources */,
 				B991947F1CCCA26C0032A393 /* PayBottomView.m in Sources */,
 				B991945D1CCBB4ED0032A393 /* BuyProductView.m in Sources */,
+				B9AD46271CD6523100012B31 /* M80AttributedLabel.m in Sources */,
 				B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */,
 				B917326C1CD1F09400C29698 /* TTModalViewController.m in Sources */,
 				B98878A01CC90CCA00990AA4 /* SignViewController.m in Sources */,
@@ -2173,6 +2237,8 @@
 				B9AD45F71CD4D43B00012B31 /* KeychainItemWrapper.h in Sources */,
 				B9AD45F81CD4D43B00012B31 /* KeychainItemWrapper.m in Sources */,
 				B9AD45EC1CD4D43300012B31 /* RestURL.h in Sources */,
+				B9AD462A1CD6523100012B31 /* M80AttributedLabelAttachment.m in Sources */,
+				B9AD462C1CD6523100012B31 /* M80AttributedLabelURL.m in Sources */,
 				B9AD45ED1CD4D43300012B31 /* BaseHttpRequest.h in Sources */,
 				B9AD45EE1CD4D43300012B31 /* BaseHttpRequest.m in Sources */,
 				B9AD45EF1CD4D43300012B31 /* HttpLoginRequest.h in Sources */,
@@ -2181,11 +2247,15 @@
 				B9AD46041CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m in Sources */,
 				B9AD45F11CD4D43300012B31 /* HttpSignupRequest.h in Sources */,
 				B9AD45F21CD4D43300012B31 /* HttpSignupRequest.m in Sources */,
+				B9AD461B1CD6509900012B31 /* NSString+Utils.m in Sources */,
 				B9AD45F31CD4D43300012B31 /* HttpRandomCodeRequest.h in Sources */,
 				B9AD45F41CD4D43300012B31 /* HttpRandomCodeRequest.m in Sources */,
 				B9AD45F51CD4D43300012B31 /* HttpCheckPictureCaptchaRequest.h in Sources */,
 				B9AD46001CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.m in Sources */,
+				B9AD46281CD6523100012B31 /* M80AttributedLabel.m in Sources */,
 				B9AD45F61CD4D43300012B31 /* HttpCheckPictureCaptchaRequest.m in Sources */,
+				B9AD462E1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */,
+				B9AD46161CD649E900012B31 /* MMTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

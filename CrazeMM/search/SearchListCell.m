@@ -8,11 +8,32 @@
 
 #import "SearchListCell.h"
 
+#define kMaxTitleLength 36
+
 @interface SearchListCell()
 @property(nonatomic, strong) UIImageView* clockView;
+@property(nonatomic, strong) UILabel* tagLabel;
 @end
 
 @implementation SearchListCell
+
+-(UILabel*)tagLabel
+{
+    if (!_tagLabel) {
+        _tagLabel = [[UILabel alloc] init];
+        _tagLabel.backgroundColor = [UIColor UIColorFromRGB:0xbddcfa];
+        _tagLabel.textColor = [UIColor UIColorFromRGB:0x346796];
+        _tagLabel.textAlignment = NSTextAlignmentCenter;
+        _tagLabel.text = @"原封";
+        _tagLabel.font = [UIFont systemFontOfSize:14.f];
+        [_tagLabel sizeToFit];
+        _tagLabel.width += 16.f;
+        _tagLabel.clipsToBounds = YES;
+        _tagLabel.layer.cornerRadius = _tagLabel.height/2;
+    }
+    
+    return _tagLabel;
+}
 
 -(UIImageView*)clockView
 {
@@ -58,11 +79,13 @@
 
 -(void)initAllSubviews
 {
-    self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont systemFontOfSize:20];
-    self.titleLabel.numberOfLines = 2;
-    self.titleLabel.adjustsFontSizeToFitWidth = YES;
-    self.titleLabel.text = @"飞利浦 -V387 黑色 1GB 联通 3G WCDMA";
+    self.titleLabel = [[M80AttributedLabel alloc] init];
+    [self fomartTitleLabel];
+    
+//    self.titleLabel.font = [UIFont systemFontOfSize:20];
+//    self.titleLabel.numberOfLines = 2;
+//    self.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    self.titleLabel.text = @"飞利浦 -V387 黑色 1GB 联通 3G WCDMA";
     
     self.priceLabel = [[M80AttributedLabel alloc] init];
     [self fomartPriceLabel];
@@ -111,8 +134,6 @@
     [self fomartTimeLeftLabel];
     
     self.typeLabel = [[ArrowView alloc] init];
-//    self.typeLabel.numberOfLines = 1;
-//    self.typeLabel.adjustsFontSizeToFitWidth = YES;
     self.typeLabel.textLabel.textColor = [UIColor greenTextColor];
     self.typeLabel.textLabel.text = self.typeName;
     
@@ -139,6 +160,27 @@
 
 }
 
+-(void)fomartTitleLabel
+{
+    NSString* title = @"飞利浦 -V387 黑色 1GB 联通 3G WCDMA V387 黑色 黑色";
+    UIFont* font = [UIFont systemFontOfSize:20.f];
+    
+    if (title.length > kMaxTitleLength) {
+        title = [NSString stringWithFormat:@"%@...", [title substringToIndex:kMaxTitleLength]];
+    }
+    
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:title];
+    [attributedText m80_setFont:font];
+    [self.titleLabel appendAttributedText:attributedText];
+    [self.titleLabel appendText:@" "];
+    [self.titleLabel appendView:self.tagLabel margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
+    [self.titleLabel sizeToFit];
+//    self.titleLabel.numberOfLines = 2;
+    //[attributedText
+
+}
+
+
 -(void)fomartTimeLeftLabel
 {
     NSString* timeLeftString = self.leftTimeLabel.text;
@@ -159,6 +201,8 @@
         [self.leftTimeLabel appendText:@""];
         index ++;
     }
+    
+    //self.leftTimeLabel.offsetY = 4.f;
     
     [self.leftTimeLabel sizeToFit];
 }
@@ -232,8 +276,8 @@
     
     y += self.scopeLabel.frame.size.height + 4.f;
     
-    self.leftTimeLabel.frame =CGRectMake(bounds.size.width-150.f, y,
-                                         150.f, self.leftTimeLabel.height);
+    self.leftTimeLabel.frame =CGRectMake(bounds.size.width-150.f, y+4.f,
+                                         150.f, self.leftTimeLabel.height-4.f);
     
     self.companyImageView.frame = CGRectMake(12.f, y, 24.f, 24.f);
     self.companyLabel.frame = CGRectMake(self.companyImageView.right, y,

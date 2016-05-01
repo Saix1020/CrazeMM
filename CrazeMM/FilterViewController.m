@@ -53,6 +53,7 @@
     }
     
     cell.textLabel.text = self.filterKeywords[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

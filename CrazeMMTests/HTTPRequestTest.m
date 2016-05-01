@@ -42,33 +42,35 @@
         NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
     });
     
-    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {
-    }];
-}
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];}
 
--(void)testCheckPictureCaptcha
-{
-    XCTestExpectation *expectation =
-    [self expectationWithDescription:@"High Expectations"];
-    
-    HttpCheckPictureCaptchaRequest* checkPictureCaptchaRequest = [[HttpCheckPictureCaptchaRequest alloc] initWithPicCaptacha:@"ASDF"];
-    [checkPictureCaptchaRequest requestWithAcceptContentTypes:[[NSSet alloc] initWithObjects:@"text/html", nil]].then(^(id responseObject, AFHTTPRequestOperation *operation){
-        
-        NSLog(@"%@", responseObject);
-        [expectation fulfill];
-    }).catch(^(NSError *error){
-        NSLog(@"error happened: %@", error.localizedDescription);
-        NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
-    });;
-    
-    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
-}
+//-(void)testCheckPictureCaptcha
+//{
+//    XCTestExpectation *expectation =
+//    [self expectationWithDescription:@"High Expectations"];
+//    
+//    HttpCheckPictureCaptchaRequest* checkPictureCaptchaRequest = [[HttpCheckPictureCaptchaRequest alloc] initWithPicCaptacha:@"ASDF"];
+//    [checkPictureCaptchaRequest request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
+//    
+//        NSLog(@"%@", responseObject);
+//        [expectation fulfill];
+//    }).catch(^(NSError *error){
+//        NSLog(@"error happened: %@", error.localizedDescription);
+//        NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
+//    });;
+//    
+//    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
+//}
 
 -(void)testGenMobileVcode
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"High Expectations"];
     
-    HttpGenMobileVcodeRequest* request = [[HttpGenMobileVcodeRequest alloc] initWithPicCaptacha:@"1234" andMobile:@"13776573631"];
+    HttpGenMobileVcodeRequest* request = [[HttpGenMobileVcodeRequest alloc] initWithPicCaptacha:@"ASDF" andMobile:@"13913872708"];
     [request request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
         
         NSLog(@"%@", responseObject);
@@ -78,15 +80,18 @@
         NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
     });
     
-    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
-
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
 }
 
 -(void)testMobileExist
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"High Expectations"];
     
-    HttpMobileExistCheckRequest* request = [[HttpMobileExistCheckRequest alloc] initWithMobile:@"13776573631"];
+    HttpMobileExistCheckRequest* request = [[HttpMobileExistCheckRequest alloc] initWithMobile:@"13913872708"];
     [request request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
         
         NSLog(@"%@", responseObject);
@@ -96,8 +101,11 @@
         NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
     });
     
-    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
-    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
 }
 
 -(void)testCheckMobileCode
@@ -114,8 +122,11 @@
         NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
     });
     
-    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
-    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
 }
 
 -(void)testSignup
@@ -132,8 +143,11 @@
         NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
     });
     
-    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
-    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
 }
 
 @end

@@ -11,12 +11,16 @@
 #import "SegmentedCell.h"
 #import "PayBottomView.h"
 #import "MinePayViewController.h"
+#import "WaitForDeliverCell.h"
+
 
 @interface MineSellProductViewController ()
 
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) SegmentedCell* segmentCell;
 @property (nonatomic, strong) PayBottomView* payBottomView;
+@property (nonatomic) NSInteger currentSegmentIndex;
+@property (nonatomic, strong) NSMutableArray* dataSource;
 @end
 
 @implementation MineSellProductViewController
@@ -32,6 +36,8 @@
             [self.navigationController pushViewController:payVC animated:YES];
             return [RACSignal empty];
         }];
+        
+        _payBottomView.selectAllCheckBox.delegate = self;
     }
     
     return _payBottomView;
@@ -67,11 +73,14 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"WaitForPayCell" bundle:nil] forCellReuseIdentifier:@"WaitForPayCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WaitForDeliverCell" bundle:nil] forCellReuseIdentifier:@"WaitForDeliverCell"];
     
     
     self.tableView.tableHeaderView = self.segmentCell;
 
-
+    self.currentSegmentIndex = 0;
+    
+    self.dataSource = [[NSMutableArray alloc] initWithArray:@[@(YES), @(YES), @(YES), @(YES), @(YES), @(YES), @(YES), @(YES), @(YES), @(YES)]];
 }
 
 -(void)viewWillLayoutSubviews
@@ -108,22 +117,54 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 6;
+    return self.dataSource.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WaitForPayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WaitForPayCell"];
-    return cell;
+    if (self.currentSegmentIndex == 1 || self.currentSegmentIndex == 0) {
+        WaitForPayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WaitForPayCell"];
+        if (self.currentSegmentIndex == 1) {
+            cell.reactiveButton.hidden = NO;
+        }
+        else {
+            cell.reactiveButton.hidden = YES;
+        }
+        
+        if (!cell.selectedCheckBox.delegate) {
+            cell.selectedCheckBox.delegate = self;
+        }
+        
+        cell.selectedCheckBox.on = [self.dataSource[indexPath.row] boolValue];
+        cell.selectedCheckBox.tag = 1000 + indexPath.row;
+        
+        return cell;
+    }
+    else {
+        WaitForDeliverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WaitForDeliverCell"];
+        return cell;
+    }
+    
+    
+//    if (self.currentSegmentIndex == 1) {
+//        cell.reactiveButton.hidden = NO;
+//    }
+//    else if(self.currentSegmentIndex == 2){
+//    }
+//    else {
+//        cell.reactiveButton.hidden = YES;
+//    }
+//    
+//    if (!cell.selectedCheckBox.delegate) {
+//        cell.selectedCheckBox.delegate = self;
+//    }
+//    
+//    cell.selectedCheckBox.on = [self.dataSource[indexPath.row] boolValue];
+//    cell.selectedCheckBox.tag = 1000 + indexPath.row;
+//    
+//    return cell;
 }
-
-
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 40.f;
-//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -134,24 +175,60 @@
 #pragma -- mark custom segment delegate
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
+    if (segment.prevIndex == index) {
+        return;
+    }
     
-//    UIButton* button = segment.buttons[index];
-//    UIButton* prevButton = segment.buttons[segment.prevIndex];
-//    if (segment.prevIndex != index) {
-//        button.imageView.transform = CGAffineTransformMakeRotation(0);
-//        button.imageView.hidden = NO;
-//        prevButton.imageView.hidden = YES;
-//    }
-//    else {
-//        if (CGAffineTransformEqualToTransform(button.imageView.transform,
-//                                              CGAffineTransformMakeRotation(0)))
-//        {
-//            button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
-//        }
-//        else {
-//            button.imageView.transform = CGAffineTransformMakeRotation(0);
-//        }
-//    }
+    self.currentSegmentIndex = index;
+    
+    switch (index) {
+        case 0: // 待支付
+            self.payBottomView.hidden = NO;
+            self.payBottomView.totalPriceLabel.hidden = NO;
+
+            [self.payBottomView.confirmButton setTitle:@"付款" forState:UIControlStateNormal];
+            break;
+        case 1: // 支付超时
+            self.payBottomView.hidden = NO;
+            self.payBottomView.totalPriceLabel.hidden = YES;
+            [self.payBottomView.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
+            break;
+        case 2: // 代发货
+            self.payBottomView.hidden = YES;
+
+            break;
+        default:
+            break;
+    }
+    
+    [self.tableView reloadData];
 }
+
+#pragma -- mark BEMCheckBox Delegate
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox
+{
+    if (checkBox != self.payBottomView.selectAllCheckBox) {
+        NSInteger index = checkBox.tag - 1000;
+        self.dataSource[index] = @(checkBox.on);
+
+        
+        NSArray* onArray = [self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != NO"]];
+        if (onArray.count == self.dataSource.count) {
+            self.payBottomView.selectAllCheckBox.on = YES;
+        }
+        else {
+            self.payBottomView.selectAllCheckBox.on = NO;
+        }
+    }
+    else {
+        for (NSInteger index = 0; index<self.dataSource.count; ++index) {
+            self.dataSource[index] = @(checkBox.on);
+        }
+        [self.tableView reloadData];
+    }
+    
+}
+
+
 
 @end

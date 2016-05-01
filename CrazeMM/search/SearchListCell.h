@@ -15,7 +15,7 @@
 @interface SearchListCell : UITableViewCell
 
 
-@property (strong, nonatomic)  UILabel *titleLabel;
+@property (strong, nonatomic)  M80AttributedLabel *titleLabel;
 @property (strong, nonatomic)  M80AttributedLabel *priceLabel;
 @property (strong, nonatomic)  UIView *seperatorLine;
 @property (strong, nonatomic)  UILabel *arrivalTime;

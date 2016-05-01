@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomSegment.h"
+#import "BEMCheckBox.h"
 
-@interface MineSellProductViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate>
+@interface MineSellProductViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate, BEMCheckBoxDelegate>
 
 @end
