@@ -9,6 +9,8 @@
 #import "UIViewController+TTModalView.h"
 #import "TTModalView.h"
 #import "MMAlertView.h"
+#import "MMAlertViewWithOK.h"
+
 
 @implementation UIViewController (TTModalView)
 
@@ -63,6 +65,34 @@
         
         
         transferAlertView.cancel.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            [confirmModalView dismiss];
+            return [RACSignal empty];
+        }];
+    }];
+}
+
+-(void)showAlertViewWithMessage:(NSString*)message
+{
+    TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
+    confirmModalView.isCancelAble = YES;
+    confirmModalView.modalWindowLevel = UIWindowLevelNormal;
+    
+    MMAlertViewWithOK *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertViewWithOK" owner:nil options:nil] lastObject];
+    transferAlertView.layer.cornerRadius = 6.f;
+    
+    transferAlertView.alertMsgLabel.text = message;
+    confirmModalView.contentView = transferAlertView;
+    
+    confirmModalView.presentAnimationStyle = zoomIn;
+    confirmModalView.dismissAnimationStyle = zoomOut ;
+    
+    [confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+        
+        contentView.centerX = self.view.centerX;
+        contentView.centerY = self.view.centerY;
+        
+        
+        transferAlertView.comfirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             [confirmModalView dismiss];
             return [RACSignal empty];
         }];

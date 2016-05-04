@@ -10,6 +10,8 @@
 
 @interface HttpGenMobileVcodeRequest : BaseHttpRequest
 -(instancetype)initWithPicCaptacha:(NSString*)picCaptachaser andMobile:(NSString*)mobile;
+-(instancetype)initWithMobile:(NSString*)mobile;
+
 @end
 
 @interface HttpGenMobileVcodeResponse : BaseHttpResponse

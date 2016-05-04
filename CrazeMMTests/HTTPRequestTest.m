@@ -48,23 +48,23 @@
         }
     }];}
 
-//-(void)testCheckPictureCaptcha
-//{
-//    XCTestExpectation *expectation =
-//    [self expectationWithDescription:@"High Expectations"];
-//    
-//    HttpCheckPictureCaptchaRequest* checkPictureCaptchaRequest = [[HttpCheckPictureCaptchaRequest alloc] initWithPicCaptacha:@"ASDF"];
-//    [checkPictureCaptchaRequest request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
-//    
-//        NSLog(@"%@", responseObject);
-//        [expectation fulfill];
-//    }).catch(^(NSError *error){
-//        NSLog(@"error happened: %@", error.localizedDescription);
-//        NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
-//    });;
-//    
-//    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
-//}
+-(void)testCheckPictureCaptcha
+{
+    XCTestExpectation *expectation =
+    [self expectationWithDescription:@"High Expectations"];
+    
+    HttpCheckPictureCaptchaRequest* checkPictureCaptchaRequest = [[HttpCheckPictureCaptchaRequest alloc] initWithPicCaptacha:@"ASDF"];
+    [checkPictureCaptchaRequest request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
+    
+        NSLog(@"%@", responseObject);
+        [expectation fulfill];
+    }).catch(^(NSError *error){
+        NSLog(@"error happened: %@", error.localizedDescription);
+        NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
+    });;
+    
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {}];
+}
 
 -(void)testGenMobileVcode
 {

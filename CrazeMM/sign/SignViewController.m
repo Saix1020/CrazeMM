@@ -8,6 +8,8 @@
 
 #import "SignViewController.h"
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
+#import "HttpMobileExistCheckRequest.h"
+#import "HttpGenMobileVcodeRequest.h"
 
 
 #define kLeadingPad 16.f
@@ -88,6 +90,7 @@
 
         }
         else {
+            self.passwordField.font = [UIFont systemFontOfSize:17];
             [self.passwordRightView setImage:[UIImage imageNamed:@"icon_password"] forState:UIControlStateNormal];
 
         }
@@ -116,13 +119,11 @@
     
     [self.pinButton bs_configureAsDefaultStyle];
     [self.pinButton setTitle:@"  获取验证码" forState:UIControlStateNormal];
-    [self.pinButton setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
-    self.pinButton.backgroundColor = [UIColor clearColor];
+    [self.pinButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //self.pinButton.backgroundColor = [UIColor clearColor];
 //    self.pinButton.enabled = NO;
     [self.pinButton addTarget:self action:@selector(pinButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-
     self.pinTextFiled.placeholder = @"请输入验证码";
-
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)]];
 
     
@@ -146,25 +147,97 @@
 //
 //        return [RACSignal empty];
 //    }];
+    
+    @weakify(self);
+    RACSignal *validUsernameSignal = [self.phoneTextField.rac_textSignal
+                                      map:^id(NSString *text) {
+                                          @strongify(self);
+                                          return @([self isValidPhoneNumber:text]);
+                                      }];
+    
+    
+}
+
+-(BOOL)isValidPhoneNumber:(NSString*)phoneNumber
+{
+    if (phoneNumber.length != 11) {
+        return NO;
+    }
+    NSString *parten = @"^[1-9]\\d{10}$";
+    NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:parten options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray* match = [reg matchesInString:phoneNumber options:NSMatchingReportCompletion range:NSMakeRange(0, [phoneNumber length])];
+    
+    if (match.count == 0){
+        return NO;
+    }
+
+    return YES;
 }
 
 -(void)pinButtonClicked:(UIButton*)sender
 {
-    sender.enabled = NO;
     
-    self.pinButtonFronzenLeftTime = 10;
-    [self.pinButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
-    
-    self.pinButtonDispose = [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
-        self.pinButtonFronzenLeftTime--;
-        if (self.pinButtonFronzenLeftTime == 0) {
-            [self.pinButtonDispose dispose];
-            self.pinButton.enabled = YES;
-        }
+    if (self.pinTextFiled.text.length != 13) {
         
-        [self.pinButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
-    }];
+    }
     
+    NSString* phoneNumber = [self.phoneTextField.text copy];
+    if (![self isValidPhoneNumber:phoneNumber]) {
+        [self showAlertViewWithMessage:@"请输入正确的11位手机号码"];
+
+        return;
+    }
+    
+    
+    
+    HttpMobileExistCheckRequest* mobileExistCheckrequest = [[HttpMobileExistCheckRequest alloc] initWithMobile:phoneNumber];
+    HttpGenMobileVcodeRequest* genMobileVcodeRequest = [[HttpGenMobileVcodeRequest alloc] initWithMobile:phoneNumber];
+
+    [mobileExistCheckrequest request]
+    .then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"%@", responseObject);
+        if (mobileExistCheckrequest.response.ok) {
+            return [genMobileVcodeRequest request];
+        }
+        else {
+            
+            return [BaseHttpRequest httpRequestError:@"该手机号已注册"];
+        }
+    })
+    .then(^(id responseObject, AFHTTPRequestOperation *operation){
+         NSLog(@"%@", responseObject);
+        
+        if (genMobileVcodeRequest.response.ok) {
+            
+            [self showAlertViewWithMessage:@"获取手机验证码成功"];
+            
+            sender.enabled = NO;
+            self.pinButtonFronzenLeftTime = 60;
+            [self.pinButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
+            
+            self.pinButtonDispose = [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
+                self.pinButtonFronzenLeftTime--;
+                if (self.pinButtonFronzenLeftTime == 0) {
+                    [self.pinButtonDispose dispose];
+                    self.pinButton.enabled = YES;
+                }
+                
+                [self.pinButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
+            }];
+            
+            return (AnyPromise*)responseObject;
+        }
+        else {
+            return [BaseHttpRequest httpRequestError:genMobileVcodeRequest.response.errorMsg];
+        }
+    })
+    .catch(^(NSError *error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+
+        NSLog(@"error happened: %@", error.localizedDescription);
+        NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
+    });
+
 }
 
 -(void)viewWillLayoutSubviews

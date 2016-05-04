@@ -13,6 +13,12 @@
 - (void)awakeFromNib {
     // Initialization code
     
+    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background_alpha"]];
+    imageView.contentMode = UIViewContentModeCenter ;
+    self.clipsToBounds = YES;
+
+    
+    self.backgroundView = imageView;
     
     self.amountMoneyLabel.adjustsFontSizeToFitWidth = YES;
     self.aviliableMoney.adjustsFontSizeToFitWidth = YES;

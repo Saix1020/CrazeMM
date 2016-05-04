@@ -15,6 +15,7 @@
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
 #import "HttpLoginRequest.h"
 #import "HttpRandomCodeRequest.h"
+#import "SignWithPicCapViewController.h"
 
 
 #define kLeadingPad 16.f
@@ -43,6 +44,8 @@
 
 @property (strong, nonatomic) SuggestViewController* suggestVC;
 @property (strong, nonatomic) SignViewController* signVC;
+@property (strong, nonatomic) SignWithPicCapViewController* signWithPicVC;
+
 @property (nonatomic, strong) ZZPopoverWindow* popover;
 @property (nonatomic, strong) UIScrollView* trueView;
 
@@ -151,6 +154,10 @@
         
         self.signVC = [[SignViewController alloc] init];
         [self.navigationController pushViewController:self.signVC animated:YES];
+        
+//        self.signWithPicVC = [[SignWithPicCapViewController alloc] init];
+//                [self.navigationController pushViewController:self.signWithPicVC animated:YES];
+
         return [RACSignal empty];
     }];
     

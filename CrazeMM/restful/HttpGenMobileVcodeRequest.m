@@ -31,7 +31,7 @@
         self.params =  [@{
                           @"pictureCaptcha" : picCaptachaser,
                           @"mobile" : mobile
-                          } mutableCopy];;
+                          } mutableCopy];
         
     }
     
@@ -39,6 +39,29 @@
     return self;
 }
 
+-(instancetype)initWithMobile:(NSString*)mobile
+{
+    self = [self init];
+    
+    if (self) {
+        
+        self.params =  [@{
+                          @"mobile" : mobile
+                          } mutableCopy];;
+        
+    }
+    
+    return self;
+}
+
+
+-(AFHTTPRequestOperationManager*)manager
+{
+    AFHTTPRequestOperationManager* mgr = [AFHTTPRequestOperationManager manager];
+    
+    [mgr.requestSerializer setValue:@"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36" forHTTPHeaderField:@"User-Agent"];
+    return mgr;
+}
 
 -(NSString*)url
 {
@@ -48,6 +71,11 @@
 -(NSString*)method
 {
     return @"POST";
+}
+
+-(Class)responseClass
+{
+    return [HttpGenMobileVcodeResponse class];
 }
 
 @end
@@ -69,11 +97,6 @@
         }
     }
 }
-
-//@property (nonatomic, readonly) NSString* errorTitle;
-//@property (nonatomic, readonly) NSString* errorMsg;
-//@property (nonatomic, readonly) NSDictionary* data;
-//@property (nonatomic, readonly) NSString* errorDetail;
 
 -(NSString*)errorTitle
 {

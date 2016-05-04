@@ -12,7 +12,11 @@
 
 -(void)awakeFromNib
 {
-    self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mine_bg"]];
+    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background_alpha"]];
+    imageView.contentMode = UIViewContentModeCenter ;
+    self.clipsToBounds = YES;
+    
+    self.backgroundView = imageView;
     
     self.selectionStyle =  UITableViewCellSelectionStyleNone;
 }

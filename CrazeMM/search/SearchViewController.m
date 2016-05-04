@@ -13,6 +13,7 @@
 #import "SearchHistoryCell.h"
 #import "ClearHistoryCell.h"
 #import "SearchListViewController.h"
+#import "SearchHistory.h"
 
 typedef NS_ENUM(NSInteger, SearchTableViewSection){
     kSectionKeywords = 0,
@@ -38,9 +39,16 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 @property (nonatomic, strong) KeyWordsCell* keywordsCell;
 @property (nonatomic, strong) ClearHistoryCell* clearHistoryCell;
 
+@property (nonatomic, readonly) NSManagedObjectContext* managedObjectcontent;
+
 @end
 
 @implementation SearchViewController
+
+-(NSManagedObjectContext*)managedObjectcontent
+{
+    return sharedManagedObjectContext();
+}
 
 -(UISearchBar*)searchBar
 {
@@ -49,12 +57,12 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         _searchBar.tintColor = [UIColor blueColor];
         _searchBar.placeholder = [NSString stringWithFormat:@"输入你所需要的%@信息", self.searchType==kSearchTypeBuy?@"求购":@"供货"];
         
-        @weakify(self);
-        [_searchBar.rac_textSignal subscribeNext:^(NSString* text) {
-            @strongify(self);
-            
-            //[self.tableView reloadData];
-        }];
+//        @weakify(self);
+//        [_searchBar.rac_textSignal subscribeNext:^(NSString* text) {
+//            @strongify(self);
+//            
+//            //[self.tableView reloadData];
+//        }];
     }
     return _searchBar;
 }
@@ -66,6 +74,12 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         @weakify(self);
         [_searchButtonItem setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
+            
+            // save search keyword to db
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                [SearchHistory createIfNotExist:self.searchBar.text andManagedObjectContext:self.managedObjectcontent];
+            });
+
             SearchListViewController* searchListVC = [[SearchListViewController alloc] initWithKeyword:self.searchBar.text];
             [self.navigationController pushViewController:searchListVC animated:YES];
             return [RACSignal empty];
@@ -82,6 +96,39 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         self.searchType = searchType;
     }
     return self;
+}
+
+-(ClearHistoryCell*)clearHistoryCell
+{
+    if (!_clearHistoryCell) {
+        _clearHistoryCell = [[[NSBundle mainBundle]loadNibNamed:@"ClearHistoryCell" owner:nil options:nil] lastObject];
+        
+        _clearHistoryCell.clearButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+           
+            dispatch_async(dispatch_get_global_queue(0, 0), ^(){
+                [SearchHistory removeAll:self.managedObjectcontent];
+                
+                dispatch_async(dispatch_get_main_queue(), ^(){
+                    [self.searchHistory removeAllObjects];
+                    [self.tableView reloadData];
+                });
+            });
+            
+            return [RACSignal empty];
+        }];
+
+    }
+    
+    return _clearHistoryCell;
+}
+
+-(KeyWordsCell*)keywordsCell
+{
+    if (!_keywordsCell) {
+        _keywordsCell = [[[NSBundle mainBundle]loadNibNamed:@"KeyWordsCell" owner:nil options:nil] lastObject];
+    }
+    
+    return _keywordsCell;
 }
 
 -(void)viewDidLoad
@@ -102,14 +149,14 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
     self.navigationItem.titleView = self.searchBar;
     self.navigationItem.rightBarButtonItem = self.searchButtonItem;
     
-    self.keywordsCell = [[[NSBundle mainBundle]loadNibNamed:@"KeyWordsCell" owner:nil options:nil] lastObject];
-    self.clearHistoryCell = [[[NSBundle mainBundle]loadNibNamed:@"ClearHistoryCell" owner:nil options:nil] lastObject];
+//    self.keywordsCell = [[[NSBundle mainBundle]loadNibNamed:@"KeyWordsCell" owner:nil options:nil] lastObject];
+//    self.clearHistoryCell = [[[NSBundle mainBundle]loadNibNamed:@"ClearHistoryCell" owner:nil options:nil] lastObject];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SearchHistoryCell" bundle:nil] forCellReuseIdentifier:@"SearchHistoryCell"];
 
     
     self.searchKeywords = [@[@"AAAA", @"BBBB", @"CCCCCCCCCCC", @"DDDDDDDDDD", @"EEEEE"] mutableCopy];
-    self.searchHistory = [@[@"AAAA", @"BBBB", @"CCCCCCCCCCC", @"DDDDDDDDDD", @"EEEEE"] mutableCopy];
+//    self.searchHistory = [@[@"AAAA", @"BBBB", @"CCCCCCCCCCC", @"DDDDDDDDDD", @"EEEEE"] mutableCopy];
     @weakify(self);
     [self.keywordsCell setKeywords:self.searchKeywords andBlock:^(id sender){
         @strongify(self);
@@ -131,6 +178,13 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 {
     [super viewWillAppear:animated];
     [self.tabBarController setTabBarHidden:YES animated:YES];
+
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        self.searchHistory = [[SearchHistory findAll:self.managedObjectcontent] mutableCopy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
 }
 
 #pragma -- mark tableview delegate
@@ -178,7 +232,8 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SearchHistoryCell"];
             SearchHistoryCell* sc = (SearchHistoryCell*)cell;
-            sc.historyString = self.searchHistory[indexPath.row];
+            SearchHistory* searchHistory = (SearchHistory*)self.searchHistory[indexPath.row];
+            sc.historyString = searchHistory.keyword;
 
             if(indexPath.row != self.searchHistory.count-1){
                 sc.enableButtomLine = false;
@@ -193,6 +248,8 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
     }
     
     //cell.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     return cell;
 }
@@ -241,8 +298,17 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 {
     switch (section) {
         case kSectionKeywords:
-        case kSectionSearchHistory:
             return 44.f;
+            break;
+        case kSectionSearchHistory:
+        {
+            if (self.searchHistory.count > 0) {
+                return 44.f;
+            }
+            else {
+                return 0;
+            }
+        }
             break;
         default:
             break;

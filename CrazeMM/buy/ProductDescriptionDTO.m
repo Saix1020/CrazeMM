@@ -71,7 +71,7 @@
     mock.status = @"正常";
     mock.minimumPrice = 2000 + arc4random()%2000 + ((double)(1000+arc4random()%1000))/2000;
     mock.minimumNumber = arc4random()%10 + 10;
-    
+    mock.canSplit = arc4random()%2;
     mock.remainingTime = (arc4random()%4)*(3600*24) + 768*(arc4random()%10);
     
     return mock;

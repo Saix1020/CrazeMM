@@ -48,14 +48,6 @@
     return _fitlerVC;
 }
 
-//-(ZZPopoverWindow*)popover
-//{
-//    if(!_popover){
-//            }
-//    
-//    return _popover;
-//}
-
 -(SegmentedCell*)segmentCell
 {
     if(!_segmentCell){
@@ -152,55 +144,8 @@
         });
     }];
     
-//    self.segmentedItemClickedNum = 0;
-//    NSArray *items = [SearchListViewController createItems:0 andNumber:self.segmentedItemClickedNum];
-//    self.segmented = [[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40)
-//                                                              items:items
-//                                                       iconPosition:IconPositionRight
-//                                                  andSelectionBlock:^(NSUInteger segmentIndex) {
-//                                                      @strongify(self);
-//                                                      if([self.segmented isSelectedSegmentAtIndex:segmentIndex]){
-//                                                          self.segmentedItemClickedNum ++;
-//                                                      }
-//                                                      else {
-//                                                          self.segmentedItemClickedNum = 0;
-//                                                      }
-//                                                      [self.segmented setItems:[SearchListViewController createItems:segmentIndex andNumber:self.segmentedItemClickedNum]];
-//                                                        }
-//                                                     iconSeparation:5];
-//    
-//    self.segmented.color = [UIColor colorWithRed:88.0f/255.0 green:88.0f/255.0 blue:88.0f/255.0 alpha:1];
-//    self.segmented.borderWidth = 0.5;
-//    self.segmented.borderColor = [UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:147.0f/255.0 alpha:1];
-//    self.segmented.selectedColor = [UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:147.0f/255.0 alpha:1];
-//    self.segmented.textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18],
-//                               NSForegroundColorAttributeName:[UIColor whiteColor]};
-//    self.segmented.selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18],
-//                                       NSForegroundColorAttributeName:[UIColor whiteColor]};
-    //self.tableView.tableHeaderView = self.segmented;
     self.tableView.tableHeaderView = self.segmentCell;
 
-    //self.segmented.
-
-//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem filterBarButtonItemWithBlock:^(id sender){
-//        @strongify(self);
-//        self.fitlerVC.view.frame = CGRectMake(0, 0, 200, self.fitlerVC.height);
-//        self.fitlerVC.view.backgroundColor = RGBCOLOR(150, 150, 150);
-//        self.popover                    = [[ZZPopoverWindow alloc] init];
-//        self.popover.showShadow = YES;
-//        self.popover.popoverPosition = ZZPopoverPositionUp;
-//        self.popover.contentView        = self.fitlerVC.view;
-//        self.popover.backgroundColor = RGBCOLOR(150, 150, 150);
-//        self.popover.didShowHandler = ^() {
-//            //self.popover.layer.cornerRadius = 0;
-//        };
-//        self.popover.didDismissHandler = ^() {
-//            //NSLog(@"Did dismiss");
-//        };
-//        
-//        [self.popover showAtView:sender];
-//
-//    }];
     
     self.filterButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.filterButton setImage:[@"filter" image] forState:UIControlStateNormal];
@@ -241,11 +186,11 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    UIButton* btn;
-    btn = self.segmentCell.segment.buttons[1];
-    btn.imageView.hidden = YES;
-    btn = self.segmentCell.segment.buttons[2];
-    btn.imageView.hidden = YES;
+//    UIButton* btn;
+//    btn = self.segmentCell.segment.buttons[1];
+//    btn.imageView.hidden = YES;
+//    btn = self.segmentCell.segment.buttons[2];
+//    btn.imageView.hidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -311,9 +256,9 @@
     UIButton* button = segment.buttons[index];
     UIButton* prevButton = segment.buttons[segment.prevIndex];
     if (segment.prevIndex != index) {
-        button.imageView.transform = CGAffineTransformMakeRotation(0);
-        button.imageView.hidden = NO;
-        prevButton.imageView.hidden = YES;
+        //button.imageView.transform = CGAffineTransformMakeRotation(0);
+//        button.imageView.hidden = NO;
+//        prevButton.imageView.hidden = YES;
     }
     else {
         if (CGAffineTransformEqualToTransform(button.imageView.transform,

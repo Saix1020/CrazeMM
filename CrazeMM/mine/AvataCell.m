@@ -16,7 +16,11 @@
     self.selectionStyle =  UITableViewCellSelectionStyleNone;
 
     [self.avataImageView roundImageWithBordWidth:3.0 andBordColor:[UIColor UIColorFromRGB:0x4bb8f1]];
-    self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mine_bg"]];
+    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background_alpha"]];
+    imageView.contentMode = UIViewContentModeCenter ;
+    
+    self.backgroundView = imageView;
+    self.clipsToBounds = YES;
     
     self.nameLabel.text = @"疯狂的兔子";
     self.moneyLabel.text = @"账户可用余额: 8000元";

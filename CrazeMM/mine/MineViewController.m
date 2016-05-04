@@ -29,6 +29,7 @@
 @property (nonatomic, strong) OrderStatusCell* orderStatusCell;
 @property (nonatomic, strong) ContactCell* contactCell;
 @property (nonatomic, strong) NoLoginHeadCell* noLoginCell;
+@property (nonatomic, strong) UITableViewCell* logoutCell;
 
 @property (nonatomic, readonly) BOOL isLogined;
 
@@ -82,6 +83,27 @@
                  ];
     }
     
+}
+
+-(UITableViewCell*)logoutCell
+{
+    if (!_logoutCell) {
+        _logoutCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"logoutCell"];
+        UIButton* cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [cancelButton setTitle:@"退出" forState:UIControlStateNormal];
+        [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        cancelButton.backgroundColor = [UIColor redColor];
+        cancelButton.layer.cornerRadius = 4.f;
+        cancelButton.clipsToBounds = YES;
+        cancelButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);
+        
+        [cancelButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+
+        [_logoutCell addSubview:cancelButton];
+
+    }
+    
+    return _logoutCell;
 }
 
 -(NoLoginHeadCell*)noLoginCell
@@ -146,7 +168,7 @@
 {
     if(!_contactCell){
         _contactCell = [[[NSBundle mainBundle]loadNibNamed:@"ContactCell" owner:nil options:nil] firstObject];
-        _contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        _contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     }
     
@@ -199,7 +221,7 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
 
     
 }
@@ -242,6 +264,11 @@
 #pragma -- mark tableview Delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
+    if (![UserCenter defaultCenter].isLogined) {
+        return kSectionMax-1;
+    }
+    
     return kSectionMax;
 }
 
@@ -282,7 +309,10 @@
             return 40.f;
         }
             break;
-            
+        case kSectionLogout:
+        {
+            return 40.f;
+        }
         default:
             break;
     }
@@ -339,12 +369,16 @@
             return self.contactCell;
         }
             break;
-            
+        case kSectionLogout:
+        {
+            return self.logoutCell;
+        }
+            break;
         default:
             break;
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
 }
@@ -360,6 +394,8 @@
                 return [[self class] infoNames].count;
             case kSectionContact:
                 return 1;
+            case kSectionLogout:
+                return 1;
             default:
                 break;
         }
@@ -373,6 +409,8 @@
                 return [[self class] infoNames].count;
             case kSectionContact:
                 return 1;
+            case kSectionLogout:
+                return 0;
             default:
                 break;
         }
@@ -414,9 +452,10 @@
                 
                 return;
             }
+//            
+//            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+//            [self.navigationController pushViewController:mineSellProductVC animated:YES];
             
-            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-            [self.navigationController pushViewController:mineSellProductVC animated:YES];
             
         }
             break;
@@ -424,6 +463,8 @@
         default:
             break;
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

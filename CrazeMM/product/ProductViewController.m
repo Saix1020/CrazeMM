@@ -38,7 +38,7 @@
 @property (nonatomic, strong) UIImageView* imageView;//just for debug
 @property (nonatomic, strong) TTModalView* modalView;
 
-
+@property (nonatomic, strong) UIImageView* mockShareView;
 
 @end
 
@@ -54,14 +54,15 @@
     return _buyProductView;
 }
 
-//-(ProductDetailCell*)_productDetailCell
-//{
-//    if(!_productDetailCell){
-//        _productDetailCell = self.buyProductView =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
-//    }
-//    
-//    return _buyProductView;
-//}
+-(UIImageView*)mockShareView
+{
+    if (!_mockShareView) {
+        _mockShareView = [[UIImageView alloc] initWithImage:[@"share_demo" image]];
+    }
+    
+    return _mockShareView;
+}
+
 
 -(UIView*)buttomView
 {
@@ -81,24 +82,10 @@
 -(M80AttributedLabel*)timeLabel
 {
     if(!_timeLabel){
-//        NSDateFormatter *format = [[NSDateFormatter alloc] init];
-//        [format setDateFormat:@"hh天mm小时dd分钟"];
-
         _timeLabel = [[M80AttributedLabel alloc] init];
-//        _timeLabel.text = @"🕑10天18小时20分钟";
-//        _timeLabel.backgroundColor = RGBCOLOR(133, 133, 133);
-//        _timeLabel.textColor = [UIColor whiteColor];
-//        _timeLabel.textAlignment = NSTextAlignmentCenter;
-//        RACSignal *updateEventSignal = [RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]];
-//        RAC(self, timeLabel.text) = [updateEventSignal map:^id(id x){
-//            return @"Hello";
-//        }];
-        
         _timeLabel.backgroundColor = RGBCOLOR(133, 133, 133);
         UIImageView* clockView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-//        _timeLabel.tintColor = [UIColor whiteColor];
         clockView.image = [UIImage imageNamed:@"clock_white"];
-        //_timeLabel.tintColor =
         _timeLabel.textAlignment = kCTTextAlignmentCenter;
         [_timeLabel appendView:clockView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
         [_timeLabel appendText:@" "];
@@ -106,7 +93,6 @@
         [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
         [attributedText m80_setTextColor:[UIColor whiteColor]];
         [_timeLabel appendAttributedText:attributedText];
-//        [_timeLabel appendText:@" "];
 
     }
     
@@ -221,6 +207,25 @@
     
     _modalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     _modalView.modalWindowLevel = UIWindowLevelNormal;
+    
+    self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+       
+        self.modalView.presentAnimationStyle = SlideInUp;
+        self.modalView.dismissAnimationStyle = SlideOutDown;
+        self.modalView.contentView = self.mockShareView;
+        self.modalView.isCancelAble = YES;
+        @weakify(self);
+        [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
+            @strongify(self);
+            contentView.height = 220.f;
+            contentView.x = 0;
+            contentView.y = [UIScreen mainScreen].bounds.size.height - contentView.height;
+            contentView.width = [UIScreen mainScreen].bounds.size.width;
+        }];
+
+        
+        return [RACSignal empty];
+    }];
 
 }
 

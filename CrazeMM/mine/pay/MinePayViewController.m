@@ -227,7 +227,9 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         cell.backgroundColor = [UIColor clearColor];
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     return cell;
 }

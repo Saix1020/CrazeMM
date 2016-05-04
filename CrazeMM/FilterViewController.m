@@ -53,7 +53,7 @@
     }
     
     cell.textLabel.text = self.filterKeywords[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -76,6 +76,8 @@
     if(self.delegate && [self.delegate respondsToSelector:@selector(didChangeFilterKeywords:)]){
         [self.delegate performSelector:@selector(didChangeFilterKeywords:) withObject:self.filterKeywords];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

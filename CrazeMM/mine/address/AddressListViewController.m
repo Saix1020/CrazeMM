@@ -132,8 +132,8 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
         default:
             break;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
 }
 

@@ -8,6 +8,11 @@
 
 #import "HttpSignupRequest.h"
 
+@interface HttpSignupRequest ()
+
+
+@end
+
 @implementation HttpSignupRequest
 
 

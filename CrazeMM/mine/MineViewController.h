@@ -12,6 +12,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
     kSectionOverview = 0,
     kSectionInfo,
     kSectionContact,
+    kSectionLogout,
     kSectionMax
 };
 

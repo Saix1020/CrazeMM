@@ -16,6 +16,7 @@
 #import "SearchViewController.h"
 #import "ProductViewController.h"
 #import "ProductDescriptionDTO.h"
+#import "ProductListCell.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -27,8 +28,6 @@
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 @property (nonatomic, strong) iCarousel *carousel;
 @property (nonatomic, assign) CGSize cardSize;
-@property (nonatomic, strong) NSMutableArray *items;
-@property (nonatomic, strong) NSMutableArray *filtedItems;
 @property (nonatomic, strong) UISearchBar* searchBar;
 @property (nonatomic, strong) UIBarButtonItem* searchButtonItem;
 @property (nonatomic, strong) UIBarButtonItem* cancelButtonItem;
@@ -48,7 +47,7 @@
 -(UIBarButtonItem*)searchButtonItem
 {
     if(!_searchButtonItem){
-        _searchButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ic_search_white"] style:UIBarButtonItemStylePlain target:self action:nil];
+        _searchButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search_icon"] style:UIBarButtonItemStylePlain target:self action:nil];
         @weakify(self);
         [_searchButtonItem setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
@@ -64,45 +63,45 @@
     return _searchButtonItem;
 }
 
--(UIBarButtonItem*)cancelButtonItem
-{
-    if(!_cancelButtonItem){
-        _cancelButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:nil];
-        @weakify(self);
-        [_cancelButtonItem setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-            @strongify(self);
-            self.navigationItem.rightBarButtonItem = self.searchButtonItem;
-            self.navigationItem.titleView = nil;
-//            [self.searchBar animateToEnabledState:NO];
+//-(UIBarButtonItem*)cancelButtonItem
+//{
+//    if(!_cancelButtonItem){
+//        _cancelButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:nil];
+//        @weakify(self);
+//        [_cancelButtonItem setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+//            @strongify(self);
+//            self.navigationItem.rightBarButtonItem = self.searchButtonItem;
+//            self.navigationItem.titleView = nil;
+////            [self.searchBar animateToEnabledState:NO];
+//
+//            self.filtedItems = [self.items mutableCopy];
+//            [self.tableView reloadData];
+//            return [RACSignal empty];
+//        }]];
+//    }
+//    return _cancelButtonItem;
+//}
 
-            self.filtedItems = [self.items mutableCopy];
-            [self.tableView reloadData];
-            return [RACSignal empty];
-        }]];
-    }
-    return _cancelButtonItem;
-}
-
--(UISearchBar*)searchBar
-{
-    if(!_searchBar){
-        _searchBar = [[UISearchBar alloc] init];
-        _searchBar.tintColor = [UIColor blueColor];
-        @weakify(self);
-        [_searchBar.rac_textSignal subscribeNext:^(NSString* text) {
-            @strongify(self);
-            if(text.length ==0){
-                self.filtedItems = [self.items mutableCopy];
-            }
-            else if(text.length> 0 && self.items && self.items.count>0) {
-                self.filtedItems = [self.items mutableCopy];
-                [self.filtedItems filterUsingPredicate:[NSPredicate predicateWithFormat:@"SELF contains [cd] %@", text]];
-            }
-            [self.tableView reloadData];
-        }];
-    }
-    return _searchBar;
-}
+//-(UISearchBar*)searchBar
+//{
+//    if(!_searchBar){
+//        _searchBar = [[UISearchBar alloc] init];
+//        _searchBar.tintColor = [UIColor blueColor];
+//        @weakify(self);
+//        [_searchBar.rac_textSignal subscribeNext:^(NSString* text) {
+//            @strongify(self);
+//            if(text.length ==0){
+//                self.filtedItems = [self.items mutableCopy];
+//            }
+//            else if(text.length> 0 && self.items && self.items.count>0) {
+//                self.filtedItems = [self.items mutableCopy];
+//                [self.filtedItems filterUsingPredicate:[NSPredicate predicateWithFormat:@"SELF contains [cd] %@", text]];
+//            }
+//            [self.tableView reloadData];
+//        }];
+//    }
+//    return _searchBar;
+//}
 
 -(UIRefreshControl*)refreshControl
 {
@@ -130,12 +129,6 @@
 {
     [super viewDidLoad];
     
-    self.items = [[NSMutableArray alloc] init];
-    for (int i = 0; i < kTotalSlides; i++)
-    {
-        [self.items addObject:[NSString stringWithFormat:@"飞利浦 -V387 黑色 1GB 联通 3G WCDMA %d", i]];
-    }
-    
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"189 疯狂买卖王 求购";
     self.navigationItem.rightBarButtonItem = self.searchButtonItem;
@@ -146,6 +139,11 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"BuyItemCell" bundle:nil] forCellReuseIdentifier:@"BuyItemCell"];
     [self.view addSubview:self.tableView];
+    
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
+
     
     // add some mock data
     for (int i=0; i<10; i++) {
@@ -187,14 +185,12 @@
     //create carousel
     self.carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, 0, kTableViewHeadHeight)];
     self.carousel.backgroundColor = [UIColor UIColorFromRGB:0xF5F5F5];
-    //_carousel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.carousel.type = iCarouselTypeCoverFlow2;
-//    self.carousel.autoscroll = .5f;
     self.carousel.delegate = self;
     self.carousel.dataSource = self;
     self.tableView.tableHeaderView = self.carousel;
  
-    self.filtedItems = [self.items mutableCopy];
+//    self.filtedItems = [self.items mutableCopy];
     [self.tableView reloadData];
     
 //    self.updateEventSignal = [[RACSignal interval:4
@@ -361,6 +357,11 @@
     if (!cell.timeSignal) {
         cell.timeSignal = self.updateEventSignal;
     }
+//    ProductListCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProductListCell"];
+//    if (!cell) {
+//        cell = [[ProductListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductListCell"];
+//    }
+    
     return cell;
 }
 
@@ -371,9 +372,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
     ProductViewController* productVC = [[ProductViewController alloc]  init];
-    
-    if (indexPath.row%2==0) {
+
+    ProductDescriptionDTO* pdDTO = self.dataSource[indexPath.row];
+    if (pdDTO.canSplit) {
         productVC.productDisplayMode = kDisplayMode0;
     }
     else {

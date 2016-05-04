@@ -15,3 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancel;
 
 @end
+
+@interface MMAlertViewWithOKAndCancel : UIView
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UILabel *AlertMsgLabel;
+@end

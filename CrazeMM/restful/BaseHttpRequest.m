@@ -8,6 +8,14 @@
 
 #import "BaseHttpRequest.h"
 
+#define CustomErrorDomain @"com.189mm"
+typedef enum {
+    k189MMHttpRequestFailed = -1000,
+//    XRegisterFailed,
+//    XConnectFailed,
+//    XNotBindedFailed
+}CustomErrorFailed;
+
 @interface BaseHttpRequest ()
 
 @property (nonatomic, readonly) AFHTTPRequestOperationManager *manager;
@@ -19,7 +27,8 @@
 
 -(AFHTTPRequestOperationManager*)manager
 {
-    return [AFHTTPRequestOperationManager manager];
+    AFHTTPRequestOperationManager* mgr = [AFHTTPRequestOperationManager manager];
+    return mgr;
 }
 
 
@@ -51,44 +60,46 @@
 
 -(AFPromise*)request
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    
+//    if (self.needToken) {
+//        return [manager GET:COMB_URL(GET_TOKEN_PATH) parameters:[self getTokenParams]]
+//        .then(^(id responseObject, AFHTTPRequestOperation *operation){
+//            NSLog(@"%@", responseObject);
+//            
+//            self.response = responseObject;
+//            
+//            if (!self.response.ok) {
+//                return responseObject;
+//            }
+//            else {
+//                NSMutableDictionary* paramsWithToken = [[NSMutableDictionary alloc] initWithDictionary:self.params];
+//                [paramsWithToken setObject:responseObject[self.tokenName] forKey:@"login_token"];
+//                SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@:parameters:", self.method.uppercaseString]);
+//                if ([manager respondsToSelector:selector]) {
+//                    return [manager performSelector:selector withObject:self.url withObject:paramsWithToken];
+//                }
+//                else {
+//                    return responseObject;
+//                }
+//            }
+//            
+//        });
+//
+//    }
+//    else {
+//        SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@:parameters:", self.method.uppercaseString]);
+//        if ([manager respondsToSelector:selector]) {
+//            return [manager performSelector:selector withObject:self.url withObject:self.params];
+//        }
+//        else {
+//            return nil;
+//        }
+//    }
+//    
+//    return nil;
     
-    if (self.needToken) {
-        return [manager GET:COMB_URL(GET_TOKEN_PATH) parameters:[self getTokenParams]]
-        .then(^(id responseObject, AFHTTPRequestOperation *operation){
-            NSLog(@"%@", responseObject);
-            
-            self.response = responseObject;
-            
-            if (!self.response.ok) {
-                return responseObject;
-            }
-            else {
-                NSMutableDictionary* paramsWithToken = [[NSMutableDictionary alloc] initWithDictionary:self.params];
-                [paramsWithToken setObject:responseObject[self.tokenName] forKey:@"login_token"];
-                SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@:parameters:", self.method.uppercaseString]);
-                if ([manager respondsToSelector:selector]) {
-                    return [manager performSelector:selector withObject:self.url withObject:paramsWithToken];
-                }
-                else {
-                    return responseObject;
-                }
-            }
-            
-        });
-
-    }
-    else {
-        SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@:parameters:", self.method.uppercaseString]);
-        if ([manager respondsToSelector:selector]) {
-            return [manager performSelector:selector withObject:self.url withObject:self.params];
-        }
-        else {
-            return nil;
-        }
-    }
-    
-    return nil;
+    return [self request2];
 }
 
 -(AFPromise*)request2
@@ -105,6 +116,34 @@
     return nil;
 }
 
+-(AFPromise*)requestWithErrorCallback:(errorCallback)callback
+{
+    
+    if (callback == nil) {
+        return [self request];
+    }
+    else {
+        if (self.needToken) {
+            
+            return [self getTokenThenDoRequest].catch(^(NSError *error){
+                callback(error);
+                return [BaseHttpRequest httpRequestError:@""];
+
+            });
+        }
+        else {
+            [self.params removeObjectForKey:self.tokenName];
+            return [self doResqust].catch(^(NSError *error){
+                callback(error);
+                return [BaseHttpRequest httpRequestError:@""];
+            });
+        }
+        
+        return nil;
+    }
+    
+}
+
 //-(AFPromise*)requestWithAcceptContentTypes:(NSSet*)AcceptContentTypes andReponse
 
 -(AFPromise*)requestWithAcceptContentTypes:(NSSet*)AcceptContentTypes
@@ -113,7 +152,7 @@
 //    self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
 
-    AFHTTPSessionManager *manager=[[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:self.url] sessionConfiguration:configuration];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:self.url] sessionConfiguration:configuration];
 
 //    AFHTTPResponseSerializer           二进制格式
 //    AFJSONResponseSerializer           JSON
@@ -123,7 +162,7 @@
 //    AFImageResponseSerializer          Image
 //    AFCompoundResponseSerializer       组合
     
-    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = AcceptContentTypes;
 
 
@@ -140,7 +179,7 @@
     return [self.manager GET:COMB_URL(GET_TOKEN_PATH) parameters:[self getTokenParams]]
     .then(^(id responseObject, AFHTTPRequestOperation *operation){
         if (![responseObject[@"ok"] boolValue]) {
-            return [self getTokenFaield:responseObject];
+            return [BaseHttpRequest httpRequestError:[NSString stringWithFormat:@"Get %@ Failed!", [self getTokenParams][@"name"]]];
         }
         
         [self.params setObject:responseObject[self.tokenName] forKey:self.tokenName];
@@ -148,13 +187,23 @@
     });
 }
 
++(AFPromise*)httpRequestError:(NSString*)errorString
+{
+
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorString                                                                     forKey:NSLocalizedDescriptionKey];
+    return (AFPromise*)[[NSError alloc] initWithDomain:CustomErrorDomain code:k189MMHttpRequestFailed userInfo:userInfo];
+}
+
 -(AFPromise*)getTokenFaield:(id)responseObject
 {
-    return responseObject;
+    return (AFPromise*)[[NSError alloc] initWithDomain:@"" code:NSURLErrorUnknown userInfo:@{}];
+;
 }
 
 -(AFPromise*)doResqust
 {
+//    [self.manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
     if ([self.method.uppercaseString isEqualToString:@"POST"]) {
         return [self doPostRequest];
     }
@@ -212,7 +261,7 @@
 {
     return [self.manager HEAD:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
         self.response = [[[self responseClass] alloc] initWith:responseObject];
-        return responseObject;
+        return [responseObject promise];
     });
 }
 

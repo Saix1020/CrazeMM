@@ -13,7 +13,7 @@
 #import <PromiseKit_AFNetworking/AFNetworking+PromiseKit.h>
 #import "RestURL.h"
 typedef void(^httpRequestCallback)(id ,AFHTTPRequestOperation*);
-
+typedef void (^errorCallback)(NSError *error);
 @class BaseHttpResponse;
 
 @interface BaseHttpRequest : NSObject
@@ -27,8 +27,13 @@ typedef void(^httpRequestCallback)(id ,AFHTTPRequestOperation*);
 
 -(AFPromise*)request;
 -(AFPromise*)request2;
+-(AFPromise*)requestWithErrorCallback:(errorCallback)callback;
+
 
 -(AFPromise*)requestWithAcceptContentTypes:(NSSet*)AcceptContentTypes;
+
++(AFPromise*)httpRequestError:(NSString*)errorString;
+
 @end
 
 @interface BaseHttpResponse : NSObject

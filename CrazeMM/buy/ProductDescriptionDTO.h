@@ -27,6 +27,7 @@
 @property (nonatomic, readonly) NSString* detail;
 @property (nonatomic) double minimumPrice;
 @property (nonatomic) NSUInteger minimumNumber;
+@property (nonatomic) BOOL canSplit;
 
 @property (nonatomic) NSUInteger elapseTime;
 

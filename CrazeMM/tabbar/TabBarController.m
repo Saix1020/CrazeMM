@@ -13,6 +13,7 @@
 #import "BaseNavigationController.h"
 #import "MineNoLoginViewController.h"
 #import "MineWrapViewController.h"
+#import "ProductListViewController.h"
 
 @interface TabBarController ()
 
@@ -49,6 +50,10 @@
         SellViewController *sellVC = [[SellViewController alloc] init];
         sellVC.tabBarItem = sellItem;
         BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:sellVC];
+        
+//        ProductListViewController *sellVC = [[ProductListViewController alloc] init];
+//                sellVC.tabBarItem = sellItem;
+//                BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:sellVC];
         
         //BaseNavigationController *mineNavController;
         BaseNavigationController* mineNavController;

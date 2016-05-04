@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="124"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="124.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EfX-q9-4Po">
@@ -91,7 +91,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="CZV-mp-cEJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="2Hg-31-bWg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fLP-NO-48n" secondAttribute="trailing" constant="-8" id="50O-Pt-mR2"/>
@@ -110,6 +109,7 @@
                     <constraint firstItem="fLP-NO-48n" firstAttribute="width" secondItem="EfX-q9-4Po" secondAttribute="width" id="xVZ-I7-BDz"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="amountMoneyLabel" destination="CZV-mp-cEJ" id="1lc-Lq-jBE"/>
                 <outlet property="aviliableMoney" destination="PFz-FJ-J3f" id="fj8-kM-nUw"/>

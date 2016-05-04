@@ -30,6 +30,12 @@
     return @"GET";
 }
 
+-(AFPromise*)request
+{
+    return [self requestWithAcceptContentTypes:[NSSet setWithObjects:@"image/jpeg", nil]];
+}
+
+
 @end
 
 @implementation HttpRandomCodeResponse

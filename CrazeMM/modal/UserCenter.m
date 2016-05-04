@@ -9,7 +9,7 @@
 #import "UserCenter.h"
 
 #define kIdentifier @"189MMKeyChainIdentifier"
-#define kAccessGroup @"com.189.CrazeMM"
+//#define kAccessGroup @"sai.xu.com.citrix.189MM"
 #define kUserAndPassword @"189MM-UserAndPassword"
 
 @interface UserCenter()
@@ -50,7 +50,7 @@ static UserCenter *defaultUserCenter = nil;
 -(KeychainItemWrapper*)keyChainWrapper
 {
     if (!_keyChainWrapper) {
-        _keyChainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:kIdentifier accessGroup:kAccessGroup];
+        _keyChainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:kIdentifier accessGroup:nil];
 
     }
     return _keyChainWrapper;

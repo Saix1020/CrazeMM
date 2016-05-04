@@ -40,11 +40,23 @@
     return COMB_URL(@"/rest/user/isMobileNotExist?json");
 }
 
+-(Class)responseClass
+{
+    return [HttpMobileExistCheckResponse class];
+}
+
 
 @end
 
 @implementation HttpMobileExistCheckResponse
 
-
+-(BOOL)ok
+{
+    if (!self.all) {
+        return NO;
+    }
+    NSNumber* result = self.all[@"r"];
+    return [result intValue] == 1;
+}
 
 @end
