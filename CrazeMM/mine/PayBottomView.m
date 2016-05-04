@@ -55,7 +55,7 @@
     [self.totalPriceLabel appendAttributedText:attributedText];
     [self.totalPriceLabel appendText:@""];
     self.totalPriceLabel.numberOfLines = 1;
-    self.totalPriceLabel.offsetY = -4.f;
+    //self.totalPriceLabel.offsetY = -4.f;
     
 }
 
