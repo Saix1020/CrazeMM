@@ -28,6 +28,8 @@ typedef enum {
 @property (nonatomic, readonly) NSString* userNameInKeychain;
 @property (nonatomic, readonly) NSString* passwordInKeychain;
 @property (nonatomic, readonly) BOOL accountSaved;
+@property (nonatomic, copy) NSString* cookie;
+
 
 
 + (UserCenter *)defaultCenter;

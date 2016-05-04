@@ -44,6 +44,8 @@
 @property (nonatomic, strong) NSMutableArray* dataSource;
 @property (nonatomic, strong) TTModalView* productRecommendAlertView;
 
+@property (nonatomic) BOOL isCarouselAnimating;
+
 @end
 
 @implementation BuyViewController
@@ -82,7 +84,7 @@
         _productRecommendAlertView.modalWindowLevel = UIWindowLevelNormal;
         
         ProductRecommendView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"ProductRecommendView" owner:nil options:nil] lastObject];
-        transferAlertView.layer.cornerRadius = 6.f;
+//        transferAlertView.layer.cornerRadius = 6.f;
         
 //        transferAlertView.alertMsgLabel.text = message;
         _productRecommendAlertView.contentView = transferAlertView;
@@ -238,6 +240,8 @@
     self.carousel.type = iCarouselTypeCoverFlow2;
     self.carousel.delegate = self;
     self.carousel.dataSource = self;
+    self.isCarouselAnimating = NO;
+    
     self.tableView.tableHeaderView = self.carousel;
  
 //    self.filtedItems = [self.items mutableCopy];
@@ -281,9 +285,18 @@
                                    return self.stopTimer;
                                }];
     
+    
+    
     [self.updateEventSignal
      subscribeNext:^(id x){
          @strongify(self);
+         
+         if (self.isCarouselAnimating) {
+             return;
+         }
+         
+         self.isCarouselAnimating = YES;
+         
          if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
              self.scrollWay = YES;
          }
@@ -417,6 +430,12 @@
         }
     }
 }
+
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel
+{
+    self.isCarouselAnimating = NO;
+}
+
 
 #pragma mark -- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

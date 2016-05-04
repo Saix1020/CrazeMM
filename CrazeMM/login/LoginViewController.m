@@ -205,6 +205,8 @@
                                                                andRemember:self.rememberMeCheckBox.on];
         [self showProgressIndicatorWithTitle:@"正在登陆..."];
         [request request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
+//            [self dismissProgressIndicator];
+
             if (request.response.ok) {
                 [UserCenter defaultCenter].userName = self.userNameField.text;
                 [[UserCenter defaultCenter] setLogined];
@@ -220,6 +222,7 @@
             }
             
         }).catch(^(NSError *error){
+//            [self dismissProgressIndicator];
             NSLog(@"error happened: %@", error.localizedDescription);
             NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
             [self showAlertViewWithMessage:error.localizedDescription];

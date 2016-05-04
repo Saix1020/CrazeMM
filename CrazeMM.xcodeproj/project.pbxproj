@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B91731531CD1A30100C29698 /* NSDateComponents+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731521CD1A30100C29698 /* NSDateComponents+Utils.m */; };
 		B91731571CD1C9E600C29698 /* MMTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731561CD1C9E600C29698 /* MMTimer.m */; };
 		B91732111CD1F05400C29698 /* AnimationBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B917315E1CD1F05400C29698 /* AnimationBuilder.m */; };
@@ -244,6 +245,7 @@
 		B9A780401CD9E2D000A89047 /* pop_eg.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A7803F1CD9E2D000A89047 /* pop_eg.png */; };
 		B9A780421CD9E32E00A89047 /* ProductRecommendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A780411CD9E32E00A89047 /* ProductRecommendView.xib */; };
 		B9A780451CD9E34D00A89047 /* ProductRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A780441CD9E34D00A89047 /* ProductRecommendView.m */; };
+		B9A780491CD9FC2900A89047 /* HttpSupplyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A780481CD9FC2900A89047 /* HttpSupplyRequest.m */; };
 		B9AD440B1CD3427E00012B31 /* MMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD440A1CD3427E00012B31 /* MMAlertView.m */; };
 		B9AD440D1CD3428F00012B31 /* MMAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD440C1CD3428F00012B31 /* MMAlertView.xib */; };
 		B9AD440F1CD3961300012B31 /* lauch-screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B9AD440E1CD3961300012B31 /* lauch-screen.jpg */; };
@@ -328,6 +330,8 @@
 
 /* Begin PBXFileReference section */
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
+		B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultDTO.m; path = search/SearchResultDTO.m; sourceTree = "<group>"; };
 		B91731511CD1A30100C29698 /* NSDateComponents+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateComponents+Utils.h"; path = "common/NSDateComponents+Utils.h"; sourceTree = "<group>"; };
 		B91731521CD1A30100C29698 /* NSDateComponents+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateComponents+Utils.m"; path = "common/NSDateComponents+Utils.m"; sourceTree = "<group>"; };
 		B91731551CD1C9E600C29698 /* MMTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMTimer.h; path = timer/MMTimer.h; sourceTree = "<group>"; };
@@ -750,6 +754,8 @@
 		B9A780411CD9E32E00A89047 /* ProductRecommendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductRecommendView.xib; path = buy/ProductRecommendView.xib; sourceTree = "<group>"; };
 		B9A780431CD9E34D00A89047 /* ProductRecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductRecommendView.h; path = buy/ProductRecommendView.h; sourceTree = "<group>"; };
 		B9A780441CD9E34D00A89047 /* ProductRecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductRecommendView.m; path = buy/ProductRecommendView.m; sourceTree = "<group>"; };
+		B9A780471CD9FC2900A89047 /* HttpSupplyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSupplyRequest.h; path = restful/HttpSupplyRequest.h; sourceTree = "<group>"; };
+		B9A780481CD9FC2900A89047 /* HttpSupplyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSupplyRequest.m; path = restful/HttpSupplyRequest.m; sourceTree = "<group>"; };
 		B9AD44091CD3427E00012B31 /* MMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAlertView.h; path = common/MMAlertView.h; sourceTree = "<group>"; };
 		B9AD440A1CD3427E00012B31 /* MMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAlertView.m; path = common/MMAlertView.m; sourceTree = "<group>"; };
 		B9AD440C1CD3428F00012B31 /* MMAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MMAlertView.xib; path = common/MMAlertView.xib; sourceTree = "<group>"; };
@@ -866,6 +872,15 @@
 				14ACAF7E869FA5D74648BBDD /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9156F2C1CDA3C1A0041E535 /* modal */ = {
+			isa = PBXGroup;
+			children = (
+				B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */,
+				B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */,
+			);
+			name = modal;
 			sourceTree = "<group>";
 		};
 		B91731541CD1C90600C29698 /* timer */ = {
@@ -1201,6 +1216,7 @@
 				B91896FF1CD10EE00061D0B6 /* RestURL.h */,
 				B91732771CD2036300C29698 /* BaseHttpRequest.h */,
 				B91732781CD2036300C29698 /* BaseHttpRequest.m */,
+				B9A780461CD9FBFF00A89047 /* supply */,
 				B9AD46061CD4E77300012B31 /* signup */,
 				B9AD46051CD4E76500012B31 /* login */,
 			);
@@ -1745,6 +1761,7 @@
 		B99D13141CC7A6E5000DFF95 /* product */ = {
 			isa = PBXGroup;
 			children = (
+				B9156F2C1CDA3C1A0041E535 /* modal */,
 				B91896741CCDB8C60061D0B6 /* view */,
 				B99D13151CC7A813000DFF95 /* ProductViewController.h */,
 				B99D13161CC7A813000DFF95 /* ProductViewController.m */,
@@ -1765,6 +1782,15 @@
 				B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		B9A780461CD9FBFF00A89047 /* supply */ = {
+			isa = PBXGroup;
+			children = (
+				B9A780471CD9FC2900A89047 /* HttpSupplyRequest.h */,
+				B9A780481CD9FC2900A89047 /* HttpSupplyRequest.m */,
+			);
+			name = supply;
 			sourceTree = "<group>";
 		};
 		B9AD44171CD39FAA00012B31 /* KeychainItemWrapper */ = {
@@ -2096,6 +2122,7 @@
 				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
 				B917323F1CD1F05400C29698 /* FlipOutYAnimation.m in Sources */,
 				B91732481CD1F05400C29698 /* RotateOutDownLeftAnimation.m in Sources */,
+				B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */,
 				B917324A1CD1F05400C29698 /* RotateOutUpRightAnimation.m in Sources */,
 				B91896821CCDDB790061D0B6 /* ProductMiddleCell.m in Sources */,
 				B91732551CD1F05500C29698 /* SlideOutUpAnimation.m in Sources */,
@@ -2195,6 +2222,7 @@
 				B98878BA1CC9B94300990AA4 /* SegmentedCell.m in Sources */,
 				B917321A1CD1F05400C29698 /* SwingAnimation.m in Sources */,
 				B91732451CD1F05400C29698 /* RotateInUpLeftAnimation.m in Sources */,
+				B9A780491CD9FC2900A89047 /* HttpSupplyRequest.m in Sources */,
 				B9AD46291CD6523100012B31 /* M80AttributedLabelAttachment.m in Sources */,
 				B91732321CD1F05400C29698 /* FadeOutAnimation.m in Sources */,
 				B917323A1CD1F05400C29698 /* FadeOutUpBigAnimation.m in Sources */,

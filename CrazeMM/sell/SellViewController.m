@@ -8,6 +8,7 @@
 
 #import "SellViewController.h"
 #import "SellItemCell.h"
+#import "HttpSupplyRequest.h"
 
 @interface SellViewController ()
 
@@ -19,6 +20,13 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"189 疯狂买卖王 供货";
+    
+    HttpSupplyRequest* supplyRequest = [[HttpSupplyRequest alloc] init];
+    [supplyRequest request]
+    .then(^(id responseObject){
+        NSLog(@"%@", responseObject);
+    });
+    
 }
 
 
