@@ -16,7 +16,6 @@
 
 @property (nonatomic) BOOL isLogined;
 @property (nonatomic, strong) KeychainItemWrapper* keyChainWrapper;
-
 @end
 
 @implementation UserCenter
@@ -62,6 +61,17 @@ static UserCenter *defaultUserCenter = nil;
     [self.keyChainWrapper setObject:user forKey:(id)kSecAttrAccount];
     [self.keyChainWrapper setObject:password forKey:(id)kSecValueData];
 }
+
+//-(void)setCookie:(NSString *)cookie
+//{
+//    //[self.keyChainWrapper setObject:cookie forKey:(id)kSecValueData];
+//    _cookie = cookie;
+//}
+//
+//-(NSString*)cookie
+//{
+//    //[self.keyChainWrapper setObject:cookie forKey:(id)kSecValueData];
+//}
 
 -(NSString*)userNameInKeychain
 {

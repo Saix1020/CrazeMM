@@ -43,7 +43,6 @@
                           @"pwd" : self.password, //密码，必须
                           @"remember" : @(self.remember) //是否记录用户名
                           } mutableCopy];;
-
     }
     
 
@@ -114,7 +113,10 @@
     }
 }
 
-
+-(NSString*)errorMsg
+{
+    return [NSString stringWithFormat:@"%@: %@", [super errorMsg], [self errorDetail]];
+}
 
 
 @end

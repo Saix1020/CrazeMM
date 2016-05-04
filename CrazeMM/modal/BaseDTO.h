@@ -11,6 +11,7 @@
 @interface BaseDTO : NSObject
 
 //@property (nonatomic, strong) RACSignal* rac_signal;
+@property (nonatomic) NSInteger id;
 
 
 -(void)decode:(NSDictionary *)dic;

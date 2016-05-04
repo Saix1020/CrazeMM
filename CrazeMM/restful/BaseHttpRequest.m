@@ -28,6 +28,12 @@ typedef enum {
 -(AFHTTPRequestOperationManager*)manager
 {
     AFHTTPRequestOperationManager* mgr = [AFHTTPRequestOperationManager manager];
+    
+    NSURL* url = [NSURL URLWithString:COMB_URL(@"")];
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+    NSDictionary* requestHeaderFieldsWithCookies = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+    [mgr.requestSerializer setValue:requestHeaderFieldsWithCookies[@"Cookie"] forHTTPHeaderField:@"Cookie"];
+    
     return mgr;
 }
 
@@ -176,8 +182,12 @@ typedef enum {
 
 -(AFPromise*)getTokenThenDoRequest
 {
+    //NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL: [NSURL URLWithString: @"http://b.189mm.com"]];
+
+    
     return [self.manager GET:COMB_URL(GET_TOKEN_PATH) parameters:[self getTokenParams]]
     .then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
         if (![responseObject[@"ok"] boolValue]) {
             return [BaseHttpRequest httpRequestError:[NSString stringWithFormat:@"Get %@ Failed!", [self getTokenParams][@"name"]]];
         }
@@ -228,6 +238,7 @@ typedef enum {
 -(AFPromise*)doPutRequst
 {
     return [self.manager PUT:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return responseObject;
     });
@@ -236,6 +247,7 @@ typedef enum {
 -(AFPromise*)doPostRequest
 {
     return [self.manager POST:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return responseObject;
     });
@@ -245,6 +257,8 @@ typedef enum {
 -(AFPromise*)doGetRequest
 {
     return [self.manager GET:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
+
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return responseObject;
     });
@@ -253,6 +267,8 @@ typedef enum {
 -(AFPromise*)doDeleteRequest
 {
     return [self.manager DELETE:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
+
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return responseObject;
     });
@@ -261,6 +277,8 @@ typedef enum {
 -(AFPromise*)doHeadRequest
 {
     return [self.manager HEAD:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
+
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return [responseObject promise];
     });
@@ -299,6 +317,8 @@ typedef enum {
 -(AFPromise*)doPostRequestWithSessionManage:(AFHTTPSessionManager*)sessionManage
 {
     return [self.manager POST:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
+
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return responseObject;
     });
@@ -308,6 +328,8 @@ typedef enum {
 -(AFPromise*)doGetRequestWithSessionManage:(AFHTTPSessionManager*)sessionManage
 {
     return [sessionManage GET:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
+
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return responseObject;
     });
@@ -316,6 +338,8 @@ typedef enum {
 -(AFPromise*)doDeleteRequestWithSessionManage:(AFHTTPSessionManager*)sessionManage
 {
     return [sessionManage DELETE:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
+
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return responseObject;
     });
@@ -324,6 +348,8 @@ typedef enum {
 -(AFPromise*)doHeadRequestWithSessionManage:(AFHTTPSessionManager*)sessionManage
 {
     return [sessionManage HEAD:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        NSLog(@"response status: %ld,  header : %@", operation.response.statusCode, operation.response.allHeaderFields);
+
         self.response = [[[self responseClass] alloc] initWith:responseObject];
         return responseObject;
     });
@@ -367,7 +393,7 @@ typedef enum {
     
     NSString* ok = self.all[@"ok"];
     if (ok) {
-        return [ok boolValue];
+        return [ok intValue] != 0;
     }
     else {
         return NO;

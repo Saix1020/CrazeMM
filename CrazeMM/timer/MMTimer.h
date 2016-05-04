@@ -12,6 +12,8 @@
 
 
 @property (nonatomic, strong) RACSignal* oneSecondSignal;
+@property (nonatomic, strong) RACSignal* oneMinuteSignal;
+
 
 + (MMTimer *)sharedInstance;
 

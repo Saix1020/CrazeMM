@@ -35,15 +35,24 @@ static MMTimer *sharedInstance = nil;
     return _oneSecondSignal;
 }
 
+-(RACSignal*)oneMinuteSignal
+{
+    if (!_oneMinuteSignal) {
+        _oneMinuteSignal = [RACSignal interval:60 onScheduler:[RACScheduler mainThreadScheduler]];
+    }
+    
+    return _oneMinuteSignal;
+}
+
 
 +(RACSignal*)createTimer:(NSTimeInterval*)interval andStopFlag:(BOOL)flag
 {
     
-    return  [[RACSignal interval:4 onScheduler:[RACScheduler mainThreadScheduler]
-                               ]
-                              takeUntilBlock:^BOOL (id x){
-                                  return flag;
-                              }];
+    return  [[RACSignal interval:4
+                     onScheduler:[RACScheduler mainThreadScheduler]]
+                    takeUntilBlock:^BOOL (id x){
+                        return flag;
+                    }];
 }
 
 
