@@ -10,6 +10,9 @@
 #import "UIScrollView+TPKeyboardAvoidingAdditions.h"
 #import "HttpMobileExistCheckRequest.h"
 #import "HttpGenMobileVcodeRequest.h"
+#import "HttpCheckMessageCodeRequest.h"
+#import "HttpSignupRequest.h"
+#import "LoginViewController.h"
 
 
 #define kLeadingPad 16.f
@@ -80,7 +83,9 @@
     self.passwordRightView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
     [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
     [self.passwordRightView sizeToFit];
+    @weakify(self)
     self.passwordRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
+        @strongify(self);
         NSString *tempString = self.passwordField.text;
         self.passwordField.text = @"";
         
@@ -148,14 +153,69 @@
 //        return [RACSignal empty];
 //    }];
     
-    @weakify(self);
-    RACSignal *validUsernameSignal = [self.phoneTextField.rac_textSignal
+    self.phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
+    self.pinTextFiled.keyboardType = UIKeyboardTypeNumberPad;
+    
+    RACSignal *validPhoneSignal = [self.phoneTextField.rac_textSignal
                                       map:^id(NSString *text) {
                                           @strongify(self);
                                           return @([self isValidPhoneNumber:text]);
                                       }];
+    RACSignal *validPinSignal = [self.pinTextFiled.rac_textSignal
+                                      map:^id(NSString *text) {
+                                          @strongify(self);
+                                          return @([self isValidPin:text]);
+                                      }];
+    
+    RACSignal *validPasswordSignal = [self.passwordField.rac_textSignal
+                                 map:^id(NSString *text) {
+                                     @strongify(self);
+                                     return @([self isPasswordValid:text]);
+                                 }];
     
     
+    RACSignal *signUpActiveSignal =
+    [RACSignal combineLatest:@[validPinSignal, validPhoneSignal, validPasswordSignal]
+                      reduce:^id(NSNumber*pinValid, NSNumber *phoneValid, NSNumber *passordValid){
+                          return @([pinValid boolValue] && [phoneValid boolValue] && [passordValid boolValue]);
+                      }];
+    [signUpActiveSignal subscribeNext:^(NSNumber* signupActive){
+        @strongify(self);
+        self.finishButton.enabled = [signupActive boolValue];
+        if(!self.finishButton.enabled){
+            self.finishButton.backgroundColor = [UIColor whiteColor];
+            [self.finishButton setTitleColor: RGBCOLOR(200, 200, 200)  forState:UIControlStateDisabled];
+            
+        }
+        else {
+            self.finishButton.backgroundColor = [UIColor greenTextColor];
+            [self.finishButton setTitleColor: [UIColor whiteColor]  forState:UIControlStateNormal];
+            
+        }
+    }];
+    
+    
+    [self.finishButton addTarget:self action:@selector(finishSignup:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+-(BOOL)isPasswordValid:(NSString*)password
+{
+    return password.length > 0;
+}
+
+-(BOOL)isValidPin:(NSString*)pin
+{
+    NSString *parten = @"^\\d{6}$";
+    NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:parten options:NSRegularExpressionCaseInsensitive error:nil];
+    NSArray* match = [reg matchesInString:pin options:NSMatchingReportCompletion range:NSMakeRange(0, [pin length])];
+    
+    if (match.count == 0){
+        return NO;
+    }
+    
+    return YES;
+
 }
 
 -(BOOL)isValidPhoneNumber:(NSString*)phoneNumber
@@ -174,44 +234,130 @@
     return YES;
 }
 
+-(void)finishSignup:(UIButton*)sender
+{
+    
+//    [self showAlertViewWithMessage:@"注册成功, 欢迎使用189疯狂买卖"];
+    
+//    NSArray* controllers = self.navigationController.viewControllers;
+//    NSMutableArray* newVCs = [[NSMutableArray alloc] init];
+//    // we should pop login vc
+//    if (controllers.count > 2) {
+//
+//        for (UIViewController* vc in controllers) {
+//             if (![vc isMemberOfClass:[LoginViewController class]]) {
+//                 [newVCs addObject:vc];
+//             }
+//        }
+//        self.navigationController.viewControllers = [newVCs copy];
+//    }
+//    
+//    [UserCenter defaultCenter].userName = self.phoneTextField.text;
+//    [[UserCenter defaultCenter] setLogined];
+//
+//    [self.navigationController popViewControllerAnimated:YES];
+//
+//
+//    
+//    return;
+    
+    
+    HttpCheckMessageCodeRequest* checkMessageCode = [[HttpCheckMessageCodeRequest alloc] initWithMobileCode:self.pinTextFiled.text andMobile:self.phoneTextField.text];
+    HttpSignupRequest* signup = [[HttpSignupRequest alloc] initWithMobile:self.phoneTextField.text
+                                                          andCaptchaPhone:self.pinTextFiled.text
+                                                              andPassword:self.passwordField.text];
+    [self showProgressIndicatorWithTitle:@"正在注册..."];
+    [checkMessageCode request]
+    .then(^(id responseObject){
+
+        if (checkMessageCode.response.ok) {
+            return [signup request];
+        }
+        else {
+            return [BaseHttpRequest httpRequestError:checkMessageCode.response.errorMsg];
+
+        }
+    })
+    .then(^(id responseObject){
+
+        if (checkMessageCode.response.ok) {
+            [self showAlertViewWithMessage:@"注册成功, 欢迎使用189疯狂买卖"];
+            
+            NSArray* controllers = self.navigationController.viewControllers;
+            NSMutableArray* newVCs = [[NSMutableArray alloc] init];
+            // we should pop login vc
+            //if (controllers.count > 2) {
+                
+                for (UIViewController* vc in controllers) {
+                    if (![vc isMemberOfClass:[LoginViewController class]]) {
+                        [newVCs addObject:vc];
+                    }
+                }
+                self.navigationController.viewControllers = [newVCs copy];
+            //}
+            
+            [UserCenter defaultCenter].userName = self.phoneTextField.text;
+            [[UserCenter defaultCenter] setLogined];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            return (AnyPromise*)responseObject;
+        }
+        else {
+            return [BaseHttpRequest httpRequestError:signup.response.errorMsg];
+            
+        }
+    })
+    .catch(^(NSError *error){
+
+        [self showAlertViewWithMessage:error.localizedDescription];
+        
+        NSLog(@"error happened: %@", error.localizedDescription);
+        NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
+    })
+    .finally(^(){
+
+        [self dismissProgressIndicator];
+    });
+}
+
 -(void)pinButtonClicked:(UIButton*)sender
 {
     
-    if (self.pinTextFiled.text.length != 13) {
-        
-    }
-    
+    self.pinButton.enabled = NO;
+
     NSString* phoneNumber = [self.phoneTextField.text copy];
     if (![self isValidPhoneNumber:phoneNumber]) {
         [self showAlertViewWithMessage:@"请输入正确的11位手机号码"];
+        self.pinButton.enabled = YES;
 
         return;
     }
     
-    
-    
     HttpMobileExistCheckRequest* mobileExistCheckrequest = [[HttpMobileExistCheckRequest alloc] initWithMobile:phoneNumber];
     HttpGenMobileVcodeRequest* genMobileVcodeRequest = [[HttpGenMobileVcodeRequest alloc] initWithMobile:phoneNumber];
 
+    [self showProgressIndicatorWithTitle:@"正在获取手机验证码..."];
+
+    @weakify(self);
     [mobileExistCheckrequest request]
     .then(^(id responseObject, AFHTTPRequestOperation *operation){
+
         NSLog(@"%@", responseObject);
         if (mobileExistCheckrequest.response.ok) {
             return [genMobileVcodeRequest request];
         }
         else {
             
-            return [BaseHttpRequest httpRequestError:@"该手机号已注册"];
+            return [BaseHttpRequest httpRequestError:mobileExistCheckrequest.response.errorMsg];
         }
     })
     .then(^(id responseObject, AFHTTPRequestOperation *operation){
          NSLog(@"%@", responseObject);
-        
         if (genMobileVcodeRequest.response.ok) {
             
             [self showAlertViewWithMessage:@"获取手机验证码成功"];
             
-            sender.enabled = NO;
             self.pinButtonFronzenLeftTime = 60;
             [self.pinButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
             
@@ -232,10 +378,16 @@
         }
     })
     .catch(^(NSError *error){
+
+        self.pinButton.enabled = YES;
         [self showAlertViewWithMessage:error.localizedDescription];
 
         NSLog(@"error happened: %@", error.localizedDescription);
         NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
+    })
+    .finally(^(){
+
+        [self dismissProgressIndicator];
     });
 
 }
@@ -297,6 +449,11 @@
     UIScrollView* scrollView = (UIScrollView*)self.view;
     [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
 
+}
+
+-(void)dealloc
+{
+    NSLog(@"Dealloc SignViewController!");
 }
 
 @end

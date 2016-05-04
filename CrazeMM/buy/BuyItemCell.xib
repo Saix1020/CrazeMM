@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="360" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="360" height="119.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="360" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wxn-nj-EYP">
@@ -22,17 +22,17 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="XXXXX" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y64-L2-OuL">
-                        <rect key="frame" x="17" y="22" width="31" height="16"/>
+                        <rect key="frame" x="18" y="22" width="36" height="16"/>
                         <color key="backgroundColor" red="0.0" green="0.68627452850000004" blue="0.31372550129999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="31" id="h0B-hq-ikT"/>
+                            <constraint firstAttribute="width" constant="36" id="h0B-hq-ikT"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="triangle" translatesAutoresizingMaskIntoConstraints="NO" id="CzN-yV-uOm">
-                        <rect key="frame" x="18" y="32" width="6" height="6"/>
+                        <rect key="frame" x="18" y="38" width="6" height="6"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="6" id="0ua-5J-HZT"/>
                             <constraint firstAttribute="height" constant="6" id="iQd-vD-Wln"/>
@@ -66,33 +66,34 @@
                 <constraints>
                     <constraint firstItem="Wxn-nj-EYP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="3yq-oW-5RC"/>
                     <constraint firstItem="tmA-0I-pjR" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="BQS-Xq-2UP"/>
-                    <constraint firstItem="Wxn-nj-EYP" firstAttribute="leading" secondItem="Y64-L2-OuL" secondAttribute="trailing" constant="-24" id="Deo-Ej-5DD"/>
+                    <constraint firstItem="Wxn-nj-EYP" firstAttribute="leading" secondItem="Y64-L2-OuL" secondAttribute="trailing" constant="-29" id="Deo-Ej-5DD"/>
                     <constraint firstItem="Wxn-nj-EYP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EgC-Gb-iNL"/>
-                    <constraint firstItem="Y64-L2-OuL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="GOf-td-uUz"/>
+                    <constraint firstItem="Y64-L2-OuL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="GOf-td-uUz"/>
                     <constraint firstItem="tmA-0I-pjR" firstAttribute="trailing" secondItem="E11-jB-e8O" secondAttribute="trailing" id="J2c-rF-hhG"/>
                     <constraint firstItem="Wxn-nj-EYP" firstAttribute="top" secondItem="Y64-L2-OuL" secondAttribute="bottom" constant="-30" id="NIk-F3-R4t"/>
                     <constraint firstItem="CzN-yV-uOm" firstAttribute="top" secondItem="Y64-L2-OuL" secondAttribute="bottom" id="Qk3-lb-sNR"/>
                     <constraint firstItem="z1D-Aw-9bW" firstAttribute="leading" secondItem="myK-2J-8aY" secondAttribute="leading" id="Tdm-cZ-l7N"/>
                     <constraint firstAttribute="bottomMargin" secondItem="E11-jB-e8O" secondAttribute="bottom" constant="-9" id="Tm5-w3-YFe"/>
-                    <constraint firstItem="CzN-yV-uOm" firstAttribute="leading" secondItem="Y64-L2-OuL" secondAttribute="leading" constant="1" id="Tx5-fR-fn2"/>
+                    <constraint firstItem="CzN-yV-uOm" firstAttribute="leading" secondItem="Y64-L2-OuL" secondAttribute="leading" id="Tx5-fR-fn2"/>
                     <constraint firstAttribute="bottomMargin" secondItem="CzN-yV-uOm" secondAttribute="bottom" constant="67" id="Ueg-V1-ctq"/>
                     <constraint firstItem="z1D-Aw-9bW" firstAttribute="trailing" secondItem="tmA-0I-pjR" secondAttribute="trailing" id="XkJ-bp-6AK"/>
                     <constraint firstItem="myK-2J-8aY" firstAttribute="leading" secondItem="Wxn-nj-EYP" secondAttribute="trailing" constant="14" id="Zu5-58-2G9"/>
                     <constraint firstItem="z1D-Aw-9bW" firstAttribute="top" secondItem="myK-2J-8aY" secondAttribute="bottom" constant="8" symbolic="YES" id="aLI-se-8hu"/>
                     <constraint firstItem="tmA-0I-pjR" firstAttribute="leading" secondItem="Wxn-nj-EYP" secondAttribute="trailing" constant="8" symbolic="YES" id="dEb-hD-Esm"/>
                     <constraint firstItem="Y64-L2-OuL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="14" id="eTq-LN-ZiJ"/>
-                    <constraint firstItem="Wxn-nj-EYP" firstAttribute="top" secondItem="Y64-L2-OuL" secondAttribute="bottom" constant="-24" id="foJ-9P-hHg"/>
+                    <constraint firstItem="Wxn-nj-EYP" firstAttribute="top" secondItem="Y64-L2-OuL" secondAttribute="bottom" constant="-30" id="foJ-9P-hHg"/>
                     <constraint firstItem="E11-jB-e8O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="gEU-Wn-HST"/>
                     <constraint firstItem="Wxn-nj-EYP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="iu1-p1-EQU"/>
                     <constraint firstItem="tmA-0I-pjR" firstAttribute="top" secondItem="z1D-Aw-9bW" secondAttribute="bottom" constant="8" symbolic="YES" id="mje-Y9-j5C"/>
                     <constraint firstItem="tmA-0I-pjR" firstAttribute="bottom" secondItem="Wxn-nj-EYP" secondAttribute="bottom" id="rnN-UE-3xU"/>
                     <constraint firstItem="z1D-Aw-9bW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="52" id="tKr-ga-ZOE"/>
                     <constraint firstAttribute="trailingMargin" secondItem="myK-2J-8aY" secondAttribute="trailing" constant="13" id="txQ-eO-LQT"/>
-                    <constraint firstItem="myK-2J-8aY" firstAttribute="leading" secondItem="Y64-L2-OuL" secondAttribute="trailing" constant="90" id="ugJ-tI-YpM"/>
+                    <constraint firstItem="myK-2J-8aY" firstAttribute="leading" secondItem="Y64-L2-OuL" secondAttribute="trailing" constant="84" id="ugJ-tI-YpM"/>
                     <constraint firstItem="myK-2J-8aY" firstAttribute="top" secondItem="Wxn-nj-EYP" secondAttribute="top" id="vdm-tO-ayO"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="Deo-Ej-5DD"/>
                         <exclude reference="NIk-F3-R4t"/>
                         <exclude reference="iu1-p1-EQU"/>
                         <exclude reference="eTq-LN-ZiJ"/>

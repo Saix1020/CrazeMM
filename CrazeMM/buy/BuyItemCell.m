@@ -49,6 +49,7 @@
     self.bottomLine.layer.borderWidth = 0.5;
     self.bottomLine.layer.borderColor = [UIColor lightGrayColor188].CGColor;
     self.statusLabel.backgroundColor = [UIColor greenTextColor];
+    self.statusLabel.adjustsFontSizeToFitWidth = YES;
 
     self.phoneImageView.layer.borderWidth = 1;
     self.phoneImageView.layer.borderColor = [UIColor lightGrayColor188].CGColor;

@@ -31,6 +31,28 @@
     }
     return self;
 }
+-(instancetype)initWithMobile:(NSString*)mobile andCaptchaPhone:(NSString*)captchaPhone andPassword:(NSString*)password
+{
+    self = [self init];
+    if (self) {
+        self.params =  [@{
+                          @"mobile" : mobile,
+                          @"captchaPhone" : captchaPhone,
+                          @"userType" : @(0),
+                          @"password" : password,
+                          @"passwordConfirm" : password,
+                          } mutableCopy];
+    }
+    return self;
+}
+
+-(AFHTTPRequestOperationManager*)manager
+{
+    AFHTTPRequestOperationManager* mgr = [AFHTTPRequestOperationManager manager];
+    
+    [mgr.requestSerializer setValue:@"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36" forHTTPHeaderField:@"User-Agent"];
+    return mgr;
+}
 
 -(BOOL)needToken
 {
@@ -52,4 +74,17 @@
     return @"POST";
 }
 
+-(Class)responseClass
+{
+    return [HttpSignupResponse class];
+}
+
 @end
+
+@implementation HttpSignupResponse
+
+
+
+
+@end
+

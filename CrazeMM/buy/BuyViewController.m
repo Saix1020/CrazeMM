@@ -16,7 +16,10 @@
 #import "SearchViewController.h"
 #import "ProductViewController.h"
 #import "ProductDescriptionDTO.h"
-#import "ProductListCell.h"
+#import "TTModalView.h"
+#import "ProductRecommendView.h"
+#import "LoginViewController.h"
+#import "SignViewController.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -39,10 +42,57 @@
 @property (nonatomic) BOOL stopTimer;
 
 @property (nonatomic, strong) NSMutableArray* dataSource;
+@property (nonatomic, strong) TTModalView* productRecommendAlertView;
 
 @end
 
 @implementation BuyViewController
+
+-(TTModalView*)productRecommendAlertView
+{
+    if (!_productRecommendAlertView) {
+        //        TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
+        //        confirmModalView.isCancelAble = YES;
+        //        confirmModalView.modalWindowLevel = UIWindowLevelNormal;
+        //
+        //        MMAlertViewWithOK *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertViewWithOK" owner:nil options:nil] lastObject];
+        //        transferAlertView.layer.cornerRadius = 6.f;
+        //
+        //        transferAlertView.alertMsgLabel.text = message;
+        //        confirmModalView.contentView = transferAlertView;
+        //
+        //        confirmModalView.presentAnimationStyle = zoomIn;
+        //        confirmModalView.dismissAnimationStyle = zoomOut ;
+        //
+        //        [confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+        //
+        //            contentView.centerX = self.view.centerX;
+        //            contentView.centerY = self.view.centerY;
+        //
+        //
+        //            transferAlertView.comfirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+        //                [confirmModalView dismiss];
+        //                return [RACSignal empty];
+        //            }];
+        //        }];
+
+        
+        _productRecommendAlertView = [[TTModalView alloc] initWithContentView:nil delegate:nil];
+        _productRecommendAlertView.isCancelAble = YES;
+        _productRecommendAlertView.modalWindowLevel = UIWindowLevelNormal;
+        
+        ProductRecommendView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"ProductRecommendView" owner:nil options:nil] lastObject];
+        transferAlertView.layer.cornerRadius = 6.f;
+        
+//        transferAlertView.alertMsgLabel.text = message;
+        _productRecommendAlertView.contentView = transferAlertView;
+        
+        _productRecommendAlertView.presentAnimationStyle = RotateIn;
+        _productRecommendAlertView.dismissAnimationStyle = RotateOut ;
+    }
+    
+    return _productRecommendAlertView;
+}
 
 -(UIBarButtonItem*)searchButtonItem
 {
@@ -255,6 +305,35 @@
 {
     [super viewDidAppear:animated];
     [self.tabBarController setTabBarHidden:NO animated:YES];
+    
+    if (![[UserCenter defaultCenter] isLogined]) {
+        @weakify(self);
+        [self.productRecommendAlertView showWithDidAddContentBlock:^(UIView *contentView) {
+            
+            @strongify(self);
+            contentView.centerX = self.view.centerX;
+            contentView.centerY = self.view.centerY;
+            
+            ProductRecommendView* transferAlertView = (ProductRecommendView*)contentView;
+            transferAlertView.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                [self.productRecommendAlertView dismiss];
+                
+                [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+                
+                return [RACSignal empty];
+            }];
+            
+            transferAlertView.signupButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                [self.productRecommendAlertView dismiss];
+                
+                [self.navigationController pushViewController:[[SignViewController alloc] init] animated:YES];
+
+                
+                return [RACSignal empty];
+            }];
+        }];
+
+    }
     
 }
 

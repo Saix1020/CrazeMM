@@ -59,4 +59,9 @@
     return [result intValue] == 1;
 }
 
+-(NSString*)errorMsg
+{
+    return @"该手机号已经注册";
+}
+
 @end

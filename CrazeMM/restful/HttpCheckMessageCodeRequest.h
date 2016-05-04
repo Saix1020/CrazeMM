@@ -13,3 +13,7 @@
 -(instancetype)initWithMobileCode:(NSString*)code andMobile:(NSString*)mobile;
 
 @end
+
+@interface HttpCheckMessageCodeResponse : BaseHttpResponse
+
+@end;

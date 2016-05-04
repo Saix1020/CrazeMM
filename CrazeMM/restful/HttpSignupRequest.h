@@ -12,4 +12,10 @@
 
 -(instancetype)initWithMobile:(NSString*)mobile andCaptchaPhone:(NSString*)captchaPhone andPassword:(NSString*)password andPictureCaptcha:(NSString*)pictureCaptcha;
 
+-(instancetype)initWithMobile:(NSString*)mobile andCaptchaPhone:(NSString*)captchaPhone andPassword:(NSString*)password;
+
+@end
+
+@interface HttpSignupResponse : BaseHttpResponse
+
 @end

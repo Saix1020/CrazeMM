@@ -27,7 +27,33 @@
 
 -(NSString*)url
 {
-    return COMB_URL(@"/rest/checkMessageCode");
+    return COMB_URL(@"/rest/checkMessageCode?json");
+}
+
+-(Class)responseClass
+{
+    return [HttpCheckMessageCodeResponse class];
+}
+
+@end
+
+
+@implementation HttpCheckMessageCodeResponse
+
+-(BOOL)ok
+{
+    if (!self.all) {
+        return NO;
+    }
+    else {
+        NSNumber* ok = self.all[@"r"];
+        return [ok intValue] == 1;
+    }
+}
+
+-(NSString*)errorMsg
+{
+    return @"手机验证码错误";
 }
 
 @end

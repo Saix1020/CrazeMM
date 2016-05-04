@@ -191,6 +191,7 @@ typedef enum {
 {
 
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorString                                                                     forKey:NSLocalizedDescriptionKey];
+    
     return (AFPromise*)[[NSError alloc] initWithDomain:CustomErrorDomain code:k189MMHttpRequestFailed userInfo:userInfo];
 }
 

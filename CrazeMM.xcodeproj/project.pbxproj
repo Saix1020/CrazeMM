@@ -241,6 +241,9 @@
 		B99D13231CC86A04000DFF95 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D13221CC86A04000DFF95 /* BaseNavigationController.m */; };
 		B9A780321CD99FF800A89047 /* MMAlertViewWithOK.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A780311CD99FF800A89047 /* MMAlertViewWithOK.m */; };
 		B9A780361CD9A2D000A89047 /* MMAlertViewWithOK.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A780351CD9A2D000A89047 /* MMAlertViewWithOK.xib */; };
+		B9A780401CD9E2D000A89047 /* pop_eg.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A7803F1CD9E2D000A89047 /* pop_eg.png */; };
+		B9A780421CD9E32E00A89047 /* ProductRecommendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A780411CD9E32E00A89047 /* ProductRecommendView.xib */; };
+		B9A780451CD9E34D00A89047 /* ProductRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A780441CD9E34D00A89047 /* ProductRecommendView.m */; };
 		B9AD440B1CD3427E00012B31 /* MMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD440A1CD3427E00012B31 /* MMAlertView.m */; };
 		B9AD440D1CD3428F00012B31 /* MMAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD440C1CD3428F00012B31 /* MMAlertView.xib */; };
 		B9AD440F1CD3961300012B31 /* lauch-screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B9AD440E1CD3961300012B31 /* lauch-screen.jpg */; };
@@ -743,6 +746,10 @@
 		B9A780301CD99FF800A89047 /* MMAlertViewWithOK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAlertViewWithOK.h; path = common/MMAlertViewWithOK.h; sourceTree = "<group>"; };
 		B9A780311CD99FF800A89047 /* MMAlertViewWithOK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAlertViewWithOK.m; path = common/MMAlertViewWithOK.m; sourceTree = "<group>"; };
 		B9A780351CD9A2D000A89047 /* MMAlertViewWithOK.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MMAlertViewWithOK.xib; path = common/MMAlertViewWithOK.xib; sourceTree = "<group>"; };
+		B9A7803F1CD9E2D000A89047 /* pop_eg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_eg.png; sourceTree = "<group>"; };
+		B9A780411CD9E32E00A89047 /* ProductRecommendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductRecommendView.xib; path = buy/ProductRecommendView.xib; sourceTree = "<group>"; };
+		B9A780431CD9E34D00A89047 /* ProductRecommendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductRecommendView.h; path = buy/ProductRecommendView.h; sourceTree = "<group>"; };
+		B9A780441CD9E34D00A89047 /* ProductRecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductRecommendView.m; path = buy/ProductRecommendView.m; sourceTree = "<group>"; };
 		B9AD44091CD3427E00012B31 /* MMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAlertView.h; path = common/MMAlertView.h; sourceTree = "<group>"; };
 		B9AD440A1CD3427E00012B31 /* MMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAlertView.m; path = common/MMAlertView.m; sourceTree = "<group>"; };
 		B9AD440C1CD3428F00012B31 /* MMAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MMAlertView.xib; path = common/MMAlertView.xib; sourceTree = "<group>"; };
@@ -1316,6 +1323,9 @@
 				B992C5831CCB70B500DC49E8 /* ProductSummaryCell.m */,
 				B9FE71F31CD71D0C00F5EC9F /* ProductListCell.h */,
 				B9FE71F41CD71D0C00F5EC9F /* ProductListCell.m */,
+				B9A780411CD9E32E00A89047 /* ProductRecommendView.xib */,
+				B9A780431CD9E34D00A89047 /* ProductRecommendView.h */,
+				B9A780441CD9E34D00A89047 /* ProductRecommendView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1585,6 +1595,7 @@
 				B964F93D1CC3A7FF003E0D44 /* javascript-bridge.html */,
 				B964F9831CC5030C003E0D44 /* slide-0.jpg */,
 				B98878B31CC9993200990AA4 /* avata.png */,
+				B9A7803F1CD9E2D000A89047 /* pop_eg.png */,
 				B964F9871CC50339003E0D44 /* slide-1.jpg */,
 				B964F9851CC50316003E0D44 /* slide-2.jpg */,
 				B9AD440E1CD3961300012B31 /* lauch-screen.jpg */,
@@ -1987,11 +1998,13 @@
 				B98878C31CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png in Resources */,
 				B99D13191CC7AAB2000DFF95 /* fontawesome-webfont.ttf in Resources */,
 				B91896C61CCF38C10061D0B6 /* AddressEditViewController.xib in Resources */,
+				B9A780421CD9E32E00A89047 /* ProductRecommendView.xib in Resources */,
 				B964F98B1CC50344003E0D44 /* slide-3.jpg in Resources */,
 				B99194801CCCA26C0032A393 /* PayBottomView.xib in Resources */,
 				B9A780361CD9A2D000A89047 /* MMAlertViewWithOK.xib in Resources */,
 				B98878861CC896BE00990AA4 /* product_debug.png in Resources */,
 				B91896A81CCF01A20061D0B6 /* LastPayMethodCell.xib in Resources */,
+				B9A780401CD9E2D000A89047 /* pop_eg.png in Resources */,
 				B99194781CCC690E0032A393 /* WaitForPayCell.xib in Resources */,
 				B99D12F91CC66EB9000DFF95 /* KeyWordsCell.xib in Resources */,
 				B991945A1CCBAEFD0032A393 /* BuyProductView.xib in Resources */,
@@ -2225,6 +2238,7 @@
 				B9FE71EB1CD6E70400F5EC9F /* _SearchHistory.m in Sources */,
 				B9AD440B1CD3427E00012B31 /* MMAlertView.m in Sources */,
 				B91732441CD1F05400C29698 /* RotateInDownRightAnimation.m in Sources */,
+				B9A780451CD9E34D00A89047 /* ProductRecommendView.m in Sources */,
 				B91896D61CCFA0140061D0B6 /* PayResultViewController.m in Sources */,
 				B917325F1CD1F05500C29698 /* ZoomOutDownAnimation.m in Sources */,
 				B91731571CD1C9E600C29698 /* MMTimer.m in Sources */,

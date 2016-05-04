@@ -99,6 +99,8 @@
 
     
     [self initLines];
+    self.rememberMeCheckBox.on = YES;
+    
     [self.loginButton bs_configureAsDefaultStyle];
     self.loginButton.enabled = false;
 //    self.loginButton.backgroundColor = RGBCOLOR(200, 200, 200);
@@ -203,7 +205,6 @@
                                                                andRemember:self.rememberMeCheckBox.on];
         [self showProgressIndicatorWithTitle:@"正在登陆..."];
         [request request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
-            [self dismissProgressIndicator];
             if (request.response.ok) {
                 [UserCenter defaultCenter].userName = self.userNameField.text;
                 [[UserCenter defaultCenter] setLogined];
@@ -215,15 +216,16 @@
 
             }
             else {
-                [self showAlertViewWithTitle:request.response.errorTitle andMessage:request.response.errorMsg andDetail:request.response.errorDetail];
+                [self showAlertViewWithMessage:request.response.errorMsg];
             }
             
         }).catch(^(NSError *error){
             NSLog(@"error happened: %@", error.localizedDescription);
             NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
+            [self showAlertViewWithMessage:error.localizedDescription];
+        })
+        .finally(^(){
             [self dismissProgressIndicator];
-            
-            [self showAlertViewWithTitle:@"Login Failed" andMessage:nil andDetail:error.localizedDescription];
         });
         return [RACSignal empty];
     }];
@@ -399,7 +401,10 @@
     [self.popover dismiss];
 }
 
-
+-(void)dealloc
+{
+    NSLog(@"Dealloc LoginViewController");
+}
 
 
 @end
