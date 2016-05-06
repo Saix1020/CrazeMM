@@ -15,4 +15,6 @@
 
 -(UIImage*)image;
 
++(NSString*)leftTimeString:(NSUInteger)millisecond;
+
 @end

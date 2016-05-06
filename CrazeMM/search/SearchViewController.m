@@ -22,9 +22,6 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
     kSectionMax
 };
 
-
-
-
 @interface SearchViewController ()
 
 @property (nonatomic) SearchType searchType;
@@ -56,7 +53,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         _searchBar = [[UISearchBar alloc] init];
         _searchBar.tintColor = [UIColor blueColor];
         _searchBar.placeholder = [NSString stringWithFormat:@"输入你所需要的%@信息", self.searchType==kSearchTypeBuy?@"求购":@"供货"];
-        
+        _searchBar.delegate = self;
 //        @weakify(self);
 //        [_searchBar.rac_textSignal subscribeNext:^(NSString* text) {
 //            @strongify(self);
@@ -70,18 +67,22 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 -(UIBarButtonItem*)searchButtonItem
 {
     if(!_searchButtonItem){
-        _searchButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:nil];
+        _searchButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:nil action:nil];
         @weakify(self);
         [_searchButtonItem setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
             
             // save search keyword to db
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                [SearchHistory createIfNotExist:self.searchBar.text andManagedObjectContext:self.managedObjectcontent];
-            });
-
+            if (self.searchBar.text.length>0) {
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    [SearchHistory createIfNotExist:self.searchBar.text andManagedObjectContext:self.managedObjectcontent];
+                });
+            }
             SearchListViewController* searchListVC = [[SearchListViewController alloc] initWithKeyword:self.searchBar.text];
             [self.navigationController pushViewController:searchListVC animated:YES];
+            self.searchBar.text = @"";
+            [self.searchBar resignFirstResponder];
+
             return [RACSignal empty];
         }]];
     }
@@ -155,7 +156,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
     [self.tableView registerNib:[UINib nibWithNibName:@"SearchHistoryCell" bundle:nil] forCellReuseIdentifier:@"SearchHistoryCell"];
 
     
-    self.searchKeywords = [@[@"AAAA", @"BBBB", @"CCCCCCCCCCC", @"DDDDDDDDDD", @"EEEEE"] mutableCopy];
+    self.searchKeywords = [@[@"苹果6", @"美图", @"诺基亚", @"Samsung/三星", @"小米", @"华为"] mutableCopy];
 //    self.searchHistory = [@[@"AAAA", @"BBBB", @"CCCCCCCCCCC", @"DDDDDDDDDD", @"EEEEE"] mutableCopy];
     @weakify(self);
     [self.keywordsCell setKeywords:self.searchKeywords andBlock:^(id sender){
@@ -360,6 +361,24 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         default:
             break;
     }
+}
+
+
+#pragma -- searchBar delegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    self.searchBar.text = @"";
+    [self.searchBar resignFirstResponder];
+    // save search keyword to db
+    if (self.searchBar.text.length>0) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            [SearchHistory createIfNotExist:self.searchBar.text andManagedObjectContext:self.managedObjectcontent];
+        });
+    }
+    
+    
+    SearchListViewController* searchListVC = [[SearchListViewController alloc] initWithKeyword:self.searchBar.text];
+    [self.navigationController pushViewController:searchListVC animated:YES];
 }
 
 @end

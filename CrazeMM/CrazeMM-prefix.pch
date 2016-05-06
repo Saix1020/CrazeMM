@@ -23,6 +23,7 @@
 #import "UIColor+Utils.h"
 #import "UIView+FrameEx.h"
 #import "UIImageView+Utils.h"
+#import "UIImage+Utils.h"
 #import "LLBootstrap.h"
 #import "UIColor+Helper.h"
 #import "UIButton+Utils.h"

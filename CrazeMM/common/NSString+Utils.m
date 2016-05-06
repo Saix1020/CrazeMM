@@ -30,4 +30,13 @@
     return [UIImage imageNamed:self];
 }
 
++(NSString*)leftTimeString:(NSUInteger)millisecond
+{
+    NSUInteger days = floor(millisecond/1000/3600/24);
+    NSUInteger hours = floor(millisecond/1000/3600%24);
+    NSUInteger mins = floor(((millisecond)% (1000 * 3600))/1000/60);
+    
+    return [NSString stringWithFormat:@"%lu 天 %lu 小时 %lu 分钟", days, hours, mins];
+}
+
 @end

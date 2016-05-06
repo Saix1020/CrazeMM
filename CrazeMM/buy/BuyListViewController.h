@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
 
-@interface BuyViewController : UIViewController<iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface BuyListViewController : UIViewController<iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

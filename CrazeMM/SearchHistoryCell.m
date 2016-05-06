@@ -19,7 +19,7 @@
     self.enableTopLine = YES;
     self.enableButtomLine = YES;
  
-    self.textLabel.font = [UIFont systemFontOfSize:13];
+    self.textLabel.font = [UIFont systemFontOfSize:15];
     self.textLabel.textColor = RGBCOLOR(131, 131, 131);
     
 //    self.selectionStyle = UITableViewCellSelectionStyleNone;

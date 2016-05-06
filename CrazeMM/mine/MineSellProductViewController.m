@@ -49,7 +49,7 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(44.0f);
-        [_segmentCell setTitles:@[@"待支付", @"支付超时", @"代发货"]];
+        [_segmentCell setTitles:@[@"待支付", @"支付超时", @"待发货"]];
         _segmentCell.segment.delegate = self;
     }
     

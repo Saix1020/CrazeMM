@@ -6,7 +6,7 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "BuyViewController.h"
+#import "BuyListViewController.h"
 #import "BuyItemCell.h"
 #import "UISearchBar+RACSignalSupport.h"
 #import "BuySlideDetailViewController.h"
@@ -20,13 +20,14 @@
 #import "ProductRecommendView.h"
 #import "LoginViewController.h"
 #import "SignViewController.h"
+#import "ProductSummaryCell.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
 #define kNumberOfCellPerPage 3
 #define kTotalSlides 5
 
-@interface BuyViewController ()
+@interface BuyListViewController ()
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 @property (nonatomic, strong) iCarousel *carousel;
@@ -48,7 +49,7 @@
 
 @end
 
-@implementation BuyViewController
+@implementation BuyListViewController
 
 -(TTModalView*)productRecommendAlertView
 {
@@ -99,14 +100,14 @@
 -(UIBarButtonItem*)searchButtonItem
 {
     if(!_searchButtonItem){
-        _searchButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search_icon"] style:UIBarButtonItemStylePlain target:self action:nil];
+        _searchButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search_icon"] style:UIBarButtonItemStylePlain target:nil action:nil];
         @weakify(self);
         [_searchButtonItem setRac_command:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
 //            self.navigationItem.rightBarButtonItem = self.cancelButtonItem;
 //            self.navigationItem.titleView = self.searchBar;
 //            [self.searchBar animateToEnabledState:YES];
-            SearchType type = [self isMemberOfClass:[BuyViewController class]]? kSearchTypeBuy : kSearchTypeSell;
+            SearchType type = [self isMemberOfClass:[BuyListViewController class]]? kSearchTypeBuy : kSearchTypeSell;
             SearchViewController* searchVC = [[SearchViewController alloc] initWithType:type];
             [self.navigationController pushViewController:searchVC animated:YES];
             return [RACSignal empty];
@@ -193,8 +194,11 @@
     [self.view addSubview:self.tableView];
     
     UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
+    //view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
+
 
     
     // add some mock data
@@ -211,9 +215,12 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //            [self.items addObject:[NSString stringWithFormat:@"T 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
 //            self.filtedItems = [self.items mutableCopy];
-            ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
-
-            [self.dataSource addObject:dto];
+            for (int i=0; i<10; i++) {
+                ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
+                
+                [self.dataSource addObject:dto];
+            }
+            
             [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
         });
@@ -226,13 +233,18 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //            [self.items addObject:[NSString stringWithFormat:@"B 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
 //            self.filtedItems = [self.items mutableCopy];
-            ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
-            [self.dataSource addObject:dto];
+            for (int i=0; i<10; i++) {
+                ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
+                
+                [self.dataSource addObject:dto];
+            }
 
             [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
         });
     }];
+    self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+
 
     //create carousel
     self.carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, 0, kTableViewHeadHeight)];
@@ -445,20 +457,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [BuyItemCell cellHeight];
+    return [ProductSummaryCell cellHeight];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BuyItemCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BuyItemCell"];
-    cell.productDescDTO = self.dataSource[indexPath.row];
-    if (!cell.timeSignal) {
-        cell.timeSignal = self.updateEventSignal;
-    }
-//    ProductListCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProductListCell"];
-//    if (!cell) {
-//        cell = [[ProductListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductListCell"];
+//    BuyItemCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BuyItemCell"];
+//    cell.productDescDTO = self.dataSource[indexPath.row];
+//    if (!cell.timeSignal) {
+//        cell.timeSignal = self.updateEventSignal;
 //    }
+    ProductSummaryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProductSummaryCell"];
+    if (!cell) {
+        cell = [[ProductSummaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductSummaryCell"];
+        cell.cellType = @"求购";
+    }
     
     return cell;
 }

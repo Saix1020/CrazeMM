@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomSegment.h"
 
 typedef NS_ENUM(NSInteger, MineTableViewSection){
     kSectionOverview = 0,
@@ -17,7 +18,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 };
 
 
-@interface MineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface MineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate>
 
 @property (nonatomic, strong) UITableView* tableView;
 

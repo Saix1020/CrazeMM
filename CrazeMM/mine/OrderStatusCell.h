@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderStatusCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *refundCell;
 
-@property (weak, nonatomic) IBOutlet UIButton *payButton;
-@property (weak, nonatomic) IBOutlet UIButton *receiptCell;
+@property (weak, nonatomic) IBOutlet UIButton *button1;
+@property (weak, nonatomic) IBOutlet UIButton *button2;
+@property (weak, nonatomic) IBOutlet UIButton *button3;
+@property (nonatomic, copy) NSArray* titleArray;
 @end

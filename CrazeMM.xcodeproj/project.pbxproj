@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
+		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
+		B9156F3C1CDB91630041E535 /* SearchEmpty.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9156F3B1CDB91630041E535 /* SearchEmpty.xib */; };
+		B9156F411CDBA41D0041E535 /* HttpOrderSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F401CDBA41D0041E535 /* HttpOrderSummary.m */; };
+		B9156F441CDC5DD90041E535 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F431CDC5DD90041E535 /* UIImage+Utils.m */; };
+		B9156F461CDC617A0041E535 /* ph_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = B9156F451CDC617A0041E535 /* ph_phone.png */; };
+		B9156F471CDC6B1F0041E535 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B91731531CD1A30100C29698 /* NSDateComponents+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731521CD1A30100C29698 /* NSDateComponents+Utils.m */; };
 		B91731571CD1C9E600C29698 /* MMTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731561CD1C9E600C29698 /* MMTimer.m */; };
 		B91732111CD1F05400C29698 /* AnimationBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B917315E1CD1F05400C29698 /* AnimationBuilder.m */; };
@@ -159,8 +165,8 @@
 		B964F9511CC49DF2003E0D44 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B964F94D1CC49DF2003E0D44 /* WelcomeViewController.xib */; };
 		B964F9531CC49DF2003E0D44 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B964F94D1CC49DF2003E0D44 /* WelcomeViewController.xib */; };
 		B964F9571CC4A70E003E0D44 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9561CC4A70E003E0D44 /* TabBarController.m */; };
-		B964F9601CC4A800003E0D44 /* SellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F95F1CC4A800003E0D44 /* SellViewController.m */; };
-		B964F9631CC4A81A003E0D44 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9621CC4A81A003E0D44 /* BuyViewController.m */; };
+		B964F9601CC4A800003E0D44 /* SupplyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F95F1CC4A800003E0D44 /* SupplyListViewController.m */; };
+		B964F9631CC4A81A003E0D44 /* BuyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9621CC4A81A003E0D44 /* BuyListViewController.m */; };
 		B964F96A1CC4AAC6003E0D44 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9691CC4AAC6003E0D44 /* UIColor+Utils.m */; };
 		B964F96C1CC4AAC6003E0D44 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9691CC4AAC6003E0D44 /* UIColor+Utils.m */; };
 		B964F9741CC4B073003E0D44 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9731CC4B073003E0D44 /* MineViewController.m */; };
@@ -223,7 +229,6 @@
 		B99D12D51CC5D4C5000DFF95 /* BuySlideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12D41CC5D4C5000DFF95 /* BuySlideDetailViewController.m */; };
 		B99D12DA1CC5DD7E000DFF95 /* UITabBarController+HideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12D91CC5DD7E000DFF95 /* UITabBarController+HideTabBar.m */; };
 		B99D12DD1CC5F8DC000DFF95 /* UISearchBar+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12DC1CC5F8DC000DFF95 /* UISearchBar+Utils.m */; };
-		B99D12E71CC65A73000DFF95 /* SellItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12E61CC65A73000DFF95 /* SellItemCell.m */; };
 		B99D12EB1CC66045000DFF95 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12EA1CC66045000DFF95 /* SearchViewController.m */; };
 		B99D12F81CC66EB9000DFF95 /* KeyWordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12F61CC66EB9000DFF95 /* KeyWordsCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B99D12F91CC66EB9000DFF95 /* KeyWordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99D12F71CC66EB9000DFF95 /* KeyWordsCell.xib */; };
@@ -332,6 +337,14 @@
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
 		B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultDTO.m; path = search/SearchResultDTO.m; sourceTree = "<group>"; };
+		B9156F311CDA43190041E535 /* HttpSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSearchRequest.h; path = restful/HttpSearchRequest.h; sourceTree = "<group>"; };
+		B9156F321CDA43190041E535 /* HttpSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSearchRequest.m; path = restful/HttpSearchRequest.m; sourceTree = "<group>"; };
+		B9156F3B1CDB91630041E535 /* SearchEmpty.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchEmpty.xib; sourceTree = "<group>"; };
+		B9156F3F1CDBA41D0041E535 /* HttpOrderSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpOrderSummary.h; path = mine/HttpOrderSummary.h; sourceTree = "<group>"; };
+		B9156F401CDBA41D0041E535 /* HttpOrderSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpOrderSummary.m; path = mine/HttpOrderSummary.m; sourceTree = "<group>"; };
+		B9156F421CDC5DD90041E535 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Utils.h"; path = "common/UIImage+Utils.h"; sourceTree = "<group>"; };
+		B9156F431CDC5DD90041E535 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Utils.m"; path = "common/UIImage+Utils.m"; sourceTree = "<group>"; };
+		B9156F451CDC617A0041E535 /* ph_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ph_phone.png; sourceTree = "<group>"; };
 		B91731511CD1A30100C29698 /* NSDateComponents+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateComponents+Utils.h"; path = "common/NSDateComponents+Utils.h"; sourceTree = "<group>"; };
 		B91731521CD1A30100C29698 /* NSDateComponents+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateComponents+Utils.m"; path = "common/NSDateComponents+Utils.m"; sourceTree = "<group>"; };
 		B91731551CD1C9E600C29698 /* MMTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMTimer.h; path = timer/MMTimer.h; sourceTree = "<group>"; };
@@ -617,10 +630,10 @@
 		B964F94D1CC49DF2003E0D44 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = welcome/WelcomeViewController.xib; sourceTree = "<group>"; };
 		B964F9551CC4A70E003E0D44 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarController.h; path = tabbar/TabBarController.h; sourceTree = "<group>"; };
 		B964F9561CC4A70E003E0D44 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarController.m; path = tabbar/TabBarController.m; sourceTree = "<group>"; };
-		B964F95E1CC4A800003E0D44 /* SellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SellViewController.h; path = sell/SellViewController.h; sourceTree = "<group>"; };
-		B964F95F1CC4A800003E0D44 /* SellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SellViewController.m; path = sell/SellViewController.m; sourceTree = "<group>"; };
-		B964F9611CC4A81A003E0D44 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyViewController.h; path = buy/BuyViewController.h; sourceTree = "<group>"; };
-		B964F9621CC4A81A003E0D44 /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyViewController.m; path = buy/BuyViewController.m; sourceTree = "<group>"; };
+		B964F95E1CC4A800003E0D44 /* SupplyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyListViewController.h; path = sell/SupplyListViewController.h; sourceTree = "<group>"; };
+		B964F95F1CC4A800003E0D44 /* SupplyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyListViewController.m; path = sell/SupplyListViewController.m; sourceTree = "<group>"; };
+		B964F9611CC4A81A003E0D44 /* BuyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyListViewController.h; path = buy/BuyListViewController.h; sourceTree = "<group>"; };
+		B964F9621CC4A81A003E0D44 /* BuyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyListViewController.m; path = buy/BuyListViewController.m; sourceTree = "<group>"; };
 		B964F9681CC4AAC6003E0D44 /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Utils.h"; path = "common/UIColor+Utils.h"; sourceTree = "<group>"; };
 		B964F9691CC4AAC6003E0D44 /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Utils.m"; path = "common/UIColor+Utils.m"; sourceTree = "<group>"; };
 		B964F9721CC4B073003E0D44 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineViewController.h; path = mine/MineViewController.h; sourceTree = "<group>"; };
@@ -717,8 +730,6 @@
 		B99D12D91CC5DD7E000DFF95 /* UITabBarController+HideTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+HideTabBar.m"; path = "common/UITabBarController+HideTabBar.m"; sourceTree = "<group>"; };
 		B99D12DB1CC5F8DC000DFF95 /* UISearchBar+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISearchBar+Utils.h"; path = "common/UISearchBar+Utils.h"; sourceTree = "<group>"; };
 		B99D12DC1CC5F8DC000DFF95 /* UISearchBar+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISearchBar+Utils.m"; path = "common/UISearchBar+Utils.m"; sourceTree = "<group>"; };
-		B99D12E51CC65A73000DFF95 /* SellItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellItemCell.h; sourceTree = "<group>"; };
-		B99D12E61CC65A73000DFF95 /* SellItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellItemCell.m; sourceTree = "<group>"; };
 		B99D12E91CC66045000DFF95 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = search/SearchViewController.h; sourceTree = "<group>"; };
 		B99D12EA1CC66045000DFF95 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = search/SearchViewController.m; sourceTree = "<group>"; };
 		B99D12F51CC66EB9000DFF95 /* KeyWordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyWordsCell.h; path = search/KeyWordsCell.h; sourceTree = "<group>"; };
@@ -831,6 +842,7 @@
 			files = (
 				B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */,
 				B9FE71EE1CD6FDD800F5EC9F /* Pods.framework in Frameworks */,
+				B9156F471CDC6B1F0041E535 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,10 +889,35 @@
 		B9156F2C1CDA3C1A0041E535 /* modal */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			name = modal;
+			sourceTree = "<group>";
+		};
+		B9156F341CDA456F0041E535 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				B9156F311CDA43190041E535 /* HttpSearchRequest.h */,
+				B9156F321CDA43190041E535 /* HttpSearchRequest.m */,
+			);
+			name = search;
+			sourceTree = "<group>";
+		};
+		B9156F351CDA47990041E535 /* modal */ = {
+			isa = PBXGroup;
+			children = (
 				B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */,
 				B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */,
 			);
 			name = modal;
+			sourceTree = "<group>";
+		};
+		B9156F3D1CDBA3D80041E535 /* mine */ = {
+			isa = PBXGroup;
+			children = (
+				B9156F3F1CDBA41D0041E535 /* HttpOrderSummary.h */,
+				B9156F401CDBA41D0041E535 /* HttpOrderSummary.m */,
+			);
+			name = mine;
 			sourceTree = "<group>";
 		};
 		B91731541CD1C90600C29698 /* timer */ = {
@@ -1213,9 +1250,11 @@
 		B91732761CD2032600C29698 /* restful */ = {
 			isa = PBXGroup;
 			children = (
+				B9156F3D1CDBA3D80041E535 /* mine */,
 				B91896FF1CD10EE00061D0B6 /* RestURL.h */,
 				B91732771CD2036300C29698 /* BaseHttpRequest.h */,
 				B91732781CD2036300C29698 /* BaseHttpRequest.m */,
+				B9156F341CDA456F0041E535 /* search */,
 				B9A780461CD9FBFF00A89047 /* supply */,
 				B9AD46061CD4E77300012B31 /* signup */,
 				B9AD46051CD4E76500012B31 /* login */,
@@ -1426,7 +1465,7 @@
 				B964F9641CC4AA49003E0D44 /* common */,
 				B99D12E81CC65FCE000DFF95 /* search */,
 				B964F95A1CC4A75E003E0D44 /* buy */,
-				B964F9591CC4A757003E0D44 /* sell */,
+				B964F9591CC4A757003E0D44 /* supply */,
 				B964F9581CC4A747003E0D44 /* mine */,
 				B964F9541CC4A657003E0D44 /* tabbar */,
 				B964F9411CC48D06003E0D44 /* welcome */,
@@ -1521,15 +1560,13 @@
 			name = mine;
 			sourceTree = "<group>";
 		};
-		B964F9591CC4A757003E0D44 /* sell */ = {
+		B964F9591CC4A757003E0D44 /* supply */ = {
 			isa = PBXGroup;
 			children = (
-				B964F95E1CC4A800003E0D44 /* SellViewController.h */,
-				B964F95F1CC4A800003E0D44 /* SellViewController.m */,
-				B99D12E51CC65A73000DFF95 /* SellItemCell.h */,
-				B99D12E61CC65A73000DFF95 /* SellItemCell.m */,
+				B964F95E1CC4A800003E0D44 /* SupplyListViewController.h */,
+				B964F95F1CC4A800003E0D44 /* SupplyListViewController.m */,
 			);
-			name = sell;
+			name = supply;
 			sourceTree = "<group>";
 		};
 		B964F95A1CC4A75E003E0D44 /* buy */ = {
@@ -1537,8 +1574,8 @@
 			children = (
 				B91896E61CD0547F0061D0B6 /* modal */,
 				B91896E51CD0546D0061D0B6 /* view */,
-				B964F9611CC4A81A003E0D44 /* BuyViewController.h */,
-				B964F9621CC4A81A003E0D44 /* BuyViewController.m */,
+				B964F9611CC4A81A003E0D44 /* BuyListViewController.h */,
+				B964F9621CC4A81A003E0D44 /* BuyListViewController.m */,
 				B99D12D31CC5D4C5000DFF95 /* BuySlideDetailViewController.h */,
 				B99D12D41CC5D4C5000DFF95 /* BuySlideDetailViewController.m */,
 				B9FE71F71CD75D2A00F5EC9F /* ProductListViewController.h */,
@@ -1595,6 +1632,8 @@
 				B91732861CD2685100C29698 /* UIViewController+MBProgressHUD.m */,
 				B91732881CD26A7200C29698 /* UIViewController+TTModalView.h */,
 				B91732891CD26A7200C29698 /* UIViewController+TTModalView.m */,
+				B9156F421CDC5DD90041E535 /* UIImage+Utils.h */,
+				B9156F431CDC5DD90041E535 /* UIImage+Utils.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -1605,6 +1644,7 @@
 				B98878C01CC9BB4100990AA4 /* segment_line_Horizontal_orange.png */,
 				B98878C11CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png */,
 				B98878A21CC9100400990AA4 /* sign_background.png */,
+				B9156F451CDC617A0041E535 /* ph_phone.png */,
 				B9FE71D61CD6D39200F5EC9F /* background_alpha.png */,
 				B98878851CC896BE00990AA4 /* product_debug.png */,
 				B99D13181CC7AAB2000DFF95 /* fontawesome-webfont.ttf */,
@@ -1731,6 +1771,7 @@
 		B99D12E81CC65FCE000DFF95 /* search */ = {
 			isa = PBXGroup;
 			children = (
+				B9156F351CDA47990041E535 /* modal */,
 				B99D13071CC72D5A000DFF95 /* view */,
 				B99D12E91CC66045000DFF95 /* SearchViewController.h */,
 				B99D12EA1CC66045000DFF95 /* SearchViewController.m */,
@@ -1754,6 +1795,7 @@
 				B99D13011CC66EFB000DFF95 /* ClearHistoryCell.xib */,
 				B99D13081CC73FDA000DFF95 /* SearchListCell.h */,
 				B99D13091CC73FDA000DFF95 /* SearchListCell.m */,
+				B9156F3B1CDB91630041E535 /* SearchEmpty.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2001,7 +2043,9 @@
 				B918967F1CCDD8DC0061D0B6 /* ProductMiddleView.xib in Resources */,
 				B964F90A1CC39670003E0D44 /* Assets.xcassets in Resources */,
 				B98878B41CC9993200990AA4 /* avata.png in Resources */,
+				B9156F3C1CDB91630041E535 /* SearchEmpty.xib in Resources */,
 				B99D12FE1CC66ED3000DFF95 /* SearchHistoryCell.xib in Resources */,
+				B9156F461CDC617A0041E535 /* ph_phone.png in Resources */,
 				B91896FE1CD0EF460061D0B6 /* AccountDetailCell.xib in Resources */,
 				B9FE72031CD7877D00F5EC9F /* SignWithPicCapViewController.xib in Resources */,
 				B918968D1CCE1D8E0061D0B6 /* FirstAddrCell.xib in Resources */,
@@ -2137,7 +2181,7 @@
 				B91732191CD1F05400C29698 /* ShakeAnimation.m in Sources */,
 				B917326E1CD1F09400C29698 /* TTOverlayView.m in Sources */,
 				B99194731CCC56F90032A393 /* UserCenter.m in Sources */,
-				B964F9601CC4A800003E0D44 /* SellViewController.m in Sources */,
+				B964F9601CC4A800003E0D44 /* SupplyListViewController.m in Sources */,
 				B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */,
 				B9FE71EA1CD6E70400F5EC9F /* UserInfo.m in Sources */,
 				B964F9571CC4A70E003E0D44 /* TabBarController.m in Sources */,
@@ -2159,7 +2203,6 @@
 				B91732871CD2685100C29698 /* UIViewController+MBProgressHUD.m in Sources */,
 				B992C5791CCA5F3200DC49E8 /* MineSegmentCell.m in Sources */,
 				B91897021CD117430061D0B6 /* UINib+Utils.m in Sources */,
-				B99D12E71CC65A73000DFF95 /* SellItemCell.m in Sources */,
 				B917323C1CD1F05400C29698 /* FlipInXAnimation.m in Sources */,
 				B917321E1CD1F05400C29698 /* BounceInAnimation.m in Sources */,
 				B91896A31CCE67BB0061D0B6 /* ProductWithNumberView.m in Sources */,
@@ -2177,6 +2220,7 @@
 				B917326D1CD1F09400C29698 /* TTModalWindow.m in Sources */,
 				B9AD460F1CD4FF0200012B31 /* WaitForDeliverCell.m in Sources */,
 				B991948D1CCCF32F0032A393 /* ProductLadderCell.m in Sources */,
+				B9156F411CDBA41D0041E535 /* HttpOrderSummary.m in Sources */,
 				B917325B1CD1F05500C29698 /* ZoomInLeftAnimation.m in Sources */,
 				B91896D91CCFAFC90061D0B6 /* TransferAlertView.m in Sources */,
 				B91732521CD1F05400C29698 /* SlideOutDownAnimation.m in Sources */,
@@ -2242,8 +2286,10 @@
 				B99D130B1CC73FDA000DFF95 /* SearchListCell.m in Sources */,
 				B99D13201CC7C862000DFF95 /* FilterViewController.m in Sources */,
 				B9AD441A1CD39FB900012B31 /* KeychainItemWrapper.m in Sources */,
+				B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */,
 				B917324F1CD1F05400C29698 /* SlideInRightAnimation.m in Sources */,
 				B91896901CCE20DD0061D0B6 /* MinePayViewController.m in Sources */,
+				B9156F441CDC5DD90041E535 /* UIImage+Utils.m in Sources */,
 				B91732301CD1F05400C29698 /* FadeInUpAnimation.m in Sources */,
 				B9FE71F51CD71D0C00F5EC9F /* ProductListCell.m in Sources */,
 				B99194981CCCF70B0032A393 /* ProductFlageView.m in Sources */,
@@ -2254,7 +2300,7 @@
 				B992C5751CCA282600DC49E8 /* ContactCell.m in Sources */,
 				B918970E1CD11B5F0061D0B6 /* ProductDescriptionDTO.m in Sources */,
 				B98878A61CC98D6200990AA4 /* UIButton+Utils.m in Sources */,
-				B964F9631CC4A81A003E0D44 /* BuyViewController.m in Sources */,
+				B964F9631CC4A81A003E0D44 /* BuyListViewController.m in Sources */,
 				B91732601CD1F05500C29698 /* ZoomOutLeftAnimation.m in Sources */,
 				B91732731CD1F78900C29698 /* CATransform3DExtend.m in Sources */,
 				B99D131C1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.m in Sources */,

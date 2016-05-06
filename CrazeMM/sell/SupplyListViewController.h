@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BuyViewController.h"
+#import "BuyListViewController.h"
 
 // use the same layout with BuyViewController
-@interface SellViewController : BuyViewController
+@interface SupplyListViewController : BuyListViewController
 
 @end
