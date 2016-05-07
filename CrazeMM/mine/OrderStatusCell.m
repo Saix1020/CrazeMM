@@ -15,47 +15,6 @@
     // Initialization code
     self.backgroundColor = [UIColor UIColorFromRGB:0xfff3f3];
     
-//    UILabel* label = [[UILabel alloc] init];
-//    label.font = [UIFont systemFontOfSize:12.f];
-//    label.textColor = [UIColor dark_Gray_Color];
-//    label.text = @"待付款";
-//    [label sizeToFit];
-//    self.payButton.tintColor = [UIColor blackColor];
-//    [self.payButton setImage:[label imageForView] forState:UIControlStateNormal];
-//    [self.payButton setTitle:@"(10)" forState:UIControlStateNormal];
-//
-////    self.payButton.imageEdgeInsets = UIEdgeInsetsMake(0, label.width/2, 0, label.width/2);
-////    self.payButton.titleEdgeInsets = UIEdgeInsetsMake(0, label.width/2, 0, label.width/2);
-//    label.text = @"退款/仲裁";
-//    [label sizeToFit];
-//    self.refundCell.tintColor = [UIColor blackColor];
-//    [self.refundCell setImage:[label imageForView] forState:UIControlStateNormal];
-////    [self.refundCell setTitle:@"(10)" forState:UIControlStateNormal];
-//
-//    label.text = @"待签收";
-//    [label sizeToFit];
-//    self.receiptCell.tintColor = [UIColor blackColor];
-//    [self.receiptCell setImage:[label imageForView] forState:UIControlStateNormal];
-//    [self.receiptCell setTitle:@"(0)" forState:UIControlStateNormal];
-//
-//    
-//    [self.refundCell setTitle:@"" forState:UIControlStateNormal];
-////    [self.receiptCell setTitle:@"待签收" forState:UIControlStateNormal];
-////    
-//    
-//    
-//    
-//    [self.payButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//    [self.refundCell setTitleColor:[UIColor dark_Gray_Color] forState:UIControlStateNormal];
-//    [self.receiptCell setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//
-//    [self.payButton setTitleColor:[UIColor light_Gray_Color] forState:UIControlStateHighlighted];
-//    [self.refundCell setTitleColor:[UIColor light_Gray_Color] forState:UIControlStateHighlighted];
-//    [self.receiptCell setTitleColor:[UIColor light_Gray_Color] forState:UIControlStateHighlighted];
-//    
-//    self.button1 = self.payButton;
-//    self.button2 = self.re
-    
     self.button1.tintColor = [UIColor blackColor];
     self.button2.tintColor = [UIColor blackColor];
     self.button3.tintColor = [UIColor blackColor];
@@ -63,6 +22,10 @@
     self.titleArray = @[@{@"name" : @"待付款", @"number" : @(10)},
                         @{@"name" : @"待签收", @"number" : @(10)},
                         @{@"name" : @"其他", @"number" : @(0)}];
+    
+    [self.button1 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.button2 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.button3 addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)setTitleArray:(NSArray *)titleArray
@@ -87,6 +50,8 @@
         NSString* name = dict[@"name"];
         
         if (number>=0) {
+            button.enabled = YES;
+
             NSArray* stringWithAttrs = @[
                                          @{
                                              @"string" : name,
@@ -107,6 +72,7 @@
             [button setAttributedTitle:attributedString forState:UIControlStateNormal];
         }
         else{
+            button.enabled = NO;
             [button setAttributedTitle:nil forState:UIControlStateNormal];
             [button setTitle:name forState:UIControlStateNormal];
             [button setTitleColor:[UIColor dark_Gray_Color] forState:UIControlStateNormal];
@@ -121,6 +87,23 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)buttonClicked:(UIButton*)button
+{
+    if (self.delegate) {
+        if (button == self.button1) {
+            [self.delegate orderStatusCellButtonClicked:button andButtonIndex:1];
+        }
+        else if(button == self.button2){
+            [self.delegate orderStatusCellButtonClicked:button andButtonIndex:2];
+
+        }
+        else if(button == self.button3){
+            [self.delegate orderStatusCellButtonClicked:button andButtonIndex:3];
+        }
+    }
+    
 }
 
 @end

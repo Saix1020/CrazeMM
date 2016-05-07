@@ -17,14 +17,21 @@
     self.selectAllCheckBox.onFillColor = [UIColor redColor];
     self.selectAllCheckBox.boxType = BEMBoxTypeCircle;
     self.selectAllCheckBox.on = YES  ;
+    self.selectAllCheckBox.animationDuration = 0.f;
 
     [self fomartTotalPriceLabel];
 }
 
--(void)fomartTotalPriceLabel
+-(void)setTotalPrice:(CGFloat)totalPrice
 {
-    //self.totalPriceLabel.text = @"总计 ￥10,000,00.00";
+    _totalPrice = totalPrice;
+    [self formartTotalPriceLabelWithPrice:totalPrice];
+}
+
+-(void)formartTotalPriceLabelWithPrice:(CGFloat)price
+{
     
+    NSArray* priceStringComp = [NSString formatePrice:price];
     self.totalPriceLabel.text = @"";
     self.totalPriceLabel.textAlignment = kCTTextAlignmentRight;
     
@@ -38,7 +45,7 @@
     [attributedText m80_setTextColor:[UIColor redColor]];
     [self.totalPriceLabel appendAttributedText:attributedText];
     
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@"10,000,00"];
+    attributedText = [[NSMutableAttributedString alloc]initWithString:priceStringComp[0]];
     
     if (attributedText.length > 9) {
         [attributedText m80_setFont:[UIFont boldSystemFontOfSize:14.f]];
@@ -49,25 +56,167 @@
     [attributedText m80_setTextColor:[UIColor redColor]];
     [self.totalPriceLabel appendAttributedText:attributedText];
     
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@".00"];
+    attributedText = [[NSMutableAttributedString alloc]initWithString:priceStringComp[1]];
+    
     [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
     [attributedText m80_setTextColor:[UIColor redColor]];
     [self.totalPriceLabel appendAttributedText:attributedText];
     [self.totalPriceLabel appendText:@""];
     self.totalPriceLabel.numberOfLines = 1;
     self.totalPriceLabel.offsetY = -4.f;
-    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)fomartTotalPriceLabel
+{
+    //self.totalPriceLabel.text = @"总计 ￥10,000,00.00";
+    
+    [self formartTotalPriceLabelWithPrice:1000000.00];
+    
+//    self.totalPriceLabel.text = @"";
+//    self.totalPriceLabel.textAlignment = kCTTextAlignmentRight;
+//    
+//    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"总计: "];
+//    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
+//    [attributedText m80_setTextColor:[UIColor grayColor]];
+//    [self.totalPriceLabel appendAttributedText:attributedText];
+//    
+//    attributedText = [[NSMutableAttributedString alloc]initWithString:@"￥"];
+//    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
+//    [attributedText m80_setTextColor:[UIColor redColor]];
+//    [self.totalPriceLabel appendAttributedText:attributedText];
+//    
+//    attributedText = [[NSMutableAttributedString alloc]initWithString:@"10,000,00"];
+//    
+//    if (attributedText.length > 9) {
+//        [attributedText m80_setFont:[UIFont boldSystemFontOfSize:14.f]];
+//    }
+//    else {
+//        [attributedText m80_setFont:[UIFont boldSystemFontOfSize:16.f]];
+//    }
+//    [attributedText m80_setTextColor:[UIColor redColor]];
+//    [self.totalPriceLabel appendAttributedText:attributedText];
+//    
+//    attributedText = [[NSMutableAttributedString alloc]initWithString:@".00"];
+//    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
+//    [attributedText m80_setTextColor:[UIColor redColor]];
+//    [self.totalPriceLabel appendAttributedText:attributedText];
+//    [self.totalPriceLabel appendText:@""];
+//    self.totalPriceLabel.numberOfLines = 1;
+//    self.totalPriceLabel.offsetY = -4.f;
+    
 }
 
 +(CGFloat)cellHeight
 {
     return 40.f;
 }
+
+-(void)setOrderStyle:(MMOrderListStyle)style
+{
+    _orderType = style.orderType;
+    _orderSubtype = style.orderSubType;
+    _orderState = style.orderState;
+    
+    //    PAYCOMPLETE = TOBESENT,
+    //    RECEIVECOMPLETE = TOBESETTLED,
+    //    SENTCOMPLETE = TOBERECEIVED,
+    //    CONFIRMEDCOMPLETE = COMPLETED,
+
+    
+    if (_orderType == kOrderTypeBuy) {
+        switch (_orderSubtype) {
+            case kOrderSubTypePay:
+            {
+                switch (_orderState) {
+                    case TOBEPAID: //
+                        self.hidden = NO;
+                        self.selectAllCheckBox.hidden = NO;
+                        self.totalPriceLabel.hidden = NO;
+                        [self.confirmButton setTitle:@"付款" forState:UIControlStateNormal];
+                        break;
+                    case PAYTIMEOUT:
+                        self.hidden = NO;
+                        self.selectAllCheckBox.hidden = NO;
+                        //self.totalPriceLabel.hidden = YES;
+                        [self.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
+                        break;
+                    case PAYCOMPLETE:
+                        self.hidden = YES;
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+                
+                break;
+            case kOrderSubTypeReceived:
+            {
+                switch (_orderState) {
+                    case TOBERECEIVED:
+                        self.hidden = NO;
+                        self.selectAllCheckBox.hidden = NO;
+                        self.totalPriceLabel.hidden = YES;
+                        [self.confirmButton setTitle:@"签收" forState:UIControlStateNormal];
+
+                        break;
+                    case RECEIVECOMPLETE:
+                        self.hidden = YES;
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    else if(_orderType == kOrderTypeSupply){
+        switch (_orderSubtype) {
+            case kOrderSubTypeSend:
+            {
+                switch (_orderState) {
+                    case TOBESENT:
+                        self.hidden = NO;
+                        self.selectAllCheckBox.hidden = NO;
+                        self.totalPriceLabel.hidden = YES;
+                        [self.confirmButton setTitle:@"发货" forState:UIControlStateNormal];
+                        break;
+                    case SENTCOMPLETE:
+                        self.hidden = YES;
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+                break;
+            case kOrderSubTypeConfirmed:
+            {
+                switch (_orderState) {
+                    case TOBECONFIRMED:
+                        self.hidden = NO;
+                        self.selectAllCheckBox.hidden = NO;
+                        self.totalPriceLabel.hidden = YES;
+                        self.totalPriceLabel.hidden = YES;
+                        [self.confirmButton setTitle:@"确认" forState:UIControlStateNormal];
+                        break;
+                    case CONFIRMEDCOMPLETE:
+                        self.hidden = YES;
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 
 @end

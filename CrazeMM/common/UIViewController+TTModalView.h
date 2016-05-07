@@ -15,5 +15,7 @@
 
 -(void)showAlertViewWithTitle:(NSString*)title andMessage:(NSString*)message andDetail:(NSString*)detail;
 -(void)showAlertViewWithMessage:(NSString*)message;
++(void)showAlertViewWithViewController:(UIViewController*)vc;
+
 
 @end

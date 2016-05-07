@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomSegment.h"
+#import "OrderStatusCell.h"
 
 typedef NS_ENUM(NSInteger, MineTableViewSection){
     kSectionOverview = 0,
@@ -18,7 +19,7 @@ typedef NS_ENUM(NSInteger, MineTableViewSection){
 };
 
 
-@interface MineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate>
+@interface MineViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate, OrderStatusCellDelegate>
 
 @property (nonatomic, strong) UITableView* tableView;
 

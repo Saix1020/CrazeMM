@@ -14,13 +14,15 @@
 #import "MyInfoCell.h"
 #import "ContactCell.h"
 #import "CustomSegment.h"
-#import "MineSellProductViewController.h"
+#import "OrderListViewController.h"
 #import "SupplyViewController.h"
 #import "AccountViewController.h"
 #import "LoginViewController.h"
 
 #import "NoLoginHeadCell.h"
 #import "HttpOrderSummary.h"
+#import "HttpLogout.h"
+
 
 
 @interface MineViewController()
@@ -147,7 +149,7 @@
     if(!_orderStatusCell){
         _orderStatusCell = [[[NSBundle mainBundle]loadNibNamed:@"OrderStatusCell" owner:nil options:nil] firstObject];
         _orderStatusCell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        _orderStatusCell.delegate = self;
         
 //        @weakify(self);
 //        _orderStatusCell.payButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
@@ -229,9 +231,33 @@
 
 -(void)logout
 {
-    [[UserCenter defaultCenter] resetKeychainItem];
-    [[UserCenter defaultCenter] setLogouted];
-    [self.tableView reloadData];
+    HttpLogoutRequest* logoutRequest = [[HttpLogoutRequest alloc] init];
+    [self showProgressIndicatorWithTitle:@"正在注销..."];
+    [logoutRequest request]
+    .then(^(id responseObject){
+        if (logoutRequest.response.ok) {
+            [[UserCenter defaultCenter] resetKeychainItem];
+            [[UserCenter defaultCenter] setLogouted];
+            
+            //navigate to login page
+            LoginViewController* loginVC = [[LoginViewController alloc] init];
+            //[self presentViewController:loginVC animated:YES completion:nil];
+            [self.navigationController pushViewController:loginVC animated:YES];
+
+            
+        }
+        else {
+            [self showAlertViewWithMessage:@"注销失败!"];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        [self dismissProgressIndicator];
+    });
+    
+    //[self.tableView reloadData];
 }
 
 -(void)viewWillLayoutSubviews
@@ -257,7 +283,13 @@
         }
     })
     .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
+        if ([error needLogin]) {
+            [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        }
+        else {
+            [self showAlertViewWithMessage:error.localizedDescription];
+ 
+        }
     });
 }
 
@@ -336,14 +368,6 @@
         }
     }
 }
-
-//-(void)viewDidDisappear:(BOOL)animated
-//{
-//
-//}
-
-
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -516,8 +540,8 @@
         switch (indexPath.section) {
             case kSectionInfo:
             {
-                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-                [self.navigationController pushViewController:mineSellProductVC animated:YES];
+//                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+//                [self.navigationController pushViewController:mineSellProductVC animated:YES];
                 return;
             }
                 break;
@@ -571,6 +595,48 @@
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
     self.orderStatusCell.titleArray = [self titleArray];
+}
+
+#pragma -- mark order status cell delegate
+-(void)orderStatusCellButtonClicked:(UIButton *)button andButtonIndex:(NSUInteger)index
+{
+    MMOrderType orderType;
+    MMOrderSubType orderSubType;
+    
+
+    if (self.segmentCell.segment.currentIndex == 0) {
+        orderType = kOrderTypeBuy;
+        
+        switch (index) {
+            case 1:
+                orderSubType = kOrderSubTypePay;
+                break;
+            case 2:
+                orderSubType = kOrderSubTypeReceived;
+                break;
+            default:
+                orderSubType = kOrderSubTypePay;
+                break;
+        }
+    }
+    else {
+        orderType = kOrderTypeSupply;
+        switch (index) {
+            case 1:
+                orderSubType = kOrderSubTypeSend;
+                break;
+            case 2:
+                orderSubType = kOrderSubTypeConfirmed;
+                break;
+            default:
+                orderSubType = kOrderSubTypeSend;
+                break;
+        }
+
+    }
+    
+    OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
+    [self.navigationController pushViewController:orderListVC animated:YES];
 }
 
 @end

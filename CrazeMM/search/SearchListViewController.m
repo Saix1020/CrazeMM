@@ -325,8 +325,12 @@
         if (needHud) {
             [self dismissProgressIndicator];
         }
-        
-        [self showAlertViewWithMessage:error.localizedDescription];
+        if ([error needLogin]) {
+            [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        }
+        else{
+            [self showAlertViewWithMessage:error.localizedDescription];
+        }
     });
     
 }

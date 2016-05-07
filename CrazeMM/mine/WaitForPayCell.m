@@ -37,9 +37,11 @@
     self.selectedCheckBox.onFillColor = [UIColor redColor];
     self.selectedCheckBox.boxType = BEMBoxTypeCircle;
     self.selectedCheckBox.on = YES  ;
+    self.selectedCheckBox.animationDuration = 0.f;
     
-    [self fomartCompanyLabel];
-    [self fomartTotalPriceLabel];
+//    [self fomartCompanyLabel];
+//    [self fomartTotalPriceLabel];
+//    self.productDescLabel.adjustsFontSizeToFitWidth = YES;
     
     self.layer.borderWidth = .5f;
     self.layer.borderColor = [UIColor light_Gray_Color].CGColor;
@@ -52,6 +54,14 @@
 
 -(void)fomartTotalPriceLabel
 {
+    NSArray* priceArray;
+    if (self.orderDetailDTO) {
+        priceArray = [NSString formatePrice:self.orderDetailDTO.price*self.orderDetailDTO.quantity];
+    }
+    else {
+        priceArray = @[@"5,000", @".00"];
+    }
+    
     self.totalPriceLabel.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
     self.backgroundLabel.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
 
@@ -68,46 +78,77 @@
     [attributedText m80_setTextColor:[UIColor redColor]];
     [self.totalPriceLabel appendAttributedText:attributedText];
     
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@"5,5550"];
+    attributedText = [[NSMutableAttributedString alloc]initWithString:priceArray[0]];
     [attributedText m80_setFont:[UIFont boldSystemFontOfSize:16.f]];
     [attributedText m80_setTextColor:[UIColor redColor]];
     [self.totalPriceLabel appendAttributedText:attributedText];
     
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@".00"];
+    attributedText = [[NSMutableAttributedString alloc]initWithString:priceArray[1]];
     [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
     [attributedText m80_setTextColor:[UIColor redColor]];
     [self.totalPriceLabel appendAttributedText:attributedText];
     [self.totalPriceLabel appendText:@""];
     self.totalPriceLabel.numberOfLines = 1;
     self.totalPriceLabel.offsetY = -4.f;
-    //[self.totalPriceLabel sizeToFit];
-    //self.totalPriceLabel.baselineAdjustment = UIBaselineAdjustmentNone;
 }
 
 -(void)fomartCompanyLabel
 {
-//    self.companyLabel.text = @"江苏梁晶信息技术有限公司";
-//    self.companyLabel.font = [UIFont systemFontOfSize:12.f];
-//    self.companyIcon.image = [UIImage imageNamed:@"company_icon"];
+    self.companyWithIconLabel.text = @"";
+    
+    NSString* companyIconURL = @"http://invalid_image";
+    NSString* companyName = @"江苏梁晶信息技术有限公司";
+    
+    if (self.orderDetailDTO) {
+        companyIconURL = self.orderDetailDTO.userImage;
+        companyName = self.orderDetailDTO.userName;
+    }
+
+    if (![companyIconURL hasPrefix:@"http"]) {
+        companyIconURL = COMB_URL(companyIconURL);
+    }
+    
     self.companyWithIconLabel.textAlignment = kCTTextAlignmentRight;
     UIImageView* companyImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    companyImageView.image = [UIImage imageNamed:@"company_icon"];
-
-
+    [companyImageView setImageWithURL:[NSURL URLWithString:companyIconURL] placeholderImage:[UIImage imageNamed:@"company_icon"]];
     [self.companyWithIconLabel appendView:companyImageView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
-    //[self.companyWithIconLabel appendText:@" "];
-    
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"江苏梁晶信息技术有限公司"];
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:companyName];
     [attributedText m80_setFont:[UIFont systemFontOfSize:13.f]];
     [attributedText m80_setTextColor:[UIColor blackColor]];
-    
+    [self.companyWithIconLabel appendText:@" "];
     [self.companyWithIconLabel appendAttributedText:attributedText];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+-(void)fomartOrderLabel
+{
+    if (self.orderDetailDTO) {
+        self.orderLabel.text = [NSString stringWithFormat:@"订单号: %ld", self.orderDetailDTO.id];
+    }
+    else {
+        self.orderLabel.text = @"订单号: 123456";
+    }
+}
 
-    // Configure the view for the selected state
+-(void)fomartProductDescLabel
+{
+    if (self.orderDetailDTO) {
+        self.productDescLabel.text = self.orderDetailDTO.goodName;
+    }
+    else {
+        self.productDescLabel.text = @"苹果-iPhone6 (金色/16G/全网通)";
+    }
+}
+
+-(void)setOrderDetailDTO:(OrderDetailDTO *)orderDetailDTO
+{
+    _orderDetailDTO = orderDetailDTO;
+    [self fomartOrderLabel];
+    [self fomartProductDescLabel];
+    self.amountLabel.text = [NSString stringWithFormat:@"数量: %ld", _orderDetailDTO.quantity];
+    self.priceLabel.text = [NSString stringWithFormat:@"定价: %.02f", _orderDetailDTO.price];
+    [self fomartCompanyLabel];
+    [self fomartTotalPriceLabel];
+    
 }
 
 +(CGFloat)cellHeight
@@ -123,5 +164,40 @@
     self.contentView.height = self.height-self.headView.height;
 }
 
+-(void)dealloc
+{
+    NSLog(@"Wait for pay cell dealloc");
+}
 
 @end
+
+
+@implementation WrappedOrderDetailDTO
+
+-(instancetype)initWithOrderDetail:(OrderDetailDTO *)dto
+{
+    self = [super init];
+    if (self) {
+        self.dto = dto;
+//        self.selected = 
+    }
+    return self;
+}
+
+-(void)setSelected:(BOOL)selected
+{
+    _selected = selected;
+    if (self.cell) {
+        self.cell.selectedCheckBox.on = selected;
+        [self.cell layoutIfNeeded];
+    }
+}
+
+
+-(void)dealloc
+{
+    NSLog(@"WrappedOrderDetailDTO dealloc");
+}
+
+@end
+

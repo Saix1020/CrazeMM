@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol OrderStatusCellDelegate <NSObject>
+
+-(void)orderStatusCellButtonClicked:(UIButton*)button andButtonIndex:(NSUInteger)index;
+
+@end
+
 @interface OrderStatusCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *button1;
 @property (weak, nonatomic) IBOutlet UIButton *button2;
 @property (weak, nonatomic) IBOutlet UIButton *button3;
 @property (nonatomic, copy) NSArray* titleArray;
+
+@property (nonatomic, weak) id<OrderStatusCellDelegate> delegate;
 @end

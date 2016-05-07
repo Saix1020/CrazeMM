@@ -14,6 +14,9 @@
 #import "RestURL.h"
 typedef void(^httpRequestCallback)(id ,AFHTTPRequestOperation*);
 typedef void (^errorCallback)(NSError *error);
+
+#define kHttpChallenge @"189MM-NeedLogin"
+
 @class BaseHttpResponse;
 
 @interface BaseHttpRequest : NSObject

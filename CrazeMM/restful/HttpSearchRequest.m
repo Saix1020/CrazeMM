@@ -109,7 +109,7 @@
 
 -(NSUInteger)pageNumber
 {
-    if (self.all) {
+    if (self.all && self.all[@"page"]) {
         NSNumber* number = self.all[@"page"][@"pageNumber"];
         return [number integerValue];
     }
@@ -120,7 +120,7 @@
 -(NSUInteger)totalPage
 {
     
-    if (self.all) {
+    if (self.all && self.all[@"page"]) {
         NSNumber* number = self.all[@"page"][@"totalPage"];
         return [number integerValue];
     }
@@ -130,7 +130,7 @@
 
 -(NSUInteger)totalRow
 {
-    if (self.all) {
+    if (self.all && self.all[@"page"]) {
         NSNumber* number = self.all[@"page"][@"totalRow"];
         return [number integerValue];
     }
@@ -140,12 +140,12 @@
 
 -(NSArray*)productList
 {
-    if (self.all) {
+    if (self.all && self.all[@"page"]) {
         NSArray* productsList = self.all[@"page"][@"list"];
         return productsList;
     }
     
-    return nil;
+    return @[];
 }
 
 

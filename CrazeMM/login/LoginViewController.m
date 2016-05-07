@@ -96,7 +96,7 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"会员登录";
-
+    //self.navigationItem.leftBarButtonItem = nil;
     
     [self initLines];
     self.rememberMeCheckBox.on = YES;
@@ -286,6 +286,8 @@
     return password.length>0;
 }
 
+
+
 //- (BOOL)canBecomeFirstResponder
 //{
 //    return YES;
@@ -306,18 +308,18 @@
     // use constant value instead of hardcode
     CGRect bounds = self.view.bounds;
     CGFloat maxWidth = bounds.size.width - kLeadingPad - kTailingPad;
-    CGFloat y = 30.f;
+    CGFloat y = 30.f + (self.navigationController.navigationBarHidden?64.f:0);
     self.logoImage.frame = CGRectMake((bounds.size.width-self.logoImage.frame.size.width)/2,
                                       y, self.logoImage.frame.size.width, self.logoImage.frame.size.height);
     
     
-    self.wechartLabel.frame = CGRectMake(kLeadingPad, self.view.bottom-40-64, maxWidth, 30);
+    self.wechartLabel.frame = CGRectMake(kLeadingPad, self.view.bottom-40-(!self.navigationController.navigationBarHidden?64.f:20), maxWidth, 30);
     self.wechartIcon.center = CGPointMake(bounds.size.width/2, self.wechartLabel.frame.origin.y-self.wechartIcon.frame.size.height/2);
     
     
-    self.loginButton.frame = CGRectMake(kLeadingPad, bounds.size.height/2+20-64, maxWidth, 50);
+    self.loginButton.frame = CGRectMake(kLeadingPad, bounds.size.height/2+20-(!self.navigationController.navigationBarHidden?64.f:20.f), maxWidth, 50);
     
-    self.passwordField.frame = CGRectMake(kLeadingPad, bounds.size.height/2-36-64, maxWidth, 40);
+    self.passwordField.frame = CGRectMake(kLeadingPad, bounds.size.height/2-36-(!self.navigationController.navigationBarHidden?64.f:20.f), maxWidth, 40);
     self.userNameField.frame = CGRectMake(kLeadingPad, self.passwordField.frame.origin.y-36-16.f, maxWidth, 40);
     
     self.registerButton.frame = CGRectMake(bounds.size.width-kTailingPad-self.registerButton.frame.size.width, CGRectGetMaxY(self.loginButton.frame)+4.f, self.registerButton.frame.size.width, 40);
@@ -337,8 +339,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
     [self.tabBarController setTabBarHidden:YES animated:YES];
+
+    [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
@@ -355,6 +359,11 @@
 
     
 }
+
+//-(void)viewWillDisappear:(BOOL)animated
+//{
+//    
+//}
 
 #define kOFFSET_FOR_KEYBOARD 140.0f
 #define kScroll_OFFSET 80.f
@@ -393,6 +402,9 @@
     UIScrollView* scrollView = (UIScrollView*)self.view;
     [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
     self.keyboardShowing = NO;
+    
+    [self.navigationController setNavigationBarHidden:NO];
+    [super viewWillDisappear:animated];
 
 }
 

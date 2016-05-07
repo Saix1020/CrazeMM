@@ -7,7 +7,6 @@
 //
 
 #import "BuyListViewController.h"
-#import "BuyItemCell.h"
 #import "UISearchBar+RACSignalSupport.h"
 #import "BuySlideDetailViewController.h"
 #import "UITabBarController+HideTabBar.h"
@@ -46,6 +45,7 @@
 @property (nonatomic, strong) TTModalView* productRecommendAlertView;
 
 @property (nonatomic) BOOL isCarouselAnimating;
+@property (nonatomic) NSUInteger timeElapse;
 
 @end
 
@@ -54,34 +54,8 @@
 -(TTModalView*)productRecommendAlertView
 {
     if (!_productRecommendAlertView) {
-        //        TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
-        //        confirmModalView.isCancelAble = YES;
-        //        confirmModalView.modalWindowLevel = UIWindowLevelNormal;
-        //
-        //        MMAlertViewWithOK *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertViewWithOK" owner:nil options:nil] lastObject];
-        //        transferAlertView.layer.cornerRadius = 6.f;
-        //
-        //        transferAlertView.alertMsgLabel.text = message;
-        //        confirmModalView.contentView = transferAlertView;
-        //
-        //        confirmModalView.presentAnimationStyle = zoomIn;
-        //        confirmModalView.dismissAnimationStyle = zoomOut ;
-        //
-        //        [confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
-        //
-        //            contentView.centerX = self.view.centerX;
-        //            contentView.centerY = self.view.centerY;
-        //
-        //
-        //            transferAlertView.comfirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-        //                [confirmModalView dismiss];
-        //                return [RACSignal empty];
-        //            }];
-        //        }];
-
-        
         _productRecommendAlertView = [[TTModalView alloc] initWithContentView:nil delegate:nil];
-        _productRecommendAlertView.isCancelAble = YES;
+        _productRecommendAlertView.isCancelAble = NO;
         _productRecommendAlertView.modalWindowLevel = UIWindowLevelNormal;
         
         ProductRecommendView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"ProductRecommendView" owner:nil options:nil] lastObject];
@@ -190,7 +164,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerNib:[UINib nibWithNibName:@"BuyItemCell" bundle:nil] forCellReuseIdentifier:@"BuyItemCell"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"BuyItemCell" bundle:nil] forCellReuseIdentifier:@"BuyItemCell"];
     [self.view addSubview:self.tableView];
     
     UIView *view = [UIView new];
@@ -208,6 +182,7 @@
         [self.dataSource addObject:dto];
     }
     
+    self.timeElapse = 0;
 
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -265,6 +240,37 @@
 //                              takeUntilBlock:^BOOL (id x){
 //                                  return self.stopTimer;
 //                              }];
+//    @weakify(self);
+
+    [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
+        @strongify(self);
+
+        self.timeElapse ++;
+        if (self.timeElapse % 4 ==0) {
+            
+            if (self.isCarouselAnimating) {
+                return;
+            }
+            
+            self.isCarouselAnimating = YES;
+            
+            if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
+                self.scrollWay = YES;
+            }
+            else if(self.carousel.currentItemIndex == 0){
+                self.scrollWay = NO;
+            }
+            if (self.scrollWay) {
+                [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex-1 duration:1];
+                
+            }
+            else {
+                [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex+1 duration:1];
+                
+            }
+        }
+    }];
+
     
 }
 
@@ -287,43 +293,42 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.stopTimer = NO;
-    @weakify(self);
+//    self.stopTimer = NO;
     
-    self.updateEventSignal = [[RACSignal interval:4
-                                       onScheduler:[RACScheduler mainThreadScheduler]
-                                ]
-                               takeUntilBlock:^BOOL (id x){
-                                   return self.stopTimer;
-                               }];
-    
-    
-    
-    [self.updateEventSignal
-     subscribeNext:^(id x){
-         @strongify(self);
-         
-         if (self.isCarouselAnimating) {
-             return;
-         }
-         
-         self.isCarouselAnimating = YES;
-         
-         if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
-             self.scrollWay = YES;
-         }
-         else if(self.carousel.currentItemIndex == 0){
-             self.scrollWay = NO;
-         }
-         if (self.scrollWay) {
-             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex-1 duration:1];
-             
-         }
-         else {
-             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex+1 duration:1];
-             
-         }
-     }];
+//    self.updateEventSignal = [[RACSignal interval:4
+//                                       onScheduler:[RACScheduler mainThreadScheduler]
+//                                ]
+//                               takeUntilBlock:^BOOL (id x){
+//                                   return self.stopTimer;
+//                               }];
+//    
+//    
+//    
+//    [self.updateEventSignal
+//     subscribeNext:^(id x){
+//         @strongify(self);
+//         
+//         if (self.isCarouselAnimating) {
+//             return;
+//         }
+//         
+//         self.isCarouselAnimating = YES;
+//         
+//         if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
+//             self.scrollWay = YES;
+//         }
+//         else if(self.carousel.currentItemIndex == 0){
+//             self.scrollWay = NO;
+//         }
+//         if (self.scrollWay) {
+//             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex-1 duration:1];
+//             
+//         }
+//         else {
+//             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex+1 duration:1];
+//             
+//         }
+//     }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -380,7 +385,7 @@
     if (view == nil)
     {
         view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kCarouselImageViewWidth, kTableViewHeadHeight)];
-        ((UIImageView *)view).image = [UIImage imageNamed:[NSString stringWithFormat:@"slide-%ld.jpg", index]];
+        ((UIImageView *)view).image = [UIImage imageNamed:[NSString stringWithFormat:@"slide-%ld.jpg", (long)index]];
         view.contentMode = UIViewContentModeScaleToFill;
         view.clipsToBounds = YES;
         view.userInteractionEnabled = YES;

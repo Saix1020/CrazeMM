@@ -174,6 +174,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+//        self.layer.drawsAsynchronously = YES;
         [self commInit];
         [self layoutAllSubviews];
 
