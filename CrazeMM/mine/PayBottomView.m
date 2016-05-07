@@ -16,7 +16,7 @@
     self.selectAllCheckBox.onTintColor = [UIColor redColor];
     self.selectAllCheckBox.onFillColor = [UIColor redColor];
     self.selectAllCheckBox.boxType = BEMBoxTypeCircle;
-    self.selectAllCheckBox.on = YES  ;
+    self.selectAllCheckBox.on = NO  ;
     self.selectAllCheckBox.animationDuration = 0.f;
 
     [self fomartTotalPriceLabel];
@@ -68,42 +68,7 @@
 
 -(void)fomartTotalPriceLabel
 {
-    //self.totalPriceLabel.text = @"总计 ￥10,000,00.00";
-    
-    [self formartTotalPriceLabelWithPrice:1000000.00];
-    
-//    self.totalPriceLabel.text = @"";
-//    self.totalPriceLabel.textAlignment = kCTTextAlignmentRight;
-//    
-//    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"总计: "];
-//    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
-//    [attributedText m80_setTextColor:[UIColor grayColor]];
-//    [self.totalPriceLabel appendAttributedText:attributedText];
-//    
-//    attributedText = [[NSMutableAttributedString alloc]initWithString:@"￥"];
-//    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
-//    [attributedText m80_setTextColor:[UIColor redColor]];
-//    [self.totalPriceLabel appendAttributedText:attributedText];
-//    
-//    attributedText = [[NSMutableAttributedString alloc]initWithString:@"10,000,00"];
-//    
-//    if (attributedText.length > 9) {
-//        [attributedText m80_setFont:[UIFont boldSystemFontOfSize:14.f]];
-//    }
-//    else {
-//        [attributedText m80_setFont:[UIFont boldSystemFontOfSize:16.f]];
-//    }
-//    [attributedText m80_setTextColor:[UIColor redColor]];
-//    [self.totalPriceLabel appendAttributedText:attributedText];
-//    
-//    attributedText = [[NSMutableAttributedString alloc]initWithString:@".00"];
-//    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
-//    [attributedText m80_setTextColor:[UIColor redColor]];
-//    [self.totalPriceLabel appendAttributedText:attributedText];
-//    [self.totalPriceLabel appendText:@""];
-//    self.totalPriceLabel.numberOfLines = 1;
-//    self.totalPriceLabel.offsetY = -4.f;
-    
+    [self formartTotalPriceLabelWithPrice:0.f];
 }
 
 +(CGFloat)cellHeight
@@ -137,8 +102,8 @@
                     case PAYTIMEOUT:
                         self.hidden = NO;
                         self.selectAllCheckBox.hidden = NO;
-                        //self.totalPriceLabel.hidden = YES;
-                        [self.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
+                        self.totalPriceLabel.hidden = YES;
+                        [self.confirmButton setTitle:@"删除" forState:UIControlStateNormal];
                         break;
                     case PAYCOMPLETE:
                         self.hidden = YES;

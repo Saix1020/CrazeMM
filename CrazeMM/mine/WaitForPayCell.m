@@ -31,17 +31,12 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    //self.selectedCheckBox.tintColor = [UIColor blackColor];
     self.selectedCheckBox.onCheckColor = [UIColor whiteColor];
     self.selectedCheckBox.onTintColor = [UIColor redColor];
     self.selectedCheckBox.onFillColor = [UIColor redColor];
     self.selectedCheckBox.boxType = BEMBoxTypeCircle;
     self.selectedCheckBox.on = YES  ;
     self.selectedCheckBox.animationDuration = 0.f;
-    
-//    [self fomartCompanyLabel];
-//    [self fomartTotalPriceLabel];
-//    self.productDescLabel.adjustsFontSizeToFitWidth = YES;
     
     self.layer.borderWidth = .5f;
     self.layer.borderColor = [UIColor light_Gray_Color].CGColor;

@@ -13,6 +13,7 @@
 #import "MinePayViewController.h"
 #import "WaitForDeliverCell.h"
 #import "HttpOrder.h"
+#import "MJRefresh.h"
 
 
 
@@ -35,9 +36,20 @@
 
 @property (nonatomic) CGFloat totalPrice;
 
+@property (nonatomic, strong) UITableViewCell* emptyCell;
+
 @end
 
 @implementation OrderListViewController
+
+//-(UITableViewCell*)emptyCell
+//{
+//    if (!_emptyCell) {
+//        _emptyCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 0, [UIScreen mainScreen].bounds.size.height)];
+//        
+//        _emptyCell
+//    }
+//}
 
 -(MMOrderListStyle)orderListStyle
 {
@@ -245,16 +257,36 @@
     self.currentSegmentIndex = 0;
     self.dataSource = [[NSMutableArray alloc] init];
     
-//    self.dataSource = [[NSMutableArray alloc] initWithArray:@[@(YES), @(YES), @(YES), @(YES), @(YES), @(YES), @(YES), @(YES), @(YES), @(YES)]];
+    
+    @weakify(self);
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        [self getOrderList]
+        .finally(^(){
+            [self.tableView.mj_header endRefreshing];
+        });
+        
+    }];
+    
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        @strongify(self);
+        
+        [self getOrderList].finally(^(){
+            [self.tableView.mj_footer endRefreshing];
+        });
+        
+    }];
+    self.tableView.mj_footer.automaticallyChangeAlpha = YES;
+
 }
 
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    
     self.payBottomView.frame = CGRectMake(0, self.view.height-[PayBottomView cellHeight], self.view.bounds.size.width, [PayBottomView cellHeight]);
-    //[self.view bringSubviewToFront:self.payBottomView];
 }
 
 -(void)viewDidLayoutSubviews
@@ -265,6 +297,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.orderListPageNumber = 0;
     [self.tabBarController setTabBarHidden:YES animated:YES];
     [self.segmentCell setTitles:[self getSegmentTitels]];
     [self setOrderStyleWithSegmentIndex:0];
@@ -281,24 +314,32 @@
                 self.totalPrice += dto.price;
             }
         }
-        
         self.payBottomView.totalPrice = self.totalPrice;
     }
 }
 
--(void)getOrderList
+-(AnyPromise*)getOrderList
 {
-    HttpOrderRequest* orderRequest = [[HttpOrderRequest alloc]initWithOrderListType:self.orderListStyle andPage:1];
-    [orderRequest request]
+    HttpOrderRequest* orderRequest = [[HttpOrderRequest alloc]initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
+    return [orderRequest request]
     .then(^(id responseObject){
-//        NSLog(@"%@", orderRequest.response);
         NSLog(@"%@", responseObject);
         HttpOrderResponse* response = (HttpOrderResponse*)orderRequest.response;
         if (response.ok) {
-            [self.dataSource addObjectsFromArray:response.orderDetailDTOs];
-            [self.tableView reloadData];
-            [self refreshTotalPriceLabel];
+            self.orderListTotalPage = response.totalPage;
+            if (self.orderListPageNumber < self.orderListTotalPage) {
+                self.orderListPageNumber = response.pageNumber;
+            }
+            if (response.orderDetailDTOs.count > 0) {
+                [self.dataSource addObjectsFromArray:response.orderDetailDTOs];
+                [self.tableView reloadData];
+                [self refreshTotalPriceLabel];
+                self.payBottomView.selectAllCheckBox.on = NO;
+            }
         }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
     });
 }
 
@@ -409,7 +450,9 @@
         return cell;
     }
     else {
+        // no check box 
         WaitForDeliverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WaitForDeliverCell"];
+        cell.orderDetailDTO = dto;
         return cell;
     }
 }
@@ -427,6 +470,7 @@
     if (segment.prevIndex == index) {
         return;
     }
+    self.orderListPageNumber = 0;
     [self setOrderStyleWithSegmentIndex:index];
     [self.dataSource removeAllObjects];
 //    [self refreshTotalPriceLabel];

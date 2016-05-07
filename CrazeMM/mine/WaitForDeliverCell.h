@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "M80AttributedLabel.h"
+#import "OrderDetailDTO.h"
 
 @interface WaitForDeliverCell : UITableViewCell
 
@@ -20,5 +21,7 @@
 @property (weak, nonatomic) IBOutlet M80AttributedLabel *totalPriceLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *backgroundLabel;
+
+@property (strong, nonatomic) OrderDetailDTO* orderDetailDTO;
 
 @end

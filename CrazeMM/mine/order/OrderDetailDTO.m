@@ -32,7 +32,7 @@
         self.goodName = dict[@"goodName"];
         self.updateTime = dict[@"updateTime"];
         self.userName = dict[@"userName"];
-        self.selected = YES;
+        self.selected = NO;
     }
     return self;
 }
