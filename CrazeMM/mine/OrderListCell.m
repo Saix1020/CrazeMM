@@ -6,15 +6,15 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "WaitForPayCell.h"
+#import "OrderListCell.h"
 
-@interface WaitForPayCell()
+@interface OrderListCell()
 
 @property (nonatomic, strong) UIView* headView;
 
 @end
 
-@implementation WaitForPayCell
+@implementation OrderListCell
 
 -(UIView*)headView
 {
@@ -141,7 +141,9 @@
     [self fomartProductDescLabel];
     self.amountLabel.text = [NSString stringWithFormat:@"数量: %ld", _orderDetailDTO.quantity];
     self.priceLabel.text = [NSString stringWithFormat:@"定价: %.02f", _orderDetailDTO.price];
-    [self fomartCompanyLabel];
+    if (!_orderDetailDTO.isAony) {
+        [self fomartCompanyLabel];
+    }
     [self fomartTotalPriceLabel];
     
 }
@@ -179,14 +181,14 @@
     return self;
 }
 
--(void)setSelected:(BOOL)selected
-{
-    _selected = selected;
-    if (self.cell) {
-        self.cell.selectedCheckBox.on = selected;
-        [self.cell layoutIfNeeded];
-    }
-}
+//-(void)setSelected:(BOOL)selected
+//{
+//    _selected = selected;
+//    if (self.cell) {
+//        self.cell.selectedCheckBox.on = selected;
+//        [self.cell layoutIfNeeded];
+//    }
+//}
 
 
 -(void)dealloc

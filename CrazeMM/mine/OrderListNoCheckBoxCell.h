@@ -10,7 +10,7 @@
 #import "M80AttributedLabel.h"
 #import "OrderDetailDTO.h"
 
-@interface WaitForDeliverCell : UITableViewCell
+@interface OrderListNoCheckBoxCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *orderLabel;
 @property (weak, nonatomic) IBOutlet M80AttributedLabel *companyWithIconLabel;

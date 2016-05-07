@@ -22,7 +22,7 @@
 @end
 
 
-@interface WaitForPayCell : UITableViewCell
+@interface OrderListCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *reactiveButton;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectedCheckBox;
 @property (weak, nonatomic) IBOutlet UILabel *orderLabel;

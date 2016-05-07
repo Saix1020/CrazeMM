@@ -27,7 +27,6 @@
 -(void)myInit
 {
     [self.confirmButton setTitle:@"下架" forState:UIControlStateNormal];
-    
     [self.totalPriceLabel setText:@""];
 
 }

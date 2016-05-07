@@ -203,8 +203,8 @@
 		B991945A1CCBAEFD0032A393 /* BuyProductView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99194591CCBAEFD0032A393 /* BuyProductView.xib */; };
 		B991945D1CCBB4ED0032A393 /* BuyProductView.m in Sources */ = {isa = PBXBuildFile; fileRef = B991945C1CCBB4ED0032A393 /* BuyProductView.m */; };
 		B99194731CCC56F90032A393 /* UserCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B99194721CCC56F90032A393 /* UserCenter.m */; };
-		B99194771CCC690E0032A393 /* WaitForPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99194751CCC690E0032A393 /* WaitForPayCell.m */; };
-		B99194781CCC690E0032A393 /* WaitForPayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99194761CCC690E0032A393 /* WaitForPayCell.xib */; };
+		B99194771CCC690E0032A393 /* OrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99194751CCC690E0032A393 /* OrderListCell.m */; };
+		B99194781CCC690E0032A393 /* OrderListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B99194761CCC690E0032A393 /* OrderListCell.xib */; };
 		B991947B1CCC76E60032A393 /* OrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B991947A1CCC76E60032A393 /* OrderListViewController.m */; };
 		B991947F1CCCA26C0032A393 /* PayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B991947D1CCCA26C0032A393 /* PayBottomView.m */; };
 		B99194801CCCA26C0032A393 /* PayBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B991947E1CCCA26C0032A393 /* PayBottomView.xib */; };
@@ -286,9 +286,9 @@
 		B9AD46041CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46021CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m */; };
 		B9AD460A1CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46091CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m */; };
 		B9AD460B1CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46091CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m */; };
-		B9AD460F1CD4FF0200012B31 /* WaitForDeliverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD460D1CD4FF0200012B31 /* WaitForDeliverCell.m */; };
-		B9AD46111CD4FF0200012B31 /* WaitForDeliverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD460E1CD4FF0200012B31 /* WaitForDeliverCell.xib */; };
-		B9AD46121CD4FF0200012B31 /* WaitForDeliverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD460E1CD4FF0200012B31 /* WaitForDeliverCell.xib */; };
+		B9AD460F1CD4FF0200012B31 /* OrderListNoCheckBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD460D1CD4FF0200012B31 /* OrderListNoCheckBoxCell.m */; };
+		B9AD46111CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD460E1CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib */; };
+		B9AD46121CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD460E1CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib */; };
 		B9AD46151CD649E900012B31 /* MMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46141CD649E900012B31 /* MMTextField.m */; };
 		B9AD46161CD649E900012B31 /* MMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46141CD649E900012B31 /* MMTextField.m */; };
 		B9AD461A1CD6509900012B31 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46191CD6509900012B31 /* NSString+Utils.m */; };
@@ -692,9 +692,9 @@
 		B991945C1CCBB4ED0032A393 /* BuyProductView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyProductView.m; path = buy/BuyProductView.m; sourceTree = "<group>"; };
 		B99194711CCC56F90032A393 /* UserCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCenter.h; path = modal/UserCenter.h; sourceTree = "<group>"; };
 		B99194721CCC56F90032A393 /* UserCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserCenter.m; path = modal/UserCenter.m; sourceTree = "<group>"; };
-		B99194741CCC690E0032A393 /* WaitForPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitForPayCell.h; path = mine/WaitForPayCell.h; sourceTree = "<group>"; };
-		B99194751CCC690E0032A393 /* WaitForPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitForPayCell.m; path = mine/WaitForPayCell.m; sourceTree = "<group>"; };
-		B99194761CCC690E0032A393 /* WaitForPayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WaitForPayCell.xib; path = mine/WaitForPayCell.xib; sourceTree = "<group>"; };
+		B99194741CCC690E0032A393 /* OrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderListCell.h; path = mine/OrderListCell.h; sourceTree = "<group>"; };
+		B99194751CCC690E0032A393 /* OrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderListCell.m; path = mine/OrderListCell.m; sourceTree = "<group>"; };
+		B99194761CCC690E0032A393 /* OrderListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderListCell.xib; path = mine/OrderListCell.xib; sourceTree = "<group>"; };
 		B99194791CCC76E60032A393 /* OrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderListViewController.h; path = mine/OrderListViewController.h; sourceTree = "<group>"; };
 		B991947A1CCC76E60032A393 /* OrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderListViewController.m; path = mine/OrderListViewController.m; sourceTree = "<group>"; };
 		B991947C1CCCA26C0032A393 /* PayBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayBottomView.h; path = mine/PayBottomView.h; sourceTree = "<group>"; };
@@ -799,9 +799,9 @@
 		B9AD46021CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMobileExistCheckRequest.m; path = restful/HttpMobileExistCheckRequest.m; sourceTree = "<group>"; };
 		B9AD46081CD4E7A600012B31 /* HttpCheckMessageCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpCheckMessageCodeRequest.h; path = restful/HttpCheckMessageCodeRequest.h; sourceTree = "<group>"; };
 		B9AD46091CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpCheckMessageCodeRequest.m; path = restful/HttpCheckMessageCodeRequest.m; sourceTree = "<group>"; };
-		B9AD460C1CD4FF0200012B31 /* WaitForDeliverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WaitForDeliverCell.h; path = mine/WaitForDeliverCell.h; sourceTree = "<group>"; };
-		B9AD460D1CD4FF0200012B31 /* WaitForDeliverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WaitForDeliverCell.m; path = mine/WaitForDeliverCell.m; sourceTree = "<group>"; };
-		B9AD460E1CD4FF0200012B31 /* WaitForDeliverCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WaitForDeliverCell.xib; path = mine/WaitForDeliverCell.xib; sourceTree = "<group>"; };
+		B9AD460C1CD4FF0200012B31 /* OrderListNoCheckBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderListNoCheckBoxCell.h; path = mine/OrderListNoCheckBoxCell.h; sourceTree = "<group>"; };
+		B9AD460D1CD4FF0200012B31 /* OrderListNoCheckBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderListNoCheckBoxCell.m; path = mine/OrderListNoCheckBoxCell.m; sourceTree = "<group>"; };
+		B9AD460E1CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderListNoCheckBoxCell.xib; path = mine/OrderListNoCheckBoxCell.xib; sourceTree = "<group>"; };
 		B9AD46131CD649E900012B31 /* MMTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMTextField.h; path = common/MMTextField.h; sourceTree = "<group>"; };
 		B9AD46141CD649E900012B31 /* MMTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMTextField.m; path = common/MMTextField.m; sourceTree = "<group>"; };
 		B9AD46181CD6509900012B31 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utils.h"; path = "common/NSString+Utils.h"; sourceTree = "<group>"; };
@@ -1315,6 +1315,12 @@
 		B91896961CCE51B00061D0B6 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B99194741CCC690E0032A393 /* OrderListCell.h */,
+				B99194751CCC690E0032A393 /* OrderListCell.m */,
+				B99194761CCC690E0032A393 /* OrderListCell.xib */,
+				B9AD460C1CD4FF0200012B31 /* OrderListNoCheckBoxCell.h */,
+				B9AD460D1CD4FF0200012B31 /* OrderListNoCheckBoxCell.m */,
+				B9AD460E1CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib */,
 				B91896891CCE1D8E0061D0B6 /* FirstAddrCell.h */,
 				B918968A1CCE1D8E0061D0B6 /* FirstAddrCell.m */,
 				B918968B1CCE1D8E0061D0B6 /* FirstAddrCell.xib */,
@@ -1724,15 +1730,9 @@
 				B992C57A1CCA6BC300DC49E8 /* NoLoginHeadCell.h */,
 				B992C57B1CCA6BC300DC49E8 /* NoLoginHeadCell.m */,
 				B992C57C1CCA6BC300DC49E8 /* NoLoginHeadCell.xib */,
-				B99194741CCC690E0032A393 /* WaitForPayCell.h */,
-				B99194751CCC690E0032A393 /* WaitForPayCell.m */,
-				B99194761CCC690E0032A393 /* WaitForPayCell.xib */,
 				B991947C1CCCA26C0032A393 /* PayBottomView.h */,
 				B991947D1CCCA26C0032A393 /* PayBottomView.m */,
 				B991947E1CCCA26C0032A393 /* PayBottomView.xib */,
-				B9AD460C1CD4FF0200012B31 /* WaitForDeliverCell.h */,
-				B9AD460D1CD4FF0200012B31 /* WaitForDeliverCell.m */,
-				B9AD460E1CD4FF0200012B31 /* WaitForDeliverCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2094,7 +2094,7 @@
 				B991949D1CCCF7E40032A393 /* BrowserDealView.xib in Resources */,
 				B98878921CC8AD3800990AA4 /* LoginViewController.xib in Resources */,
 				B91896871CCE05AF0061D0B6 /* ProductLastCell.xib in Resources */,
-				B9AD46111CD4FF0200012B31 /* WaitForDeliverCell.xib in Resources */,
+				B9AD46111CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib in Resources */,
 				B91896AA1CCF09D50061D0B6 /* PayAlertView.xib in Resources */,
 				B964F9881CC50339003E0D44 /* slide-1.jpg in Resources */,
 				B991949F1CCCF9AC0032A393 /* ProductLadderCell.xib in Resources */,
@@ -2113,7 +2113,7 @@
 				B98878861CC896BE00990AA4 /* product_debug.png in Resources */,
 				B91896A81CCF01A20061D0B6 /* LastPayMethodCell.xib in Resources */,
 				B9A780401CD9E2D000A89047 /* pop_eg.png in Resources */,
-				B99194781CCC690E0032A393 /* WaitForPayCell.xib in Resources */,
+				B99194781CCC690E0032A393 /* OrderListCell.xib in Resources */,
 				B99D12F91CC66EB9000DFF95 /* KeyWordsCell.xib in Resources */,
 				B991945A1CCBAEFD0032A393 /* BuyProductView.xib in Resources */,
 				B99D12C91CC520CB000DFF95 /* prod_placeholder.jpg in Resources */,
@@ -2132,7 +2132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9AD46121CD4FF0200012B31 /* WaitForDeliverCell.xib in Resources */,
+				B9AD46121CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2258,7 +2258,7 @@
 				B91732541CD1F05500C29698 /* SlideOutRightAnimation.m in Sources */,
 				B917324B1CD1F05400C29698 /* ScaleLargeInAnimation.m in Sources */,
 				B917326D1CD1F09400C29698 /* TTModalWindow.m in Sources */,
-				B9AD460F1CD4FF0200012B31 /* WaitForDeliverCell.m in Sources */,
+				B9AD460F1CD4FF0200012B31 /* OrderListNoCheckBoxCell.m in Sources */,
 				B991948D1CCCF32F0032A393 /* ProductLadderCell.m in Sources */,
 				B9156F411CDBA41D0041E535 /* HttpOrderSummary.m in Sources */,
 				B917325B1CD1F05500C29698 /* ZoomInLeftAnimation.m in Sources */,
@@ -2364,7 +2364,7 @@
 				B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */,
 				B917322E1CD1F05400C29698 /* FadeInRightAnimation.m in Sources */,
 				B9AD44151CD39C8300012B31 /* NewWelcomeViewController.m in Sources */,
-				B99194771CCC690E0032A393 /* WaitForPayCell.m in Sources */,
+				B99194771CCC690E0032A393 /* OrderListCell.m in Sources */,
 				B992C57D1CCA6BC300DC49E8 /* NoLoginHeadCell.m in Sources */,
 				B9AD460A1CD4E7A600012B31 /* HttpCheckMessageCodeRequest.m in Sources */,
 				B91732581CD1F05500C29698 /* RollOutAnimation.m in Sources */,

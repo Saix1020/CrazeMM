@@ -7,11 +7,11 @@
 //
 
 #import "OrderListViewController.h"
-#import "WaitForPayCell.h"
+#import "OrderListCell.h"
 #import "SegmentedCell.h"
 #import "PayBottomView.h"
 #import "MinePayViewController.h"
-#import "WaitForDeliverCell.h"
+#import "OrderListNoCheckBoxCell.h"
 #import "HttpOrder.h"
 #import "MJRefresh.h"
 
@@ -128,7 +128,6 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(44.0f);
-//        [_segmentCell setTitles:[self getSegmentTitels]];
         _segmentCell.segment.delegate = self;
     }
     
@@ -250,8 +249,8 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"WaitForPayCell" bundle:nil] forCellReuseIdentifier:@"WaitForPayCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"WaitForDeliverCell" bundle:nil] forCellReuseIdentifier:@"WaitForDeliverCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListCell" bundle:nil] forCellReuseIdentifier:@"OrderListCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListNoCheckBoxCell" bundle:nil] forCellReuseIdentifier:@"OrderListNoCheckBoxCell"];
     
     self.tableView.tableHeaderView = self.segmentCell;
     self.currentSegmentIndex = 0;
@@ -429,7 +428,7 @@
     if ((self.currentSegmentIndex == 1 &&
          (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))
         || self.currentSegmentIndex == 0) {
-        WaitForPayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WaitForPayCell"];
+        OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListCell"];
         if (self.currentSegmentIndex == 1) {
             cell.reactiveButton.hidden = NO;
         }
@@ -451,7 +450,7 @@
     }
     else {
         // no check box 
-        WaitForDeliverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WaitForDeliverCell"];
+        OrderListNoCheckBoxCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListNoCheckBoxCell"];
         cell.orderDetailDTO = dto;
         return cell;
     }
@@ -459,7 +458,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [WaitForPayCell cellHeight]; //WaitForDeliverCell has the same height with WaitForPayCell
+    return [OrderListCell cellHeight]; //WaitForDeliverCell has the same height with WaitForPayCell
 }
 
 
