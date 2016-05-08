@@ -13,14 +13,20 @@
 @interface ProductSummaryCell : UITableViewCell
 
 
-//@property (strong, nonatomic)  UIImageView *phoneImageView;
-//@property (strong, nonatomic)  UILabel *titleLabel;
-//@property (strong, nonatomic)  UILabel *detailLabel;
-//@property (strong, nonatomic)  ArrowView *arrawView;
+@property (strong, nonatomic)  UIImageView *phoneImageView;
+@property (strong, nonatomic)  UILabel *titleLabel;
+@property (strong, nonatomic)  UILabel *priceLabel;
+@property (strong, nonatomic)  ArrowView *arrowView;
+@property (strong, nonatomic)  UIView *bottomLine;
+@property (strong, nonatomic)  UILabel *statusLabel;
+@property (strong, nonatomic) UIView* timeBackgroundView;
+@property (strong, nonatomic)  UILabel *timeLeftLabel;
+@property (strong, nonatomic) UIImageView* clockIcon;
+
+@property (nonatomic, copy) NSString* cellType;
+
 @property (copy, nonatomic) NSString* arrawString;
-//@property (strong, nonatomic)  UIView *bottomLine;
-//@property (strong, nonatomic)  UILabel *statusLabel;
-//@property (strong, nonatomic)  M80AttributedLabel *timeLeftLabel;
+
 
 +(CGFloat)cellHeight;
 

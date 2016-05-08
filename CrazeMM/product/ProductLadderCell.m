@@ -64,9 +64,9 @@
     self.sellLabel.adjustsFontSizeToFitWidth = YES;
     self.sellLabel.text = @"成交:10";
     
-    self.titleLabel.numberOfLines = 1;
-    self.titleLabel.adjustsFontSizeToFitWidth = YES;
-    self.titleLabel.text = @"三星-J7109 金 16G 电信版";
+    self.titleLabel.numberOfLines = 2;
+    //self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.text = @"三星-J7109 金 16G 电信版 三星-J7109 金 16G 电信版";
     
     self.descLabel.numberOfLines = 4;
     self.descLabel.adjustsFontSizeToFitWidth = YES;

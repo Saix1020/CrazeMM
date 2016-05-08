@@ -105,7 +105,14 @@ typedef enum {
 //    
 //    return nil;
     
-    return [self request2];
+    return [self request2]
+    .catch(^(NSError *error){
+//        if ([error needLogin]) {
+//            [UIViewController showAlertViewWithViewController:[LoginViewController new]];
+//        }
+//        return error;
+        return error;
+    });
 }
 
 -(AFPromise*)request2

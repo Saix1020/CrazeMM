@@ -12,5 +12,6 @@
 
 +(UIView*)viewFromNib:(NSString*)nibName;
 
++(UIView*)viewFromNibByClass:(id)class;
 
 @end

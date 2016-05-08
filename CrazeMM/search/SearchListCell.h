@@ -10,25 +10,30 @@
 #import "LabelWithSeperatorLine.h"
 #import "ArrowView.h"
 #import "M80AttributedLabel.h"
-
+#import "SearchResultDTO.h"
 
 @interface SearchListCell : UITableViewCell
 
 
-@property (strong, nonatomic)  M80AttributedLabel *titleLabel;
-@property (strong, nonatomic)  M80AttributedLabel *priceLabel;
+//@property (strong, nonatomic)  M80AttributedLabel *titleLabel;
+@property (strong, nonatomic)  UILabel *titleLabel;
+
+@property (strong, nonatomic)  UILabel *priceLabel;
 @property (strong, nonatomic)  UIView *seperatorLine;
 @property (strong, nonatomic)  UILabel *arrivalTime;
 @property (strong, nonatomic)  UILabel *scopeLabel;
 @property (strong, nonatomic)  UIImageView *companyImageView;
 @property (strong, nonatomic)  UILabel *companyLabel;
 @property (strong, nonatomic)  M80AttributedLabel *leftTimeLabel;
+@property (strong, nonatomic)  M80AttributedLabel *countdownLabel;
 @property (strong, nonatomic)  ArrowView *typeLabel;
 
 @property (strong, nonatomic) NSString* typeName;
 
 @property (strong, nonatomic)  LabelWithSeperatorLine *previewAndTransctionsLabels;
+@property (strong, nonatomic) SearchResultDTO* searchResultDTO;
 
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andType:(NSString*)type;
 +(CGFloat)cellHeight;
 
 @end

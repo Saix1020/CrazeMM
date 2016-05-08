@@ -13,8 +13,9 @@ typedef NS_ENUM(NSInteger, SearchType){
     kSearchTypeSell = 1
 };
 
-@interface SearchViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface SearchViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 -(instancetype)initWithType:(SearchType)searchType;
 
 @end
+

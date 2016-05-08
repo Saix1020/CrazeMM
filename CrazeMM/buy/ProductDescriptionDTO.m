@@ -29,32 +29,6 @@
     return self;
 }
 
--(instancetype)initWith:(NSDictionary*)dict
-{
-    self = [self init];
-//
-    if (self) {
-        self.id = [dict[@"id"] integerValue];
-        self.deadlineStr = dict[@"deadlineStr"];
-        self.goodName = dict[@"goodName"];
-        self.region = dict[@"region"];
-        self.stateLabel = dict[@"stateLabel"];
-        self.userImage = dict[@"userImage"];
-        self.userName = dict[@"userName"];
-        self.duration = [dict[@"duration"] integerValue];
-        self.intentions = [dict[@"intentions"] integerValue];
-        self.isActive = [dict[@"isActive"] boolValue];
-        self.isAnoy = [dict[@"isAnoy"] boolValue];
-        self.millisecond = [dict[@"millisecond"] integerValue];
-        self.isStep = [dict[@"isStep"] boolValue];
-        self.price = [dict[@"price"] integerValue];
-        self.quantity = [dict[@"quantity"] integerValue];
-        self.views = [dict[@"views"] integerValue];
-
-    }
-    
-    return self;
-}
 
 
 -(NSString*)miniumPriceString1
@@ -83,8 +57,8 @@
     ProductDescriptionDTO * mock = [[ProductDescriptionDTO alloc] init];
     srand(time(NULL));
     
-    mock.imageURL = @[@"http://10.157.10.84:9989/image/dog.png", @"http://10.157.10.84:9989/image/trashcan.jpg", @"http://10.157.10.84:9989/image/channelOne_logo1.png"][arc4random()%3];
-    mock.title = @"飞利浦 -V387 黑色 1GB 联通 3G WCDMA";
+    mock.imageURL = @[@"http://www.189mm.com:8080/upload/good/1475.jpg", @"http://www.189mm.com:8080/upload/good/1647.png?_=3b9619dcc788ed6ef05b916a4f6692a3", @"http://www.189mm.com:8080/upload/good/1705.png?_=781962cd0d057171985ca3cc834f99cd"][arc4random()%3];
+    mock.title = arc4random()%2?@"飞利浦 -V387 黑色 ":@"飞利浦 -V387 黑";
     mock.id = arc4random()%1000 + 1000;
     mock.status = @"正常";
     mock.minimumPrice = 2000 + arc4random()%2000 + ((double)(1000+arc4random()%1000))/2000;
@@ -93,36 +67,6 @@
     mock.remainingTime = (arc4random()%4)*(3600*24) + 768*(arc4random()%10);
     
     return mock;
-}
-
--(NSString*)description
-{
-    NSString* desc = [NSString stringWithFormat:
-                      @"id : %lu\n"
-                      "deadlineStr: %@\n"
-                      "goodName : %@\n"
-                      "region : %@\n"
-                      "stateLabel : %@\n"
-                      "userImage : %@\n"
-                      "userName : %@\n"
-                      "duration:%ld\n"
-                      "intentions:%ld\n"
-                      "isActive:%d\n"
-                      "isAnoy:%d\n"
-                      "isStep:%d\n"
-                      "millisecond:%ld\n"
-                      "price:%ld\n"
-                      "quantity:%ld\n"
-                      "views:%ld"
-                      ,self.id
-                      ,self.deadlineStr, self.goodName, self.region,
-                      self.stateLabel, self.userImage, self.userName,
-                      self.duration, self.intentions, self.isActive,
-                      self.isAnoy, self.isStep, self.millisecond,
-                      (long)self.price, self.quantity, (long)self.views];
-    
-    return desc;
-
 }
 
 @end

@@ -12,22 +12,26 @@
 
 -(void)awakeFromNib
 {
-    [super awakeFromNib];
+}
+
+//-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:NSStringFromClass([self.superclass class]) bundle:nibBundleOrNil];
+//    return self;
+//}
+
+-(instancetype)init
+{
+    self = (SupplyBottomOffView*)[UINib viewFromNibByClass:[self superclass]];
     
+    if (self) {
+        
+    }
+    return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 -(void)myInit
 {
     [self.confirmButton setTitle:@"下架" forState:UIControlStateNormal];
-    
     [self.totalPriceLabel setText:@""];
 
 }

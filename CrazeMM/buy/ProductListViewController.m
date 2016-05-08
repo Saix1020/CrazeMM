@@ -22,7 +22,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
+//    view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
 
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

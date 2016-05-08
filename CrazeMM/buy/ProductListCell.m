@@ -116,6 +116,7 @@
         _arrowView = [[ArrowView alloc] init];
         _arrowView.textLabel.text = @"求购";
         _arrowView.frame = CGRectMake(0, 0, 38, 16);
+        [self.contentView addSubview:_arrowView];
     }
     
     return _arrowView;
@@ -128,19 +129,6 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         self.backgroundColor = [UIColor grayColor];
-//        self.titleLabel.adjustsFontSizeToFitWidth = YES;
-//        self.detailLabel.font = [UIFont fontWithName:self.detailLabel.font.fontName size:15.f];
-//        self.detailLabel.textColor = [UIColor orangeColor];
-//        self.timeLeftLabel.backgroundColor = [UIColor lightGrayColor188];
-//        self.bottomLine.layer.borderWidth = 0.5;
-//        self.bottomLine.layer.borderColor = [UIColor lightGrayColor188].CGColor;
-//        self.statusLabel.backgroundColor = [UIColor greenTextColor];
-//        
-//        self.phoneImageView.layer.borderWidth = 1;
-//        self.phoneImageView.layer.borderColor = [UIColor lightGrayColor188].CGColor;
-//        [self initWithDTO:[ProductDescriptionDTO mockDate]];
-        
-        //[self layoutAllSubviews];
     }
     return self;
 }

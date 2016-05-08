@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJN-vC-TR2">
@@ -48,9 +48,9 @@
                 <constraint firstAttribute="bottom" secondItem="UHo-dY-Voe" secondAttribute="bottom" constant="1" id="khs-6m-5AO"/>
             </constraints>
             <connections>
-                <outlet property="payButton" destination="JJN-vC-TR2" id="70B-2r-2bo"/>
-                <outlet property="receiptCell" destination="UHo-dY-Voe" id="FJ8-HX-dix"/>
-                <outlet property="refundCell" destination="LMa-wq-gJz" id="oUc-rG-ZWf"/>
+                <outlet property="button1" destination="JJN-vC-TR2" id="rp2-IR-G5P"/>
+                <outlet property="button2" destination="UHo-dY-Voe" id="l9g-pM-5lU"/>
+                <outlet property="button3" destination="LMa-wq-gJz" id="on0-lV-z0x"/>
             </connections>
             <point key="canvasLocation" x="579" y="309"/>
         </tableViewCell>

@@ -8,7 +8,7 @@
 
 #import "MineNoLoginViewController.h"
 #import "NoLoginHeadCell.h"
-#import "MineSellProductViewController.h"
+#import "OrderListViewController.h"
 #import "MineViewController.h"
 #import "TabBarController.h"
 #import "LoginViewController.h"
@@ -163,7 +163,7 @@
     switch (indexPath.section) {
         case kSectionInfo:
         {
-            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+            OrderListViewController* mineSellProductVC = [[OrderListViewController alloc] init];
             [self.navigationController pushViewController:mineSellProductVC animated:YES];
             
         }

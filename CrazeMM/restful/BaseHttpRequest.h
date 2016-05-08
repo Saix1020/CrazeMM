@@ -14,6 +14,9 @@
 #import "RestURL.h"
 typedef void(^httpRequestCallback)(id ,AFHTTPRequestOperation*);
 typedef void (^errorCallback)(NSError *error);
+
+#define kHttpChallenge @"189MM-NeedLogin"
+
 @class BaseHttpResponse;
 
 @interface BaseHttpRequest : NSObject
@@ -24,6 +27,8 @@ typedef void (^errorCallback)(NSError *error);
 @property (nonatomic, strong) NSMutableDictionary* params;
 @property (nonatomic, readonly) NSString* tokenName;
 @property (nonatomic, strong) BaseHttpResponse* response;
+
+@property (nonatomic, weak) UIViewController* caller;
 //@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 
 -(AFPromise*)request;

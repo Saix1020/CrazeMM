@@ -30,4 +30,48 @@
     return [UIImage imageNamed:self];
 }
 
++(NSString*)leftTimeString:(NSUInteger)millisecond
+{
+    NSUInteger days = floor(millisecond/1000/3600/24);
+    NSUInteger hours = floor(millisecond/1000/3600%24);
+    NSUInteger mins = floor(((millisecond)% (1000 * 3600))/1000/60);
+    
+    return [NSString stringWithFormat:@"%lu 天 %lu 小时 %lu 分钟", days, hours, mins];
+}
+
+-(NSString *)countNumAndChangeformat
+{
+    int count = 0;
+    long long int a = self.longLongValue;
+    while (a != 0)    {
+        count++;
+        a /= 10;
+    }
+    NSMutableString *string = [NSMutableString stringWithString:self];
+    NSMutableString *newstring = [NSMutableString string];
+    while (count > 3) {
+        count -= 3;
+        NSRange rang = NSMakeRange(string.length - 3, 3);
+        NSString *str = [string substringWithRange:rang];
+        [newstring insertString:str atIndex:0];
+        [newstring insertString:@"," atIndex:0];
+        [string deleteCharactersInRange:rang];
+    }
+    [newstring insertString:string atIndex:0];
+    return newstring;
+}
+
++(NSArray*)formatePrice:(CGFloat)price
+{
+    NSString* priceString = [NSString stringWithFormat:@"%.02f", price];
+    
+    NSArray* array = [priceString componentsSeparatedByString:@"."];
+    
+    NSString* firstString = [array[0] countNumAndChangeformat];
+    NSString* secondString = [NSString stringWithFormat:@".%@", array[1]];
+    
+    return @[firstString, secondString];
+}
+
+
 @end

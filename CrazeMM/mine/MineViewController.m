@@ -14,12 +14,15 @@
 #import "MyInfoCell.h"
 #import "ContactCell.h"
 #import "CustomSegment.h"
-#import "MineSellProductViewController.h"
+#import "OrderListViewController.h"
 #import "SupplyViewController.h"
 #import "AccountViewController.h"
 #import "LoginViewController.h"
-
+#import "CommonOrderListView.h"
 #import "NoLoginHeadCell.h"
+#import "HttpOrderSummary.h"
+#import "HttpLogout.h"
+
 
 
 @interface MineViewController()
@@ -30,9 +33,8 @@
 @property (nonatomic, strong) ContactCell* contactCell;
 @property (nonatomic, strong) NoLoginHeadCell* noLoginCell;
 @property (nonatomic, strong) UITableViewCell* logoutCell;
-
 @property (nonatomic, readonly) BOOL isLogined;
-
+@property (nonatomic, strong) HttpOrderSummaryResponse* orderSummary;
 @end
 
 @implementation MineViewController
@@ -147,18 +149,18 @@
     if(!_orderStatusCell){
         _orderStatusCell = [[[NSBundle mainBundle]loadNibNamed:@"OrderStatusCell" owner:nil options:nil] firstObject];
         _orderStatusCell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        _orderStatusCell.delegate = self;
         
-        @weakify(self);
-        _orderStatusCell.payButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-            
-            @strongify(self);
-//            LoginViewController* loginVC = [[LoginViewController alloc] init];
-            
-            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-            [self.navigationController pushViewController:mineSellProductVC animated:YES];
-            return [RACSignal empty];
-        }];
+//        @weakify(self);
+//        _orderStatusCell.payButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+//            
+//            @strongify(self);
+////            LoginViewController* loginVC = [[LoginViewController alloc] init];
+//            
+//            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+//            [self.navigationController pushViewController:mineSellProductVC animated:YES];
+//            return [RACSignal empty];
+//        }];
     }
     
     return _orderStatusCell;
@@ -183,6 +185,7 @@
         _segmentCell.buttonStyle = kButtonStyleV;
         [_segmentCell setTitles:@[@"我买的货", @"我卖的货"] andIcons:@[@"buy_product", @"sell_product"]];
         _segmentCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _segmentCell.segment.delegate = self;
 
     }
     
@@ -193,11 +196,11 @@
 {
     self = [super init];
     if (self) {
-        if (![UserCenter defaultCenter].isLogined) {
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(logoutSuccessed:)
-                                                         name:kLogutSuccessBroadCast object:nil];
-        }
+//        if (![UserCenter defaultCenter].isLogined) {
+//            [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                     selector:@selector(logoutSuccessed:)
+//                                                         name:kLogutSuccessBroadCast object:nil];
+//        }
         
     }
     return self;
@@ -228,9 +231,33 @@
 
 -(void)logout
 {
-    [[UserCenter defaultCenter] resetKeychainItem];
-    [[UserCenter defaultCenter] setLogouted];
-    [self.tableView reloadData];
+    HttpLogoutRequest* logoutRequest = [[HttpLogoutRequest alloc] init];
+    [self showProgressIndicatorWithTitle:@"正在注销..."];
+    [logoutRequest request]
+    .then(^(id responseObject){
+        if (logoutRequest.response.ok) {
+            [[UserCenter defaultCenter] resetKeychainItem];
+            [[UserCenter defaultCenter] setLogouted];
+            
+            //navigate to login page
+            LoginViewController* loginVC = [[LoginViewController alloc] init];
+            //[self presentViewController:loginVC animated:YES completion:nil];
+            [self.navigationController pushViewController:loginVC animated:YES];
+
+            
+        }
+        else {
+            [self showAlertViewWithMessage:@"注销失败!"];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        [self dismissProgressIndicator];
+    });
+    
+    //[self.tableView reloadData];
 }
 
 -(void)viewWillLayoutSubviews
@@ -244,15 +271,103 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    self.orderStatusCell.titleArray = [self titleArray];
+    
+    HttpOrderSummaryRequest* orderSummaryRequest = [[HttpOrderSummaryRequest alloc] init];
+    [orderSummaryRequest request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        self.orderSummary = (HttpOrderSummaryResponse*)orderSummaryRequest.response;
+        if (self.orderSummary.ok) {
+            self.orderStatusCell.titleArray = [self titleArray];
+        }
+    })
+    .catch(^(NSError* error){
+        if ([error needLogin]) {
+            [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        }
+        else {
+            [self showAlertViewWithMessage:error.localizedDescription];
+ 
+        }
+    });
 }
 
-//-(void)viewDidDisappear:(BOOL)animated
-//{
-//    
-//}
-
-
-
+-(NSArray*)titleArray
+{
+    if (self.orderSummary) {
+        if(self.segmentCell.segment.currentIndex == 0){
+            return @[
+                     @{
+                         @"name" : @"待付款",
+                         @"number" : @(self.orderSummary.tobepaid)
+                         },
+                     @{
+                         @"name" : @"待签收",
+                         @"number" : @(self.orderSummary.tobereceived)
+                         },
+                     @{
+                         @"name" : @"其他",
+                         @"number" : @(-1)
+                         },
+                     
+                     ];
+        }
+        else {
+            return @[
+                     @{
+                         @"name" : @"待发货",
+                         @"number" : @(self.orderSummary.tobesent)
+                         },
+                     @{
+                         @"name" : @"待确认",
+                         @"number" : @(self.orderSummary.tobeconfirmed)
+                         },
+                     @{
+                         @"name" : @"其他",
+                         @"number" : @(-1)
+                         },
+                     
+                     ];
+        }
+    }
+    else{
+        if(self.segmentCell.segment.currentIndex == 0){
+            return @[
+                     @{
+                         @"name" : @"待付款",
+                         @"number" : @(0)
+                         },
+                     @{
+                         @"name" : @"待签收",
+                         @"number" : @(0)
+                         },
+                     @{
+                         @"name" : @"其他",
+                         @"number" : @(-1)
+                         },
+                     
+                     ];
+        }
+        else {
+            return @[
+                     @{
+                         @"name" : @"待发货",
+                         @"number" : @(0)
+                         },
+                     @{
+                         @"name" : @"待确认",
+                         @"number" : @(0)
+                         },
+                     @{
+                         @"name" : @"其他",
+                         @"number" : @(-1)
+                         },
+                     
+                     ];
+        }
+    }
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -425,8 +540,8 @@
         switch (indexPath.section) {
             case kSectionInfo:
             {
-                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-                [self.navigationController pushViewController:mineSellProductVC animated:YES];
+//                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+//                [self.navigationController pushViewController:mineSellProductVC animated:YES];
                 return;
             }
                 break;
@@ -476,6 +591,52 @@
     return 12.f;
 }
 
+#pragma  -- mark custom segment delegate
+- (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
+{
+    self.orderStatusCell.titleArray = [self titleArray];
+}
 
+#pragma -- mark order status cell delegate
+-(void)orderStatusCellButtonClicked:(UIButton *)button andButtonIndex:(NSUInteger)index
+{
+    MMOrderType orderType;
+    MMOrderSubType orderSubType;
+    
+
+    if (self.segmentCell.segment.currentIndex == 0) {
+        orderType = kOrderTypeBuy;
+        
+        switch (index) {
+            case 1:
+                orderSubType = kOrderSubTypePay;
+                break;
+            case 2:
+                orderSubType = kOrderSubTypeReceived;
+                break;
+            default:
+                orderSubType = kOrderSubTypePay;
+                break;
+        }
+    }
+    else {
+        orderType = kOrderTypeSupply;
+        switch (index) {
+            case 1:
+                orderSubType = kOrderSubTypeSend;
+                break;
+            case 2:
+                orderSubType = kOrderSubTypeConfirmed;
+                break;
+            default:
+                orderSubType = kOrderSubTypeSend;
+                break;
+        }
+
+    }
+    
+    OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
+    [self.navigationController pushViewController:orderListVC animated:YES];
+}
 
 @end

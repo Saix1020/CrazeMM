@@ -56,6 +56,8 @@
     //[self commInit];
     
     //[self initWithDTO:[ProductDescriptionDTO mockDate]];
+    
+    self.phoneImageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 -(instancetype)init
@@ -116,7 +118,7 @@
     [self fomartTimeLeftLabel];
     
 //    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
-    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[UIImage imageNamed:@"prod_placeholder.jpg"]];
+    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[@"ph_phone" image]];
     self.statusLabel.text = productDescDTO.status;
     @weakify(self);
     

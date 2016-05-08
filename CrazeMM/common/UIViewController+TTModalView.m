@@ -100,4 +100,28 @@
 }
 
 
++(void)showAlertViewWithViewController:(UIViewController*)vc
+{
+    TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
+    confirmModalView.isCancelAble = NO;
+    confirmModalView.modalWindowLevel = UIWindowLevelNormal;
+    
+//    MMAlertViewWithOK *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertViewWithOK" owner:nil options:nil] lastObject];
+//    transferAlertView.layer.cornerRadius = 0;
+    
+//    transferAlertView.alertMsgLabel.text = message;
+    confirmModalView.contentView = vc.view;
+    
+    confirmModalView.presentAnimationStyle = zoomIn;
+    confirmModalView.dismissAnimationStyle = zoomOut ;
+    
+    [confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+        
+//        contentView.centerX = self.view.centerX;
+//        contentView.centerY = self.view.centerY;
+        contentView.frame = [UIScreen mainScreen].bounds;
+        
+    }];
+}
+
 @end

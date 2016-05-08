@@ -15,4 +15,11 @@
     return [[[NSBundle mainBundle]loadNibNamed:nibName owner:nil options:nil] firstObject];
 }
 
++(UIView*)viewFromNibByClass:(id)class
+{
+    return [UINib viewFromNib:NSStringFromClass(class)];
+}
+
+
+
 @end

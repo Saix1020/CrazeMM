@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderStatusCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *refundCell;
+@protocol OrderStatusCellDelegate <NSObject>
 
-@property (weak, nonatomic) IBOutlet UIButton *payButton;
-@property (weak, nonatomic) IBOutlet UIButton *receiptCell;
+-(void)orderStatusCellButtonClicked:(UIButton*)button andButtonIndex:(NSUInteger)index;
+
+@end
+
+@interface OrderStatusCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIButton *button1;
+@property (weak, nonatomic) IBOutlet UIButton *button2;
+@property (weak, nonatomic) IBOutlet UIButton *button3;
+@property (nonatomic, copy) NSArray* titleArray;
+
+@property (nonatomic, weak) id<OrderStatusCellDelegate> delegate;
 @end

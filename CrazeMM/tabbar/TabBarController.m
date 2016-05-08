@@ -7,8 +7,8 @@
 //
 
 #import "TabBarController.h"
-#import "BuyViewController.h"
-#import "SellViewController.h"
+#import "BuyListViewController.h"
+#import "SupplyListViewController.h"
 #import "MineViewController.h"
 #import "BaseNavigationController.h"
 #import "MineNoLoginViewController.h"
@@ -43,11 +43,11 @@
 
         
         
-        BuyViewController *buyVC = [[BuyViewController alloc] init];
+        BuyListViewController *buyVC = [[BuyListViewController alloc] init];
         buyVC.tabBarItem = buyItem;
         BaseNavigationController *buyNavController = [[BaseNavigationController alloc] initWithRootViewController:buyVC];
         
-        SellViewController *sellVC = [[SellViewController alloc] init];
+        SupplyListViewController *sellVC = [[SupplyListViewController alloc] init];
         sellVC.tabBarItem = sellItem;
         BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:sellVC];
         
