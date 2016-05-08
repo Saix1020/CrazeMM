@@ -30,6 +30,13 @@ PODS:
   - MJRefresh (3.1.0)
   - MLPAutoCompleteTextField (1.5)
   - NHArrowView (0.1.0)
+  - OMGHTTPURLRQ (3.1.1):
+    - OMGHTTPURLRQ/RQ (= 3.1.1)
+  - OMGHTTPURLRQ/FormURLEncode (3.1.1)
+  - OMGHTTPURLRQ/RQ (3.1.1):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.1.1)
   - PPiAwesomeButton (1.5.2):
     - FontAwesome+iOS
   - PPiFlatSegmentedControl (1.4.0):
@@ -72,6 +79,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.0)
   - MLPAutoCompleteTextField (~> 1.5)
   - NHArrowView (~> 0.1.0)
+  - OMGHTTPURLRQ (~> 3.1.1)
   - PPiFlatSegmentedControl (~> 1.4.0)
   - PromiseKit-AFNetworking (~> 0.6.0)
   - QuickDialog (~> 1.1.0)
@@ -94,6 +102,7 @@ SPEC CHECKSUMS:
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MLPAutoCompleteTextField: ba4d507bbff2bd4f139d4197814fc8dd39caf77e
   NHArrowView: 558a4b638d0b280a1b70d254811f51e8510b2c71
+  OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
   PPiAwesomeButton: 16f7279582fd36f65186b24b83ef876217363eb5
   PPiFlatSegmentedControl: ed706988b57f887fc09852dd0da18b3355cd8bea
   PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb

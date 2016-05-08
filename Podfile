@@ -24,3 +24,4 @@ pod 'TPKeyboardAvoiding', '~> 1.3'
 #pod 'PromiseKit', '~> 3.1.1'
 pod 'PromiseKit-AFNetworking', '~> 0.6.0'
 #pod 'KeychainItemWrapper', '~> 1.2'
+pod 'OMGHTTPURLRQ', '~> 3.1.1’

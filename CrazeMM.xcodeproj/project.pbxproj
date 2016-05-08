@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E8421221CDF38B0004993F9 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8421211CDF38B0004993F9 /* Reveal.framework */; };
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
 		B9156F3C1CDB91630041E535 /* SearchEmpty.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9156F3B1CDB91630041E535 /* SearchEmpty.xib */; };
@@ -321,7 +322,6 @@
 		B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
 		B9AD462E1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
 		B9B5BCDF1CDCD5110085E132 /* HttpLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCDE1CDCD5110085E132 /* HttpLogout.m */; };
-		B9B5BCE01CDCD95D0085E132 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B9B5BCE31CDCDF690085E132 /* NSError+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE21CDCDF690085E132 /* NSError+Utils.m */; };
 		B9B5BCEA1CDDBE670085E132 /* HttpOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE91CDDBE670085E132 /* HttpOrder.m */; };
 		B9B5BCEF1CDE00C40085E132 /* OrderDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCEE1CDE00C40085E132 /* OrderDetailDTO.m */; };
@@ -358,6 +358,7 @@
 
 /* Begin PBXFileReference section */
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E8421211CDF38B0004993F9 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
 		B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultDTO.m; path = search/SearchResultDTO.m; sourceTree = "<group>"; };
 		B9156F311CDA43190041E535 /* HttpSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSearchRequest.h; path = restful/HttpSearchRequest.h; sourceTree = "<group>"; };
@@ -546,7 +547,6 @@
 		B917326F1CD1F5F700C29698 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B91732711CD1F78900C29698 /* CATransform3DExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CATransform3DExtend.m; sourceTree = "<group>"; };
 		B91732721CD1F78900C29698 /* CATransform3DExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransform3DExtend.h; sourceTree = "<group>"; };
-		B91732741CD1FC9400C29698 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		B91732771CD2036300C29698 /* BaseHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseHttpRequest.h; path = restful/BaseHttpRequest.h; sourceTree = "<group>"; };
 		B91732781CD2036300C29698 /* BaseHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseHttpRequest.m; path = restful/BaseHttpRequest.m; sourceTree = "<group>"; };
 		B917327E1CD20E9000C29698 /* HttpLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpLoginRequest.h; path = restful/HttpLoginRequest.h; sourceTree = "<group>"; };
@@ -910,9 +910,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E8421221CDF38B0004993F9 /* Reveal.framework in Frameworks */,
 				B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */,
 				B9FE71EE1CD6FDD800F5EC9F /* Pods.framework in Frameworks */,
-				B9B5BCE01CDCD95D0085E132 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,8 +948,8 @@
 			isa = PBXGroup;
 			children = (
 				B9AD443B1CD49BFE00012B31 /* PromiseKit_AFNetworking.framework */,
+				2E8421211CDF38B0004993F9 /* Reveal.framework */,
 				B9AD44391CD49B8D00012B31 /* AFNetworking.framework */,
-				B91732741CD1FC9400C29698 /* Reveal.framework */,
 				B917326F1CD1F5F700C29698 /* QuartzCore.framework */,
 				14ACAF7E869FA5D74648BBDD /* Pods.framework */,
 			);
