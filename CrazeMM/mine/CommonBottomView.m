@@ -6,9 +6,9 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "PayBottomView.h"
+#import "CommonBottomView.h"
 
-@implementation PayBottomView
+@implementation CommonBottomView
 
 - (void)awakeFromNib {
     

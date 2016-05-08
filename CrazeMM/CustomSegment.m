@@ -156,6 +156,9 @@
 
 - (void)setButtons
 {
+    for (UIButton* btn in self.buttons) {
+        [btn removeFromSuperview];
+    }
     NSInteger count = [_items count];
     CGFloat width = self.bounds.size.width / count - 1;
     CGFloat height = self.bounds.size.height;

@@ -6,8 +6,8 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "PayBottomView.h"
+#import "CommonBottomView.h"
 
-@interface SupplyBottomOffView : PayBottomView
+@interface SupplyBottomOffView : CommonBottomView
 -(void)myInit;
 @end

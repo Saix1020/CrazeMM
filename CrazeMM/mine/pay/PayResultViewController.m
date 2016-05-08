@@ -8,7 +8,7 @@
 
 #import "PayResultViewController.h"
 #import "TPKeyboardAvoidingTableView.h"
-#import "PayBottomView.h"
+#import "CommonBottomView.h"
 #import "PayResultCell.h"
 #import "PaySuccessProductCell.h"
 #import "TTModalView.h"
@@ -18,7 +18,7 @@
 
 @interface PayResultViewController ()
 @property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
-@property (nonatomic, strong) PayBottomView* payBottomView;
+@property (nonatomic, strong) CommonBottomView* payBottomView;
 
 @property (nonatomic, strong) TTModalView* confirmModalView;
 @property (nonatomic, strong) TransferAlertView* transferAlertView;
@@ -50,10 +50,10 @@
     return _confirmModalView;
 }
 
--(PayBottomView*)payBottomView
+-(CommonBottomView*)payBottomView
 {
     if(!_payBottomView){
-        _payBottomView = [[[NSBundle mainBundle]loadNibNamed:@"PayBottomView" owner:nil options:nil] firstObject];
+        _payBottomView = [[[NSBundle mainBundle]loadNibNamed:@"CommonBottomView" owner:nil options:nil] firstObject];
         ;
         [self.view addSubview:_payBottomView];
         [_payBottomView.confirmButton setTitle:@"转手" forState:UIControlStateNormal];
@@ -153,7 +153,7 @@
     [super viewWillLayoutSubviews];
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     
-    self.payBottomView.frame = CGRectMake(0, self.view.height-[PayBottomView cellHeight], self.view.bounds.size.width, [PayBottomView cellHeight]);
+    self.payBottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
     //[self.view bringSubviewToFront:self.payBottomView];
     
     //self.tableView.contentSize = CGSizeMake(0, 100);

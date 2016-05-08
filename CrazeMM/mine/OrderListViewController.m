@@ -9,19 +9,21 @@
 #import "OrderListViewController.h"
 #import "OrderListCell.h"
 #import "SegmentedCell.h"
-#import "PayBottomView.h"
+#import "CommonBottomView.h"
 #import "MinePayViewController.h"
 #import "OrderListNoCheckBoxCell.h"
 #import "HttpOrder.h"
 #import "MJRefresh.h"
 
+#define kSegmentCellHeight 40.f
+#define kTableViewInsetTopWithoutSegment (kSegmentCellHeight+64)
 
 
 @interface OrderListViewController ()
 
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) SegmentedCell* segmentCell;
-@property (nonatomic, strong) PayBottomView* payBottomView;
+@property (nonatomic, strong) CommonBottomView* commonBottomView;
 @property (nonatomic) NSInteger currentSegmentIndex;
 @property (nonatomic, strong) NSMutableArray* dataSource;
 
@@ -37,6 +39,9 @@
 @property (nonatomic) CGFloat totalPrice;
 
 @property (nonatomic, strong) UITableViewCell* emptyCell;
+
+@property (nonatomic) CGPoint ptLastOffset;
+
 
 @end
 
@@ -102,13 +107,13 @@
     return @[@"待支付", @"超时", @"已支付"];
 }
 
--(PayBottomView*)payBottomView
+-(CommonBottomView*)commonBottomView
 {
-    if(!_payBottomView){
-        _payBottomView = [[[NSBundle mainBundle]loadNibNamed:@"PayBottomView" owner:nil options:nil] firstObject];
+    if(!_commonBottomView){
+        _commonBottomView = [[[NSBundle mainBundle]loadNibNamed:@"CommonBottomView" owner:nil options:nil] firstObject];
 ;
-        [self.view addSubview:_payBottomView];
-        [_payBottomView.confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_commonBottomView];
+        [_commonBottomView.confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
 //        _payBottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
 ////            MinePayViewController* payVC = [MinePayViewController new];
@@ -116,10 +121,10 @@
 //            return [RACSignal empty];
 //        }];
         
-        _payBottomView.selectAllCheckBox.delegate = self;
+        _commonBottomView.selectAllCheckBox.delegate = self;
     }
     
-    return _payBottomView;
+    return _commonBottomView;
 }
 
 -(SegmentedCell*)segmentCell
@@ -129,6 +134,7 @@
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(44.0f);
         _segmentCell.segment.delegate = self;
+        [self.view addSubview:_segmentCell];
     }
     
     return _segmentCell;
@@ -252,9 +258,19 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderListCell" bundle:nil] forCellReuseIdentifier:@"OrderListCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderListNoCheckBoxCell" bundle:nil] forCellReuseIdentifier:@"OrderListNoCheckBoxCell"];
     
-    self.tableView.tableHeaderView = self.segmentCell;
+//    self.tableView.tableHeaderView = self.segmentCell;
     self.currentSegmentIndex = 0;
     self.dataSource = [[NSMutableArray alloc] init];
+    self.segmentCell.frame = CGRectMake(0, 64.f, [UIScreen mainScreen].bounds.size.width, kSegmentCellHeight);
+    self.tableView.frame = self.view.bounds;
+    
+    self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+
     
     
     @weakify(self);
@@ -284,8 +300,8 @@
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    self.payBottomView.frame = CGRectMake(0, self.view.height-[PayBottomView cellHeight], self.view.bounds.size.width, [PayBottomView cellHeight]);
+//    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    self.commonBottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
 }
 
 -(void)viewDidLayoutSubviews
@@ -305,7 +321,7 @@
 
 -(void)refreshTotalPriceLabel
 {
-    if (!self.payBottomView.totalPriceLabel.hidden) {
+    if (!self.commonBottomView.totalPriceLabel.hidden) {
         self.totalPrice = 0.f;
         for (NSInteger index = 0; index<self.dataSource.count; ++index) {
             OrderDetailDTO* dto = self.dataSource[index];
@@ -313,7 +329,7 @@
                 self.totalPrice += dto.price;
             }
         }
-        self.payBottomView.totalPrice = self.totalPrice;
+        self.commonBottomView.totalPrice = self.totalPrice;
     }
 }
 
@@ -333,7 +349,7 @@
                 [self.dataSource addObjectsFromArray:response.orderDetailDTOs];
                 [self.tableView reloadData];
                 [self refreshTotalPriceLabel];
-                self.payBottomView.selectAllCheckBox.on = NO;
+                self.commonBottomView.selectAllCheckBox.on = NO;
             }
         }
     })
@@ -405,7 +421,7 @@
         }
     }
     self.orderState = style.orderState;
-    self.payBottomView.orderStyle = style;
+    self.commonBottomView.orderStyle = style;
 }
 
 #pragma mark - Table view data source
@@ -480,17 +496,17 @@
 #pragma -- mark BEMCheckBox Delegate
 -(void)didTapCheckBox:(BEMCheckBox *)checkBox
 {
-    if (checkBox != self.payBottomView.selectAllCheckBox) {
+    if (checkBox != self.commonBottomView.selectAllCheckBox) {
         NSInteger index = checkBox.tag - 10000;
         OrderDetailDTO* dto = self.dataSource[index];
         dto.selected = checkBox.on;
 
         NSArray* onArray = [self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
         if (onArray.count == self.dataSource.count) {
-            self.payBottomView.selectAllCheckBox.on = YES;
+            self.commonBottomView.selectAllCheckBox.on = YES;
         }
         else {
-            self.payBottomView.selectAllCheckBox.on = NO;
+            self.commonBottomView.selectAllCheckBox.on = NO;
         }
     }
     else {
@@ -504,6 +520,95 @@
     [self refreshTotalPriceLabel];
 }
 
+#pragma -- mark UIScroll view delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    if (scrollView == self.tableView){
+        
+        if (scrollView.isTracking && scrollView.dragging)
+        {
+            CGPoint ptOffset = scrollView.contentOffset;
+            
+            if (scrollView.contentSize.height >= scrollView.size.height) //内容高度大于view高度
+            {
+                if (ptOffset.y >= scrollView.contentSize.height - scrollView.size.height) //已经到最下方
+                    return;
+            }
+            
+            
+            
+            if (scrollView.contentInset.top == kTableViewInsetTopWithoutSegment)
+            {
+                if (ptOffset.y > -kTableViewInsetTopWithoutSegment) //下滑
+                {
+                    if ((ptOffset.y - self.ptLastOffset.y) > 0)
+                    {
+                        [self hideTopBars];
+                        
+                        self.ptLastOffset = ptOffset;
+                        self.tableView.showsVerticalScrollIndicator = YES;
+                    }
+                    else
+                    {
+                        [self showTopBars];
+                        self.ptLastOffset = ptOffset;
+                    }
+                }
+            }
+            else if (scrollView.contentInset.top == 0)
+            {
+                if (ptOffset.y > 0)
+                {
+                    if ((ptOffset.y - self.ptLastOffset.y) > 0)
+                    {
+                        [self hideTopBars];
+                        
+                        self.ptLastOffset = ptOffset;
+                    }
+                    else if ((ptOffset.y - self.ptLastOffset.y) < 0)
+                    {
+                        [self showTopBars];
+                        self.ptLastOffset = ptOffset;
+                    }
+                }
+                else if (ptOffset.y < 0)
+                {
+                    [self showTopBars];
+                    self.ptLastOffset = ptOffset;
+                }
+            }
+        }
+    }
+}
+
+- (void)hideTopBars
+{
+    if (self.tableView.contentSize.height < self.tableView.height)
+        return;
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.segmentCell.transform = CGAffineTransformMakeTranslation(0, -300);
+        
+    } completion:^(BOOL finished) {
+    }];
+}
+
+- (void)showTopBars
+{
+    self.tableView.contentInset = UIEdgeInsetsMake(kTableViewInsetTopWithoutSegment, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kTableViewInsetTopWithoutSegment, 0, 0, 0);
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.segmentCell.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    
+}
 
 
 @end

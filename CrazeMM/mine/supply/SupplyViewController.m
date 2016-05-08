@@ -8,15 +8,15 @@
 
 #import "SupplyViewController.h"
 #import "SegmentedCell.h"
-#import "SupplyBottomOffView.h"
+#import "CommonBottomView.h"
 #import "SupplyListCell.h"
 #import <objc/runtime.h>
 
 @interface SupplyViewController ()
-@property (nonatomic, strong) UITableView* tableView;
-
-@property (nonatomic, strong) SegmentedCell* segmentCell;
-@property (nonatomic, strong) SupplyBottomOffView* bottomView;
+//@property (nonatomic, strong) UITableView* tableView;
+//
+//@property (nonatomic, strong) SegmentedCell* segmentCell;
+//@property (nonatomic, strong) CommonBottomView* bottomView;
 @property (nonatomic) SupplyListCellStyle cellStyle;
 
 @end
@@ -29,25 +29,19 @@
 -(SegmentedCell*)segmentCell
 {
     if (!_segmentCell) {
-        _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
-        _segmentCell.buttonStyle = kButtonStyleB;
-        _segmentCell.height = @(44.0f);
-        [_segmentCell setTitles:@[@"正常", @"下架", @"成交"]];
-        _segmentCell.segment.delegate = self;
-
+        SegmentedCell* cell = [super segmentCell];
+        [cell setTitles:@[@"正常", @"下架", @"成交"]];
     }
-    
     return _segmentCell;
 }
 
--(SupplyBottomOffView*)bottomView
+-(CommonBottomView*)bottomView
 {
     if(!_bottomView){
-        _bottomView = [[[NSBundle mainBundle]loadNibNamed:@"PayBottomView" owner:nil options:nil] firstObject];
-        
-        object_setClass(_bottomView, [SupplyBottomOffView class]);
-        [_bottomView myInit];
-        [self.view addSubview:_bottomView];
+        _bottomView = [super bottomView];
+        [_bottomView.confirmButton setTitle:@"下架" forState:UIControlStateNormal];
+        [_bottomView.totalPriceLabel setText:@""];
+//        [self.view addSubview:_bottomView];
         _bottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
 //            MinePayViewController* payVC = [MinePayViewController new];
 //            [self.navigationController pushViewController:payVC animated:YES];
@@ -58,13 +52,18 @@
     return _bottomView;
 }
 
-
-
-- (void)viewDidLoad {
+//-(CGFloat)contentHeightOffset
+//{
+//    return 12.f;
+//}
+//
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.navigationItem.title = @"我的供货";
     self.view.backgroundColor = [UIColor light_Gray_Color];
+    
     
     
     if (!self.navigationItem.leftBarButtonItem) {
@@ -78,37 +77,37 @@
     }
     
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
-    self.tableView.backgroundColor = [UIColor UIColorFromRGB:0xf1f1f1];
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:view];
-    
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+//    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+//    self.tableView.delegate = self;
+//    self.tableView.dataSource = self;
+//    [self.view addSubview:self.tableView];
+//    self.tableView.backgroundColor = [UIColor UIColorFromRGB:0xf1f1f1];
+//    UIView *view = [UIView new];
+//    view.backgroundColor = [UIColor clearColor];
+//    [self.tableView setTableFooterView:view];
+//    
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    
     [self.tableView registerNib:[UINib nibWithNibName:@"SupplyListCell" bundle:nil] forCellReuseIdentifier:@"SupplyListCell"];
     
     
-    self.tableView.tableHeaderView = self.segmentCell;
+//    self.tableView.tableHeaderView = self.segmentCell;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.tabBarController setTabBarHidden:YES animated:YES];
-}
-
--(void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    
-    self.bottomView.frame = CGRectMake(0, self.view.height-[PayBottomView cellHeight], self.view.bounds.size.width, [PayBottomView cellHeight]);
-    //[self.view bringSubviewToFront:self.bottomView];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    [self.tabBarController setTabBarHidden:YES animated:YES];
+//}
+//
+//-(void)viewWillLayoutSubviews
+//{
+//    [super viewWillLayoutSubviews];
+//    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+//    
+//    self.bottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
+//    //[self.view bringSubviewToFront:self.bottomView];
+//}
 
 
 #pragma mark - Table view data source

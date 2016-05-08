@@ -43,12 +43,6 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-//    self.segment.frame = self.bounds;
-//    [self.segment layoutIfNeeded];
-    
-//    if (self.buttonStyle == kButtonStyleV) {
-//        
-//    }
 }
 
 +(CGFloat)cellHight

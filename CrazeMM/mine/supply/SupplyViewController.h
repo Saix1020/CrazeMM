@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomSegment.h"
+#import "CommonOrderListView.h"
 
-@interface SupplyViewController : UIViewController<CustomSegmentDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SupplyViewController : CommonOrderListView
 
 @end

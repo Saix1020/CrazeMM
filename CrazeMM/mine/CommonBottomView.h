@@ -11,7 +11,7 @@
 #import "M80AttributedLabel.h"
 #import "OrderDefine.h"
 
-@interface PayBottomView : UITableViewCell
+@interface CommonBottomView : UITableViewCell
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectAllCheckBox;
 @property (weak, nonatomic) IBOutlet UILabel *selectAllLabel;
 @property (weak, nonatomic) IBOutlet M80AttributedLabel *totalPriceLabel;
