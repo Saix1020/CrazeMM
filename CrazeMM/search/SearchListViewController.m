@@ -292,6 +292,7 @@
                                                                          andKeywords:self.searchKeyword.length>0?@[self.searchKeyword]:@[]
                                                                             andSorts:self.sortTypes
                                                                          andCategory:self.searchCategory];
+    searchRequest.caller = self;
     
     return [searchRequest request]
     .then(^(id responseObject){

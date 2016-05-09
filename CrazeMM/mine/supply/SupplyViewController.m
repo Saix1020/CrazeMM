@@ -52,11 +52,6 @@
     return _bottomView;
 }
 
-//-(CGFloat)contentHeightOffset
-//{
-//    return 12.f;
-//}
-//
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -75,40 +70,9 @@
             return [RACSignal empty];
         }];
     }
+//    [self.tableView registerNib:[UINib nibWithNibName:@"SupplyListCell" bundle:nil] forCellReuseIdentifier:@"SupplyListCell"];
     
-    
-//    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
-//    [self.view addSubview:self.tableView];
-//    self.tableView.backgroundColor = [UIColor UIColorFromRGB:0xf1f1f1];
-//    UIView *view = [UIView new];
-//    view.backgroundColor = [UIColor clearColor];
-//    [self.tableView setTableFooterView:view];
-//    
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    
-    [self.tableView registerNib:[UINib nibWithNibName:@"SupplyListCell" bundle:nil] forCellReuseIdentifier:@"SupplyListCell"];
-    
-    
-//    self.tableView.tableHeaderView = self.segmentCell;
 }
-
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    [self.tabBarController setTabBarHidden:YES animated:YES];
-//}
-//
-//-(void)viewWillLayoutSubviews
-//{
-//    [super viewWillLayoutSubviews];
-//    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-//    
-//    self.bottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
-//    //[self.view bringSubviewToFront:self.bottomView];
-//}
-
 
 #pragma mark - Table view data source
 
@@ -136,7 +100,11 @@
         }
     }
     else {
+        // we should use this style for cell reuse to support iOS8
         cell = [tableView dequeueReusableCellWithIdentifier:@"SupplyListCell"];
+        if (cell==nil) {
+            cell= [[[NSBundle mainBundle]loadNibNamed:@"SupplyListCell" owner:nil options:nil] firstObject];
+        }
         ((SupplyListCell*)cell).style = self.cellStyle;
 
     }

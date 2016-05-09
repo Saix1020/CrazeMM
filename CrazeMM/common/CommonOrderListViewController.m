@@ -6,7 +6,7 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "CommonOrderListView.h"
+#import "CommonOrderListViewController.h"
 #import "SegmentedCell.h"
 #import "CommonBottomView.h"
 #import "MJRefresh.h"
@@ -15,14 +15,14 @@
 #define kSegmentCellHeight (40.f+self.contentHeightOffset)
 #define kTableViewInsetTopWithoutSegment (kSegmentCellHeight+64)
 
-@interface CommonOrderListView()
+@interface CommonOrderListViewController()
 
 @property (nonatomic) CGPoint ptLastOffset;
 
 
 @end
 
-@implementation CommonOrderListView
+@implementation CommonOrderListViewController
 
 @synthesize segmentCell = _segmentCell;
 @synthesize bottomView = _bottomView;

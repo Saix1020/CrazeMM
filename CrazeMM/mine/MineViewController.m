@@ -18,7 +18,7 @@
 #import "SupplyViewController.h"
 #import "AccountViewController.h"
 #import "LoginViewController.h"
-#import "CommonOrderListView.h"
+#import "CommonOrderListViewController.h"
 #import "NoLoginHeadCell.h"
 #import "HttpOrderSummary.h"
 #import "HttpLogout.h"
@@ -35,6 +35,7 @@
 @property (nonatomic, strong) UITableViewCell* logoutCell;
 @property (nonatomic, readonly) BOOL isLogined;
 @property (nonatomic, strong) HttpOrderSummaryResponse* orderSummary;
+@property (nonatomic, strong) UIButton* cancelButton;
 @end
 
 @implementation MineViewController
@@ -91,17 +92,17 @@
 {
     if (!_logoutCell) {
         _logoutCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"logoutCell"];
-        UIButton* cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [cancelButton setTitle:@"退出" forState:UIControlStateNormal];
-        [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        cancelButton.backgroundColor = [UIColor redColor];
-        cancelButton.layer.cornerRadius = 4.f;
-        cancelButton.clipsToBounds = YES;
-        cancelButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);
+        self.cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [self.cancelButton setTitle:@"退出" forState:UIControlStateNormal];
+        [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.cancelButton.backgroundColor = [UIColor redColor];
+        self.cancelButton.layer.cornerRadius = 4.f;
+        self.cancelButton.clipsToBounds = YES;
+        self.cancelButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);
         
-        [cancelButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+        [self.cancelButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
 
-        [_logoutCell addSubview:cancelButton];
+        [_logoutCell addSubview:self.cancelButton];
 
     }
     
@@ -236,15 +237,16 @@
     [logoutRequest request]
     .then(^(id responseObject){
         if (logoutRequest.response.ok) {
-            [[UserCenter defaultCenter] resetKeychainItem];
+//            [[UserCenter defaultCenter] resetKeychainItem];
             [[UserCenter defaultCenter] setLogouted];
             
             //navigate to login page
-            LoginViewController* loginVC = [[LoginViewController alloc] init];
-            //[self presentViewController:loginVC animated:YES completion:nil];
-            [self.navigationController pushViewController:loginVC animated:YES];
+//            LoginViewController* loginVC = [[LoginViewController alloc] init];
+//            //[self presentViewController:loginVC animated:YES completion:nil];
+//            [self.navigationController pushViewController:loginVC animated:YES];
+//            self.cancelButton.enabled = NO;
 
-            
+            [self.tableView reloadData];
         }
         else {
             [self showAlertViewWithMessage:@"注销失败!"];
@@ -272,25 +274,29 @@
     [super viewWillAppear:animated];
     [self.tableView reloadData];
     self.orderStatusCell.titleArray = [self titleArray];
-    
-    HttpOrderSummaryRequest* orderSummaryRequest = [[HttpOrderSummaryRequest alloc] init];
-    [orderSummaryRequest request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        self.orderSummary = (HttpOrderSummaryResponse*)orderSummaryRequest.response;
-        if (self.orderSummary.ok) {
-            self.orderStatusCell.titleArray = [self titleArray];
-        }
-    })
-    .catch(^(NSError* error){
-        if ([error needLogin]) {
-            [self.navigationController pushViewController:[LoginViewController new] animated:YES];
-        }
-        else {
-            [self showAlertViewWithMessage:error.localizedDescription];
- 
-        }
-    });
+    //self.self.cancelButton.enabled = [[UserCenter defaultCenter] isLogined]? YES:NO;
+    if ([[UserCenter defaultCenter] isLogined]) {
+        HttpOrderSummaryRequest* orderSummaryRequest = [[HttpOrderSummaryRequest alloc] init];
+        [orderSummaryRequest request]
+        .then(^(id responseObj){
+            NSLog(@"%@", responseObj);
+            self.orderSummary = (HttpOrderSummaryResponse*)orderSummaryRequest.response;
+            if (self.orderSummary.ok) {
+                self.orderStatusCell.titleArray = [self titleArray];
+            }
+        })
+        .catch(^(NSError* error){
+            if ([error needLogin]) {
+                [[UserCenter defaultCenter] setLogouted];
+                [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+            }
+            else {
+                [self showAlertViewWithMessage:error.localizedDescription];
+                
+            }
+        });
+
+    }
 }
 
 -(NSArray*)titleArray

@@ -12,7 +12,7 @@
 #import "CustomSegment.h"
 #import "BEMCheckBox.h"
 
-@interface CommonOrderListView : UIViewController<CustomSegmentDelegate, UITableViewDataSource, UITableViewDelegate, BEMCheckBoxDelegate>
+@interface CommonOrderListViewController : UIViewController<CustomSegmentDelegate, UITableViewDataSource, UITableViewDelegate, BEMCheckBoxDelegate>
 {
     @protected
     SegmentedCell* _segmentCell;

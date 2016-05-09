@@ -55,7 +55,7 @@
 {
     if (!_productRecommendAlertView) {
         _productRecommendAlertView = [[TTModalView alloc] initWithContentView:nil delegate:nil];
-        _productRecommendAlertView.isCancelAble = NO;
+        _productRecommendAlertView.isCancelAble = YES;
         _productRecommendAlertView.modalWindowLevel = UIWindowLevelNormal;
         
         ProductRecommendView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"ProductRecommendView" owner:nil options:nil] lastObject];
@@ -293,42 +293,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.stopTimer = NO;
-    
-//    self.updateEventSignal = [[RACSignal interval:4
-//                                       onScheduler:[RACScheduler mainThreadScheduler]
-//                                ]
-//                               takeUntilBlock:^BOOL (id x){
-//                                   return self.stopTimer;
-//                               }];
-//    
-//    
-//    
-//    [self.updateEventSignal
-//     subscribeNext:^(id x){
-//         @strongify(self);
-//         
-//         if (self.isCarouselAnimating) {
-//             return;
-//         }
-//         
-//         self.isCarouselAnimating = YES;
-//         
-//         if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
-//             self.scrollWay = YES;
-//         }
-//         else if(self.carousel.currentItemIndex == 0){
-//             self.scrollWay = NO;
-//         }
-//         if (self.scrollWay) {
-//             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex-1 duration:1];
-//             
-//         }
-//         else {
-//             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex+1 duration:1];
-//             
-//         }
-//     }];
 }
 
 - (void)viewDidAppear:(BOOL)animated

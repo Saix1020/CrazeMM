@@ -10,7 +10,8 @@
 
 @implementation SupplyListCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
    
     self.selectCheckBox.onCheckColor = [UIColor whiteColor];
     self.selectCheckBox.onTintColor = [UIColor redColor];
@@ -34,7 +35,9 @@
     
     [self.shareButton exchangeImageAndText];
     [self.offButton exchangeImageAndText];
-    
+    [self.shareButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.offButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
     //self.shareButton.buttonType =
     
     self.shareButton.tintColor = [UIColor UIColorFromRGB:0x444444];
@@ -47,7 +50,6 @@
 
 
 }
-
 
 
 -(void)fomartPriceLabel
@@ -95,6 +97,8 @@
             break;
         case kDealStyle:
             self.backgroundView.hidden = YES;
+            self.offButton.hidden = YES;
+            self.shareButton.hidden = YES;
             break;
         default:
             break;
@@ -106,10 +110,9 @@
     return 150.f;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)buttonClicked:(UIButton*)button
+{
+    
 }
 
 @end

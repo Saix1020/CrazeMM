@@ -43,6 +43,7 @@ static UserCenter *defaultUserCenter = nil;
 -(void)setLogouted
 {
     [UserCenter defaultCenter].isLogined = false;
+    [[UserCenter defaultCenter] resetKeychainItem];
 
 }
 

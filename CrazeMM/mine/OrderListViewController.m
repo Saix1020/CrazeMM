@@ -179,6 +179,7 @@
                 switch (segmentIndex) {
                     case 0:
                         NSLog(@"我买的货->待付款->付款");
+                        [self.navigationController pushViewController:[MinePayViewController new] animated:YES];
                         break;
                     case 1:
                         NSLog(@"我买的货->待付款->超时");
@@ -326,7 +327,7 @@
         for (NSInteger index = 0; index<self.dataSource.count; ++index) {
             OrderDetailDTO* dto = self.dataSource[index];
             if (dto.selected) {
-                self.totalPrice += dto.price;
+                self.totalPrice += dto.price*dto.quantity;
             }
         }
         self.commonBottomView.totalPrice = self.totalPrice;

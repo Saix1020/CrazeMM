@@ -7,6 +7,8 @@
 //
 
 #import "BaseHttpRequest.h"
+#import "LoginViewController.h"
+#import "UIAlertView+AnyPromise.h"
 
 #define CustomErrorDomain @"com.189mm"
 typedef enum {
@@ -19,7 +21,6 @@ typedef enum {
 @interface BaseHttpRequest ()
 
 @property (nonatomic, readonly) AFHTTPRequestOperationManager *manager;
-
 @end
 
 
@@ -66,52 +67,18 @@ typedef enum {
 
 -(AFPromise*)request
 {
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    
-//    if (self.needToken) {
-//        return [manager GET:COMB_URL(GET_TOKEN_PATH) parameters:[self getTokenParams]]
-//        .then(^(id responseObject, AFHTTPRequestOperation *operation){
-//            NSLog(@"%@", responseObject);
-//            
-//            self.response = responseObject;
-//            
-//            if (!self.response.ok) {
-//                return responseObject;
-//            }
-//            else {
-//                NSMutableDictionary* paramsWithToken = [[NSMutableDictionary alloc] initWithDictionary:self.params];
-//                [paramsWithToken setObject:responseObject[self.tokenName] forKey:@"login_token"];
-//                SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@:parameters:", self.method.uppercaseString]);
-//                if ([manager respondsToSelector:selector]) {
-//                    return [manager performSelector:selector withObject:self.url withObject:paramsWithToken];
-//                }
-//                else {
-//                    return responseObject;
-//                }
-//            }
-//            
-//        });
-//
-//    }
-//    else {
-//        SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@:parameters:", self.method.uppercaseString]);
-//        if ([manager respondsToSelector:selector]) {
-//            return [manager performSelector:selector withObject:self.url withObject:self.params];
-//        }
-//        else {
-//            return nil;
-//        }
-//    }
-//    
-//    return nil;
+
     
     return [self request2]
     .catch(^(NSError *error){
-//        if ([error needLogin]) {
-//            [UIViewController showAlertViewWithViewController:[LoginViewController new]];
+//        if ([error needLogin] && self.caller) {
+//            [self.caller.navigationController pushViewController:[LoginViewController new] animated:YES];
+//            //return [[UIAlertView new] promise];
+//            return (NSError *)nil;
 //        }
-//        return error;
-        return error;
+//        else {
+            return error ;
+//        }
     });
 }
 
