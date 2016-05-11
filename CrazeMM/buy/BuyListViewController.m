@@ -283,6 +283,7 @@
 {
     self.pageNumber = 0;
     [self.dataSource removeAllObjects];
+    [self.tableView reloadData];
 
 }
 
@@ -322,10 +323,15 @@
     if ([self isMemberOfClass:[BuyListViewController class]]) {
         return;
     }
-//    self.pageNumber = 0;
-//    [self.dataSource removeAllObjects];
-//    [self.tableView reloadData];
-//    [self getProducts:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginSuccess:)
+                                                 name:kLoginSuccessBroadCast
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(logoutSucess:)
+                                                 name:kLogoutSuccessBroadCast
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -368,6 +374,18 @@
 {
     [super viewWillDisappear:animated];
     self.stopTimer = YES;
+}
+
+-(void)loginSuccess:(NSNotification*)notification
+{
+    [self clearData];
+    [self getProducts:NO];
+}
+
+-(void)logoutSucess:(NSNotification*)notification
+{
+    [self clearData];
+    [self getProducts:NO];
 }
 
 
@@ -495,5 +513,16 @@
     [self.navigationController pushViewController:productVC animated:YES];
 }
 
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kLoginSuccessBroadCast
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kLogoutSuccessBroadCast
+                                                  object:nil];
+}
 
 @end

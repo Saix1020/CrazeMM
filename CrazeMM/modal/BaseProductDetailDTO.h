@@ -16,6 +16,15 @@
 @property (nonatomic) NSInteger successOrderCount;
 @end
 
+@interface ProductStepPrice : BaseDTO
+
+@property (nonatomic) NSInteger qfrom;
+@property (nonatomic) NSInteger qto;
+@property (nonatomic) NSInteger sid;
+@property (nonatomic) CGFloat sprice;
+
+@end
+
 @interface BaseProductDetailDTO : BaseDTO
 @property (nonatomic) BOOL isSplit;
 @property (nonatomic) NSInteger quantity;
@@ -43,4 +52,6 @@
 @property (nonatomic) NSInteger views;
 
 @property (nonatomic, strong) ProductUserInfo* users;
+@property (nonatomic, strong) NSMutableArray<ProductStepPrice*>* stepPrices;
+
 @end

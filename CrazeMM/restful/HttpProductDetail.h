@@ -17,6 +17,7 @@
 
 @end
 
+
 @interface HttpSupplyProductDetailResponse : BaseHttpResponse
 
 @property (nonatomic, strong) SupplyProductDetailDTO* dto;

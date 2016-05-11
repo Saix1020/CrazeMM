@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "M80AttributedLabel.h"
+#import "BaseProductDetailDTO.h"
 
-@interface BuyProductView : UIView
+@protocol BuyProductViewDelegate <NSObject>
+
+-(void)handleButtonClicked:(UIButton*)button;
+
+@end
+
+@interface BuyProductView : UIView<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *subButton;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
@@ -19,7 +26,10 @@
 @property (weak, nonatomic) IBOutlet UITextView *descTextView;
 @property (weak, nonatomic) IBOutlet UIButton *determineButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (nonatomic, strong) BaseProductDetailDTO* productDetailDto;
 
 @property (nonatomic, assign) double price;
+
+@property (nonatomic, weak) id<BuyProductViewDelegate> deleage;
 
 @end

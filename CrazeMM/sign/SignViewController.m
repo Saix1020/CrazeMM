@@ -257,6 +257,8 @@
 
         if (checkMessageCode.response.ok) {
             [self showAlertViewWithMessage:@"注册成功, 欢迎使用189疯狂买卖"];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+
             
             NSArray* controllers = self.navigationController.viewControllers;
             NSMutableArray* newVCs = [[NSMutableArray alloc] init];

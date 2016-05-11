@@ -44,6 +44,9 @@ static UserCenter *defaultUserCenter = nil;
 {
     [UserCenter defaultCenter].isLogined = false;
     [[UserCenter defaultCenter] resetKeychainItem];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast
+                                                        object:self];
+
 
 }
 

@@ -219,6 +219,8 @@
                 if (self.rememberMeCheckBox.on) {
                     [[UserCenter defaultCenter] saveToKeychainWithUserName:self.userNameField.text andPassword:self.passwordField.text];
                 }
+//                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+
 
             }
             else {

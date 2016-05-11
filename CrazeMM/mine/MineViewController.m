@@ -247,6 +247,7 @@
 //            self.cancelButton.enabled = NO;
 
             [self.tableView reloadData];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast object:nil userInfo:nil];
         }
         else {
             [self showAlertViewWithMessage:@"注销失败!"];

@@ -31,6 +31,24 @@
 
 @end
 
+@implementation ProductStepPrice
+
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [self init];
+    if (self) {
+        self.qfrom = [dict[@"qfrom"] integerValue];
+        self.qto = [dict[@"qto"] integerValue];
+        self.sid = [dict[@"sid"] integerValue];
+        self.sprice = [dict[@"sprice"] floatValue];
+
+    }
+    
+    return self;
+}
+
+@end
+
 
 
 @implementation BaseProductDetailDTO
@@ -41,6 +59,7 @@
         self.users = [[ProductUserInfo alloc] initWith:dict[@"user"]];
         
         self.isSplit = [dict[@"isSplit"] boolValue];
+        self.isStep = [dict[@"isStep"] boolValue];
         self.isBrushMachine = [dict[@"isBrushMachine"] boolValue];
         self.active = [dict[@"active"] boolValue];
         self.isSerial = [dict[@"isSerial"] boolValue];
@@ -63,8 +82,24 @@
         self.goodName = dict[@"goodName"];
         self.stateLabel = dict[@"stateLabel"];
         self.message = dict[@"message"];
+        
+        if (self.isStep) {
+            [self parserProductSteporices:dict[@"stepPrices"]];
+        }
     }
     
     return self;
 }
+
+-(void)parserProductSteporices:(NSArray*)stepPrices
+{
+    self.stepPrices = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary* stepPrice in stepPrices) {
+        ProductStepPrice* productStepPrice = [[ProductStepPrice alloc] initWith:stepPrice];
+        [self.stepPrices addObject:productStepPrice];
+    }
+    
+}
+
 @end

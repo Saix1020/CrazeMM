@@ -29,19 +29,19 @@
     self.browserAndSellLabel.layer.cornerRadius = 2.f;
     self.browserLabel.numberOfLines = 1;
     self.browserLabel.adjustsFontSizeToFitWidth = YES;
-    self.browserLabel.text = @"浏览:10";
+//    self.browserLabel.text = @"浏览:10";
     self.buyLabel.numberOfLines = 1;
     self.buyLabel.adjustsFontSizeToFitWidth = YES;
-    self.buyLabel.text = @"成交:10";
+//    self.buyLabel.text = @"成交:10";
     
 //    self.titleLable.adjustsFontSizeToFitWidth = YES;
     self.titleLable.numberOfLines = 2;
-    self.titleLable.text = @"三星-J7109 金 16G 电信版";
+//    self.titleLable.text = @"三星-J7109 金 16G 电信版";
     //self.titleLable.width = screenWidth - self.titleLable.x -16.f;
     
     self.detalLabel.numberOfLines = 1;
 //    self.detalLabel.adjustsFontSizeToFitWidth = YES;
-    self.detalLabel.text = @"原装 原封箱 带串码 网站担保 开票 保证金";
+//    self.detalLabel.text = @"原装 原封箱 带串码 网站担保 开票 保证金";
     self.detalLabel.textColor = [UIColor grayColorL2];
 
     
@@ -56,20 +56,19 @@
     self.addrLabel.numberOfLines = 2;
 //    self.addrLabel.adjustsFontSizeToFitWidth = YES;
     self.addrLabel.width = screenWidth - self.addrLabel.x -16.f;
-    self.addrLabel.text = @"发货地址:  江苏省南京市浦口区";
+//    self.addrLabel.text = @"发货地址:  江苏省南京市浦口区";
     self.addrLabel.textColor = [UIColor grayColorL2];
     self.addrLabel.font = [UIFont systemFontOfSize:12];
     
     
     self.expressLabel.numberOfLines = 2;
     self.expressLabel.width = screenWidth - self.expressLabel.x -16.f;
-    self.expressLabel.text = @"快递: 包邮";
+//    self.expressLabel.text = @"快递: 包邮";
     self.expressLabel.textColor = [UIColor grayColorL2];
     self.expressLabel.font = [UIFont systemFontOfSize:12];
     
     self.messageLabel.numberOfLines = 3;
     self.messageLabel.width = screenWidth - self.expressLabel.x -16.f;
-    self.messageLabel.text = @"快递: 包邮";
     self.messageLabel.textColor = [UIColor grayColorL2];
     self.messageLabel.font = [UIFont systemFontOfSize:12];
     
@@ -82,7 +81,7 @@
 {
     if (!_arrowView) {
         _arrowView = [[ArrowView alloc] init];
-        _arrowView.textLabel.text = @"供货";
+//        _arrowView.textLabel.text = @"供货";
         _arrowView.frame = CGRectMake(0, 0, 38, 16);
     }
     
@@ -255,9 +254,9 @@
     else {
         [self.messageLabel sizeToFit];
         self.messageLabel.x = self.titleLable.x;
-        self.messageLabel.y = self.expressLabel.bottom + 4.f;
 
     }
+    self.messageLabel.y = self.expressLabel.bottom + 4.f;
 }
 
 -(CGFloat)cellHeight

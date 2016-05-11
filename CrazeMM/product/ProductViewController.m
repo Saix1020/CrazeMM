@@ -18,7 +18,7 @@
 #import "ProductCompanyCell.h"
 #import "ProductOtherCompanyCell.h"
 #import "PayViewController.h"
-
+#import "HttpAddIntention.h"
 
 
 #define DEBUG_MODE
@@ -26,16 +26,18 @@
 @interface ProductViewController ()
 
 @property (nonatomic, strong) UIWebView* webView;
-@property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UIView* buttomView;
 @property (nonatomic, strong) M80AttributedLabel* timeLabel;
 @property (nonatomic, strong) UIButton* payButton;
 @property (nonatomic, strong) UIButton* orderButton;
 
 @property (nonatomic, strong) BuyProductView* buyProductView;
+@property (nonatomic, strong) BuyProductView* orderProductView;
+
 
 @property (nonatomic, strong) UIImageView* imageView;//just for debug
 @property (nonatomic, strong) TTModalView* modalView;
+@property (nonatomic, strong) TTModalView* orderModalView;
 
 @property (nonatomic, strong) UIImageView* mockShareView;
 @property (nonatomic, strong) ProductLadderCell* productLadderCell;
@@ -47,10 +49,25 @@
 
 @implementation ProductViewController
 
+-(UIButton*)supplyOrBuyButton
+{
+    if (!_supplyOrBuyButton) {
+        _supplyOrBuyButton  = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_supplyOrBuyButton setTitle:@"我来供货" forState:UIControlStateNormal];
+//        [_supplyOrBuyButton bs_configureAsDefaultStyle];
+        _supplyOrBuyButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.f];
+        _supplyOrBuyButton.layer.cornerRadius = 0;
+        [_supplyOrBuyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_supplyOrBuyButton setBackgroundColor:[UIColor light_Gray_Color]];
+    }
+    
+    return _supplyOrBuyButton;
+}
+
 -(BuyProductView*)buyProductView
 {
     if(!_buyProductView){
-        _buyProductView = self.buyProductView =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
+        _buyProductView  =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
         [self.view addSubview:_buyProductView];
         @weakify(self);
         _buyProductView.determineButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
@@ -65,13 +82,50 @@
         }];
         
         _buyProductView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input){
-            
+            @strongify(self);
             [self.modalView dismiss];
             return [RACSignal empty];
         }];
+        _buyProductView.x = 0;
+        _buyProductView.y = [UIScreen mainScreen].bounds.size.height - _buyProductView.height;
+        _buyProductView.width = [UIScreen mainScreen].bounds.size.width;
+
     }
     
     return _buyProductView;
+}
+
+-(BuyProductView*)orderProductView
+{
+    if(!_orderProductView){
+        _orderProductView  =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
+        [self.view addSubview:_orderProductView];
+        _orderProductView.amountLabel.text = @"订单数量";
+        @weakify(self);
+        _orderProductView.determineButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            @strongify(self);
+            
+            [self.modalView dismiss];
+            
+            PayViewController* payVC = [[PayViewController alloc] init];
+            [self.navigationController pushViewController:payVC animated:YES];
+            
+            return [RACSignal empty];
+        }];
+        
+        _orderProductView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input){
+            @strongify(self);
+            [self.modalView dismiss];
+            return [RACSignal empty];
+        }];
+        
+        _orderProductView.x = 0;
+        _orderProductView.y = [UIScreen mainScreen].bounds.size.height - _orderProductView.height;
+        _orderProductView.width = [UIScreen mainScreen].bounds.size.width;
+
+    }
+    
+    return _orderProductView;
 }
 
 -(UIImageView*)mockShareView
@@ -94,6 +148,8 @@
         [_buttomView addSubview:self.timeLabel];
         [_buttomView addSubview:self.payButton];
         [_buttomView addSubview:self.orderButton];
+        [_buttomView addSubview:self.supplyOrBuyButton];
+
     }
     
     return _buttomView;
@@ -146,23 +202,30 @@
         _payButton.layer.cornerRadius = 0;
         [_payButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_payButton setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.2] forState:UIControlStateHighlighted];
-        
+        @weakify(self);
         _payButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-            
+            @strongify(self);
+            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
+            [request request]
+            .then(^(id responseObject){
+                
+            })
+            .catch(^(NSError* error){
+                
+            });
             if ([UserCenter defaultCenter].isLogined) {
                 self.modalView.presentAnimationStyle = SlideInUp;
                 self.modalView.dismissAnimationStyle = SlideOutDown;
                 self.modalView.contentView = self.buyProductView;
                 self.modalView.isCancelAble = YES;
-                @weakify(self);
                 [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
                     @strongify(self);
-                    contentView.x = 0;
-                    contentView.y = [UIScreen mainScreen].bounds.size.height - contentView.height;
-                    contentView.width = [UIScreen mainScreen].bounds.size.width;
+//                    contentView.x = 0;
+//                    contentView.y = [UIScreen mainScreen].bounds.size.height - contentView.height;
+//                    contentView.width = [UIScreen mainScreen].bounds.size.width;
                     
                     BuyProductView* buyProductView = (BuyProductView*)contentView;
-                    
+                    buyProductView.productDetailDto = self.productDetailDto;
                     
                 }];
 
@@ -192,8 +255,40 @@
         _orderButton.layer.cornerRadius = 0;
         [_orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_orderButton setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.2] forState:UIControlStateHighlighted];
-        
+        @weakify(self);
         _orderButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            @strongify(self);
+            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
+            [request request]
+            .then(^(id responseObject){
+                
+            })
+            .catch(^(NSError* error){
+                
+            });
+            if ([UserCenter defaultCenter].isLogined) {
+                self.modalView.presentAnimationStyle = SlideInUp;
+                self.modalView.dismissAnimationStyle = SlideOutDown;
+                self.modalView.contentView = self.orderProductView;
+                self.modalView.isCancelAble = YES;
+                [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
+                    @strongify(self);
+//                    contentView.x = 0;
+//                    contentView.y = [UIScreen mainScreen].bounds.size.height - contentView.height;
+//                    contentView.width = [UIScreen mainScreen].bounds.size.width;
+                    
+                    BuyProductView* orderProductView = (BuyProductView*)contentView;
+                    orderProductView.productDetailDto = self.productDetailDto;
+                }];
+                
+            }
+            else {
+                LoginViewController* loginVC = [[LoginViewController alloc] init];
+                loginVC.fromVC = self;
+                [self.navigationController pushViewController:loginVC animated:YES];
+            }
+
+            
             return [RACSignal empty];
         }];
         
@@ -244,6 +339,16 @@
     self = [super init];
     if(self){
         self.productDto = dto;
+        if (!self.productDto.isActive) {
+            self.payButton.hidden = YES;
+            self.orderButton.hidden = YES;
+            self.supplyOrBuyButton.hidden = NO;
+        }
+        else {
+            self.payButton.hidden = NO;
+            self.orderButton.hidden = NO;
+            self.supplyOrBuyButton.hidden = YES;
+        }
     }
     return self;
 }
@@ -261,8 +366,20 @@
         self.productDetailCell.productDetailDto = productDetailDto;
     }
     self.companyCell.productDetailDto = productDetailDto;
-    
+    self.sectionNum = 1;
     [self.tableView reloadData];
+}
+
+-(TTModalView*)modalView{
+    if (!_modalView) {
+        _modalView = [[TTModalView alloc] initWithContentView:nil delegate:self];
+        
+        _modalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+        _modalView.modalWindowLevel = UIWindowLevelNormal;
+        
+
+    }
+    return _modalView;
 }
 
 - (void)viewDidLoad
@@ -290,19 +407,14 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    
-    _modalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];
-    
-    _modalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    _modalView.modalWindowLevel = UIWindowLevelNormal;
-    
+    @weakify(self);
+
     self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-       
+        @strongify(self);
         self.modalView.presentAnimationStyle = SlideInUp;
         self.modalView.dismissAnimationStyle = SlideOutDown;
         self.modalView.contentView = self.mockShareView;
         self.modalView.isCancelAble = YES;
-        @weakify(self);
         [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
             @strongify(self);
             contentView.height = 220.f;
@@ -314,6 +426,8 @@
         
         return [RACSignal empty];
     }];
+    
+    self.sectionNum = 0;
 
 }
 
@@ -329,7 +443,8 @@
     self.timeLabel.frame = CGRectMake(0, 0, self.view.bounds.size.width, 20);
     self.payButton.frame = CGRectMake(0, 20, self.view.bounds.size.width/2, 50);
     self.orderButton.frame = CGRectMake(self.view.bounds.size.width/2, 20, self.view.bounds.size.width/2, 50);
-    
+    self.supplyOrBuyButton.frame = CGRectMake(0, 20, self.view.bounds.size.width, 50);
+
 //    [self.view bringSubviewToFront:self.buyProductView];
 //    self.buyProductView.frame = [UIScreen mainScreen].bounds;
 //    self.buyProductView.y = 100;
@@ -340,12 +455,35 @@
 {
     [super viewWillAppear:animated];
     [self.tabBarController setTabBarHidden:YES animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 #pragma -- mark tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.sectionNum;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -355,7 +493,7 @@
     }
     if (indexPath.row==1) {
         if (self.productDetailDto.isStep) {
-            return [ProductLadderCell cellHeight];
+            return [self.productLadderCell cellHeight];
         }
         else {
             return [self.productDetailCell cellHeight];
@@ -434,6 +572,56 @@
 //    }
 //    
    return 0.f;
+}
+
+#pragma -- mark TTModalView Delgate
+-(void)TTModalViewDidShow:(TTModalView *)TTModalView
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+-(void)TTModalViewDidDismiss:(TTModalView *)TTModalView
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];    
+}
+
+
+
+-(void)keyboardWillHide: (NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+
+    [UIView animateWithDuration:0.5 animations:^{
+        self.modalView.contentView.y = [UIScreen mainScreen].bounds.size.height - self.modalView.contentView.height;
+    }];
+
+}
+
+-(void)keyboardWillShow: (NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.modalView.contentView.y = [UIScreen mainScreen].bounds.size.height - self.modalView.contentView.height - keyboardRect.size.height;
+    }];
+
+    
 }
 
 

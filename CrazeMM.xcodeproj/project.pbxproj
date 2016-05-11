@@ -261,6 +261,8 @@
 		B992C5811CCA6D5300DC49E8 /* MineNoLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B992C5801CCA6D5300DC49E8 /* MineNoLoginViewController.m */; };
 		B992C5841CCB70B500DC49E8 /* ProductSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B992C5831CCB70B500DC49E8 /* ProductSummaryCell.m */; };
 		B999551E1CE2257D007F26D2 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
+		B99955211CE3078A007F26D2 /* HttpAddIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = B99955201CE3078A007F26D2 /* HttpAddIntention.m */; };
+		B99955241CE30AD8007F26D2 /* HttpSupplyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B99955231CE30AD8007F26D2 /* HttpSupplyOrder.m */; };
 		B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */ = {isa = PBXBuildFile; fileRef = B99D12CA1CC522FC000DFF95 /* logo_channel.png */; };
 		B99D12D21CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12D11CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m */; };
 		B99D12D51CC5D4C5000DFF95 /* BuySlideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D12D41CC5D4C5000DFF95 /* BuySlideDetailViewController.m */; };
@@ -827,6 +829,10 @@
 		B992C5801CCA6D5300DC49E8 /* MineNoLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineNoLoginViewController.m; path = mine/MineNoLoginViewController.m; sourceTree = "<group>"; };
 		B992C5821CCB70B500DC49E8 /* ProductSummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductSummaryCell.h; path = buy/ProductSummaryCell.h; sourceTree = "<group>"; };
 		B992C5831CCB70B500DC49E8 /* ProductSummaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductSummaryCell.m; path = buy/ProductSummaryCell.m; sourceTree = "<group>"; };
+		B999551F1CE3078A007F26D2 /* HttpAddIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpAddIntention.h; path = restful/HttpAddIntention.h; sourceTree = "<group>"; };
+		B99955201CE3078A007F26D2 /* HttpAddIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpAddIntention.m; path = restful/HttpAddIntention.m; sourceTree = "<group>"; };
+		B99955221CE30AD8007F26D2 /* HttpSupplyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSupplyOrder.h; path = restful/HttpSupplyOrder.h; sourceTree = "<group>"; };
+		B99955231CE30AD8007F26D2 /* HttpSupplyOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSupplyOrder.m; path = restful/HttpSupplyOrder.m; sourceTree = "<group>"; };
 		B99D12CA1CC522FC000DFF95 /* logo_channel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_channel.png; sourceTree = "<group>"; };
 		B99D12D01CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISearchBar+RACSignalSupport.h"; sourceTree = "<group>"; };
 		B99D12D11CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISearchBar+RACSignalSupport.m"; sourceTree = "<group>"; };
@@ -1370,7 +1376,7 @@
 				B91732781CD2036300C29698 /* BaseHttpRequest.m */,
 				B9156F3D1CDBA3D80041E535 /* mine */,
 				B9156F341CDA456F0041E535 /* search */,
-				B9A780461CD9FBFF00A89047 /* supply */,
+				B9A780461CD9FBFF00A89047 /* supply+buy */,
 				B9AD46061CD4E77300012B31 /* signup */,
 				B9AD46051CD4E76500012B31 /* login */,
 			);
@@ -2188,7 +2194,7 @@
 			name = controller;
 			sourceTree = "<group>";
 		};
-		B9A780461CD9FBFF00A89047 /* supply */ = {
+		B9A780461CD9FBFF00A89047 /* supply+buy */ = {
 			isa = PBXGroup;
 			children = (
 				B9A780471CD9FC2900A89047 /* HttpSupplyRequest.h */,
@@ -2197,8 +2203,12 @@
 				B95A94B91CE1D45B00A5D9BA /* HttpSupplyNoLoginRequest.m */,
 				B95A94C11CE1E29700A5D9BA /* HttpProductDetail.h */,
 				B95A94C21CE1E29700A5D9BA /* HttpProductDetail.m */,
+				B999551F1CE3078A007F26D2 /* HttpAddIntention.h */,
+				B99955201CE3078A007F26D2 /* HttpAddIntention.m */,
+				B99955221CE30AD8007F26D2 /* HttpSupplyOrder.h */,
+				B99955231CE30AD8007F26D2 /* HttpSupplyOrder.m */,
 			);
-			name = supply;
+			name = "supply+buy";
 			sourceTree = "<group>";
 		};
 		B9AD44171CD39FAA00012B31 /* KeychainItemWrapper */ = {
@@ -2613,6 +2623,7 @@
 				B91896A31CCE67BB0061D0B6 /* ProductWithNumberView.m in Sources */,
 				B91732211CD1F05400C29698 /* BounceInRightAnimation.m in Sources */,
 				B91732111CD1F05400C29698 /* AnimationBuilder.m in Sources */,
+				B99955241CE30AD8007F26D2 /* HttpSupplyOrder.m in Sources */,
 				B91732361CD1F05400C29698 /* FadeOutLeftBigAnimation.m in Sources */,
 				B91732461CD1F05400C29698 /* RotateInUpRightAnimation.m in Sources */,
 				B9A780321CD99FF800A89047 /* MMAlertViewWithOK.m in Sources */,
@@ -2654,6 +2665,7 @@
 				B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */,
 				B917322F1CD1F05400C29698 /* FadeInRightBigAnimation.m in Sources */,
 				B9FE71E91CD6E70400F5EC9F /* UserHistory.m in Sources */,
+				B99955211CE3078A007F26D2 /* HttpAddIntention.m in Sources */,
 				B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */,
 				B917322B1CD1F05400C29698 /* FadeInDownBigAnimation.m in Sources */,
 				B9FE72021CD7877D00F5EC9F /* SignWithPicCapViewController.m in Sources */,

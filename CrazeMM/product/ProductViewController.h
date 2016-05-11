@@ -9,19 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "BaseProductDTO.h"
 #import "BaseProductDetailDTO.h"
-
+#import "TTModalView.h"
 typedef NS_ENUM(NSInteger, ProductDisplayMode){
     kDisplayMode0 = 0,
     kDisplayMode1
 };
 
-@interface ProductViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ProductViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, TTModalViewDelgate>
 
 @property (nonatomic) ProductDisplayMode productDisplayMode;
 
 @property (nonatomic, strong) BaseProductDTO* productDto;
 @property (nonatomic, strong) BaseProductDetailDTO* productDetailDto;
+@property (nonatomic) NSInteger sectionNum;
+@property (nonatomic, strong) UITableView* tableView;
 
 -(instancetype)initWithProductDTO:(BaseProductDTO*)dto;
+@property (nonatomic, strong) UIButton* supplyOrBuyButton;
 
 @end
