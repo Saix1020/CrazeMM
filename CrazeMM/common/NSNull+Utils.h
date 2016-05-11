@@ -10,5 +10,6 @@
 
 @interface NSNull (Utils)
 -(NSInteger)integerValue;
--(NSInteger)floatValue;
+-(CGFloat)floatValue;
+-(BOOL)boolValue;
 @end

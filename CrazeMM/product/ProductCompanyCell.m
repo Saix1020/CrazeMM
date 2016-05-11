@@ -6,9 +6,9 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "ProductMiddleCell.h"
+#import "ProductCompanyCell.h"
 
-@implementation ProductMiddleCell
+@implementation ProductCompanyCell
 
 //@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 //@property (weak, nonatomic) IBOutlet UILabel *companyNameLabel;
@@ -27,13 +27,10 @@
 
 - (void)awakeFromNib
 {
-    self.authedButton.tintColor = [UIColor greenTextColor];
-    [self.authedButton setImage:[UIImage imageNamed:@"checked-1"] forState:UIControlStateNormal];
-    self.authedButton.tintColor = [UIColor grayColorL2];
     [self.moreDetailButton setImage:[UIImage imageNamed:@"rightR"] forState:UIControlStateNormal];
     
-    self.companyNameLabel.adjustsFontSizeToFitWidth = YES;
-    self.locationLabel.adjustsFontSizeToFitWidth = YES;
+//    self.companyNameLabel.adjustsFontSizeToFitWidth = YES;
+//    self.locationLabel.adjustsFontSizeToFitWidth = YES;
     self.companyNameLabel.textColor = [UIColor grayColorL2];
     self.locationLabel.textColor = [UIColor grayColorL2];
     self.levelLabel.textColor = [UIColor grayColorL2];
@@ -58,6 +55,16 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)setProductDetailDto:(BaseProductDetailDTO *)productDetailDto
+{
+    _productDetailDto = productDetailDto;
+    self.companyNameLabel.text = [NSString stringWithFormat:@"%@ (%@)", productDetailDto.users.username, productDetailDto.users.typeName];
+    self.checkedImage.hidden = !(productDetailDto.users.validateState == 300);
+    self.locationLabel.text = [NSString stringWithFormat:@"成交单数: %ld", productDetailDto.users.successOrderCount];
+    
+    [self.logoImageView setImageWithURL:[NSURL URLWithString:COMB_URL(@"/weui/images/product.jpg")] placeholderImage:[@"logo-2" image]];
 }
 
 +(CGFloat)cellHeight

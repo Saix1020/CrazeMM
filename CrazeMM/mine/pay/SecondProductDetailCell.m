@@ -32,6 +32,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self commonInit];
     }
     
@@ -40,24 +41,6 @@
 
 -(UIView*)createProductViewWithImage:(NSString*)imageName andNumber:(NSUInteger)num andTag:(NSUInteger)tag
 {
-//    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 65+4, 65)];
-//    
-//    view.backgroundColor = [UIColor whiteColor];
-//    
-//    UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,65,65)];
-//    imageView.contentMode = UIViewContentModeScaleAspectFit;
-//    imageView.image = [UIImage imageNamed:imageName];
-//    
-//    ProductNumberLabel* numberLabel = [[[NSBundle mainBundle]loadNibNamed:@"ProductNumberLabel" owner:nil options:nil] firstObject];
-//    numberLabel.numberLabel.text = [NSString stringWithFormat:@"%lu", num];
-//    numberLabel.numberLabel.frame = CGRectMake(50, 50, 20, 10);
-////    numberLabel.frame = CGRectMake(0, 0, 20, 8);
-////    numberLabel.right = imageView.right + 4;
-////    numberLabel.bottom = imageView.bottom-6;
-//    
-//    [view addSubview:imageView];
-//    [view addSubview:numberLabel];
-    
     ProductWithNumberView* view = [[[NSBundle mainBundle]loadNibNamed:@"ProductWithNumberView" owner:nil options:nil] firstObject];
     view.frame = CGRectMake(0, 0, 68, 64);
     view.imageView.image = [UIImage imageNamed:imageName];
@@ -111,7 +94,7 @@
 -(void)commonInit
 {
     if (self.productNumber == 0) {
-        self.productNumber = 4;
+        self.productNumber = 5;
     }
     
     NSArray* imges = @[@"iphone", @"android"];

@@ -7,7 +7,6 @@
 //
 
 #import "NewWelcomeViewController.h"
-#import "TabBarController.h"
 #import "HttpLoginRequest.h"
 
 @interface NewWelcomeViewController ()
@@ -52,13 +51,13 @@
 
 -(void)presentTabBarController
 {
-    TabBarController *tabBarController = [[TabBarController alloc] init];
-    tabBarController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    self.tabBarController = [[TabBarController alloc] init];
+    self.tabBarController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
-    [tabBarController setSelectedIndex:0];
+    [self.tabBarController setSelectedIndex:0];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentViewController:tabBarController animated:YES completion:nil];
+            [self presentViewController:self.tabBarController animated:YES completion:nil];
         });
         
     });
@@ -68,9 +67,9 @@
 {
     [super viewDidAppear:animated];
     if (![UserCenter defaultCenter].accountSaved) {
-        TabBarController *tabBarController = [[TabBarController alloc] init];
-        tabBarController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentViewController:tabBarController animated:YES completion:nil];
+        self.tabBarController = [[TabBarController alloc] init];
+        self.tabBarController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:self.tabBarController animated:YES completion:nil];
     }
 }
 

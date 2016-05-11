@@ -10,7 +10,7 @@
 #import "OrderListCell.h"
 #import "SegmentedCell.h"
 #import "CommonBottomView.h"
-#import "MinePayViewController.h"
+#import "PayViewController.h"
 #import "OrderListNoCheckBoxCell.h"
 #import "HttpOrder.h"
 #import "MJRefresh.h"
@@ -179,7 +179,7 @@
                 switch (segmentIndex) {
                     case 0:
                         NSLog(@"我买的货->待付款->付款");
-                        [self.navigationController pushViewController:[MinePayViewController new] animated:YES];
+                        [self.navigationController pushViewController:[PayViewController new] animated:YES];
                         break;
                     case 1:
                         NSLog(@"我买的货->待付款->超时");

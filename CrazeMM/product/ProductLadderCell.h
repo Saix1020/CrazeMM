@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseProductDetailDTO.h"
 #import "ProductFlageView.h"
 #import "M80AttributedLabel.h"
 #import "ArrowView.h"
@@ -34,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *browseLabel;
 
 @property (strong, nonatomic) ArrowView* arrowView;
+
+@property (strong, nonatomic) BaseProductDetailDTO* productDetailDto;
 
 +(CGFloat)cellHeight;
 

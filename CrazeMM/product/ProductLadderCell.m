@@ -106,6 +106,8 @@
     self.expressLabel.textColor = [UIColor grayColorL2];
     self.expressLabel.font = [UIFont systemFontOfSize:12];
     
+    self.flagTitleLabel.adjustsFontSizeToFitWidth = YES;
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -128,6 +130,7 @@
 
 -(void)fomartStorkString
 {
+    self.stockLabel.text = @"";
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"库存量:  "];
     [attributedText m80_setFont:[UIFont systemFontOfSize:12]];
     [attributedText m80_setTextColor:[UIColor grayColorL2]];
@@ -173,6 +176,77 @@
     }
     
     return finnal;
+}
+
+-(void)setProductDetailDto:(BaseProductDetailDTO *)productDetailDto
+{
+    NSAssert(productDetailDto.isStep, @"ProductLadderCell is only support stepped price!");
+    _productDetailDto = productDetailDto;
+    
+    self.flagTitleLabel.text = productDetailDto.stateLabel;
+    [self.productImageView setImageWithURL:[NSURL URLWithString:_productDetailDto.goodImage] placeholderImage:[@"ph_phone" image]];
+    self.browseLabel.text = [NSString stringWithFormat:@"浏览:%ld", productDetailDto.views];
+    self.sellLabel.text = [NSString stringWithFormat:@"意向:%ld", productDetailDto.intentions];
+    
+    self.titleLabel.text = productDetailDto.goodName;
+    
+    NSMutableString* desc = [[NSMutableString alloc] init];
+    if (productDetailDto.isOriginal) {
+        [desc appendString:@"原装 "];
+    }
+    if (productDetailDto.isOriginalBox) {
+        [desc appendString:@"原封箱 "];
+    }
+    if (productDetailDto.isSerial) {
+        [desc appendString:@"带串码 "];
+    }
+    if (productDetailDto.isBrushMachine) {
+        [desc appendString:@"已刷机"];
+    }
+    self.descLabel.text = desc;
+
+    if ([productDetailDto isKindOfClass:NSClassFromString(@"SupplyProductDetailDTO")]) {
+        self.arrowView.textLabel.text = @"供货";
+        
+    }
+    else {
+        self.arrowView.textLabel.text = @"求购";
+    }
+}
+
+-(void)layoutAllSubviews
+{
+//    @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
+//    @property (weak, nonatomic) IBOutlet ProductFlageView *flageView;
+//    @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
+//    @property (weak, nonatomic) IBOutlet UIView*browserDealView;
+//    @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+//    @property (weak, nonatomic) IBOutlet UILabel *descLabel;
+//    @property (weak, nonatomic) IBOutlet UIView *line1;
+//    @property (weak, nonatomic) IBOutlet UIView *line2;
+//    @property (weak, nonatomic) IBOutlet UILabel *priceLabel1;
+//    @property (weak, nonatomic) IBOutlet UILabel *priceLabel2;
+//    @property (weak, nonatomic) IBOutlet UILabel *priceLabel3;
+//    @property (weak, nonatomic) IBOutlet M80AttributedLabel *price1;
+//    @property (weak, nonatomic) IBOutlet M80AttributedLabel *price2;
+//    @property (weak, nonatomic) IBOutlet M80AttributedLabel *price3;
+//    @property (weak, nonatomic) IBOutlet M80AttributedLabel *stockLabel;
+//    @property (weak, nonatomic) IBOutlet UILabel *addrLabel;
+//    @property (weak, nonatomic) IBOutlet UILabel *flagTitleLabel;
+//    @property (weak, nonatomic) IBOutlet UILabel *sellLabel;
+//    @property (weak, nonatomic) IBOutlet UILabel *expressLabel;
+//    @property (weak, nonatomic) IBOutlet UILabel *browseLabel;
+//    
+//    @property (strong, nonatomic) ArrowView* arrowView;
+//    CGFloat x, y;
+//    x = self.flagTitleLabel.x;
+//    y = self.flagTitleLabel.y;
+//    [self.flagTitleLabel sizeToFit];
+//    self.flagTitleLabel.x = x;
+//    self.flagTitleLabel.y = y;
+//    self.flagTitleLabel.width += 4.f;
+//    
+//    self.
 }
 
 -(void)layoutSubviews

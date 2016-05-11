@@ -40,6 +40,9 @@ typedef void (^errorCallback)(NSError *error);
 
 +(AFPromise*)httpRequestError:(NSString*)errorString;
 
+-(void)parserResponse;
+
+
 @end
 
 @interface BaseHttpResponse : NSObject

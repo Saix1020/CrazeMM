@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddressEditViewController">
             <connections>
                 <outlet property="addressField" destination="X1B-tH-Xiu" id="Rjc-DU-ETb"/>
+                <outlet property="cityLabel" destination="VD0-QZ-pWU" id="5aY-Zb-ZKT"/>
                 <outlet property="defaultCheckBox" destination="Zsk-e6-zr1" id="Jv7-bE-7hT"/>
                 <outlet property="lastLine" destination="Yog-0p-9sx" id="9aZ-I7-ffK"/>
                 <outlet property="locationButton" destination="Idt-np-eXj" id="Vji-bf-8tz"/>
@@ -174,18 +175,28 @@
                                 <color key="titleColor" red="0.62466461490000003" green="0.62466461490000003" blue="0.62466461490000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VD0-QZ-pWU">
+                            <rect key="frame" x="76" y="16" width="139" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="VD0-QZ-pWU" firstAttribute="baseline" secondItem="iJ3-BF-A2u" secondAttribute="baseline" id="4Em-Qw-nJr"/>
                         <constraint firstItem="U5t-Qd-yeb" firstAttribute="trailing" secondItem="GSR-Wb-sVE" secondAttribute="trailingMargin" id="4xw-me-zsi"/>
                         <constraint firstItem="iJ3-BF-A2u" firstAttribute="leading" secondItem="GSR-Wb-sVE" secondAttribute="leadingMargin" id="9In-R7-2QZ"/>
                         <constraint firstItem="U5t-Qd-yeb" firstAttribute="top" secondItem="Idt-np-eXj" secondAttribute="bottom" constant="10" id="EJi-T2-LWg"/>
+                        <constraint firstItem="VD0-QZ-pWU" firstAttribute="firstBaseline" secondItem="iJ3-BF-A2u" secondAttribute="firstBaseline" id="GXT-Ff-8Qq"/>
+                        <constraint firstItem="VD0-QZ-pWU" firstAttribute="leading" secondItem="iJ3-BF-A2u" secondAttribute="trailing" constant="1" id="Kl3-o5-hu1"/>
                         <constraint firstItem="iJ3-BF-A2u" firstAttribute="centerY" secondItem="Idt-np-eXj" secondAttribute="centerY" id="Oac-bO-Uom"/>
                         <constraint firstAttribute="trailing" secondItem="Idt-np-eXj" secondAttribute="trailing" constant="6" id="RRl-iR-nsI"/>
                         <constraint firstItem="U5t-Qd-yeb" firstAttribute="top" secondItem="iJ3-BF-A2u" secondAttribute="bottom" constant="11" id="S0t-Ld-3te"/>
                         <constraint firstItem="Idt-np-eXj" firstAttribute="top" secondItem="GSR-Wb-sVE" secondAttribute="top" constant="14" id="UUK-5U-gSn"/>
                         <constraint firstItem="iJ3-BF-A2u" firstAttribute="leading" secondItem="U5t-Qd-yeb" secondAttribute="leading" id="ZVM-Hg-RcT"/>
                         <constraint firstAttribute="bottom" secondItem="U5t-Qd-yeb" secondAttribute="bottom" constant="1" id="hY1-3h-Wgm"/>
+                        <constraint firstItem="Idt-np-eXj" firstAttribute="leading" secondItem="VD0-QZ-pWU" secondAttribute="trailing" id="wQd-fV-yN6"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4V3-6M-5OY">

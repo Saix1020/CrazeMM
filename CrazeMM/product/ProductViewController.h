@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseProductDTO.h"
+#import "BaseProductDetailDTO.h"
 
 typedef NS_ENUM(NSInteger, ProductDisplayMode){
     kDisplayMode0 = 0,
@@ -17,5 +19,9 @@ typedef NS_ENUM(NSInteger, ProductDisplayMode){
 
 @property (nonatomic) ProductDisplayMode productDisplayMode;
 
+@property (nonatomic, strong) BaseProductDTO* productDto;
+@property (nonatomic, strong) BaseProductDetailDTO* productDetailDto;
+
+-(instancetype)initWithProductDTO:(BaseProductDTO*)dto;
 
 @end

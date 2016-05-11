@@ -12,33 +12,33 @@
 
 -(void)awakeFromNib
 {
-    [self.cancelButton setImage:[UIImage imageNamed:@"cancel_m"] forState:UIControlStateNormal];
-    self.cancelButton.tintColor = [UIColor light_Gray_Color];
+//    [self.dismissButton setImage:[UIImage imageNamed:@"cancel_m"] forState:UIControlStateNormal];
+    self.dismissButton.tintColor = [UIColor light_Gray_Color];
     
-    [self fomartTotalMoneyLabel];
-    self.sumLabel.textAlignment = kCTTextAlignmentCenter;
+//    [self fomartTotalMoneyLabel];
+//    self.sumLabel.textAlignment = kCTTextAlignmentCenter;
     
     self.line.backgroundColor = [UIColor clearColor];
     self.line.layer.borderWidth = .5f;
     self.line.layer.borderColor = [UIColor light_Gray_Color].CGColor;
 }
 
--(void)fomartTotalMoneyLabel
-{
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"￥"];
-    [attributedText m80_setFont:[UIFont boldSystemFontOfSize:14.f]];
-    [attributedText m80_setTextColor:[UIColor blackColor]];
-    [self.sumLabel appendAttributedText:attributedText];
-    
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@"10,000,00"];
-    [attributedText m80_setFont:[UIFont boldSystemFontOfSize:18.f]];
-    [attributedText m80_setTextColor:[UIColor blackColor]];
-    [self.sumLabel appendAttributedText:attributedText];
-    
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@".00"];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
-    [attributedText m80_setTextColor:[UIColor blackColor]];
-    [self.sumLabel appendAttributedText:attributedText];
-}
+//-(void)fomartTotalMoneyLabel
+//{
+//    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"￥"];
+//    [attributedText m80_setFont:[UIFont boldSystemFontOfSize:14.f]];
+//    [attributedText m80_setTextColor:[UIColor blackColor]];
+//    [self.sumLabel appendAttributedText:attributedText];
+//    
+//    attributedText = [[NSMutableAttributedString alloc]initWithString:@"10,000,00"];
+//    [attributedText m80_setFont:[UIFont boldSystemFontOfSize:18.f]];
+//    [attributedText m80_setTextColor:[UIColor blackColor]];
+//    [self.sumLabel appendAttributedText:attributedText];
+//    
+//    attributedText = [[NSMutableAttributedString alloc]initWithString:@".00"];
+//    [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
+//    [attributedText m80_setTextColor:[UIColor blackColor]];
+//    [self.sumLabel appendAttributedText:attributedText];
+//}
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MinePayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface PayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

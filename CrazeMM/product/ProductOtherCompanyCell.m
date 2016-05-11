@@ -6,9 +6,9 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "ProductLastCell.h"
+#import "ProductOtherCompanyCell.h"
 
-@implementation ProductLastCell
+@implementation ProductOtherCompanyCell
 
 - (void)awakeFromNib {
     // Initialization code

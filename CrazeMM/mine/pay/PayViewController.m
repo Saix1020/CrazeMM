@@ -6,7 +6,7 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "MinePayViewController.h"
+#import "PayViewController.h"
 #import "FirstAddrCell.h"
 #import "SecondProductDetailCell.h"
 #import "LastPayMethodCell.h"
@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     kMaxPayRow
 };
 
-@interface MinePayViewController ()
+@interface PayViewController ()
 
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) FirstAddrCell* addrCell;
@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 @end
 
 
-@implementation MinePayViewController
+@implementation PayViewController
 
 
 
@@ -66,7 +66,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
                 contentView.centerY = self.view.centerY;
                 
                 
-                self.payAlertView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                self.payAlertView.dismissButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
                     @strongify(self);
                     [self.confirmModalView dismiss];
                     

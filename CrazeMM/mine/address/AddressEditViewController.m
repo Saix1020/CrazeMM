@@ -8,6 +8,7 @@
 
 #import "AddressEditViewController.h"
 
+
 @interface AddressEditViewController ()
 @property (weak, nonatomic) IBOutlet UIView *lastLine;
 
@@ -34,9 +35,19 @@
     
     self.saveButton.backgroundColor = [UIColor light_Gray_Color];
 //    self.saveButton
+    @weakify(self);
     self.saveButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-       
+        @strongify(self);
         [self.navigationController popViewControllerAnimated:YES];
+        return [RACSignal empty];
+    }];
+    
+    self.locationButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+        @strongify(self);
+        CityListViewController* vc = [[CityListViewController alloc] init];
+        vc.delegete = self;
+        [self.navigationController pushViewController:vc animated:YES];
+        
         return [RACSignal empty];
     }];
 }
@@ -58,5 +69,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma -- City list vc delegate
+- (void)didSelectCityWithName:(NSString *)cityName
+{
+    self.cityLabel.text = cityName;
+}
 
 @end

@@ -15,9 +15,9 @@
 #import "M80AttributedLabel.h"
 #import "ProductLadderCell.h"
 #import "ProductDetailCell.h"
-#import "ProductMiddleCell.h"
-#import "ProductLastCell.h"
-
+#import "ProductCompanyCell.h"
+#import "ProductOtherCompanyCell.h"
+#import "PayViewController.h"
 
 
 
@@ -33,12 +33,15 @@
 @property (nonatomic, strong) UIButton* orderButton;
 
 @property (nonatomic, strong) BuyProductView* buyProductView;
-@property (nonatomic, strong) ProductDetailCell* productDetailCell;
 
 @property (nonatomic, strong) UIImageView* imageView;//just for debug
 @property (nonatomic, strong) TTModalView* modalView;
 
 @property (nonatomic, strong) UIImageView* mockShareView;
+@property (nonatomic, strong) ProductLadderCell* productLadderCell;
+@property (nonatomic, strong) ProductDetailCell* productDetailCell;
+@property (nonatomic, strong) ProductCompanyCell* companyCell;
+@property (nonatomic, strong) ProductOtherCompanyCell* otherCompayCell;
 
 @end
 
@@ -49,6 +52,23 @@
     if(!_buyProductView){
         _buyProductView = self.buyProductView =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
         [self.view addSubview:_buyProductView];
+        @weakify(self);
+        _buyProductView.determineButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            @strongify(self);
+            
+            [self.modalView dismiss];
+            
+            PayViewController* payVC = [[PayViewController alloc] init];
+            [self.navigationController pushViewController:payVC animated:YES];
+            
+            return [RACSignal empty];
+        }];
+        
+        _buyProductView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input){
+            
+            [self.modalView dismiss];
+            return [RACSignal empty];
+        }];
     }
     
     return _buyProductView;
@@ -84,19 +104,37 @@
     if(!_timeLabel){
         _timeLabel = [[M80AttributedLabel alloc] init];
         _timeLabel.backgroundColor = RGBCOLOR(133, 133, 133);
-        UIImageView* clockView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-        clockView.image = [UIImage imageNamed:@"clock_white"];
         _timeLabel.textAlignment = kCTTextAlignmentCenter;
-        [_timeLabel appendView:clockView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
-        [_timeLabel appendText:@" "];
-        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"10天18小时20分钟"];
-        [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
-        [attributedText m80_setTextColor:[UIColor whiteColor]];
-        [_timeLabel appendAttributedText:attributedText];
-
+        //just for debug
+        [self fomartTimeLabel];
     }
     
     return _timeLabel;
+}
+
+-(void)fomartTimeLabel
+{
+    self.timeLabel.text = @"";
+    NSString* timeString = @"";
+    if (!self.productDetailDto) {
+        timeString = @"10天18小时20分钟";
+    }
+    else {
+        if (self.productDetailDto && (self.productDetailDto.active && self.productDetailDto.millisecond>0)) {
+            UIImageView* clockView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
+            clockView.image = [UIImage imageNamed:@"clock_white"];
+            [self.timeLabel appendView:clockView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
+            [self.timeLabel appendText:@" "];
+            timeString = [NSString leftTimeString:self.productDetailDto.millisecond];
+        }
+        else {
+            timeString = self.productDetailDto.stateLabel;
+        }
+    }
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:timeString];
+    [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
+    [attributedText m80_setTextColor:[UIColor whiteColor]];
+    [self.timeLabel appendAttributedText:attributedText];
 }
 
 -(UIButton*)payButton
@@ -125,11 +163,7 @@
                     
                     BuyProductView* buyProductView = (BuyProductView*)contentView;
                     
-                    buyProductView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input){
-                        
-                        [self.modalView dismiss];
-                        return [RACSignal empty];
-                    }];
+                    
                 }];
 
             }
@@ -168,6 +202,68 @@
     return _orderButton;
 }
 
+-(ProductLadderCell*)productLadderCell
+{
+    if (!_productLadderCell) {
+        _productLadderCell = (ProductLadderCell*)[UINib viewFromNib:@"ProductLadderCell"];
+        
+    }
+    return _productLadderCell;
+}
+
+-(ProductDetailCell*)productDetailCell
+{
+    if (!_productDetailCell) {
+        _productDetailCell = (ProductDetailCell*)[UINib viewFromNib:@"ProductDetailCell"];
+        
+    }
+    return _productDetailCell;
+}
+
+-(ProductCompanyCell*)companyCell
+{
+    if (!_companyCell) {
+        _companyCell = (ProductCompanyCell*)[UINib viewFromNib:@"ProductCompanyCell"];
+        
+    }
+    return _companyCell;
+}
+
+-(ProductOtherCompanyCell*)otherCompayCell
+{
+    if (!_otherCompayCell) {
+        _otherCompayCell = (ProductOtherCompanyCell*)[UINib viewFromNib:@"ProductOtherCompanyCell"];
+        _otherCompayCell.hidden = YES;
+        
+    }
+    return _otherCompayCell;
+}
+
+-(instancetype)initWithProductDTO:(BaseProductDTO *)dto
+{
+    self = [super init];
+    if(self){
+        self.productDto = dto;
+    }
+    return self;
+}
+
+-(void)setProductDetailDto:(BaseProductDetailDTO *)productDetailDto
+{
+    _productDetailDto = productDetailDto;
+    _productDetailDto.goodImage = self.productDto.goodImage;
+    [self fomartTimeLabel];
+    if(productDetailDto.isStep){
+        self.productLadderCell.productDetailDto = productDetailDto;
+        
+    }
+    else {
+        self.productDetailCell.productDetailDto = productDetailDto;
+    }
+    self.companyCell.productDetailDto = productDetailDto;
+    
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad
 {
@@ -183,14 +279,6 @@
         return [RACSignal empty];
     }];
 
-    
-//    self.webView = [[UIWebView alloc] init];
-//    NSString *pathImg = [[NSBundle mainBundle] pathForResource:@"product_debug" ofType:@"png"];
-//    [self.view addSubview:self.webView];
-//    NSURL *url = [NSURL fileURLWithPath:pathImg];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    [self.webView loadRequest:request];
-    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -254,7 +342,6 @@
     [self.tabBarController setTabBarHidden:YES animated:YES];
 }
 
-
 #pragma -- mark tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -267,18 +354,18 @@
         return 10.f;
     }
     if (indexPath.row==1) {
-        if (self.productDisplayMode == kDisplayMode0) {
+        if (self.productDetailDto.isStep) {
             return [ProductLadderCell cellHeight];
         }
         else {
-            return [ProductDetailCell cellHeight];
+            return [self.productDetailCell cellHeight];
         }
     }
     else if(indexPath.row == 3){
-        return [ProductMiddleCell cellHeight];
+        return [ProductCompanyCell cellHeight];
     }
     else {
-        return [ProductLastCell cellHeight];
+        return [ProductOtherCompanyCell cellHeight];
     }
     
 }
@@ -287,27 +374,32 @@
 {
     UITableViewCell * cell;
     if (indexPath.row%2 == 0) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HeadViewCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"HeadViewCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HeadViewCell"];
+        }
         cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         return cell;
     }
     
     if (indexPath.row == 1) {
-        if(self.productDisplayMode == kDisplayMode0){
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductLadderCell" owner:nil options:nil] firstObject];
+        if(self.productDetailDto.isStep){
+            cell = self.productLadderCell;
+            self.productLadderCell.productDetailDto = self.productDetailDto;
             
         }
         else {
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductDetailCell" owner:nil options:nil] firstObject];
+            cell = self.productDetailCell;
+            self.productDetailCell.productDetailDto = self.productDetailDto;
             
         }
     }
     else if(indexPath.row == 3){
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductMiddleView" owner:nil options:nil] firstObject];
+        cell = self.companyCell;
     }
     else{
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"ProductLastCell" owner:nil options:nil] firstObject];
+        cell = self.otherCompayCell;
 
     }
     

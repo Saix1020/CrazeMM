@@ -10,5 +10,12 @@
 #import "iCarousel.h"
 
 @interface BuyListViewController : UIViewController<iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) NSMutableArray* dataSource;
+@property (nonatomic, strong) UITableView* tableView;
+@property (nonatomic) NSInteger pageNumber;
+@property (nonatomic) NSInteger totalPage;
 
+-(void)refreshData;
+//-(void)clearData;
+//-(AnyPromise*)getProducts:(BOOL)needHud;
 @end

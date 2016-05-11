@@ -10,15 +10,22 @@
 
 @implementation BaseDTO
 
--(void)decode:(NSDictionary *)dic
+-(instancetype)initWith:(NSDictionary*)dict;
 {
-    if(dic == nil){
-        return;
+    self = [super init];
+    if (self) {
+        self.id = [dict[@"id"] integerValue];
     }
+    return self;
 }
 -(NSDictionary *)encode
 {
     return nil;
+}
+
+-(void)parserResponse
+{
+    
 }
 
 @end

@@ -65,6 +65,16 @@ typedef enum {
     return @"invalid_token_name";
 }
 
+-(NSString*)url
+{
+    return COMB_URL(@"invalid_url");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
 -(AFPromise*)request
 {
 
@@ -343,11 +353,17 @@ typedef enum {
         // TODO
         // for some request, its response is not NSDictionary
         self.all = response;
+        [self parserResponse];
+
     }
     
     return self;
 }
 
+-(void)parserResponse
+{
+    
+}
 
 -(NSString*)errorTitle
 {

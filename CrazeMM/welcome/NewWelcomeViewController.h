@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TabBarController.h"
 
 @interface NewWelcomeViewController : UIViewController
+
+@property(nonatomic, strong) TabBarController* tabBarController;
 
 @end

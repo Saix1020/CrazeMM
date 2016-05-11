@@ -27,7 +27,6 @@
 #define kTotalSlides 5
 
 @interface BuyListViewController ()
-@property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 @property (nonatomic, strong) iCarousel *carousel;
 @property (nonatomic, assign) CGSize cardSize;
@@ -41,7 +40,6 @@
 //@property  (nonatomic, strong) RACDisposable *disposable;
 @property (nonatomic) BOOL stopTimer;
 
-@property (nonatomic, strong) NSMutableArray* dataSource;
 @property (nonatomic, strong) TTModalView* productRecommendAlertView;
 
 @property (nonatomic) BOOL isCarouselAnimating;
@@ -187,17 +185,16 @@
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self.items addObject:[NSString stringWithFormat:@"T 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
-//            self.filtedItems = [self.items mutableCopy];
-            for (int i=0; i<10; i++) {
-                ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
-                
-                [self.dataSource addObject:dto];
-            }
-            
+        
+        [self getProducts:NO]
+        .then(^(id x){
             [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
+            
+        })
+        .catch(^(NSError* error){
+            [self.tableView.mj_header endRefreshing];
+            [self showAlertViewWithMessage:error.localizedDescription];
         });
     }];
     
@@ -205,18 +202,16 @@
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self.items addObject:[NSString stringWithFormat:@"B 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
-//            self.filtedItems = [self.items mutableCopy];
-            for (int i=0; i<10; i++) {
-                ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
-                
-                [self.dataSource addObject:dto];
-            }
-
+        [self getProducts:NO]
+        .then(^(id x){
             [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
-        });
+
+        })
+        .catch(^(NSError* error){
+            [self.tableView.mj_footer endRefreshing];
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });;
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
 
@@ -232,8 +227,6 @@
     self.tableView.tableHeaderView = self.carousel;
  
 //    self.filtedItems = [self.items mutableCopy];
-    [self.tableView reloadData];
-    
 //    self.updateEventSignal = [[RACSignal interval:4
 //                                       onScheduler:[RACScheduler mainThreadScheduler]
 //                                ]
@@ -270,8 +263,40 @@
             }
         }
     }];
+    [self clearData];
+    [self getProducts:YES];
+    //[self.tableView reloadData];
+    
 
     
+}
+
+-(void)refreshData
+{
+    [self clearData];
+    [self.tableView reloadData];
+    [self getProducts:YES];
+    [self.tableView reloadData];
+}
+
+-(void)clearData
+{
+    self.pageNumber = 0;
+    [self.dataSource removeAllObjects];
+
+}
+
+-(AnyPromise*)getProducts:(BOOL)needHud
+{
+    if (needHud) {
+        [self showProgressIndicator];
+
+    }
+    return [[BaseHttpRequest new] request].catch(^(){
+        [self dismissProgressIndicator];
+
+        return [BaseHttpRequest httpRequestError:@"You should overwrite this API"];
+    });
 }
 
 -(void)cancleRefresh
@@ -293,6 +318,14 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    // for debug
+    if ([self isMemberOfClass:[BuyListViewController class]]) {
+        return;
+    }
+//    self.pageNumber = 0;
+//    [self.dataSource removeAllObjects];
+//    [self.tableView reloadData];
+//    [self getProducts:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -431,11 +464,6 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    BuyItemCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BuyItemCell"];
-//    cell.productDescDTO = self.dataSource[indexPath.row];
-//    if (!cell.timeSignal) {
-//        cell.timeSignal = self.updateEventSignal;
-//    }
     ProductSummaryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProductSummaryCell"];
     if (!cell) {
         cell = [[ProductSummaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductSummaryCell"];
@@ -456,14 +484,14 @@
 
     ProductViewController* productVC = [[ProductViewController alloc]  init];
 
-    ProductDescriptionDTO* pdDTO = self.dataSource[indexPath.row];
-    if (pdDTO.canSplit) {
-        productVC.productDisplayMode = kDisplayMode0;
-    }
-    else {
-        productVC.productDisplayMode = kDisplayMode1;
-    }
-    
+//    ProductDescriptionDTO* pdDTO = self.dataSource[indexPath.row];
+//    if (pdDTO.canSplit) {
+//        productVC.productDisplayMode = kDisplayMode0;
+//    }
+//    else {
+//        productVC.productDisplayMode = kDisplayMode1;
+//    }
+    productVC.productDisplayMode = kDisplayMode0;
     [self.navigationController pushViewController:productVC animated:YES];
 }
 

@@ -96,7 +96,16 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"会员登录";
-    //self.navigationItem.leftBarButtonItem = nil;
+    if (self.navigationController.viewControllers.count>1 && (self.navigationItem.leftBarButtonItem == nil || self.navigationItem.leftBarButtonItems.count>0)) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:nil action:nil];
+        @weakify(self)
+        self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            @strongify(self);
+            [self.navigationController popViewControllerAnimated:YES];
+            return [RACSignal empty];
+        }];
+
+    }
     
     [self initLines];
     self.rememberMeCheckBox.on = YES;

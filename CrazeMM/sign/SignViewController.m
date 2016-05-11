@@ -81,7 +81,7 @@
     
     self.passwordField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_password"] highlightedImage:[UIImage imageNamed:@"icon_password"]];
     self.passwordRightView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
-    [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
+    [self.passwordRightView setImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
     [self.passwordRightView sizeToFit];
     @weakify(self)
     self.passwordRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
@@ -91,12 +91,12 @@
         
         self.passwordField.secureTextEntry = !self.passwordField.secureTextEntry;
         if (self.passwordField.secureTextEntry) {
-            [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
+            [self.passwordRightView setImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
 
         }
         else {
             self.passwordField.font = [UIFont systemFontOfSize:17];
-            [self.passwordRightView setImage:[UIImage imageNamed:@"icon_password"] forState:UIControlStateNormal];
+            [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
 
         }
         self.passwordField.text = tempString;
@@ -423,6 +423,12 @@
     [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
+
+}
 
 -(void)viewWillDisappear:(BOOL)animated
 {

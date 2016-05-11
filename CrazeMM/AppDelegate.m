@@ -12,7 +12,7 @@
 #import "TabBarController.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) NewWelcomeViewController* welcomeVC;
 @end
 
 @implementation AppDelegate
@@ -33,9 +33,10 @@
 //
 //    }
 //    else {
-        self.window.rootViewController = [[NewWelcomeViewController alloc]
-                                          initWithNibName:nil
-                                          bundle:nil];
+    self.welcomeVC = [[NewWelcomeViewController alloc]
+                      initWithNibName:nil
+                      bundle:nil];
+        self.window.rootViewController = self.welcomeVC;
 //    }
 
     [self.window makeKeyAndVisible];
@@ -60,6 +61,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self.welcomeVC.tabBarController.supplyListVC refreshData];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

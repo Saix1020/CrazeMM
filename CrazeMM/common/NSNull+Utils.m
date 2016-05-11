@@ -20,4 +20,14 @@
     return -1.f;
 }
 
+-(BOOL)boolValue
+{
+    return NO;
+}
+
+-(NSInteger)length
+{
+    return 0;
+}
+
 @end
