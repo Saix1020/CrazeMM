@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIView *backgroundLabel;
 
 @property (strong, nonatomic) OrderDetailDTO* orderDetailDTO;
+@property (nonatomic) BOOL needHeadView;
 
 @end

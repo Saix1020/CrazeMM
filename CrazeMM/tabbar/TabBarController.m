@@ -10,7 +10,6 @@
 #import "BaseNavigationController.h"
 #import "MineNoLoginViewController.h"
 #import "MineWrapViewController.h"
-#import "ProductListViewController.h"
 
 @interface TabBarController ()
 

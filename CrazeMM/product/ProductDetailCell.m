@@ -72,6 +72,10 @@
     self.messageLabel.textColor = [UIColor grayColorL2];
     self.messageLabel.font = [UIFont systemFontOfSize:12];
     
+    
+    self.traingleView.image = [[UIImage imageNamed:@"triangle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
 }
@@ -154,6 +158,15 @@
     _productDetailDto = productDetailDto;
     
     self.flagLabel.text = productDetailDto.stateLabel;
+    if([self.flagLabel.text isEqualToString:@"已过期"]){
+        self.flagLabel.backgroundColor = [UIColor redColor];
+        self.traingleView.tintColor = [UIColor redColor];
+    }
+    else {
+        self.flagLabel.backgroundColor = [UIColor UIColorFromRGB:0x097939];
+        self.traingleView.tintColor = [UIColor UIColorFromRGB:0x097939];
+    }
+
     [self.flagLabel sizeToFit];
     [self.productImageView setImageWithURL:[NSURL URLWithString:_productDetailDto.goodImage] placeholderImage:[@"ph_phone" image]];
     self.browserLabel.text = [NSString stringWithFormat:@"浏览:%ld", productDetailDto.views];
@@ -207,6 +220,10 @@
     else {
         self.messageLabel.text = @"";
     }
+    
+//    [RACObserve(self, productDetailDto.quantity) subscribeNext:^(id quantity){
+//        [self fomartPriceLabel];
+//    }];
     
     [self layoutAllSubviews];
 }

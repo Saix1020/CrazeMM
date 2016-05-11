@@ -111,6 +111,9 @@
     self.messageLabel.textColor = [UIColor grayColorL2];
     self.messageLabel.font = [UIFont systemFontOfSize:12];
     
+    self.triangleView.image = [[UIImage imageNamed:@"triangle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -197,6 +200,15 @@
     _productDetailDto = productDetailDto;
     
     self.flagTitleLabel.text = productDetailDto.stateLabel;
+    if([self.flagTitleLabel.text isEqualToString:@"已过期"]){
+        self.flagTitleLabel.backgroundColor = [UIColor redColor];
+        self.triangleView.tintColor = [UIColor redColor];
+    }
+    else {
+        self.flagTitleLabel.backgroundColor = [UIColor UIColorFromRGB:0x097939];
+        self.triangleView.tintColor = [UIColor UIColorFromRGB:0x097939];
+    }
+
     [self.productImageView setImageWithURL:[NSURL URLWithString:_productDetailDto.goodImage] placeholderImage:[@"ph_phone" image]];
     self.browseLabel.text = [NSString stringWithFormat:@"浏览:%ld", productDetailDto.views];
     self.sellLabel.text = [NSString stringWithFormat:@"意向:%ld", productDetailDto.intentions];
@@ -274,35 +286,17 @@
     else {
         self.messageLabel.text = @"";
     }
-    
+//    @weakify(self);
+//    [RACObserve(self, productDetailDto.quantity) subscribeNext:^(id x){
+//        @strongify(self);
+//        [self fomartStorkString];
+//    }];
     
     [self layoutAllSubviews];
 }
 
 -(void)layoutAllSubviews
 {
-//    @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
-//    @property (weak, nonatomic) IBOutlet ProductFlageView *flageView;
-//    @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
-//    @property (weak, nonatomic) IBOutlet UIView*browserDealView;
-//    @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-//    @property (weak, nonatomic) IBOutlet UILabel *descLabel;
-//    @property (weak, nonatomic) IBOutlet UIView *line1;
-//    @property (weak, nonatomic) IBOutlet UIView *line2;
-//    @property (weak, nonatomic) IBOutlet UILabel *priceLabel1;
-//    @property (weak, nonatomic) IBOutlet UILabel *priceLabel2;
-//    @property (weak, nonatomic) IBOutlet UILabel *priceLabel3;
-//    @property (weak, nonatomic) IBOutlet M80AttributedLabel *price1;
-//    @property (weak, nonatomic) IBOutlet M80AttributedLabel *price2;
-//    @property (weak, nonatomic) IBOutlet M80AttributedLabel *price3;
-//    @property (weak, nonatomic) IBOutlet M80AttributedLabel *stockLabel;
-//    @property (weak, nonatomic) IBOutlet UILabel *addrLabel;
-//    @property (weak, nonatomic) IBOutlet UILabel *flagTitleLabel;
-//    @property (weak, nonatomic) IBOutlet UILabel *sellLabel;
-//    @property (weak, nonatomic) IBOutlet UILabel *expressLabel;
-//    @property (weak, nonatomic) IBOutlet UILabel *browseLabel;
-//    
-//    @property (strong, nonatomic) ArrowView* arrowView;
     CGFloat x, y;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     

@@ -105,10 +105,17 @@
         _orderProductView.determineButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             @strongify(self);
             
-            [self.modalView dismiss];
+            if ([self.orderProductView.amountTextField.text integerValue] > 0  && [self.orderProductView.amountTextField.text integerValue] <= self.productDetailDto.quantity) {
+                [self handleOrderWithQuantity:[self.orderProductView.amountTextField.text integerValue] andMessage:self.orderProductView.descTextView.text];
+            }
+            else {
+                [self showAlertViewWithMessage:@"请输入正确的数量!"];
+            }
             
-            PayViewController* payVC = [[PayViewController alloc] init];
-            [self.navigationController pushViewController:payVC animated:YES];
+//            [self.modalView dismiss];
+//            
+//            PayViewController* payVC = [[PayViewController alloc] init];
+//            [self.navigationController pushViewController:payVC animated:YES];
             
             return [RACSignal empty];
         }];
@@ -276,7 +283,6 @@
 //                    contentView.x = 0;
 //                    contentView.y = [UIScreen mainScreen].bounds.size.height - contentView.height;
 //                    contentView.width = [UIScreen mainScreen].bounds.size.width;
-                    
                     BuyProductView* orderProductView = (BuyProductView*)contentView;
                     orderProductView.productDetailDto = self.productDetailDto;
                 }];
@@ -296,6 +302,7 @@
     
     return _orderButton;
 }
+
 
 -(ProductLadderCell*)productLadderCell
 {
@@ -382,6 +389,17 @@
     return _modalView;
 }
 
+-(void)handleOrderWithQuantity:(NSInteger)quantity andMessage:(NSString*)message
+{
+    
+    [self.modalView dismiss];
+}
+
+-(void)getProductDetail:(BOOL)needHud
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -445,6 +463,7 @@
     self.orderButton.frame = CGRectMake(self.view.bounds.size.width/2, 20, self.view.bounds.size.width/2, 50);
     self.supplyOrBuyButton.frame = CGRectMake(0, 20, self.view.bounds.size.width, 50);
 
+    
 //    [self.view bringSubviewToFront:self.buyProductView];
 //    self.buyProductView.frame = [UIScreen mainScreen].bounds;
 //    self.buyProductView.y = 100;
@@ -466,6 +485,9 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
+    self.sectionNum = 0;
+    [self.tableView reloadData];
+    [self getProductDetail:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

@@ -37,6 +37,8 @@
     self.seperatorLine.backgroundColor  = [UIColor light_Gray_Color];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    self.needHeadView = YES;
 }
 
 -(void)fomartTotalPriceLabel
@@ -143,9 +145,12 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.headView.frame = CGRectMake(0, 0, self.bounds.size.width, self.headView.height);
-    self.contentView.y = self.headView.height;
-    self.contentView.height = self.height-self.headView.height;
+    if (self.needHeadView) {
+        self.headView.frame = CGRectMake(0, 0, self.bounds.size.width, self.headView.height);
+        self.contentView.y = self.headView.height;
+        self.contentView.height = self.height-self.headView.height;
+
+    }
 }
 
 

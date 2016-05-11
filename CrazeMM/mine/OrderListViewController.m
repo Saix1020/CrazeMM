@@ -14,6 +14,7 @@
 #import "OrderListNoCheckBoxCell.h"
 #import "HttpOrder.h"
 #import "MJRefresh.h"
+#import "OrderDetailViewController.h"
 
 #define kSegmentCellHeight 40.f
 #define kTableViewInsetTopWithoutSegment (kSegmentCellHeight+64)
@@ -478,6 +479,16 @@
     return [OrderListCell cellHeight]; //WaitForDeliverCell has the same height with WaitForPayCell
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    MMOrderListStyle style;
+    style.orderType = self.orderType;
+    style.orderSubType = self.subType;
+    style.orderState = self.orderState;
+    
+    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:style];
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
+}
 
 #pragma -- mark custom segment delegate
 

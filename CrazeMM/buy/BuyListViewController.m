@@ -20,6 +20,7 @@
 #import "LoginViewController.h"
 #import "SignViewController.h"
 #import "ProductSummaryCell.h"
+#import "HttpBuyRequest.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -289,14 +290,39 @@
 
 -(AnyPromise*)getProducts:(BOOL)needHud
 {
+    HttpBuyRequest* request;
+//    if ([[UserCenter defaultCenter] isLogined]) {
+        request = [[HttpBuyRequest alloc] initWithPageNumber:self.pageNumber+1];
+//    }
+//    else{
+//        request = [[HttpSupplyNoLoginRequest alloc] initWithPageNumber:self.pageNumber+1];
+//    }
     if (needHud) {
-        [self showProgressIndicator];
-
+        [self showProgressIndicatorWithTitle:@"正在努力加载..."];
     }
-    return [[BaseHttpRequest new] request].catch(^(){
-        [self dismissProgressIndicator];
-
-        return [BaseHttpRequest httpRequestError:@"You should overwrite this API"];
+    return [request request]
+    .then(^(id responseObject){
+        NSLog(@"%@", responseObject);
+        HttpBuyResponse* response = (HttpBuyResponse*)request.response;
+        if(response.ok){
+            self.pageNumber = response.pageNumber;
+            self.totalPage = response.totalPage;
+            [self.dataSource addObjectsFromArray:response.productDTOs];
+            [self.tableView reloadData];
+        }
+    })
+    .catch(^(NSError* error){
+        if ([error needLogin]) {
+            [self showAlertViewWithMessage:@"请先登录"];
+        }
+        else {
+            [self showAlertViewWithMessage:error.localizedDescription];
+        }
+    })
+    .finally(^(){
+        if (needHud) {
+            [self dismissProgressIndicator];
+        }
     });
 }
 
@@ -332,6 +358,8 @@
                                              selector:@selector(logoutSucess:)
                                                  name:kLogoutSuccessBroadCast
                                                object:nil];
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated

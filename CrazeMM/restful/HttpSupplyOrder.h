@@ -8,7 +8,7 @@
 
 #import "BaseHttpRequest.h"
 
-@interface HttpSupplyOrder : BaseHttpRequest
+@interface HttpSupplyOrderRequest : BaseHttpRequest
 
 -(instancetype)initWithSid:(NSInteger)sid andVersion:(NSInteger)version andQuantity:(NSInteger)quantity andMessage:(NSString*)message;
 

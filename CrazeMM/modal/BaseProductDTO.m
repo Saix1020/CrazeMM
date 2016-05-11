@@ -39,6 +39,21 @@
     return self;
 }
 
+-(void)resetByProductDetailDto:(BaseProductDetailDTO*)detailDto
+{
+    self.deadlineStr = detailDto.deadlineStr;
+    self.region = detailDto.region;
+    self.stateLabel = detailDto.stateLabel;
+    self.duration = detailDto.duration;
+    self.intentions = detailDto.intentions;
+    self.isActive = detailDto.active;
+    self.millisecond = detailDto.millisecond;
+    self.isStep = detailDto.isStep;
+    self.price = detailDto.price;
+    self.quantity = detailDto.quantity;
+    self.views = detailDto.views;
+}
+
 
 -(NSString*)description
 {

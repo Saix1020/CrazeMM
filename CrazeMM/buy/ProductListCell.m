@@ -217,14 +217,22 @@
     //    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
     [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[UIImage imageNamed:@"prod_placeholder.jpg"]];
     self.statusLabel.text = productDescDTO.status;
+    if([self.statusLabel.text isEqualToString:@"已过期"]){
+        self.statusLabel.backgroundColor = [UIColor redColor];
+        self.triangleView.tintColor = [UIColor redColor];
+    }
+    else {
+        self.statusLabel.backgroundColor = [UIColor greenColor];
+        self.triangleView.tintColor = [UIColor greenColor];
+    }
     @weakify(self);
     
-    [[RACObserve(productDescDTO, elapseTime)
-      takeUntil:self.rac_prepareForReuseSignal]
-     subscribeNext:^(id x){
-         @strongify(self);
-         [self fomartTimeLeftLabel];
-     }];
+//    [[RACObserve(productDescDTO, elapseTime)
+//      takeUntil:self.rac_prepareForReuseSignal]
+//     subscribeNext:^(id x){
+//         @strongify(self);
+//         [self fomartTimeLeftLabel];
+//     }];
 }
 
 //-(void)setTimeSignal:(RACSignal *)timeSignal

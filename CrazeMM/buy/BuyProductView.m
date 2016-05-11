@@ -96,16 +96,20 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString* finnalString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if ([finnalString integerValue]>self.productDetailDto.left) {
-//        string = [NSString stringWithFormat:@"%ld", self.productDetailDto.left];
+    if (finnalString.length == 0) {
+        textField.text = @"";
         return NO;
+    }
+    else if ([finnalString integerValue]>self.productDetailDto.left) {
+        textField.text = [NSString stringWithFormat:@"%ld", self.productDetailDto.left];;
     }
     else if([finnalString integerValue]<=0){
-//        string = @"1";
-        return NO;
+        textField.text = @"1";
 
     }
-    textField.text = finnalString;
+    else {
+        textField.text = finnalString;
+    }
     [self fomartAmountPrice];
     return NO;
 }
@@ -160,6 +164,8 @@
 {
     _productDetailDto = productDetailDto;
     self.amountTextField.text = [NSString stringWithFormat:@"%ld", (long)productDetailDto.left];
+    self.descTextView.text = @"";
+
     self.price = productDetailDto.price;
     [self fomartAmountPrice];
 }

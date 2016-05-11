@@ -56,7 +56,7 @@
 
 -(UIImageView*)triangleImageView {
     if (!_triangleImageView) {
-        _triangleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"triangle"]];
+        _triangleImageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"triangle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         _triangleImageView.frame = CGRectMake(0, 0, 4, 4);
         [self.contentView addSubview:_triangleImageView];
     }
@@ -206,6 +206,14 @@
     [self fomartPriceLabel];
     [self fomartTimeLabel];
     self.statusLabel.text = self.productDto.stateLabel;
+    if([self.statusLabel.text isEqualToString:@"已过期"]){
+        self.statusLabel.backgroundColor = [UIColor redColor];
+        self.triangleImageView.tintColor = [UIColor redColor];
+    }
+    else {
+        self.statusLabel.backgroundColor = [UIColor UIColorFromRGB:0x097939];
+        self.triangleImageView.tintColor = [UIColor UIColorFromRGB:0x097939];
+    }
 }
 
 -(void)layoutAllSubviews

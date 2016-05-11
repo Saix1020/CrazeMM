@@ -7,6 +7,7 @@
 //
 
 #import "BaseDTO.h"
+#import "BaseProductDetailDTO.h"
 
 @interface BaseProductDTO : BaseDTO
 
@@ -32,5 +33,7 @@
 
 
 -(instancetype)initWith:(NSDictionary*)dict;
+
+-(void)resetByProductDetailDto:(BaseProductDetailDTO*)detailDto;
 
 @end
