@@ -23,6 +23,13 @@
         HttpSupplyProductDetailResponse* response = (HttpSupplyProductDetailResponse*)request.response;
         self.productDetailDto = response.dto;
         
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+        
+    })
+    .finally(^(){
+        
     });
 }
 
