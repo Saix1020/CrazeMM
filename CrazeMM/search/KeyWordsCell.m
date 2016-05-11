@@ -7,7 +7,6 @@
 //
 
 #import "KeyWordsCell.h"
-#import "TITokenField.h"
 
 
 #define kButtonSpacehoderSpace 10.f
