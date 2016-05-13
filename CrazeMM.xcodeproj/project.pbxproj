@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E9788CE1CE5FA7400F87C36 /* HttpOrderDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */; };
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
 		B9156F3C1CDB91630041E535 /* SearchEmpty.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9156F3B1CDB91630041E535 /* SearchEmpty.xib */; };
@@ -402,6 +403,8 @@
 
 /* Begin PBXFileReference section */
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E9788CC1CE5FA7400F87C36 /* HttpOrderDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpOrderDelete.h; sourceTree = "<group>"; };
+		2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpOrderDelete.m; sourceTree = "<group>"; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
 		B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultDTO.m; path = search/SearchResultDTO.m; sourceTree = "<group>"; };
 		B9156F311CDA43190041E535 /* HttpSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSearchRequest.h; path = restful/HttpSearchRequest.h; sourceTree = "<group>"; };
@@ -2407,6 +2410,8 @@
 			children = (
 				B9B5BCE81CDDBE670085E132 /* HttpOrder.h */,
 				B9B5BCE91CDDBE670085E132 /* HttpOrder.m */,
+				2E9788CC1CE5FA7400F87C36 /* HttpOrderDelete.h */,
+				2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */,
 				B9156F3F1CDBA41D0041E535 /* HttpOrderSummary.h */,
 				B9156F401CDBA41D0041E535 /* HttpOrderSummary.m */,
 				B967E6E61CE4B4EB00621F28 /* HttpOrderStatus.h */,
@@ -2955,6 +2960,7 @@
 				B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */,
 				B91896B21CCF20010061D0B6 /* SelectdAddrCell.m in Sources */,
 				B91732371CD1F05400C29698 /* FadeOutRightAnimation.m in Sources */,
+				2E9788CE1CE5FA7400F87C36 /* HttpOrderDelete.m in Sources */,
 				B967E73A1CE57EBD00621F28 /* NSArray+MASAdditions.m in Sources */,
 				B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */,
 				B91731531CD1A30100C29698 /* NSDateComponents+Utils.m in Sources */,
