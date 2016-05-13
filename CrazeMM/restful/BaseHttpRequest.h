@@ -29,7 +29,7 @@ typedef void (^errorCallback)(NSError *error);
 @property (nonatomic, strong) BaseHttpResponse* response;
 
 @property (nonatomic, weak) UIViewController* caller;
-//@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+-(Class)responseClass;
 
 -(AFPromise*)request;
 -(AFPromise*)request2;
@@ -40,11 +40,12 @@ typedef void (^errorCallback)(NSError *error);
 
 +(AFPromise*)httpRequestError:(NSString*)errorString;
 
+
+
 @end
 
 @interface BaseHttpResponse : NSObject
 
--(instancetype)initWith:(NSDictionary*)response;
 
 
 @property (nonatomic, readonly) BOOL ok;
@@ -53,6 +54,9 @@ typedef void (^errorCallback)(NSError *error);
 @property (nonatomic, readonly) NSDictionary* data;
 @property (nonatomic, readonly) NSString* errorDetail;
 @property (nonatomic, strong) NSDictionary* all;
+
+-(instancetype)initWith:(NSDictionary*)response;
+-(void)parserResponse;
 
 //-(instancetype)initWith:(NSDictionary*)response;
 

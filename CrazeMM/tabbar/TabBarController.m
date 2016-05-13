@@ -7,13 +7,9 @@
 //
 
 #import "TabBarController.h"
-#import "BuyListViewController.h"
-#import "SupplyListViewController.h"
-#import "MineViewController.h"
 #import "BaseNavigationController.h"
 #import "MineNoLoginViewController.h"
 #import "MineWrapViewController.h"
-#import "ProductListViewController.h"
 
 @interface TabBarController ()
 
@@ -43,30 +39,33 @@
 
         
         
-        BuyListViewController *buyVC = [[BuyListViewController alloc] init];
-        buyVC.tabBarItem = buyItem;
-        BaseNavigationController *buyNavController = [[BaseNavigationController alloc] initWithRootViewController:buyVC];
+        self.buyListVC = [[BuyListViewController alloc] init];
+        self.buyListVC.tabBarItem = buyItem;
+        BaseNavigationController *buyNavController = [[BaseNavigationController alloc] initWithRootViewController:self.buyListVC];
         
-        SupplyListViewController *sellVC = [[SupplyListViewController alloc] init];
-        sellVC.tabBarItem = sellItem;
-        BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:sellVC];
+        self.supplyListVC = [[SupplyListViewController alloc] init];
+        self.supplyListVC.tabBarItem = sellItem;
+        BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:self.supplyListVC];
         
 //        ProductListViewController *sellVC = [[ProductListViewController alloc] init];
 //                sellVC.tabBarItem = sellItem;
 //                BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:sellVC];
         
         //BaseNavigationController *mineNavController;
-        BaseNavigationController* mineNavController;
-        if ([UserCenter defaultCenter].isLogined) {
-            MineViewController *mineVC = [[MineViewController alloc] init];
-            mineVC.tabBarItem = mineItem;
-            mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
-        }
-        else{
-            MineViewController *mineVC = [[MineViewController alloc] init];
-            mineVC.tabBarItem = mineItem;
-            mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
-        }
+//        BaseNavigationController* mineNavController;
+//        if ([UserCenter defaultCenter].isLogined) {
+//            MineViewController *mineVC = [[MineViewController alloc] init];
+//            mineVC.tabBarItem = mineItem;
+//            mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
+//        }
+//        else{
+//            MineViewController *mineVC = [[MineViewController alloc] init];
+//            mineVC.tabBarItem = mineItem;
+//            mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
+//        }
+        self.mineVC = [[MineViewController alloc] init];
+        self.mineVC.tabBarItem = mineItem;
+        BaseNavigationController* mineNavController = [[BaseNavigationController alloc] initWithRootViewController:self.mineVC];
         
         
         self.viewControllers = [NSArray arrayWithObjects:sellNavController, buyNavController, mineNavController, nil];

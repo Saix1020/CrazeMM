@@ -9,6 +9,7 @@
 #import "BaseDTO.h"
 #import "OrderDefine.h"
 #import "HttpOrder.h"
+#import "OrderStatusDTO.h"
 
 //"isAnoy":false, //是否匿名供货，匿名进不显示供货人/求购人信息
 //"quantity":10, //供货数量
@@ -36,6 +37,8 @@
 @property (nonatomic) BOOL selected;
 
 -(instancetype)initWithOrderDetail:(NSDictionary*)dict;
+-(instancetype)initWithOrderStatusDTO:(OrderStatusDTO*)statusDto;
+
 
 @end
 

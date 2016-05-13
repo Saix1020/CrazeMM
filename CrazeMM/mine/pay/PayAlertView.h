@@ -10,8 +10,11 @@
 #import "M80AttributedLabel.h"
 
 @interface PayAlertView : UIView
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet M80AttributedLabel *sumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *dismissButton;
+@property (weak, nonatomic) IBOutlet UILabel *orderNoLabel;
+//@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+//@property (weak, nonatomic) IBOutlet M80AttributedLabel *sumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *leftLabel;
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 @property (weak, nonatomic) IBOutlet UIView *line;

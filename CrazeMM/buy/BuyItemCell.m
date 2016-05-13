@@ -122,12 +122,19 @@
     self.statusLabel.text = productDescDTO.status;
     @weakify(self);
     
-    [[RACObserve(productDescDTO, elapseTime)
-        takeUntil:self.rac_prepareForReuseSignal]
-        subscribeNext:^(id x){
-         @strongify(self);
-         [self fomartTimeLeftLabel];
-     }];
+//    [[RACObserve(productDescDTO, elapseTime)
+//        takeUntil:self.rac_prepareForReuseSignal]
+//        subscribeNext:^(id x){
+//         @strongify(self);
+//         [self fomartTimeLeftLabel];
+//     }];
+//    [[RACObserve(productDescDTO, quantity)
+//      takeUntil:self.rac_prepareForReuseSignal]
+//     subscribeNext:^(id x){
+//         @strongify(self);
+//         [self fomartDetailLabel];
+//     }];
+
 }
 
 //-(void)setTimeSignal:(RACSignal *)timeSignal

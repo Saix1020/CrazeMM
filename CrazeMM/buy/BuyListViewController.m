@@ -20,6 +20,7 @@
 #import "LoginViewController.h"
 #import "SignViewController.h"
 #import "ProductSummaryCell.h"
+#import "HttpBuyRequest.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -27,7 +28,6 @@
 #define kTotalSlides 5
 
 @interface BuyListViewController ()
-@property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UIRefreshControl* refreshControl;
 @property (nonatomic, strong) iCarousel *carousel;
 @property (nonatomic, assign) CGSize cardSize;
@@ -41,7 +41,6 @@
 //@property  (nonatomic, strong) RACDisposable *disposable;
 @property (nonatomic) BOOL stopTimer;
 
-@property (nonatomic, strong) NSMutableArray* dataSource;
 @property (nonatomic, strong) TTModalView* productRecommendAlertView;
 
 @property (nonatomic) BOOL isCarouselAnimating;
@@ -55,7 +54,7 @@
 {
     if (!_productRecommendAlertView) {
         _productRecommendAlertView = [[TTModalView alloc] initWithContentView:nil delegate:nil];
-        _productRecommendAlertView.isCancelAble = NO;
+        _productRecommendAlertView.isCancelAble = YES;
         _productRecommendAlertView.modalWindowLevel = UIWindowLevelNormal;
         
         ProductRecommendView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"ProductRecommendView" owner:nil options:nil] lastObject];
@@ -187,17 +186,16 @@
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self.items addObject:[NSString stringWithFormat:@"T 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
-//            self.filtedItems = [self.items mutableCopy];
-            for (int i=0; i<10; i++) {
-                ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
-                
-                [self.dataSource addObject:dto];
-            }
-            
+        
+        [self getProducts:NO]
+        .then(^(id x){
             [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
+            
+        })
+        .catch(^(NSError* error){
+            [self.tableView.mj_header endRefreshing];
+            [self showAlertViewWithMessage:error.localizedDescription];
         });
     }];
     
@@ -205,18 +203,16 @@
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self.items addObject:[NSString stringWithFormat:@"B 飞利浦 -V387 黑色 1GB 联通 3G WCDMA %lu", (unsigned long)self.items.count]];
-//            self.filtedItems = [self.items mutableCopy];
-            for (int i=0; i<10; i++) {
-                ProductDescriptionDTO* dto = [ProductDescriptionDTO mockDate];
-                
-                [self.dataSource addObject:dto];
-            }
-
+        [self getProducts:NO]
+        .then(^(id x){
             [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
-        });
+
+        })
+        .catch(^(NSError* error){
+            [self.tableView.mj_footer endRefreshing];
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });;
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
 
@@ -232,8 +228,6 @@
     self.tableView.tableHeaderView = self.carousel;
  
 //    self.filtedItems = [self.items mutableCopy];
-    [self.tableView reloadData];
-    
 //    self.updateEventSignal = [[RACSignal interval:4
 //                                       onScheduler:[RACScheduler mainThreadScheduler]
 //                                ]
@@ -270,8 +264,66 @@
             }
         }
     }];
+    [self clearData];
+    [self getProducts:YES];
+    //[self.tableView reloadData];
+    
 
     
+}
+
+-(void)refreshData
+{
+    [self clearData];
+    [self.tableView reloadData];
+    [self getProducts:YES];
+    [self.tableView reloadData];
+}
+
+-(void)clearData
+{
+    self.pageNumber = 0;
+    [self.dataSource removeAllObjects];
+    [self.tableView reloadData];
+
+}
+
+-(AnyPromise*)getProducts:(BOOL)needHud
+{
+    HttpBuyRequest* request;
+//    if ([[UserCenter defaultCenter] isLogined]) {
+        request = [[HttpBuyRequest alloc] initWithPageNumber:self.pageNumber+1];
+//    }
+//    else{
+//        request = [[HttpSupplyNoLoginRequest alloc] initWithPageNumber:self.pageNumber+1];
+//    }
+    if (needHud) {
+        [self showProgressIndicatorWithTitle:@"正在努力加载..."];
+    }
+    return [request request]
+    .then(^(id responseObject){
+        NSLog(@"%@", responseObject);
+        HttpBuyResponse* response = (HttpBuyResponse*)request.response;
+        if(response.ok){
+            self.pageNumber = response.pageNumber;
+            self.totalPage = response.totalPage;
+            [self.dataSource addObjectsFromArray:response.productDTOs];
+            [self.tableView reloadData];
+        }
+    })
+    .catch(^(NSError* error){
+        if ([error needLogin]) {
+            [self showAlertViewWithMessage:@"请先登录"];
+        }
+        else {
+            [self showAlertViewWithMessage:error.localizedDescription];
+        }
+    })
+    .finally(^(){
+        if (needHud) {
+            [self dismissProgressIndicator];
+        }
+    });
 }
 
 -(void)cancleRefresh
@@ -293,42 +345,21 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.stopTimer = NO;
+    // for debug
+    if ([self isMemberOfClass:[BuyListViewController class]]) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginSuccess:)
+                                                 name:kLoginSuccessBroadCast
+                                               object:nil];
     
-//    self.updateEventSignal = [[RACSignal interval:4
-//                                       onScheduler:[RACScheduler mainThreadScheduler]
-//                                ]
-//                               takeUntilBlock:^BOOL (id x){
-//                                   return self.stopTimer;
-//                               }];
-//    
-//    
-//    
-//    [self.updateEventSignal
-//     subscribeNext:^(id x){
-//         @strongify(self);
-//         
-//         if (self.isCarouselAnimating) {
-//             return;
-//         }
-//         
-//         self.isCarouselAnimating = YES;
-//         
-//         if (self.carousel.currentItemIndex == self.carousel.numberOfItems-1) {
-//             self.scrollWay = YES;
-//         }
-//         else if(self.carousel.currentItemIndex == 0){
-//             self.scrollWay = NO;
-//         }
-//         if (self.scrollWay) {
-//             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex-1 duration:1];
-//             
-//         }
-//         else {
-//             [self.carousel scrollToItemAtIndex:self.carousel.currentItemIndex+1 duration:1];
-//             
-//         }
-//     }];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(logoutSucess:)
+                                                 name:kLogoutSuccessBroadCast
+                                               object:nil];
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -371,6 +402,18 @@
 {
     [super viewWillDisappear:animated];
     self.stopTimer = YES;
+}
+
+-(void)loginSuccess:(NSNotification*)notification
+{
+    [self clearData];
+    [self getProducts:NO];
+}
+
+-(void)logoutSucess:(NSNotification*)notification
+{
+    [self clearData];
+    [self getProducts:NO];
 }
 
 
@@ -467,11 +510,6 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    BuyItemCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BuyItemCell"];
-//    cell.productDescDTO = self.dataSource[indexPath.row];
-//    if (!cell.timeSignal) {
-//        cell.timeSignal = self.updateEventSignal;
-//    }
     ProductSummaryCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ProductSummaryCell"];
     if (!cell) {
         cell = [[ProductSummaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductSummaryCell"];
@@ -492,16 +530,27 @@
 
     ProductViewController* productVC = [[ProductViewController alloc]  init];
 
-    ProductDescriptionDTO* pdDTO = self.dataSource[indexPath.row];
-    if (pdDTO.canSplit) {
-        productVC.productDisplayMode = kDisplayMode0;
-    }
-    else {
-        productVC.productDisplayMode = kDisplayMode1;
-    }
-    
+//    ProductDescriptionDTO* pdDTO = self.dataSource[indexPath.row];
+//    if (pdDTO.canSplit) {
+//        productVC.productDisplayMode = kDisplayMode0;
+//    }
+//    else {
+//        productVC.productDisplayMode = kDisplayMode1;
+//    }
+    productVC.productDisplayMode = kDisplayMode0;
     [self.navigationController pushViewController:productVC animated:YES];
 }
 
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kLoginSuccessBroadCast
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kLogoutSuccessBroadCast
+                                                  object:nil];
+}
 
 @end

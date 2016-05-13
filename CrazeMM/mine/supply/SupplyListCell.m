@@ -10,7 +10,8 @@
 
 @implementation SupplyListCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
    
     self.selectCheckBox.onCheckColor = [UIColor whiteColor];
     self.selectCheckBox.onTintColor = [UIColor redColor];
@@ -34,7 +35,9 @@
     
     [self.shareButton exchangeImageAndText];
     [self.offButton exchangeImageAndText];
-    
+    [self.shareButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.offButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
     //self.shareButton.buttonType =
     
     self.shareButton.tintColor = [UIColor UIColorFromRGB:0x444444];
@@ -47,7 +50,6 @@
 
 
 }
-
 
 
 -(void)fomartPriceLabel
@@ -81,6 +83,7 @@
         case kNomalStyle:
             self.backgroundView.hidden = NO;
             self.shareButton.hidden = NO;
+            self.offButton.hidden = NO;
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(0);
 
@@ -89,12 +92,15 @@
         case kOffShelfStyle:
             self.shareButton.hidden = YES;
             self.backgroundView.hidden = NO;
+            self.offButton.hidden = NO;
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
             [self.offButton setTitle:@"上架" forState:UIControlStateNormal];
             break;
         case kDealStyle:
             self.backgroundView.hidden = YES;
+            self.offButton.hidden = YES;
+            self.shareButton.hidden = YES;
             break;
         default:
             break;
@@ -106,10 +112,9 @@
     return 150.f;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)buttonClicked:(UIButton*)button
+{
+    
 }
 
 @end

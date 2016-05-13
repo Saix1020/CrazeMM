@@ -7,6 +7,7 @@
 //
 
 #import "ProductSummaryCell.h"
+#import "SupplyProductDTO.h"
 #import "NSAttributedString+Utils.h"
 
 #define kProductSummaryCellHeight 132.f
@@ -55,7 +56,7 @@
 
 -(UIImageView*)triangleImageView {
     if (!_triangleImageView) {
-        _triangleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"triangle"]];
+        _triangleImageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"triangle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         _triangleImageView.frame = CGRectMake(0, 0, 4, 4);
         [self.contentView addSubview:_triangleImageView];
     }
@@ -186,17 +187,33 @@
 
 -(void)commInit
 {
-    
-    self.titleLabel.text = @"飞利浦 -V387 飞利浦 -V387飞利浦 -V387";
-    self.timeLeftLabel.text = @"10 天 18 小时 20 分钟";
-    self.priceLabel.text = @"2200.00起 18台";
-//    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder"];
-    
-    NSString* urls = @[@"http://www.189mm.com:8080/upload/good/1475.jpg", @"http://www.189mm.com:8080/upload/good/1647.png?_=3b9619dcc788ed6ef05b916a4f6692a3", @"http://www.189mm.com:8080/upload/good/1705.png?_=781962cd0d057171985ca3cc834f99cd"][arc4random()%3];
-    [self.phoneImageView setImageWithURL:[NSURL URLWithString:urls] placeholderImage:[@"ph_phone" image]];
+    if (!self.productDto) {
+        self.titleLabel.text = @"飞利浦 -V387 飞利浦 -V387飞利浦 -V387";
+        self.timeLeftLabel.text = @"10 天 18 小时 20 分钟";
+        self.priceLabel.text = @"2200.00起 18台";
+        NSString* urls = @[@"http://www.189mm.com:8080/upload/good/1475.jpg", @"http://www.189mm.com:8080/upload/good/1647.png?_=3b9619dcc788ed6ef05b916a4f6692a3", @"http://www.189mm.com:8080/upload/good/1705.png?_=781962cd0d057171985ca3cc834f99cd"][arc4random()%3];
+        [self.phoneImageView setImageWithURL:[NSURL URLWithString:urls] placeholderImage:[@"ph_phone" image]];
+    }
+    else {
+        self.titleLabel.text = self.productDto.goodName;
+        NSString* goodImge = self.productDto.goodImage;
+        if (![goodImge hasPrefix:@"http"]) {
+            goodImge = COMB_URL(goodImge);
+        }
+        [self.phoneImageView setImageWithURL:[NSURL URLWithString:goodImge] placeholderImage:[@"ph_phone" image]];
+    }
 
     [self fomartPriceLabel];
     [self fomartTimeLabel];
+    self.statusLabel.text = self.productDto.stateLabel;
+    if([self.statusLabel.text isEqualToString:@"已过期"]){
+        self.statusLabel.backgroundColor = [UIColor redColor];
+        self.triangleImageView.tintColor = [UIColor redColor];
+    }
+    else {
+        self.statusLabel.backgroundColor = [UIColor UIColorFromRGB:0x097939];
+        self.triangleImageView.tintColor = [UIColor UIColorFromRGB:0x097939];
+    }
 }
 
 -(void)layoutAllSubviews
@@ -228,12 +245,24 @@
 //    self.clockIcon.centerY = self.timeBackgroundView.centerY;
     [self.timeLeftLabel sizeToFit];
 //    self.timeLeftLabel.centerY = self.timeBackgroundView.centerY;
+    CGFloat totalWidth;
+    CGFloat startX;
+    if (self.productDto && !self.productDto.isActive) {
+        self.clockIcon.hidden = YES;
+        totalWidth = self.timeLeftLabel.width;
+        startX = ceil(self.timeBackgroundView.width/2 - totalWidth/2);
+        self.timeLeftLabel.x = startX;
+        self.timeLeftLabel.centerY = self.timeBackgroundView.height/2;
+    }
+    else{
+        self.clockIcon.hidden = NO;
+        totalWidth = self.clockIcon.width + 4.f + self.timeLeftLabel.width;
+        startX = ceil(self.timeBackgroundView.width/2 - totalWidth/2);
+        self.clockIcon.x = startX;
+        self.timeLeftLabel.x = self.clockIcon.right + 4.f;
+        self.clockIcon.centerY = self.timeLeftLabel.centerY = self.timeBackgroundView.height/2;
+    }
     
-    CGFloat totalWidth = self.clockIcon.width + 4.f + self.timeLeftLabel.width;
-    CGFloat startX = ceil(self.timeBackgroundView.width/2 - totalWidth/2);
-    self.clockIcon.x = startX;
-    self.timeLeftLabel.x = self.clockIcon.right + 4.f;
-    self.clockIcon.centerY = self.timeLeftLabel.centerY = self.timeBackgroundView.height/2;
     
     [self.statusLabel sizeToFit];
     self.statusLabel.width += 4.f;
@@ -249,21 +278,16 @@
     NSString* price;
     NSString* quantity;
     self.priceLabel.text = @"";
-    if (0) {
-//        price = [NSString stringWithFormat:@"%ld", _searchResultDTO.price];
-//        quantity = [NSString stringWithFormat:@"%ld", _searchResultDTO.quantity];
+    if (self.productDto) {
+        price = [NSString stringWithFormat:@"%ld", self.productDto.price];
+        quantity = [NSString stringWithFormat:@"%ld", self.productDto.quantity];
     }
     else {
         price = @"1020";
         quantity = @"100";
     }
-    //    NSString* detailString = self.priceLabel.text;
     self.priceLabel.text = @"";
-    
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
-    
-    
-    //    self.detailLabel.text = @"￥1020.00起 10台";
     
     UIFont* largFont = [UIFont boldSystemFontOfSize:20];
     UIFont* middleFont = [UIFont systemFontOfSize:14];
@@ -287,14 +311,24 @@
     }
     
     self.priceLabel.attributedText = [NSAttributedString composedAttributedString:stringWithAttrs];
-    
     [self.priceLabel sizeToFit];
 }
 
 -(void)fomartTimeLabel
 {
+    if (self.productDto && !self.productDto.isActive) {
+        self.timeLeftLabel.attributedText = nil;
+        self.timeLeftLabel.text = [NSString stringWithFormat:@"%@发布", self.productDto.createTime];
+        [self.timeLeftLabel sizeToFit];
+        return;
+    }
+    
     NSArray *colors = @[[UIColor redColor], [UIColor blackColor]];
     NSString* timeLeftString = @"10 天 18 小时 20 分钟";
+    
+    if (self.productDto){
+        timeLeftString = [NSString leftTimeString:self.productDto.millisecond];
+    }
 
     NSArray *components = [timeLeftString componentsSeparatedByString:@" "];
     NSMutableArray* stringWithAttrs = [[NSMutableArray alloc] init];
@@ -317,12 +351,17 @@
     
     self.timeLeftLabel.attributedText = [NSAttributedString composedAttributedString:stringWithAttrs];
     [self.timeLeftLabel sizeToFit];
-
-    [self.timeLeftLabel sizeToFit];
 }
 
 
-
+-(void)setProductDto:(BaseProductDTO *)productDto
+{
+    if (![productDto isKindOfClass:NSClassFromString(@"SupplyProductDTO")]) {
+        return;
+    }
+    _productDto = productDto;
+    [self commInit];
+}
 
 
 -(void)layoutSubviews

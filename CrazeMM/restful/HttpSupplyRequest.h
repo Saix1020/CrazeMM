@@ -7,13 +7,20 @@
 //
 
 #import "BaseHttpRequest.h"
-#import "ProductDescriptionDTO.h"
+#import "HttpSearchRequest.h"
+#import "SupplyProductDTO.h"
 
-@interface HttpSupplyRequest : BaseHttpRequest
+@interface HttpSupplyRequest : HttpSearchRequest
+
+-(instancetype)initWithPageNumber:(NSUInteger)pageNumber;
+
+@property (nonatomic)  NSInteger pageNumber;
 
 @end
 
+@interface HttpSupplyResponse : HttpSearchResponse
 
-@interface HttpSupplyResponse : BaseHttpResponse
+//@property (nonatomic, readonly) NSString* createTime;
+//@property  (nonatomic, readonly) NSString* goodImage;
 
 @end

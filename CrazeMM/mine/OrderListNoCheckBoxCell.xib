@@ -47,16 +47,28 @@
                         <rect key="frame" x="0.0" y="123" width="320" height="27"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ag-ik-DsR" customClass="M80AttributedLabel">
-                                <rect key="frame" x="8" y="0.0" width="304" height="27"/>
+                                <rect key="frame" x="152" y="0.0" width="160" height="27"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLz-2n-c7Y">
+                                <rect key="frame" x="29" y="-1" width="60" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="7qO-JP-VcA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="取消订单">
+                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="2bY-9H-5rO"/>
+                            <constraint firstItem="pLz-2n-c7Y" firstAttribute="leading" secondItem="hdg-6z-zu2" secondAttribute="leading" constant="29" id="5tN-8O-giF"/>
+                            <constraint firstItem="pLz-2n-c7Y" firstAttribute="bottom" secondItem="5Ag-ik-DsR" secondAttribute="bottom" id="7c6-yg-l2h"/>
                             <constraint firstItem="5Ag-ik-DsR" firstAttribute="trailing" secondItem="hdg-6z-zu2" secondAttribute="trailingMargin" id="DEk-CF-M5S"/>
                             <constraint firstItem="5Ag-ik-DsR" firstAttribute="top" secondItem="hdg-6z-zu2" secondAttribute="top" id="GnD-qp-Zod"/>
-                            <constraint firstItem="5Ag-ik-DsR" firstAttribute="leading" secondItem="hdg-6z-zu2" secondAttribute="leadingMargin" id="Qn7-Mw-0y9"/>
+                            <constraint firstItem="5Ag-ik-DsR" firstAttribute="leading" secondItem="hdg-6z-zu2" secondAttribute="leadingMargin" constant="144" id="Qn7-Mw-0y9"/>
                             <constraint firstAttribute="bottom" secondItem="5Ag-ik-DsR" secondAttribute="bottom" id="duC-Ds-9YU"/>
                         </constraints>
                     </view>
@@ -111,6 +123,7 @@
             <connections>
                 <outlet property="amountLabel" destination="HWa-Nt-zEi" id="xBi-I2-4BF"/>
                 <outlet property="backgroundLabel" destination="hdg-6z-zu2" id="sLF-OO-pfn"/>
+                <outlet property="canelButton" destination="pLz-2n-c7Y" id="Ubx-9p-Kqs"/>
                 <outlet property="companyWithIconLabel" destination="kV8-yW-bWK" id="xhn-r8-Q2y"/>
                 <outlet property="orderLabel" destination="64u-se-6Oc" id="QSB-7k-xgE"/>
                 <outlet property="priceLabel" destination="zgH-jr-QP8" id="DLm-rD-q12"/>

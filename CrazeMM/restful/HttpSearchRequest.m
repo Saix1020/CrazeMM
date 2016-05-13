@@ -83,14 +83,14 @@
 
 @implementation HttpSearchResponse
 
--(instancetype)initWith:(NSDictionary *)response
-{
-    self = [super initWith:response];
-    if (self) {
-        [self parserResponse];
-    }
-    return self;
-}
+//-(instancetype)initWith:(NSDictionary *)response
+//{
+//    self = [super initWith:response];
+//    if (self) {
+//        [self parserResponse];
+//    }
+//    return self;
+//}
 
 -(void)parserResponse
 {

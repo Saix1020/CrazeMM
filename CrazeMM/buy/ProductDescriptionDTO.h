@@ -7,21 +7,21 @@
 //
 
 #import "BaseDTO.h"
+#import "BaseProductDTO.h"
 
 
 
-@interface ProductDescriptionDTO : BaseDTO
+@interface ProductDescriptionDTO : BaseProductDTO
 
 @property (nonatomic, copy) NSString* imageURL;
 @property (nonatomic, copy) NSString* title;
-@property (nonatomic) NSUInteger id;
 @property (nonatomic, copy) NSString* status;
 @property (nonatomic) NSUInteger remainingTime;
-@property (nonatomic, strong) NSDate* createTime;
 @property (nonatomic, readonly) NSString* detail;
 @property (nonatomic) double minimumPrice;
 @property (nonatomic) NSUInteger minimumNumber;
 @property (nonatomic) BOOL canSplit;
+
 
 @property (nonatomic) NSUInteger elapseTime;
 

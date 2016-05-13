@@ -38,7 +38,7 @@
     [self.determineButton setTitle:@"确定" forState:UIControlStateNormal];
     
 //    self.amountLabel.text = @"";
-    self.amountTextField.text = @"10";
+    self.amountTextField.text = @"0";
     self.amountTextField.textColor = [UIColor grayColorL2];
     
     self.amountLabel.textColor = [UIColor grayColorL2];
@@ -48,8 +48,72 @@
     self.price = 10200.f;
     [self fomartAmountPrice];
     
+    [self.addButton addTarget:self action:@selector(addOrSubButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.subButton addTarget:self action:@selector(addOrSubButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
+    self.amountTextField.delegate = self;
+    self.amountTextField.keyboardType = UIKeyboardTypeNumberPad;
+    
+//    [RACObserve(self, amountTextField.text) subscribeNext: ^(NSString *newName){
+//        if([newName integerValue]>self.productDetailDto.left){
+//            self.amountTextField.text = [NSString stringWithFormat:@"%ld", self.productDetailDto.left];
+//        }
+//        else if([newName integerValue]<=0){
+//            self.amountTextField.text = @"1";
+//
+//        }
+//        else {
+//            [self fomartAmountPrice];
+//
+//        }
+//    }];
+}
+
+-(void)addOrSubButtonClicked:(UIButton*)button
+{
+    NSInteger amount = [self.amountTextField.text integerValue];
+    if (button ==  self.addButton) {
+        if (amount >= self.productDetailDto.left) {
+            return;
+        }
+        else {
+            self.amountTextField.text = [NSString stringWithFormat:@"%ld", amount+1];
+        }
+    }
+    else if(button == self.subButton){
+        if (amount <= 1) {
+            return;
+        }
+        else {
+            self.amountTextField.text = [NSString stringWithFormat:@"%ld", amount-1];
+        }
+    }
+    
+    [self fomartAmountPrice];
 
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString* finnalString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (finnalString.length == 0) {
+        textField.text = @"";
+        return NO;
+    }
+    else if ([finnalString integerValue]>self.productDetailDto.left) {
+        textField.text = [NSString stringWithFormat:@"%ld", self.productDetailDto.left];;
+    }
+    else if([finnalString integerValue]<=0){
+        textField.text = @"1";
+
+    }
+    else {
+        textField.text = finnalString;
+    }
+    [self fomartAmountPrice];
+    return NO;
+}
+
 
 -(void)fomartAmountPrice
 {
@@ -94,6 +158,16 @@
     [attributedText m80_setFont:smallFont];
     [attributedText m80_setTextColor:grayColor];
     [self.amountPrice appendAttributedText:attributedText];
+}
+
+-(void)setProductDetailDto:(BaseProductDetailDTO *)productDetailDto
+{
+    _productDetailDto = productDetailDto;
+    self.amountTextField.text = [NSString stringWithFormat:@"%ld", (long)productDetailDto.left];
+    self.descTextView.text = @"";
+
+    self.price = productDetailDto.price;
+    [self fomartAmountPrice];
 }
 
 @end

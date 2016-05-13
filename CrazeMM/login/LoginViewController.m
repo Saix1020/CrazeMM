@@ -96,19 +96,23 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"会员登录";
-    //self.navigationItem.leftBarButtonItem = nil;
+    if (self.navigationController.viewControllers.count>1 && (self.navigationItem.leftBarButtonItem == nil || self.navigationItem.leftBarButtonItems.count>0)) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:nil action:nil];
+        @weakify(self)
+        self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            @strongify(self);
+            [self.navigationController popViewControllerAnimated:YES];
+            return [RACSignal empty];
+        }];
+
+    }
     
     [self initLines];
     self.rememberMeCheckBox.on = YES;
     
     [self.loginButton bs_configureAsDefaultStyle];
     self.loginButton.enabled = false;
-//    self.loginButton.backgroundColor = RGBCOLOR(200, 200, 200);
     [self.loginButton setTitle:@"登录" forState:UIControlStateNormal] ;
-//    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-//    [self.loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [self.loginButton setTitleColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6] forState:UIControlStateHighlighted];
-    
     [self.registerButton setTitle:@"快速注册" forState:UIControlStateNormal];
     self.registerButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [self.registerButton setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
@@ -215,6 +219,8 @@
                 if (self.rememberMeCheckBox.on) {
                     [[UserCenter defaultCenter] saveToKeychainWithUserName:self.userNameField.text andPassword:self.passwordField.text];
                 }
+//                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+
 
             }
             else {
@@ -308,10 +314,10 @@
     // use constant value instead of hardcode
     CGRect bounds = self.view.bounds;
     CGFloat maxWidth = bounds.size.width - kLeadingPad - kTailingPad;
-    CGFloat y = 30.f + (self.navigationController.navigationBarHidden?64.f:0);
-    self.logoImage.frame = CGRectMake((bounds.size.width-self.logoImage.frame.size.width)/2,
-                                      y, self.logoImage.frame.size.width, self.logoImage.frame.size.height);
-    
+    //CGFloat y = 30.f + (self.navigationController.navigationBarHidden?64.f:0);
+    CGFloat y = 30.f;
+//    self.logoImage.frame = CGRectMake((bounds.size.width-self.logoImage.frame.size.width)/2,
+//                                      y, self.logoImage.frame.size.width, self.logoImage.frame.size.height);
     
     self.wechartLabel.frame = CGRectMake(kLeadingPad, self.view.bottom-40-(!self.navigationController.navigationBarHidden?64.f:20), maxWidth, 30);
     self.wechartIcon.center = CGPointMake(bounds.size.width/2, self.wechartLabel.frame.origin.y-self.wechartIcon.frame.size.height/2);
@@ -321,6 +327,10 @@
     
     self.passwordField.frame = CGRectMake(kLeadingPad, bounds.size.height/2-36-(!self.navigationController.navigationBarHidden?64.f:20.f), maxWidth, 40);
     self.userNameField.frame = CGRectMake(kLeadingPad, self.passwordField.frame.origin.y-36-16.f, maxWidth, 40);
+    
+    self.logoImage.frame = CGRectMake((bounds.size.width-self.logoImage.frame.size.width)/2,
+                                      (self.userNameField.y)/2-30.f, self.logoImage.frame.size.width, self.logoImage.frame.size.height);
+
     
     self.registerButton.frame = CGRectMake(bounds.size.width-kTailingPad-self.registerButton.frame.size.width, CGRectGetMaxY(self.loginButton.frame)+4.f, self.registerButton.frame.size.width, 40);
     self.rememberMeLabel.frame = CGRectMake(CGRectGetMaxX(self.rememberMeCheckBox.frame)+4.f, CGRectGetMaxY(self.loginButton.frame)+4.f, self.registerButton.frame.size.width, 40);
@@ -339,7 +349,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES];
+    //[self.navigationController setNavigationBarHidden:YES];
     [self.tabBarController setTabBarHidden:YES animated:YES];
 
     [super viewWillAppear:animated];
@@ -380,7 +390,7 @@
 {
     UIScrollView* scrollView = (UIScrollView*)self.view;
     if (!self.keyboardShowing) {
-        scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height+kOFFSET_FOR_KEYBOARD);
+        scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.bounds.size.height+kOFFSET_FOR_KEYBOARD+(!self.navigationController.navigationBarHidden?0.f:44.f));
         [scrollView setContentOffset:CGPointMake(0, kScroll_OFFSET) animated:YES];
         self.keyboardShowing = YES;
     }
@@ -390,7 +400,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+//    [super viewWillDisappear:animated];
     // unregister for keyboard notifications while not visible.
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillShowNotification
@@ -403,7 +413,7 @@
     [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
     self.keyboardShowing = NO;
     
-    [self.navigationController setNavigationBarHidden:NO];
+    //[self.navigationController setNavigationBarHidden:NO];
     [super viewWillDisappear:animated];
 
 }

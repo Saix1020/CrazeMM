@@ -47,6 +47,6 @@ typedef NS_ENUM(NSInteger, SearchCategory){
 @property (nonatomic, readonly) NSUInteger pageNumber;
 @property (nonatomic, readonly) NSUInteger totalPage;
 @property (nonatomic, readonly) NSUInteger totalRow;
-@property (nonatomic, strong) NSMutableArray<SearchResultDTO*>* productDTOs;
+@property (nonatomic, strong) NSMutableArray<BaseProductDTO*>* productDTOs;
 
 @end

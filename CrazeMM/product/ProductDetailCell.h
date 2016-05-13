@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseProductDetailDTO.h"
 #import "M80AttributedLabel.h"
 #import "ArrowView.h"
 
@@ -24,6 +25,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *expressLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
 @property(nonatomic, strong) ArrowView* arrowView;
+@property (weak, nonatomic) IBOutlet UIImageView *traingleView;
+
+@property (nonatomic, strong) BaseProductDetailDTO* productDetailDto;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+
+@property (nonatomic, readonly) CGFloat cellHeight;
 
 +(CGFloat)cellHeight;
 

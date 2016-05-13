@@ -67,7 +67,8 @@
     
     [self transitionFromViewController:self.mineVC  toViewController:self.nologinMineVC duration:1 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
     }  completion:^(BOOL finished) {
-    }];}
+    }];
+}
 
 
 -(void)viewWillLayoutSubviews

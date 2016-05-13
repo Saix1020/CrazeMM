@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseProductDetailDTO.h"
 #import "ProductFlageView.h"
 #import "M80AttributedLabel.h"
 #import "ArrowView.h"
@@ -23,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel3;
+@property (weak, nonatomic) IBOutlet UIView *stepPricesView;
+@property (weak, nonatomic) IBOutlet UIImageView *triangleView;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet M80AttributedLabel *price1;
 @property (weak, nonatomic) IBOutlet M80AttributedLabel *price2;
 @property (weak, nonatomic) IBOutlet M80AttributedLabel *price3;
@@ -34,6 +38,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *browseLabel;
 
 @property (strong, nonatomic) ArrowView* arrowView;
+
+@property (strong, nonatomic) BaseProductDetailDTO* productDetailDto;
+@property (nonatomic, readonly) CGFloat cellHeight;
 
 +(CGFloat)cellHeight;
 

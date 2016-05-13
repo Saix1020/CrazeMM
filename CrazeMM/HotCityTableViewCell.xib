@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="hotcityCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="hotcityCell" rowHeight="160" id="KGk-i7-Jjw" customClass="HotCityTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="330" height="160"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="330" height="159.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" tag="2000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgg-1G-Kt2">
+                        <rect key="frame" x="110" y="0.0" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Bs8-YG-lYs"/>
+                        </constraints>
+                        <state key="normal" title="上海">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xwb-G5-9kP"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpL-Jb-U8Z">
+                        <rect key="frame" x="220" y="0.0" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="OYH-J8-Xf6"/>
+                        </constraints>
+                        <state key="normal" title="深圳">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="n6K-Q9-2ic"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMB-NO-qTE">
+                        <rect key="frame" x="0.0" y="40" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="cXG-n4-18Y"/>
+                            <constraint firstAttribute="width" constant="110" id="fX1-bo-OuK"/>
+                        </constraints>
+                        <state key="normal" title="天津">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FKB-OQ-Qx4"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAo-bd-jtf">
+                        <rect key="frame" x="110" y="40" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="uMa-3g-R0u"/>
+                        </constraints>
+                        <state key="normal" title="广州">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="G97-FU-3sR"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mb3-O5-e0H">
+                        <rect key="frame" x="220" y="40" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="ioQ-wX-Oms"/>
+                        </constraints>
+                        <state key="normal" title="重庆">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NDX-QI-0TE"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5v-xn-Qvm">
+                        <rect key="frame" x="0.0" y="80" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="HNP-Gx-o9l"/>
+                        </constraints>
+                        <state key="normal" title="成都">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XxM-tU-QdA"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ekq-WZ-G96">
+                        <rect key="frame" x="0.0" y="120" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="2K5-hQ-7Pg"/>
+                        </constraints>
+                        <state key="normal" title="武汉">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c4J-FC-JL1"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2007" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntJ-8I-p5T">
+                        <rect key="frame" x="110" y="120" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="5jv-US-3OK"/>
+                        </constraints>
+                        <state key="normal" title="昆明">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pQl-V7-HWm"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2008" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G87-ch-f0i">
+                        <rect key="frame" x="220" y="120" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="ZXN-gR-PzW"/>
+                        </constraints>
+                        <state key="normal" title="沈阳">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dd9-AB-yBn"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2009" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Atj-Vv-TrP">
+                        <rect key="frame" x="220" y="80" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="MX6-3F-iki"/>
+                        </constraints>
+                        <state key="normal" title="杭州">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="l24-X9-rNu"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2010" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJD-t2-n1C">
+                        <rect key="frame" x="110" y="80" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="00q-za-qwC"/>
+                        </constraints>
+                        <state key="normal" title="南京">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ikT-Xk-Y76"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2011" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nl-o5-6we">
+                        <rect key="frame" x="0.0" y="0.0" width="110" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="wug-Q7-Ks0"/>
+                        </constraints>
+                        <state key="normal" title="北京">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="u11-NM-bqB"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hgg-1G-Kt2" firstAttribute="top" secondItem="8nl-o5-6we" secondAttribute="top" id="02E-Xn-Eh4"/>
+                    <constraint firstItem="Mb3-O5-e0H" firstAttribute="trailing" secondItem="HpL-Jb-U8Z" secondAttribute="trailing" id="2nu-cf-EK6"/>
+                    <constraint firstItem="Atj-Vv-TrP" firstAttribute="leading" secondItem="GJD-t2-n1C" secondAttribute="trailing" id="3EV-1p-1tM"/>
+                    <constraint firstItem="f5v-xn-Qvm" firstAttribute="top" secondItem="BMB-NO-qTE" secondAttribute="bottom" id="79L-Cd-htH"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="baseline" secondItem="Mb3-O5-e0H" secondAttribute="baseline" id="7J3-Ig-A3j"/>
+                    <constraint firstItem="GJD-t2-n1C" firstAttribute="leading" secondItem="f5v-xn-Qvm" secondAttribute="trailing" id="9CF-5G-4kG"/>
+                    <constraint firstItem="ntJ-8I-p5T" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9Ur-1U-O50"/>
+                    <constraint firstItem="HpL-Jb-U8Z" firstAttribute="leading" secondItem="hgg-1G-Kt2" secondAttribute="trailing" id="AAR-5U-6UE"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="baseline" secondItem="yAo-bd-jtf" secondAttribute="baseline" id="C8x-Cp-kHr"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="trailing" secondItem="8nl-o5-6we" secondAttribute="trailing" id="CCb-WI-dMX"/>
+                    <constraint firstItem="hgg-1G-Kt2" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="FCA-kA-qE7"/>
+                    <constraint firstItem="G87-ch-f0i" firstAttribute="bottom" secondItem="Ekq-WZ-G96" secondAttribute="bottom" id="Ft0-3b-fAH"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="trailing" secondItem="f5v-xn-Qvm" secondAttribute="trailing" id="H8c-4x-bLc"/>
+                    <constraint firstItem="Atj-Vv-TrP" firstAttribute="leading" secondItem="GJD-t2-n1C" secondAttribute="trailing" id="Hev-6R-pPA"/>
+                    <constraint firstItem="ntJ-8I-p5T" firstAttribute="bottom" secondItem="Ekq-WZ-G96" secondAttribute="bottom" id="SzZ-xy-byE"/>
+                    <constraint firstItem="Ekq-WZ-G96" firstAttribute="top" secondItem="f5v-xn-Qvm" secondAttribute="bottom" id="V12-yY-ii3"/>
+                    <constraint firstItem="Atj-Vv-TrP" firstAttribute="trailing" secondItem="HpL-Jb-U8Z" secondAttribute="trailing" id="VYF-2A-MKw"/>
+                    <constraint firstItem="GJD-t2-n1C" firstAttribute="top" secondItem="yAo-bd-jtf" secondAttribute="bottom" id="Wer-Zv-LaM"/>
+                    <constraint firstItem="ntJ-8I-p5T" firstAttribute="leading" secondItem="Ekq-WZ-G96" secondAttribute="trailing" id="WjF-cD-OHT"/>
+                    <constraint firstItem="hgg-1G-Kt2" firstAttribute="width" secondItem="8nl-o5-6we" secondAttribute="width" id="XW4-ey-nnV"/>
+                    <constraint firstItem="ntJ-8I-p5T" firstAttribute="top" secondItem="GJD-t2-n1C" secondAttribute="bottom" id="YC0-8T-mGl"/>
+                    <constraint firstItem="f5v-xn-Qvm" firstAttribute="leading" secondItem="8nl-o5-6we" secondAttribute="leading" id="Yd7-Qu-clj"/>
+                    <constraint firstItem="G87-ch-f0i" firstAttribute="top" secondItem="Atj-Vv-TrP" secondAttribute="bottom" id="Yel-lL-CQ3"/>
+                    <constraint firstItem="G87-ch-f0i" firstAttribute="leading" secondItem="ntJ-8I-p5T" secondAttribute="trailing" id="aEr-lI-zni"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="d4A-LE-1Yp"/>
+                    <constraint firstItem="G87-ch-f0i" firstAttribute="trailing" secondItem="HpL-Jb-U8Z" secondAttribute="trailing" id="eUT-jp-3fh"/>
+                    <constraint firstItem="HpL-Jb-U8Z" firstAttribute="top" secondItem="8nl-o5-6we" secondAttribute="top" id="fMT-7B-HwL"/>
+                    <constraint firstItem="yAo-bd-jtf" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ftX-9o-f5m"/>
+                    <constraint firstItem="HpL-Jb-U8Z" firstAttribute="width" secondItem="hgg-1G-Kt2" secondAttribute="width" id="hTv-Jb-jrH"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="leading" secondItem="8nl-o5-6we" secondAttribute="leading" id="jWh-LS-uez"/>
+                    <constraint firstItem="Atj-Vv-TrP" firstAttribute="top" secondItem="Mb3-O5-e0H" secondAttribute="bottom" id="kBe-6d-An4"/>
+                    <constraint firstItem="yAo-bd-jtf" firstAttribute="leading" secondItem="BMB-NO-qTE" secondAttribute="trailing" id="kX4-rB-B3r"/>
+                    <constraint firstItem="GJD-t2-n1C" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="o6X-9L-Ubi"/>
+                    <constraint firstItem="Ekq-WZ-G96" firstAttribute="leading" secondItem="8nl-o5-6we" secondAttribute="leading" id="otW-sN-Le9"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="top" secondItem="8nl-o5-6we" secondAttribute="bottom" id="pqD-RX-LNn"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="vda-6x-sWP"/>
+                    <constraint firstItem="BMB-NO-qTE" firstAttribute="trailing" secondItem="Ekq-WZ-G96" secondAttribute="trailing" id="wnb-oS-jzW"/>
+                    <constraint firstItem="Mb3-O5-e0H" firstAttribute="width" secondItem="HpL-Jb-U8Z" secondAttribute="width" id="xd1-g7-eRc"/>
+                    <constraint firstItem="hgg-1G-Kt2" firstAttribute="leading" secondItem="8nl-o5-6we" secondAttribute="trailing" id="zAp-IK-YoB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="342" y="344"/>
+        </tableViewCell>
+    </objects>
+</document>

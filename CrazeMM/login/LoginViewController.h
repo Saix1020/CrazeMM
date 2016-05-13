@@ -11,6 +11,6 @@
 
 @interface LoginViewController : UIViewController<SuggestVCDelegate>
 
-@property (nonatomic, weak) UIViewController* fromVC;
-
+@property (nonatomic, strong) UIViewController* fromVC;
+@property (nonatomic, strong) UIViewController* nextVC;
 @end

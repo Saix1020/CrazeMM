@@ -81,7 +81,7 @@
     
     self.passwordField.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_password"] highlightedImage:[UIImage imageNamed:@"icon_password"]];
     self.passwordRightView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
-    [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
+    [self.passwordRightView setImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
     [self.passwordRightView sizeToFit];
     @weakify(self)
     self.passwordRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
@@ -91,12 +91,12 @@
         
         self.passwordField.secureTextEntry = !self.passwordField.secureTextEntry;
         if (self.passwordField.secureTextEntry) {
-            [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
+            [self.passwordRightView setImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
 
         }
         else {
             self.passwordField.font = [UIFont systemFontOfSize:17];
-            [self.passwordRightView setImage:[UIImage imageNamed:@"icon_password"] forState:UIControlStateNormal];
+            [self.passwordRightView setImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateNormal];
 
         }
         self.passwordField.text = tempString;
@@ -237,31 +237,6 @@
 -(void)finishSignup:(UIButton*)sender
 {
     
-//    [self showAlertViewWithMessage:@"注册成功, 欢迎使用189疯狂买卖"];
-    
-//    NSArray* controllers = self.navigationController.viewControllers;
-//    NSMutableArray* newVCs = [[NSMutableArray alloc] init];
-//    // we should pop login vc
-//    if (controllers.count > 2) {
-//
-//        for (UIViewController* vc in controllers) {
-//             if (![vc isMemberOfClass:[LoginViewController class]]) {
-//                 [newVCs addObject:vc];
-//             }
-//        }
-//        self.navigationController.viewControllers = [newVCs copy];
-//    }
-//    
-//    [UserCenter defaultCenter].userName = self.phoneTextField.text;
-//    [[UserCenter defaultCenter] setLogined];
-//
-//    [self.navigationController popViewControllerAnimated:YES];
-//
-//
-//    
-//    return;
-    
-    
     HttpCheckMessageCodeRequest* checkMessageCode = [[HttpCheckMessageCodeRequest alloc] initWithMobileCode:self.pinTextFiled.text andMobile:self.phoneTextField.text];
     HttpSignupRequest* signup = [[HttpSignupRequest alloc] initWithMobile:self.phoneTextField.text
                                                           andCaptchaPhone:self.pinTextFiled.text
@@ -282,17 +257,24 @@
 
         if (checkMessageCode.response.ok) {
             [self showAlertViewWithMessage:@"注册成功, 欢迎使用189疯狂买卖"];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+
             
             NSArray* controllers = self.navigationController.viewControllers;
             NSMutableArray* newVCs = [[NSMutableArray alloc] init];
             // we should pop login vc
             //if (controllers.count > 2) {
                 
-                for (UIViewController* vc in controllers) {
-                    if (![vc isMemberOfClass:[LoginViewController class]]) {
-                        [newVCs addObject:vc];
+            for (UIViewController* vc in controllers) {
+                if ([vc isMemberOfClass:[LoginViewController class]]) {
+                    if (((LoginViewController*)vc).nextVC) {
+                        [newVCs addObject:((LoginViewController*)vc).nextVC];
                     }
                 }
+                else {
+                    [newVCs addObject:vc];
+                }
+            }
                 self.navigationController.viewControllers = [newVCs copy];
             //}
             
@@ -359,7 +341,7 @@
             [self showAlertViewWithMessage:@"获取手机验证码成功"];
             
             self.pinButtonFronzenLeftTime = 60;
-            [self.pinButton setTitle:[NSString stringWithFormat:@"%ld", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
+            [self.pinButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
             
             self.pinButtonDispose = [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
                 self.pinButtonFronzenLeftTime--;
@@ -369,6 +351,7 @@
                 }
                 
                 [self.pinButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
+                self.pinButton.titleLabel.adjustsFontSizeToFitWidth = YES;
             }];
             
             return (AnyPromise*)responseObject;
@@ -442,6 +425,12 @@
     [[scrollView TPKeyboardAvoiding_findFirstResponderBeneathView:scrollView] resignFirstResponder];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
+
+}
 
 -(void)viewWillDisappear:(BOOL)animated
 {

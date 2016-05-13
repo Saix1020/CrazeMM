@@ -37,6 +37,8 @@
     self.seperatorLine.backgroundColor  = [UIColor light_Gray_Color];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    self.needHeadView = YES;
 }
 
 -(void)fomartTotalPriceLabel
@@ -97,12 +99,14 @@
     
     self.companyWithIconLabel.textAlignment = kCTTextAlignmentRight;
     UIImageView* companyImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [companyImageView setImageWithURL:[NSURL URLWithString:companyIconURL] placeholderImage:[UIImage imageNamed:@"company_icon"]];
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.orderDetailDTO.isAony?@"匿名":companyName];
+    [companyImageView setImageWithURL:[NSURL URLWithString:self.orderDetailDTO.isAony?COMB_URL(@"/weui/images/img_01.jpg"):companyIconURL]
+                     placeholderImage:[UIImage imageNamed:@"company_icon"]];
     [self.companyWithIconLabel appendView:companyImageView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:companyName];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:13.f]];
-    [attributedText m80_setTextColor:[UIColor blackColor]];
     [self.companyWithIconLabel appendText:@" "];
+
+    [attributedText m80_setFont:[UIFont systemFontOfSize:13.f]];
+    [attributedText m80_setTextColor: self.companyWithIconLabel.textColor? self.companyWithIconLabel.textColor: [UIColor blackColor]];
     [self.companyWithIconLabel appendAttributedText:attributedText];
 }
 
@@ -143,9 +147,12 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    self.headView.frame = CGRectMake(0, 0, self.bounds.size.width, self.headView.height);
-    self.contentView.y = self.headView.height;
-    self.contentView.height = self.height-self.headView.height;
+    if (self.needHeadView) {
+        self.headView.frame = CGRectMake(0, 0, self.bounds.size.width, self.headView.height);
+        self.contentView.y = self.headView.height;
+        self.contentView.height = self.height-self.headView.height;
+
+    }
 }
 
 

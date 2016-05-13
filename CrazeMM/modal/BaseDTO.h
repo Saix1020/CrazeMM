@@ -14,7 +14,8 @@
 @property (nonatomic) NSInteger id;
 
 
--(void)decode:(NSDictionary *)dic;
+-(instancetype)initWith:(NSDictionary*)dict;
+-(void)parserResponse;
 -(NSDictionary *)encode;
 
 @end

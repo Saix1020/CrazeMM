@@ -10,10 +10,11 @@
 #import "OrderListCell.h"
 #import "SegmentedCell.h"
 #import "CommonBottomView.h"
-#import "MinePayViewController.h"
+#import "PayViewController.h"
 #import "OrderListNoCheckBoxCell.h"
 #import "HttpOrder.h"
 #import "MJRefresh.h"
+#import "OrderDetailViewController.h"
 
 #define kSegmentCellHeight 40.f
 #define kTableViewInsetTopWithoutSegment (kSegmentCellHeight+64)
@@ -179,6 +180,7 @@
                 switch (segmentIndex) {
                     case 0:
                         NSLog(@"我买的货->待付款->付款");
+                        [self.navigationController pushViewController:[PayViewController new] animated:YES];
                         break;
                     case 1:
                         NSLog(@"我买的货->待付款->超时");
@@ -295,6 +297,9 @@
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
 
+    [self setOrderStyleWithSegmentIndex:0];
+    [self.segmentCell setTitles:[self getSegmentTitels]];
+
 }
 
 -(void)viewWillLayoutSubviews
@@ -314,9 +319,14 @@
     [super viewWillAppear:animated];
     self.orderListPageNumber = 0;
     [self.tabBarController setTabBarHidden:YES animated:YES];
-    [self.segmentCell setTitles:[self getSegmentTitels]];
-    [self setOrderStyleWithSegmentIndex:0];
+    [self clearOrderList];
     [self getOrderList];
+}
+
+-(void)clearOrderList
+{
+    self.dataSource = [@[] mutableCopy];
+    [self.tableView reloadData];
 }
 
 -(void)refreshTotalPriceLabel
@@ -326,7 +336,7 @@
         for (NSInteger index = 0; index<self.dataSource.count; ++index) {
             OrderDetailDTO* dto = self.dataSource[index];
             if (dto.selected) {
-                self.totalPrice += dto.price;
+                self.totalPrice += dto.price*dto.quantity;
             }
         }
         self.commonBottomView.totalPrice = self.totalPrice;
@@ -477,6 +487,16 @@
     return [OrderListCell cellHeight]; //WaitForDeliverCell has the same height with WaitForPayCell
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    MMOrderListStyle style;
+    style.orderType = self.orderType;
+    style.orderSubType = self.subType;
+    style.orderState = self.orderState;
+    
+    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:style andOrder:self.dataSource[indexPath.row]];
+    [self.navigationController pushViewController:orderDetailVC animated:YES];
+}
 
 #pragma -- mark custom segment delegate
 
