@@ -15,6 +15,7 @@
 #import "HttpOrder.h"
 #import "MJRefresh.h"
 #import "OrderDetailViewController.h"
+#import "HttpOrderRemove.h"
 
 #define kSegmentCellHeight 40.f
 #define kTableViewInsetTopWithoutSegment (kSegmentCellHeight+64)
@@ -184,6 +185,34 @@
                         break;
                     case 1:
                         NSLog(@"我买的货->待付款->超时");
+                    {
+                        NSMutableArray* removeIds = [[NSMutableArray alloc] init];
+                        for (OrderDetailDTO* dto in self.dataSource) {
+                            if (dto.selected) {
+                                [removeIds addObject:[NSString stringWithFormat:@"%ld", dto.id]];
+                            }
+                        }
+                        if (removeIds.count == 0) {
+                            [self showAlertViewWithMessage:@"请选择需要删除的订单"];
+                            break;
+                        }
+                        HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:removeIds];
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+                                [self clearOrderList];
+                                [self getOrderList];
+                                [self.tableView reloadData];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                    }
                         break;
                     case 2:
                         NSLog(@"我买的货->待付款->已支付");
@@ -327,6 +356,7 @@
 {
     self.dataSource = [@[] mutableCopy];
     [self.tableView reloadData];
+    self.orderListPageNumber = 0;
 }
 
 -(void)refreshTotalPriceLabel

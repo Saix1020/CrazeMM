@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddrDTO.h"
 
 @interface OrderDetailAddrCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UILabel *addrLabel;
+
+@property (nonatomic, strong) AddrDTO* addrDto;
 
 @end

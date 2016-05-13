@@ -150,18 +150,15 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
     self.navigationItem.titleView = self.searchBar;
     self.navigationItem.rightBarButtonItem = self.searchButtonItem;
     
-//    self.keywordsCell = [[[NSBundle mainBundle]loadNibNamed:@"KeyWordsCell" owner:nil options:nil] lastObject];
-//    self.clearHistoryCell = [[[NSBundle mainBundle]loadNibNamed:@"ClearHistoryCell" owner:nil options:nil] lastObject];
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"SearchHistoryCell" bundle:nil] forCellReuseIdentifier:@"SearchHistoryCell"];
 
     
-    self.searchKeywords = [@[@"苹果6", @"美图", @"诺基亚", @"Samsung/三星", @"小米", @"华为"] mutableCopy];
-//    self.searchHistory = [@[@"AAAA", @"BBBB", @"CCCCCCCCCCC", @"DDDDDDDDDD", @"EEEEE"] mutableCopy];
+    self.searchKeywords = [@[@"苹果", @"美图", @"诺基亚", @"Samsung/三星", @"小米", @"华为"] mutableCopy];
     @weakify(self);
     [self.keywordsCell setKeywords:self.searchKeywords andBlock:^(id sender){
         @strongify(self);
         UIButton* btn = (UIButton*)sender;
+//        [self.searchBar resignFirstResponder];
         SearchListViewController* vc = [[SearchListViewController alloc] initWithKeyword:btn.titleLabel.text];
         [self.navigationController pushViewController:vc animated:YES];
     }];
@@ -186,6 +183,12 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
             [self.tableView reloadData];
         });
     });
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma -- mark tableview delegate
@@ -278,23 +281,6 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
     return rowNum;
 }
 
-//- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    NSString* title;
-//    switch (section) {
-//        case kSectionKeywords:
-//            title = @"热门搜索";
-//            break;
-//            
-//        case kSectionSearchHistory:
-//            title = @"搜索历史记录";
-//            break;
-//        default:
-//            break;
-//    }
-//    return title;
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     switch (section) {
@@ -368,7 +354,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     self.searchBar.text = @"";
-    [self.searchBar resignFirstResponder];
+//    [self.searchBar resignFirstResponder];
     // save search keyword to db
     if (self.searchBar.text.length>0) {
         dispatch_async(dispatch_get_global_queue(0, 0), ^{

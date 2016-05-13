@@ -37,7 +37,6 @@
 
 @property (nonatomic, strong) UIImageView* imageView;//just for debug
 @property (nonatomic, strong) TTModalView* modalView;
-@property (nonatomic, strong) TTModalView* orderModalView;
 
 @property (nonatomic, strong) UIImageView* mockShareView;
 @property (nonatomic, strong) ProductLadderCell* productLadderCell;

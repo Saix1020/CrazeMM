@@ -15,6 +15,9 @@
 #import "OrderLogsCell.h"
 #import "OrderStatusDTO.h"
 #import "HttpOrderStatus.h"
+#import "PayViewController.h"
+#import "HttpOrderRemove.h"
+#import "HttpOrderCancel.h"
 
 
 typedef NS_ENUM(NSInteger, OrderDetailRow){
@@ -62,55 +65,6 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 //    CONFIRMEDCOMPLETE = COMPLETED,
 //};
 
--(NSDictionary*)promptString
-{
-    NSString* string = @"";
-    NSString* subString = @"";
-    if (self.style.orderType == kOrderTypeBuy) {
-        switch (self.orderStatusDto.state) {
-            case TOBEPAID:
-                string =  @"请尽快付款";
-                subString = @"一小时后过期";
-                break;
-            case PAYCOMPLETE:
-                string = @"支付完成";
-                break;
-            case PAYTIMEOUT:
-                string = @"支付超时";
-                break;
-            case TOBERECEIVED:
-                string = @"请尽快签收";
-                break;
-            case RECEIVECOMPLETE:
-                string = @"签收完成";
-                break;
-            default:
-                break;
-        }
-    }
-    else{
-        switch (self.orderStatusDto.state) {
-            case TOBESENT:
-                string =  @"请尽快发货";
-                break;
-            case SENTCOMPLETE:
-                string =  @"发货完成";
-                break;
-            case TOBECONFIRMED:
-                string =  @"请尽快确认";
-                break;
-            case CONFIRMEDCOMPLETE:
-                string =  @"确认完成";
-                break;
-                
-            default:
-                break;
-        }
-    }
-    
-    return @{@"string" : string,
-             @"subString" : subString};
-}
 
 -(UIView*)bottomView
 {
@@ -127,14 +81,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 {
     if (!_confirmButton) {
         _confirmButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//        _confirmButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-32.f-80.f, (44.f-32.f)/2, 80.f, 32.f);
         _confirmButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44.f);
-        [_confirmButton setTitle:@"付款" forState:UIControlStateNormal];
         [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _confirmButton.titleLabel.font = [UIFont systemFontOfSize:18.f];
         _confirmButton.backgroundColor = [UIColor redColor];
-//        _confirmButton.layer.borderWidth = 1.f;
-//        _confirmButton.layer.borderColor = [UIColor redColor].CGColor;
-//        _confirmButton.layer.cornerRadius = 4.f;
+        [_confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _confirmButton;
@@ -180,7 +131,6 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.companyWithIconLabel.textColor = textColor;
         _contentCell.amountLabel.textColor = textColor;
         _contentCell.priceLabel.textColor = textColor;
-
     }
     return _contentCell;
 }
@@ -275,6 +225,39 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     self.contentCell.orderDetailDTO = [[OrderDetailDTO alloc]initWithOrderStatusDTO:orderStatusDto];
     self.logsCell.logs = orderStatusDto.logs;
     
+    [_confirmButton setTitle:[self promptString][@"bottomButtonTitle"]
+                    forState:UIControlStateNormal];
+    
+    if (self.style.orderType == kOrderTypeBuy
+        && self.style.orderSubType == kOrderSubTypePay
+        && self.orderStatusDto.state == TOBEPAID) {
+        self.contentCell.canelButton.hidden = NO;
+        @weakify(self);
+        self.contentCell.canelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
+            @strongify(self);
+            HttpOrderCancelRequest* request = [[HttpOrderCancelRequest alloc] initWithOderId:self.orderStatusDto.id];
+            [request request]
+            .then(^(id responseObj){
+                NSLog(@"%@", responseObj);
+                if (request.response.ok) {
+                    
+                }
+                else {
+                    [self showAlertViewWithMessage:request.response.errorMsg];
+                }
+            })
+            .catch(^(NSError* error){
+                [self showAlertViewWithMessage:error.localizedDescription];
+            })
+            .finally(^(){
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            
+            return [RACSignal empty];
+        }];
+    }
+
+    
     [self.tableView reloadData];
 }
 
@@ -295,6 +278,151 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
     });
+}
+
+-(NSDictionary*)promptString
+{
+    NSString* string = @"";
+    NSString* subString = @"";
+    NSString* bottomButtonTitle = @"";
+    if (self.style.orderType == kOrderTypeBuy) {
+        switch (self.orderStatusDto.state) {
+            case TOBEPAID:
+                string =  @"请尽快付款";
+                subString = @"一小时后过期";
+                bottomButtonTitle = @"付款";
+                break;
+            case PAYCOMPLETE:
+                string = @"支付完成";
+                bottomButtonTitle = @"";
+                break;
+            case PAYTIMEOUT:
+                string = @"支付超时";
+                bottomButtonTitle = @"删除";
+                break;
+            case TOBERECEIVED:
+                string = @"请尽快签收";
+                break;
+            case RECEIVECOMPLETE:
+                string = @"签收完成";
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        switch (self.orderStatusDto.state) {
+            case TOBESENT:
+                string =  @"请尽快发货";
+                break;
+            case SENTCOMPLETE:
+                string =  @"发货完成";
+                break;
+            case TOBECONFIRMED:
+                string =  @"请尽快确认";
+                break;
+            case CONFIRMEDCOMPLETE:
+                string =  @"确认完成";
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return @{@"string" : string,
+             @"subString" : subString,
+             @"bottomButtonTitle" : bottomButtonTitle};
+}
+
+-(void)handleButtomButtonClicked:(UIButton*)send
+{
+    if (self.style.orderType == kOrderTypeBuy) {
+        switch (self.style.orderSubType ) {
+            case kOrderSubTypePay:
+            {
+                switch (self.style.orderState) {
+                    case TOBEPAID:
+                        NSLog(@"我买的货->待付款->付款");
+                        [self.navigationController pushViewController:[PayViewController new] animated:YES];
+                        break;
+                    case PAYTIMEOUT:
+                        NSLog(@"我买的货->待付款->超时");
+                    {
+                        NSMutableArray* removeIds = [[NSMutableArray alloc] init];
+                        [removeIds addObject:[NSString stringWithFormat:@"%ld", self.orderStatusDto.id]];
+                        HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:removeIds];
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        })
+                        .finally(^(){
+                            [self.navigationController popViewControllerAnimated:YES];
+                        });
+                    }
+                        break;
+                    case PAYCOMPLETE:
+                        NSLog(@"我买的货->待付款->已支付");
+                        break;
+                    default:
+                        break;
+                }
+            }
+                break;
+            case kOrderSubTypeReceived:
+                switch (self.style.orderState) {
+                    case TOBERECEIVED:
+                        NSLog(@"我买的货->待签收->签收");
+                        break;
+                    case RECEIVECOMPLETE:
+                        NSLog(@"我买的货->待签收->已签收");
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    else if(self.style.orderType == kOrderTypeSupply){
+        switch (self.style.orderSubType ) {
+            case kOrderSubTypeSend:
+                switch (self.style.orderState) {
+                    case TOBESENT:
+                        NSLog(@"我卖的货->待发货->发货");
+                        break;
+                    case SENTCOMPLETE:
+                        NSLog(@"我卖的货->待发货->已发货");
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case kOrderSubTypeConfirmed:
+                switch (self.style.orderState) {
+                    case TOBECONFIRMED:
+                        NSLog(@"我卖的货->待确认->确认");
+                        break;
+                    case CONFIRMEDCOMPLETE:
+                        NSLog(@"我卖的货->待确认->已确认");
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 #pragma mark - Table view data source

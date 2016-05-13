@@ -16,6 +16,7 @@
 @property (nonatomic) NSInteger totalPage;
 
 -(void)refreshData;
+-(void)refreshDataNoHud;
 //-(void)clearData;
 //-(AnyPromise*)getProducts:(BOOL)needHud;
 @end

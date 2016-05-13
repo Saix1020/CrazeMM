@@ -102,4 +102,29 @@
     
 }
 
+-(CGFloat)totalPriceWithAmount:(NSInteger)amount
+{
+    CGFloat totalPrice = 0.f;
+    if (self.isStep) {
+        NSInteger index;
+        for (index=0; index<self.stepPrices.count; ++index) {
+            ProductStepPrice* stepPrice = self.stepPrices[index];
+            if (amount > stepPrice.qfrom && amount <= stepPrice.qto) {
+                totalPrice = stepPrice.sprice * amount;
+                break;
+            }
+        }
+        if (index == self.stepPrices.count) {
+            ProductStepPrice* stepPrice = self.stepPrices.lastObject;
+            totalPrice = stepPrice.sprice * amount;
+        }
+    }
+    else {
+        totalPrice = amount * self.price;
+    }
+    
+    return totalPrice;
+}
+
+
 @end

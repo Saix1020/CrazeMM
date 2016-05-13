@@ -98,7 +98,6 @@
     NSString* finnalString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     if (finnalString.length == 0) {
         textField.text = @"";
-        return NO;
     }
     else if ([finnalString integerValue]>self.productDetailDto.left) {
         textField.text = [NSString stringWithFormat:@"%ld", self.productDetailDto.left];;
@@ -123,8 +122,10 @@
     UIFont* smallFont = [UIFont systemFontOfSize:12];
     UIColor* grayColor = [UIColor grayColorL2];
     UIColor* redColor = [UIColor redColor];
-    
-    NSString* amount = [NSString stringWithFormat:@"%.2f", self.price * [self.amountTextField.text intValue]];
+    NSInteger number = [self.amountTextField.text intValue];
+    CGFloat totalPrice = [self.productDetailDto totalPriceWithAmount:number];
+
+    NSString* amount = [NSString stringWithFormat:@"%.02f", totalPrice];
     NSArray* amounts = [amount componentsSeparatedByString:@"."];
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"[ 总价"];
