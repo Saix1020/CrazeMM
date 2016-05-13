@@ -85,8 +85,6 @@
     [self.totalPriceLabel appendText:@""];
     self.totalPriceLabel.numberOfLines = 1;
     self.totalPriceLabel.offsetY = -4.f;
-    //[self.totalPriceLabel sizeToFit];
-    //self.totalPriceLabel.baselineAdjustment = UIBaselineAdjustmentNone;
 }
 
 -(void)fomartCompanyLabel
