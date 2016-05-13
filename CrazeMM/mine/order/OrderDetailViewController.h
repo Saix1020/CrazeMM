@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderDetailDTO.h"
 #import "OrderDefine.h"
 
 @interface OrderDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
--(instancetype)initWithOrderStyle:(MMOrderListStyle)style;
+-(instancetype)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto;
 
 @end

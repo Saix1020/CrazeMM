@@ -297,6 +297,9 @@
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
 
+    [self setOrderStyleWithSegmentIndex:0];
+    [self.segmentCell setTitles:[self getSegmentTitels]];
+
 }
 
 -(void)viewWillLayoutSubviews
@@ -316,9 +319,14 @@
     [super viewWillAppear:animated];
     self.orderListPageNumber = 0;
     [self.tabBarController setTabBarHidden:YES animated:YES];
-    [self.segmentCell setTitles:[self getSegmentTitels]];
-    [self setOrderStyleWithSegmentIndex:0];
+    [self clearOrderList];
     [self getOrderList];
+}
+
+-(void)clearOrderList
+{
+    self.dataSource = [@[] mutableCopy];
+    [self.tableView reloadData];
 }
 
 -(void)refreshTotalPriceLabel
@@ -486,7 +494,7 @@
     style.orderSubType = self.subType;
     style.orderState = self.orderState;
     
-    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:style];
+    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:style andOrder:self.dataSource[indexPath.row]];
     [self.navigationController pushViewController:orderDetailVC animated:YES];
 }
 

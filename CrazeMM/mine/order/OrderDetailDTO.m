@@ -37,4 +37,23 @@
     return self;
 }
 
+-(instancetype)initWithOrderStatusDTO:(OrderStatusDTO*)statusDto
+{
+    self = [self init];
+    if (self) {
+        self.id = statusDto.id;
+        self.isAony = statusDto.isAnoy;
+        self.quantity = statusDto.quantity;
+        self.price = statusDto.price;
+        self.state = statusDto.state;
+        self.userImage = statusDto.userImage;
+        self.goodName = statusDto.goodName;
+        self.updateTime = statusDto.updateTime;
+        self.userName = statusDto.userName;
+        self.selected = NO;
+    }
+    return self;
+}
+
+
 @end

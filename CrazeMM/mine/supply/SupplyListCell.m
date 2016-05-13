@@ -83,6 +83,7 @@
         case kNomalStyle:
             self.backgroundView.hidden = NO;
             self.shareButton.hidden = NO;
+            self.offButton.hidden = NO;
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(0);
 
@@ -91,6 +92,7 @@
         case kOffShelfStyle:
             self.shareButton.hidden = YES;
             self.backgroundView.hidden = NO;
+            self.offButton.hidden = NO;
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
             [self.offButton setTitle:@"上架" forState:UIControlStateNormal];

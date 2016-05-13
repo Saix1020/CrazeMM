@@ -7,10 +7,14 @@
 //
 
 #import "OrderDetailViewController.h"
+#import "OrderDefine.h"
 #import "OrderListNoCheckBoxCell.h"
 #import "OrderDetailHeadCell.h"
 #import "OrderDetailAddrCell.h"
 #import "OrderDetailStatusCell.h"
+#import "OrderLogsCell.h"
+#import "OrderStatusDTO.h"
+#import "HttpOrderStatus.h"
 
 
 typedef NS_ENUM(NSInteger, OrderDetailRow){
@@ -27,17 +31,86 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 @property (nonatomic, strong) UIView* bottomView;
 @property (nonatomic, strong) UIButton* confirmButton;
 @property (nonatomic) MMOrderListStyle style;
+@property (nonatomic, strong) OrderDetailDTO* orderDto;
+@property (nonatomic, strong) OrderStatusDTO* orderStatusDto;
+
 
 @property (nonatomic, strong) OrderDetailHeadCell* headCell;
 @property (nonatomic, strong) OrderDetailAddrCell* addrCell;
 @property (nonatomic, strong) OrderListNoCheckBoxCell* contentCell;
 @property (nonatomic, strong) OrderDetailStatusCell* statusCell;
-
-
+@property (nonatomic, strong) OrderLogsCell* logsCell;
 
 @end
 
 @implementation OrderDetailViewController
+
+//typedef NS_ENUM(NSInteger, MMOrderState){
+//    COMPLETED = 500, //完成
+//    PAYTIMEOUT = 700, //支付超时
+//    TOBECONFIRMED = 401, //待确认
+//    TOBEPAID = 100, //待付款
+//    TOBERECEIVED = 300,//待签收
+//    TOBESENT = 200,// 待发货
+//    TOBESETTLED = 400, //待结款
+//    
+//    // TOBEPAID -> TOBESENT(PAYCOMPLETE) -> TOBERECEIVED(SENTCOMPLETE) -> TOBESETTLED(RECEIVECOMPLETE) -> TOBECONFIRMED -> COMPLETED(CONFIRMEDCOMPLETE)
+//    
+//    PAYCOMPLETE = TOBESENT,
+//    RECEIVECOMPLETE = TOBESETTLED,
+//    SENTCOMPLETE = TOBERECEIVED,
+//    CONFIRMEDCOMPLETE = COMPLETED,
+//};
+
+-(NSDictionary*)promptString
+{
+    NSString* string = @"";
+    NSString* subString = @"";
+    if (self.style.orderType == kOrderTypeBuy) {
+        switch (self.orderStatusDto.state) {
+            case TOBEPAID:
+                string =  @"请尽快付款";
+                subString = @"一小时后过期";
+                break;
+            case PAYCOMPLETE:
+                string = @"支付完成";
+                break;
+            case PAYTIMEOUT:
+                string = @"支付超时";
+                break;
+            case TOBERECEIVED:
+                string = @"请尽快签收";
+                break;
+            case RECEIVECOMPLETE:
+                string = @"签收完成";
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        switch (self.orderStatusDto.state) {
+            case TOBESENT:
+                string =  @"请尽快发货";
+                break;
+            case SENTCOMPLETE:
+                string =  @"发货完成";
+                break;
+            case TOBECONFIRMED:
+                string =  @"请尽快确认";
+                break;
+            case CONFIRMEDCOMPLETE:
+                string =  @"确认完成";
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    return @{@"string" : string,
+             @"subString" : subString};
+}
 
 -(UIView*)bottomView
 {
@@ -54,13 +127,14 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 {
     if (!_confirmButton) {
         _confirmButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _confirmButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-32.f-80.f, (44.f-32.f)/2, 80.f, 32.f);
+//        _confirmButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-32.f-80.f, (44.f-32.f)/2, 80.f, 32.f);
+        _confirmButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44.f);
         [_confirmButton setTitle:@"付款" forState:UIControlStateNormal];
-        [_confirmButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-
-        _confirmButton.layer.borderWidth = 1.f;
-        _confirmButton.layer.borderColor = [UIColor redColor].CGColor;
-        _confirmButton.layer.cornerRadius = 4.f;
+        [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _confirmButton.backgroundColor = [UIColor redColor];
+//        _confirmButton.layer.borderWidth = 1.f;
+//        _confirmButton.layer.borderColor = [UIColor redColor].CGColor;
+//        _confirmButton.layer.cornerRadius = 4.f;
     }
     
     return _confirmButton;
@@ -98,6 +172,14 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell = (OrderListNoCheckBoxCell*)[UINib viewFromNib:@"OrderListNoCheckBoxCell"];
         _contentCell.backgroundColor = [UIColor whiteColor];
         _contentCell.needHeadView = NO;
+        _contentCell.canelButton.hidden = NO;
+        _contentCell.productDescLabel.font = [UIFont systemFontOfSize:15.f];
+        UIColor* textColor = [UIColor UIColorFromRGB:0x666666];
+        _contentCell.orderLabel.textColor = textColor;
+        _contentCell.productDescLabel.textColor = textColor;
+        _contentCell.companyWithIconLabel.textColor = textColor;
+        _contentCell.amountLabel.textColor = textColor;
+        _contentCell.priceLabel.textColor = textColor;
 
     }
     return _contentCell;
@@ -117,11 +199,24 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 }
 
--(instancetype)initWithOrderStyle:(MMOrderListStyle)style
+-(OrderLogsCell*)logsCell
+{
+    if (!_logsCell) {
+        _logsCell = (OrderLogsCell*)[UINib viewFromNib:@"OrderLogsCell"];
+        _logsCell.backgroundColor = [UIColor whiteColor];
+        _logsCell.layer.borderWidth = .5f;
+        _logsCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
+
+    }
+    return _logsCell;
+}
+
+-(instancetype)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto
 {
     self = [super init];
     if (self) {
         self.style = style;
+        self.orderDto = orderDto;
     }
     
     return self;
@@ -154,6 +249,53 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     self.bottomView.frame = CGRectMake(0, self.view.height-44.f, self.view.bounds.size.width, 44.f);
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self getOrderStatusDto];
+    [self.tableView reloadData];
+
+    [super viewWillAppear:animated];
+    
+}
+
+-(void)setOrderStatusDto:(OrderStatusDTO *)orderStatusDto
+{
+    _orderStatusDto = orderStatusDto;
+    
+    if (orderStatusDto.addr && ![orderStatusDto.addr isKindOfClass:[NSNull class]]) {
+        self.addrCell.nameLabel.text = [NSString stringWithFormat:@"收货人: %@", orderStatusDto.addr.contact];
+        self.addrCell.phoneLabel.text = orderStatusDto.addr.mobile;
+        self.addrCell.addrLabel.text = [NSString stringWithFormat:@"%@ %@", orderStatusDto.addr.region, orderStatusDto.addr.street];
+    }
+//    [self.tableView beginUpdates];
+//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:kOrderDetailAddrRow inSection:0];
+//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//    [self.tableView endUpdates];
+//    
+    self.contentCell.orderDetailDTO = [[OrderDetailDTO alloc]initWithOrderStatusDTO:orderStatusDto];
+    self.logsCell.logs = orderStatusDto.logs;
+    
+    [self.tableView reloadData];
+}
+
+-(void)getOrderStatusDto
+{
+    HttpOrderStatusRequest* request = [[HttpOrderStatusRequest alloc] initWithOrderId:self.orderDto.id andOderType:self.style.orderType];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        HttpOrderStatusResponse* response = (HttpOrderStatusResponse*)request.response;
+        if (response.ok) {
+            self.orderStatusDto = response.orderStatusDto;
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+}
 
 #pragma mark - Table view data source
 
@@ -187,7 +329,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 cell = self.contentCell;
                 break;
             case kOrderDetailStatusRow:
-                cell = self.statusCell;
+                cell = self.logsCell;
                 break;
             default:
                 break;
@@ -208,13 +350,21 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 return self.headCell.height;
                 break;
             case kOrderDetailAddrRow:
-                return self.addrCell.height;
+                if (!self.orderStatusDto.addr
+                    || [self.orderStatusDto.addr isKindOfClass:[NSNull class]] ) {
+                    self.addrCell.hidden = YES;
+                    return 0;
+                }
+                else {
+                    self.addrCell.hidden = NO;
+                    return 90.f;
+                }
                 break;
             case kOrderDetailContentRow:
                 return self.contentCell.height;
                 break;
             case kOrderDetailStatusRow:
-                return self.statusCell.height;
+                return self.logsCell.cellHeight;
                 break;
             default:
                 break;
@@ -222,6 +372,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     }
     
     return 0;
+}
+
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", [self class]);
 }
 
 @end

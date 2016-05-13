@@ -25,4 +25,6 @@
 @property (strong, nonatomic) OrderDetailDTO* orderDetailDTO;
 @property (nonatomic) BOOL needHeadView;
 
+@property (weak, nonatomic) IBOutlet UIButton *canelButton;
+
 @end

@@ -45,5 +45,9 @@ typedef struct {
     MMOrderState orderState;
 }MMOrderListStyle;
 
+@interface  OrderDefine: NSObject
+
++(NSString*)orderStateToStringWithType:(MMOrderType)type andState:(MMOrderState)state;
+@end
 
 #endif /* OrderDefine_h */
