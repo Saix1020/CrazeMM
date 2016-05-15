@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
 		B9156F3C1CDB91630041E535 /* SearchEmpty.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9156F3B1CDB91630041E535 /* SearchEmpty.xib */; };
@@ -184,7 +185,6 @@
 		B95A94AD1CE0C19900A5D9BA /* HotCityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B95A94A31CE0C19900A5D9BA /* HotCityTableViewCell.xib */; };
 		B95A94AE1CE0C19900A5D9BA /* provincedictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = B95A94A41CE0C19900A5D9BA /* provincedictionary.plist */; };
 		B95A94B51CE0DD7300A5D9BA /* SupplyProductDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B95A94B41CE0DD7300A5D9BA /* SupplyProductDTO.m */; };
-		B95A94BA1CE1D45B00A5D9BA /* HttpSupplyNoLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B95A94B91CE1D45B00A5D9BA /* HttpSupplyNoLoginRequest.m */; };
 		B95A94BD1CE1D68600A5D9BA /* BaseProductDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B95A94BC1CE1D68600A5D9BA /* BaseProductDTO.m */; };
 		B95A94C01CE1DDBC00A5D9BA /* SupplyProductDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B95A94BF1CE1DDBC00A5D9BA /* SupplyProductDetailDTO.m */; };
 		B95A94C31CE1E29700A5D9BA /* HttpProductDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B95A94C21CE1E29700A5D9BA /* HttpProductDetail.m */; };
@@ -234,6 +234,9 @@
 		B967E7481CE602C300621F28 /* HttpOrderRemove.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E7471CE602C300621F28 /* HttpOrderRemove.m */; };
 		B967E74B1CE60C8100621F28 /* HttpOrderCancel.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E74A1CE60C8100621F28 /* HttpOrderCancel.m */; };
 		B967E74E1CE6171A00621F28 /* BuyProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E74D1CE6171A00621F28 /* BuyProductViewController.m */; };
+		B98218F71CE84CEB00B279E6 /* HttpAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B98218F61CE84CEB00B279E6 /* HttpAddress.m */; };
+		B98218FB1CE84D3400B279E6 /* AddressDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B98218FA1CE84D3400B279E6 /* AddressDTO.m */; };
+		B98218FE1CE855D500B279E6 /* HttpSearchKeyword.m in Sources */ = {isa = PBXBuildFile; fileRef = B98218FD1CE855D500B279E6 /* HttpSearchKeyword.m */; };
 		B98878861CC896BE00990AA4 /* product_debug.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878851CC896BE00990AA4 /* product_debug.png */; };
 		B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */; };
 		B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788F1CC8AD3800990AA4 /* LoginViewController.m */; };
@@ -329,8 +332,6 @@
 		B9AD44231CD48C7C00012B31 /* HttpSignupRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD44221CD48C7C00012B31 /* HttpSignupRequest.m */; };
 		B9AD44261CD48DAD00012B31 /* HttpRandomCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD44251CD48DAD00012B31 /* HttpRandomCodeRequest.m */; };
 		B9AD44291CD497C000012B31 /* HttpCheckPictureCaptchaRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD44281CD497C000012B31 /* HttpCheckPictureCaptchaRequest.m */; };
-		B9AD443A1CD49B8D00012B31 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9AD44391CD49B8D00012B31 /* AFNetworking.framework */; };
-		B9AD443C1CD49BFE00012B31 /* PromiseKit_AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9AD443B1CD49BFE00012B31 /* PromiseKit_AFNetworking.framework */; };
 		B9AD45EC1CD4D43300012B31 /* RestURL.h in Sources */ = {isa = PBXBuildFile; fileRef = B91896FF1CD10EE00061D0B6 /* RestURL.h */; };
 		B9AD45ED1CD4D43300012B31 /* BaseHttpRequest.h in Sources */ = {isa = PBXBuildFile; fileRef = B91732771CD2036300C29698 /* BaseHttpRequest.h */; };
 		B9AD45EE1CD4D43300012B31 /* BaseHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732781CD2036300C29698 /* BaseHttpRequest.m */; };
@@ -380,7 +381,6 @@
 		B9FE71EB1CD6E70400F5EC9F /* _SearchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71E31CD6E70400F5EC9F /* _SearchHistory.m */; };
 		B9FE71EC1CD6E70400F5EC9F /* _UserHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71E51CD6E70400F5EC9F /* _UserHistory.m */; };
 		B9FE71ED1CD6E70400F5EC9F /* _UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71E71CD6E70400F5EC9F /* _UserInfo.m */; };
-		B9FE71EE1CD6FDD800F5EC9F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14ACAF7E869FA5D74648BBDD /* Pods.framework */; };
 		B9FE71F51CD71D0C00F5EC9F /* ProductListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71F41CD71D0C00F5EC9F /* ProductListCell.m */; };
 		B9FE72021CD7877D00F5EC9F /* SignWithPicCapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE72001CD7877D00F5EC9F /* SignWithPicCapViewController.m */; };
 		B9FE72031CD7877D00F5EC9F /* SignWithPicCapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9FE72011CD7877D00F5EC9F /* SignWithPicCapViewController.xib */; };
@@ -405,6 +405,8 @@
 
 /* Begin PBXFileReference section */
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.debug.xcconfig"; sourceTree = "<group>"; };
+		B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.release.xcconfig"; sourceTree = "<group>"; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
 		B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchResultDTO.m; path = search/SearchResultDTO.m; sourceTree = "<group>"; };
 		B9156F311CDA43190041E535 /* HttpSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSearchRequest.h; path = restful/HttpSearchRequest.h; sourceTree = "<group>"; };
@@ -734,8 +736,6 @@
 		B95A94A41CE0C19900A5D9BA /* provincedictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = provincedictionary.plist; sourceTree = "<group>"; };
 		B95A94B31CE0DD7300A5D9BA /* SupplyProductDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyProductDTO.h; path = sell/SupplyProductDTO.h; sourceTree = "<group>"; };
 		B95A94B41CE0DD7300A5D9BA /* SupplyProductDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyProductDTO.m; path = sell/SupplyProductDTO.m; sourceTree = "<group>"; };
-		B95A94B81CE1D45B00A5D9BA /* HttpSupplyNoLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSupplyNoLoginRequest.h; path = restful/HttpSupplyNoLoginRequest.h; sourceTree = "<group>"; };
-		B95A94B91CE1D45B00A5D9BA /* HttpSupplyNoLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSupplyNoLoginRequest.m; path = restful/HttpSupplyNoLoginRequest.m; sourceTree = "<group>"; };
 		B95A94BB1CE1D68600A5D9BA /* BaseProductDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseProductDTO.h; path = modal/BaseProductDTO.h; sourceTree = "<group>"; };
 		B95A94BC1CE1D68600A5D9BA /* BaseProductDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseProductDTO.m; path = modal/BaseProductDTO.m; sourceTree = "<group>"; };
 		B95A94BE1CE1DDBC00A5D9BA /* SupplyProductDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyProductDetailDTO.h; path = sell/SupplyProductDetailDTO.h; sourceTree = "<group>"; };
@@ -824,6 +824,12 @@
 		B967E74A1CE60C8100621F28 /* HttpOrderCancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpOrderCancel.m; path = mine/order/HttpOrderCancel.m; sourceTree = "<group>"; };
 		B967E74C1CE6171A00621F28 /* BuyProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyProductViewController.h; path = buy/BuyProductViewController.h; sourceTree = "<group>"; };
 		B967E74D1CE6171A00621F28 /* BuyProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyProductViewController.m; path = buy/BuyProductViewController.m; sourceTree = "<group>"; };
+		B98218F51CE84CEB00B279E6 /* HttpAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpAddress.h; path = restful/HttpAddress.h; sourceTree = "<group>"; };
+		B98218F61CE84CEB00B279E6 /* HttpAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpAddress.m; path = restful/HttpAddress.m; sourceTree = "<group>"; };
+		B98218F91CE84D3400B279E6 /* AddressDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressDTO.h; path = mine/pay/AddressDTO.h; sourceTree = "<group>"; };
+		B98218FA1CE84D3400B279E6 /* AddressDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressDTO.m; path = mine/pay/AddressDTO.m; sourceTree = "<group>"; };
+		B98218FC1CE855D500B279E6 /* HttpSearchKeyword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSearchKeyword.h; path = restful/HttpSearchKeyword.h; sourceTree = "<group>"; };
+		B98218FD1CE855D500B279E6 /* HttpSearchKeyword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSearchKeyword.m; path = restful/HttpSearchKeyword.m; sourceTree = "<group>"; };
 		B98878851CC896BE00990AA4 /* product_debug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = product_debug.png; path = Assets.xcassets/product_debug.imageset/product_debug.png; sourceTree = "<group>"; };
 		B988788B1CC8AB8B00990AA4 /* SuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestViewController.h; sourceTree = "<group>"; };
 		B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestViewController.m; sourceTree = "<group>"; };
@@ -983,8 +989,6 @@
 		B9AD44271CD497C000012B31 /* HttpCheckPictureCaptchaRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpCheckPictureCaptchaRequest.h; path = restful/HttpCheckPictureCaptchaRequest.h; sourceTree = "<group>"; };
 		B9AD44281CD497C000012B31 /* HttpCheckPictureCaptchaRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpCheckPictureCaptchaRequest.m; path = restful/HttpCheckPictureCaptchaRequest.m; sourceTree = "<group>"; };
 		B9AD44351CD49B1500012B31 /* HTTPRequestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestTest.m; sourceTree = "<group>"; };
-		B9AD44391CD49B8D00012B31 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
-		B9AD443B1CD49BFE00012B31 /* PromiseKit_AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit_AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/PromiseKit_AFNetworking.framework"; sourceTree = "<group>"; };
 		B9AD443D1CD4D31900012B31 /* ut_prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ut_prefix.pch; sourceTree = "<group>"; };
 		B9AD45FD1CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpGenMobileVcodeRequest.h; path = restful/HttpGenMobileVcodeRequest.h; sourceTree = "<group>"; };
 		B9AD45FE1CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpGenMobileVcodeRequest.m; path = restful/HttpGenMobileVcodeRequest.m; sourceTree = "<group>"; };
@@ -1035,8 +1039,7 @@
 		B9FE71FF1CD7877D00F5EC9F /* SignWithPicCapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignWithPicCapViewController.h; path = sign/SignWithPicCapViewController.h; sourceTree = "<group>"; };
 		B9FE72001CD7877D00F5EC9F /* SignWithPicCapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignWithPicCapViewController.m; path = sign/SignWithPicCapViewController.m; sourceTree = "<group>"; };
 		B9FE72011CD7877D00F5EC9F /* SignWithPicCapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignWithPicCapViewController.xib; path = sign/SignWithPicCapViewController.xib; sourceTree = "<group>"; };
-		DA9F9AB367150C29C4B45DF4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F9E586B49553A3F9DA3D89C1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrazeMM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1045,8 +1048,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */,
-				B9FE71EE1CD6FDD800F5EC9F /* Pods.framework in Frameworks */,
 				B999551E1CE2257D007F26D2 /* Reveal.framework in Frameworks */,
+				31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,8 +1057,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9AD443C1CD49BFE00012B31 /* PromiseKit_AFNetworking.framework in Frameworks */,
-				B9AD443A1CD49B8D00012B31 /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,23 +1070,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5AA8556B05227EC79F91C02F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DA9F9AB367150C29C4B45DF4 /* Pods.debug.xcconfig */,
-				F9E586B49553A3F9DA3D89C1 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		8B36CB4D54E72C4D41168BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B9AD443B1CD49BFE00012B31 /* PromiseKit_AFNetworking.framework */,
-				B9AD44391CD49B8D00012B31 /* AFNetworking.framework */,
 				B91732741CD1FC9400C29698 /* Reveal.framework */,
 				B917326F1CD1F5F700C29698 /* QuartzCore.framework */,
 				14ACAF7E869FA5D74648BBDD /* Pods.framework */,
+				D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1102,6 +1093,8 @@
 			children = (
 				B9156F311CDA43190041E535 /* HttpSearchRequest.h */,
 				B9156F321CDA43190041E535 /* HttpSearchRequest.m */,
+				B98218FC1CE855D500B279E6 /* HttpSearchKeyword.h */,
+				B98218FD1CE855D500B279E6 /* HttpSearchKeyword.m */,
 			);
 			name = search;
 			sourceTree = "<group>";
@@ -1461,6 +1454,7 @@
 				B91732781CD2036300C29698 /* BaseHttpRequest.m */,
 				B9156F3D1CDBA3D80041E535 /* mine */,
 				B9156F341CDA456F0041E535 /* search */,
+				B98218F41CE84CA600B279E6 /* pay */,
 				B9A780461CD9FBFF00A89047 /* supply+buy */,
 				B9AD46061CD4E77300012B31 /* signup */,
 				B9AD46051CD4E76500012B31 /* login */,
@@ -1841,6 +1835,7 @@
 		B95A94AF1CE0D42E00A5D9BA /* pay */ = {
 			isa = PBXGroup;
 			children = (
+				B98218F81CE84D1000B279E6 /* modal */,
 				B95A94B01CE0D4A500A5D9BA /* view */,
 				B918968E1CCE20DD0061D0B6 /* PayViewController.h */,
 				B918968F1CCE20DD0061D0B6 /* PayViewController.m */,
@@ -1903,8 +1898,8 @@
 				B964F9161CC39670003E0D44 /* CrazeMMTests */,
 				B964F9211CC39671003E0D44 /* CrazeMMUITests */,
 				B964F8F81CC39670003E0D44 /* Products */,
-				5AA8556B05227EC79F91C02F /* Pods */,
 				8B36CB4D54E72C4D41168BEA /* Frameworks */,
+				D79CC190686B19F01AE035FE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2179,6 +2174,24 @@
 			path = TimeLineControl/Masonry;
 			sourceTree = "<group>";
 		};
+		B98218F41CE84CA600B279E6 /* pay */ = {
+			isa = PBXGroup;
+			children = (
+				B98218F51CE84CEB00B279E6 /* HttpAddress.h */,
+				B98218F61CE84CEB00B279E6 /* HttpAddress.m */,
+			);
+			name = pay;
+			sourceTree = "<group>";
+		};
+		B98218F81CE84D1000B279E6 /* modal */ = {
+			isa = PBXGroup;
+			children = (
+				B98218F91CE84D3400B279E6 /* AddressDTO.h */,
+				B98218FA1CE84D3400B279E6 /* AddressDTO.m */,
+			);
+			name = modal;
+			sourceTree = "<group>";
+		};
 		B98878871CC89FE600990AA4 /* login */ = {
 			isa = PBXGroup;
 			children = (
@@ -2346,8 +2359,6 @@
 				B9A780481CD9FC2900A89047 /* HttpSupplyRequest.m */,
 				B99955271CE36F12007F26D2 /* HttpBuyRequest.h */,
 				B99955281CE36F12007F26D2 /* HttpBuyRequest.m */,
-				B95A94B81CE1D45B00A5D9BA /* HttpSupplyNoLoginRequest.h */,
-				B95A94B91CE1D45B00A5D9BA /* HttpSupplyNoLoginRequest.m */,
 				B95A94C11CE1E29700A5D9BA /* HttpProductDetail.h */,
 				B95A94C21CE1E29700A5D9BA /* HttpProductDetail.m */,
 				B999551F1CE3078A007F26D2 /* HttpAddIntention.h */,
@@ -2469,6 +2480,15 @@
 			path = machine;
 			sourceTree = "<group>";
 		};
+		D79CC190686B19F01AE035FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */,
+				B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2476,12 +2496,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B964F9271CC39671003E0D44 /* Build configuration list for PBXNativeTarget "CrazeMM" */;
 			buildPhases = (
-				255880C30F1E23250B051FF4 /* Check Pods Manifest.lock */,
+				AC7000F87D2184656DA33DBC /* 📦 Check Pods Manifest.lock */,
 				B964F8F31CC39670003E0D44 /* Sources */,
 				B964F8F41CC39670003E0D44 /* Frameworks */,
 				B964F8F51CC39670003E0D44 /* Resources */,
-				26466745D6ADF56D2024F1B5 /* Embed Pods Frameworks */,
-				2E1BC2B7443C480B560E5E14 /* Copy Pods Resources */,
+				7A39D187434EC447FD8D0DA9 /* 📦 Embed Pods Frameworks */,
+				7E18EA706C85C178AE5F0B83 /* 📦 Copy Pods Resources */,
+				F6495661465ADC1C6D33D42C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2675,14 +2696,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		255880C30F1E23250B051FF4 /* Check Pods Manifest.lock */ = {
+		7A39D187434EC447FD8D0DA9 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E18EA706C85C178AE5F0B83 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC7000F87D2184656DA33DBC /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2690,7 +2741,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		26466745D6ADF56D2024F1B5 /* Embed Pods Frameworks */ = {
+		F6495661465ADC1C6D33D42C /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2702,22 +2753,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E1BC2B7443C480B560E5E14 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2730,6 +2766,7 @@
 				B91732391CD1F05400C29698 /* FadeOutUpAnimation.m in Sources */,
 				B91732621CD1F05500C29698 /* ZoomOutUpAnimation.m in Sources */,
 				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
+				B98218FB1CE84D3400B279E6 /* AddressDTO.m in Sources */,
 				B917323F1CD1F05400C29698 /* FlipOutYAnimation.m in Sources */,
 				B91732481CD1F05400C29698 /* RotateOutDownLeftAnimation.m in Sources */,
 				B95A94C61CE1E4FF00A5D9BA /* SupplyProductViewController.m in Sources */,
@@ -2825,6 +2862,7 @@
 				B95A94C01CE1DDBC00A5D9BA /* SupplyProductDetailDTO.m in Sources */,
 				B99D12DD1CC5F8DC000DFF95 /* UISearchBar+Utils.m in Sources */,
 				B99D130F1CC743A4000DFF95 /* SearchListViewController.m in Sources */,
+				B98218FE1CE855D500B279E6 /* HttpSearchKeyword.m in Sources */,
 				B9AD45FF1CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.m in Sources */,
 				B91896991CCE53AB0061D0B6 /* SecondProductDetailCell.m in Sources */,
 				B91732531CD1F05500C29698 /* SlideOutLeftAnimation.m in Sources */,
@@ -2896,7 +2934,6 @@
 				B91732301CD1F05400C29698 /* FadeInUpAnimation.m in Sources */,
 				B9FE71F51CD71D0C00F5EC9F /* ProductListCell.m in Sources */,
 				B95924891CDEBA9000533E77 /* UIView+AnyPromise.m in Sources */,
-				B95A94BA1CE1D45B00A5D9BA /* HttpSupplyNoLoginRequest.m in Sources */,
 				B99194981CCCF70B0032A393 /* ProductFlageView.m in Sources */,
 				B99D12FD1CC66ED3000DFF95 /* SearchHistoryCell.m in Sources */,
 				B964F96A1CC4AAC6003E0D44 /* UIColor+Utils.m in Sources */,
@@ -2930,6 +2967,7 @@
 				B967E7391CE57EBD00621F28 /* MASViewConstraint.m in Sources */,
 				B95924851CDEBA9000533E77 /* UIActionSheet+AnyPromise.m in Sources */,
 				B91732161CD1F05400C29698 /* JelloAnimation.m in Sources */,
+				B98218F71CE84CEB00B279E6 /* HttpAddress.m in Sources */,
 				B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */,
 				B917322E1CD1F05400C29698 /* FadeInRightAnimation.m in Sources */,
 				B9AD44151CD39C8300012B31 /* NewWelcomeViewController.m in Sources */,
@@ -3140,7 +3178,7 @@
 		};
 		B964F9281CC39671003E0D44 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA9F9AB367150C29C4B45DF4 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3182,7 +3220,7 @@
 		};
 		B964F9291CC39671003E0D44 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9E586B49553A3F9DA3D89C1 /* Pods.release.xcconfig */;
+			baseConfigurationReference = B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

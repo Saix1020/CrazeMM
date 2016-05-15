@@ -22,6 +22,8 @@
         self.updateTime = dict[@"updateTime"];
         self.userImage = dict[@"userImage"];
         self.goodName = dict[@"goodName"];
+        self.goodImage = dict[@"goodImage"];
+
         self.userName = dict[@"userName"];
         if(dict[@"addr"] && ![dict[@"addr"] isKindOfClass:[NSNull class]]){
             self.addr = [[AddrDTO alloc] initWith:dict[@"addr"]];

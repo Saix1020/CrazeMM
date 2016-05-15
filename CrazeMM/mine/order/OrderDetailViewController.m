@@ -48,24 +48,6 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 @implementation OrderDetailViewController
 
-//typedef NS_ENUM(NSInteger, MMOrderState){
-//    COMPLETED = 500, //完成
-//    PAYTIMEOUT = 700, //支付超时
-//    TOBECONFIRMED = 401, //待确认
-//    TOBEPAID = 100, //待付款
-//    TOBERECEIVED = 300,//待签收
-//    TOBESENT = 200,// 待发货
-//    TOBESETTLED = 400, //待结款
-//    
-//    // TOBEPAID -> TOBESENT(PAYCOMPLETE) -> TOBERECEIVED(SENTCOMPLETE) -> TOBESETTLED(RECEIVECOMPLETE) -> TOBECONFIRMED -> COMPLETED(CONFIRMEDCOMPLETE)
-//    
-//    PAYCOMPLETE = TOBESENT,
-//    RECEIVECOMPLETE = TOBESETTLED,
-//    SENTCOMPLETE = TOBERECEIVED,
-//    CONFIRMEDCOMPLETE = COMPLETED,
-//};
-
-
 -(UIView*)bottomView
 {
     if (!_bottomView) {
@@ -344,7 +326,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 switch (self.style.orderState) {
                     case TOBEPAID:
                         NSLog(@"我买的货->待付款->付款");
-                        [self.navigationController pushViewController:[PayViewController new] animated:YES];
+                        [self.navigationController pushViewController:[[PayViewController alloc] initWithOrderStatusDTO:self.orderStatusDto] animated:YES];
                         break;
                     case PAYTIMEOUT:
                         NSLog(@"我买的货->待付款->超时");

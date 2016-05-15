@@ -79,4 +79,8 @@
  */
 + (UIColor *)view_Back_Color;
 
+
++(UIColor*)blueButtonColor;
++(UIColor*)redButtonColor;
+
 @end

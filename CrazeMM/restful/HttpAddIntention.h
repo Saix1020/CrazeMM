@@ -15,3 +15,11 @@
 -(instancetype)initWithSid:(NSInteger)sid;
 
 @end
+
+@interface HttpAddViewRequest : BaseHttpRequest
+
+@property (nonatomic) NSInteger sid;
+
+-(instancetype)initWithSid:(NSInteger)sid;
+
+@end

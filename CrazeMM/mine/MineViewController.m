@@ -152,16 +152,6 @@
         _orderStatusCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _orderStatusCell.delegate = self;
         
-//        @weakify(self);
-//        _orderStatusCell.payButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-//            
-//            @strongify(self);
-////            LoginViewController* loginVC = [[LoginViewController alloc] init];
-//            
-//            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-//            [self.navigationController pushViewController:mineSellProductVC animated:YES];
-//            return [RACSignal empty];
-//        }];
     }
     
     return _orderStatusCell;
@@ -197,11 +187,6 @@
 {
     self = [super init];
     if (self) {
-//        if (![UserCenter defaultCenter].isLogined) {
-//            [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                     selector:@selector(logoutSuccessed:)
-//                                                         name:kLogutSuccessBroadCast object:nil];
-//        }
         
     }
     return self;
@@ -225,7 +210,15 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginSuccess:)
+                                                 name:kLoginSuccessBroadCast
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(logoutSuccess:)
+                                                 name:kLogoutSuccessBroadCast
+                                               object:nil];
+    
 
     
 }
@@ -645,5 +638,26 @@
     OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
     [self.navigationController pushViewController:orderListVC animated:YES];
 }
+
+
+#pragma  -- mark notification actions
+-(void)loginSuccess:(NSNotification*)notification
+{
+    [self.tableView reloadData];
+}
+
+-(void)logoutSuccess:(NSNotification*)notification
+{
+    [self.tableView reloadData];
+}
+
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", [self class]);
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLoginSuccessBroadCast object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kLogoutSuccessBroadCast object:nil];
+}
+
 
 @end

@@ -22,6 +22,20 @@
     // Configure the view for the selected state
 }
 
+//@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *phoneNumLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *addrLabel;
+//@property (weak, nonatomic) IBOutlet UIButton *detailButton;
+
+
+-(void)setAddrDto:(AddressDTO *)addrDto
+{
+    _addrDto = addrDto;
+    self.nameLabel.text = addrDto.contact;
+    self.phoneNumLabel.text = addrDto.mobile;
+    self.addrLabel.text = [NSString stringWithFormat:@"%@ %@", addrDto.region, addrDto.street];
+}
+
 +(CGFloat)cellHeight
 {
     return 110.f;

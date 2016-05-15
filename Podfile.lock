@@ -35,6 +35,7 @@ PODS:
     - AFNetworking (~> 2.0)
     - PromiseKit/CorePromise (~> 3.0)
   - PromiseKit/CorePromise (3.1.1)
+  - Reachability (3.2)
   - ReactiveCocoa (4.0.1):
     - ReactiveCocoa/UI (= 4.0.1)
     - Result (~> 1.0.2)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - NHArrowView (~> 0.1.0)
   - PPiFlatSegmentedControl (~> 1.4.0)
   - PromiseKit-AFNetworking (~> 0.6.0)
+  - Reachability (~> 3.2)
   - ReactiveCocoa (~> 4.0.0)
   - TPKeyboardAvoiding (~> 1.3)
   - UIView+FrameEx (~> 0.0.1)
@@ -78,6 +80,7 @@ SPEC CHECKSUMS:
   PPiFlatSegmentedControl: ed706988b57f887fc09852dd0da18b3355cd8bea
   PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
   PromiseKit-AFNetworking: d3b2c88f9bb6bd3124454df99feb47e620873ce4
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: f7011630aee4deeb16352fcb1b50d6bde9db4f90
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe

@@ -23,6 +23,7 @@
 #import "HttpBuyRequest.h"
 #import "BuyProductViewController.h"
 #import "BuyProductDTO.h"
+#import "HttpAddIntention.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -537,6 +538,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BuyProductDTO* dto = self.dataSource[indexPath.row];
+    HttpAddViewRequest* request = [[HttpAddViewRequest alloc] initWithSid:dto.id];
+    [request request]
+    .then(^(id responseObj){
+    })
+    .catch(^(NSError* error){
+    });
     BuyProductViewController* vc = [[BuyProductViewController alloc] initWithProductDTO:dto];
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

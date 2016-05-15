@@ -13,3 +13,11 @@
 -(instancetype)initWithSid:(NSInteger)sid andVersion:(NSInteger)version andQuantity:(NSInteger)quantity andMessage:(NSString*)message;
 
 @end
+
+@interface HttpSupplyOrderResponse : BaseHttpResponse
+
+@property (nonatomic, readonly) NSInteger orderId;
+@property (nonatomic, readonly) CGFloat price;
+@property (nonatomic, readonly) NSInteger quantity;
+
+@end

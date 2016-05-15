@@ -38,6 +38,8 @@ static UserCenter *defaultUserCenter = nil;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast
                                                         object:self];
+    self.isFakeLogouted = NO;
+
 }
 
 -(void)setLogouted
@@ -46,8 +48,15 @@ static UserCenter *defaultUserCenter = nil;
     [[UserCenter defaultCenter] resetKeychainItem];
     [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast
                                                         object:self];
+    self.isFakeLogouted = NO;
+}
 
-
+-(void)setFakeLogouted
+{
+    [UserCenter defaultCenter].isLogined = false;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast
+                                                        object:self];
+    self.isFakeLogouted = YES;
 }
 
 -(KeychainItemWrapper*)keyChainWrapper

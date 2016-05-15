@@ -172,5 +172,15 @@
     return colors;
 }
 
++(UIColor*)blueButtonColor
+{
+    return [UIColor colorWithRed:66/255.0 green:139/255.0 blue:202/255.0 alpha:1];
+}
+
++(UIColor*)redButtonColor
+{
+    return [UIColor colorWithRed:217/255.0 green:83/255.0 blue:79/255.0 alpha:1];
+}
+
 
 @end

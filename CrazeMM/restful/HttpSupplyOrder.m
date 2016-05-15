@@ -47,4 +47,23 @@
     return @"save_order_token";
 }
 
+-(Class)responseClass
+{
+    return [HttpSupplyOrderResponse class];
+}
+
+@end
+
+@implementation HttpSupplyOrderResponse
+
+-(NSInteger)orderId
+{
+    if (self.data) {
+        return [self.data[@"orderId"] integerValue];
+    }
+    else {
+        return -1;
+    }
+}
+
 @end

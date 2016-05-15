@@ -9,8 +9,8 @@
 #import "SupplyListViewController.h"
 #import "HttpSupplyRequest.h"
 #import "ProductSummaryCell.h"
-#import "HttpSupplyNoLoginRequest.h"
 #import "SupplyProductViewController.h"
+#import "HttpAddIntention.h"
 
 
 @interface SupplyListViewController ()
@@ -41,7 +41,7 @@
         request = [[HttpSupplyRequest alloc] initWithPageNumber:self.pageNumber+1];
     }
     else{
-        request = [[HttpSupplyNoLoginRequest alloc] initWithPageNumber:self.pageNumber+1];
+        request = [[HttpSupplyRequest alloc] initWithPageNumber:self.pageNumber+1];
     }
     if (needHud) {
         [self showProgressIndicatorWithTitle:@"正在努力加载..."];
@@ -90,6 +90,13 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     SupplyProductDTO* dto = self.dataSource[indexPath.row];
+    HttpAddViewRequest* request = [[HttpAddViewRequest alloc] initWithSid:dto.id];
+    [request request]
+    .then(^(id responseObj){
+    })
+    .catch(^(NSError* error){
+    });
+    
     SupplyProductViewController* vc = [[SupplyProductViewController alloc] initWithProductDTO:dto];
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

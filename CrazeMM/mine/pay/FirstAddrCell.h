@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressDTO.h"
 
 @interface FirstAddrCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addrLabel;
 @property (weak, nonatomic) IBOutlet UIButton *detailButton;
+
+@property (nonatomic, strong) AddressDTO* addrDto;
 
 +(CGFloat)cellHeight;
 

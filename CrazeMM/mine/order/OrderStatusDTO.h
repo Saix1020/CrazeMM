@@ -31,6 +31,8 @@
 @property (nonatomic) NSInteger state;
 @property (nonatomic, copy) NSString* userImage;
 @property (nonatomic, copy) NSString* goodName;
+@property (nonatomic, copy) NSString* goodImage;
+
 @property (nonatomic, copy) NSString* updateTime;
 @property (nonatomic, copy) NSString* userName;
 @property (nonatomic) CGFloat price;

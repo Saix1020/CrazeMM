@@ -211,8 +211,8 @@
     [moreInfo appendString:[NSString stringWithFormat:@"%@到货", self.productDetailDto.deadlineStr]];
     self.addrLabel.text = moreInfo;
     
-    self.expressLabel.text = [NSString stringWithFormat:@"供货范围: %@", self.productDetailDto.region];
-//    self.messageLabel.text = ![self.productDetailDto.message isKindOfClass:[NSNull class]]?[NSString stringWithFormat:@"备注: %@", self.productDetailDto.message]:@"";
+    NSString* scopeString = [self.productDetailDto isKindOfClass:NSClassFromString(@"SupplyProductDetailDTO")]? @"供货范围" : @"收货地址";
+    self.expressLabel.text = [NSString stringWithFormat:@"%@: %@", scopeString, self.productDetailDto.region];
     
     if (![self.productDetailDto.message isKindOfClass:[NSNull class]]) {
         self.messageLabel.text = [NSString stringWithFormat:@"备注: %@", self.productDetailDto.message];

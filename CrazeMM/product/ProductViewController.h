@@ -23,10 +23,13 @@ typedef NS_ENUM(NSInteger, ProductDisplayMode){
 @property (nonatomic, strong) BaseProductDetailDTO* productDetailDto;
 @property (nonatomic) NSInteger sectionNum;
 @property (nonatomic, strong) UITableView* tableView;
-@property (nonatomic, strong) UIButton* supplyOrBuyButton;
+@property (nonatomic, strong) TTModalView* modalView;
+@property (nonatomic, strong) UIView* buttomView;
+
 
 -(instancetype)initWithProductDTO:(BaseProductDTO*)dto;
 -(void)handleOrderWithQuantity:(NSInteger)quantity andMessage:(NSString*)message;
+-(void)handleBuyWithQuantity:(NSInteger)quantity andMessage:(NSString*)message;
 
 
 @end

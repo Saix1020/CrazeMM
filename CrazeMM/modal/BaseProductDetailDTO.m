@@ -74,6 +74,7 @@
         self.duration = [dict[@"duration"] integerValue];
         self.left = [dict[@"left"] integerValue];
         self.state = [dict[@"state"] integerValue];
+        self.views = [dict[@"views"] integerValue];
         
         self.price = [dict[@"price"] floatValue];
         

@@ -54,6 +54,8 @@
     self.amountTextField.delegate = self;
     self.amountTextField.keyboardType = UIKeyboardTypeNumberPad;
     
+    self.descTextView.delegate = self;
+    
 //    [RACObserve(self, amountTextField.text) subscribeNext: ^(NSString *newName){
 //        if([newName integerValue]>self.productDetailDto.left){
 //            self.amountTextField.text = [NSString stringWithFormat:@"%ld", self.productDetailDto.left];
@@ -110,6 +112,13 @@
         textField.text = finnalString;
     }
     [self fomartAmountPrice];
+    return NO;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+//    [textField resignFirstResponder];
+    [self.descTextView becomeFirstResponder];
     return NO;
 }
 

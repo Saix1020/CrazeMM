@@ -180,8 +180,21 @@
             {
                 switch (segmentIndex) {
                     case 0:
+                    {
                         NSLog(@"我买的货->待付款->付款");
-                        [self.navigationController pushViewController:[PayViewController new] animated:YES];
+                        NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+                        for (OrderDetailDTO* dto in self.dataSource) {
+                            if (dto.selected) {
+                                [selectedDtos addObject:dto];
+                            }
+                        }
+                        if (selectedDtos.count == 0) {
+                            [self showAlertViewWithMessage:@"请选择待付款的商品"];
+                            break;
+                        }
+                        PayViewController* payVC = [[PayViewController alloc] initWithOrderDetailDTOs:selectedDtos];
+                        [self.navigationController pushViewController:payVC animated:YES];
+                    }
                         break;
                     case 1:
                         NSLog(@"我买的货->待付款->超时");

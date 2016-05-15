@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderDetailDTO.h"
 
 @interface SecondProductDetailCell : UITableViewCell
 
 @property (nonatomic) NSUInteger productNumber;
 @property (nonatomic) CGFloat height;
+@property (nonatomic, readonly) CGFloat totalPrice;
+@property (nonatomic, copy) NSArray<OrderDetailDTO*>* orderDetailDtos;
+
+//-(instancetype)initWithOrderDetailDTO:(OrderDetailDTO*)orderDetailDto;
+
 @end
