@@ -16,7 +16,6 @@
 #import "OrderStatusDTO.h"
 #import "HttpOrderStatus.h"
 
-
 typedef NS_ENUM(NSInteger, OrderDetailRow){
     kOrderDetailHeadRow = 1,
     kOrderDetailAddrRow = 3,
@@ -296,6 +295,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         [self showAlertViewWithMessage:error.localizedDescription];
     });
 }
+
 
 #pragma mark - Table view data source
 

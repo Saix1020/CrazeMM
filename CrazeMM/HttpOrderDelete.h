@@ -10,6 +10,10 @@
 
 @interface HttpOrderDeleteRequest : BaseHttpRequest
 
+@property (nonatomic) NSString* ids;
+
+-(instancetype)initWithOrderIds:(NSString*)orderIds;
+
 @end
 
 @interface HttpOrderDeleteResponse : BaseHttpResponse

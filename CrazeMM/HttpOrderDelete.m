@@ -10,6 +10,34 @@
 
 @implementation HttpOrderDeleteRequest
 
+-(instancetype)initWithOrderIds:(NSString*)orderIds
+{
+    self = [super init];
+    self.ids = orderIds;
+    if (self) {
+        self.params = [@{
+                         @"ids" : orderIds
+                         } mutableCopy];
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/order/remove/%@", self.ids];
+    return COMB_URL(absUrl);
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpOrderDeleteResponse class];
+}
+
 @end
 
 

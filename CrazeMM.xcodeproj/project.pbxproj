@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E6BAB181CE77D9700B248E8 /* HttpOrderCancel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E6BAB171CE77D9700B248E8 /* HttpOrderCancel.m */; };
 		2E9788CE1CE5FA7400F87C36 /* HttpOrderDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */; };
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
@@ -403,6 +404,8 @@
 
 /* Begin PBXFileReference section */
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E6BAB161CE77D9700B248E8 /* HttpOrderCancel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpOrderCancel.h; sourceTree = "<group>"; };
+		2E6BAB171CE77D9700B248E8 /* HttpOrderCancel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpOrderCancel.m; sourceTree = "<group>"; };
 		2E9788CC1CE5FA7400F87C36 /* HttpOrderDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpOrderDelete.h; sourceTree = "<group>"; };
 		2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpOrderDelete.m; sourceTree = "<group>"; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
@@ -2412,6 +2415,8 @@
 				B9B5BCE91CDDBE670085E132 /* HttpOrder.m */,
 				2E9788CC1CE5FA7400F87C36 /* HttpOrderDelete.h */,
 				2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */,
+				2E6BAB161CE77D9700B248E8 /* HttpOrderCancel.h */,
+				2E6BAB171CE77D9700B248E8 /* HttpOrderCancel.m */,
 				B9156F3F1CDBA41D0041E535 /* HttpOrderSummary.h */,
 				B9156F401CDBA41D0041E535 /* HttpOrderSummary.m */,
 				B967E6E61CE4B4EB00621F28 /* HttpOrderStatus.h */,
@@ -2942,6 +2947,7 @@
 				B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */,
 				B967E7341CE57EBD00621F28 /* MASCompositeConstraint.m in Sources */,
 				B98878BF1CC9BB1F00990AA4 /* CustomSegment.m in Sources */,
+				2E6BAB181CE77D9700B248E8 /* HttpOrderCancel.m in Sources */,
 				B917322A1CD1F05400C29698 /* FadeInDownAnimation.m in Sources */,
 				B917321D1CD1F05400C29698 /* BasicAnimation.m in Sources */,
 				B91896931CCE518F0061D0B6 /* ProductNumberLabel.m in Sources */,

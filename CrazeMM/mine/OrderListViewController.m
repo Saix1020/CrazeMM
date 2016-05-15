@@ -15,6 +15,7 @@
 #import "HttpOrder.h"
 #import "MJRefresh.h"
 #import "OrderDetailViewController.h"
+#import "HttpOrderDelete.h"
 
 #define kSegmentCellHeight 40.f
 #define kTableViewInsetTopWithoutSegment (kSegmentCellHeight+64)
@@ -184,6 +185,9 @@
                         break;
                     case 1:
                         NSLog(@"我买的货->待付款->超时");
+                        //1. send the HTTP delete request
+                        //2. delete the selected Items
+                        [self removeOrder:segmentIndex];
                         break;
                     case 2:
                         NSLog(@"我买的货->待付款->已支付");
@@ -432,6 +436,44 @@
     }
     self.orderState = style.orderState;
     self.commonBottomView.orderStyle = style;
+}
+
+-(void)removeOrder:(NSInteger)index
+{
+    NSMutableString *orderIds = [[NSMutableString alloc] init];
+    for (NSInteger i = 0; i<self.dataSource.count; ++i) {
+        OrderDetailDTO* dto = self.dataSource[i];
+        if (dto.selected)
+        {
+            [orderIds appendFormat:@"%ld,", (long)dto.id];
+        }
+    }
+    [orderIds deleteCharactersInRange:NSMakeRange([orderIds length]-1, 1)];
+    //NSLog(@"%@",orderIds);
+    
+    
+    HttpOrderDeleteRequest* request = [[HttpOrderDeleteRequest alloc] initWithOrderIds:orderIds];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            //reload paytimeout order list
+            self.orderListPageNumber = 0;
+            [self setOrderStyleWithSegmentIndex:index];
+            [self.dataSource removeAllObjects];
+            [self.tableView reloadData];
+            [self getOrderList];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+            
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+    
+    
 }
 
 #pragma mark - Table view data source
