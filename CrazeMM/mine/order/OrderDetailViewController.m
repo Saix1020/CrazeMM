@@ -15,6 +15,8 @@
 #import "OrderLogsCell.h"
 #import "OrderStatusDTO.h"
 #import "HttpOrderStatus.h"
+#import "HttpOrderCancel.h"
+#import "OrderListViewController.h"
 
 typedef NS_ENUM(NSInteger, OrderDetailRow){
     kOrderDetailHeadRow = 1,
@@ -179,6 +181,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.companyWithIconLabel.textColor = textColor;
         _contentCell.amountLabel.textColor = textColor;
         _contentCell.priceLabel.textColor = textColor;
+        
+        [_contentCell.canelButton addTarget:self action:@selector(handleCancelButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _contentCell;
@@ -219,6 +223,31 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     }
     
     return self;
+}
+
+-(void)handleCancelButtonClicked:(UIButton*)send
+{
+    NSLog(@"handleCancelButtonClicked %ld", self.orderDto.id);
+    HttpOrderCancelRequest* request = [[HttpOrderCancelRequest alloc]initWithOrderId:self.orderDto.id];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            //action after the order cancelled
+            //return back to orderlist
+            //NSLog(@"Order %ld has been cancelled!", self.orderDto.id);
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+            
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+    
 }
 
 -(void)viewDidLoad

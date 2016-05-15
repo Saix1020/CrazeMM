@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/OrderListViewController.m"
-            timestampString = "484986183.671942"
+            timestampString = "485011355.927497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
             landmarkName = "-removeOrder:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/OrderListViewController.m"
-            timestampString = "484988176.736846"
+            timestampString = "485011355.927497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "450"
+            endingLineNumber = "450"
             landmarkName = "-removeOrder:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/OrderListViewController.m"
-            timestampString = "484988639.789674"
+            timestampString = "485011355.927497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
             landmarkName = "-removeOrder:"
             landmarkType = "5">
          </BreakpointContent>
@@ -80,22 +80,6 @@
             startingLineNumber = "244"
             endingLineNumber = "244"
             landmarkName = "-doGetRequest"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CrazeMM/mine/OrderListViewController.m"
-            timestampString = "484995769.246351"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "465"
-            endingLineNumber = "465"
-            landmarkName = "-removeOrder:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

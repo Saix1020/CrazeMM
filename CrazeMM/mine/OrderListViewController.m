@@ -185,8 +185,6 @@
                         break;
                     case 1:
                         NSLog(@"我买的货->待付款->超时");
-                        //1. send the HTTP delete request
-                        //2. delete the selected Items
                         [self removeOrder:segmentIndex];
                         break;
                     case 2:
