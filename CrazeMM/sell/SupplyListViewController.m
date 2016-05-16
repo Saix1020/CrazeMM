@@ -51,7 +51,7 @@
         NSLog(@"%@", responseObject);
         HttpSupplyResponse* response = (HttpSupplyResponse*)request.response;
         if(response.ok){
-            self.pageNumber = response.pageNumber;
+            self.pageNumber = response.pageNumber>=response.totalPage?response.totalPage:response.pageNumber;
             self.totalPage = response.totalPage;
             [self.dataSource addObjectsFromArray:response.productDTOs];
             [self.tableView reloadData];

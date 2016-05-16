@@ -19,7 +19,7 @@
 @property (nonatomic) BOOL isAnoy;
 @property (nonatomic) BOOL isStep;
 @property (nonatomic) NSInteger millisecond;
-@property (nonatomic) NSInteger price;
+@property (nonatomic) CGFloat price;
 @property (nonatomic) NSInteger quantity;
 @property (nonatomic, copy) NSString* region;
 @property (nonatomic, copy) NSString* stateLabel;
@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong) NSString* createTime;
 @property (nonatomic, strong) NSString* goodImage;
-
+@property (nonatomic) BOOL selected;
 
 -(instancetype)initWith:(NSDictionary*)dict;
 

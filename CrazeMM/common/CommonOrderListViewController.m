@@ -118,8 +118,6 @@
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
     
     // why we need this?
-    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated

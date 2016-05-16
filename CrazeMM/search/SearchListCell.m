@@ -293,7 +293,7 @@
     NSString* quantity;
     self.priceLabel.text = @"";
     if (_searchResultDTO) {
-        price = [NSString stringWithFormat:@"%ld", _searchResultDTO.price];
+        price = [NSString stringWithFormat:@"%f", _searchResultDTO.price];
         quantity = [NSString stringWithFormat:@"%ld", _searchResultDTO.quantity];
     }
     else {

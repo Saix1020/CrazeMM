@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
+#import "MineSupplyProductDTO.h"
 
 typedef NS_ENUM(NSInteger, SupplyListCellStyle){
     kNomalStyle = 0,
@@ -26,6 +27,8 @@ typedef NS_ENUM(NSInteger, SupplyListCellStyle){
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet UIButton *offButton;
 @property (nonatomic) SupplyListCellStyle style;
+
+@property (nonatomic, strong) MineSupplyProductDTO* mineSupplyProductDto;
 
 +(CGFloat)cellHeight;
 
