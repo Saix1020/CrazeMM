@@ -20,7 +20,7 @@ typedef enum {
 
 @interface BaseHttpRequest ()
 
-@property (nonatomic, readonly) AFHTTPRequestOperationManager *manager;
+//@property (nonatomic, readonly) AFHTTPRequestOperationManager *manager;
 @end
 
 

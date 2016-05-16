@@ -50,6 +50,12 @@
         
         return [RACSignal empty];
     }];
+    
+//    UITableView* tableView = (UITableView*)self.view;
+//    UIView *view = [UIView new];
+//    view.backgroundColor = [UIColor clearColor];
+//    [tableView setTableFooterView:view];
+
 }
 
 

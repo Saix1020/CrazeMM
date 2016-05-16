@@ -16,7 +16,11 @@
 #import "PayResultViewController.h"
 #import "HttpOrderStatus.h"
 #import "HttpAddress.h"
+#import "HttpPay.h"
+#import "PayInfoDTO.h"
 
+#import "OnlinePayViewController.h"
+#import "BuySlideDetailViewController.h"
 
 typedef NS_ENUM(NSInteger, MinePayRow){
     kAddrRow = 1,
@@ -44,11 +48,24 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 @property (nonatomic, copy) NSArray<OrderDetailDTO*>* orderDetailDtos;
 @property (nonatomic, readonly) BOOL needHiddenAddrCell;
 @property (nonatomic, copy) NSArray* addresses;
+@property (nonatomic, readonly) CGFloat totalPrice;
 
+@property (nonatomic, strong) PayInfoDTO* payInfoDto;
 @end
 
 
 @implementation PayViewController
+
+-(CGFloat)totalPrice
+{
+    CGFloat totalPrice;
+    for(OrderDetailDTO* dto in self.orderDetailDtos)
+    {
+        totalPrice += dto.quantity * dto.price;
+    }
+    
+    return totalPrice;
+}
 
 -(instancetype)initWithOrderStatusDTO:(OrderStatusDTO *)orderStatusDto
 {
@@ -141,38 +158,58 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         _confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             @strongify(self);
             
-            self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-            self.confirmModalView.presentAnimationStyle = fadeIn;
-            self.confirmModalView.dismissAnimationStyle = fadeOut ;
             
-            self.payAlertView.totalPriceLabel.text = [NSString stringWithFormat:@"%.02f", self.productDetailCell.totalPrice];
-
-            [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
-                
-                contentView.centerX = self.view.centerX;
-                contentView.centerY = self.view.centerY;
-                
-                
-                self.payAlertView.dismissButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-                    @strongify(self);
-                    [self.confirmModalView dismiss];
+            HttpPayInfoRequest* request = [[HttpPayInfoRequest alloc] initWithPayPrice:self.totalPrice];
+            [request request]
+            .then(^(id responseObj){
+                NSLog(@"%@", responseObj);
+                HttpPayInfoResponse* response = (HttpPayInfoResponse*)request.response;
+                if (response.ok) {
+                    self.payInfoDto = response.payInfoDto;
+                    self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+                    self.confirmModalView.presentAnimationStyle = fadeIn;
+                    self.confirmModalView.dismissAnimationStyle = fadeOut ;
                     
-                    return [RACSignal empty];
-                }];
+                    self.payAlertView.totalPriceLabel.text = [NSString stringWithFormat:@"%.02f", self.productDetailCell.totalPrice];
+                    self.payAlertView.orderNoLabel.text = self.payInfoDto.ORDERID;
+                    
+                    [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+                        
+                        contentView.centerX = self.view.centerX;
+                        contentView.centerY = self.view.centerY;
+                        
+                        
+                        self.payAlertView.dismissButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                            @strongify(self);
+                            [self.confirmModalView dismiss];
+                            
+                            return [RACSignal empty];
+                        }];
+                        
+                        self.payAlertView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                            @strongify(self);
+                            [self.confirmModalView dismiss];
+                            
+//                            PayResultViewController* payResultVC = [[PayResultViewController alloc] init];
+//                            
+//                            [self.navigationController pushViewController:payResultVC animated:YES];
+                            
+                            return [RACSignal empty];
+                        }];
+                        
+                        
+                    }];
+                }
+                else {
+                    [self showAlertViewWithMessage:response.errorMsg];
+                }
                 
-                self.payAlertView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-                    @strongify(self);
-                    [self.confirmModalView dismiss];
-                    
-                    PayResultViewController* payResultVC = [[PayResultViewController alloc] init];
-                    
-                    [self.navigationController pushViewController:payResultVC animated:YES];
-                    
-                    return [RACSignal empty];
-                }];
-
-                
-            }];
+            })
+            .catch(^(NSError* error){
+                [self showAlertViewWithMessage:error.localizedDescription];
+            });
+            
+            
             return [RACSignal empty];
         }];
     }
@@ -252,9 +289,16 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     if (!_payAlertView) {
         _payAlertView = [[[NSBundle mainBundle]loadNibNamed:@"PayAlertView" owner:nil options:nil] firstObject];
         _payAlertView.layer.cornerRadius = 6.f;
+        [_payAlertView.confirmButton addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _payAlertView;
+}
+
+-(void)pay
+{
+    OnlinePayViewController* vc = [[OnlinePayViewController alloc] initWithPayInfoDto:self.payInfoDto];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)viewDidLoad

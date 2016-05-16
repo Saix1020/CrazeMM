@@ -237,6 +237,9 @@
 		B98218F71CE84CEB00B279E6 /* HttpAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = B98218F61CE84CEB00B279E6 /* HttpAddress.m */; };
 		B98218FB1CE84D3400B279E6 /* AddressDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B98218FA1CE84D3400B279E6 /* AddressDTO.m */; };
 		B98218FE1CE855D500B279E6 /* HttpSearchKeyword.m in Sources */ = {isa = PBXBuildFile; fileRef = B98218FD1CE855D500B279E6 /* HttpSearchKeyword.m */; };
+		B98219021CE8697E00B279E6 /* HttpPay.m in Sources */ = {isa = PBXBuildFile; fileRef = B98219011CE8697E00B279E6 /* HttpPay.m */; };
+		B98219061CE873B500B279E6 /* PayInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B98219051CE873B500B279E6 /* PayInfoDTO.m */; };
+		B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98219081CE8A83000B279E6 /* OnlinePayViewController.m */; };
 		B98878861CC896BE00990AA4 /* product_debug.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878851CC896BE00990AA4 /* product_debug.png */; };
 		B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */; };
 		B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788F1CC8AD3800990AA4 /* LoginViewController.m */; };
@@ -830,6 +833,12 @@
 		B98218FA1CE84D3400B279E6 /* AddressDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressDTO.m; path = mine/pay/AddressDTO.m; sourceTree = "<group>"; };
 		B98218FC1CE855D500B279E6 /* HttpSearchKeyword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSearchKeyword.h; path = restful/HttpSearchKeyword.h; sourceTree = "<group>"; };
 		B98218FD1CE855D500B279E6 /* HttpSearchKeyword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSearchKeyword.m; path = restful/HttpSearchKeyword.m; sourceTree = "<group>"; };
+		B98219001CE8697E00B279E6 /* HttpPay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpPay.h; path = restful/HttpPay.h; sourceTree = "<group>"; };
+		B98219011CE8697E00B279E6 /* HttpPay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpPay.m; path = restful/HttpPay.m; sourceTree = "<group>"; };
+		B98219041CE873B500B279E6 /* PayInfoDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayInfoDTO.h; sourceTree = "<group>"; };
+		B98219051CE873B500B279E6 /* PayInfoDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayInfoDTO.m; sourceTree = "<group>"; };
+		B98219071CE8A83000B279E6 /* OnlinePayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnlinePayViewController.h; path = mine/pay/OnlinePayViewController.h; sourceTree = "<group>"; };
+		B98219081CE8A83000B279E6 /* OnlinePayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnlinePayViewController.m; path = mine/pay/OnlinePayViewController.m; sourceTree = "<group>"; };
 		B98878851CC896BE00990AA4 /* product_debug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = product_debug.png; path = Assets.xcassets/product_debug.imageset/product_debug.png; sourceTree = "<group>"; };
 		B988788B1CC8AB8B00990AA4 /* SuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestViewController.h; sourceTree = "<group>"; };
 		B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestViewController.m; sourceTree = "<group>"; };
@@ -1449,9 +1458,7 @@
 		B91732761CD2032600C29698 /* restful */ = {
 			isa = PBXGroup;
 			children = (
-				B91896FF1CD10EE00061D0B6 /* RestURL.h */,
-				B91732771CD2036300C29698 /* BaseHttpRequest.h */,
-				B91732781CD2036300C29698 /* BaseHttpRequest.m */,
+				B98218FF1CE8671100B279E6 /* common */,
 				B9156F3D1CDBA3D80041E535 /* mine */,
 				B9156F341CDA456F0041E535 /* search */,
 				B98218F41CE84CA600B279E6 /* pay */,
@@ -1841,6 +1848,8 @@
 				B918968F1CCE20DD0061D0B6 /* PayViewController.m */,
 				B91896D41CCFA0140061D0B6 /* PayResultViewController.h */,
 				B91896D51CCFA0140061D0B6 /* PayResultViewController.m */,
+				B98219071CE8A83000B279E6 /* OnlinePayViewController.h */,
+				B98219081CE8A83000B279E6 /* OnlinePayViewController.m */,
 			);
 			name = pay;
 			sourceTree = "<group>";
@@ -1917,10 +1926,9 @@
 			isa = PBXGroup;
 			children = (
 				B964F9091CC39670003E0D44 /* Assets.xcassets */,
-				B99194701CCC56BD0032A393 /* modal */,
 				B917315A1CD1EF9400C29698 /* third party */,
 				B91732761CD2032600C29698 /* restful */,
-				B91731541CD1C90600C29698 /* timer */,
+				B99194701CCC56BD0032A393 /* base modal */,
 				B988789C1CC90CAD00990AA4 /* sign */,
 				B98878871CC89FE600990AA4 /* login */,
 				B99D13141CC7A6E5000DFF95 /* product */,
@@ -2053,6 +2061,7 @@
 		B964F9641CC4AA49003E0D44 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				B91731541CD1C90600C29698 /* timer */,
 				B99194811CCCA8100032A393 /* Utils */,
 				B99D131D1CC7C81C000DFF95 /* controller */,
 				B99D12DE1CC61AAB000DFF95 /* view */,
@@ -2179,6 +2188,8 @@
 			children = (
 				B98218F51CE84CEB00B279E6 /* HttpAddress.h */,
 				B98218F61CE84CEB00B279E6 /* HttpAddress.m */,
+				B98219001CE8697E00B279E6 /* HttpPay.h */,
+				B98219011CE8697E00B279E6 /* HttpPay.m */,
 			);
 			name = pay;
 			sourceTree = "<group>";
@@ -2188,8 +2199,20 @@
 			children = (
 				B98218F91CE84D3400B279E6 /* AddressDTO.h */,
 				B98218FA1CE84D3400B279E6 /* AddressDTO.m */,
+				B98219041CE873B500B279E6 /* PayInfoDTO.h */,
+				B98219051CE873B500B279E6 /* PayInfoDTO.m */,
 			);
 			name = modal;
+			sourceTree = "<group>";
+		};
+		B98218FF1CE8671100B279E6 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				B91896FF1CD10EE00061D0B6 /* RestURL.h */,
+				B91732771CD2036300C29698 /* BaseHttpRequest.h */,
+				B91732781CD2036300C29698 /* BaseHttpRequest.m */,
+			);
+			name = common;
 			sourceTree = "<group>";
 		};
 		B98878871CC89FE600990AA4 /* login */ = {
@@ -2243,7 +2266,7 @@
 			name = view;
 			sourceTree = "<group>";
 		};
-		B99194701CCC56BD0032A393 /* modal */ = {
+		B99194701CCC56BD0032A393 /* base modal */ = {
 			isa = PBXGroup;
 			children = (
 				B91897091CD119D90061D0B6 /* BaseDTO.h */,
@@ -2253,7 +2276,7 @@
 				B95A94C91CE1EBF800A5D9BA /* BaseProductDetailDTO.h */,
 				B95A94CA1CE1EBF800A5D9BA /* BaseProductDetailDTO.m */,
 			);
-			name = modal;
+			name = "base modal";
 			sourceTree = "<group>";
 		};
 		B99194811CCCA8100032A393 /* Utils */ = {
@@ -2765,6 +2788,7 @@
 			files = (
 				B91732391CD1F05400C29698 /* FadeOutUpAnimation.m in Sources */,
 				B91732621CD1F05500C29698 /* ZoomOutUpAnimation.m in Sources */,
+				B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */,
 				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
 				B98218FB1CE84D3400B279E6 /* AddressDTO.m in Sources */,
 				B917323F1CD1F05400C29698 /* FlipOutYAnimation.m in Sources */,
@@ -2888,6 +2912,7 @@
 				B9B5BCEF1CDE00C40085E132 /* OrderDetailDTO.m in Sources */,
 				B917322D1CD1F05400C29698 /* FadeInLeftBigAnimation.m in Sources */,
 				B91896C51CCF38C10061D0B6 /* AddressEditViewController.m in Sources */,
+				B98219061CE873B500B279E6 /* PayInfoDTO.m in Sources */,
 				B91732351CD1F05400C29698 /* FadeOutLeftAnimation.m in Sources */,
 				B967E7361CE57EBD00621F28 /* MASConstraintMaker.m in Sources */,
 				B959247F1CDEBA9000533E77 /* SLRequest+AnyPromise.m in Sources */,
@@ -2944,6 +2969,7 @@
 				B98878A61CC98D6200990AA4 /* UIButton+Utils.m in Sources */,
 				B95924831CDEBA9000533E77 /* SCNetworkReachability+AnyPromise.m in Sources */,
 				B964F9631CC4A81A003E0D44 /* BuyListViewController.m in Sources */,
+				B98219021CE8697E00B279E6 /* HttpPay.m in Sources */,
 				B967E7421CE589B600621F28 /* OrderLogsCell.m in Sources */,
 				B91732601CD1F05500C29698 /* ZoomOutLeftAnimation.m in Sources */,
 				B91732731CD1F78900C29698 /* CATransform3DExtend.m in Sources */,
