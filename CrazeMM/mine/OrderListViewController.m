@@ -200,9 +200,11 @@
                         NSLog(@"我买的货->待付款->超时");
                     {
                         NSMutableArray* removeIds = [[NSMutableArray alloc] init];
+                        NSMutableArray* removeObjs = [[NSMutableArray alloc] init];
                         for (OrderDetailDTO* dto in self.dataSource) {
                             if (dto.selected) {
                                 [removeIds addObject:[NSString stringWithFormat:@"%ld", dto.id]];
+                                [removeObjs addObject:dto];
                             }
                         }
                         if (removeIds.count == 0) {
@@ -214,8 +216,11 @@
                         .then(^(id responseObj){
                             NSLog(@"%@", responseObj);
                             if (request.response.ok) {
-                                [self clearOrderList];
-                                [self getOrderList];
+//                                [self clearOrderList];
+//                                [self getOrderList];
+                                for (OrderDetailDTO* dto in removeObjs){
+                                    [self.dataSource removeObject:dto];
+                                }
                                 [self.tableView reloadData];
                             }
                             else {
@@ -341,6 +346,7 @@
 
     [self setOrderStyleWithSegmentIndex:0];
     [self.segmentCell setTitles:[self getSegmentTitels]];
+    [self getOrderList];
 
 }
 
@@ -359,10 +365,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.orderListPageNumber = 0;
+//    self.orderListPageNumber = 0;
     [self.tabBarController setTabBarHidden:YES animated:YES];
-    [self clearOrderList];
-    [self getOrderList];
 }
 
 -(void)clearOrderList
@@ -548,11 +552,8 @@
     if (segment.prevIndex == index) {
         return;
     }
-    self.orderListPageNumber = 0;
     [self setOrderStyleWithSegmentIndex:index];
-    [self.dataSource removeAllObjects];
-//    [self refreshTotalPriceLabel];
-    [self.tableView reloadData];
+    [self clearOrderList];
     [self getOrderList];
 }
 

@@ -238,6 +238,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
             return [RACSignal empty];
         }];
     }
+    else {
+        self.contentCell.canelButton.hidden = YES;
+    }
 
     
     [self.tableView reloadData];

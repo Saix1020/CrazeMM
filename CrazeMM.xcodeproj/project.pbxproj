@@ -285,7 +285,6 @@
 		B992C57E1CCA6BC300DC49E8 /* NoLoginHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B992C57C1CCA6BC300DC49E8 /* NoLoginHeadCell.xib */; };
 		B992C5811CCA6D5300DC49E8 /* MineNoLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B992C5801CCA6D5300DC49E8 /* MineNoLoginViewController.m */; };
 		B992C5841CCB70B500DC49E8 /* ProductSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B992C5831CCB70B500DC49E8 /* ProductSummaryCell.m */; };
-		B999551E1CE2257D007F26D2 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B99955211CE3078A007F26D2 /* HttpAddIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = B99955201CE3078A007F26D2 /* HttpAddIntention.m */; };
 		B99955241CE30AD8007F26D2 /* HttpSupplyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B99955231CE30AD8007F26D2 /* HttpSupplyOrder.m */; };
 		B99955291CE36F12007F26D2 /* HttpBuyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B99955281CE36F12007F26D2 /* HttpBuyRequest.m */; };
@@ -1057,7 +1056,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */,
-				B999551E1CE2257D007F26D2 /* Reveal.framework in Frameworks */,
 				31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

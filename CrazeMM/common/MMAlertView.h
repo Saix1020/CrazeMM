@@ -8,13 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMAlertView : UIView
-@property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UILabel *message;
-@property (weak, nonatomic) IBOutlet UILabel *detail;
-@property (weak, nonatomic) IBOutlet UIButton *cancel;
-
-@end
 
 @interface MMAlertViewWithOKAndCancel : UIView
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;

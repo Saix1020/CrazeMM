@@ -57,12 +57,26 @@
 //    [self.webView setScalesPageToFit:YES];
     self.webView.delegate = self;
     self.webView.frame = self.view.frame;
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"cancel" image] style:UIBarButtonItemStylePlain target:self action:@selector(payCancel:)];
+}
+
+-(void)payCancel:(id) sender
+{
+//    [self showAlertViewWithMessage:(NSString *)]
+    [self showAlertViewWithMessage:@"您确认要离开支付页面吗?"
+                    withOKCallback:^(id x){
+                        [self.navigationController popViewControllerAnimated:YES];
+                        
+                    }
+                 andCancelCallback:^(id x){
+                 }];
 }
 
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-//    self.webView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height + self.tabBarController.view.bounds.size.height);
+    self.webView.scrollView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated

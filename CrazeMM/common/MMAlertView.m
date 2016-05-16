@@ -8,13 +8,13 @@
 
 #import "MMAlertView.h"
 
-@implementation MMAlertView
+@implementation MMAlertViewWithOKAndCancel
 
 -(void)awakeFromNib
 {
-    self.title.adjustsFontSizeToFitWidth = YES;
-    self.message.adjustsFontSizeToFitWidth = YES;
-    self.detail.adjustsFontSizeToFitWidth = YES;
+//    self.title.adjustsFontSizeToFitWidth = YES;
+//    self.message.adjustsFontSizeToFitWidth = YES;
+//    self.detail.adjustsFontSizeToFitWidth = YES;
 }
 
 @end
