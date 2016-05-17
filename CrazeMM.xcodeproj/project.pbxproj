@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2E1462DC1CEAC7E7005166CB /* AddressEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1462DB1CEAC7E7005166CB /* AddressEditTableViewCell.m */; };
+		2E77F2431CEB6AB80077AD85 /* AddressLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E77F2421CEB6AB80077AD85 /* AddressLocationTableViewCell.m */; };
+		2E77F2471CEB6B580077AD85 /* AddressLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E77F2461CEB6B580077AD85 /* AddressLocationTableViewCell.xib */; };
 		2E9788CE1CE5FA7400F87C36 /* HttpOrderDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */; };
 		2EC3456A1CEAE2DE0069CB23 /* AddressEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC345691CEAE2DE0069CB23 /* AddressEditTableViewCell.xib */; };
 		2EC3456C1CEAF5690069CB23 /* AddressEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC3456B1CEAF5690069CB23 /* AddressEditViewController.xib */; };
@@ -415,6 +417,9 @@
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E1462DA1CEAC7E7005166CB /* AddressEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressEditTableViewCell.h; path = mine/address/AddressEditTableViewCell.h; sourceTree = "<group>"; };
 		2E1462DB1CEAC7E7005166CB /* AddressEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressEditTableViewCell.m; path = mine/address/AddressEditTableViewCell.m; sourceTree = "<group>"; };
+		2E77F2411CEB6AB80077AD85 /* AddressLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressLocationTableViewCell.h; path = mine/address/AddressLocationTableViewCell.h; sourceTree = "<group>"; };
+		2E77F2421CEB6AB80077AD85 /* AddressLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressLocationTableViewCell.m; path = mine/address/AddressLocationTableViewCell.m; sourceTree = "<group>"; };
+		2E77F2461CEB6B580077AD85 /* AddressLocationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddressLocationTableViewCell.xib; path = mine/address/AddressLocationTableViewCell.xib; sourceTree = "<group>"; };
 		2E9788CC1CE5FA7400F87C36 /* HttpOrderDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpOrderDelete.h; sourceTree = "<group>"; };
 		2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpOrderDelete.m; sourceTree = "<group>"; };
 		2EC345691CEAE2DE0069CB23 /* AddressEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressEditTableViewCell.xib; sourceTree = "<group>"; };
@@ -1097,6 +1102,9 @@
 		2E1462D91CEAC640005166CB /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				2E77F2411CEB6AB80077AD85 /* AddressLocationTableViewCell.h */,
+				2E77F2421CEB6AB80077AD85 /* AddressLocationTableViewCell.m */,
+				2E77F2461CEB6B580077AD85 /* AddressLocationTableViewCell.xib */,
 				2E1462DA1CEAC7E7005166CB /* AddressEditTableViewCell.h */,
 				2E1462DB1CEAC7E7005166CB /* AddressEditTableViewCell.m */,
 				2EC345691CEAE2DE0069CB23 /* AddressEditTableViewCell.xib */,
@@ -2747,6 +2755,7 @@
 				B91896CE1CCF97AE0061D0B6 /* PaySuccessProductCell.xib in Resources */,
 				B9AD44161CD39C8300012B31 /* NewWelcomeViewController.xib in Resources */,
 				B91896DB1CCFAFEC0061D0B6 /* TransferAlertView.xib in Resources */,
+				2E77F2471CEB6B580077AD85 /* AddressLocationTableViewCell.xib in Resources */,
 				B964F9511CC49DF2003E0D44 /* WelcomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2922,6 +2931,7 @@
 				B967E6EF1CE4B68A00621F28 /* AddrDTO.m in Sources */,
 				B91732521CD1F05400C29698 /* SlideOutDownAnimation.m in Sources */,
 				B91732121CD1F05400C29698 /* AnimationHelper.m in Sources */,
+				2E77F2431CEB6AB80077AD85 /* AddressLocationTableViewCell.m in Sources */,
 				B992C5711CCA1DD400DC49E8 /* MyInfoCell.m in Sources */,
 				B91732141CD1F05400C29698 /* BounceAnimation.m in Sources */,
 				B91732271CD1F05400C29698 /* BounceOutUpAnimation.m in Sources */,

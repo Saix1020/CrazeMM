@@ -11,7 +11,7 @@
 #import "BEMCheckBox.h" 
 #import "TPKeyboardAvoidingTableView.h"
 
-@interface AddressEditViewController : UIViewController<CityListDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface AddressEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CityListDelegate>
 @property (strong, nonatomic) IBOutlet TPKeyboardAvoidingTableView *addressEditTableView;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) NSArray *listData;

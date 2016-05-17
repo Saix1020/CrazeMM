@@ -8,6 +8,7 @@
 
 #import "AddressEditViewController.h"
 #import "AddressEditTableViewCell.h"
+#import "AddressLocationTableViewCell.h"
 
 
 @interface AddressEditViewController ()
@@ -37,19 +38,24 @@
     self.navigationItem.title = @"修改收货地址";
     
     
-    [self.addressEditTableView setSeparatorColor:[UIColor light_Gray_Color]];
-    [self.addressEditTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    //[self.addressEditTableView setSeparatorColor:[UIColor light_Gray_Color]];
+    //[self.addressEditTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     
     NSArray *array = [[NSArray alloc] initWithObjects:@"收货人", @"联系电话", @"所在地区", @"详细地址", @"邮政编码", @"设为默认值",  nil];
     self.listData = array;
     
-    /*
     
-    UINib *nib = [UINib nibWithNibName:@"AddressEditTableViewCell"
+    UINib *nib1 = [UINib nibWithNibName:@"AddressEditTableViewCell"
                                 bundle:nil];
-    [self.addressEditTableView registerNib:nib
+    [self.addressEditTableView registerNib:nib1
          forCellReuseIdentifier:@"AddressEditTableViewCell"];
-     */
+    
+    /*
+    UINib *nib2 = [UINib nibWithNibName:@"AddressLocationTableViewCell"
+                                bundle:nil];
+    [self.addressEditTableView registerNib:nib2
+                    forCellReuseIdentifier:@"AddressLocationTableViewCell"];
+    */
    
 
     
@@ -137,21 +143,52 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *TableSampleIdentifier = @"AddressEditTableViewCell";
-    AddressEditTableViewCell *cell;
-    cell = [tableView dequeueReusableCellWithIdentifier:TableSampleIdentifier
-            forIndexPath:indexPath];
-    
-    if (cell == nil) {
-        cell = [[AddressEditTableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:TableSampleIdentifier];
-    }
-    
     NSUInteger row = [indexPath row];
     NSLog(@"%@", [listData objectAtIndex:row]);
-    cell.AddressEditLabel.text = [listData objectAtIndex:row];
-    cell.InputTextField.placeholder = [listData objectAtIndex:row];
+    UITableViewCell *cell;
+    switch (row) {
+        case 0:
+        case 1:
+        case 3:
+        case 4:
+        case 5:
+        {
+            NSString *TableIdentifier = @"AddressEditTableViewCell";
+            
+            AddressEditTableViewCell *addressCell;
+            addressCell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier];
+            
+            if (addressCell == nil) {
+                addressCell = [[AddressEditTableViewCell alloc]
+                        initWithStyle:UITableViewCellStyleDefault
+                        reuseIdentifier:TableIdentifier];
+            }
+            
+            addressCell.AddressEditLabel.text = [listData objectAtIndex:row];
+            cell = addressCell;
+            break;
+        }
+        case 2:
+        {
+            NSString *TableIdentifier = @"AddressLocationTableViewCell";
+            
+            AddressLocationTableViewCell *locationCell;
+            locationCell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier];
+            
+            if (locationCell == nil) {
+                locationCell = [[[NSBundle mainBundle]loadNibNamed:TableIdentifier owner:nil options:nil] firstObject];
+
+            }
+            locationCell.locationLabel.text = [listData objectAtIndex:row];
+            cell = locationCell;
+        }
+            
+            
+        default:
+            break;
+    }
+    
+    //cell.InputTextField.placeholder = [listData objectAtIndex:row];
 
     return cell;
 }

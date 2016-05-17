@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -11,17 +11,17 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddressEditTableViewCell" id="APr-4d-Rve" customClass="AddressEditTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="APr-4d-Rve" id="K7n-mW-Unw">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="APr-4d-Rve" id="K7n-mW-Unw">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tbk-La-Qgh" userLabel="Input Text Field">
-                        <rect key="frame" x="75" y="18" width="237" height="7"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="83" y="18" width="229" height="7"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPd-mf-K3U">
-                        <rect key="frame" x="8" y="12" width="67" height="18"/>
+                        <rect key="frame" x="16" y="12" width="67" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="67" id="bgx-tn-Ize"/>
                         </constraints>
@@ -33,7 +33,7 @@
                 <constraints>
                     <constraint firstItem="tbk-La-Qgh" firstAttribute="baseline" secondItem="VPd-mf-K3U" secondAttribute="baseline" id="0B7-tD-Qf8"/>
                     <constraint firstAttribute="bottomMargin" secondItem="VPd-mf-K3U" secondAttribute="bottom" constant="5" id="7rU-99-aUS"/>
-                    <constraint firstItem="VPd-mf-K3U" firstAttribute="leading" secondItem="K7n-mW-Unw" secondAttribute="leadingMargin" id="BVn-uF-Y4s"/>
+                    <constraint firstItem="VPd-mf-K3U" firstAttribute="leading" secondItem="K7n-mW-Unw" secondAttribute="leadingMargin" constant="8" id="BVn-uF-Y4s"/>
                     <constraint firstItem="tbk-La-Qgh" firstAttribute="centerY" secondItem="K7n-mW-Unw" secondAttribute="centerY" id="GpM-se-Z6C"/>
                     <constraint firstItem="VPd-mf-K3U" firstAttribute="top" secondItem="K7n-mW-Unw" secondAttribute="topMargin" constant="4" id="h4b-wf-tVP"/>
                     <constraint firstItem="tbk-La-Qgh" firstAttribute="top" secondItem="K7n-mW-Unw" secondAttribute="topMargin" constant="10" id="lZ4-Ue-DCp"/>
