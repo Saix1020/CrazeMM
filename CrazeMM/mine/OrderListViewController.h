@@ -10,9 +10,10 @@
 #import "CustomSegment.h"
 #import "BEMCheckBox.h"
 #import "OrderDefine.h"
+#import "OrderDetailViewController.h"
 
 
-@interface OrderListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate, BEMCheckBoxDelegate>
+@interface OrderListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate, BEMCheckBoxDelegate, OrderDetailViewControllerDelegate>
 
 -(instancetype)initWithOrderType:(MMOrderType)orderType andSubType:(MMOrderSubType)subType;
 

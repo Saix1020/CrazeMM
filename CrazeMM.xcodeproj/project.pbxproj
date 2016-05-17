@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E1462DC1CEAC7E7005166CB /* AddressEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1462DB1CEAC7E7005166CB /* AddressEditTableViewCell.m */; };
+		2E9788CE1CE5FA7400F87C36 /* HttpOrderDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */; };
+		2EC3456A1CEAE2DE0069CB23 /* AddressEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC345691CEAE2DE0069CB23 /* AddressEditTableViewCell.xib */; };
+		2EC3456C1CEAF5690069CB23 /* AddressEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC3456B1CEAF5690069CB23 /* AddressEditViewController.xib */; };
 		31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
@@ -133,7 +137,6 @@
 		B91896B81CCF20240061D0B6 /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896B61CCF20240061D0B6 /* AddressListCell.xib */; };
 		B91896BB1CCF28170061D0B6 /* AddressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896BA1CCF28170061D0B6 /* AddressListViewController.m */; };
 		B91896C51CCF38C10061D0B6 /* AddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896C31CCF38C10061D0B6 /* AddressEditViewController.m */; };
-		B91896C61CCF38C10061D0B6 /* AddressEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896C41CCF38C10061D0B6 /* AddressEditViewController.xib */; };
 		B91896CD1CCF97AE0061D0B6 /* PaySuccessProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896CB1CCF97AE0061D0B6 /* PaySuccessProductCell.m */; };
 		B91896CE1CCF97AE0061D0B6 /* PaySuccessProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896CC1CCF97AE0061D0B6 /* PaySuccessProductCell.xib */; };
 		B91896D21CCF9E8B0061D0B6 /* PayResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896D01CCF9E8B0061D0B6 /* PayResultCell.m */; };
@@ -242,6 +245,7 @@
 		B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98219081CE8A83000B279E6 /* OnlinePayViewController.m */; };
 		B98219171CE9A48D00B279E6 /* HttpMineSupply.m in Sources */ = {isa = PBXBuildFile; fileRef = B98219161CE9A48C00B279E6 /* HttpMineSupply.m */; };
 		B982191B1CE9A63B00B279E6 /* MineSupplyProductDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B982191A1CE9A63B00B279E6 /* MineSupplyProductDTO.m */; };
+		B98219201CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m in Sources */ = {isa = PBXBuildFile; fileRef = B982191F1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m */; };
 		B98878861CC896BE00990AA4 /* product_debug.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878851CC896BE00990AA4 /* product_debug.png */; };
 		B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */; };
 		B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788F1CC8AD3800990AA4 /* LoginViewController.m */; };
@@ -409,6 +413,12 @@
 
 /* Begin PBXFileReference section */
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E1462DA1CEAC7E7005166CB /* AddressEditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressEditTableViewCell.h; path = mine/address/AddressEditTableViewCell.h; sourceTree = "<group>"; };
+		2E1462DB1CEAC7E7005166CB /* AddressEditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressEditTableViewCell.m; path = mine/address/AddressEditTableViewCell.m; sourceTree = "<group>"; };
+		2E9788CC1CE5FA7400F87C36 /* HttpOrderDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpOrderDelete.h; sourceTree = "<group>"; };
+		2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpOrderDelete.m; sourceTree = "<group>"; };
+		2EC345691CEAE2DE0069CB23 /* AddressEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressEditTableViewCell.xib; sourceTree = "<group>"; };
+		2EC3456B1CEAF5690069CB23 /* AddressEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressEditViewController.xib; sourceTree = "<group>"; };
 		4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.debug.xcconfig"; sourceTree = "<group>"; };
 		B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.release.xcconfig"; sourceTree = "<group>"; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
@@ -650,7 +660,6 @@
 		B91896BA1CCF28170061D0B6 /* AddressListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressListViewController.m; path = mine/address/AddressListViewController.m; sourceTree = "<group>"; };
 		B91896C21CCF38C10061D0B6 /* AddressEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressEditViewController.h; path = mine/address/AddressEditViewController.h; sourceTree = "<group>"; };
 		B91896C31CCF38C10061D0B6 /* AddressEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressEditViewController.m; path = mine/address/AddressEditViewController.m; sourceTree = "<group>"; };
-		B91896C41CCF38C10061D0B6 /* AddressEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddressEditViewController.xib; path = mine/address/AddressEditViewController.xib; sourceTree = "<group>"; };
 		B91896CA1CCF97AE0061D0B6 /* PaySuccessProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaySuccessProductCell.h; path = mine/pay/PaySuccessProductCell.h; sourceTree = "<group>"; };
 		B91896CB1CCF97AE0061D0B6 /* PaySuccessProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaySuccessProductCell.m; path = mine/pay/PaySuccessProductCell.m; sourceTree = "<group>"; };
 		B91896CC1CCF97AE0061D0B6 /* PaySuccessProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PaySuccessProductCell.xib; path = mine/pay/PaySuccessProductCell.xib; sourceTree = "<group>"; };
@@ -844,6 +853,8 @@
 		B98219161CE9A48C00B279E6 /* HttpMineSupply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMineSupply.m; path = restful/HttpMineSupply.m; sourceTree = "<group>"; };
 		B98219191CE9A63B00B279E6 /* MineSupplyProductDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineSupplyProductDTO.h; path = mine/supply/MineSupplyProductDTO.h; sourceTree = "<group>"; };
 		B982191A1CE9A63B00B279E6 /* MineSupplyProductDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineSupplyProductDTO.m; path = mine/supply/MineSupplyProductDTO.m; sourceTree = "<group>"; };
+		B982191E1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpMineSupplyUnshelve.h; path = mine/supply/HttpMineSupplyUnshelve.h; sourceTree = "<group>"; };
+		B982191F1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMineSupplyUnshelve.m; path = mine/supply/HttpMineSupplyUnshelve.m; sourceTree = "<group>"; };
 		B98878851CC896BE00990AA4 /* product_debug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = product_debug.png; path = Assets.xcassets/product_debug.imageset/product_debug.png; sourceTree = "<group>"; };
 		B988788B1CC8AB8B00990AA4 /* SuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestViewController.h; sourceTree = "<group>"; };
 		B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestViewController.m; sourceTree = "<group>"; };
@@ -1083,6 +1094,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E1462D91CEAC640005166CB /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				2E1462DA1CEAC7E7005166CB /* AddressEditTableViewCell.h */,
+				2E1462DB1CEAC7E7005166CB /* AddressEditTableViewCell.m */,
+				2EC345691CEAE2DE0069CB23 /* AddressEditTableViewCell.xib */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
 		8B36CB4D54E72C4D41168BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,8 +1145,8 @@
 		B9156F3D1CDBA3D80041E535 /* mine */ = {
 			isa = PBXGroup;
 			children = (
-				B98219141CE9A43200B279E6 /* supply */,
 				B9B5BCE71CDDBE460085E132 /* order */,
+				B98219141CE9A43200B279E6 /* supply */,
 			);
 			name = mine;
 			sourceTree = "<group>";
@@ -1541,12 +1562,13 @@
 		B91896AE1CCF1FCB0061D0B6 /* address */ = {
 			isa = PBXGroup;
 			children = (
+				2E1462D91CEAC640005166CB /* TableViewCell */,
 				B91896BC1CCF31320061D0B6 /* view */,
 				B91896B91CCF28170061D0B6 /* AddressListViewController.h */,
 				B91896BA1CCF28170061D0B6 /* AddressListViewController.m */,
 				B91896C21CCF38C10061D0B6 /* AddressEditViewController.h */,
 				B91896C31CCF38C10061D0B6 /* AddressEditViewController.m */,
-				B91896C41CCF38C10061D0B6 /* AddressEditViewController.xib */,
+				2EC3456B1CEAF5690069CB23 /* AddressEditViewController.xib */,
 			);
 			name = address;
 			sourceTree = "<group>";
@@ -2226,6 +2248,8 @@
 			children = (
 				B98219151CE9A48C00B279E6 /* HttpMineSupply.h */,
 				B98219161CE9A48C00B279E6 /* HttpMineSupply.m */,
+				B982191E1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.h */,
+				B982191F1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m */,
 			);
 			name = supply;
 			sourceTree = "<group>";
@@ -2476,6 +2500,8 @@
 			children = (
 				B9B5BCE81CDDBE670085E132 /* HttpOrder.h */,
 				B9B5BCE91CDDBE670085E132 /* HttpOrder.m */,
+				2E9788CC1CE5FA7400F87C36 /* HttpOrderDelete.h */,
+				2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */,
 				B9156F3F1CDBA41D0041E535 /* HttpOrderSummary.h */,
 				B9156F401CDBA41D0041E535 /* HttpOrderSummary.m */,
 				B967E6E61CE4B4EB00621F28 /* HttpOrderStatus.h */,
@@ -2680,6 +2706,7 @@
 				B918968D1CCE1D8E0061D0B6 /* FirstAddrCell.xib in Resources */,
 				B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */,
 				B95A94AB1CE0C19900A5D9BA /* CitySelectTableViewController.xib in Resources */,
+				2EC3456C1CEAF5690069CB23 /* AddressEditViewController.xib in Resources */,
 				B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */,
 				B99194941CCCF6020032A393 /* ProductFlageView.xib in Resources */,
 				B98878CB1CC9CC3800990AA4 /* OrderStatusCell.xib in Resources */,
@@ -2701,7 +2728,6 @@
 				B91896A01CCE66710061D0B6 /* ProductWithNumberView.xib in Resources */,
 				B98878C31CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png in Resources */,
 				B99D13191CC7AAB2000DFF95 /* fontawesome-webfont.ttf in Resources */,
-				B91896C61CCF38C10061D0B6 /* AddressEditViewController.xib in Resources */,
 				B9A780421CD9E32E00A89047 /* ProductRecommendView.xib in Resources */,
 				B964F98B1CC50344003E0D44 /* slide-3.jpg in Resources */,
 				B99194801CCCA26C0032A393 /* CommonBottomView.xib in Resources */,
@@ -2714,6 +2740,7 @@
 				B95A94A51CE0C19900A5D9BA /* citydict.plist in Resources */,
 				B99D12F91CC66EB9000DFF95 /* KeyWordsCell.xib in Resources */,
 				B991945A1CCBAEFD0032A393 /* BuyProductView.xib in Resources */,
+				2EC3456A1CEAE2DE0069CB23 /* AddressEditTableViewCell.xib in Resources */,
 				B99D13031CC66EFB000DFF95 /* ClearHistoryCell.xib in Resources */,
 				B98878A31CC9100400990AA4 /* sign_background.png in Resources */,
 				B91896EC1CD07AD50061D0B6 /* SupplyListCell.xib in Resources */,
@@ -2877,6 +2904,7 @@
 				B9A780321CD99FF800A89047 /* MMAlertViewWithOK.m in Sources */,
 				B91896F31CD0EEC00061D0B6 /* AccountViewController.m in Sources */,
 				B99955411CE3835A007F26D2 /* OrderDetailStatusCell.m in Sources */,
+				B98219201CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m in Sources */,
 				B917324E1CD1F05400C29698 /* SlideInLeftAnimation.m in Sources */,
 				B991949B1CCCF7AA0032A393 /* BrowserDealView.m in Sources */,
 				B91732471CD1F05400C29698 /* RotateOutAnimation.m in Sources */,
@@ -2983,6 +3011,7 @@
 				B9156F441CDC5DD90041E535 /* UIImage+Utils.m in Sources */,
 				B91732301CD1F05400C29698 /* FadeInUpAnimation.m in Sources */,
 				B9FE71F51CD71D0C00F5EC9F /* ProductListCell.m in Sources */,
+				2E1462DC1CEAC7E7005166CB /* AddressEditTableViewCell.m in Sources */,
 				B95924891CDEBA9000533E77 /* UIView+AnyPromise.m in Sources */,
 				B99194981CCCF70B0032A393 /* ProductFlageView.m in Sources */,
 				B99D12FD1CC66ED3000DFF95 /* SearchHistoryCell.m in Sources */,
@@ -3063,6 +3092,7 @@
 				B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */,
 				B91896B21CCF20010061D0B6 /* SelectdAddrCell.m in Sources */,
 				B91732371CD1F05400C29698 /* FadeOutRightAnimation.m in Sources */,
+				2E9788CE1CE5FA7400F87C36 /* HttpOrderDelete.m in Sources */,
 				B967E73A1CE57EBD00621F28 /* NSArray+MASAdditions.m in Sources */,
 				B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */,
 				B91731531CD1A30100C29698 /* NSDateComponents+Utils.m in Sources */,

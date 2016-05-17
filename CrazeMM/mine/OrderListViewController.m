@@ -367,6 +367,8 @@
     [super viewWillAppear:animated];
 //    self.orderListPageNumber = 0;
     [self.tabBarController setTabBarHidden:YES animated:YES];
+//    [self clearOrderList];
+//    [self getOrderList];
 }
 
 -(void)clearOrderList
@@ -542,6 +544,7 @@
     style.orderState = self.orderState;
     
     OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:style andOrder:self.dataSource[indexPath.row]];
+    orderDetailVC.delegate = self;
     [self.navigationController pushViewController:orderDetailVC animated:YES];
 }
 
@@ -674,5 +677,22 @@
     
 }
 
+
+#pragma -- make OrderDetailViewController delegate
+-(void)removeOrder:(OrderDetailDTO *)orderDto
+{
+    if(self.dataSource){
+        [self.dataSource removeObject:orderDto];
+        [self.tableView reloadData];
+    }
+}
+
+-(void)cancelOrder:(OrderDetailDTO *)orderDto
+{
+    if(self.dataSource){
+        [self.dataSource removeObject:orderDto];
+        [self.tableView reloadData];
+    }
+}
 
 @end

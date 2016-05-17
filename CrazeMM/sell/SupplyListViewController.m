@@ -90,12 +90,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     SupplyProductDTO* dto = self.dataSource[indexPath.row];
-    HttpAddViewRequest* request = [[HttpAddViewRequest alloc] initWithSid:dto.id];
-    [request request]
-    .then(^(id responseObj){
-    })
-    .catch(^(NSError* error){
-    });
+    [HttpAddViewRequest addView:dto.id andType:kTypeSupply];
     
     SupplyProductViewController* vc = [[SupplyProductViewController alloc] initWithProductDTO:dto];
     [self.navigationController pushViewController:vc animated:YES];

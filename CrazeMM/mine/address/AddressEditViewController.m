@@ -7,20 +7,53 @@
 //
 
 #import "AddressEditViewController.h"
+#import "AddressEditTableViewCell.h"
 
 
 @interface AddressEditViewController ()
+/*
 @property (weak, nonatomic) IBOutlet UIView *lastLine;
+ */
 
 @end
 
 @implementation AddressEditViewController
+
+@synthesize listData;
+
+/*
+- (id)init
+{
+    self = [super initWithNibName:@"AddressEditViewController" bundle:nil];
+    if (self) {
+    }
+    return self;
+}
+ */
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"修改收货地址";
     
+    
+    [self.addressEditTableView setSeparatorColor:[UIColor light_Gray_Color]];
+    [self.addressEditTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    
+    NSArray *array = [[NSArray alloc] initWithObjects:@"收货人", @"联系电话", @"所在地区", @"详细地址", @"邮政编码", @"设为默认值",  nil];
+    self.listData = array;
+    
+    /*
+    
+    UINib *nib = [UINib nibWithNibName:@"AddressEditTableViewCell"
+                                bundle:nil];
+    [self.addressEditTableView registerNib:nib
+         forCellReuseIdentifier:@"AddressEditTableViewCell"];
+     */
+   
+
+    
+    /*
     // Do any additional setup after loading the view from its nib.
     self.lastLine.backgroundColor = [UIColor clearColor];
     self.lastLine.layer.borderColor = [UIColor light_Gray_Color].CGColor;
@@ -32,6 +65,7 @@
     [self.locationButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
     
     self.defaultCheckBox.boxType = BEMBoxTypeSquare;
+     */
     
     self.saveButton.backgroundColor = [UIColor light_Gray_Color];
 //    self.saveButton
@@ -42,6 +76,7 @@
         return [RACSignal empty];
     }];
     
+    /*
     self.locationButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
         @strongify(self);
         CityListViewController* vc = [[CityListViewController alloc] init];
@@ -50,6 +85,7 @@
         
         return [RACSignal empty];
     }];
+     */
     
 //    UITableView* tableView = (UITableView*)self.view;
 //    UIView *view = [UIView new];
@@ -77,9 +113,55 @@
 */
 
 #pragma -- City list vc delegate
+
 - (void)didSelectCityWithName:(NSString *)cityName
 {
-    self.cityLabel.text = cityName;
+    //self.cityLabel.text = cityName;
 }
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+{
+    return [self.listData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *TableSampleIdentifier = @"AddressEditTableViewCell";
+    AddressEditTableViewCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:TableSampleIdentifier
+            forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        cell = [[AddressEditTableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:TableSampleIdentifier];
+    }
+    
+    NSUInteger row = [indexPath row];
+    NSLog(@"%@", [listData objectAtIndex:row]);
+    cell.AddressEditLabel.text = [listData objectAtIndex:row];
+    cell.InputTextField.placeholder = [listData objectAtIndex:row];
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+    
 
 @end

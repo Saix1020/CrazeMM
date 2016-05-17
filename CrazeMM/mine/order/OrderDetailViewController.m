@@ -222,7 +222,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
             .then(^(id responseObj){
                 NSLog(@"%@", responseObj);
                 if (request.response.ok) {
-                    
+                    if ([self.delegate respondsToSelector:@selector(removeOrder:)]){
+                        [self.delegate cancelOrder:self.orderDto];
+                    }
                 }
                 else {
                     [self showAlertViewWithMessage:request.response.errorMsg];
@@ -341,6 +343,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                         .then(^(id responseObj){
                             NSLog(@"%@", responseObj);
                             if (request.response.ok) {
+                                if ([self.delegate respondsToSelector:@selector(removeOrder:)]){
+                                    [self.delegate removeOrder:self.orderDto];
+                                }
                             }
                             else {
                                 [self showAlertViewWithMessage:request.response.errorMsg];

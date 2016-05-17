@@ -538,12 +538,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BuyProductDTO* dto = self.dataSource[indexPath.row];
-    HttpAddViewRequest* request = [[HttpAddViewRequest alloc] initWithSid:dto.id];
-    [request request]
-    .then(^(id responseObj){
-    })
-    .catch(^(NSError* error){
-    });
+    [HttpAddViewRequest addView:dto.id andType:kTypeBuy];
     BuyProductViewController* vc = [[BuyProductViewController alloc] initWithProductDTO:dto];
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

@@ -59,15 +59,8 @@
         self.supplyButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
             
             @strongify(self);
-            
-            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
-            [request request]
-            .then(^(id responseObject){
-                
-            })
-            .catch(^(NSError* error){
-                
-            });
+
+            [HttpAddIntentionRequest addIntention:self.productDetailDto.id andType:kTypeBuy];
             if ([UserCenter defaultCenter].isLogined) {
                 self.modalView.presentAnimationStyle = SlideInUp;
                 self.modalView.dismissAnimationStyle = SlideOutDown;
