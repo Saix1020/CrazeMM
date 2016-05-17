@@ -218,7 +218,7 @@
         self.modalView.presentAnimationStyle = SlideInUp;
         self.modalView.dismissAnimationStyle = SlideOutDown;
         self.modalView.contentView = self.mockShareView;
-        self.modalView.isCancelAble = YES;
+        self.modalView.isCancelAble = NO;
         [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
             contentView.height = 220.f;
             contentView.x = 0;

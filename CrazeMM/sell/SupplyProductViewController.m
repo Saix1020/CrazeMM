@@ -153,7 +153,7 @@
                 self.modalView.presentAnimationStyle = SlideInUp;
                 self.modalView.dismissAnimationStyle = SlideOutDown;
                 self.modalView.contentView = self.buyProductView;
-                self.modalView.isCancelAble = YES;
+                self.modalView.isCancelAble = NO;
                 [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
                     @strongify(self);
                     BuyProductView* buyProductView = (BuyProductView*)contentView;
@@ -193,7 +193,7 @@
                 self.modalView.presentAnimationStyle = SlideInUp;
                 self.modalView.dismissAnimationStyle = SlideOutDown;
                 self.modalView.contentView = self.orderProductView;
-                self.modalView.isCancelAble = YES;
+                self.modalView.isCancelAble = NO;
                 [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
                     @strongify(self);
                     BuyProductView* orderProductView = (BuyProductView*)contentView;

@@ -89,11 +89,11 @@
         {
             switch (self.subType) {
                 case kOrderSubTypeSend:
-                    return @[@"待发货", @"已发货"];
+                    return @[@"待支付", @"待发货", @"已发货"];
                     
                     break;
                 case kOrderSubTypeConfirmed:
-                    return @[@"待确认", @"已确认"];
+                    return @[@"待结款", @"待确认", @"完成"];
                     
                     break;
                     
@@ -116,13 +116,6 @@
 ;
         [self.view addSubview:_commonBottomView];
         [_commonBottomView.confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
-//        _payBottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-////            MinePayViewController* payVC = [MinePayViewController new];
-////            [self.navigationController pushViewController:payVC animated:YES];
-//            return [RACSignal empty];
-//        }];
-        
         _commonBottomView.selectAllCheckBox.delegate = self;
     }
     
@@ -159,11 +152,12 @@
         }
         else {
             if (subType == kOrderSubTypeSend) {
-                self.orderState = TOBESENT;
+                //self.orderState = TOBESENT;
+                self.orderState = WAITFORPAY;
             }
             else if(subType == kOrderSubTypeConfirmed)
             {
-                self.orderState = TOBECONFIRMED;
+                self.orderState = TOBESETTLED;
             }
         }
     }
@@ -261,9 +255,12 @@
             case kOrderSubTypeSend:
                 switch (segmentIndex) {
                     case 0:
-                        NSLog(@"我卖的货->待发货->发货");
+                        NSLog(@"我卖的货->待发货->待付款");
                         break;
                     case 1:
+                        NSLog(@"我卖的货->待发货->发货");
+                        break;
+                    case 2:
                         NSLog(@"我卖的货->待发货->已发货");
                         break;
                     default:
@@ -273,10 +270,13 @@
             case kOrderSubTypeConfirmed:
                 switch (segmentIndex) {
                     case 0:
-                        NSLog(@"我卖的货->待确认->确认");
+                        NSLog(@"我卖的货->待确认->待结款");
                         break;
                     case 1:
-                        NSLog(@"我卖的货->待确认->已确认");
+                        NSLog(@"我卖的货->待确认->待确认");
+                        break;
+                    case 2:
+                        NSLog(@"我卖的货->待确认->完成");
                         break;
                     default:
                         break;
@@ -456,10 +456,13 @@
     else if (self.orderType == kOrderTypeSupply){
         if (self.subType == kOrderSubTypeSend) {
             switch (index) {
-                case 0: // 待发货
+                case 0: // 待付款
+                    style.orderState = WAITFORPAY;
+                    break;
+                case 1: // 待发货
                     style.orderState = TOBESENT;
                     break;
-                case 1: // 已发货
+                case 2: // 已发货
                     style.orderState = SENTCOMPLETE;
                     break;
                 default:
@@ -468,10 +471,13 @@
         }
         else if(self.subType == kOrderSubTypeConfirmed){
             switch (index) {
-                case 0: //待确认
+                case 0: //待结款
+                    style.orderState = TOBESETTLED;
+                    break;
+                case 1: //待确认
                     style.orderState = TOBECONFIRMED;
                     break;
-                case 1: //已确认
+                case 2: //已确认
                     style.orderState = CONFIRMEDCOMPLETE;
                     break;
                 default:
@@ -538,12 +544,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    MMOrderListStyle style;
-    style.orderType = self.orderType;
-    style.orderSubType = self.subType;
-    style.orderState = self.orderState;
+//    MMOrderListStyle style;
+//    style.orderType = self.orderType;
+//    style.orderSubType = self.subType;
+//    style.orderState = self.orderState;
     
-    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:style andOrder:self.dataSource[indexPath.row]];
+    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]];
     orderDetailVC.delegate = self;
     [self.navigationController pushViewController:orderDetailVC animated:YES];
 }

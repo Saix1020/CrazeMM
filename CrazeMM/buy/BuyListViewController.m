@@ -57,7 +57,7 @@
 {
     if (!_productRecommendAlertView) {
         _productRecommendAlertView = [[TTModalView alloc] initWithContentView:nil delegate:nil];
-        _productRecommendAlertView.isCancelAble = YES;
+        _productRecommendAlertView.isCancelAble = NO;
         _productRecommendAlertView.modalWindowLevel = UIWindowLevelNormal;
         
         ProductRecommendView *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"ProductRecommendView" owner:nil options:nil] lastObject];

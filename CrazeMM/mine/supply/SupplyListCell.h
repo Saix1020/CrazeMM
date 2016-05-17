@@ -13,8 +13,16 @@
 typedef NS_ENUM(NSInteger, SupplyListCellStyle){
     kNomalStyle = 0,
     kOffShelfStyle,
-    kDealStyle
+    kDealStyle,
+    kUnkonwStyle
 };
+
+@protocol SupplyListCellDelegate <NSObject>
+
+-(void)buttonClicked:(UIButton*)sender andType:(SupplyListCellStyle)type andSid:(NSInteger)sid;
+//-(void)shareButtonClick
+
+@end
 
 @interface SupplyListCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectCheckBox;
@@ -29,6 +37,8 @@ typedef NS_ENUM(NSInteger, SupplyListCellStyle){
 @property (nonatomic) SupplyListCellStyle style;
 
 @property (nonatomic, strong) MineSupplyProductDTO* mineSupplyProductDto;
+
+@property (nonatomic, weak) id<SupplyListCellDelegate> delegate;
 
 +(CGFloat)cellHeight;
 

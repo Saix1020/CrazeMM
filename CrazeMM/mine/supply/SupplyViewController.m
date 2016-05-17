@@ -12,7 +12,7 @@
 #import "SupplyListCell.h"
 #import "HttpMineSupply.h"
 #import "MineSupplyProductDTO.h"
-#import "HttpMineSupplyUnshelve.h"
+#import "HttpMineSupplyShelve.h"
 //#import <objc/runtime.h>
 
 @interface SupplyViewController ()
@@ -28,6 +28,8 @@
 
 @property (nonatomic) NSInteger pageNumber;
 @property (nonatomic) NSInteger totalPage;
+
+@property (nonatomic) BOOL isShelving;
 
 @end
 
@@ -51,14 +53,7 @@
         _bottomView = [super bottomView];
         [_bottomView.confirmButton setTitle:@"下架" forState:UIControlStateNormal];
         [_bottomView.totalPriceLabel setText:@""];
-//        [self.view addSubview:_bottomView];
-//        _bottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-//            
-//        
-//            
-//            
-//            return [RACSignal empty];
-//        }];
+
     }
     
     return _bottomView;
@@ -83,7 +78,7 @@
         }];
     }
     
-    
+    self.isShelving = NO;
     self.pageNumber = 0;
     [self getMineSupply];
 }
@@ -106,6 +101,7 @@
                 [self unshelveProducts];
                 break;
             case kOffShelfStyle:
+                [self reshelveProducts];
                 break;
             case kDealStyle:
                 break;
@@ -116,8 +112,92 @@
     
 }
 
+-(void)reshelveProducts
+{
+    if (self.isShelving) {
+        [self showAlertViewWithMessage:@"你还不能上架该供货"];
+        return;
+    }
+    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+    NSMutableArray* selectedIds = [[NSMutableArray alloc] init];
+    
+    for (MineSupplyProductDTO* dto in self.dataSource) {
+        if (dto.selected) {
+            [selectedDtos addObject:dto];
+            [selectedIds addObject:@(dto.id)];
+        }
+    }
+    
+    HttpMineSupplyReshelveRequest *request = [[HttpMineSupplyReshelveRequest alloc] initWithIds:selectedIds];
+    self.isShelving = YES;
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            for (MineSupplyProductDTO* dto in selectedDtos) {
+                [self.dataSource removeObject:dto];
+            }
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        self.isShelving = NO;
+    });
+}
+
+-(void)reshelveProductsWithSid:(NSInteger)sid
+{
+    if (self.isShelving) {
+        [self showAlertViewWithMessage:@"你还不能上架该供货"];
+        return;
+    }
+    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+    NSArray* selectedIds = @[@(sid)];
+    
+    for (MineSupplyProductDTO* dto in self.dataSource) {
+        if (sid == dto.id) {
+            [selectedDtos addObject:dto];
+            break;
+        }
+    }
+    
+    HttpMineSupplyReshelveRequest *request = [[HttpMineSupplyReshelveRequest alloc] initWithIds:selectedIds];
+    self.isShelving = YES;
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            for (MineSupplyProductDTO* dto in selectedDtos) {
+                [self.dataSource removeObject:dto];
+            }
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        self.isShelving = NO;
+    });
+}
+
 -(void)unshelveProducts
 {
+    if (self.isShelving) {
+        [self showAlertViewWithMessage:@"你还不能下架该供货"];
+        return;
+    }
+
+    
     NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
     NSMutableArray* selectedIds = [[NSMutableArray alloc] init];
     
@@ -145,6 +225,49 @@
     })
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        self.isShelving = NO;
+    });
+}
+-(void)unshelveProductsWithSid:(NSInteger)sid
+{
+    if (self.isShelving) {
+        [self showAlertViewWithMessage:@"你还不能下架该供货"];
+        return;
+    }
+    
+    
+    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+    NSArray* selectedIds = @[@(sid)];
+    
+    for (MineSupplyProductDTO* dto in self.dataSource) {
+        if (sid == dto.id) {
+            [selectedDtos addObject:dto];
+            break;
+        }
+    }
+    
+    HttpMineSupplyUnshelveRequest *request = [[HttpMineSupplyUnshelveRequest alloc] initWithIds:selectedIds];
+    
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            for (MineSupplyProductDTO* dto in selectedDtos) {
+                [self.dataSource removeObject:dto];
+            }
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        self.isShelving = NO;
     });
 }
 
@@ -159,19 +282,6 @@
 {
     
     NSInteger num = self.dataSource.count;
-//    switch (self.cellStyle) {
-//        case kNomalStyle:
-//            num = self.nomalDataSource.count;
-//            break;
-//        case kOffShelfStyle:
-//            num = self.offShelfDataSource.count;
-//            break;
-//        case kDealStyle:
-//            num = self.dealDataSource.count;
-//            break;
-//        default:
-//            break;
-//    }
     return num*2;
 }
 
@@ -197,20 +307,7 @@
         ((SupplyListCell*)cell).mineSupplyProductDto = self.dataSource[indexPath.row/2];
         ((SupplyListCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
         ((SupplyListCell*)cell).selectCheckBox.delegate = self;
-//        switch (self.cellStyle) {
-//            case kNomalStyle:
-//                ((SupplyListCell*)cell).mineSupplyProductDto = self.nomalDataSource[indexPath.row/2];
-//                break;
-//            case kOffShelfStyle:
-//                ((SupplyListCell*)cell).mineSupplyProductDto = self.offShelfDataSource[indexPath.row/2];
-//                break;
-//            case kDealStyle:
-//                ((SupplyListCell*)cell).mineSupplyProductDto = self.dealDataSource[indexPath.row/2];
-//                break;
-//            default:
-//                break;
-//        }
-        
+        ((SupplyListCell*)cell).delegate = self;
 
     }
     
@@ -267,6 +364,9 @@
             self.totalPage = response.totalPage;
             self.pageNumber = response.pageNumber>=self.totalPage?self.totalPage:response.pageNumber;
             [self.tableView reloadData];
+            if (response.productDTOs.count>0) {
+                self.bottomView.selectAllCheckBox.on = NO;
+            }
         }
         else{
             [self showAlertViewWithMessage:response.errorMsg];
@@ -331,6 +431,23 @@
         [self.tableView reloadData];
     }
 
+}
+
+#pragma -- mark SupplyListCell delegate
+-(void)buttonClicked:(UIButton *)sender andType:(SupplyListCellStyle)type andSid:(NSInteger)sid
+{
+    switch (type) {
+        case kNomalStyle: //unshelve
+            [self unshelveProductsWithSid:sid];
+            break;
+        case kOffShelfStyle: //reshelve
+            [self reshelveProductsWithSid:sid];
+            break;
+            
+        case kUnkonwStyle: //share
+        default:
+            break;
+    }
 }
 
 @end
