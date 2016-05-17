@@ -133,7 +133,6 @@
 		B91896B81CCF20240061D0B6 /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896B61CCF20240061D0B6 /* AddressListCell.xib */; };
 		B91896BB1CCF28170061D0B6 /* AddressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896BA1CCF28170061D0B6 /* AddressListViewController.m */; };
 		B91896C51CCF38C10061D0B6 /* AddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896C31CCF38C10061D0B6 /* AddressEditViewController.m */; };
-		B91896C61CCF38C10061D0B6 /* AddressEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896C41CCF38C10061D0B6 /* AddressEditViewController.xib */; };
 		B91896CD1CCF97AE0061D0B6 /* PaySuccessProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896CB1CCF97AE0061D0B6 /* PaySuccessProductCell.m */; };
 		B91896CE1CCF97AE0061D0B6 /* PaySuccessProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896CC1CCF97AE0061D0B6 /* PaySuccessProductCell.xib */; };
 		B91896D21CCF9E8B0061D0B6 /* PayResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896D01CCF9E8B0061D0B6 /* PayResultCell.m */; };
@@ -380,6 +379,12 @@
 		B9B5BCEA1CDDBE670085E132 /* HttpOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE91CDDBE670085E132 /* HttpOrder.m */; };
 		B9B5BCEF1CDE00C40085E132 /* OrderDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCEE1CDE00C40085E132 /* OrderDetailDTO.m */; };
 		B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
+		B9BBEEC51CEB4C5900275416 /* AddrCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */; };
+		B9BBEEC61CEB4C5900275416 /* AddrCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */; };
+		B9BBEECA1CEB4DDE00275416 /* AddrRegionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEEC81CEB4DDE00275416 /* AddrRegionCell.m */; };
+		B9BBEECB1CEB4DDE00275416 /* AddrRegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEEC91CEB4DDE00275416 /* AddrRegionCell.xib */; };
+		B9BBEECF1CEB51BF00275416 /* AddrDefaultCheckboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEECD1CEB51BF00275416 /* AddrDefaultCheckboxCell.m */; };
+		B9BBEED01CEB51BF00275416 /* AddrDefaultCheckboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEECE1CEB51BF00275416 /* AddrDefaultCheckboxCell.xib */; };
 		B9FE71D71CD6D39200F5EC9F /* background_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = B9FE71D61CD6D39200F5EC9F /* background_alpha.png */; };
 		B9FE71E81CD6E70400F5EC9F /* SearchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71DC1CD6E70400F5EC9F /* SearchHistory.m */; };
 		B9FE71E91CD6E70400F5EC9F /* UserHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71DE1CD6E70400F5EC9F /* UserHistory.m */; };
@@ -652,7 +657,6 @@
 		B91896BA1CCF28170061D0B6 /* AddressListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressListViewController.m; path = mine/address/AddressListViewController.m; sourceTree = "<group>"; };
 		B91896C21CCF38C10061D0B6 /* AddressEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressEditViewController.h; path = mine/address/AddressEditViewController.h; sourceTree = "<group>"; };
 		B91896C31CCF38C10061D0B6 /* AddressEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressEditViewController.m; path = mine/address/AddressEditViewController.m; sourceTree = "<group>"; };
-		B91896C41CCF38C10061D0B6 /* AddressEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddressEditViewController.xib; path = mine/address/AddressEditViewController.xib; sourceTree = "<group>"; };
 		B91896CA1CCF97AE0061D0B6 /* PaySuccessProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaySuccessProductCell.h; path = mine/pay/PaySuccessProductCell.h; sourceTree = "<group>"; };
 		B91896CB1CCF97AE0061D0B6 /* PaySuccessProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaySuccessProductCell.m; path = mine/pay/PaySuccessProductCell.m; sourceTree = "<group>"; };
 		B91896CC1CCF97AE0061D0B6 /* PaySuccessProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PaySuccessProductCell.xib; path = mine/pay/PaySuccessProductCell.xib; sourceTree = "<group>"; };
@@ -1039,6 +1043,15 @@
 		B9B5BCEB1CDDC0C90085E132 /* OrderDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrderDefine.h; path = mine/order/OrderDefine.h; sourceTree = "<group>"; };
 		B9B5BCED1CDE00C40085E132 /* OrderDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderDetailDTO.h; path = mine/order/OrderDetailDTO.h; sourceTree = "<group>"; };
 		B9B5BCEE1CDE00C40085E132 /* OrderDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderDetailDTO.m; path = mine/order/OrderDetailDTO.m; sourceTree = "<group>"; };
+		B9BBEEC21CEB4C5900275416 /* AddrCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddrCommonCell.h; path = mine/address/AddrCommonCell.h; sourceTree = "<group>"; };
+		B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddrCommonCell.m; path = mine/address/AddrCommonCell.m; sourceTree = "<group>"; };
+		B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrCommonCell.xib; path = mine/address/AddrCommonCell.xib; sourceTree = "<group>"; };
+		B9BBEEC71CEB4DDE00275416 /* AddrRegionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddrRegionCell.h; path = mine/address/AddrRegionCell.h; sourceTree = "<group>"; };
+		B9BBEEC81CEB4DDE00275416 /* AddrRegionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddrRegionCell.m; path = mine/address/AddrRegionCell.m; sourceTree = "<group>"; };
+		B9BBEEC91CEB4DDE00275416 /* AddrRegionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrRegionCell.xib; path = mine/address/AddrRegionCell.xib; sourceTree = "<group>"; };
+		B9BBEECC1CEB51BF00275416 /* AddrDefaultCheckboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddrDefaultCheckboxCell.h; path = mine/address/AddrDefaultCheckboxCell.h; sourceTree = "<group>"; };
+		B9BBEECD1CEB51BF00275416 /* AddrDefaultCheckboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddrDefaultCheckboxCell.m; path = mine/address/AddrDefaultCheckboxCell.m; sourceTree = "<group>"; };
+		B9BBEECE1CEB51BF00275416 /* AddrDefaultCheckboxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrDefaultCheckboxCell.xib; path = mine/address/AddrDefaultCheckboxCell.xib; sourceTree = "<group>"; };
 		B9FE71D61CD6D39200F5EC9F /* background_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_alpha.png; sourceTree = "<group>"; };
 		B9FE71DB1CD6E70400F5EC9F /* SearchHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHistory.h; sourceTree = "<group>"; };
 		B9FE71DC1CD6E70400F5EC9F /* SearchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHistory.m; sourceTree = "<group>"; };
@@ -1551,7 +1564,6 @@
 				B91896BA1CCF28170061D0B6 /* AddressListViewController.m */,
 				B91896C21CCF38C10061D0B6 /* AddressEditViewController.h */,
 				B91896C31CCF38C10061D0B6 /* AddressEditViewController.m */,
-				B91896C41CCF38C10061D0B6 /* AddressEditViewController.xib */,
 			);
 			name = address;
 			sourceTree = "<group>";
@@ -1559,12 +1571,21 @@
 		B91896BC1CCF31320061D0B6 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B9BBEEC21CEB4C5900275416 /* AddrCommonCell.h */,
+				B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */,
+				B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */,
 				B91896AF1CCF20010061D0B6 /* SelectdAddrCell.h */,
 				B91896B01CCF20010061D0B6 /* SelectdAddrCell.m */,
 				B91896B11CCF20010061D0B6 /* SelectdAddrCell.xib */,
 				B91896B41CCF20240061D0B6 /* AddressListCell.h */,
 				B91896B51CCF20240061D0B6 /* AddressListCell.m */,
 				B91896B61CCF20240061D0B6 /* AddressListCell.xib */,
+				B9BBEEC71CEB4DDE00275416 /* AddrRegionCell.h */,
+				B9BBEEC81CEB4DDE00275416 /* AddrRegionCell.m */,
+				B9BBEEC91CEB4DDE00275416 /* AddrRegionCell.xib */,
+				B9BBEECC1CEB51BF00275416 /* AddrDefaultCheckboxCell.h */,
+				B9BBEECD1CEB51BF00275416 /* AddrDefaultCheckboxCell.m */,
+				B9BBEECE1CEB51BF00275416 /* AddrDefaultCheckboxCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2658,6 +2679,7 @@
 			files = (
 				B964F93E1CC3A7FF003E0D44 /* javascript-bridge.html in Resources */,
 				B964F9861CC50316003E0D44 /* slide-2.jpg in Resources */,
+				B9BBEED01CEB51BF00275416 /* AddrDefaultCheckboxCell.xib in Resources */,
 				B91896F91CD0EF260061D0B6 /* AccountSummaryCell.xib in Resources */,
 				B98878AC1CC98EFB00990AA4 /* AvataCell.xib in Resources */,
 				B999553C1CE37B96007F26D2 /* OrderDetailAddrCell.xib in Resources */,
@@ -2690,6 +2712,7 @@
 				B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */,
 				B99194941CCCF6020032A393 /* ProductFlageView.xib in Resources */,
 				B98878CB1CC9CC3800990AA4 /* OrderStatusCell.xib in Resources */,
+				B9BBEECB1CEB4DDE00275416 /* AddrRegionCell.xib in Resources */,
 				B95924991CE0394C00533E77 /* lauch-screen.jpg in Resources */,
 				B95A94A71CE0C19900A5D9BA /* citydictionary.plist in Resources */,
 				B95A94C81CE1E83700A5D9BA /* prod_placeholder.jpg in Resources */,
@@ -2698,6 +2721,7 @@
 				B98878921CC8AD3800990AA4 /* LoginViewController.xib in Resources */,
 				B91896871CCE05AF0061D0B6 /* ProductOtherCompanyCell.xib in Resources */,
 				B9AD46111CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib in Resources */,
+				B9BBEEC61CEB4C5900275416 /* AddrCommonCell.xib in Resources */,
 				B91896AA1CCF09D50061D0B6 /* PayAlertView.xib in Resources */,
 				B964F9881CC50339003E0D44 /* slide-1.jpg in Resources */,
 				B991949F1CCCF9AC0032A393 /* ProductLadderCell.xib in Resources */,
@@ -2708,7 +2732,6 @@
 				B91896A01CCE66710061D0B6 /* ProductWithNumberView.xib in Resources */,
 				B98878C31CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png in Resources */,
 				B99D13191CC7AAB2000DFF95 /* fontawesome-webfont.ttf in Resources */,
-				B91896C61CCF38C10061D0B6 /* AddressEditViewController.xib in Resources */,
 				B9A780421CD9E32E00A89047 /* ProductRecommendView.xib in Resources */,
 				B964F98B1CC50344003E0D44 /* slide-3.jpg in Resources */,
 				B99194801CCCA26C0032A393 /* CommonBottomView.xib in Resources */,
@@ -2830,6 +2853,7 @@
 				B91896821CCDDB790061D0B6 /* ProductCompanyCell.m in Sources */,
 				B967E73C1CE57EBD00621F28 /* View+MASAdditions.m in Sources */,
 				B91732551CD1F05500C29698 /* SlideOutUpAnimation.m in Sources */,
+				B9BBEECF1CEB51BF00275416 /* AddrDefaultCheckboxCell.m in Sources */,
 				B9AD44291CD497C000012B31 /* HttpCheckPictureCaptchaRequest.m in Sources */,
 				B95A94A81CE0C19900A5D9BA /* CityListViewController.m in Sources */,
 				B917324C1CD1F05400C29698 /* ScaleSmallOutAnimation.m in Sources */,
@@ -2979,6 +3003,7 @@
 				B99955361CE37988007F26D2 /* OrderDetailHeadCell.m in Sources */,
 				B967E6F11CE4CDC500621F28 /* OrderDefine.m in Sources */,
 				B91732801CD20E9000C29698 /* HttpLoginRequest.m in Sources */,
+				B9BBEEC51CEB4C5900275416 /* AddrCommonCell.m in Sources */,
 				B91732221CD1F05400C29698 /* BounceInUpAnimation.m in Sources */,
 				B98878AA1CC98ED300990AA4 /* AvataCell.m in Sources */,
 				B99D130B1CC73FDA000DFF95 /* SearchListCell.m in Sources */,
@@ -2998,6 +3023,7 @@
 				B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */,
 				B917328A1CD26A7200C29698 /* UIViewController+TTModalView.m in Sources */,
 				B992C5751CCA282600DC49E8 /* ContactCell.m in Sources */,
+				B9BBEECA1CEB4DDE00275416 /* AddrRegionCell.m in Sources */,
 				B918970E1CD11B5F0061D0B6 /* ProductDescriptionDTO.m in Sources */,
 				B98878A61CC98D6200990AA4 /* UIButton+Utils.m in Sources */,
 				B95924831CDEBA9000533E77 /* SCNetworkReachability+AnyPromise.m in Sources */,

@@ -7,42 +7,160 @@
 //
 
 #import "AddressEditViewController.h"
+#import "TPKeyboardAvoidingTableView.h"
+#import "AddrCommonCell.h"
+#import "AddrRegionCell.h"
+#import "AddrDefaultCheckboxCell.h"
 
+typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
+    kRowUseless = 0,
+    kRowReceiver = 1,
+    kRowMobile,
+    kRowRegion,
+    kRowAddress,
+    kRowZip,
+    kRowDefaultSetting,
+    kRowSave,
+    kRowMax
+};
 
 @interface AddressEditViewController ()
 @property (weak, nonatomic) IBOutlet UIView *lastLine;
+
+@property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
+@property (nonatomic) BOOL isEditingAddr;
+
+@property (nonatomic, strong) AddrCommonCell* receiverCell;
+@property (nonatomic, strong) AddrCommonCell* mobileCell;
+@property (nonatomic, strong) AddrCommonCell* addressCell;
+@property (nonatomic, strong) AddrCommonCell* zipCell;
+@property (nonatomic, strong) AddrRegionCell* regionCell;
+@property (nonatomic, strong) AddrDefaultCheckboxCell* defaultCheckboxCell;
+@property (nonatomic, strong) UITableViewCell* confirmCell;
+@property (nonatomic, strong) UIButton* confirmButton;
+
 
 @end
 
 @implementation AddressEditViewController
 
+-(AddrCommonCell*)receiverCell
+{
+    if (!_receiverCell) {
+        _receiverCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
+        _receiverCell.titleLabel.text = @"收货人";
+    }
+    
+    return _receiverCell;
+}
+-(AddrCommonCell*)mobileCell
+{
+    if (!_mobileCell) {
+        _mobileCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
+        _mobileCell.titleLabel.text = @"联系电话";
+    }
+    
+    return _mobileCell;
+}
+-(AddrCommonCell*)addressCell
+{
+    if (!_addressCell) {
+        _addressCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
+        _addressCell.titleLabel.text = @"详细地址";
+    }
+    
+    return _addressCell;
+}
+-(AddrCommonCell*)zipCell
+{
+    if (!_zipCell) {
+        _zipCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
+        _zipCell.titleLabel.text = @"邮政编码";
+    }
+    
+    return _zipCell;
+}
+
+-(AddrRegionCell*)regionCell
+{
+    if (!_regionCell) {
+        _regionCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
+        _regionCell.titleLabel.text = @"所在地区";
+        CGSize fontSize = [_regionCell.chooseButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: _regionCell.chooseButton.titleLabel.font}];
+        [_regionCell.chooseButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -_regionCell.chooseButton.imageView.frame.size.width-2.f, 0, _regionCell.chooseButton.imageView.frame.size.width+2.f)];
+        [_regionCell.chooseButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
+    }
+    
+    return _regionCell;
+}
+
+-(AddrDefaultCheckboxCell*)defaultCheckboxCell
+{
+    if (!_defaultCheckboxCell) {
+        _defaultCheckboxCell = (AddrDefaultCheckboxCell*)[UINib viewFromNib:@"AddrDefaultCheckboxCell"];
+        _defaultCheckboxCell.checkBox.boxType = BEMBoxTypeSquare;
+    }
+    
+    return _defaultCheckboxCell;
+}
+
+-(UITableViewCell*)confirmCell
+{
+    if (!_confirmCell) {
+        _confirmCell = [[UITableViewCell alloc] init];
+        
+        _confirmButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_confirmButton setTitle:@"保存" forState:UIControlStateNormal];
+        _confirmButton.titleLabel.font = [UIFont systemFontOfSize:18.f];
+        [_confirmButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _confirmButton.frame = CGRectMake(16.f, 40.f, [UIScreen mainScreen].bounds.size.width-16.f*2, 40.f);
+        _confirmButton.backgroundColor = [UIColor light_Gray_Color];
+        [_confirmCell addSubview:self.confirmButton];
+    }
+    
+    return _confirmCell;
+}
+
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.isEditingAddr = NO;
+    }
+    
+    return self;
+}
+
+-(instancetype)initWithAddress:(AddressDTO*)address
+{
+    self = [super init];
+    if (self) {
+        self.isEditingAddr = YES;
+        self.address = address;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"修改收货地址";
+    if (self.isEditingAddr) {
+        self.navigationItem.title = @"修改收货地址";
+    }
+    else {
+        self.navigationItem.title = @"新增收货地址";
+    }
     
-    // Do any additional setup after loading the view from its nib.
-    self.lastLine.backgroundColor = [UIColor clearColor];
-    self.lastLine.layer.borderColor = [UIColor light_Gray_Color].CGColor;
-    self.lastLine.layer.borderWidth = .5f;
-    
-    self.saveButton.layer.cornerRadius = 4.f;
-    CGSize fontSize = [self.locationButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.locationButton.titleLabel.font}];
-    [self.locationButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.locationButton.imageView.frame.size.width-2.f, 0, self.locationButton.imageView.frame.size.width+2.f)];
-    [self.locationButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
-    
-    self.defaultCheckBox.boxType = BEMBoxTypeSquare;
-    
-    self.saveButton.backgroundColor = [UIColor light_Gray_Color];
-//    self.saveButton
     @weakify(self);
-    self.saveButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+    self.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
         @strongify(self);
         [self.navigationController popViewControllerAnimated:YES];
         return [RACSignal empty];
     }];
     
-    self.locationButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+    self.regionCell.chooseButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
         @strongify(self);
         CityListViewController* vc = [[CityListViewController alloc] init];
         vc.delegete = self;
@@ -51,35 +169,93 @@
         return [RACSignal empty];
     }];
     
-//    UITableView* tableView = (UITableView*)self.view;
-//    UIView *view = [UIView new];
-//    view.backgroundColor = [UIColor clearColor];
-//    [tableView setTableFooterView:view];
-
+    self.tableView = [[TPKeyboardAvoidingTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.frame = self.view.frame;
+    
 }
 
 
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-//    CGFloat offsetY = self.navigationController.navigationBar.bounds.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-//    self.view.frame = CGRectMake(0, offsetY, self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma -- mark UITableView delegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
-*/
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return kRowMax;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == kRowSave) {
+        return 120.f;
+    }
+    else if(indexPath.row == kRowUseless){
+        return 8.f;
+    }
+    else {
+        return 48.f;
+    }
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell* cell;
+    
+    switch (indexPath.row) {
+        case kRowUseless:
+            cell = [[UITableViewCell alloc] init];
+            cell.height = 0;
+            break;
+        case kRowReceiver:
+            cell = self.receiverCell;
+            break;
+        case kRowMobile:
+            cell = self.mobileCell;
+            break;
+        case kRowRegion:
+            cell = self.regionCell;
+            break;
+        case kRowAddress:
+            cell = self.addressCell;
+            break;
+        case kRowZip:
+            cell = self.zipCell;
+            break;
+        case kRowDefaultSetting:
+            cell = self.defaultCheckboxCell;
+            break;
+        case kRowSave:
+        default:
+            cell = self.confirmCell;
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+
+
 
 #pragma -- City list vc delegate
 - (void)didSelectCityWithName:(NSString *)cityName
 {
-    self.cityLabel.text = cityName;
+    self.regionCell.regionLabel.text = cityName;
 }
 
 @end
