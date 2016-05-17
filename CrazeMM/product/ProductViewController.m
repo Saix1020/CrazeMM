@@ -80,7 +80,7 @@
     self.timeLabel.text = @"";
     NSString* timeString = @"";
     if (!self.productDetailDto) {
-        timeString = @"10天18小时20分钟";
+        timeString = @"";
     }
     else {
         if (self.productDetailDto && (self.productDetailDto.active && self.productDetailDto.millisecond>0)) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收货人: 徐赛" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3p-D9-mdp">
-                        <rect key="frame" x="16" y="8" width="165" height="21"/>
+                        <rect key="frame" x="8" y="8" width="165" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="165" id="2Ue-Rq-jhR"/>
                             <constraint firstAttribute="height" constant="21" id="b1N-tL-CEB"/>
@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18652072426" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgi-lx-qzq">
-                        <rect key="frame" x="189" y="7" width="115" height="21"/>
+                        <rect key="frame" x="181" y="7" width="131" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="4KF-RT-Wdi"/>
                         </constraints>
@@ -35,21 +35,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guI-Yh-wg6">
-                        <rect key="frame" x="16" y="30" width="288" height="1"/>
+                        <rect key="frame" x="8" y="30" width="304" height="1"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="5Va-mh-do9"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addr" translatesAutoresizingMaskIntoConstraints="NO" id="cif-W4-vFJ">
-                        <rect key="frame" x="16" y="47" width="20" height="24"/>
+                        <rect key="frame" x="8" y="47" width="20" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="Kp4-s3-5XQ"/>
                             <constraint firstAttribute="width" constant="20" id="abv-Ue-Fm1"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="江苏省南京市浦口区百润路2号1-4街区 68栋102室" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RK3-B2-BSL">
-                        <rect key="frame" x="44" y="37" width="260" height="43"/>
+                        <rect key="frame" x="36" y="37" width="276" height="43"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="42.5" id="XfQ-gQ-tSV"/>
                         </constraints>
@@ -61,17 +61,17 @@
                 <constraints>
                     <constraint firstItem="cgi-lx-qzq" firstAttribute="leading" secondItem="Q3p-D9-mdp" secondAttribute="trailing" constant="8" id="1bo-z5-UEn"/>
                     <constraint firstAttribute="bottomMargin" secondItem="cif-W4-vFJ" secondAttribute="bottom" constant="10.5" id="ESg-e7-kKs"/>
-                    <constraint firstItem="cif-W4-vFJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Eky-3A-sS1"/>
+                    <constraint firstItem="cif-W4-vFJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Eky-3A-sS1"/>
                     <constraint firstItem="guI-Yh-wg6" firstAttribute="top" secondItem="Q3p-D9-mdp" secondAttribute="bottom" constant="1" id="KPj-9w-rhB"/>
-                    <constraint firstItem="Q3p-D9-mdp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Ksh-mU-e9g"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="guI-Yh-wg6" secondAttribute="trailing" constant="8" id="R82-CN-ajE"/>
+                    <constraint firstItem="Q3p-D9-mdp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Ksh-mU-e9g"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="guI-Yh-wg6" secondAttribute="trailing" id="R82-CN-ajE"/>
                     <constraint firstItem="RK3-B2-BSL" firstAttribute="leading" secondItem="cif-W4-vFJ" secondAttribute="trailing" constant="8" id="W62-dG-WM2"/>
                     <constraint firstItem="cgi-lx-qzq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="YHw-wn-G7G"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="RK3-B2-BSL" secondAttribute="trailing" constant="8" id="chC-D8-4Tq"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="RK3-B2-BSL" secondAttribute="trailing" id="chC-D8-4Tq"/>
                     <constraint firstItem="RK3-B2-BSL" firstAttribute="top" secondItem="guI-Yh-wg6" secondAttribute="bottom" constant="6" id="kIE-BK-8IU"/>
                     <constraint firstAttribute="topMargin" secondItem="Q3p-D9-mdp" secondAttribute="top" id="r7t-55-DnC"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="cgi-lx-qzq" secondAttribute="trailing" constant="8" id="rxM-8R-Zur"/>
-                    <constraint firstItem="guI-Yh-wg6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="whO-1S-xl0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cgi-lx-qzq" secondAttribute="trailing" id="rxM-8R-Zur"/>
+                    <constraint firstItem="guI-Yh-wg6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="whO-1S-xl0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

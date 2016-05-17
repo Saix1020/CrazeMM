@@ -379,6 +379,7 @@
 		B9B5BCE31CDCDF690085E132 /* NSError+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE21CDCDF690085E132 /* NSError+Utils.m */; };
 		B9B5BCEA1CDDBE670085E132 /* HttpOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE91CDDBE670085E132 /* HttpOrder.m */; };
 		B9B5BCEF1CDE00C40085E132 /* OrderDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCEE1CDE00C40085E132 /* OrderDetailDTO.m */; };
+		B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B9FE71D71CD6D39200F5EC9F /* background_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = B9FE71D61CD6D39200F5EC9F /* background_alpha.png */; };
 		B9FE71E81CD6E70400F5EC9F /* SearchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71DC1CD6E70400F5EC9F /* SearchHistory.m */; };
 		B9FE71E91CD6E70400F5EC9F /* UserHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71DE1CD6E70400F5EC9F /* UserHistory.m */; };
@@ -1066,6 +1067,7 @@
 			files = (
 				B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */,
 				31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */,
+				B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,9 +1507,9 @@
 		B91896881CCE18C00061D0B6 /* order */ = {
 			isa = PBXGroup;
 			children = (
+				B91896961CCE51B00061D0B6 /* view */,
 				B9B5BCEB1CDDC0C90085E132 /* OrderDefine.h */,
 				B967E6F01CE4CDC500621F28 /* OrderDefine.m */,
-				B91896961CCE51B00061D0B6 /* view */,
 				B99194791CCC76E60032A393 /* OrderListViewController.h */,
 				B991947A1CCC76E60032A393 /* OrderListViewController.m */,
 				B99955301CE37372007F26D2 /* OrderDetailViewController.h */,

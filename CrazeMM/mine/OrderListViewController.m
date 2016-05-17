@@ -41,9 +41,9 @@
 @property (nonatomic) CGFloat totalPrice;
 
 @property (nonatomic, strong) UITableViewCell* emptyCell;
-
 @property (nonatomic) CGPoint ptLastOffset;
 
+@property (nonatomic) BOOL isRefreshing;
 
 @end
 
@@ -288,6 +288,15 @@
     }
 }
 
+-(void)setIsRefreshing:(BOOL)isRefreshing
+{
+    _isRefreshing = isRefreshing;
+    
+    for (UIButton* button in self.segmentCell.segment.buttons) {
+        button.enabled = !isRefreshing;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -325,8 +334,14 @@
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
+        if (self.isRefreshing) {
+            [self.tableView.mj_header endRefreshing];
+            return;
+        }
+        self.isRefreshing = YES;
         [self getOrderList]
         .finally(^(){
+            self.isRefreshing = NO;
             [self.tableView.mj_header endRefreshing];
         });
         
@@ -336,14 +351,20 @@
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
-        
+        if (self.isRefreshing) {
+            [self.tableView.mj_footer endRefreshing];
+            return;
+        }
+        self.isRefreshing = YES;
         [self getOrderList].finally(^(){
+            self.isRefreshing = NO;
             [self.tableView.mj_footer endRefreshing];
         });
         
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
 
+    self.isRefreshing = NO;
     [self setOrderStyleWithSegmentIndex:0];
     [self.segmentCell setTitles:[self getSegmentTitels]];
     [self getOrderList];
@@ -531,8 +552,11 @@
     }
     else {
         // no check box 
-        OrderListNoCheckBoxCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListNoCheckBoxCell"];
+        OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListCell"];
+        cell.hiddenCheckbox = YES;
+        cell.reactiveButton.hidden = YES;
         cell.orderDetailDTO = dto;
+        
         return cell;
     }
 }

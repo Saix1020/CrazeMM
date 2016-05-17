@@ -106,11 +106,6 @@
     
     [self.priceLabel appendAttributedText:[self moneyString:priceString]];
     NSMutableAttributedString *attributedText;
-//    attributedText = [[NSMutableAttributedString alloc]initWithString:@"起 "];
-//    [attributedText m80_setFont:[UIFont systemFontOfSize:12]];
-//    [attributedText m80_setTextColor:[UIColor grayColorL2]];
-//    [self.priceLabel appendAttributedText:attributedText];
-    
     attributedText = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@" %ld", left]];
     [attributedText m80_setFont:[UIFont systemFontOfSize:18]];
     [attributedText m80_setTextColor:[UIColor greenTextColor]];
@@ -220,10 +215,6 @@
     else {
         self.messageLabel.text = @"";
     }
-    
-//    [RACObserve(self, productDetailDto.quantity) subscribeNext:^(id quantity){
-//        [self fomartPriceLabel];
-//    }];
     
     [self layoutAllSubviews];
 }

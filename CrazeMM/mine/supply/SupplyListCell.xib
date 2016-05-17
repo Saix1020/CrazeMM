@@ -75,26 +75,26 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezj-O7-f4O">
-                        <rect key="frame" x="228" y="128" width="50" height="22"/>
+                        <rect key="frame" x="210" y="128" width="72" height="22"/>
                         <state key="normal" title="下架" image="down"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYg-eW-OMY">
-                        <rect key="frame" x="50" y="128" width="50" height="22"/>
+                        <rect key="frame" x="38" y="128" width="63" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="jlW-Ld-VuU"/>
+                            <constraint firstAttribute="width" constant="63" id="jlW-Ld-VuU"/>
                         </constraints>
                         <state key="normal" title="分享" image="share"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JYg-eW-OMY" firstAttribute="leading" secondItem="mL9-6a-XSY" secondAttribute="leadingMargin" constant="42" id="0xV-Dt-q3M"/>
+                    <constraint firstItem="JYg-eW-OMY" firstAttribute="leading" secondItem="mL9-6a-XSY" secondAttribute="leadingMargin" constant="30" id="0xV-Dt-q3M"/>
                     <constraint firstItem="LYK-7g-pjH" firstAttribute="top" secondItem="phd-iT-fgd" secondAttribute="bottom" constant="8" symbolic="YES" id="1J3-1T-UQw"/>
                     <constraint firstItem="Exd-Ba-xmg" firstAttribute="trailing" secondItem="LYK-7g-pjH" secondAttribute="trailing" id="3Pe-w8-lo0"/>
                     <constraint firstItem="PFU-Ln-pYw" firstAttribute="top" secondItem="LYK-7g-pjH" secondAttribute="bottom" constant="15" id="4gk-US-fTM"/>
                     <constraint firstItem="zxG-I9-pRt" firstAttribute="leading" secondItem="LYK-7g-pjH" secondAttribute="leading" id="507-4h-vkC"/>
                     <constraint firstItem="PFU-Ln-pYw" firstAttribute="leading" secondItem="H7E-ec-eIb" secondAttribute="leading" id="5OB-qW-biW"/>
                     <constraint firstItem="phd-iT-fgd" firstAttribute="leading" secondItem="zxG-I9-pRt" secondAttribute="trailing" constant="8" symbolic="YES" id="6Hh-sv-BP7"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ezj-O7-f4O" secondAttribute="trailing" constant="34" id="6pw-iS-gxp"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ezj-O7-f4O" secondAttribute="trailing" constant="30" id="6pw-iS-gxp"/>
                     <constraint firstItem="JYg-eW-OMY" firstAttribute="top" secondItem="T9Z-MR-8bg" secondAttribute="bottom" constant="19" id="Aaz-qx-LF8"/>
                     <constraint firstItem="Exd-Ba-xmg" firstAttribute="top" secondItem="mL9-6a-XSY" secondAttribute="topMargin" constant="1" id="CFl-cs-Ncz"/>
                     <constraint firstItem="PFU-Ln-pYw" firstAttribute="trailing" secondItem="H7E-ec-eIb" secondAttribute="trailing" id="DeF-Bm-7AV"/>
@@ -102,7 +102,7 @@
                     <constraint firstItem="LYK-7g-pjH" firstAttribute="leading" secondItem="PFU-Ln-pYw" secondAttribute="leading" id="IOq-ia-GEm"/>
                     <constraint firstItem="H7E-ec-eIb" firstAttribute="trailing" secondItem="mL9-6a-XSY" secondAttribute="trailingMargin" id="LFV-kV-pvp"/>
                     <constraint firstItem="PFU-Ln-pYw" firstAttribute="top" secondItem="mL9-6a-XSY" secondAttribute="top" constant="48" id="NXT-Iy-a5I"/>
-                    <constraint firstItem="ezj-O7-f4O" firstAttribute="centerX" secondItem="Exd-Ba-xmg" secondAttribute="centerX" constant="11.5" id="QNe-FT-C76"/>
+                    <constraint firstItem="ezj-O7-f4O" firstAttribute="centerX" secondItem="Exd-Ba-xmg" secondAttribute="centerX" constant="4.5" id="QNe-FT-C76"/>
                     <constraint firstItem="JYg-eW-OMY" firstAttribute="baseline" secondItem="ezj-O7-f4O" secondAttribute="firstBaseline" id="Qfo-jT-ahd"/>
                     <constraint firstItem="T9Z-MR-8bg" firstAttribute="leading" secondItem="H7E-ec-eIb" secondAttribute="leading" id="U3V-X3-Taz"/>
                     <constraint firstItem="Exd-Ba-xmg" firstAttribute="baseline" secondItem="phd-iT-fgd" secondAttribute="firstBaseline" id="XTK-ZK-OIm"/>
