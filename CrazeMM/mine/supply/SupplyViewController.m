@@ -10,7 +10,9 @@
 #import "SegmentedCell.h"
 #import "CommonBottomView.h"
 #import "SupplyListCell.h"
-#import <objc/runtime.h>
+#import "HttpMineSupply.h"
+#import "MineSupplyProductDTO.h"
+//#import <objc/runtime.h>
 
 @interface SupplyViewController ()
 //@property (nonatomic, strong) UITableView* tableView;
@@ -18,6 +20,13 @@
 //@property (nonatomic, strong) SegmentedCell* segmentCell;
 //@property (nonatomic, strong) CommonBottomView* bottomView;
 @property (nonatomic) SupplyListCellStyle cellStyle;
+@property (nonatomic, strong) NSMutableArray<MineSupplyProductDTO*>* dataSource;
+@property (nonatomic, copy) NSArray* nomalDataSource;
+@property (nonatomic, copy) NSArray* offShelfDataSource;
+@property (nonatomic, copy) NSArray* dealDataSource;
+
+@property (nonatomic) NSInteger pageNumber;
+@property (nonatomic) NSInteger totalPage;
 
 @end
 
@@ -59,7 +68,7 @@
     self.navigationItem.title = @"我的供货";
     self.view.backgroundColor = [UIColor light_Gray_Color];
     
-    
+    self.dataSource = [[NSMutableArray alloc] init];
     
     if (!self.navigationItem.leftBarButtonItem) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -70,8 +79,20 @@
             return [RACSignal empty];
         }];
     }
-//    [self.tableView registerNib:[UINib nibWithNibName:@"SupplyListCell" bundle:nil] forCellReuseIdentifier:@"SupplyListCell"];
     
+    
+    self.pageNumber = 0;
+    [self getMineSupply];
+}
+
+-(AnyPromise*)handleHeaderRefresh
+{
+    return [self getMineSupply];
+}
+
+-(AnyPromise*)handleFooterRefresh
+{
+    return [self getMineSupply];
 }
 
 #pragma mark - Table view data source
@@ -84,7 +105,21 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 12;
+    NSInteger num = self.dataSource.count;
+//    switch (self.cellStyle) {
+//        case kNomalStyle:
+//            num = self.nomalDataSource.count;
+//            break;
+//        case kOffShelfStyle:
+//            num = self.offShelfDataSource.count;
+//            break;
+//        case kDealStyle:
+//            num = self.dealDataSource.count;
+//            break;
+//        default:
+//            break;
+//    }
+    return num*2;
 }
 
 
@@ -106,6 +141,23 @@
             cell= [[[NSBundle mainBundle]loadNibNamed:@"SupplyListCell" owner:nil options:nil] firstObject];
         }
         ((SupplyListCell*)cell).style = self.cellStyle;
+        ((SupplyListCell*)cell).mineSupplyProductDto = self.dataSource[indexPath.row/2];
+        ((SupplyListCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
+        ((SupplyListCell*)cell).selectCheckBox.delegate = self;
+//        switch (self.cellStyle) {
+//            case kNomalStyle:
+//                ((SupplyListCell*)cell).mineSupplyProductDto = self.nomalDataSource[indexPath.row/2];
+//                break;
+//            case kOffShelfStyle:
+//                ((SupplyListCell*)cell).mineSupplyProductDto = self.offShelfDataSource[indexPath.row/2];
+//                break;
+//            case kDealStyle:
+//                ((SupplyListCell*)cell).mineSupplyProductDto = self.dealDataSource[indexPath.row/2];
+//                break;
+//            default:
+//                break;
+//        }
+        
 
     }
     
@@ -114,12 +166,6 @@
     return cell;
 }
 
-
-
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 40.f;
-//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -140,6 +186,44 @@
     }
 }
 
+-(AnyPromise*)getMineSupply
+{
+    
+    HttpMineSupplyRequest * request = [[HttpMineSupplyRequest alloc]init];
+    
+    switch (self.cellStyle) {
+        case kNomalStyle:
+            request = [[HttpMineSupplyRequest alloc] initStateNomalWithPageNumber:self.pageNumber+1];
+            break;
+        case kOffShelfStyle:
+            request = [[HttpMineSupplyRequest alloc] initStateOffShelfWithPageNumber:self.pageNumber+1];
+            break;
+        case kDealStyle:
+            request = [[HttpMineSupplyRequest alloc] initStateSoldOutWithPageNumber:self.pageNumber+1];
+            break;
+        default:
+            break;
+    }
+    
+    return [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        HttpMineSupplyResponse* response = (HttpMineSupplyResponse*)request.response;
+        if (response.ok) {
+            [self.dataSource addObjectsFromArray:response.productDTOs];
+            self.totalPage = response.totalPage;
+            self.pageNumber = response.pageNumber>=self.totalPage?self.totalPage:response.pageNumber;
+            [self.tableView reloadData];
+        }
+        else{
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+
+    });
+}
 
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
@@ -161,20 +245,39 @@
         [self.bottomView.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
 
     }
+    self.bottomView.selectAllCheckBox.on = NO;
     
+    [self.dataSource removeAllObjects];
     [self.tableView reloadData];
-    
-//    UIButton* button = segment.buttons[index];
-//    UIButton* prevButton = segment.buttons[segment.prevIndex];
-//    if (segment.prevIndex != index) {
-//        [prevButton setTitleColor:[UIColor UIColorFromRGB:0x959595] forState:UIControlStateNormal];
-//        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-//        
-//    }
-//    else {
-//        
-//    }
+
+    self.pageNumber = 0;
+    [self getMineSupply];
 }
 
+#pragma -- mark BEMCheckBox Delegate
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox
+{
+    if (checkBox != self.bottomView.selectAllCheckBox) {
+        NSInteger index = checkBox.tag - 10000;
+        MineSupplyProductDTO* dto = self.dataSource[index];
+        dto.selected = checkBox.on;
+        
+        NSArray* onArray = [self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
+        if (onArray.count == self.dataSource.count) {
+            self.bottomView.selectAllCheckBox.on = YES;
+        }
+        else {
+            self.bottomView.selectAllCheckBox.on = NO;
+        }
+    }
+    else {
+        for (NSInteger index = 0; index<self.dataSource.count; ++index) {
+            MineSupplyProductDTO* dto = self.dataSource[index];
+            dto.selected = checkBox.on;
+        }
+        [self.tableView reloadData];
+    }
+
+}
 
 @end

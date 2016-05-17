@@ -13,6 +13,10 @@
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NewWelcomeViewController* welcomeVC;
+@property (nonatomic, assign) CFAbsoluteTime resignTime;  //记录进入后台的时间
+@property (nonatomic, assign) CFAbsoluteTime currentTime;  //记录进入后台的时间
+//@property (nonatomic, strong) Reachability* hostReach;
+
 @end
 
 @implementation AppDelegate
@@ -25,20 +29,23 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
+//    [[NSNotificationCenter defaultCenter] addObserver: self
+//                                             selector: @selector(reachabilityChanged:)
+//                                                 name: kReachabilityChangedNotification
+//                                               object: nil];
+//    
+//    
+//    
+//    self.hostReach = [Reachability reachabilityWithHostName:@"https://www.baidu.com"];
+//    [self.hostReach startNotifier];
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    
-//    if (0 &&![UserCenter defaultCenter].accountSaved) {
-//        self.window.rootViewController = [[TabBarController alloc] init];
-//
-//    }
-//    else {
     self.welcomeVC = [[NewWelcomeViewController alloc]
                       initWithNibName:nil
                       bundle:nil];
-        self.window.rootViewController = self.welcomeVC;
-//    }
-
+    self.window.rootViewController = self.welcomeVC;
+    
     [self.window makeKeyAndVisible];
 
     
@@ -53,18 +60,24 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    self.resignTime = CFDateGetAbsoluteTime((CFDateRef)[NSDate date]);
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    SupplyListViewController* supplyListVC = self.welcomeVC.tabBarController.supplyListVC;
-    if (supplyListVC.navigationController.viewControllers[supplyListVC.navigationController.viewControllers.count-1] == supplyListVC) {
-        [supplyListVC refreshData];
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    
+    self.currentTime = CFDateGetAbsoluteTime((CFDateRef)[NSDate date]);
+    
+    if (self.resignTime != 0 && self.currentTime - self.resignTime > 300)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kIntoBackgroundOver5Min object:nil];
     }
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

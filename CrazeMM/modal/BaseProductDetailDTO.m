@@ -74,6 +74,7 @@
         self.duration = [dict[@"duration"] integerValue];
         self.left = [dict[@"left"] integerValue];
         self.state = [dict[@"state"] integerValue];
+        self.views = [dict[@"views"] integerValue];
         
         self.price = [dict[@"price"] floatValue];
         
@@ -101,5 +102,30 @@
     }
     
 }
+
+-(CGFloat)totalPriceWithAmount:(NSInteger)amount
+{
+    CGFloat totalPrice = 0.f;
+    if (self.isStep) {
+        NSInteger index;
+        for (index=0; index<self.stepPrices.count; ++index) {
+            ProductStepPrice* stepPrice = self.stepPrices[index];
+            if (amount > stepPrice.qfrom && amount <= stepPrice.qto) {
+                totalPrice = stepPrice.sprice * amount;
+                break;
+            }
+        }
+        if (index == self.stepPrices.count) {
+            ProductStepPrice* stepPrice = self.stepPrices.lastObject;
+            totalPrice = stepPrice.sprice * amount;
+        }
+    }
+    else {
+        totalPrice = amount * self.price;
+    }
+    
+    return totalPrice;
+}
+
 
 @end

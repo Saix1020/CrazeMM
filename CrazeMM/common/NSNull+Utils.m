@@ -25,9 +25,5 @@
     return NO;
 }
 
--(NSInteger)length
-{
-    return 0;
-}
 
 @end

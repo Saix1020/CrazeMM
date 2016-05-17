@@ -1,67 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="6cN-7b-Yre" customClass="MMAlertView">
-            <rect key="frame" x="0.0" y="0.0" width="270" height="150"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XF4-3T-7ea">
-                    <rect key="frame" x="8" y="26" width="254" height="26"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8F-zH-3wc">
-                    <rect key="frame" x="250" y="4" width="14" height="14"/>
-                    <state key="normal" image="cancel_m"/>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sot-rq-1cE">
-                    <rect key="frame" x="8" y="64" width="254" height="23"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert detail" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2V-ll-i1c">
-                    <rect key="frame" x="8" y="95" width="254" height="39"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="r2V-ll-i1c" firstAttribute="leading" secondItem="sot-rq-1cE" secondAttribute="leading" id="0Ro-Rv-Pcr"/>
-                <constraint firstItem="r2V-ll-i1c" firstAttribute="trailing" secondItem="sot-rq-1cE" secondAttribute="trailing" id="6LJ-AE-5tv"/>
-                <constraint firstItem="sot-rq-1cE" firstAttribute="leading" secondItem="XF4-3T-7ea" secondAttribute="leading" id="9Fg-QN-ClN"/>
-                <constraint firstItem="sot-rq-1cE" firstAttribute="centerY" secondItem="6cN-7b-Yre" secondAttribute="centerY" id="Amv-7g-Wsn"/>
-                <constraint firstItem="XF4-3T-7ea" firstAttribute="leading" secondItem="6cN-7b-Yre" secondAttribute="leadingMargin" id="Cd1-kI-Jbd"/>
-                <constraint firstItem="XF4-3T-7ea" firstAttribute="trailing" secondItem="6cN-7b-Yre" secondAttribute="trailingMargin" id="Mmr-nx-G6p"/>
-                <constraint firstItem="sot-rq-1cE" firstAttribute="trailing" secondItem="XF4-3T-7ea" secondAttribute="trailing" id="NmH-ML-7ZR"/>
-                <constraint firstAttribute="bottom" secondItem="XF4-3T-7ea" secondAttribute="bottom" constant="98" id="Spd-72-EIS"/>
-                <constraint firstItem="r2V-ll-i1c" firstAttribute="top" secondItem="sot-rq-1cE" secondAttribute="bottom" constant="8" symbolic="YES" id="Xz1-Fh-ttP"/>
-                <constraint firstItem="XF4-3T-7ea" firstAttribute="top" secondItem="S8F-zH-3wc" secondAttribute="bottom" constant="8" id="YRA-s8-Fw1"/>
-                <constraint firstItem="r2V-ll-i1c" firstAttribute="bottom" secondItem="6cN-7b-Yre" secondAttribute="bottomMargin" constant="-8" id="fCZ-ZP-15O"/>
-                <constraint firstItem="sot-rq-1cE" firstAttribute="top" secondItem="XF4-3T-7ea" secondAttribute="bottom" constant="12" id="iD8-KH-bxL"/>
-                <constraint firstItem="XF4-3T-7ea" firstAttribute="top" secondItem="6cN-7b-Yre" secondAttribute="top" constant="26" id="jUw-Sx-Q4z"/>
-                <constraint firstAttribute="trailing" secondItem="S8F-zH-3wc" secondAttribute="trailing" constant="6" id="kpW-i9-IH9"/>
-                <constraint firstItem="S8F-zH-3wc" firstAttribute="top" secondItem="6cN-7b-Yre" secondAttribute="top" constant="4" id="oeH-JN-hCZ"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="cancel" destination="S8F-zH-3wc" id="Cfi-Bf-bJJ"/>
-                <outlet property="detail" destination="r2V-ll-i1c" id="JSw-uf-fZ3"/>
-                <outlet property="message" destination="sot-rq-1cE" id="X1V-vL-TqS"/>
-                <outlet property="title" destination="XF4-3T-7ea" id="K04-Df-InW"/>
-            </connections>
-            <point key="canvasLocation" x="244" y="257"/>
-        </view>
         <view contentMode="scaleToFill" id="Pho-uQ-Sb3" customClass="MMAlertViewWithOKAndCancel">
             <rect key="frame" x="0.0" y="0.0" width="270" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -130,7 +75,4 @@
             <point key="canvasLocation" x="608" y="260"/>
         </view>
     </objects>
-    <resources>
-        <image name="cancel_m" width="14" height="14"/>
-    </resources>
 </document>

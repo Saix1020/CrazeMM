@@ -30,6 +30,7 @@
         self.state = (MMOrderState)[dict[@"state"] integerValue];
         self.userImage = dict[@"userImage"];
         self.goodName = dict[@"goodName"];
+        self.goodImage = dict[@"goodImage"];
         self.updateTime = dict[@"updateTime"];
         self.userName = dict[@"userName"];
         self.selected = NO;
@@ -48,6 +49,7 @@
         self.state = statusDto.state;
         self.userImage = statusDto.userImage;
         self.goodName = statusDto.goodName;
+        self.goodImage = statusDto.goodImage;
         self.updateTime = statusDto.updateTime;
         self.userName = statusDto.userName;
         self.selected = NO;

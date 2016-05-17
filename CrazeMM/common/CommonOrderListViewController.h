@@ -24,5 +24,4 @@
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic) CGFloat contentHeightOffset;
 
-
 @end

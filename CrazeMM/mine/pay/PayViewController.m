@@ -14,7 +14,13 @@
 #import "PayAlertView.h"
 #import "AddressListViewController.h"
 #import "PayResultViewController.h"
+#import "HttpOrderStatus.h"
+#import "HttpAddress.h"
+#import "HttpPay.h"
+#import "PayInfoDTO.h"
 
+#import "OnlinePayViewController.h"
+#import "BuySlideDetailViewController.h"
 
 typedef NS_ENUM(NSInteger, MinePayRow){
     kAddrRow = 1,
@@ -27,6 +33,8 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) FirstAddrCell* addrCell;
+@property (nonatomic, strong) UITableViewCell* addAddrCell;
+
 @property (nonatomic, strong) SecondProductDetailCell* productDetailCell;
 @property (nonatomic, strong) LastPayMethodCell* payWayCell;
 
@@ -36,12 +44,106 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 @property (nonatomic, strong) TTModalView* confirmModalView;
 @property (nonatomic, strong) PayAlertView* payAlertView;
 
+@property (nonatomic, strong) OrderStatusDTO* orderStatusDto;
+@property (nonatomic, copy) NSArray<OrderDetailDTO*>* orderDetailDtos;
+@property (nonatomic, readonly) BOOL needHiddenAddrCell;
+@property (nonatomic, copy) NSArray* addresses;
+@property (nonatomic, readonly) CGFloat totalPrice;
+
+@property (nonatomic, strong) PayInfoDTO* payInfoDto;
 @end
 
 
 @implementation PayViewController
 
+-(CGFloat)totalPrice
+{
+    CGFloat totalPrice;
+    for(OrderDetailDTO* dto in self.orderDetailDtos)
+    {
+        totalPrice += dto.quantity * dto.price;
+    }
+    
+    return totalPrice;
+}
 
+-(instancetype)initWithOrderStatusDTO:(OrderStatusDTO *)orderStatusDto
+{
+    self = [super init];
+    if (self) {
+        self.orderStatusDto = orderStatusDto;
+        self.orderDetailDtos = @[
+                                 [[OrderDetailDTO alloc] initWithOrderStatusDTO:orderStatusDto]
+                                 ];
+        
+    }
+    return self;
+}
+
+-(instancetype)initWithOrderDetailDTOs:(NSArray<OrderDetailDTO*>*)orderStatusDtos
+{
+    self = [super init];
+    if (self) {
+        self.orderDetailDtos = orderStatusDtos;
+    }
+    return self;
+}
+
+-(void)getOrderAddresses
+{
+    HttpAddressRequest* request = [[HttpAddressRequest alloc] init];
+    [request request]
+    .then(^(id responseObj){
+        HttpAddressResponse* response = (HttpAddressResponse*)request.response;
+        if (response.ok) {
+            self.addresses = response.addresses;
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+}
+
+-(void)getOneOrderStatusDto
+{
+    if (self.orderStatusDto) {
+        return;
+    }
+    
+    HttpOrderStatusRequest* request = [[HttpOrderStatusRequest alloc] initWithOrderId:self.orderDetailDtos.firstObject.id andOderType:kOrderTypeBuy];
+    [request request]
+    .then(^(id responseObj){
+        HttpOrderStatusResponse* response = (HttpOrderStatusResponse*)request.response;
+        if (response.ok) {
+            self.orderStatusDto = response.orderStatusDto;
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+    
+}
+
+-(BOOL)needHiddenAddrCell
+{
+//    if (self.orderStatusDto == nil) {
+//        return YES;
+//    }
+//    
+//    if (!self.orderStatusDto.addr || [self.orderStatusDto.addr isKindOfClass:[NSNull class]]) {
+//        return YES;
+//    }
+    
+    return NO;
+}
 
 -(UIButton*)confirmButton
 {
@@ -50,42 +152,64 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         _confirmButton.backgroundColor = [UIColor redColor];
         [_confirmButton setTitle:@"确认支付" forState:UIControlStateNormal];
         [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _confirmButton.titleLabel.font = [UIFont systemFontOfSize:18.f];
         
         @weakify(self);
         _confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             @strongify(self);
             
-            self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-            self.confirmModalView.presentAnimationStyle = fadeIn;
-            self.confirmModalView.dismissAnimationStyle = fadeOut ;
             
-
-            [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
-                
-                contentView.centerX = self.view.centerX;
-                contentView.centerY = self.view.centerY;
-                
-                
-                self.payAlertView.dismissButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-                    @strongify(self);
-                    [self.confirmModalView dismiss];
+            HttpPayInfoRequest* request = [[HttpPayInfoRequest alloc] initWithPayPrice:self.totalPrice];
+            [request request]
+            .then(^(id responseObj){
+                NSLog(@"%@", responseObj);
+                HttpPayInfoResponse* response = (HttpPayInfoResponse*)request.response;
+                if (response.ok) {
+                    self.payInfoDto = response.payInfoDto;
+                    self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+                    self.confirmModalView.presentAnimationStyle = fadeIn;
+                    self.confirmModalView.dismissAnimationStyle = fadeOut ;
                     
-                    return [RACSignal empty];
-                }];
+                    self.payAlertView.totalPriceLabel.text = [NSString stringWithFormat:@"%.02f", self.productDetailCell.totalPrice];
+                    self.payAlertView.orderNoLabel.text = self.payInfoDto.ORDERID;
+                    
+                    [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+                        
+                        contentView.centerX = self.view.centerX;
+                        contentView.centerY = self.view.centerY;
+                        
+                        
+                        self.payAlertView.dismissButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                            @strongify(self);
+                            [self.confirmModalView dismiss];
+                            
+                            return [RACSignal empty];
+                        }];
+                        
+                        self.payAlertView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                            @strongify(self);
+                            [self.confirmModalView dismiss];
+                            
+//                            PayResultViewController* payResultVC = [[PayResultViewController alloc] init];
+//                            
+//                            [self.navigationController pushViewController:payResultVC animated:YES];
+                            
+                            return [RACSignal empty];
+                        }];
+                        
+                        
+                    }];
+                }
+                else {
+                    [self showAlertViewWithMessage:response.errorMsg];
+                }
                 
-                self.payAlertView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-                    @strongify(self);
-                    [self.confirmModalView dismiss];
-                    
-                    PayResultViewController* payResultVC = [[PayResultViewController alloc] init];
-                    
-                    [self.navigationController pushViewController:payResultVC animated:YES];
-                    
-                    return [RACSignal empty];
-                }];
-
-                
-            }];
+            })
+            .catch(^(NSError* error){
+                [self showAlertViewWithMessage:error.localizedDescription];
+            });
+            
+            
             return [RACSignal empty];
         }];
     }
@@ -103,6 +227,16 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     return _bottomView;
 }
 
+-(UITableViewCell*)addAddrCell
+{
+    if (!_addAddrCell) {
+        _addAddrCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"addAddrCell"];
+        _addAddrCell.textLabel.text = @"请先创建您的收货地址";
+        _addAddrCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    return _addAddrCell;
+}
 
 -(FirstAddrCell*) addrCell
 {
@@ -115,7 +249,6 @@ typedef NS_ENUM(NSInteger, MinePayRow){
             
             return [RACSignal empty];
         }];
-
     }
     return _addrCell;
 }
@@ -156,9 +289,16 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     if (!_payAlertView) {
         _payAlertView = [[[NSBundle mainBundle]loadNibNamed:@"PayAlertView" owner:nil options:nil] firstObject];
         _payAlertView.layer.cornerRadius = 6.f;
+        [_payAlertView.confirmButton addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _payAlertView;
+}
+
+-(void)pay
+{
+    OnlinePayViewController* vc = [[OnlinePayViewController alloc] initWithPayInfoDto:self.payInfoDto];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)viewDidLoad
@@ -180,7 +320,6 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
-    
 }
 
 -(void)viewWillLayoutSubviews
@@ -191,7 +330,12 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     self.confirmButton.frame = self.bottomView.bounds;
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getOneOrderStatusDto];
+    [self getOrderAddresses];
+}
 
 
 #pragma mark - Table view data source
@@ -212,11 +356,17 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     
     UITableViewCell* cell;
     if (indexPath.row == kAddrRow) {
-        cell = self.addrCell;
-
+        if (self.addresses.count == 0) {
+            cell = self.addAddrCell;
+        }
+        else {
+            cell = self.addrCell;
+            self.addrCell.addrDto = self.addresses[0];
+        }
     }
     else if(indexPath.row== kProductSumRow){
         cell = self.productDetailCell;
+        self.productDetailCell.orderDetailDtos = self.orderDetailDtos;
 
     }
     else if(indexPath.row == kPayWayRow){
@@ -244,7 +394,12 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row== kAddrRow) {
-        return [FirstAddrCell cellHeight];
+        if (self.addresses.count>0) {
+            return [FirstAddrCell cellHeight];
+        }
+        else {
+            return 60.f;
+        }
 
     }
     else if(indexPath.row== kProductSumRow){
@@ -255,6 +410,9 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     }
     
     else {
+        if (indexPath.row ==0 && self.needHiddenAddrCell) {
+            return 0;
+        }
         return 16.f;
     }
 }

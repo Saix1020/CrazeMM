@@ -13,9 +13,9 @@
 
 -(void)showAlertView;
 
--(void)showAlertViewWithTitle:(NSString*)title andMessage:(NSString*)message andDetail:(NSString*)detail;
+//-(void)showAlertViewWithTitle:(NSString*)title andMessage:(NSString*)message andDetail:(NSString*)detail;
 -(void)showAlertViewWithMessage:(NSString*)message;
 +(void)showAlertViewWithViewController:(UIViewController*)vc;
-
-
+-(void)showAlertViewWithMessage:(NSString*)message withCallback:(void(^)(id x))callback;
+-(void)showAlertViewWithMessage:(NSString*)message withOKCallback:(void(^)(id x))okCallback andCancelCallback:(void(^)(id x))cancelCallback;
 @end

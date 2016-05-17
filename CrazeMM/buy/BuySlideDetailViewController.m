@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIWebView* webView;
 @property (nonatomic, copy) NSString* url;
+@property (nonatomic, strong) NSURLRequest* request;
 @property (nonatomic, copy) NSString* webTitle;
 @end
 
@@ -24,6 +25,15 @@
     if(self){
         self.url = url;
         self.webTitle = title;
+    }
+    return self;
+}
+
+-(instancetype)initWithURLRequest:(NSURLRequest*)request;
+{
+    self = [super init];
+    if(self){
+        self.request = request;
     }
     return self;
 }
@@ -43,8 +53,14 @@
 {
     [super viewDidLoad];
     
-    NSURL *url = [NSURL URLWithString:self.url];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    if (self.request) {
+        [self.webView loadRequest:self.request];
+    }
+    else {
+        NSURL *url = [NSURL URLWithString:self.url];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    }
+   
     self.navigationItem.title = self.webTitle;
     
     //self.navigationController.toolbarHidden = YES;

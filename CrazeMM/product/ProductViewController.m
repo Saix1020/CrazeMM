@@ -26,18 +26,9 @@
 @interface ProductViewController ()
 
 @property (nonatomic, strong) UIWebView* webView;
-@property (nonatomic, strong) UIView* buttomView;
 @property (nonatomic, strong) M80AttributedLabel* timeLabel;
-@property (nonatomic, strong) UIButton* payButton;
-@property (nonatomic, strong) UIButton* orderButton;
-
-@property (nonatomic, strong) BuyProductView* buyProductView;
-@property (nonatomic, strong) BuyProductView* orderProductView;
-
 
 @property (nonatomic, strong) UIImageView* imageView;//just for debug
-@property (nonatomic, strong) TTModalView* modalView;
-@property (nonatomic, strong) TTModalView* orderModalView;
 
 @property (nonatomic, strong) UIImageView* mockShareView;
 @property (nonatomic, strong) ProductLadderCell* productLadderCell;
@@ -48,92 +39,6 @@
 @end
 
 @implementation ProductViewController
-
--(UIButton*)supplyOrBuyButton
-{
-    if (!_supplyOrBuyButton) {
-        _supplyOrBuyButton  = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_supplyOrBuyButton setTitle:@"我来供货" forState:UIControlStateNormal];
-//        [_supplyOrBuyButton bs_configureAsDefaultStyle];
-        _supplyOrBuyButton.titleLabel.font = [UIFont boldSystemFontOfSize:18.f];
-        _supplyOrBuyButton.layer.cornerRadius = 0;
-        [_supplyOrBuyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_supplyOrBuyButton setBackgroundColor:[UIColor light_Gray_Color]];
-    }
-    
-    return _supplyOrBuyButton;
-}
-
--(BuyProductView*)buyProductView
-{
-    if(!_buyProductView){
-        _buyProductView  =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
-        [self.view addSubview:_buyProductView];
-        @weakify(self);
-        _buyProductView.determineButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-            @strongify(self);
-            
-            [self.modalView dismiss];
-            
-            PayViewController* payVC = [[PayViewController alloc] init];
-            [self.navigationController pushViewController:payVC animated:YES];
-            
-            return [RACSignal empty];
-        }];
-        
-        _buyProductView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input){
-            @strongify(self);
-            [self.modalView dismiss];
-            return [RACSignal empty];
-        }];
-        _buyProductView.x = 0;
-        _buyProductView.y = [UIScreen mainScreen].bounds.size.height - _buyProductView.height;
-        _buyProductView.width = [UIScreen mainScreen].bounds.size.width;
-
-    }
-    
-    return _buyProductView;
-}
-
--(BuyProductView*)orderProductView
-{
-    if(!_orderProductView){
-        _orderProductView  =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
-        [self.view addSubview:_orderProductView];
-        _orderProductView.amountLabel.text = @"订单数量";
-        @weakify(self);
-        _orderProductView.determineButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-            @strongify(self);
-            
-            if ([self.orderProductView.amountTextField.text integerValue] > 0  && [self.orderProductView.amountTextField.text integerValue] <= self.productDetailDto.quantity) {
-                [self handleOrderWithQuantity:[self.orderProductView.amountTextField.text integerValue] andMessage:self.orderProductView.descTextView.text];
-            }
-            else {
-                [self showAlertViewWithMessage:@"请输入正确的数量!"];
-            }
-            
-//            [self.modalView dismiss];
-//            
-//            PayViewController* payVC = [[PayViewController alloc] init];
-//            [self.navigationController pushViewController:payVC animated:YES];
-            
-            return [RACSignal empty];
-        }];
-        
-        _orderProductView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input){
-            @strongify(self);
-            [self.modalView dismiss];
-            return [RACSignal empty];
-        }];
-        
-        _orderProductView.x = 0;
-        _orderProductView.y = [UIScreen mainScreen].bounds.size.height - _orderProductView.height;
-        _orderProductView.width = [UIScreen mainScreen].bounds.size.width;
-
-    }
-    
-    return _orderProductView;
-}
 
 -(UIImageView*)mockShareView
 {
@@ -151,12 +56,6 @@
         _buttomView = [[UIView alloc] init];
         [self.view addSubview:_buttomView];
         _buttomView.backgroundColor = [UIColor clearColor];
-        
-        [_buttomView addSubview:self.timeLabel];
-        [_buttomView addSubview:self.payButton];
-        [_buttomView addSubview:self.orderButton];
-        [_buttomView addSubview:self.supplyOrBuyButton];
-
     }
     
     return _buttomView;
@@ -168,6 +67,7 @@
         _timeLabel = [[M80AttributedLabel alloc] init];
         _timeLabel.backgroundColor = RGBCOLOR(133, 133, 133);
         _timeLabel.textAlignment = kCTTextAlignmentCenter;
+        [self.buttomView addSubview:_timeLabel];
         //just for debug
         [self fomartTimeLabel];
     }
@@ -200,108 +100,7 @@
     [self.timeLabel appendAttributedText:attributedText];
 }
 
--(UIButton*)payButton
-{
-    if(!_payButton){
-        _payButton = [[UIButton alloc] init];
-        [_payButton setTitle:@"立刻付款" forState:UIControlStateNormal];
-        [_payButton bs_configureAsPrimaryStyle];
-        _payButton.layer.cornerRadius = 0;
-        [_payButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_payButton setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.2] forState:UIControlStateHighlighted];
-        @weakify(self);
-        _payButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-            @strongify(self);
-            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
-            [request request]
-            .then(^(id responseObject){
-                
-            })
-            .catch(^(NSError* error){
-                
-            });
-            if ([UserCenter defaultCenter].isLogined) {
-                self.modalView.presentAnimationStyle = SlideInUp;
-                self.modalView.dismissAnimationStyle = SlideOutDown;
-                self.modalView.contentView = self.buyProductView;
-                self.modalView.isCancelAble = YES;
-                [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
-                    @strongify(self);
-//                    contentView.x = 0;
-//                    contentView.y = [UIScreen mainScreen].bounds.size.height - contentView.height;
-//                    contentView.width = [UIScreen mainScreen].bounds.size.width;
-                    
-                    BuyProductView* buyProductView = (BuyProductView*)contentView;
-                    buyProductView.productDetailDto = self.productDetailDto;
-                    
-                }];
 
-            }
-            else {
-                LoginViewController* loginVC = [[LoginViewController alloc] init];
-                loginVC.fromVC = self;
-                [self.navigationController pushViewController:loginVC animated:YES];
-            }
-
-            return [RACSignal empty];
-        }];
-        
-
-
-    }
-    
-    return _payButton;
-}
-
--(UIButton*)orderButton
-{
-    if(!_orderButton){
-        _orderButton = [[UIButton alloc] init];
-        [_orderButton setTitle:@"加入订货单" forState:UIControlStateNormal];
-        [_orderButton bs_configureAsDangerStyle];
-        _orderButton.layer.cornerRadius = 0;
-        [_orderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_orderButton setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.2] forState:UIControlStateHighlighted];
-        @weakify(self);
-        _orderButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-            @strongify(self);
-            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
-            [request request]
-            .then(^(id responseObject){
-                
-            })
-            .catch(^(NSError* error){
-                
-            });
-            if ([UserCenter defaultCenter].isLogined) {
-                self.modalView.presentAnimationStyle = SlideInUp;
-                self.modalView.dismissAnimationStyle = SlideOutDown;
-                self.modalView.contentView = self.orderProductView;
-                self.modalView.isCancelAble = YES;
-                [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
-                    @strongify(self);
-//                    contentView.x = 0;
-//                    contentView.y = [UIScreen mainScreen].bounds.size.height - contentView.height;
-//                    contentView.width = [UIScreen mainScreen].bounds.size.width;
-                    BuyProductView* orderProductView = (BuyProductView*)contentView;
-                    orderProductView.productDetailDto = self.productDetailDto;
-                }];
-                
-            }
-            else {
-                LoginViewController* loginVC = [[LoginViewController alloc] init];
-                loginVC.fromVC = self;
-                [self.navigationController pushViewController:loginVC animated:YES];
-            }
-
-            
-            return [RACSignal empty];
-        }];
-        
-    }
-    
-    return _orderButton;
-}
 
 
 -(ProductLadderCell*)productLadderCell
@@ -346,16 +145,6 @@
     self = [super init];
     if(self){
         self.productDto = dto;
-        if (!self.productDto.isActive) {
-            self.payButton.hidden = YES;
-            self.orderButton.hidden = YES;
-            self.supplyOrBuyButton.hidden = NO;
-        }
-        else {
-            self.payButton.hidden = NO;
-            self.orderButton.hidden = NO;
-            self.supplyOrBuyButton.hidden = YES;
-        }
     }
     return self;
 }
@@ -391,8 +180,12 @@
 
 -(void)handleOrderWithQuantity:(NSInteger)quantity andMessage:(NSString*)message
 {
-    
-    [self.modalView dismiss];
+//    [self.modalView dismiss];
+}
+
+-(void)handleBuyWithQuantity:(NSInteger)quantity andMessage:(NSString*)message
+{
+//    [self.modalView dismiss];
 }
 
 -(void)getProductDetail:(BOOL)needHud
@@ -403,17 +196,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.productDisplayMode = kDisplayMode0;
     
     self.navigationItem.title = @"商品详情";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"switch"] style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        
-//        self.productDisplayMode = self.productDisplayMode == kDisplayMode0 ? kDisplayMode1 : kDisplayMode0;
-//        [self.tableView reloadData];
-        return [RACSignal empty];
-    }];
-
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -434,7 +220,6 @@
         self.modalView.contentView = self.mockShareView;
         self.modalView.isCancelAble = YES;
         [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
-            @strongify(self);
             contentView.height = 220.f;
             contentView.x = 0;
             contentView.y = [UIScreen mainScreen].bounds.size.height - contentView.height;
@@ -454,20 +239,9 @@
 {
     [super viewWillLayoutSubviews];
     
-//    self.webView.frame = self.view.bounds;
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-
     self.buttomView.frame = CGRectMake(0, self.view.bounds.size.height-70, self.view.bounds.size.width, 70);
     self.timeLabel.frame = CGRectMake(0, 0, self.view.bounds.size.width, 20);
-    self.payButton.frame = CGRectMake(0, 20, self.view.bounds.size.width/2, 50);
-    self.orderButton.frame = CGRectMake(self.view.bounds.size.width/2, 20, self.view.bounds.size.width/2, 50);
-    self.supplyOrBuyButton.frame = CGRectMake(0, 20, self.view.bounds.size.width, 50);
-
-    
-//    [self.view bringSubviewToFront:self.buyProductView];
-//    self.buyProductView.frame = [UIScreen mainScreen].bounds;
-//    self.buyProductView.y = 100;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -573,26 +347,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    switch (indexPath.section) {
-//        case kSectionInfo:
-//        {
-//            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-//            [self.navigationController pushViewController:mineSellProductVC animated:YES];
-//            
-//        }
-//            break;
-//            
-//        default:
-//            break;
-//    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-//    if (section == kSectionOverview) {
-//        return 0.f;
-//    }
-//    
    return 0.f;
 }
 

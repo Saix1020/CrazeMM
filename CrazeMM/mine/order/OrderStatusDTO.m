@@ -22,9 +22,12 @@
         self.updateTime = dict[@"updateTime"];
         self.userImage = dict[@"userImage"];
         self.goodName = dict[@"goodName"];
+        self.goodImage = dict[@"goodImage"];
+
         self.userName = dict[@"userName"];
-        
-        self.addr = [[AddrDTO alloc] initWith:dict[@"addr"]];
+        if(dict[@"addr"] && ![dict[@"addr"] isKindOfClass:[NSNull class]]){
+            self.addr = [[AddrDTO alloc] initWith:dict[@"addr"]];
+        }
         self.logs = [[NSMutableArray alloc] init];
         for (NSDictionary* log in dict[@"logs"]) {
             [self.logs addObject:[[OrderLogDTO alloc] initWith:log]];

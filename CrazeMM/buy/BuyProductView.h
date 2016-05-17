@@ -16,7 +16,7 @@
 
 @end
 
-@interface BuyProductView : UIView<UITextFieldDelegate>
+@interface BuyProductView : UIView<UITextFieldDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *subButton;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;

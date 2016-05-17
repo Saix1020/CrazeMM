@@ -21,6 +21,9 @@
 #import "SignViewController.h"
 #import "ProductSummaryCell.h"
 #import "HttpBuyRequest.h"
+#import "BuyProductViewController.h"
+#import "BuyProductDTO.h"
+#import "HttpAddIntention.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -280,6 +283,14 @@
     [self.tableView reloadData];
 }
 
+-(void)refreshDataNoHud
+{
+    [self clearData];
+    [self.tableView reloadData];
+    [self getProducts:NO];
+    [self.tableView reloadData];
+}
+
 -(void)clearData
 {
     self.pageNumber = 0;
@@ -345,10 +356,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    // for debug
-    if ([self isMemberOfClass:[BuyListViewController class]]) {
-        return;
-    }
+//    // for debug
+//    if ([self isMemberOfClass:[BuyListViewController class]]) {
+//        return;
+//    }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loginSuccess:)
                                                  name:kLoginSuccessBroadCast
@@ -515,7 +526,7 @@
         cell = [[ProductSummaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductSummaryCell"];
         cell.cellType = @"求购";
     }
-    
+    cell.productDto = [self.dataSource objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -526,19 +537,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    BuyProductDTO* dto = self.dataSource[indexPath.row];
+    HttpAddViewRequest* request = [[HttpAddViewRequest alloc] initWithSid:dto.id];
+    [request request]
+    .then(^(id responseObj){
+    })
+    .catch(^(NSError* error){
+    });
+    BuyProductViewController* vc = [[BuyProductViewController alloc] initWithProductDTO:dto];
+    [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    ProductViewController* productVC = [[ProductViewController alloc]  init];
-
-//    ProductDescriptionDTO* pdDTO = self.dataSource[indexPath.row];
-//    if (pdDTO.canSplit) {
-//        productVC.productDisplayMode = kDisplayMode0;
-//    }
-//    else {
-//        productVC.productDisplayMode = kDisplayMode1;
-//    }
-    productVC.productDisplayMode = kDisplayMode0;
-    [self.navigationController pushViewController:productVC animated:YES];
 }
 
 

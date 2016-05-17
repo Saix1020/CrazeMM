@@ -269,8 +269,6 @@
     
     //[self.userNameField becomeFirstResponder];
     self.loginButton.enabled = false;
-    
-    
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)]];
 
 }
@@ -430,6 +428,5 @@
 {
     NSLog(@"Dealloc LoginViewController");
 }
-
 
 @end

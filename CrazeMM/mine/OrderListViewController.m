@@ -15,7 +15,7 @@
 #import "HttpOrder.h"
 #import "MJRefresh.h"
 #import "OrderDetailViewController.h"
-#import "HttpOrderDelete.h"
+#import "HttpOrderRemove.h"
 
 #define kSegmentCellHeight 40.f
 #define kTableViewInsetTopWithoutSegment (kSegmentCellHeight+64)
@@ -180,12 +180,57 @@
             {
                 switch (segmentIndex) {
                     case 0:
+                    {
                         NSLog(@"我买的货->待付款->付款");
-                        [self.navigationController pushViewController:[PayViewController new] animated:YES];
+                        NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+                        for (OrderDetailDTO* dto in self.dataSource) {
+                            if (dto.selected) {
+                                [selectedDtos addObject:dto];
+                            }
+                        }
+                        if (selectedDtos.count == 0) {
+                            [self showAlertViewWithMessage:@"请选择待付款的商品"];
+                            break;
+                        }
+                        PayViewController* payVC = [[PayViewController alloc] initWithOrderDetailDTOs:selectedDtos];
+                        [self.navigationController pushViewController:payVC animated:YES];
+                    }
                         break;
                     case 1:
                         NSLog(@"我买的货->待付款->超时");
-                        [self removeOrder:segmentIndex];
+                    {
+                        NSMutableArray* removeIds = [[NSMutableArray alloc] init];
+                        NSMutableArray* removeObjs = [[NSMutableArray alloc] init];
+                        for (OrderDetailDTO* dto in self.dataSource) {
+                            if (dto.selected) {
+                                [removeIds addObject:[NSString stringWithFormat:@"%ld", dto.id]];
+                                [removeObjs addObject:dto];
+                            }
+                        }
+                        if (removeIds.count == 0) {
+                            [self showAlertViewWithMessage:@"请选择需要删除的订单"];
+                            break;
+                        }
+                        HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:removeIds];
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+//                                [self clearOrderList];
+//                                [self getOrderList];
+                                for (OrderDetailDTO* dto in removeObjs){
+                                    [self.dataSource removeObject:dto];
+                                }
+                                [self.tableView reloadData];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                    }
                         break;
                     case 2:
                         NSLog(@"我买的货->待付款->已支付");
@@ -301,6 +346,7 @@
 
     [self setOrderStyleWithSegmentIndex:0];
     [self.segmentCell setTitles:[self getSegmentTitels]];
+    [self getOrderList];
 
 }
 
@@ -319,16 +365,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.orderListPageNumber = 0;
+//    self.orderListPageNumber = 0;
     [self.tabBarController setTabBarHidden:YES animated:YES];
-    [self clearOrderList];
-    [self getOrderList];
 }
 
 -(void)clearOrderList
 {
     self.dataSource = [@[] mutableCopy];
     [self.tableView reloadData];
+    self.orderListPageNumber = 0;
 }
 
 -(void)refreshTotalPriceLabel
@@ -436,44 +481,6 @@
     self.commonBottomView.orderStyle = style;
 }
 
--(void)removeOrder:(NSInteger)index
-{
-    NSMutableString *orderIds = [[NSMutableString alloc] init];
-    for (NSInteger i = 0; i<self.dataSource.count; ++i) {
-        OrderDetailDTO* dto = self.dataSource[i];
-        if (dto.selected)
-        {
-            [orderIds appendFormat:@"%ld,", (long)dto.id];
-        }
-    }
-    [orderIds deleteCharactersInRange:NSMakeRange([orderIds length]-1, 1)];
-    //NSLog(@"%@",orderIds);
-    
-    
-    HttpOrderDeleteRequest* request = [[HttpOrderDeleteRequest alloc] initWithOrderIds:orderIds];
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            //reload paytimeout order list
-            self.orderListPageNumber = 0;
-            [self setOrderStyleWithSegmentIndex:index];
-            [self.dataSource removeAllObjects];
-            [self.tableView reloadData];
-            [self getOrderList];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-            
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    });
-    
-    
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -545,11 +552,8 @@
     if (segment.prevIndex == index) {
         return;
     }
-    self.orderListPageNumber = 0;
     [self setOrderStyleWithSegmentIndex:index];
-    [self.dataSource removeAllObjects];
-//    [self refreshTotalPriceLabel];
-    [self.tableView reloadData];
+    [self clearOrderList];
     [self getOrderList];
 }
 

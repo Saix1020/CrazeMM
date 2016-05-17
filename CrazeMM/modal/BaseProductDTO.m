@@ -33,6 +33,7 @@
         self.views = [dict[@"views"] integerValue];
         self.createTime = dict[@"createTime"];
         self.goodImage = dict[@"goodImage"];
+        self.selected = NO;
 
     }
     

@@ -11,6 +11,7 @@
 @interface BuySlideDetailViewController : UIViewController
 
 -(instancetype)initWithURL:(NSString*)url andTitle:(NSString*)title;
+-(instancetype)initWithURLRequest:(NSURLRequest*)request;
 
 
 @end

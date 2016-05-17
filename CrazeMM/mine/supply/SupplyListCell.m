@@ -17,7 +17,8 @@
     self.selectCheckBox.onTintColor = [UIColor redColor];
     self.selectCheckBox.onFillColor = [UIColor redColor];
     self.selectCheckBox.boxType = BEMBoxTypeCircle;
-    self.selectCheckBox.on = YES  ;
+    self.selectCheckBox.on = NO  ;
+    self.selectCheckBox.animationDuration = 0.f;
     
 //    [self fomartCompanyLabel];
 //    [self fomartTotalPriceLabel];
@@ -57,7 +58,6 @@
     NSString* priceString = self.priceLabel.text;
     
     NSArray* subStrings = [priceString componentsSeparatedByString:@" "];
-    
     NSString* firstComponent = subStrings[0];
     NSString* secondComopent = [[subStrings subarrayWithRange:NSMakeRange(1, subStrings.count-1)] componentsJoinedByString:@""];
     
@@ -105,6 +105,20 @@
         default:
             break;
     }
+}
+
+-(void)setMineSupplyProductDto:(MineSupplyProductDTO *)mineSupplyProductDto
+{
+    _mineSupplyProductDto = mineSupplyProductDto;
+    
+    self.titleLabel.text = [NSString stringWithFormat:@"供货单号: %ld", mineSupplyProductDto.id];
+    self.dateLabel.text = mineSupplyProductDto.createTime;
+    self.productLabel.text = mineSupplyProductDto.goodName;
+    self.numberLabel.text = [NSString stringWithFormat:@"数量: %ld", mineSupplyProductDto.quantity];
+    self.priceLabel.text = [NSString stringWithFormat:@"单台定价: ￥%.02f", mineSupplyProductDto.price];
+    [self fomartPriceLabel];
+    self.selectCheckBox.on = mineSupplyProductDto.selected;
+    
 }
 
 +(CGFloat)cellHeight

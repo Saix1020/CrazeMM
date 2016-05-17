@@ -32,3 +32,27 @@
 }
 
 @end
+
+@implementation HttpAddViewRequest
+
+-(instancetype)initWithSid:(NSInteger)sid;
+{
+    self = [super init];
+    if (self) {
+        self.sid = sid;
+        self.params = [@{@"sid" : @(sid)} mutableCopy];
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/supply/addView");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+@end

@@ -59,6 +59,29 @@
     return _buttomSeperatorLine;
 }
 
+-(void)setEnableTopLine:(BOOL)enableTopLine
+{
+    _enableTopLine = enableTopLine;
+//    if (_enableTopLine) {
+//        self.topSeperatorLine.frame = CGRectMake(kHeadAlign, 0, self.contentView.bounds.size.width-kHeadAlign, 1.f);
+//    }
+//    else {
+//        self.topSeperatorLine.frame = CGRectMake(kHeadAlign, 0, self.contentView.bounds.size.width-kHeadAlign, 0.f);
+//    }
+}
+
+-(void)setEnableButtomLine:(BOOL)enableButtomLine
+{
+    _enableButtomLine = enableButtomLine;
+//    if (_enableButtomLine) {
+//        self.buttomSeperatorLine.frame = CGRectMake(kHeadAlign, 0, self.contentView.bounds.size.width-kHeadAlign, 1.f);
+//    }
+//    else {
+//        self.buttomSeperatorLine.frame = CGRectMake(kHeadAlign, 0, self.contentView.bounds.size.width-kHeadAlign, 0.f);
+//    }
+}
+
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -66,9 +89,17 @@
     if(self.enableTopLine){
         self.topSeperatorLine.frame = CGRectMake(kHeadAlign, 0, self.contentView.bounds.size.width-kHeadAlign, 1.f);
     }
+    else {
+        self.topSeperatorLine.frame = CGRectMake(kHeadAlign, 0, self.contentView.bounds.size.width-kHeadAlign, 0.f);
+
+    }
     
     if(self.enableButtomLine){
         self.buttomSeperatorLine.frame = CGRectMake(kHeadAlign, self.contentView.bounds.size.height-1.f, self.contentView.bounds.size.width-kHeadAlign, 1.f);
+
+    }
+    else {
+        self.buttomSeperatorLine.frame = CGRectMake(kHeadAlign, 0, self.contentView.bounds.size.width-kHeadAlign, 0.f);
 
     }
 }

@@ -12,6 +12,8 @@
 @property (nonatomic, strong) UIView* headView;
 @end
 
+// TODO we should layout it Manually and avoid to using M80AttributedLabel! 
+
 @implementation OrderListNoCheckBoxCell
 
 -(UIView*)headView

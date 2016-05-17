@@ -54,4 +54,7 @@
 @property (nonatomic, strong) ProductUserInfo* users;
 @property (nonatomic, strong) NSMutableArray<ProductStepPrice*>* stepPrices;
 
+-(CGFloat)totalPriceWithAmount:(NSInteger)amount;
+
+
 @end

@@ -9,7 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSNull (Utils)
--(NSInteger)integerValue;
--(CGFloat)floatValue;
--(BOOL)boolValue;
+
 @end

@@ -356,9 +356,9 @@
 
 -(void)setProductDto:(BaseProductDTO *)productDto
 {
-    if (![productDto isKindOfClass:NSClassFromString(@"SupplyProductDTO")]) {
-        return;
-    }
+//    if (![productDto isKindOfClass:NSClassFromString(@"SupplyProductDTO")]) {
+//        return;
+//    }
     _productDto = productDto;
     [self commInit];
 }

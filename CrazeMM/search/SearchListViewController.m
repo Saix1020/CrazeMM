@@ -21,6 +21,8 @@
 #import "SegmentedCell.h"
 #import "HttpSearchRequest.h"
 #import "SearchResultDTO.h"
+#import "SupplyProductViewController.h"
+#import "BuyProductViewController.h"
 
 
 #define kSegmentCellHeight 40.f
@@ -281,6 +283,15 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    
+    
+    self.dataSource = self.dataSourceArray[0];
+    [self getSearchList:YES].finally(^(){
+        //        if (self.emptyView.hidden == YES) {
+        //            [self removeSearchViewController];
+        //        }
+    });
+
 }
 
 -(AnyPromise*)getSearchList:(BOOL)needHud
@@ -361,12 +372,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.dataSource = self.dataSourceArray[self.segmentCell.segment.currentIndex];
-    [self getSearchList:YES].finally(^(){
-//        if (self.emptyView.hidden == YES) {
-//            [self removeSearchViewController];
-//        }
-    });
     
 }
 
@@ -421,7 +426,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductViewController* productVC = [[ProductViewController alloc]  init];
+    ProductViewController* productVC;
+    if (self.tabBarController.selectedIndex == 0) {
+        productVC = [[SupplyProductViewController alloc] initWithProductDTO:[self.dataSource objectAtIndex:indexPath.row]];
+
+    }
+    else {
+        productVC = [[BuyProductViewController alloc] initWithProductDTO:[self.dataSource objectAtIndex:indexPath.row]];
+    }
+    
     
     [self.navigationController pushViewController:productVC animated:YES];
 }
