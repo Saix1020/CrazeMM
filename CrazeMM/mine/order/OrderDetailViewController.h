@@ -10,7 +10,17 @@
 #import "OrderDetailDTO.h"
 #import "OrderDefine.h"
 
+@protocol OrderDetailViewControllerDelegate <NSObject>
+
+-(void)removeOrder:(OrderDetailDTO*)orderDto;
+-(void)cancelOrder:(OrderDetailDTO*)orderDto;
+
+@end
+
+
 @interface OrderDetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) id<OrderDetailViewControllerDelegate> delegate;
 
 -(instancetype)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto;
 

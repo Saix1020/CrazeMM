@@ -23,6 +23,7 @@
 #import "SearchResultDTO.h"
 #import "SupplyProductViewController.h"
 #import "BuyProductViewController.h"
+#import "HttpAddIntention.h"
 
 
 #define kSegmentCellHeight 40.f
@@ -435,7 +436,8 @@
         productVC = [[BuyProductViewController alloc] initWithProductDTO:[self.dataSource objectAtIndex:indexPath.row]];
     }
     
-    
+    BaseProductDTO* dto = self.dataSource[indexPath.row];
+    [HttpAddViewRequest addView:dto.id andType:self.searchCategory==kSupplySearch?kTypeSupply:kTypeBuy];
     [self.navigationController pushViewController:productVC animated:YES];
 }
 

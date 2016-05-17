@@ -27,5 +27,8 @@
 #define GEN_MOBILE_VCODE_PATH @"/rest/genMobileVcode"
 
 
+#define IBSB_PAY_URL @"https://ibsbjstar.ccb.com.cn/app/ccbMain"
+#define HTTP_HEADER_REFERER_URL @"http://b.189mm.com/"
+
 
 #endif /* HttpRequestURL_h */

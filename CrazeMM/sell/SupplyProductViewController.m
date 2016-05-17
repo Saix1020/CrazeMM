@@ -140,14 +140,15 @@
         @weakify(self);
         _payButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
-            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
-            [request request]
-            .then(^(id responseObject){
-                
-            })
-            .catch(^(NSError* error){
-                
-            });
+//            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
+//            [request request]
+//            .then(^(id responseObject){
+//                
+//            })
+//            .catch(^(NSError* error){
+//                
+//            });
+            [HttpAddIntentionRequest addIntention:self.productDetailDto.id andType:kTypeSupply];
             if ([UserCenter defaultCenter].isLogined) {
                 self.modalView.presentAnimationStyle = SlideInUp;
                 self.modalView.dismissAnimationStyle = SlideOutDown;
@@ -187,14 +188,7 @@
         @weakify(self);
         _orderButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
-            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
-            [request request]
-            .then(^(id responseObject){
-                
-            })
-            .catch(^(NSError* error){
-                
-            });
+            [HttpAddIntentionRequest addIntention:self.productDetailDto.id andType:kTypeSupply];
             if ([UserCenter defaultCenter].isLogined) {
                 self.modalView.presentAnimationStyle = SlideInUp;
                 self.modalView.dismissAnimationStyle = SlideOutDown;

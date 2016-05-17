@@ -242,6 +242,7 @@
 		B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B98219081CE8A83000B279E6 /* OnlinePayViewController.m */; };
 		B98219171CE9A48D00B279E6 /* HttpMineSupply.m in Sources */ = {isa = PBXBuildFile; fileRef = B98219161CE9A48C00B279E6 /* HttpMineSupply.m */; };
 		B982191B1CE9A63B00B279E6 /* MineSupplyProductDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B982191A1CE9A63B00B279E6 /* MineSupplyProductDTO.m */; };
+		B98219201CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m in Sources */ = {isa = PBXBuildFile; fileRef = B982191F1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m */; };
 		B98878861CC896BE00990AA4 /* product_debug.png in Resources */ = {isa = PBXBuildFile; fileRef = B98878851CC896BE00990AA4 /* product_debug.png */; };
 		B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */; };
 		B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988788F1CC8AD3800990AA4 /* LoginViewController.m */; };
@@ -844,6 +845,8 @@
 		B98219161CE9A48C00B279E6 /* HttpMineSupply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMineSupply.m; path = restful/HttpMineSupply.m; sourceTree = "<group>"; };
 		B98219191CE9A63B00B279E6 /* MineSupplyProductDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineSupplyProductDTO.h; path = mine/supply/MineSupplyProductDTO.h; sourceTree = "<group>"; };
 		B982191A1CE9A63B00B279E6 /* MineSupplyProductDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineSupplyProductDTO.m; path = mine/supply/MineSupplyProductDTO.m; sourceTree = "<group>"; };
+		B982191E1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpMineSupplyUnshelve.h; path = mine/supply/HttpMineSupplyUnshelve.h; sourceTree = "<group>"; };
+		B982191F1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMineSupplyUnshelve.m; path = mine/supply/HttpMineSupplyUnshelve.m; sourceTree = "<group>"; };
 		B98878851CC896BE00990AA4 /* product_debug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = product_debug.png; path = Assets.xcassets/product_debug.imageset/product_debug.png; sourceTree = "<group>"; };
 		B988788B1CC8AB8B00990AA4 /* SuggestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestViewController.h; sourceTree = "<group>"; };
 		B988788C1CC8AB8B00990AA4 /* SuggestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestViewController.m; sourceTree = "<group>"; };
@@ -1124,8 +1127,8 @@
 		B9156F3D1CDBA3D80041E535 /* mine */ = {
 			isa = PBXGroup;
 			children = (
-				B98219141CE9A43200B279E6 /* supply */,
 				B9B5BCE71CDDBE460085E132 /* order */,
+				B98219141CE9A43200B279E6 /* supply */,
 			);
 			name = mine;
 			sourceTree = "<group>";
@@ -2226,6 +2229,8 @@
 			children = (
 				B98219151CE9A48C00B279E6 /* HttpMineSupply.h */,
 				B98219161CE9A48C00B279E6 /* HttpMineSupply.m */,
+				B982191E1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.h */,
+				B982191F1CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m */,
 			);
 			name = supply;
 			sourceTree = "<group>";
@@ -2877,6 +2882,7 @@
 				B9A780321CD99FF800A89047 /* MMAlertViewWithOK.m in Sources */,
 				B91896F31CD0EEC00061D0B6 /* AccountViewController.m in Sources */,
 				B99955411CE3835A007F26D2 /* OrderDetailStatusCell.m in Sources */,
+				B98219201CEA0C0400B279E6 /* HttpMineSupplyUnshelve.m in Sources */,
 				B917324E1CD1F05400C29698 /* SlideInLeftAnimation.m in Sources */,
 				B991949B1CCCF7AA0032A393 /* BrowserDealView.m in Sources */,
 				B91732471CD1F05400C29698 /* RotateOutAnimation.m in Sources */,

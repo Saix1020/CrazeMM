@@ -12,6 +12,7 @@
 #import "SupplyListCell.h"
 #import "HttpMineSupply.h"
 #import "MineSupplyProductDTO.h"
+#import "HttpMineSupplyUnshelve.h"
 //#import <objc/runtime.h>
 
 @interface SupplyViewController ()
@@ -51,11 +52,13 @@
         [_bottomView.confirmButton setTitle:@"下架" forState:UIControlStateNormal];
         [_bottomView.totalPriceLabel setText:@""];
 //        [self.view addSubview:_bottomView];
-        _bottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-//            MinePayViewController* payVC = [MinePayViewController new];
-//            [self.navigationController pushViewController:payVC animated:YES];
-            return [RACSignal empty];
-        }];
+//        _bottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+//            
+//        
+//            
+//            
+//            return [RACSignal empty];
+//        }];
     }
     
     return _bottomView;
@@ -93,6 +96,56 @@
 -(AnyPromise*)handleFooterRefresh
 {
     return [self getMineSupply];
+}
+
+-(void)bottomViewButtonClicked:(UIButton*)button
+{
+    if (button == self.bottomView.confirmButton) {
+        switch (self.cellStyle) {
+            case kNomalStyle:
+                [self unshelveProducts];
+                break;
+            case kOffShelfStyle:
+                break;
+            case kDealStyle:
+                break;
+            default:
+                break;
+        }
+    }
+    
+}
+
+-(void)unshelveProducts
+{
+    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+    NSMutableArray* selectedIds = [[NSMutableArray alloc] init];
+    
+    for (MineSupplyProductDTO* dto in self.dataSource) {
+        if (dto.selected) {
+            [selectedDtos addObject:dto];
+            [selectedIds addObject:@(dto.id)];
+        }
+    }
+    
+    HttpMineSupplyUnshelveRequest *request = [[HttpMineSupplyUnshelveRequest alloc] initWithIds:selectedIds];
+    
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            for (MineSupplyProductDTO* dto in selectedDtos) {
+                [self.dataSource removeObject:dto];
+            }
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
 }
 
 #pragma mark - Table view data source
