@@ -9,6 +9,7 @@
 #import "AddressEditViewController.h"
 #import "AddressEditTableViewCell.h"
 #import "AddressLocationTableViewCell.h"
+#import "AddressDefaultTableViewCell.h"
 
 
 @interface AddressEditViewController ()
@@ -151,7 +152,6 @@
         case 1:
         case 3:
         case 4:
-        case 5:
         {
             NSString *TableIdentifier = @"AddressEditTableViewCell";
             
@@ -168,6 +168,7 @@
             cell = addressCell;
             break;
         }
+            
         case 2:
         {
             NSString *TableIdentifier = @"AddressLocationTableViewCell";
@@ -181,6 +182,22 @@
             }
             locationCell.locationLabel.text = [listData objectAtIndex:row];
             cell = locationCell;
+            break;
+        }
+            
+        case 5:
+        {
+            NSString *TableIdentifier = @"AddressDefaultTableViewCell";
+            
+            AddressDefaultTableViewCell *defaultCheckCell;
+            defaultCheckCell = [tableView dequeueReusableCellWithIdentifier:TableIdentifier];
+            
+            if (defaultCheckCell == nil) {
+                defaultCheckCell = [[[NSBundle mainBundle]loadNibNamed:TableIdentifier owner:nil options:nil] firstObject];
+                
+            }
+            cell = defaultCheckCell;
+            break;
         }
             
             
@@ -188,7 +205,6 @@
             break;
     }
     
-    //cell.InputTextField.placeholder = [listData objectAtIndex:row];
 
     return cell;
 }

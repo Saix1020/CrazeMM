@@ -10,6 +10,8 @@
 		2E1462DC1CEAC7E7005166CB /* AddressEditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1462DB1CEAC7E7005166CB /* AddressEditTableViewCell.m */; };
 		2E77F2431CEB6AB80077AD85 /* AddressLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E77F2421CEB6AB80077AD85 /* AddressLocationTableViewCell.m */; };
 		2E77F2471CEB6B580077AD85 /* AddressLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E77F2461CEB6B580077AD85 /* AddressLocationTableViewCell.xib */; };
+		2E8721B41CECB3390067BC33 /* AddressDefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E8721B31CECB3390067BC33 /* AddressDefaultTableViewCell.m */; };
+		2E8721B61CECB3730067BC33 /* AddressDefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E8721B51CECB3730067BC33 /* AddressDefaultTableViewCell.xib */; };
 		2E9788CE1CE5FA7400F87C36 /* HttpOrderDelete.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */; };
 		2EC3456A1CEAE2DE0069CB23 /* AddressEditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC345691CEAE2DE0069CB23 /* AddressEditTableViewCell.xib */; };
 		2EC3456C1CEAF5690069CB23 /* AddressEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EC3456B1CEAF5690069CB23 /* AddressEditViewController.xib */; };
@@ -420,6 +422,9 @@
 		2E77F2411CEB6AB80077AD85 /* AddressLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressLocationTableViewCell.h; path = mine/address/AddressLocationTableViewCell.h; sourceTree = "<group>"; };
 		2E77F2421CEB6AB80077AD85 /* AddressLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressLocationTableViewCell.m; path = mine/address/AddressLocationTableViewCell.m; sourceTree = "<group>"; };
 		2E77F2461CEB6B580077AD85 /* AddressLocationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddressLocationTableViewCell.xib; path = mine/address/AddressLocationTableViewCell.xib; sourceTree = "<group>"; };
+		2E8721B21CECB3390067BC33 /* AddressDefaultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressDefaultTableViewCell.h; path = mine/address/AddressDefaultTableViewCell.h; sourceTree = "<group>"; };
+		2E8721B31CECB3390067BC33 /* AddressDefaultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressDefaultTableViewCell.m; path = mine/address/AddressDefaultTableViewCell.m; sourceTree = "<group>"; };
+		2E8721B51CECB3730067BC33 /* AddressDefaultTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddressDefaultTableViewCell.xib; path = mine/address/AddressDefaultTableViewCell.xib; sourceTree = "<group>"; };
 		2E9788CC1CE5FA7400F87C36 /* HttpOrderDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpOrderDelete.h; sourceTree = "<group>"; };
 		2E9788CD1CE5FA7400F87C36 /* HttpOrderDelete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpOrderDelete.m; sourceTree = "<group>"; };
 		2EC345691CEAE2DE0069CB23 /* AddressEditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressEditTableViewCell.xib; sourceTree = "<group>"; };
@@ -1102,6 +1107,9 @@
 		2E1462D91CEAC640005166CB /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				2E8721B21CECB3390067BC33 /* AddressDefaultTableViewCell.h */,
+				2E8721B31CECB3390067BC33 /* AddressDefaultTableViewCell.m */,
+				2E8721B51CECB3730067BC33 /* AddressDefaultTableViewCell.xib */,
 				2E77F2411CEB6AB80077AD85 /* AddressLocationTableViewCell.h */,
 				2E77F2421CEB6AB80077AD85 /* AddressLocationTableViewCell.m */,
 				2E77F2461CEB6B580077AD85 /* AddressLocationTableViewCell.xib */,
@@ -2741,6 +2749,7 @@
 				B99194801CCCA26C0032A393 /* CommonBottomView.xib in Resources */,
 				B9A780361CD9A2D000A89047 /* MMAlertViewWithOK.xib in Resources */,
 				B98878861CC896BE00990AA4 /* product_debug.png in Resources */,
+				2E8721B61CECB3730067BC33 /* AddressDefaultTableViewCell.xib in Resources */,
 				B91896A81CCF01A20061D0B6 /* LastPayMethodCell.xib in Resources */,
 				B967E7431CE589B600621F28 /* OrderLogsCell.xib in Resources */,
 				B9A780401CD9E2D000A89047 /* pop_eg.png in Resources */,
@@ -3116,6 +3125,7 @@
 				B91896861CCE05AF0061D0B6 /* ProductOtherCompanyCell.m in Sources */,
 				B91732611CD1F05500C29698 /* ZoomOutRightAnimation.m in Sources */,
 				B917322C1CD1F05400C29698 /* FadeInLeftAnimation.m in Sources */,
+				2E8721B41CECB3390067BC33 /* AddressDefaultTableViewCell.m in Sources */,
 				B91896BB1CCF28170061D0B6 /* AddressListViewController.m in Sources */,
 				B999552C1CE36FC7007F26D2 /* BuyProductDTO.m in Sources */,
 				B9AD44261CD48DAD00012B31 /* HttpRandomCodeRequest.m in Sources */,
