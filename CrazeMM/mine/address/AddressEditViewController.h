@@ -10,7 +10,6 @@
 #import "CityListViewController.h"
 #import "BEMCheckBox.h" 
 #import "AddressDTO.h"
-
 @interface AddressEditViewController : UIViewController<CityListDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *receiverField;
 @property (weak, nonatomic) IBOutlet UILabel *zipField;

@@ -16,6 +16,13 @@
     
     self.checkBox.on = NO;
     self.checkBox.animationDuration = 0.f;
+    
+    self.checkBox2.hidden = YES;
+    self.titleLabel2.hidden = YES;
+    
+    self.checkBox.boxType = BEMBoxTypeSquare;
+    self.checkBox2.boxType = BEMBoxTypeSquare;
+    self.checkBox.animationDuration = self.checkBox2.animationDuration = 0.f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

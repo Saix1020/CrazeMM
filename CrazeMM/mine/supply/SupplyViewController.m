@@ -13,6 +13,7 @@
 #import "HttpMineSupply.h"
 #import "MineSupplyProductDTO.h"
 #import "HttpMineSupplyShelve.h"
+#import "MineSupplyEditViewController.h"
 //#import <objc/runtime.h>
 
 @interface SupplyViewController ()
@@ -78,9 +79,18 @@
         }];
     }
     
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addSupply:)];
+    
     self.isShelving = NO;
     self.pageNumber = 0;
     [self getMineSupply];
+}
+
+-(void)addSupply:(id)sender
+{
+    MineSupplyEditViewController* editVC = [[MineSupplyEditViewController alloc] init];
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 -(AnyPromise*)handleHeaderRefresh

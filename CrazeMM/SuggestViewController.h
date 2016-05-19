@@ -20,7 +20,9 @@
 @property (nonatomic, copy) NSArray* suggestedStrings;
 
 @property (nonatomic) CGFloat height;
+@property (nonatomic, strong) NSIndexPath* selectedIndexPath;
 
 
+-(instancetype)initWithSelectedIndexPath:(NSIndexPath*)indexPath;
 
 @end

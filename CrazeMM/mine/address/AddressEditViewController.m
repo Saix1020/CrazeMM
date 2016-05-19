@@ -86,9 +86,6 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_regionCell) {
         _regionCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _regionCell.titleLabel.text = @"所在地区";
-        CGSize fontSize = [_regionCell.chooseButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: _regionCell.chooseButton.titleLabel.font}];
-        [_regionCell.chooseButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -_regionCell.chooseButton.imageView.frame.size.width-2.f, 0, _regionCell.chooseButton.imageView.frame.size.width+2.f)];
-        [_regionCell.chooseButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
     }
     
     return _regionCell;
