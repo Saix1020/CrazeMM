@@ -746,6 +746,8 @@
 		B9EFAF5D1CED514100F81157 /* NewWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD44141CD39C8300012B31 /* NewWelcomeViewController.xib */; };
 		B9EFAF5E1CED514100F81157 /* TransferAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896DA1CCFAFEC0061D0B6 /* TransferAlertView.xib */; };
 		B9EFAF5F1CED514100F81157 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B964F94D1CC49DF2003E0D44 /* WelcomeViewController.xib */; };
+		B9EFAF7F1CED9A6D00F81157 /* HttpGoodInfoQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF7E1CED9A6D00F81157 /* HttpGoodInfoQuery.m */; };
+		B9EFAF821CED9BED00F81157 /* GoodDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF811CED9BED00F81157 /* GoodDTO.m */; };
 		B9FE71D71CD6D39200F5EC9F /* background_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = B9FE71D61CD6D39200F5EC9F /* background_alpha.png */; };
 		B9FE71E81CD6E70400F5EC9F /* SearchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71DC1CD6E70400F5EC9F /* SearchHistory.m */; };
 		B9FE71E91CD6E70400F5EC9F /* UserHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71DE1CD6E70400F5EC9F /* UserHistory.m */; };
@@ -1420,6 +1422,10 @@
 		B9EFADE81CECBBF800F81157 /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SwitchCell.xib; path = mine/supply/SwitchCell.xib; sourceTree = "<group>"; };
 		B9EFAF661CED514200F81157 /* CrazeMM_Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazeMM_Simulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9EFAF671CED514200F81157 /* CrazeMM copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CrazeMM copy-Info.plist"; path = "/Users/saix/github/CrazeMM copy-Info.plist"; sourceTree = "<absolute>"; };
+		B9EFAF7D1CED9A6D00F81157 /* HttpGoodInfoQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpGoodInfoQuery.h; path = mine/good/HttpGoodInfoQuery.h; sourceTree = "<group>"; };
+		B9EFAF7E1CED9A6D00F81157 /* HttpGoodInfoQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpGoodInfoQuery.m; path = mine/good/HttpGoodInfoQuery.m; sourceTree = "<group>"; };
+		B9EFAF801CED9BED00F81157 /* GoodDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodDTO.h; path = mine/supply/GoodDTO.h; sourceTree = "<group>"; };
+		B9EFAF811CED9BED00F81157 /* GoodDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodDTO.m; path = mine/supply/GoodDTO.m; sourceTree = "<group>"; };
 		B9FE71D61CD6D39200F5EC9F /* background_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_alpha.png; sourceTree = "<group>"; };
 		B9FE71DB1CD6E70400F5EC9F /* SearchHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHistory.h; sourceTree = "<group>"; };
 		B9FE71DC1CD6E70400F5EC9F /* SearchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHistory.m; sourceTree = "<group>"; };
@@ -1519,6 +1525,7 @@
 		B9156F3D1CDBA3D80041E535 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B9EFAF7C1CED9A3B00F81157 /* good */,
 				B9B5BCE71CDDBE460085E132 /* order */,
 				B98219141CE9A43200B279E6 /* supply */,
 			);
@@ -2647,6 +2654,8 @@
 			children = (
 				B98219191CE9A63B00B279E6 /* MineSupplyProductDTO.h */,
 				B982191A1CE9A63B00B279E6 /* MineSupplyProductDTO.m */,
+				B9EFAF801CED9BED00F81157 /* GoodDTO.h */,
+				B9EFAF811CED9BED00F81157 /* GoodDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -2911,6 +2920,15 @@
 				B967E6EE1CE4B68A00621F28 /* AddrDTO.m */,
 			);
 			name = modal;
+			sourceTree = "<group>";
+		};
+		B9EFAF7C1CED9A3B00F81157 /* good */ = {
+			isa = PBXGroup;
+			children = (
+				B9EFAF7D1CED9A6D00F81157 /* HttpGoodInfoQuery.h */,
+				B9EFAF7E1CED9A6D00F81157 /* HttpGoodInfoQuery.m */,
+			);
+			name = good;
 			sourceTree = "<group>";
 		};
 		B9FE71DA1CD6E70400F5EC9F /* human */ = {
@@ -3522,6 +3540,7 @@
 				B98219061CE873B500B279E6 /* PayInfoDTO.m in Sources */,
 				B91732351CD1F05400C29698 /* FadeOutLeftAnimation.m in Sources */,
 				B967E7361CE57EBD00621F28 /* MASConstraintMaker.m in Sources */,
+				B9EFAF7F1CED9A6D00F81157 /* HttpGoodInfoQuery.m in Sources */,
 				B959247F1CDEBA9000533E77 /* SLRequest+AnyPromise.m in Sources */,
 				B917323D1CD1F05400C29698 /* FlipInYAnimation.m in Sources */,
 				B98878BA1CC9B94300990AA4 /* SegmentedCell.m in Sources */,
@@ -3633,6 +3652,7 @@
 				B917321D1CD1F05400C29698 /* BasicAnimation.m in Sources */,
 				B91896931CCE518F0061D0B6 /* ProductNumberLabel.m in Sources */,
 				B99955321CE37372007F26D2 /* OrderDetailViewController.m in Sources */,
+				B9EFAF821CED9BED00F81157 /* GoodDTO.m in Sources */,
 				B918969C1CCE58B60061D0B6 /* ProductSumLabel.m in Sources */,
 				B91732501CD1F05400C29698 /* SlideInUpAnimation.m in Sources */,
 				B95A94C31CE1E29700A5D9BA /* HttpProductDetail.m in Sources */,
@@ -4128,11 +4148,7 @@
 					"-framework",
 					"\"MBProgressHUD\"",
 					"-framework",
-					"\"QuickDialog\"",
-					"-framework",
 					"\"ReactiveCocoa\"",
-					"-framework",
-					"\"WebViewJavascriptBridge\"",
 					"-framework",
 					"\"iCarousel\"",
 				);
@@ -4170,11 +4186,7 @@
 					"-framework",
 					"\"MBProgressHUD\"",
 					"-framework",
-					"\"QuickDialog\"",
-					"-framework",
 					"\"ReactiveCocoa\"",
-					"-framework",
-					"\"WebViewJavascriptBridge\"",
 					"-framework",
 					"\"iCarousel\"",
 				);
@@ -4270,11 +4282,7 @@
 					"-framework",
 					"\"MBProgressHUD\"",
 					"-framework",
-					"\"QuickDialog\"",
-					"-framework",
 					"\"ReactiveCocoa\"",
-					"-framework",
-					"\"WebViewJavascriptBridge\"",
 					"-framework",
 					"\"iCarousel\"",
 				);
@@ -4312,11 +4320,7 @@
 					"-framework",
 					"\"MBProgressHUD\"",
 					"-framework",
-					"\"QuickDialog\"",
-					"-framework",
 					"\"ReactiveCocoa\"",
-					"-framework",
-					"\"WebViewJavascriptBridge\"",
 					"-framework",
 					"\"iCarousel\"",
 				);

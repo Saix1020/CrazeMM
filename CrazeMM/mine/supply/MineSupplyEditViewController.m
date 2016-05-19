@@ -12,6 +12,8 @@
 #import "AddrRegionCell.h"
 #import "SwitchCell.h"
 #import "AddrDefaultCheckboxCell.h"
+#import "ZZPopoverWindow.h"
+#import "HttpGoodInfoQuery.h"
 
 
 typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
@@ -60,7 +62,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 
 
 @property (nonatomic, strong) UITableView* selectionTableView;
-
+@property (nonatomic, strong) NSMutableArray* selectionDataSource;
+@property (nonatomic, strong) ZZPopoverWindow* popover;
 @end
 
 @implementation MineSupplyEditViewController
@@ -165,7 +168,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if(!_isIntactCell){
         _isIntactCell = (SwitchCell*)[UINib viewFromNib:@"SwitchCell"];
         _isIntactCell.titleLabel.text = @"原封";
-        _isIntactCell.swith.on = NO;
+        _isIntactCell.swith.on = YES;
     }
     
     return _isIntactCell;
@@ -175,7 +178,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if(!_hasBoxCell){
         _hasBoxCell = (SwitchCell*)[UINib viewFromNib:@"SwitchCell"];
         _hasBoxCell.titleLabel.text = @"原封箱";
-        _hasBoxCell.swith.on = NO;
+        _hasBoxCell.swith.on = YES;
     }
     
     return _hasBoxCell;
@@ -250,7 +253,6 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         [_selectionTableView setTableFooterView:view];
         _selectionTableView.delegate = self;
         _selectionTableView.dataSource = self;
-
     }
     
     return _selectionTableView;
@@ -314,6 +316,27 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     else if(sender == self.cycleCell.chooseButton){
         
     }
+    self.selectionDataSource = [@[@"1111", @"22222", @"3333"] mutableCopy];
+    CGFloat height = self.selectionDataSource.count*44.f;
+    if (height>400.f) {
+        height = 400.f;
+    }
+    self.selectionTableView.frame = CGRectMake(8.f, 0, sender.superview.frame.size.width-8.f, self.selectionDataSource.count*44.f);
+    //        self.suggestVC.view.backgroundColor = RGBCOLOR(150, 150, 150);
+    self.popover                    = [[ZZPopoverWindow alloc] init];
+    self.popover.popoverPosition = ZZPopoverPositionDown;
+    self.popover.contentView        = self.selectionTableView;
+    self.popover.animationSpring = NO;
+    //        self.popover.backgroundColor = RGBCOLOR(150, 150, 150);
+    self.popover.showArrow = NO;
+    self.popover.didShowHandler = ^() {
+        //self.popover.layer.cornerRadius = 0;
+    };
+    self.popover.didDismissHandler = ^() {
+        //NSLog(@"Did dismiss");
+    };
+    
+    [self.popover showAtView:sender.superview];
 
 }
 
@@ -325,24 +348,44 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.cellArray.count;
+    if(tableView == self.tableView){
+        return self.cellArray.count;
+
+    }
+    else {
+        return self.selectionDataSource.count;
+    }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == kRowConfirm) {
-        return 56.f;
+    if(tableView == self.tableView){
+        if (indexPath.row == kRowConfirm) {
+            return 56.f;
+        }
+        return 44.f;
     }
-    return 44.f;
+    else {
+        return 44.f;
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell;
     
-    
-    cell = self.cellArray[indexPath.row];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if(tableView == self.tableView){
+        cell = self.cellArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SelectionCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SelectionCell"];
+        }
+        cell.textLabel.text = self.selectionDataSource[indexPath.row];
+    }
     return cell;
 }
 
