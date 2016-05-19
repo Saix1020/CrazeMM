@@ -11,10 +11,32 @@
 @interface OrderListCell()
 
 @property (nonatomic, strong) UIView* headView;
+@property (nonatomic, strong) UILabel* companyLabel;
+@property (nonatomic, strong) UIImageView* companyIcon;
 
 @end
 
 @implementation OrderListCell
+
+-(UILabel*)companyLabel
+{
+    if (!_companyLabel) {
+        _companyLabel = [[UILabel alloc] init];
+        _companyLabel.font = [UIFont systemFontOfSize:13.f];
+        [self.companyWithIconLabel addSubview:_companyLabel];
+    }
+    
+    return _companyLabel;
+}
+-(UIImageView*)companyIcon
+{
+    if (!_companyIcon) {
+        _companyIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [self.companyWithIconLabel addSubview:_companyIcon];
+    }
+    
+    return _companyIcon;
+}
 
 -(UIView*)headView
 {
@@ -43,7 +65,13 @@
     
     self.seperatorLine.backgroundColor  = [UIColor light_Gray_Color];
     
+    self.totalPriceLabel.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
+    self.backgroundLabel.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    
 
 }
 
@@ -57,61 +85,49 @@
         priceArray = @[@"5,000", @".00"];
     }
     
-    self.totalPriceLabel.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
-    self.backgroundLabel.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
-
     self.totalPriceLabel.text = @"";
-    self.totalPriceLabel.textAlignment = kCTTextAlignmentRight;
+    self.totalPriceLabel.textAlignment = NSTextAlignmentRight;
     
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"总价: "];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
-    [attributedText m80_setTextColor:[UIColor grayColor]];
-    [self.totalPriceLabel appendAttributedText:attributedText];
-
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@"￥"];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
-    [attributedText m80_setTextColor:[UIColor redColor]];
-    [self.totalPriceLabel appendAttributedText:attributedText];
-    
-    attributedText = [[NSMutableAttributedString alloc]initWithString:priceArray[0]];
-    [attributedText m80_setFont:[UIFont boldSystemFontOfSize:16.f]];
-    [attributedText m80_setTextColor:[UIColor redColor]];
-    [self.totalPriceLabel appendAttributedText:attributedText];
-    
-    attributedText = [[NSMutableAttributedString alloc]initWithString:priceArray[1]];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
-    [attributedText m80_setTextColor:[UIColor redColor]];
-    [self.totalPriceLabel appendAttributedText:attributedText];
-    [self.totalPriceLabel appendText:@""];
-    self.totalPriceLabel.numberOfLines = 1;
-    self.totalPriceLabel.offsetY = -4.f;
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]
+                                                  initWithString:@"总价: "
+                                                  attributes:@{
+                                                               NSForegroundColorAttributeName: [UIColor grayColor],
+                                                               NSFontAttributeName :      [UIFont systemFontOfSize:12.f]                                                                           }] ;
+    [attributedText appendAttributedString:[[NSMutableAttributedString alloc]
+                                            initWithString:@"￥"
+                                            attributes:@{
+                                                         NSForegroundColorAttributeName: [UIColor redColor],
+                                                         NSFontAttributeName :      [UIFont systemFontOfSize:12.f]                                                              }] ];
+    [attributedText appendAttributedString:[[NSMutableAttributedString alloc]
+                                            initWithString:priceArray[0]
+                                            attributes:@{
+                                                         NSForegroundColorAttributeName: [UIColor redColor],
+                                                         NSFontAttributeName :      [UIFont systemFontOfSize:16.f]                                                              }] ];
+    [attributedText appendAttributedString:[[NSMutableAttributedString alloc]
+                                            initWithString:priceArray[1]
+                                            attributes:@{
+                                                         NSForegroundColorAttributeName: [UIColor redColor],
+                                                         NSFontAttributeName :      [UIFont systemFontOfSize:12.f]                                                              }] ];
+    self.totalPriceLabel.attributedText = attributedText;
 }
 
 -(void)fomartCompanyLabel
-{
-    self.companyWithIconLabel.text = @"";
-    
-    NSString* companyIconURL = @"http://invalid_image";
-    NSString* companyName = @"江苏梁晶信息技术有限公司";
+{        NSString* companyIconURL = @"http://invalid_image";
+    NSString* companyName = @"疯狂买卖王";
     
     if (self.orderDetailDTO) {
         companyIconURL = self.orderDetailDTO.userImage;
         companyName = self.orderDetailDTO.userName;
     }
-
+    
     if (![companyIconURL hasPrefix:@"http"]) {
         companyIconURL = COMB_URL(companyIconURL);
     }
     
-    self.companyWithIconLabel.textAlignment = kCTTextAlignmentRight;
-    UIImageView* companyImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [companyImageView setImageWithURL:[NSURL URLWithString:companyIconURL] placeholderImage:[UIImage imageNamed:@"company_icon"]];
-    [self.companyWithIconLabel appendView:companyImageView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:companyName];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:13.f]];
-    [attributedText m80_setTextColor:[UIColor blackColor]];
-    [self.companyWithIconLabel appendText:@" "];
-    [self.companyWithIconLabel appendAttributedText:attributedText];
+    self.companyLabel.text = companyName;
+    [self.companyIcon setImageWithURL:[NSURL URLWithString:companyIconURL] placeholderImage:[UIImage imageNamed:@"company_icon"]];
+    
+    [self.companyLabel sizeToFit];
 }
 
 -(void)fomartOrderLabel
@@ -145,12 +161,46 @@
         [self fomartCompanyLabel];
     }
     [self fomartTotalPriceLabel];
+    [self layoutAllSubvies];
+}
+
+-(void)layoutAllSubvies
+{
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
+    if (self.hiddenCheckbox) {
+        self.selectedCheckBox.hidden = YES;
+        self.orderLabel.x = 8.f;
+    }
+    else{
+        self.selectedCheckBox.hidden = NO;
+        self.selectedCheckBox.x = 8.f;
+        self.orderLabel.x = self.selectedCheckBox.right + 4.f;
+    }
+    
+    self.companyWithIconLabel.width = screenWidth - 8.f - self.companyWithIconLabel.x;
+    self.companyLabel.right = self.companyWithIconLabel.width;
+    self.companyIcon.right = self.companyLabel.x - 4.f;
+    self.companyLabel.bottom = self.companyIcon.bottom = self.companyWithIconLabel.height;
+    
+    self.seperatorLine.x = 8.f;
+    self.seperatorLine.width = screenWidth - 8.f*2;
+    
+    self.productDescLabel.x = 8.f;
+    self.productDescLabel.width = screenWidth - 8.f*2;
+    self.amountLabel.x = 8.f;
+    self.productDescLabel.width = screenWidth - 8.f*2;
+    self.priceLabel.x = 8.f;
+    self.priceLabel.width = screenWidth - 8.f*2;
+    self.backgroundLabel.x = 0.f;
+    self.backgroundLabel.width = screenWidth ;
+    
+    self.totalPriceLabel.right = self.backgroundLabel.width-8.f;
 }
 
 +(CGFloat)cellHeight
 {
-    return 150.f + 16.f;
+    return 150.f + 8.f;
 }
 
 -(void)layoutSubviews
@@ -159,6 +209,9 @@
     self.headView.frame = CGRectMake(0, 0, self.bounds.size.width, self.headView.height);
     self.contentView.y = self.headView.height;
     self.contentView.height = self.height-self.headView.height;
+    
+    self.backgroundLabel.bottom = self.contentView.height;
+
 }
 
 -(void)dealloc

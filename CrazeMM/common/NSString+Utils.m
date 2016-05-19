@@ -30,13 +30,32 @@
     return [UIImage imageNamed:self];
 }
 
-+(NSString*)leftTimeString:(NSUInteger)millisecond
++(NSString*)leftTimeString:(NSInteger)millisecond
 {
     NSUInteger days = floor(millisecond/1000/3600/24);
     NSUInteger hours = floor(millisecond/1000/3600%24);
     NSUInteger mins = floor(((millisecond)% (1000 * 3600))/1000/60);
     
     return [NSString stringWithFormat:@"%lu 天 %lu 小时 %lu 分钟", days, hours, mins];
+}
+
++(NSString*)leftTimeString2:(NSInteger)millisecond
+{
+    NSUInteger days = floor(millisecond/1000/3600/24);
+    NSUInteger hours = floor(millisecond/1000/3600%24);
+    NSUInteger mins = floor(((millisecond)% (1000 * 3600))/1000/60);
+//    NSUInteger secs = floor(((millisecond)% (1000))/3600/1000/60);
+    
+//    NSMutableString* string = [[NSMutableString alloc] init];
+//    if (days>0) {
+//        [string appendString:[NSString stringWithFormat:@"%lu 天 ", days]];
+//    }
+//    if (days>0 && ) {
+//        <#statements#>
+//    }
+//    [string appendString:[NSString stringWithFormat:@"%%lu小时%lu分钟%lu秒",hours, mins]];
+//    return [NSString stringWithFormat:@"%lu天%lu小时%lu分钟%lu秒", days, hours, mins, secs];
+    return [NSString stringWithFormat:@"%lu天%lu小时%lu分钟", days, hours, mins];
 }
 
 -(NSString *)countNumAndChangeformat
@@ -73,5 +92,12 @@
     return @[firstString, secondString];
 }
 
+-(NSDate*) convertToDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date=[formatter dateFromString:self];
+    return date;
+}
 
 @end

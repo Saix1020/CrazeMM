@@ -15,6 +15,9 @@
 
 -(UIImage*)image;
 
-+(NSString*)leftTimeString:(NSUInteger)millisecond;
++(NSString*)leftTimeString:(NSInteger)millisecond;
++(NSString*)leftTimeString2:(NSInteger)millisecond;
 +(NSArray*)formatePrice:(CGFloat)price;
+
+-(NSDate*) convertToDate;
 @end

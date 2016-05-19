@@ -18,7 +18,7 @@
 @interface CommonOrderListViewController()
 
 @property (nonatomic) CGPoint ptLastOffset;
-
+@property (nonatomic) BOOL isRefreshing;
 
 @end
 
@@ -65,7 +65,8 @@
     [alert show];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor light_Gray_Color];
     if (!self.navigationItem.leftBarButtonItem) {
@@ -99,8 +100,14 @@
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
+        if (self.isRefreshing) {
+            [self.tableView.mj_header endRefreshing];
+            return ;
+        }
+        self.isRefreshing = YES;
         [self handleHeaderRefresh]
         .finally(^(){
+            self.isRefreshing = NO;
             [self.tableView.mj_header endRefreshing];
         });
     }];
@@ -109,15 +116,31 @@
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
+        if (self.isRefreshing) {
+            [self.tableView.mj_footer endRefreshing];
+            return ;
+        }
+        self.isRefreshing = YES;
         [self handleFooterRefresh]
         .finally(^(){
+            self.isRefreshing = NO;
             [self.tableView.mj_footer endRefreshing];
         });
 
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
     
-    // why we need this?
+    self.isRefreshing = NO;
+}
+
+-(void)setIsRefreshing:(BOOL)isRefreshing
+{
+    _isRefreshing = isRefreshing;
+    
+    for (UIButton* button in self.segmentCell.segment.buttons) {
+        button.enabled = !isRefreshing;
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

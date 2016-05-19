@@ -10,6 +10,9 @@
 #import "SelectdAddrCell.h"
 #import "AddressListCell.h"
 #import "AddressEditViewController.h"
+#import "AddressDTO.h"
+#import "HttpAddress.h"
+
 
 typedef NS_ENUM(NSInteger, MineAddressListSection){
     kSectionRecommand = 0,
@@ -72,7 +75,33 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
+-(void)getOrderAddresses
+{
+    HttpAddressRequest* request = [[HttpAddressRequest alloc] init];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        HttpAddressResponse* response = (HttpAddressResponse*)request.response;
+        if (response.ok) {
+            self.addresses = response.addresses;
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+}
 
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getOrderAddresses];
+}
 
 
 #pragma mark - Table view data source
@@ -113,19 +142,22 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
         {
             cell = self.recommandCell;
         }
+            
             break;
         case kSectionAllAddress:
         {
             AddressListCell* addressCell = [tableView dequeueReusableCellWithIdentifier:@"AddressListCell"];
+            addressCell.addrDto = self.addresses[indexPath.row];
             if(addressCell.editButton.rac_command == nil){
                 addressCell.editButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x) {
                     
-                    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] init];
+                    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] initWithAddress:addressCell.addrDto];
                     [self.navigationController pushViewController:addrEditVC animated:YES];
                     
                     return [RACSignal empty];
                 }];
             }
+            
             cell = addressCell;
         }
             break;

@@ -52,6 +52,19 @@
     return attributedText;
 }
 
+-(void)setAddrDto:(AddressDTO *)addrDto
+{
+    _addrDto = addrDto;
+    self.nameLabel.text = addrDto.contact;
+    self.phoneLabel.text = addrDto.mobile;
+    
+    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithAttributedString:[[self class] defaultString]];
+    [attrString appendAttributedString:[[self class]addressString:[NSString stringWithFormat:@"%@ %@", addrDto.region, addrDto.street]]];
+
+    self.addressLabel.attributedText = attrString;
+    }
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

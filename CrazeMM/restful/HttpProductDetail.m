@@ -93,7 +93,7 @@
 
 @implementation HttpBuyProductDetailResponse
 
--(NSDictionary*)supply
+-(NSDictionary*)buy
 {
     if (!self.all) {
         return @{};
@@ -108,7 +108,8 @@
     if (!self.all) {
         return;
     }
-    self.dto = [[BuyProductDetailDTO alloc] initWith:self.supply];
+    self.dto = [[BuyProductDetailDTO alloc] initWith:self.buy];
+    self.dto.left = self.dto.quantity;
 }
 
 @end

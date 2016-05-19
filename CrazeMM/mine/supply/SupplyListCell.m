@@ -128,7 +128,16 @@
 
 -(void)buttonClicked:(UIButton*)button
 {
-    
+    if (button == self.offButton){
+        if ([self.delegate respondsToSelector:@selector(buttonClicked:andType:andSid:)]) {
+            [self.delegate buttonClicked:button andType:self.style andSid:self.mineSupplyProductDto.id];
+        }
+    }
+    else if (button == self.shareButton){
+        if ([self.delegate respondsToSelector:@selector(buttonClicked:andType:andSid:)]) {
+            [self.delegate buttonClicked:button andType:kUnkonwStyle andSid:self.mineSupplyProductDto.id];
+        }
+    }
 }
 
 @end

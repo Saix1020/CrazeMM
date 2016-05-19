@@ -35,6 +35,11 @@ typedef enum {
     NSDictionary* requestHeaderFieldsWithCookies = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
     [mgr.requestSerializer setValue:requestHeaderFieldsWithCookies[@"Cookie"] forHTTPHeaderField:@"Cookie"];
     
+    // set request timeout 10s
+//    [mgr.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+//    mgr.requestSerializer.timeoutInterval = 10.f;
+//    [mgr.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+
     return mgr;
 }
 

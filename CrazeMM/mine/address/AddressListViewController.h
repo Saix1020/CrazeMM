@@ -10,4 +10,6 @@
 
 @interface AddressListViewController : UIViewController<UITableViewDataSource,  UITableViewDelegate>
 
+@property (nonatomic, copy) NSArray* addresses;
+
 @end

@@ -6,7 +6,32 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "HttpMineSupplyUnshelve.h"
+#import "HttpMineSupplyShelve.h"
+
+@implementation HttpMineSupplyReshelveRequest
+
+-(instancetype)initWithIds:(NSArray*)ids
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{@"id" : [ids componentsJoinedByString:@","]} mutableCopy];
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/supply/reshelve");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+@end
+
 
 @implementation HttpMineSupplyUnshelveRequest
 

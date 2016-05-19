@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CustomSegment.h"
 #import "CommonOrderListViewController.h"
+#import "SupplyListCell.h"
 
-@interface SupplyViewController : CommonOrderListViewController
+@interface SupplyViewController : CommonOrderListViewController<SupplyListCellDelegate>
 
 @end

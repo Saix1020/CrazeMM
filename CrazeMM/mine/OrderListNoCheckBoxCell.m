@@ -16,6 +16,11 @@
 
 @implementation OrderListNoCheckBoxCell
 
+//-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self = [
+//}
+
 -(UIView*)headView
 {
     if(!_headView){

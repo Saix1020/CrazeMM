@@ -78,8 +78,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     if (!_headCell) {
         _headCell = (OrderDetailHeadCell*)[UINib viewFromNib:@"OrderDetailHeadCell"];
 //        _headCell.backgroundColor = [UIColor whiteColor];
-        _headCell.layer.borderWidth = .5f;
-        _headCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
+//        _headCell.layer.borderWidth = .5f;
+//        _headCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
 
     }
     
@@ -91,8 +91,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     if (!_addrCell) {
         _addrCell = (OrderDetailAddrCell*)[UINib viewFromNib:@"OrderDetailAddrCell"];
         _addrCell.backgroundColor = [UIColor whiteColor];
-        _addrCell.layer.borderWidth = .5f;
-        _addrCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
+//        _addrCell.layer.borderWidth = .5f;
+//        _addrCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
 
     }
     
@@ -113,6 +113,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.companyWithIconLabel.textColor = textColor;
         _contentCell.amountLabel.textColor = textColor;
         _contentCell.priceLabel.textColor = textColor;
+        
+                _contentCell.layer.borderWidth = 0.f;
+
     }
     return _contentCell;
 }
@@ -122,8 +125,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     if (!_statusCell) {
         _statusCell = (OrderDetailStatusCell*)[UINib viewFromNib:@"OrderDetailStatusCell"];
         _statusCell.backgroundColor = [UIColor whiteColor];
-        _statusCell.layer.borderWidth = .5f;
-        _statusCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
+//        _statusCell.layer.borderWidth = .5f;
+//        _statusCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
 
         
     }
@@ -136,8 +139,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     if (!_logsCell) {
         _logsCell = (OrderLogsCell*)[UINib viewFromNib:@"OrderLogsCell"];
         _logsCell.backgroundColor = [UIColor whiteColor];
-        _logsCell.layer.borderWidth = .5f;
-        _logsCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
+//        _logsCell.layer.borderWidth = .5f;
+//        _logsCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
 
     }
     return _logsCell;
@@ -172,6 +175,76 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.frame = self.view.bounds;
 
+    [self initBottomView];
+    
+}
+
+-(void)initBottomView
+{
+    if (self.style.orderType == kOrderTypeBuy) {
+        if (self.style.orderSubType == kOrderSubTypePay) {
+            switch (self.style.orderState) {
+                case TOBEPAID: // 待支付
+                    self.bottomView.hidden = NO;
+                    break;
+                case PAYTIMEOUT: // 支付超时
+                    self.bottomView.hidden = NO;
+                    break;
+                case PAYCOMPLETE: // 已支付
+                    self.bottomView.hidden = YES;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(self.style.orderSubType == kOrderSubTypeReceived){
+            switch (self.style.orderState) {
+                case TOBERECEIVED: //待签收
+                    self.bottomView.hidden = NO;
+                    break;
+                case RECEIVECOMPLETE: //已签收
+                    self.bottomView.hidden = YES;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    else if (self.style.orderType == kOrderTypeSupply){
+        if (self.style.orderSubType == kOrderSubTypeSend) {
+            switch (self.style.orderState) {
+                case WAITFORPAY: // 待付款
+                    self.bottomView.hidden = YES;
+                    break;
+                case TOBESENT: // 待发货
+                    self.bottomView.hidden = NO;
+                    break;
+                case SENTCOMPLETE: // 已发货
+                    self.bottomView.hidden = YES;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(self.style.orderSubType == kOrderSubTypeConfirmed){
+            switch (self.style.orderState) {
+                case TOBESETTLED:
+                    self.bottomView.hidden = YES;
+                    break;
+                case TOBECONFIRMED: //待确认
+                    self.bottomView.hidden = NO;
+                    break;
+                case CONFIRMEDCOMPLETE: //已确认
+                    self.bottomView.hidden = YES;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    
+    
 }
 
 -(void)viewWillLayoutSubviews
@@ -199,15 +272,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         self.addrCell.phoneLabel.text = orderStatusDto.addr.mobile;
         self.addrCell.addrLabel.text = [NSString stringWithFormat:@"%@ %@", orderStatusDto.addr.region, orderStatusDto.addr.street];
     }
-//    [self.tableView beginUpdates];
-//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:kOrderDetailAddrRow inSection:0];
-//    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//    [self.tableView endUpdates];
-//    
+    
     self.contentCell.orderDetailDTO = [[OrderDetailDTO alloc]initWithOrderStatusDTO:orderStatusDto];
     self.logsCell.logs = orderStatusDto.logs;
     
-    [_confirmButton setTitle:[self promptString][@"bottomButtonTitle"]
+    [self.confirmButton setTitle:[self promptString][@"bottomButtonTitle"]
                     forState:UIControlStateNormal];
     
     if (self.style.orderType == kOrderTypeBuy
@@ -272,26 +341,42 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     NSString* string = @"";
     NSString* subString = @"";
     NSString* bottomButtonTitle = @"";
+    NSDate* updateTime = [self.orderDto.updateTime convertToDate];
+    NSInteger leftSeconds = floor(updateTime.timeIntervalSinceReferenceDate + 1*60*60 -  [NSDate date].timeIntervalSinceReferenceDate);
+    NSDate* createTime = [self.orderStatusDto.logs[0].createTime convertToDate];
+    NSInteger elapseSeconds = floor([NSDate date].timeIntervalSinceReferenceDate - createTime.timeIntervalSinceReferenceDate);
+
+    
     if (self.style.orderType == kOrderTypeBuy) {
         switch (self.orderStatusDto.state) {
             case TOBEPAID:
-                string =  @"请尽快付款";
-                subString = @"一小时后过期";
+            {
+                string =  @"请您尽快付款";
+                subString = [NSString stringWithFormat:@"距离超时还剩: %@", [NSString leftTimeString2:leftSeconds*1000]];
                 bottomButtonTitle = @"付款";
+            }
                 break;
             case PAYCOMPLETE:
-                string = @"支付完成";
+            {
+                string = @"请您等待卖家发货";
+                subString = [NSString stringWithFormat:@"已支付%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 bottomButtonTitle = @"";
+            }
                 break;
             case PAYTIMEOUT:
-                string = @"支付超时";
+                string = @"付款已超时";
                 bottomButtonTitle = @"删除";
                 break;
             case TOBERECEIVED:
-                string = @"请尽快签收";
+            {
+                string = @"请您尽快签收";
+                subString = [NSString stringWithFormat:@"已发货%@", [NSString leftTimeString2:elapseSeconds*1000]];
+                bottomButtonTitle = @"签收";
+            }
                 break;
             case RECEIVECOMPLETE:
-                string = @"签收完成";
+                string = @"已完成";
+                subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
             default:
                 break;
@@ -299,17 +384,32 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     }
     else{
         switch (self.orderStatusDto.state) {
+            case WAITFORPAY:
+                string =  @"请您等待买家付款";
+                subString = [NSString stringWithFormat:@"距离超时还剩: %@", [NSString leftTimeString2:leftSeconds*1000]];
+                break;
             case TOBESENT:
-                string =  @"请尽快发货";
+                string =  @"请您尽快发货";
+                bottomButtonTitle = @"发货";
+                subString = [NSString stringWithFormat:@"已支付%@", [NSString leftTimeString2:elapseSeconds*1000]];
+
                 break;
             case SENTCOMPLETE:
-                string =  @"发货完成";
+                string =  @"请您等待买家签收";
+                subString = [NSString stringWithFormat:@"已发货%@", [NSString leftTimeString2:elapseSeconds*1000]];
+                break;
+            case TOBESETTLED:
+                string =  @"请您尽快结款";
+                bottomButtonTitle = @"结款";
                 break;
             case TOBECONFIRMED:
-                string =  @"请尽快确认";
+                string =  @"请您尽快确认";
+                subString = [NSString stringWithFormat:@"已结款%@", [NSString leftTimeString2:elapseSeconds*1000]];
+                bottomButtonTitle = @"确认";
                 break;
             case CONFIRMEDCOMPLETE:
-                string =  @"确认完成";
+                string =  @"已完成";
+                subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
                 
             default:
@@ -434,11 +534,18 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     if (indexPath.row%2 == 0) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NoUseCell"];
         cell.backgroundColor =  RGBCOLOR(240, 240, 240);
+        cell.clipsToBounds = YES;
     }
     else {
         switch (indexPath.row) {
             case kOrderDetailHeadRow:
                 cell = self.headCell;
+                if (self.style.orderType == kOrderTypeBuy && self.style.orderState==PAYTIMEOUT)
+                {
+                    self.headCell.titleLabel.textColor = [UIColor redColor];
+                }
+                self.headCell.titleLabel.text = [self promptString][@"string"];
+                self.headCell.promptLabel.text = [self promptString][@"subString"];
                 break;
             case kOrderDetailAddrRow:
                 cell = self.addrCell;
@@ -460,11 +567,18 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row%2 == 0) {
+        if (indexPath.row == 2 && (!self.orderStatusDto.addr
+            || [self.orderStatusDto.addr isKindOfClass:[NSNull class]])) {
+            return 0;
+        }
         return 14.f;
     }
     else {
         switch (indexPath.row) {
             case kOrderDetailHeadRow:
+                if (self.style.orderType == kOrderTypeBuy && self.style.orderState==PAYTIMEOUT){
+                    return 50.f;
+                }
                 return self.headCell.height;
                 break;
             case kOrderDetailAddrRow:

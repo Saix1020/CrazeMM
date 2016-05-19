@@ -41,7 +41,7 @@
 
 @property (nonatomic, strong) BuyProductDetailDTO* dto;
 
-@property (nonatomic, readonly) NSDictionary* supply;
+@property (nonatomic, readonly) NSDictionary* buy;
 
 @end
 

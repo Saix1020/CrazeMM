@@ -9,13 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CityListViewController.h"
 #import "BEMCheckBox.h" 
-#import "TPKeyboardAvoidingTableView.h"
-
-@interface AddressEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CityListDelegate>
-@property (strong, nonatomic) IBOutlet TPKeyboardAvoidingTableView *addressEditTableView;
-@property (strong, nonatomic) IBOutlet UIButton *saveButton;
-@property (strong, nonatomic) NSArray *listData;
-
+#import "AddressDTO.h"
+@interface AddressEditViewController : UIViewController<CityListDelegate, UITableViewDataSource, UITableViewDelegate>
 /*
 @property (weak, nonatomic) IBOutlet UITextField *receiverField;
 @property (weak, nonatomic) IBOutlet UILabel *zipField;
@@ -26,4 +21,10 @@
 @property (weak, nonatomic) IBOutlet BEMCheckBox *defaultCheckBox;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 */
+
+@property (strong, nonatomic) AddressDTO* address;
+
+-(instancetype)initWithAddress:(AddressDTO*)address;
+
+
 @end

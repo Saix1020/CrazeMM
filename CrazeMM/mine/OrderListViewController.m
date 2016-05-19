@@ -41,9 +41,9 @@
 @property (nonatomic) CGFloat totalPrice;
 
 @property (nonatomic, strong) UITableViewCell* emptyCell;
-
 @property (nonatomic) CGPoint ptLastOffset;
 
+@property (nonatomic) BOOL isRefreshing;
 
 @end
 
@@ -89,11 +89,11 @@
         {
             switch (self.subType) {
                 case kOrderSubTypeSend:
-                    return @[@"待发货", @"已发货"];
+                    return @[@"待支付", @"待发货", @"已发货"];
                     
                     break;
                 case kOrderSubTypeConfirmed:
-                    return @[@"待确认", @"已确认"];
+                    return @[@"待结款", @"待确认", @"完成"];
                     
                     break;
                     
@@ -116,13 +116,6 @@
 ;
         [self.view addSubview:_commonBottomView];
         [_commonBottomView.confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
-//        _payBottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-////            MinePayViewController* payVC = [MinePayViewController new];
-////            [self.navigationController pushViewController:payVC animated:YES];
-//            return [RACSignal empty];
-//        }];
-        
         _commonBottomView.selectAllCheckBox.delegate = self;
     }
     
@@ -159,11 +152,12 @@
         }
         else {
             if (subType == kOrderSubTypeSend) {
-                self.orderState = TOBESENT;
+                //self.orderState = TOBESENT;
+                self.orderState = WAITFORPAY;
             }
             else if(subType == kOrderSubTypeConfirmed)
             {
-                self.orderState = TOBECONFIRMED;
+                self.orderState = TOBESETTLED;
             }
         }
     }
@@ -261,9 +255,12 @@
             case kOrderSubTypeSend:
                 switch (segmentIndex) {
                     case 0:
-                        NSLog(@"我卖的货->待发货->发货");
+                        NSLog(@"我卖的货->待发货->待付款");
                         break;
                     case 1:
+                        NSLog(@"我卖的货->待发货->发货");
+                        break;
+                    case 2:
                         NSLog(@"我卖的货->待发货->已发货");
                         break;
                     default:
@@ -273,10 +270,13 @@
             case kOrderSubTypeConfirmed:
                 switch (segmentIndex) {
                     case 0:
-                        NSLog(@"我卖的货->待确认->确认");
+                        NSLog(@"我卖的货->待确认->待结款");
                         break;
                     case 1:
-                        NSLog(@"我卖的货->待确认->已确认");
+                        NSLog(@"我卖的货->待确认->待确认");
+                        break;
+                    case 2:
+                        NSLog(@"我卖的货->待确认->完成");
                         break;
                     default:
                         break;
@@ -285,6 +285,15 @@
             default:
                 break;
         }
+    }
+}
+
+-(void)setIsRefreshing:(BOOL)isRefreshing
+{
+    _isRefreshing = isRefreshing;
+    
+    for (UIButton* button in self.segmentCell.segment.buttons) {
+        button.enabled = !isRefreshing;
     }
 }
 
@@ -325,8 +334,14 @@
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
+        if (self.isRefreshing) {
+            [self.tableView.mj_header endRefreshing];
+            return;
+        }
+        self.isRefreshing = YES;
         [self getOrderList]
         .finally(^(){
+            self.isRefreshing = NO;
             [self.tableView.mj_header endRefreshing];
         });
         
@@ -336,14 +351,20 @@
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
-        
+        if (self.isRefreshing) {
+            [self.tableView.mj_footer endRefreshing];
+            return;
+        }
+        self.isRefreshing = YES;
         [self getOrderList].finally(^(){
+            self.isRefreshing = NO;
             [self.tableView.mj_footer endRefreshing];
         });
         
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
 
+    self.isRefreshing = NO;
     [self setOrderStyleWithSegmentIndex:0];
     [self.segmentCell setTitles:[self getSegmentTitels]];
     [self getOrderList];
@@ -456,10 +477,13 @@
     else if (self.orderType == kOrderTypeSupply){
         if (self.subType == kOrderSubTypeSend) {
             switch (index) {
-                case 0: // 待发货
+                case 0: // 待付款
+                    style.orderState = WAITFORPAY;
+                    break;
+                case 1: // 待发货
                     style.orderState = TOBESENT;
                     break;
-                case 1: // 已发货
+                case 2: // 已发货
                     style.orderState = SENTCOMPLETE;
                     break;
                 default:
@@ -468,10 +492,13 @@
         }
         else if(self.subType == kOrderSubTypeConfirmed){
             switch (index) {
-                case 0: //待确认
+                case 0: //待结款
+                    style.orderState = TOBESETTLED;
+                    break;
+                case 1: //待确认
                     style.orderState = TOBECONFIRMED;
                     break;
-                case 1: //已确认
+                case 2: //已确认
                     style.orderState = CONFIRMEDCOMPLETE;
                     break;
                 default:
@@ -525,8 +552,11 @@
     }
     else {
         // no check box 
-        OrderListNoCheckBoxCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListNoCheckBoxCell"];
+        OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListCell"];
+        cell.hiddenCheckbox = YES;
+        cell.reactiveButton.hidden = YES;
         cell.orderDetailDTO = dto;
+        
         return cell;
     }
 }
@@ -538,12 +568,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    MMOrderListStyle style;
-    style.orderType = self.orderType;
-    style.orderSubType = self.subType;
-    style.orderState = self.orderState;
+//    MMOrderListStyle style;
+//    style.orderType = self.orderType;
+//    style.orderSubType = self.subType;
+//    style.orderState = self.orderState;
     
-    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:style andOrder:self.dataSource[indexPath.row]];
+    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]];
     orderDetailVC.delegate = self;
     [self.navigationController pushViewController:orderDetailVC animated:YES];
 }

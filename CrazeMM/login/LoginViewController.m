@@ -95,10 +95,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    @weakify(self)
     self.navigationItem.title = @"会员登录";
     if (self.navigationController.viewControllers.count>1 && (self.navigationItem.leftBarButtonItem == nil || self.navigationItem.leftBarButtonItems.count>0)) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:nil action:nil];
-        @weakify(self)
         self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
             [self.navigationController popViewControllerAnimated:YES];
@@ -142,6 +142,12 @@
     [self.passwordRightView setTitle:@"忘记密码?" forState:UIControlStateNormal];
     [self.passwordRightView setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
     [self.passwordRightView setTitleColor:[UIColor colorWithRed:150 green:150 blue:150 alpha:0.4] forState:UIControlStateHighlighted];
+    
+    self.passwordRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
+        @strongify(self);
+        [self showAlertViewWithMessage:@"请使用电脑端页面找回密码: http://www.189mm.com/ui/findPassword_ui"];
+        return [RACSignal empty];
+    }];
     [self.passwordRightView sizeToFit];
     self.passwordField.rightView = self.passwordRightView;
     self.passwordField.rightViewMode = UITextFieldViewModeAlways;
@@ -153,7 +159,6 @@
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.userNameField.leftViewMode = UITextFieldViewModeAlways;
     
-    @weakify(self);
     self.registerButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
 //        [self.registerButton becomeFirstResponder];

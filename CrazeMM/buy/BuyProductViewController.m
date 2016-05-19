@@ -65,7 +65,7 @@
                 self.modalView.presentAnimationStyle = SlideInUp;
                 self.modalView.dismissAnimationStyle = SlideOutDown;
                 self.modalView.contentView = self.supplyProductView;
-                self.modalView.isCancelAble = YES;
+                self.modalView.isCancelAble = NO;
                 [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
                     @strongify(self);
                     BuyProductView* orderProductView = (BuyProductView*)contentView;
@@ -150,6 +150,7 @@
         HttpBuyProductDetailResponse* response = (HttpBuyProductDetailResponse*)request.response;
         self.productDetailDto = response.dto;
         [self.productDto resetByProductDetailDto:self.productDetailDto];
+//        [self.tableView reloadData];
     })
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
@@ -179,15 +180,6 @@
 //    .catch(^(NSError* error){
 //        [self showAlertViewWithMessage:error.localizedDescription];
 //    });
-}
-
--(void)updateProductDto
-{
-    if (!self.productDetailDto) {
-        return;
-    }
-    
-    self.productDto.quantity = self.productDetailDto.quantity;
 }
 
 -(void)dealloc

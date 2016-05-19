@@ -26,14 +26,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *reactiveButton;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectedCheckBox;
 @property (weak, nonatomic) IBOutlet UILabel *orderLabel;
-@property (weak, nonatomic) IBOutlet M80AttributedLabel *companyWithIconLabel;
+@property (weak, nonatomic) IBOutlet UIView *companyWithIconLabel;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet UILabel *productDescLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet M80AttributedLabel *totalPriceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *backgroundLabel;
+@property (nonatomic) BOOL hiddenCheckbox;
 @property (strong, nonatomic) OrderDetailDTO* orderDetailDTO;
 
 +(CGFloat)cellHeight;

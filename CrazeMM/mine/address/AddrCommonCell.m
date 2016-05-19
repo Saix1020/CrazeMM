@@ -1,16 +1,17 @@
 //
-//  AddressDefaultTableViewCell.m
+//  AddrCommonCell.m
 //  CrazeMM
 //
-//  Created by Mao Mao on 16/5/18.
+//  Created by saix on 16/5/17.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "AddressDefaultTableViewCell.h"
+#import "AddrCommonCell.h"
 
-@implementation AddressDefaultTableViewCell
+@implementation AddrCommonCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

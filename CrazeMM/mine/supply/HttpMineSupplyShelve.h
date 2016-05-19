@@ -8,6 +8,13 @@
 
 #import "BaseHttpRequest.h"
 
+@interface HttpMineSupplyReshelveRequest : BaseHttpRequest
+
+-(instancetype)initWithIds:(NSArray*)ids;
+
+
+@end
+
 @interface HttpMineSupplyUnshelveRequest : BaseHttpRequest
 
 -(instancetype)initWithIds:(NSArray*)ids;

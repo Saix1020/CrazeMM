@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressDTO.h"
 
 @interface AddressListCell : UITableViewCell
 
@@ -14,4 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (nonatomic, strong) AddressDTO* addrDto;
+
 @end
