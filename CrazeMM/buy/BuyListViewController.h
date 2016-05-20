@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic) NSInteger pageNumber;
 @property (nonatomic) NSInteger totalPage;
+@property (nonatomic) BOOL requesting;
 
 -(void)refreshData;
 -(void)refreshDataNoHud;

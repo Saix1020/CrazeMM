@@ -36,6 +36,14 @@
 
 -(AnyPromise*)getProducts:(BOOL)needHud
 {
+    @synchronized (self) {
+        if (self.requesting) {
+            return nil;
+        }
+        self.requesting = YES;
+    }
+    
+
     HttpSupplyRequest* request;
     if ([[UserCenter defaultCenter] isLogined]) {
         request = [[HttpSupplyRequest alloc] initWithPageNumber:self.pageNumber+1];
@@ -72,6 +80,8 @@
         }
     })
     .finally(^(){
+        self.requesting = NO;
+
         if (needHud) {
             [self dismissProgressIndicator];
         }

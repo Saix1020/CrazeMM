@@ -49,6 +49,8 @@
 @property (nonatomic) BOOL isCarouselAnimating;
 @property (nonatomic) NSUInteger timeElapse;
 
+
+//@property (nonatomic) BOOL requesting;
 @end
 
 @implementation BuyListViewController
@@ -301,13 +303,16 @@
 
 -(AnyPromise*)getProducts:(BOOL)needHud
 {
+    @synchronized (self) {
+        if (self.requesting) {
+            return nil;
+        }
+        self.requesting = YES;
+    }
+    
+
     HttpBuyRequest* request;
-//    if ([[UserCenter defaultCenter] isLogined]) {
-        request = [[HttpBuyRequest alloc] initWithPageNumber:self.pageNumber+1];
-//    }
-//    else{
-//        request = [[HttpSupplyNoLoginRequest alloc] initWithPageNumber:self.pageNumber+1];
-//    }
+    request = [[HttpBuyRequest alloc] initWithPageNumber:self.pageNumber+1];
     if (needHud) {
         [self showProgressIndicatorWithTitle:@"正在努力加载..."];
     }
@@ -331,6 +336,7 @@
         }
     })
     .finally(^(){
+        self.requesting = NO;
         if (needHud) {
             [self dismissProgressIndicator];
         }

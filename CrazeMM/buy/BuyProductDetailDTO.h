@@ -7,7 +7,10 @@
 //
 
 #import "BaseProductDetailDTO.h"
+#import "AddrDTO.h"
 
 @interface BuyProductDetailDTO : BaseProductDetailDTO
+
+@property (nonatomic, strong) AddrDTO* addrDto;
 
 @end

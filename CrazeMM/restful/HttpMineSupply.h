@@ -32,9 +32,16 @@ typedef NS_ENUM(NSInteger, MMMineSupplyState){
 @property (nonatomic, readonly) NSUInteger pageNumber;
 @property (nonatomic, readonly) NSUInteger totalPage;
 @property (nonatomic, readonly) NSUInteger totalRow;
-@property (nonatomic, strong) NSMutableArray<MineSupplyProductDTO*>* productDTOs;
+@property (nonatomic, strong) NSMutableArray* productDTOs;
 @property (nonatomic, readonly) NSArray* nomalProductDtos;
 @property (nonatomic, readonly) NSArray* offShelfProductDtos;
 @property (nonatomic, readonly) NSArray* dealProductDtos;
 
+@end
+
+@interface HttpMineBuyRequest : HttpMineSupplyRequest
+
+@end
+
+@interface HttpMineBuyResponse : HttpMineSupplyResponse
 @end

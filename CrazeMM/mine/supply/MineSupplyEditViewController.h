@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
+#import "SelectionViewController.h"
 
+@protocol MineSupplyEditViewControllerDelegate <NSObject>
 
-@interface MineSupplyEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, BEMCheckBoxDelegate>
+-(void)editSupplyGoodSuccess;
+
+@end
+
+@interface MineSupplyEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, BEMCheckBoxDelegate, SelectionViewControllerDelegate>
+
+@property (nonatomic, weak) id<MineSupplyEditViewControllerDelegate> delegate;
 
 @end

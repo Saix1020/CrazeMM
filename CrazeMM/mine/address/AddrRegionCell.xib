@@ -60,12 +60,14 @@
                     <constraint firstItem="yTT-ys-KTQ" firstAttribute="leading" secondItem="THt-DM-7pa" secondAttribute="trailing" constant="10" id="YX1-sn-ldR"/>
                     <constraint firstAttribute="bottomMargin" secondItem="THt-DM-7pa" secondAttribute="bottom" constant="0.5" id="YdW-2h-spp"/>
                     <constraint firstItem="THt-DM-7pa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="nvf-dB-80q"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="prz-Ne-F2H" secondAttribute="trailing" id="smf-HO-Qdm"/>
                     <constraint firstAttribute="bottomMargin" secondItem="bsC-2P-eML" secondAttribute="bottom" constant="-1.5" id="twn-KB-dIj"/>
                     <constraint firstAttribute="leadingMargin" secondItem="prz-Ne-F2H" secondAttribute="leading" id="uNU-7Y-dVb"/>
                     <constraint firstAttribute="bottomMargin" secondItem="prz-Ne-F2H" secondAttribute="bottom" constant="-8" id="zz5-kz-2oV"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="prz-Ne-F2H" secondAttribute="trailing" constant="8" id="xgo-a5-EC5"/>
+            </constraints>
             <connections>
                 <outlet property="chooseButton" destination="bsC-2P-eML" id="hhd-U8-Ujg"/>
                 <outlet property="regionLabel" destination="yTT-ys-KTQ" id="oZz-HQ-6jh"/>

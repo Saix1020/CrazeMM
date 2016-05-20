@@ -14,6 +14,9 @@
 #import "AddrDefaultCheckboxCell.h"
 #import "ZZPopoverWindow.h"
 #import "HttpGoodInfoQuery.h"
+#import "SelectionViewController.h"
+
+#import "HttpSaveSupplyInfo.h"
 
 
 typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
@@ -64,6 +67,18 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 @property (nonatomic, strong) UITableView* selectionTableView;
 @property (nonatomic, strong) NSMutableArray* selectionDataSource;
 @property (nonatomic, strong) ZZPopoverWindow* popover;
+
+@property (nonatomic, strong) NSArray* goodBrands;
+@property (nonatomic, strong) NSArray* goodInfos;
+@property (nonatomic, strong) GoodInfoDTO* currentGoodDetail;
+
+@property (nonatomic, strong) RACDisposable* watcher;
+
+@property (nonatomic) NSInteger editingRow;
+@property (nonatomic) BOOL enableSubEdit;
+@property (nonatomic) NSNumber* enableSubEditX;
+
+@property (nonatomic, readonly) NSArray* cycleStringArray;
 @end
 
 @implementation MineSupplyEditViewController
@@ -81,6 +96,33 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         _confirmButton.frame = CGRectMake(16.f, 16.f, [UIScreen mainScreen].bounds.size.width-16.f*2, 40.f);
         _confirmButton.backgroundColor = [UIColor light_Gray_Color];
         [_confirmCell addSubview:self.confirmButton];
+        _confirmButton.enabled = NO;
+        @weakify(self);
+        RACSignal* enableLoginSignal = [RACSignal
+                                          combineLatest:@[
+                                                          self.priceCell.textFieldCell.rac_textSignal,
+                                                          self.stockCell.textFieldCell.rac_textSignal,
+                                                          self.timeCell.textFieldCell.rac_textSignal,
+                                                          RACObserve(self, enableSubEditX)
+                                                          ]
+                                        reduce:^(NSString *price, NSString *stock, NSString *time, NSNumber *enableSubEdit) {
+                                                              return @(price.length > 0 && stock.length > 0 && time.length>0 && enableSubEdit.boolValue);
+                                                          }];
+        
+        [enableLoginSignal subscribeNext:^(NSNumber* enable){
+            @strongify(self);
+            if (enable.boolValue) {
+                self.confirmButton.enabled = YES;
+                self.confirmButton.backgroundColor = [UIColor greenTextColor];
+            }
+            else {
+                self.confirmButton.enabled = NO;
+                self.confirmButton.backgroundColor = [UIColor light_Gray_Color];
+
+            }
+        }];
+        
+        [_confirmButton addTarget:self action:@selector(saveNewGood:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _confirmCell;
@@ -92,8 +134,9 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_brandCell) {
         _brandCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _brandCell.titleLabel.text = @"品牌";
-        
-        [_brandCell.chooseButton addTarget:self action:@selector(chooseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _brandCell.regionLabel.text = @"请选择品牌";
+        _brandCell.chooseButton.hidden = YES;
+        _brandCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     return _brandCell;
@@ -103,7 +146,10 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_modelCell) {
         _modelCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _modelCell.titleLabel.text = @"型号";
-        [_modelCell.chooseButton addTarget:self action:@selector(chooseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _modelCell.regionLabel.text = @"请选择型号";
+
+        _modelCell.chooseButton.hidden = YES;
+        _modelCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     }
     
@@ -114,7 +160,10 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_standardCell) {
         _standardCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _standardCell.titleLabel.text = @"制式";
-        [_standardCell.chooseButton addTarget:self action:@selector(chooseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _standardCell.regionLabel.text = @"请选择制式";
+
+        _standardCell.chooseButton.hidden = YES;
+        _standardCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     }
     
@@ -125,7 +174,10 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_colorCell) {
         _colorCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _colorCell.titleLabel.text = @"颜色";
-        [_colorCell.chooseButton addTarget:self action:@selector(chooseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _colorCell.regionLabel.text = @"请选择颜色";
+
+        _colorCell.chooseButton.hidden = YES;
+        _colorCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     }
     
@@ -136,7 +188,10 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_capacityCell) {
         _capacityCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _capacityCell.titleLabel.text = @"容量";
-        [_capacityCell.chooseButton addTarget:self action:@selector(chooseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _capacityCell.regionLabel.text = @"请选择容量";
+
+        _capacityCell.chooseButton.hidden = YES;
+        _capacityCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     }
     
@@ -147,6 +202,11 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_cycleCell) {
         _cycleCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _cycleCell.titleLabel.text = @"周期";
+        
+        _cycleCell.chooseButton.hidden = YES;
+        _cycleCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+        _cycleCell.regionLabel.text = @"72小时以上";
     }
     
     return _cycleCell;
@@ -200,6 +260,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         _priceCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
         _priceCell.titleLabel.text = @"单价";
         _priceCell.textFieldCell.placeholder = @"请输入单台价格";
+        _priceCell.textFieldCell.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     }
     
     return _priceCell;
@@ -210,6 +271,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         _stockCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
         _stockCell.titleLabel.text = @"库存";
         _stockCell.textFieldCell.placeholder = @"请输入库存数量";
+        _stockCell.textFieldCell.keyboardType = UIKeyboardTypeNumberPad;
+
     }
     
     return _stockCell;
@@ -218,8 +281,11 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 {
     if (!_timeCell) {
         _timeCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
-        _timeCell.titleLabel.text = @"供货周期";
+        _timeCell.titleLabel.text = @"有效时长";
         _timeCell.textFieldCell.placeholder = @"请输入小时数";
+        _timeCell.textFieldCell.keyboardType = UIKeyboardTypeNumberPad;
+
+        _timeCell.textFieldCell.text = @"24";
     }
     
     return _timeCell;
@@ -264,6 +330,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     
     self.navigationItem.title = @"新建供货信息";
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"cancel_m" image] style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
+    
     self.tableView = [[TPKeyboardAvoidingTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -293,52 +361,176 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
                        self.otherCell,
                        self.confirmCell
                        ];
-}
-
-
--(void)chooseButtonClicked:(UIButton*)sender
-{
-    if (sender == self.brandCell.chooseButton) {
-        
-    }
-    else if(sender == self.modelCell.chooseButton){
-        
-    }
-    else if(sender == self.colorCell.chooseButton){
-        
-    }
-    else if(sender == self.standardCell.chooseButton){
-        
-    }
-    else if(sender == self.capacityCell.chooseButton){
-        
-    }
-    else if(sender == self.cycleCell.chooseButton){
-        
-    }
-    self.selectionDataSource = [@[@"1111", @"22222", @"3333"] mutableCopy];
-    CGFloat height = self.selectionDataSource.count*44.f;
-    if (height>400.f) {
-        height = 400.f;
-    }
-    self.selectionTableView.frame = CGRectMake(8.f, 0, sender.superview.frame.size.width-8.f, self.selectionDataSource.count*44.f);
-    //        self.suggestVC.view.backgroundColor = RGBCOLOR(150, 150, 150);
-    self.popover                    = [[ZZPopoverWindow alloc] init];
-    self.popover.popoverPosition = ZZPopoverPositionDown;
-    self.popover.contentView        = self.selectionTableView;
-    self.popover.animationSpring = NO;
-    //        self.popover.backgroundColor = RGBCOLOR(150, 150, 150);
-    self.popover.showArrow = NO;
-    self.popover.didShowHandler = ^() {
-        //self.popover.layer.cornerRadius = 0;
-    };
-    self.popover.didDismissHandler = ^() {
-        //NSLog(@"Did dismiss");
-    };
     
-    [self.popover showAtView:sender.superview];
+    self.selectionDataSource = [[NSMutableArray alloc] init];
+    HttpBrandQueryRequest* brandRequest = [[HttpBrandQueryRequest alloc] init];
+    [brandRequest request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        HttpBrandQueryResponse* response = (HttpBrandQueryResponse*)brandRequest.response;
+        if (response.ok) {
+            self.goodBrands = response.brandDtos;
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+    
+    self.enableSubEdit = NO;
+//    self.watcher = [RACObserve(self, brandCell.regionLabel.text) subscribeNext:^(NSString* text){
+//        if (text.length>0) {
+//            self.enableSubEdit = YES;
+//            [self.watcher dispose];
+//        }
+//    }];
+}
+
+-(void)saveNewGood:(UIButton*)sender
+{
+    GoodCreateInfo* goodCreateInfo = [[GoodCreateInfo alloc] init];
+    for (GoodBrandDTO* brandDto in self.goodBrands) {
+        if ([brandDto.name isEqualToString:self.brandCell.regionLabel.text]) {
+            goodCreateInfo.brand = brandDto.id;
+        }
+    }
+    
+    goodCreateInfo.id = self.currentGoodDetail.id;
+    goodCreateInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
+    NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
+    switch (cycleStringIndex) {
+        case 0:
+            goodCreateInfo.deadline = 24;
+            break;
+        case 1:
+            goodCreateInfo.deadline = 48;
+            break;
+        case 2:
+            goodCreateInfo.deadline = 72;
+            break;
+        default:
+            goodCreateInfo.deadline = -1;
+            break;
+    }
+    
+    goodCreateInfo.duration = self.timeCell.textFieldCell.text.integerValue;
+    goodCreateInfo.price = self.priceCell.textFieldCell.text.integerValue;
+    goodCreateInfo.color = self.colorCell.regionLabel.text;
+    goodCreateInfo.volume = self.capacityCell.regionLabel.text;
+    goodCreateInfo.network = self.standardCell.regionLabel.text;
+    goodCreateInfo.isSerial = self.hasIMEICell.swith.on;
+    goodCreateInfo.isOriginal = self.isIntactCell.swith.on;
+    goodCreateInfo.isOriginalBox = self.hasBoxCell.swith.on;
+    goodCreateInfo.isBrushMachine = self.isBrushedCell.swith.on;
+    goodCreateInfo.isSplit = self.otherCell.checkBox.on;
+    goodCreateInfo.isAnoy = self.otherCell.checkBox2.on;
+
+    
+    HttpSaveSupplyInfoRequest* request = [[HttpSaveSupplyInfoRequest alloc] initWithGoodInfo:goodCreateInfo];
+    [request request]
+    .then(^(id responseObj){
+        if (!request.response.ok) {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+        else {
+            if ([self.delegate respondsToSelector:@selector(editSupplyGoodSuccess)]) {
+                [self showAlertViewWithMessage:@"供货信息发布成功"];
+                [self.delegate editSupplyGoodSuccess];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+}
+
+-(NSArray*)cycleStringArray
+{
+    return @[@"24小时", @"48小时", @"72小时", @"72小时以上"];
+}
+
+-(void)cancel:(id)sender
+{
+    [self.view endEditing:YES];
+
+    @weakify(self);
+    [self showAlertViewWithMessage:@"您确认离开吗?"
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                 andCancelCallback:^(id x){
+                     
+                 }];
+}
+
+-(void)setCurrentGoodDetail:(GoodInfoDTO *)currentGoodDetail
+{
+    _currentGoodDetail = currentGoodDetail;
+    self.modelCell.regionLabel.text = currentGoodDetail.model;
+    self.colorCell.regionLabel.text = currentGoodDetail.color.firstObject;
+    self.capacityCell.regionLabel.text = currentGoodDetail.volume.firstObject;
+    self.standardCell.regionLabel.text = currentGoodDetail.network.firstObject;
 
 }
+
+-(void)setEnableSubEdit:(BOOL)enableSubEdit
+{
+    _enableSubEdit = enableSubEdit;
+    self.modelCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
+    self.colorCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
+    self.capacityCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
+    self.standardCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]: [UIColor lightGrayColor];
+    
+    self.enableSubEditX = @(enableSubEdit);
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self.view endEditing:YES];
+    [super viewWillDisappear:animated];
+//    [self.view becomeFirstResponder];
+    //[self.view findFirstResponder]
+}
+
+//-(void)chooseButtonClicked:(UIButton*)sender
+//{
+////    [self.selectionDataSource removeAllObjects];
+//    SelectionViewController* selectionVC;
+//    if (sender == self.brandCell.chooseButton) {
+//        self.editingRow = kRowBrand;
+//        NSInteger selectedIndex = -1;
+//        NSInteger index;
+//        for (index=0; index<self.goodBrands.count; ++index) {
+//            GoodBrandDTO* dto = self.goodBrands[index];
+//            [self.selectionDataSource addObject:dto.name];
+//            if ([dto.name isEqualToString:self.brandCell.regionLabel.text]) {
+//                selectedIndex = index;
+//            }
+//        }
+//        
+//        selectionVC = [[SelectionViewController alloc] initWithDataSource:self.selectionDataSource andSelectedIndex:selectedIndex andTitle:@"请选择品牌"];
+//        selectionVC.delegate = self;
+//    }
+//    else if(sender == self.modelCell.chooseButton){
+//        
+//    }
+//    else if(sender == self.colorCell.chooseButton){
+//        
+//    }
+//    else if(sender == self.standardCell.chooseButton){
+//        
+//    }
+//    else if(sender == self.capacityCell.chooseButton){
+//        
+//    }
+//    else if(sender == self.cycleCell.chooseButton){
+//        
+//    }
+//    [self.navigationController pushViewController:selectionVC animated:YES];
+//
+//}
 
 #pragma -- mark UITableView delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -384,10 +576,184 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SelectionCell"];
         }
-        cell.textLabel.text = self.selectionDataSource[indexPath.row];
+        GoodBrandDTO* dto = self.selectionDataSource[indexPath.row];
+        cell.textLabel.text = dto.name;
     }
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SelectionViewController* selectionVC;
+    self.editingRow = indexPath.row;
+    [self.selectionDataSource removeAllObjects];
+    NSInteger selectedIndex = NSNotFound;
+    NSInteger index;
+
+    switch (indexPath.row) {
+        case kRowBrand:
+        {
+            for (index=0; index<self.goodBrands.count; ++index) {
+                GoodBrandDTO* dto = self.goodBrands[index];
+                [self.selectionDataSource addObject:dto.name];
+                if ([dto.name isEqualToString:self.brandCell.regionLabel.text]) {
+                    selectedIndex = index;
+                }
+            }
+            
+            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.selectionDataSource andSelectedIndex:selectedIndex andTitle:@"请选择品牌"];
+            selectionVC.delegate = self;
+            
+            [self.navigationController pushViewController:selectionVC animated:YES];
+        }
+            break;
+        
+        case kRowModel:
+        {
+            if (!self.enableSubEdit) {
+                break;
+            }
+            for (index=0; index<self.goodInfos.count; ++index) {
+                GoodInfoDTO* dto = self.goodInfos[index];
+                [self.selectionDataSource addObject:dto.model];
+                if ([dto.model isEqualToString:self.modelCell.regionLabel.text]) {
+                    selectedIndex = index;
+                }
+            }
+            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.selectionDataSource andSelectedIndex:selectedIndex andTitle:@"请选择型号"];
+            selectionVC.delegate = self;
+            
+            [self.navigationController pushViewController:selectionVC animated:YES];
+        }
+            break;
+        case kRowColor:
+        {
+            if (!self.enableSubEdit) {
+                break;
+            }
+            for (index=0; index<self.currentGoodDetail.color.count; ++index) {
+                
+                if ([self.currentGoodDetail.color[index] isEqualToString:self.colorCell.regionLabel.text]) {
+                    selectedIndex = index;
+                    break;
+                }
+            }
+            
+            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.currentGoodDetail.color andSelectedIndex:selectedIndex andTitle:@"请选择颜色"];
+            selectionVC.delegate = self;
+            
+            [self.navigationController pushViewController:selectionVC animated:YES];
+
+        }
+            break;
+        case kRowStandard:
+        {
+            if (!self.enableSubEdit) {
+                break;
+            }
+            selectedIndex = [self.currentGoodDetail.network indexOfObject:self.standardCell.regionLabel.text];
+            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.currentGoodDetail.network andSelectedIndex:selectedIndex andTitle:@"请选择制式"];
+            selectionVC.delegate = self;
+            
+            [self.navigationController pushViewController:selectionVC animated:YES];
+        }
+            break;
+        case kRowCapacity:
+        {
+            if (!self.enableSubEdit) {
+                break;
+            }
+            selectedIndex = [self.currentGoodDetail.volume indexOfObject:self.capacityCell.regionLabel.text];
+            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.currentGoodDetail.volume andSelectedIndex:selectedIndex andTitle:@"请选择容量"];
+            selectionVC.delegate = self;
+            
+            [self.navigationController pushViewController:selectionVC animated:YES];
+        }
+            break;
+            
+        case kRowCycle:
+        {
+            self.selectionDataSource = [self.cycleStringArray mutableCopy];
+            selectedIndex = [self.selectionDataSource indexOfObject:self.cycleCell.regionLabel.text];
+            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.selectionDataSource andSelectedIndex:selectedIndex andTitle:@"请选择供货周期"];
+            selectionVC.delegate = self;
+            
+            [self.navigationController pushViewController:selectionVC animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+
+#pragma -- mark SelectionViewControllerDelegate
+-(void)didSelectItemWithTitle:(NSInteger)selectedIndex
+{
+    switch (self.editingRow) {
+        case kRowBrand:
+        {
+            GoodBrandDTO* dto = self.goodBrands[selectedIndex];
+            self.brandCell.regionLabel.text = dto.name;
+            HttpGoodInfoQueryRequest* request = [[HttpGoodInfoQueryRequest alloc] initWithBrandId:dto.id];
+            self.enableSubEdit = NO;
+            [request request]
+            .then(^(id responseObj){
+                NSLog(@"%@", responseObj);
+                HttpGoodInfoQueryResponse* response = (HttpGoodInfoQueryResponse*)request.response;
+                if (response.ok) {
+                    self.goodInfos = response.goodDtos;
+                    if (self.goodInfos.count>0) {
+                        self.currentGoodDetail = self.goodInfos.firstObject;
+                        self.enableSubEdit = YES;
+                    }
+                }
+            })
+            .catch(^(NSError* error){
+                [self showAlertViewWithMessage:error.localizedDescription];
+            });
+        }
+            break;
+            
+        case kRowModel:
+        {
+            self.currentGoodDetail = self.goodInfos[selectedIndex];
+        }
+            break;
+            
+        case kRowColor:
+        {
+            self.colorCell.regionLabel.text = self.currentGoodDetail.color[selectedIndex];
+        }
+            break;
+        
+        case kRowStandard:
+        {
+            self.standardCell.regionLabel.text = self.currentGoodDetail.network[selectedIndex];
+        }
+            break;
+        case kRowCapacity:
+        {
+            self.capacityCell.regionLabel.text = self.currentGoodDetail.volume[selectedIndex];
+        }
+            break;
+        
+        case kRowCycle:
+        {
+            self.cycleCell.regionLabel.text = self.selectionDataSource[selectedIndex];
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
+
+
+-(void)dealloc
+{
+    //[self.watcher dispose];
+    NSLog(@"dealloc %@", [self class]);
+}
 
 @end

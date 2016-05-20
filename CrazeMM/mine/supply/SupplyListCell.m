@@ -42,6 +42,7 @@
     //self.shareButton.buttonType =
     
     self.shareButton.tintColor = [UIColor UIColorFromRGB:0x444444];
+    
     self.offButton.tintColor = [UIColor UIColorFromRGB:0x444444];
     
 //    [self.shareButton setTintColor:[UIColor UIColorFromRGB:0x444444]  forState:UIControlStateNormal];
@@ -119,6 +120,18 @@
     [self fomartPriceLabel];
     self.selectCheckBox.on = mineSupplyProductDto.selected;
     
+    if (self.style == kOffShelfStyle) {
+        NSString* title = mineSupplyProductDto.state==400 ? @"已过期" : @"已下架";
+        self.shareButton.hidden = NO;
+        self.shareButton.userInteractionEnabled = NO;
+        [self.shareButton setTitle:title forState:UIControlStateNormal];
+//        self.shareButton.imageView.hidden = YES;
+    }
+    else {
+        self.shareButton.hidden = YES;
+        self.shareButton.userInteractionEnabled = YES;
+    }
+    
 }
 
 +(CGFloat)cellHeight
@@ -138,6 +151,12 @@
             [self.delegate buttonClicked:button andType:kUnkonwStyle andSid:self.mineSupplyProductDto.id];
         }
     }
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+
 }
 
 @end

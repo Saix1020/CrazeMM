@@ -748,6 +748,18 @@
 		B9EFAF5F1CED514100F81157 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B964F94D1CC49DF2003E0D44 /* WelcomeViewController.xib */; };
 		B9EFAF7F1CED9A6D00F81157 /* HttpGoodInfoQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF7E1CED9A6D00F81157 /* HttpGoodInfoQuery.m */; };
 		B9EFAF821CED9BED00F81157 /* GoodDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF811CED9BED00F81157 /* GoodDTO.m */; };
+		B9EFAF831CEDA25400F81157 /* RestURL.h in Sources */ = {isa = PBXBuildFile; fileRef = B91896FF1CD10EE00061D0B6 /* RestURL.h */; };
+		B9EFAF841CEDA25400F81157 /* BaseHttpRequest.h in Sources */ = {isa = PBXBuildFile; fileRef = B91732771CD2036300C29698 /* BaseHttpRequest.h */; };
+		B9EFAF851CEDA27800F81157 /* GoodDTO.h in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF801CED9BED00F81157 /* GoodDTO.h */; };
+		B9EFAF861CEDA27800F81157 /* GoodDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF811CED9BED00F81157 /* GoodDTO.m */; };
+		B9EFAF8F1CEDA91200F81157 /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF8E1CEDA91200F81157 /* SelectionViewController.m */; };
+		B9EFAF9C1CEDF37E00F81157 /* HttpGoodInfoQuery.h in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF7D1CED9A6D00F81157 /* HttpGoodInfoQuery.h */; };
+		B9EFAF9D1CEDF37E00F81157 /* HttpGoodInfoQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF7E1CED9A6D00F81157 /* HttpGoodInfoQuery.m */; };
+		B9EFAF9E1CEDF39D00F81157 /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAF8E1CEDA91200F81157 /* SelectionViewController.m */; };
+		B9EFAFA11CEE10A200F81157 /* HttpSaveSupplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAFA01CEE10A200F81157 /* HttpSaveSupplyInfo.m */; };
+		B9EFAFA21CEE10A200F81157 /* HttpSaveSupplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAFA01CEE10A200F81157 /* HttpSaveSupplyInfo.m */; };
+		B9EFAFAA1CEEF7FC00F81157 /* MineBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAFA91CEEF7FC00F81157 /* MineBuyViewController.m */; };
+		B9EFAFAB1CEEF81200F81157 /* MineBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFAFA91CEEF7FC00F81157 /* MineBuyViewController.m */; };
 		B9FE71D71CD6D39200F5EC9F /* background_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = B9FE71D61CD6D39200F5EC9F /* background_alpha.png */; };
 		B9FE71E81CD6E70400F5EC9F /* SearchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71DC1CD6E70400F5EC9F /* SearchHistory.m */; };
 		B9FE71E91CD6E70400F5EC9F /* UserHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71DE1CD6E70400F5EC9F /* UserHistory.m */; };
@@ -1426,6 +1438,12 @@
 		B9EFAF7E1CED9A6D00F81157 /* HttpGoodInfoQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpGoodInfoQuery.m; path = mine/good/HttpGoodInfoQuery.m; sourceTree = "<group>"; };
 		B9EFAF801CED9BED00F81157 /* GoodDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoodDTO.h; path = mine/supply/GoodDTO.h; sourceTree = "<group>"; };
 		B9EFAF811CED9BED00F81157 /* GoodDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoodDTO.m; path = mine/supply/GoodDTO.m; sourceTree = "<group>"; };
+		B9EFAF8D1CEDA91200F81157 /* SelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectionViewController.h; path = mine/supply/SelectionViewController.h; sourceTree = "<group>"; };
+		B9EFAF8E1CEDA91200F81157 /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectionViewController.m; path = mine/supply/SelectionViewController.m; sourceTree = "<group>"; };
+		B9EFAF9F1CEE10A200F81157 /* HttpSaveSupplyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSaveSupplyInfo.h; path = restful/HttpSaveSupplyInfo.h; sourceTree = "<group>"; };
+		B9EFAFA01CEE10A200F81157 /* HttpSaveSupplyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSaveSupplyInfo.m; path = restful/HttpSaveSupplyInfo.m; sourceTree = "<group>"; };
+		B9EFAFA81CEEF7FC00F81157 /* MineBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyViewController.h; path = mine/buy/MineBuyViewController.h; sourceTree = "<group>"; };
+		B9EFAFA91CEEF7FC00F81157 /* MineBuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyViewController.m; path = mine/buy/MineBuyViewController.m; sourceTree = "<group>"; };
 		B9FE71D61CD6D39200F5EC9F /* background_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_alpha.png; sourceTree = "<group>"; };
 		B9FE71DB1CD6E70400F5EC9F /* SearchHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHistory.h; sourceTree = "<group>"; };
 		B9FE71DC1CD6E70400F5EC9F /* SearchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHistory.m; sourceTree = "<group>"; };
@@ -1983,6 +2001,8 @@
 				B91896DD1CCFB3A70061D0B6 /* SupplyViewController.m */,
 				B9EFADDF1CECB7AC00F81157 /* MineSupplyEditViewController.h */,
 				B9EFADE01CECB7AC00F81157 /* MineSupplyEditViewController.m */,
+				B9EFAF8D1CEDA91200F81157 /* SelectionViewController.h */,
+				B9EFAF8E1CEDA91200F81157 /* SelectionViewController.m */,
 			);
 			name = supply;
 			sourceTree = "<group>";
@@ -2438,6 +2458,7 @@
 		B964F9581CC4A747003E0D44 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B9EFAFA61CEEF7B000F81157 /* buy */,
 				B9B5BCEC1CDE00710085E132 /* modal */,
 				B91896F01CD0EE890061D0B6 /* account */,
 				B91896C91CCF97440061D0B6 /* supply */,
@@ -2645,6 +2666,8 @@
 				B98219161CE9A48C00B279E6 /* HttpMineSupply.m */,
 				B982191E1CEA0C0400B279E6 /* HttpMineSupplyShelve.h */,
 				B982191F1CEA0C0400B279E6 /* HttpMineSupplyShelve.m */,
+				B9EFAF9F1CEE10A200F81157 /* HttpSaveSupplyInfo.h */,
+				B9EFAFA01CEE10A200F81157 /* HttpSaveSupplyInfo.m */,
 			);
 			name = supply;
 			sourceTree = "<group>";
@@ -2931,6 +2954,15 @@
 			name = good;
 			sourceTree = "<group>";
 		};
+		B9EFAFA61CEEF7B000F81157 /* buy */ = {
+			isa = PBXGroup;
+			children = (
+				B9EFAFA81CEEF7FC00F81157 /* MineBuyViewController.h */,
+				B9EFAFA91CEEF7FC00F81157 /* MineBuyViewController.m */,
+			);
+			name = buy;
+			sourceTree = "<group>";
+		};
 		B9FE71DA1CD6E70400F5EC9F /* human */ = {
 			isa = PBXGroup;
 			children = (
@@ -3037,6 +3069,7 @@
 				B9EFAF601CED514100F81157 /* 📦 Embed Pods Frameworks */,
 				B9EFAF611CED514100F81157 /* 📦 Copy Pods Resources */,
 				B9EFAF621CED514100F81157 /* Embed Pods Frameworks */,
+				B9EFAFAC1CEF02B800F81157 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3385,6 +3418,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B9EFAFAC1CEF02B800F81157 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
 		F6495661465ADC1C6D33D42C /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3512,6 +3558,7 @@
 				B99D130F1CC743A4000DFF95 /* SearchListViewController.m in Sources */,
 				B98218FE1CE855D500B279E6 /* HttpSearchKeyword.m in Sources */,
 				B9AD45FF1CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.m in Sources */,
+				B9EFAFA11CEE10A200F81157 /* HttpSaveSupplyInfo.m in Sources */,
 				B91896991CCE53AB0061D0B6 /* SecondProductDetailCell.m in Sources */,
 				B91732531CD1F05500C29698 /* SlideOutLeftAnimation.m in Sources */,
 				B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */,
@@ -3546,6 +3593,7 @@
 				B98878BA1CC9B94300990AA4 /* SegmentedCell.m in Sources */,
 				B917321A1CD1F05400C29698 /* SwingAnimation.m in Sources */,
 				B982191B1CE9A63B00B279E6 /* MineSupplyProductDTO.m in Sources */,
+				B9EFAFAA1CEEF7FC00F81157 /* MineBuyViewController.m in Sources */,
 				B967E7381CE57EBD00621F28 /* MASViewAttribute.m in Sources */,
 				B91732451CD1F05400C29698 /* RotateInUpLeftAnimation.m in Sources */,
 				B967E73B1CE57EBD00621F28 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -3676,6 +3724,7 @@
 				B9B5BCEA1CDDBE670085E132 /* HttpOrder.m in Sources */,
 				B95924761CDEBA9000533E77 /* MKDirections+AnyPromise.m in Sources */,
 				B99D13021CC66EFB000DFF95 /* ClearHistoryCell.m in Sources */,
+				B9EFAF8F1CEDA91200F81157 /* SelectionViewController.m in Sources */,
 				B95A94CB1CE1EBF800A5D9BA /* BaseProductDetailDTO.m in Sources */,
 				B99D12DA1CC5DD7E000DFF95 /* UITabBarController+HideTabBar.m in Sources */,
 				B91896861CCE05AF0061D0B6 /* ProductOtherCompanyCell.m in Sources */,
@@ -3741,6 +3790,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9EFAFAB1CEEF81200F81157 /* MineBuyViewController.m in Sources */,
+				B9EFAF9E1CEDF39D00F81157 /* SelectionViewController.m in Sources */,
+				B9EFAF9C1CEDF37E00F81157 /* HttpGoodInfoQuery.h in Sources */,
+				B9EFAF9D1CEDF37E00F81157 /* HttpGoodInfoQuery.m in Sources */,
+				B9EFAF851CEDA27800F81157 /* GoodDTO.h in Sources */,
+				B9EFAF861CEDA27800F81157 /* GoodDTO.m in Sources */,
+				B9EFAF831CEDA25400F81157 /* RestURL.h in Sources */,
+				B9EFAF841CEDA25400F81157 /* BaseHttpRequest.h in Sources */,
 				B9EFADF71CED514100F81157 /* FadeOutUpAnimation.m in Sources */,
 				B9EFADF81CED514100F81157 /* ZoomOutUpAnimation.m in Sources */,
 				B9EFADF91CED514100F81157 /* OnlinePayViewController.m in Sources */,
@@ -3758,6 +3815,7 @@
 				B9EFAE051CED514100F81157 /* HttpCheckPictureCaptchaRequest.m in Sources */,
 				B9EFAE061CED514100F81157 /* CityListViewController.m in Sources */,
 				B9EFAE071CED514100F81157 /* ScaleSmallOutAnimation.m in Sources */,
+				B9EFAFA21CEE10A200F81157 /* HttpSaveSupplyInfo.m in Sources */,
 				B9EFAE081CED514100F81157 /* SlideInDownAnimation.m in Sources */,
 				B9EFAE091CED514100F81157 /* BounceInDownAnimation.m in Sources */,
 				B9EFAE0A1CED514100F81157 /* HotCityTableViewCell.m in Sources */,

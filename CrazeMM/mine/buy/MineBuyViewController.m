@@ -1,31 +1,24 @@
 //
-//  SupplyViewController.m
+//  MineBuyViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/26.
+//  Created by saix on 16/5/20.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "SupplyViewController.h"
+#import "MineBuyViewController.h"
 #import "SegmentedCell.h"
 #import "CommonBottomView.h"
 #import "SupplyListCell.h"
 #import "HttpMineSupply.h"
 #import "MineSupplyProductDTO.h"
 #import "HttpMineSupplyShelve.h"
-#import "MineSupplyEditViewController.h"
-//#import <objc/runtime.h>
 
-@interface SupplyViewController ()
-//@property (nonatomic, strong) UITableView* tableView;
-//
-//@property (nonatomic, strong) SegmentedCell* segmentCell;
-//@property (nonatomic, strong) CommonBottomView* bottomView;
+
+@interface MineBuyViewController()
+
 @property (nonatomic) SupplyListCellStyle cellStyle;
-@property (nonatomic, strong) NSMutableArray<MineSupplyProductDTO*>* dataSource;
-@property (nonatomic, copy) NSArray* nomalDataSource;
-@property (nonatomic, copy) NSArray* offShelfDataSource;
-@property (nonatomic, copy) NSArray* dealDataSource;
+@property (nonatomic, strong) NSMutableArray* dataSource;
 
 @property (nonatomic) NSInteger pageNumber;
 @property (nonatomic) NSInteger totalPage;
@@ -34,10 +27,7 @@
 
 @end
 
-
-
-@implementation SupplyViewController
-
+@implementation MineBuyViewController
 
 -(SegmentedCell*)segmentCell
 {
@@ -54,17 +44,20 @@
         _bottomView = [super bottomView];
         [_bottomView.confirmButton setTitle:@"批量下架" forState:UIControlStateNormal];
         [_bottomView.totalPriceLabel setText:@""];
-
+        
     }
     
     return _bottomView;
 }
 
-- (void)viewDidLoad
+
+
+
+-(void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"我的供货";
+    self.navigationItem.title = @"我的求购";
     self.view.backgroundColor = [UIColor light_Gray_Color];
     
     self.dataSource = [[NSMutableArray alloc] init];
@@ -78,30 +71,30 @@
             return [RACSignal empty];
         }];
     }
-    
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addSupply:)];
+
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addBuy:)];
     
     self.isShelving = NO;
     self.pageNumber = 0;
-    [self getMineSupply];
+    [self getMineBuy];
 }
 
--(void)addSupply:(id)sender
+-(void)addBuy:(id)sender
 {
-    MineSupplyEditViewController* editVC = [[MineSupplyEditViewController alloc] init];
-    editVC.delegate = self;
-    [self.navigationController pushViewController:editVC animated:YES];
+//    MineSupplyEditViewController* editVC = [[MineSupplyEditViewController alloc] init];
+//    editVC.delegate = self;
+//    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 -(AnyPromise*)handleHeaderRefresh
 {
-    return [self getMineSupply];
+    return [self getMineBuy];
 }
 
 -(AnyPromise*)handleFooterRefresh
 {
-    return [self getMineSupply];
+    return [self getMineBuy];
 }
 
 -(void)bottomViewButtonClicked:(UIButton*)button
@@ -126,7 +119,7 @@
 -(void)reshelveProducts
 {
     if (self.isShelving) {
-        [self showAlertViewWithMessage:@"你还不能上架该供货"];
+        [self showAlertViewWithMessage:@"你还不能上架该求购"];
         return;
     }
     NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
@@ -139,7 +132,7 @@
         }
     }
     
-    HttpMineSupplyReshelveRequest *request = [[HttpMineSupplyReshelveRequest alloc] initWithIds:selectedIds];
+    HttpMineBuyReshelveRequest *request = [[HttpMineBuyReshelveRequest alloc] initWithIds:selectedIds];
     self.isShelving = YES;
     [request request]
     .then(^(id responseObj){
@@ -165,7 +158,7 @@
 -(void)reshelveProductsWithSid:(NSInteger)sid
 {
     if (self.isShelving) {
-        [self showAlertViewWithMessage:@"你还不能上架该供货"];
+        [self showAlertViewWithMessage:@"你还不能上架该求购"];
         return;
     }
     NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
@@ -178,7 +171,7 @@
         }
     }
     
-    HttpMineSupplyReshelveRequest *request = [[HttpMineSupplyReshelveRequest alloc] initWithIds:selectedIds];
+    HttpMineBuyReshelveRequest *request = [[HttpMineBuyReshelveRequest alloc] initWithIds:selectedIds];
     self.isShelving = YES;
     [request request]
     .then(^(id responseObj){
@@ -204,10 +197,10 @@
 -(void)unshelveProducts
 {
     if (self.isShelving) {
-        [self showAlertViewWithMessage:@"你还不能下架该供货"];
+        [self showAlertViewWithMessage:@"你还不能下架该求购"];
         return;
     }
-
+    
     
     NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
     NSMutableArray* selectedIds = [[NSMutableArray alloc] init];
@@ -219,7 +212,7 @@
         }
     }
     
-    HttpMineSupplyUnshelveRequest *request = [[HttpMineSupplyUnshelveRequest alloc] initWithIds:selectedIds];
+    HttpMineBuyUnshelveRequest *request = [[HttpMineBuyUnshelveRequest alloc] initWithIds:selectedIds];
     
     [request request]
     .then(^(id responseObj){
@@ -244,7 +237,7 @@
 -(void)unshelveProductsWithSid:(NSInteger)sid
 {
     if (self.isShelving) {
-        [self showAlertViewWithMessage:@"你还不能下架该供货"];
+        [self showAlertViewWithMessage:@"你还不能下架该求购"];
         return;
     }
     
@@ -259,7 +252,7 @@
         }
     }
     
-    HttpMineSupplyUnshelveRequest *request = [[HttpMineSupplyUnshelveRequest alloc] initWithIds:selectedIds];
+    HttpMineBuyUnshelveRequest *request = [[HttpMineBuyUnshelveRequest alloc] initWithIds:selectedIds];
     
     [request request]
     .then(^(id responseObj){
@@ -319,7 +312,7 @@
         ((SupplyListCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
         ((SupplyListCell*)cell).selectCheckBox.delegate = self;
         ((SupplyListCell*)cell).delegate = self;
-
+        
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -338,29 +331,29 @@
     else {
         if (self.segmentCell.segment.currentIndex != 2) {
             return [SupplyListCell cellHeight];
-
+            
         }
         else {
             return [SupplyListCell cellHeight] - 30;
         }
-
+        
     }
 }
 
--(AnyPromise*)getMineSupply
+-(AnyPromise*)getMineBuy
 {
     
-    HttpMineSupplyRequest * request = [[HttpMineSupplyRequest alloc]init];
+    HttpMineSupplyRequest * request = [[HttpMineBuyRequest alloc]init];
     
     switch (self.cellStyle) {
         case kNomalStyle:
-            request = [[HttpMineSupplyRequest alloc] initStateNomalWithPageNumber:self.pageNumber+1];
+            request = [[HttpMineBuyRequest alloc] initStateNomalWithPageNumber:self.pageNumber+1];
             break;
         case kOffShelfStyle:
-            request = [[HttpMineSupplyRequest alloc] initStateOffShelfWithPageNumber:self.pageNumber+1];
+            request = [[HttpMineBuyRequest alloc] initStateOffShelfWithPageNumber:self.pageNumber+1];
             break;
         case kDealStyle:
-            request = [[HttpMineSupplyRequest alloc] initStateSoldOutWithPageNumber:self.pageNumber+1];
+            request = [[HttpMineBuyRequest alloc] initStateSoldOutWithPageNumber:self.pageNumber+1];
             break;
         default:
             break;
@@ -369,15 +362,16 @@
     return [request request]
     .then(^(id responseObj){
         NSLog(@"%@", responseObj);
-        HttpMineSupplyResponse* response = (HttpMineSupplyResponse*)request.response;
+        HttpMineBuyResponse* response = (HttpMineBuyResponse*)request.response;
         if (response.ok) {
-            if(response.productDTOs.count>0){
+            if (response.productDTOs.count>0) {
                 [self.dataSource addObjectsFromArray:response.productDTOs];
                 self.totalPage = response.totalPage;
                 self.pageNumber = response.pageNumber>=self.totalPage?self.totalPage:response.pageNumber;
                 [self.tableView reloadData];
-                self.bottomView.selectAllCheckBox.on = NO;
+                self.bottomView.selectAllCheckBox.on = NO;                
             }
+            
         }
         else{
             [self showAlertViewWithMessage:response.errorMsg];
@@ -385,7 +379,7 @@
     })
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
-
+        
     });
 }
 
@@ -402,20 +396,20 @@
     else if(index==1){
         self.cellStyle = kOffShelfStyle;
         [self.bottomView.confirmButton setTitle:@"批量上架" forState:UIControlStateNormal];
-
+        
     }
     else {
         self.cellStyle = kDealStyle;
         [self.bottomView.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
-
+        
     }
     self.bottomView.selectAllCheckBox.on = NO;
     
     [self.dataSource removeAllObjects];
     [self.tableView reloadData];
-
+    
     self.pageNumber = 0;
-    [self getMineSupply];
+    [self getMineBuy];
 }
 
 #pragma -- mark BEMCheckBox Delegate
@@ -441,7 +435,7 @@
         }
         [self.tableView reloadData];
     }
-
+    
 }
 
 #pragma -- mark SupplyListCell delegate
@@ -468,8 +462,9 @@
     [self.tableView reloadData];
     
     self.pageNumber = 0;
-    [self getMineSupply];
-
+    [self getMineBuy];
+    
 }
 
 @end
+

@@ -56,3 +56,22 @@
 }
 
 @end
+
+@implementation HttpMineBuyReshelveRequest
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/buy/reshelve");
+}
+
+@end
+
+@implementation HttpMineBuyUnshelveRequest
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/buy/unshelve");
+}
+
+@end
+

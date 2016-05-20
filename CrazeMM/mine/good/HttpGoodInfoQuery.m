@@ -59,7 +59,7 @@
 
 -(NSString*)url
 {
-    return @"/rest/good";
+    return COMB_URL( @"/rest/good");
 }
 
 -(NSString*)method

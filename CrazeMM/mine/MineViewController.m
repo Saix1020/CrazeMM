@@ -22,6 +22,7 @@
 #import "NoLoginHeadCell.h"
 #import "HttpOrderSummary.h"
 #import "HttpLogout.h"
+#import "MineBuyViewController.h"
 
 
 
@@ -567,7 +568,13 @@
                 
                 return;
             }
-//            
+            else if(indexPath.row== 2){
+                MineBuyViewController* mineBuyVC = [[MineBuyViewController alloc] init];
+                [self.navigationController pushViewController:mineBuyVC animated:YES];
+                return;
+
+            }
+//
 //            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
 //            [self.navigationController pushViewController:mineSellProductVC animated:YES];
             

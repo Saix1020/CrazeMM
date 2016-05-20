@@ -148,6 +148,7 @@
     .then(^(id responseObject){
         NSLog(@"%@", responseObject);
         HttpBuyProductDetailResponse* response = (HttpBuyProductDetailResponse*)request.response;
+        
         self.productDetailDto = response.dto;
         [self.productDto resetByProductDetailDto:self.productDetailDto];
 //        [self.tableView reloadData];

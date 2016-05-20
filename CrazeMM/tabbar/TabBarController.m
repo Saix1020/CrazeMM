@@ -47,22 +47,6 @@
         self.supplyListVC.tabBarItem = sellItem;
         BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:self.supplyListVC];
         
-//        ProductListViewController *sellVC = [[ProductListViewController alloc] init];
-//                sellVC.tabBarItem = sellItem;
-//                BaseNavigationController *sellNavController = [[BaseNavigationController alloc] initWithRootViewController:sellVC];
-        
-        //BaseNavigationController *mineNavController;
-//        BaseNavigationController* mineNavController;
-//        if ([UserCenter defaultCenter].isLogined) {
-//            MineViewController *mineVC = [[MineViewController alloc] init];
-//            mineVC.tabBarItem = mineItem;
-//            mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
-//        }
-//        else{
-//            MineViewController *mineVC = [[MineViewController alloc] init];
-//            mineVC.tabBarItem = mineItem;
-//            mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
-//        }
         self.mineVC = [[MineViewController alloc] init];
         self.mineVC.tabBarItem = mineItem;
         BaseNavigationController* mineNavController = [[BaseNavigationController alloc] initWithRootViewController:self.mineVC];
@@ -101,28 +85,28 @@
 
     MineViewController *mineVC = [[MineViewController alloc] init];
     mineVC.tabBarItem = mineItem;
-//    self.mineNavController = [[BaseNavigationController alloc] initWithRootViewController:mineVC];
-    
-    
-//    MineViewController* mineVC = [[MineViewController alloc] init];
-//    NSArray *vcs = self.navigationController.viewControllers;
-//    //    if ([vcs firstObject] == self) {
-//    //        [self.navigationController popViewControllerAnimated:NO];
-//    //        [self.navigationController pushViewController:mineVC animated:NO];
-//    //    }
-//    NSMutableArray* vcsNew = [[NSMutableArray alloc] init];
-//    for (UIViewController *vc in vcs) {
-//        if(vc == self){
-//            [vcsNew addObject:mineVC];
-//        }
-//        else {
-//            [vcsNew addObject:vc];
-//            
-//        }
-//    }
-//    
-//    self.navigationController.viewControllers = [vcsNew copy];
 }
 
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    if (item == self.supplyListVC.tabBarItem) {
+        if (self.supplyListVC.navigationController.viewControllers.count == 1){
+            [self.supplyListVC refreshData];
+        }
+        else {
+            [self.supplyListVC refreshDataNoHud];
 
+        }
+    }
+    else if(item == self.buyListVC.tabBarItem) {
+        if (self.buyListVC.navigationController.viewControllers.count == 1){
+            [self.buyListVC refreshData];
+        }
+        else {
+            [self.buyListVC refreshDataNoHud];
+            
+        }
+
+    }
+}
 @end

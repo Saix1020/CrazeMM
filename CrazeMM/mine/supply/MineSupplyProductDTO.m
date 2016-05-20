@@ -20,3 +20,8 @@
 }
 
 @end
+
+@implementation MineBuyProductDTO
+
+
+@end
