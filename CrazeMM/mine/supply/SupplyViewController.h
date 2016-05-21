@@ -12,6 +12,6 @@
 #import "SupplyListCell.h"
 #import "MineSupplyEditViewController.h"
 
-@interface SupplyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineSupplyEditViewControllerDelegate>
+@interface SupplyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineEditViewControllerDelegate>
 
 @end

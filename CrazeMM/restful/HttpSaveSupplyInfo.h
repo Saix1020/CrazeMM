@@ -43,12 +43,19 @@
 @property (nonatomic) BOOL isBrushMachine; //
 @property (nonatomic) BOOL isSplit;
 @property (nonatomic) BOOL isAnoy;
+@property (nonatomic) NSInteger addrId;
 
 
 
 @end
 
 @interface HttpSaveSupplyInfoRequest : BaseHttpRequest
+
+-(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo;
+
+@end
+
+@interface HttpSaveBuyInfoRequest : BaseHttpRequest
 
 -(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo;
 

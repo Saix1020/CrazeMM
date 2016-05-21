@@ -94,6 +94,7 @@
             <connections>
                 <outlet property="checkBox" destination="3OV-ea-gbU" id="CKl-G7-jP6"/>
                 <outlet property="checkBox2" destination="URp-6U-H1l" id="Vl6-ur-Vfz"/>
+                <outlet property="seperatorLine" destination="Lng-Z5-D9v" id="WLh-d3-WhI"/>
                 <outlet property="titleLabel2" destination="XRf-As-sW8" id="vYg-6l-xkN"/>
                 <outlet property="titlelabel" destination="7td-aj-cpT" id="GPb-Sc-9gx"/>
             </connections>

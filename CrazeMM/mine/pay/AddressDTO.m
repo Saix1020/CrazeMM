@@ -24,4 +24,8 @@
 }
 
 
+-(NSString*)address{
+    return [NSString stringWithFormat:@"%@ %@",self.region, self.street];
+}
+
 @end

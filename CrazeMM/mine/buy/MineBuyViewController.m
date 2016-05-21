@@ -13,6 +13,7 @@
 #import "HttpMineSupply.h"
 #import "MineSupplyProductDTO.h"
 #import "HttpMineSupplyShelve.h"
+#import "MineBuyEditViewController.h"
 
 
 @interface MineBuyViewController()
@@ -82,9 +83,9 @@
 
 -(void)addBuy:(id)sender
 {
-//    MineSupplyEditViewController* editVC = [[MineSupplyEditViewController alloc] init];
-//    editVC.delegate = self;
-//    [self.navigationController pushViewController:editVC animated:YES];
+    MineBuyEditViewController* editVC = [[MineBuyEditViewController alloc] init];
+    editVC.delegate = self;
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 -(AnyPromise*)handleHeaderRefresh
@@ -277,31 +278,12 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    NSInteger num = self.dataSource.count;
-    return num*2;
-}
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell;
+    UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
-    if (indexPath.row%2 == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"UselessHeadCell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UselessHeadCell"];
-            cell.backgroundColor = RGBCOLOR(240, 240, 240);
-        }
-    }
-    else {
+    
+    if(!cell) {
         // we should use this style for cell reuse to support iOS8
         cell = [tableView dequeueReusableCellWithIdentifier:@"SupplyListCell"];
         if (cell==nil) {
@@ -325,7 +307,7 @@
 {
     
     if (indexPath.row %2 == 0) {
-        return 12.f;
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
     
     else {

@@ -13,4 +13,6 @@
 @end
 
 @interface MineBuyProductDTO : MineSupplyProductDTO
+
+
 @end

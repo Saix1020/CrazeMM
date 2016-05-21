@@ -519,14 +519,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.dataSource.count;
+    return self.dataSource.count+1;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OrderDetailDTO* dto = (OrderDetailDTO*)self.dataSource[indexPath.row];
     
+    if (indexPath.row == self.dataSource.count) {
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"lastUselessCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"lastUselessCell"];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        return cell;
+    }
+    
+    OrderDetailDTO* dto = (OrderDetailDTO*)self.dataSource[indexPath.row];
     if ((self.currentSegmentIndex == 1 &&
          (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))
         || self.currentSegmentIndex == 0) {
@@ -563,15 +574,19 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == self.dataSource.count) {
+        return self.commonBottomView.height;
+    }
+    
     return [OrderListCell cellHeight]; //WaitForDeliverCell has the same height with WaitForPayCell
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-//    MMOrderListStyle style;
-//    style.orderType = self.orderType;
-//    style.orderSubType = self.subType;
-//    style.orderState = self.orderState;
+
+    if (indexPath.row == self.dataSource.count) {
+        return;
+    }
     
     OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]];
     orderDetailVC.delegate = self;

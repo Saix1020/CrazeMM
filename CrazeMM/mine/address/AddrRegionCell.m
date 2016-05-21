@@ -27,4 +27,29 @@
     // Configure the view for the selected state
 }
 
+-(void)hideChooseButton
+{
+    self.chooseButton.width = 0;
+}
+
+-(void)setValue:(NSString *)value
+{
+    self.regionLabel.text = value;
+}
+
+-(NSString*)value
+{
+    return self.regionLabel.text;
+}
+
+-(void)setTitle:(NSString *)title
+{
+    self.titleLabel.text = title;
+}
+
+-(NSString*)title
+{
+    return self.titleLabel.text;
+}
+
 @end
