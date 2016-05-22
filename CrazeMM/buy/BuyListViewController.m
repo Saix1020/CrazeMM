@@ -274,7 +274,9 @@
     //[self.tableView reloadData];
     
 
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"refresh" image] style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
     
+
 }
 
 -(void)refreshData

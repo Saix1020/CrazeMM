@@ -399,7 +399,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 subString = [NSString stringWithFormat:@"已发货%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
             case TOBESETTLED:
-                string =  @"请您尽快结款";
+                string =  @"请您等待网站结款";
+                subString = [NSString stringWithFormat:@"已签收%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 bottomButtonTitle = @"结款";
                 break;
             case TOBECONFIRMED:

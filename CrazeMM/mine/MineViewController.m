@@ -455,6 +455,9 @@
         {
             switch (row) {
                 case 0:
+                    self.avataCell.nameLabel.text = [[UserCenter defaultCenter] userName];
+                    self.avataCell.frozenMoney = 0;
+                    self.avataCell.money = 0;
                     return self.avataCell;
                 case 1:
                     return self.segmentCell;

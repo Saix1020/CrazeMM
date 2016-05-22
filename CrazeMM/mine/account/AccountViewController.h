@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountDetailCell.h"
 
-@interface AccountViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+@interface AccountViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AccountDetailCellDelegate>
 
 @end

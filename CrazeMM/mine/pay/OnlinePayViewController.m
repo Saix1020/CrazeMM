@@ -7,12 +7,18 @@
 //
 
 #import "OnlinePayViewController.h"
+#import "HttpPay.h"
+#import "PayResultViewController.h"
 
 @interface OnlinePayViewController ()
 
 @property (nonatomic, strong) UIWebView* webView;
 @property (nonatomic, strong) NSMutableURLRequest* request;
-
+@property (nonatomic, strong) RACDisposable* queryPayResultDisposable;
+@property (nonatomic) NSInteger queryPayResultSeconds;
+@property (nonatomic) BOOL isQueryingPayResult;
+@property (nonatomic) BOOL stopQuery;
+@property (nonatomic, strong) PayInfoDTO* payInfoDto;
 @end
 
 @implementation OnlinePayViewController
@@ -21,6 +27,7 @@
 {
     self = [super init];
     if (self) {
+        self.payInfoDto = payInfoDto;
         NSURL *url = [[NSURL alloc]  initWithString:IBSB_PAY_URL];
         self.request = [NSMutableURLRequest requestWithURL:url];
         [self.request setHTTPMethod:@"POST"];
@@ -61,13 +68,17 @@
     self.webView.frame = self.view.frame;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"cancel" image] style:UIBarButtonItemStylePlain target:self action:@selector(payCancel:)];
+    
+    
 }
 
 -(void)payCancel:(id) sender
 {
 //    [self showAlertViewWithMessage:(NSString *)]
+    @weakify(self);
     [self showAlertViewWithMessage:@"您确认要离开支付页面吗?"
                     withOKCallback:^(id x){
+                        @strongify(self);
                         [self.navigationController popViewControllerAnimated:YES];
                         
                     }
@@ -85,14 +96,113 @@
 {
     [super viewWillAppear:animated];
     [self.tabBarController setTabBarHidden:YES animated:YES];
+    [self tryQueryPayResult];
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.stopQuery = YES;
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self.webView setScalesPageToFit:YES];
+    self.stopQuery = NO;
+    @weakify(self);
+    self.queryPayResultSeconds = 0;
+    self.queryPayResultDisposable = [[[MMTimer sharedInstance] oneSecondSignal] subscribeNext:^(id x){
+        @strongify(self);
+        self.queryPayResultSeconds ++;
+        
+        
+//        if (self.queryPayResultSeconds > 10) { // timeout
+//            [self.queryPayResultDisposable dispose];
+//            [self showAlertViewWithMessage:@"支付超时" withCallback:^(id x){
+//                [self.navigationController popViewControllerAnimated:YES];
+//                
+//            }];
+//        }
+    } ];
+    
+    
+//    [[[[MMTimer sharedInstance] oneSecondSignal]
+//                         takeUntilBlock:^BOOL(id x){
+//                             @strongify(self);
+//                             return !self.stopQuery;
+//                         }]
+//                         subscribeNext:^(id x){
+//                             @strongify(self);
+//                             self.queryPayResultSeconds ++;
+//                         }];
+}
 
+-(void)tryQueryPayResult
+{
+    if (!self.stopQuery) {
+        @weakify(self);
+        HttpPayResultRequest* request = [[HttpPayResultRequest alloc] initWithPayNo:self.payInfoDto.ORDERID];
+        [request request]
+        .then(^(id responseObj){
+            @strongify(self);
+            NSLog(@"%@", responseObj);
+            HttpPayResultResponse* response = (HttpPayResultResponse*)request.response;
+            if (response.ok) {
+                if (response.paySuccess) {
+                    
+                    [self showAlertViewWithMessage:@"支付成功!" withCallback:^(id x){
+                        NSArray* vcs = self.navigationController.viewControllers;
+                        if (vcs.count>2) {
+                            UIViewController* vc = vcs[vcs.count-3];
+                            [self.navigationController popToViewController:vc animated:YES];
+                        }
+                        else {
+                            NSLog(@"Warning: Online Pay View: vcs count <2");
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                        }
+                    }];
+                    
+                }
+                else {
+                    double delayInSeconds = 1.0;
+                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                        [self tryQueryPayResult];
+                    });
+                    
+
+                }
+            }
+            else {
+                double delayInSeconds = 1.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self tryQueryPayResult];
+                });
+
+            }
+        })
+        .catch(^(NSError* error){
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self tryQueryPayResult];
+            });
+        });
+    }
+    
 }
 
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return YES;
+}
+
+-(void)dealloc
+{
+    NSLog(@"%@  dealloc", [self class]);
+}
 
 @end

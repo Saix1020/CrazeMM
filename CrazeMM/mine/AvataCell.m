@@ -17,15 +17,28 @@
 
     [self.avataImageView roundImageWithBordWidth:3.0 andBordColor:[UIColor UIColorFromRGB:0x4bb8f1]];
     UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background_alpha"]];
+    [self.avataImageView setImageWithURL:[NSURL URLWithString: COMB_URL(@"/ui/img/person-200-200.jpg")] placeholderImage:[@"background_alpha" image]];
     imageView.contentMode = UIViewContentModeCenter ;
     
     self.backgroundView = imageView;
     self.clipsToBounds = YES;
     
-    self.nameLabel.text = @"疯狂的兔子";
-    self.moneyLabel.text = @"账户可用余额: 8000元";
-    self.frozenLabel.text = @"账户冻结余额: 8000元";
+    self.nameLabel.text = @"";
+    self.moneyLabel.text = @"";
+    self.frozenLabel.text = @"";
 }
 
+-(void)setMoney:(CGFloat)money
+{
+    _money = money;
+    self.moneyLabel.text = [NSString stringWithFormat:@"账户可用余额: %.2f元", money];
+}
+
+-(void)setFrozenMoney:(CGFloat)frozenMoney
+{
+    _frozenMoney = frozenMoney;
+    self.frozenLabel.text = [NSString stringWithFormat:@"账户冻结余额: %.2f元", _frozenMoney];
+
+}
 
 @end

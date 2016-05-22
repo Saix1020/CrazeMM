@@ -9,13 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
 
+@protocol ProductSummaryViewControllerDelegate <NSObject>
+
+-(void)refreshData;
+
+@end
+
 @interface BuyListViewController : UIViewController<iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray* dataSource;
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic) NSInteger pageNumber;
 @property (nonatomic) NSInteger totalPage;
 @property (nonatomic) BOOL requesting;
-
+@property (nonatomic, weak) id<ProductSummaryViewControllerDelegate> delegate;
 -(void)refreshData;
 -(void)refreshDataNoHud;
 //-(void)clearData;

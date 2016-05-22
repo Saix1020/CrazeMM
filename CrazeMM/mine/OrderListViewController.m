@@ -537,11 +537,12 @@
         return cell;
     }
     
+    // TODO .....
     OrderDetailDTO* dto = (OrderDetailDTO*)self.dataSource[indexPath.row];
+    OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListCell"];
     if ((self.currentSegmentIndex == 1 &&
          (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))
         || self.currentSegmentIndex == 0) {
-        OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListCell"];
         if (self.currentSegmentIndex == 1) {
             cell.reactiveButton.hidden = NO;
         }
@@ -552,24 +553,17 @@
         if (!cell.selectedCheckBox.delegate) {
             cell.selectedCheckBox.delegate = self;
         }
-        
-        cell.orderDetailDTO = dto;
-        //wdto.selected = YES;
-        
         cell.selectedCheckBox.tag = 10000 + indexPath.row;
         cell.selectedCheckBox.on = cell.orderDetailDTO.selected;
-        
-        return cell;
     }
     else {
-        // no check box 
-        OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListCell"];
-        cell.hiddenCheckbox = YES;
+        cell.hiddenCheckbox = self.commonBottomView.hidden;
         cell.reactiveButton.hidden = YES;
-        cell.orderDetailDTO = dto;
-        
-        return cell;
     }
+    cell.hiddenCheckbox = self.commonBottomView.hidden;
+    cell.orderDetailDTO = dto;
+
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

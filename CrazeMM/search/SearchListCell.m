@@ -104,7 +104,15 @@
 
 //    self.titleLabel.text = searchResultDTO.goodName;
     self.arrivalTime.text = [NSString stringWithFormat:@"到货周期: %@", searchResultDTO.deadlineStr];
-    self.scopeLabel.text = [NSString stringWithFormat:@"供货范围: %@", searchResultDTO.region];
+    
+    if ([self.typeName isEqualToString:@"供货"]) {
+        self.scopeLabel.text = [NSString stringWithFormat:@"供货范围: %@", searchResultDTO.region];
+
+    }
+    else {
+        self.scopeLabel.text = [NSString stringWithFormat:@"收货地址: %@", searchResultDTO.address];
+
+    }
     [self.scopeLabel sizeToFit];
     
     if (searchResultDTO.isAnoy) {
@@ -136,6 +144,8 @@
     self.previewAndTransctionsLabels.strings = @[[NSString stringWithFormat:@"浏览: %ld", searchResultDTO.views],
                                                  [NSString stringWithFormat:@"意向: %ld", searchResultDTO.intentions]];
     
+    self.typeLabel.textLabel.text = self.typeName;
+
     [self layoutAllLabels];
 
 

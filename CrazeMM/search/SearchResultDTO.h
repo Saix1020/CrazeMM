@@ -11,6 +11,4 @@
 
 @interface SearchResultDTO : BaseProductDTO
 
-
-
 @end

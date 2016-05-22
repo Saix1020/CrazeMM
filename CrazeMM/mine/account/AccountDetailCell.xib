@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="159.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0r-6D-5Yw">
@@ -139,7 +139,7 @@
                             <constraint firstAttribute="width" constant="1" id="xL6-2C-ZrV"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khK-8Y-sKG">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khK-8Y-sKG">
                         <rect key="frame" x="8" y="80" width="304" height="1"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -176,14 +176,18 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="cardButton" destination="hbh-QQ-awK" id="1cw-mo-yHj"/>
+                <outlet property="cardCell" destination="yTC-VG-PnB" id="4ZB-PB-UrB"/>
                 <outlet property="cardImage" destination="0dA-Qd-9j5" id="OxE-gh-JUB"/>
                 <outlet property="hLine" destination="khK-8Y-sKG" id="hZ1-te-6AA"/>
                 <outlet property="mortgageButton" destination="Cdk-Ys-OzH" id="8rC-yx-TY8"/>
+                <outlet property="mortgageCell" destination="2gj-sY-iyp" id="lvl-q6-Nma"/>
                 <outlet property="mortgageImage" destination="Wrj-qr-feF" id="Rrx-qU-llT"/>
                 <outlet property="rechargeButton" destination="ONv-Q4-LVK" id="zTw-AX-ncV"/>
+                <outlet property="rechargeCell" destination="t0r-6D-5Yw" id="Fa3-ca-aur"/>
                 <outlet property="rechargeImage" destination="UVh-8K-imS" id="Fnm-Ik-7r4"/>
                 <outlet property="vLine" destination="70s-xJ-Nyq" id="pMT-wi-zfM"/>
                 <outlet property="withdrawalsButton" destination="mg1-nz-3mB" id="lgJ-Lc-Ihu"/>
+                <outlet property="withdrawalsCell" destination="ipc-Yh-USC" id="coS-62-pPJ"/>
                 <outlet property="withdrawlsImage" destination="vp0-qU-jWv" id="BqB-Of-Vnp"/>
             </connections>
             <point key="canvasLocation" x="270" y="259"/>

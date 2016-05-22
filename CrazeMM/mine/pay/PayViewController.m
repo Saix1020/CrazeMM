@@ -51,6 +51,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 @property (nonatomic, readonly) CGFloat totalPrice;
 
 @property (nonatomic, strong) PayInfoDTO* payInfoDto;
+
 @end
 
 
@@ -297,8 +298,23 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 
 -(void)pay
 {
-    OnlinePayViewController* vc = [[OnlinePayViewController alloc] initWithPayInfoDto:self.payInfoDto];
-    [self.navigationController pushViewController:vc animated:YES];
+    AddrDTO* addr = self.addresses[0];
+    HttpPayRequest* payRequest = [[HttpPayRequest alloc] initWithPayNo:self.payInfoDto.ORDERID andOrderId:self.orderStatusDto.id andAddrId:addr.id];
+    [payRequest request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (payRequest.response.ok) {
+            OnlinePayViewController* vc = [[OnlinePayViewController alloc] initWithPayInfoDto:self.payInfoDto];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else {
+            [self showAlertViewWithMessage:payRequest.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+    
 }
 
 -(void)viewDidLoad

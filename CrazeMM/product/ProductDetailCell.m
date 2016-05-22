@@ -23,6 +23,8 @@
 
     self.productImageView.layer.borderWidth = 1.f;
     self.productImageView.layer.borderColor = [UIColor light_Gray_Color].CGColor;
+    self.productImageView.contentMode = UIViewContentModeScaleAspectFit;
+
     
     self.browserAndSellLabel.layer.borderWidth = .5f;
     self.browserAndSellLabel.layer.borderColor = [UIColor greenTextColor].CGColor;

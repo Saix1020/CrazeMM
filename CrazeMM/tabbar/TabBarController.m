@@ -13,6 +13,8 @@
 
 @interface TabBarController ()
 
+@property (nonatomic, strong) UITabBarItem* prevBarItem;
+
 @end
 
 @implementation TabBarController
@@ -32,6 +34,8 @@
         UITabBarItem *sellItem = [[UITabBarItem alloc] init];
         [sellItem setTitle:@"供货"];
         [sellItem setImage:[[UIImage imageNamed:@"supply1"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        self.prevBarItem = sellItem;
+
         
         UITabBarItem *mineItem = [[UITabBarItem alloc] init];
         [mineItem setTitle:@"我的"];
@@ -89,13 +93,16 @@
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
+    if (self.prevBarItem == item) {
+        return;
+    }
+    
     if (item == self.supplyListVC.tabBarItem) {
         if (self.supplyListVC.navigationController.viewControllers.count == 1){
             [self.supplyListVC refreshData];
         }
         else {
             [self.supplyListVC refreshDataNoHud];
-
         }
     }
     else if(item == self.buyListVC.tabBarItem) {
@@ -108,5 +115,6 @@
         }
 
     }
+    self.prevBarItem = item;
 }
 @end

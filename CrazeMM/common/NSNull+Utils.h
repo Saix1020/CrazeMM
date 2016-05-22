@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSNull (Utils)
+-(NSInteger)integerValue;
 
 @end

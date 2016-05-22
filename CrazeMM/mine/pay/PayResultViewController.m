@@ -115,7 +115,8 @@
 }
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.navigationItem.title = @"支付成功";
@@ -168,6 +169,28 @@
 {
     [super viewWillAppear:animated];
 
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    NSMutableArray* vcs = [self.navigationController.viewControllers mutableCopy];
+//    NSInteger count = vcs.count;
+//    if (count > 2) {
+//        if ([vcs[count-2] isKindOfClass:NSClassFromString(@"OnlinePayViewController")]) {
+//            [vcs removeObject:vcs[count-2]]; // OnlinePayViewController
+//        }
+//        count = vcs.count;
+//        if (count > 2) {
+//            if ([vcs[count-2] isKindOfClass:NSClassFromString(@"PayViewController")]) {
+//                [vcs removeObject:vcs[count-2]]; // PayViewController
+//            }
+//        }
+//        
+//    }
+//    
+//    
+//    self.navigationController.viewControllers = vcs;
 }
 
 -(void)viewDidDisappear:(BOOL)animated

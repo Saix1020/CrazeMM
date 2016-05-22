@@ -387,6 +387,26 @@
 		B9BBEED01CEB51BF00275416 /* AddrDefaultCheckboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEECE1CEB51BF00275416 /* AddrDefaultCheckboxCell.xib */; };
 		B9E84BC11CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC21CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
+		B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */; };
+		B9E84BC61CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */; };
+		B9E84BC91CF0A23E003FEAF5 /* BankCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC81CF0A23E003FEAF5 /* BankCardCell.m */; };
+		B9E84BCA1CF0A23E003FEAF5 /* BankCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC81CF0A23E003FEAF5 /* BankCardCell.m */; };
+		B9E84BCC1CF0A25F003FEAF5 /* BankCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9E84BCB1CF0A25F003FEAF5 /* BankCardCell.xib */; };
+		B9E84BCD1CF0A25F003FEAF5 /* BankCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9E84BCB1CF0A25F003FEAF5 /* BankCardCell.xib */; };
+		B9E84BD01CF0A54D003FEAF5 /* BankCardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BCF1CF0A54D003FEAF5 /* BankCardListViewController.m */; };
+		B9E84BD11CF0A54D003FEAF5 /* BankCardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BCF1CF0A54D003FEAF5 /* BankCardListViewController.m */; };
+		B9E84BD51CF0ABD8003FEAF5 /* HttpMineAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BD41CF0ABD8003FEAF5 /* HttpMineAccount.m */; };
+		B9E84BD61CF0ABD8003FEAF5 /* HttpMineAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BD41CF0ABD8003FEAF5 /* HttpMineAccount.m */; };
+		B9E84BDA1CF0B15C003FEAF5 /* BankCardDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BD91CF0B15C003FEAF5 /* BankCardDTO.m */; };
+		B9E84BDB1CF0B15C003FEAF5 /* BankCardDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BD91CF0B15C003FEAF5 /* BankCardDTO.m */; };
+		B9E84BF01CF1422D003FEAF5 /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BEB1CF1422D003FEAF5 /* BEMAnimationManager.m */; };
+		B9E84BF11CF1422D003FEAF5 /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BEB1CF1422D003FEAF5 /* BEMAnimationManager.m */; };
+		B9E84BF21CF1422D003FEAF5 /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BED1CF1422D003FEAF5 /* BEMCheckBox.m */; };
+		B9E84BF31CF1422D003FEAF5 /* BEMCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BED1CF1422D003FEAF5 /* BEMCheckBox.m */; };
+		B9E84BF41CF1422D003FEAF5 /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BEF1CF1422D003FEAF5 /* BEMPathManager.m */; };
+		B9E84BF51CF1422D003FEAF5 /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BEF1CF1422D003FEAF5 /* BEMPathManager.m */; };
+		B9E84BFD1CF15069003FEAF5 /* BankCardEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BFC1CF15069003FEAF5 /* BankCardEditingViewController.m */; };
+		B9E84BFE1CF15069003FEAF5 /* BankCardEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BFC1CF15069003FEAF5 /* BankCardEditingViewController.m */; };
 		B9EFADE11CECB7AC00F81157 /* MineSupplyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFADE01CECB7AC00F81157 /* MineSupplyEditViewController.m */; };
 		B9EFADE71CECBBDB00F81157 /* SwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EFADE61CECBBDB00F81157 /* SwitchCell.m */; };
 		B9EFADE91CECBBF800F81157 /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9EFADE81CECBBF800F81157 /* SwitchCell.xib */; };
@@ -1431,6 +1451,25 @@
 		B9BBEECE1CEB51BF00275416 /* AddrDefaultCheckboxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrDefaultCheckboxCell.xib; path = mine/address/AddrDefaultCheckboxCell.xib; sourceTree = "<group>"; };
 		B9E84BBF1CEF496B003FEAF5 /* MineBuyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyEditViewController.h; path = mine/buy/MineBuyEditViewController.h; sourceTree = "<group>"; };
 		B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyEditViewController.m; path = mine/buy/MineBuyEditViewController.m; sourceTree = "<group>"; };
+		B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBuyOrder.h; path = restful/HttpBuyOrder.h; sourceTree = "<group>"; };
+		B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpBuyOrder.m; path = restful/HttpBuyOrder.m; sourceTree = "<group>"; };
+		B9E84BC71CF0A23E003FEAF5 /* BankCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankCardCell.h; path = mine/account/BankCardCell.h; sourceTree = "<group>"; };
+		B9E84BC81CF0A23E003FEAF5 /* BankCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BankCardCell.m; path = mine/account/BankCardCell.m; sourceTree = "<group>"; };
+		B9E84BCB1CF0A25F003FEAF5 /* BankCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BankCardCell.xib; path = mine/account/BankCardCell.xib; sourceTree = "<group>"; };
+		B9E84BCE1CF0A54D003FEAF5 /* BankCardListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankCardListViewController.h; path = mine/account/BankCardListViewController.h; sourceTree = "<group>"; };
+		B9E84BCF1CF0A54D003FEAF5 /* BankCardListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BankCardListViewController.m; path = mine/account/BankCardListViewController.m; sourceTree = "<group>"; };
+		B9E84BD31CF0ABD8003FEAF5 /* HttpMineAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpMineAccount.h; path = restful/HttpMineAccount.h; sourceTree = "<group>"; };
+		B9E84BD41CF0ABD8003FEAF5 /* HttpMineAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMineAccount.m; path = restful/HttpMineAccount.m; sourceTree = "<group>"; };
+		B9E84BD81CF0B15C003FEAF5 /* BankCardDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankCardDTO.h; path = mine/account/BankCardDTO.h; sourceTree = "<group>"; };
+		B9E84BD91CF0B15C003FEAF5 /* BankCardDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BankCardDTO.m; path = mine/account/BankCardDTO.m; sourceTree = "<group>"; };
+		B9E84BEA1CF1422D003FEAF5 /* BEMAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAnimationManager.h; sourceTree = "<group>"; };
+		B9E84BEB1CF1422D003FEAF5 /* BEMAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAnimationManager.m; sourceTree = "<group>"; };
+		B9E84BEC1CF1422D003FEAF5 /* BEMCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCheckBox.h; sourceTree = "<group>"; };
+		B9E84BED1CF1422D003FEAF5 /* BEMCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCheckBox.m; sourceTree = "<group>"; };
+		B9E84BEE1CF1422D003FEAF5 /* BEMPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPathManager.h; sourceTree = "<group>"; };
+		B9E84BEF1CF1422D003FEAF5 /* BEMPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPathManager.m; sourceTree = "<group>"; };
+		B9E84BFB1CF15069003FEAF5 /* BankCardEditingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankCardEditingViewController.h; path = mine/account/BankCardEditingViewController.h; sourceTree = "<group>"; };
+		B9E84BFC1CF15069003FEAF5 /* BankCardEditingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BankCardEditingViewController.m; path = mine/account/BankCardEditingViewController.m; sourceTree = "<group>"; };
 		B9EFADDF1CECB7AC00F81157 /* MineSupplyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineSupplyEditViewController.h; path = mine/supply/MineSupplyEditViewController.h; sourceTree = "<group>"; };
 		B9EFADE01CECB7AC00F81157 /* MineSupplyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineSupplyEditViewController.m; path = mine/supply/MineSupplyEditViewController.m; sourceTree = "<group>"; };
 		B9EFADE51CECBBDB00F81157 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwitchCell.h; path = mine/supply/SwitchCell.h; sourceTree = "<group>"; };
@@ -1547,6 +1586,7 @@
 		B9156F3D1CDBA3D80041E535 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B9E84BD21CF0AB9B003FEAF5 /* account */,
 				B9EFAF7C1CED9A3B00F81157 /* good */,
 				B9B5BCE71CDDBE460085E132 /* order */,
 				B98219141CE9A43200B279E6 /* supply */,
@@ -1566,6 +1606,7 @@
 		B917315A1CD1EF9400C29698 /* third party */ = {
 			isa = PBXGroup;
 			children = (
+				B9E84BE91CF1422D003FEAF5 /* BEMCheckBox */,
 				B967E7191CE57EAC00621F28 /* TimeLine */,
 				B95A94971CE0C17C00A5D9BA /* SKChinaCitySelector */,
 				B95924071CDEBA8100533E77 /* PromiseKit */,
@@ -2059,9 +2100,14 @@
 		B91896F01CD0EE890061D0B6 /* account */ = {
 			isa = PBXGroup;
 			children = (
+				B9E84BD71CF0B13C003FEAF5 /* modal */,
 				B91896F41CD0EEC60061D0B6 /* view */,
 				B91896F11CD0EEC00061D0B6 /* AccountViewController.h */,
 				B91896F21CD0EEC00061D0B6 /* AccountViewController.m */,
+				B9E84BCE1CF0A54D003FEAF5 /* BankCardListViewController.h */,
+				B9E84BCF1CF0A54D003FEAF5 /* BankCardListViewController.m */,
+				B9E84BFB1CF15069003FEAF5 /* BankCardEditingViewController.h */,
+				B9E84BFC1CF15069003FEAF5 /* BankCardEditingViewController.m */,
 			);
 			name = account;
 			sourceTree = "<group>";
@@ -2075,6 +2121,9 @@
 				B91896FA1CD0EF460061D0B6 /* AccountDetailCell.h */,
 				B91896FB1CD0EF460061D0B6 /* AccountDetailCell.m */,
 				B91896FC1CD0EF460061D0B6 /* AccountDetailCell.xib */,
+				B9E84BC71CF0A23E003FEAF5 /* BankCardCell.h */,
+				B9E84BC81CF0A23E003FEAF5 /* BankCardCell.m */,
+				B9E84BCB1CF0A25F003FEAF5 /* BankCardCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2354,7 +2403,6 @@
 				B964F8F81CC39670003E0D44 /* Products */,
 				8B36CB4D54E72C4D41168BEA /* Frameworks */,
 				D79CC190686B19F01AE035FE /* Pods */,
-				B9EFAF671CED514200F81157 /* CrazeMM copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2400,6 +2448,7 @@
 				B964F8FD1CC39670003E0D44 /* AppDelegate.h */,
 				B964F8FE1CC39670003E0D44 /* AppDelegate.m */,
 				B964F9381CC39894003E0D44 /* CrazeMM-prefix.pch */,
+				B9EFAF671CED514200F81157 /* CrazeMM copy-Info.plist */,
 				B964F90E1CC39670003E0D44 /* Info.plist */,
 				B964F9061CC39670003E0D44 /* CrazeMM.xcdatamodeld */,
 				B964F8FB1CC39670003E0D44 /* main.m */,
@@ -2462,13 +2511,13 @@
 		B964F9581CC4A747003E0D44 /* mine */ = {
 			isa = PBXGroup;
 			children = (
-				B9EFAFA61CEEF7B000F81157 /* buy */,
 				B9B5BCEC1CDE00710085E132 /* modal */,
+				B98878A71CC98E5D00990AA4 /* view */,
+				B9EFAFA61CEEF7B000F81157 /* buy */,
 				B91896F01CD0EE890061D0B6 /* account */,
 				B91896C91CCF97440061D0B6 /* supply */,
 				B91896AE1CCF1FCB0061D0B6 /* address */,
 				B91896881CCE18C00061D0B6 /* order */,
-				B98878A71CC98E5D00990AA4 /* view */,
 				B992C57F1CCA6D5300DC49E8 /* MineNoLoginViewController.h */,
 				B992C5801CCA6D5300DC49E8 /* MineNoLoginViewController.m */,
 				B964F9721CC4B073003E0D44 /* MineViewController.h */,
@@ -2860,6 +2909,8 @@
 				B99955201CE3078A007F26D2 /* HttpAddIntention.m */,
 				B99955221CE30AD8007F26D2 /* HttpSupplyOrder.h */,
 				B99955231CE30AD8007F26D2 /* HttpSupplyOrder.m */,
+				B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */,
+				B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */,
 			);
 			name = "supply+buy";
 			sourceTree = "<group>";
@@ -2947,6 +2998,37 @@
 				B967E6EE1CE4B68A00621F28 /* AddrDTO.m */,
 			);
 			name = modal;
+			sourceTree = "<group>";
+		};
+		B9E84BD21CF0AB9B003FEAF5 /* account */ = {
+			isa = PBXGroup;
+			children = (
+				B9E84BD31CF0ABD8003FEAF5 /* HttpMineAccount.h */,
+				B9E84BD41CF0ABD8003FEAF5 /* HttpMineAccount.m */,
+			);
+			name = account;
+			sourceTree = "<group>";
+		};
+		B9E84BD71CF0B13C003FEAF5 /* modal */ = {
+			isa = PBXGroup;
+			children = (
+				B9E84BD81CF0B15C003FEAF5 /* BankCardDTO.h */,
+				B9E84BD91CF0B15C003FEAF5 /* BankCardDTO.m */,
+			);
+			name = modal;
+			sourceTree = "<group>";
+		};
+		B9E84BE91CF1422D003FEAF5 /* BEMCheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				B9E84BEA1CF1422D003FEAF5 /* BEMAnimationManager.h */,
+				B9E84BEB1CF1422D003FEAF5 /* BEMAnimationManager.m */,
+				B9E84BEC1CF1422D003FEAF5 /* BEMCheckBox.h */,
+				B9E84BED1CF1422D003FEAF5 /* BEMCheckBox.m */,
+				B9E84BEE1CF1422D003FEAF5 /* BEMPathManager.h */,
+				B9E84BEF1CF1422D003FEAF5 /* BEMPathManager.m */,
+			);
+			path = BEMCheckBox;
 			sourceTree = "<group>";
 		};
 		B9EFAF7C1CED9A3B00F81157 /* good */ = {
@@ -3175,6 +3257,7 @@
 				B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */,
 				B99194941CCCF6020032A393 /* ProductFlageView.xib in Resources */,
 				B98878CB1CC9CC3800990AA4 /* OrderStatusCell.xib in Resources */,
+				B9E84BCC1CF0A25F003FEAF5 /* BankCardCell.xib in Resources */,
 				B9BBEECB1CEB4DDE00275416 /* AddrRegionCell.xib in Resources */,
 				B95924991CE0394C00533E77 /* lauch-screen.jpg in Resources */,
 				B95A94A71CE0C19900A5D9BA /* citydictionary.plist in Resources */,
@@ -3273,6 +3356,7 @@
 				B9EFAF351CED514100F81157 /* logo_channel.png in Resources */,
 				B9EFAF361CED514100F81157 /* ProductFlageView.xib in Resources */,
 				B9EFAF371CED514100F81157 /* OrderStatusCell.xib in Resources */,
+				B9E84BCD1CF0A25F003FEAF5 /* BankCardCell.xib in Resources */,
 				B9EFAF381CED514100F81157 /* AddrRegionCell.xib in Resources */,
 				B9EFAF391CED514100F81157 /* lauch-screen.jpg in Resources */,
 				B9EFAF3A1CED514100F81157 /* citydictionary.plist in Resources */,
@@ -3499,6 +3583,7 @@
 				B91732511CD1F05400C29698 /* RotateOutUpLeftAnimation.m in Sources */,
 				B99955291CE36F12007F26D2 /* HttpBuyRequest.m in Sources */,
 				B91732201CD1F05400C29698 /* BounceInLeftAnimation.m in Sources */,
+				B9E84BFD1CF15069003FEAF5 /* BankCardEditingViewController.m in Sources */,
 				B95924781CDEBA9000533E77 /* MKMapSnapshotter+AnyPromise.m in Sources */,
 				B917323B1CD1F05400C29698 /* FlipAnimation.m in Sources */,
 				B91732791CD2036300C29698 /* BaseHttpRequest.m in Sources */,
@@ -3532,9 +3617,11 @@
 				B917324E1CD1F05400C29698 /* SlideInLeftAnimation.m in Sources */,
 				B991949B1CCCF7AA0032A393 /* BrowserDealView.m in Sources */,
 				B91732471CD1F05400C29698 /* RotateOutAnimation.m in Sources */,
+				B9E84BD51CF0ABD8003FEAF5 /* HttpMineAccount.m in Sources */,
 				B9B5BCE31CDCDF690085E132 /* NSError+Utils.m in Sources */,
 				B91732541CD1F05500C29698 /* SlideOutRightAnimation.m in Sources */,
 				B959248B1CDEBA9000533E77 /* UIViewController+AnyPromise.m in Sources */,
+				B9E84BDA1CF0B15C003FEAF5 /* BankCardDTO.m in Sources */,
 				B917324B1CD1F05400C29698 /* ScaleLargeInAnimation.m in Sources */,
 				B917326D1CD1F09400C29698 /* TTModalWindow.m in Sources */,
 				B95924871CDEBA9000533E77 /* UIAlertView+AnyPromise.m in Sources */,
@@ -3544,6 +3631,7 @@
 				B917325B1CD1F05500C29698 /* ZoomInLeftAnimation.m in Sources */,
 				B91896D91CCFAFC90061D0B6 /* TransferAlertView.m in Sources */,
 				B967E6EF1CE4B68A00621F28 /* AddrDTO.m in Sources */,
+				B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */,
 				B91732521CD1F05400C29698 /* SlideOutDownAnimation.m in Sources */,
 				B91732121CD1F05400C29698 /* AnimationHelper.m in Sources */,
 				B992C5711CCA1DD400DC49E8 /* MyInfoCell.m in Sources */,
@@ -3564,6 +3652,7 @@
 				B99D130F1CC743A4000DFF95 /* SearchListViewController.m in Sources */,
 				B98218FE1CE855D500B279E6 /* HttpSearchKeyword.m in Sources */,
 				B9AD45FF1CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.m in Sources */,
+				B9E84BF01CF1422D003FEAF5 /* BEMAnimationManager.m in Sources */,
 				B9EFAFA11CEE10A200F81157 /* HttpSaveSupplyInfo.m in Sources */,
 				B91896991CCE53AB0061D0B6 /* SecondProductDetailCell.m in Sources */,
 				B91732531CD1F05500C29698 /* SlideOutLeftAnimation.m in Sources */,
@@ -3680,6 +3769,7 @@
 				B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */,
 				B917322E1CD1F05400C29698 /* FadeInRightAnimation.m in Sources */,
 				B9AD44151CD39C8300012B31 /* NewWelcomeViewController.m in Sources */,
+				B9E84BF41CF1422D003FEAF5 /* BEMPathManager.m in Sources */,
 				B9E84BC11CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */,
 				B98219171CE9A48D00B279E6 /* HttpMineSupply.m in Sources */,
 				B99194771CCC690E0032A393 /* OrderListCell.m in Sources */,
@@ -3722,8 +3812,10 @@
 				B91896A71CCF01A20061D0B6 /* LastPayMethodCell.m in Sources */,
 				B98878B71CC99D9200990AA4 /* UIImageView+Utils.m in Sources */,
 				B91896B21CCF20010061D0B6 /* SelectdAddrCell.m in Sources */,
+				B9E84BF21CF1422D003FEAF5 /* BEMCheckBox.m in Sources */,
 				B91732371CD1F05400C29698 /* FadeOutRightAnimation.m in Sources */,
 				B967E73A1CE57EBD00621F28 /* NSArray+MASAdditions.m in Sources */,
+				B9E84BD01CF0A54D003FEAF5 /* BankCardListViewController.m in Sources */,
 				B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */,
 				B91731531CD1A30100C29698 /* NSDateComponents+Utils.m in Sources */,
 				B91896AD1CCF0B650061D0B6 /* PayAlertView.m in Sources */,
@@ -3746,6 +3838,7 @@
 				B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */,
 				B917326C1CD1F09400C29698 /* TTModalViewController.m in Sources */,
 				B98878A01CC90CCA00990AA4 /* SignViewController.m in Sources */,
+				B9E84BC91CF0A23E003FEAF5 /* BankCardCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3894,6 +3987,7 @@
 				B9EFAE4C1CED514100F81157 /* SlideOutDownAnimation.m in Sources */,
 				B9EFAE4D1CED514100F81157 /* AnimationHelper.m in Sources */,
 				B9EFAE4E1CED514100F81157 /* MyInfoCell.m in Sources */,
+				B9E84BD61CF0ABD8003FEAF5 /* HttpMineAccount.m in Sources */,
 				B9EFAE4F1CED514100F81157 /* BounceAnimation.m in Sources */,
 				B9EFAE501CED514100F81157 /* BounceOutUpAnimation.m in Sources */,
 				B9EFAE511CED514100F81157 /* _UserInfo.m in Sources */,
@@ -3906,6 +4000,7 @@
 				B9EFAE581CED514100F81157 /* SearchViewController.m in Sources */,
 				B9EFAE591CED514100F81157 /* BuyProductDetailDTO.m in Sources */,
 				B9EFAE5A1CED514100F81157 /* FlipOutXAnimation.m in Sources */,
+				B9E84BF11CF1422D003FEAF5 /* BEMAnimationManager.m in Sources */,
 				B9EFAE5B1CED514100F81157 /* SupplyProductDetailDTO.m in Sources */,
 				B9EFAE5C1CED514100F81157 /* UISearchBar+Utils.m in Sources */,
 				B9EFAE5D1CED514100F81157 /* SearchListViewController.m in Sources */,
@@ -3958,10 +4053,13 @@
 				B9EFAE8B1CED514100F81157 /* FadeOutUpBigAnimation.m in Sources */,
 				B9EFAE8C1CED514100F81157 /* KeyWordsCell.m in Sources */,
 				B9EFAE8D1CED514100F81157 /* CLLocationManager+AnyPromise.m in Sources */,
+				B9E84BC61CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */,
+				B9E84BFE1CF15069003FEAF5 /* BankCardEditingViewController.m in Sources */,
 				B9EFAE8E1CED514100F81157 /* AVAudioSession+AnyPromise.m in Sources */,
 				B9EFAE8F1CED514100F81157 /* M80AttributedLabelURL.m in Sources */,
 				B9EFAE901CED514100F81157 /* WelcomeViewController.m in Sources */,
 				B9EFAE911CED514100F81157 /* ZoomInUpAnimation.m in Sources */,
+				B9E84BD11CF0A54D003FEAF5 /* BankCardListViewController.m in Sources */,
 				B9EFAE921CED514100F81157 /* BounceOutRightAnimation.m in Sources */,
 				B9EFAE931CED514100F81157 /* BuySlideDetailViewController.m in Sources */,
 				B9EFAE941CED514100F81157 /* UISearchBar+RACSignalSupport.m in Sources */,
@@ -3983,6 +4081,7 @@
 				B9EFAEA41CED514100F81157 /* SlideInRightAnimation.m in Sources */,
 				B9EFAEA51CED514100F81157 /* PayViewController.m in Sources */,
 				B9EFAEA61CED514100F81157 /* UIImage+Utils.m in Sources */,
+				B9E84BCA1CF0A23E003FEAF5 /* BankCardCell.m in Sources */,
 				B9EFAEA71CED514100F81157 /* FadeInUpAnimation.m in Sources */,
 				B9EFAEA81CED514100F81157 /* ProductListCell.m in Sources */,
 				B9EFAEA91CED514100F81157 /* UIView+AnyPromise.m in Sources */,
@@ -4046,6 +4145,7 @@
 				B9EFAEE31CED514100F81157 /* UIView+Utils.m in Sources */,
 				B9EFAEE41CED514100F81157 /* MASCompositeConstraint.m in Sources */,
 				B9EFAEE51CED514100F81157 /* HttpOrderCancel.m in Sources */,
+				B9E84BDB1CF0B15C003FEAF5 /* BankCardDTO.m in Sources */,
 				B9EFAEE61CED514100F81157 /* CustomSegment.m in Sources */,
 				B9EFAEE71CED514100F81157 /* FadeInDownAnimation.m in Sources */,
 				B9EFAEE81CED514100F81157 /* BasicAnimation.m in Sources */,
@@ -4053,6 +4153,7 @@
 				B9EFAEEA1CED514100F81157 /* OrderDetailViewController.m in Sources */,
 				B9EFAEEB1CED514100F81157 /* ProductSumLabel.m in Sources */,
 				B9EFAEEC1CED514100F81157 /* SlideInUpAnimation.m in Sources */,
+				B9E84BF51CF1422D003FEAF5 /* BEMPathManager.m in Sources */,
 				B9EFAEED1CED514100F81157 /* HttpProductDetail.m in Sources */,
 				B9EFAEEE1CED514100F81157 /* NSAttributedString+Utils.m in Sources */,
 				B9EFAEEF1CED514100F81157 /* LabelWithSeperatorLine.m in Sources */,
@@ -4060,6 +4161,7 @@
 				B9EFAEF11CED514100F81157 /* CKDatabase+AnyPromise.m in Sources */,
 				B9EFAEF21CED514100F81157 /* BuyProductViewController.m in Sources */,
 				B9EFAEF31CED514100F81157 /* NSString+Utils.m in Sources */,
+				B9E84BF31CF1422D003FEAF5 /* BEMCheckBox.m in Sources */,
 				B9EFAEF41CED514100F81157 /* FadeOutRightBigAnimation.m in Sources */,
 				B9EFAEF51CED514100F81157 /* RotateInDownLeftAnimation.m in Sources */,
 				B9EFAEF61CED514100F81157 /* LastPayMethodCell.m in Sources */,

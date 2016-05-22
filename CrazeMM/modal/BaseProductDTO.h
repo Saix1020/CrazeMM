@@ -22,6 +22,7 @@
 @property (nonatomic) CGFloat price;
 @property (nonatomic) NSInteger quantity;
 @property (nonatomic, copy) NSString* region;
+@property (nonatomic, copy) NSString* address;
 @property (nonatomic, copy) NSString* stateLabel;
 @property (nonatomic, copy) NSString* userImage;
 @property (nonatomic, copy) NSString* userName;

@@ -185,7 +185,6 @@
 
 -(void)handleBuyWithQuantity:(NSInteger)quantity andMessage:(NSString*)message
 {
-//    [self.modalView dismiss];
 }
 
 -(void)getProductDetail:(BOOL)needHud
