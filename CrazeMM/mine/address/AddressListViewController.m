@@ -12,6 +12,8 @@
 #import "AddressEditViewController.h"
 #import "AddressDTO.h"
 #import "HttpAddress.h"
+#import "AddressInfo.h"
+#import "AddressInfoUpdater.h"
 
 
 typedef NS_ENUM(NSInteger, MineAddressListSection){
@@ -65,6 +67,7 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:@"AddressListCell" bundle:nil] forCellReuseIdentifier:@"AddressListCell"];
+    
 }
 
 
@@ -75,6 +78,7 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
+/*
 -(void)getOrderAddresses
 {
     HttpAddressRequest* request = [[HttpAddressRequest alloc] init];
@@ -94,13 +98,15 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
         [self showAlertViewWithMessage:error.localizedDescription];
     });
 }
-
+*/
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getOrderAddresses];
+    //[self getOrderAddresses];
+    self.addresses = [AddressInfoUpdater totalAddressInfo];
+    [self.tableView reloadData];
 }
 
 
@@ -121,7 +127,7 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
             break;
         case kSectionAllAddress:
         {
-            return 2;
+            return [self.addresses count];
         }
             break;
         default:
@@ -147,11 +153,13 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
         case kSectionAllAddress:
         {
             AddressListCell* addressCell = [tableView dequeueReusableCellWithIdentifier:@"AddressListCell"];
-            addressCell.addrDto = self.addresses[indexPath.row];
+            addressCell.addrInfo = self.addresses[indexPath.row];
             if(addressCell.editButton.rac_command == nil){
                 addressCell.editButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x) {
                     
-                    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] initWithAddress:addressCell.addrDto];
+                    //AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] initWithAddress:addressCell.addrDto];
+                    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] initWithAddressInfo:self.addresses[indexPath.row] ofIndex:indexPath.row];
+                    
                     [self.navigationController pushViewController:addrEditVC animated:YES];
                     
                     return [RACSignal empty];

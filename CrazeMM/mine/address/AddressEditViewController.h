@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CityListViewController.h"
+//#import "CityListViewController.h"
 #import "BEMCheckBox.h" 
 #import "AddressDTO.h"
-@interface AddressEditViewController : UIViewController<CityListDelegate, UITableViewDataSource, UITableViewDelegate>
+@class AddressInfo;
+
+@interface AddressEditViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 /*
 @property (weak, nonatomic) IBOutlet UITextField *receiverField;
 @property (weak, nonatomic) IBOutlet UILabel *zipField;
@@ -23,8 +25,10 @@
 */
 
 @property (strong, nonatomic) AddressDTO* address;
+@property (strong, nonatomic) AddressInfo* addressInfo;
+@property (assign, nonatomic) NSInteger infoIndex;
 
 -(instancetype)initWithAddress:(AddressDTO*)address;
-
+-(instancetype)initWithAddressInfo:(AddressInfo*)addressInfo ofIndex:(NSInteger)infoIndex;
 
 @end

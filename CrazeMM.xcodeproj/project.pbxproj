@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E9C32D31CEF5D26006D389A /* detaillocation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E9C32D21CEF5D26006D389A /* detaillocation.plist */; };
+		2E9C32D61CEF5DC5006D389A /* DetailLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C32D51CEF5DC5006D389A /* DetailLocation.m */; };
+		2E9C32D91CEF5E6C006D389A /* DetailArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C32D81CEF5E6C006D389A /* DetailArea.m */; };
+		2E9C32DC1CEF5F0E006D389A /* DetailCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C32DB1CEF5F0E006D389A /* DetailCity.m */; };
+		2E9C32DF1CEF6777006D389A /* AddressInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C32DE1CEF6777006D389A /* AddressInfo.m */; };
+		2E9C32E21CEF6B44006D389A /* AddressInfoUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C32E11CEF6B44006D389A /* AddressInfoUpdater.m */; };
 		31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
@@ -779,6 +785,17 @@
 
 /* Begin PBXFileReference section */
 		14ACAF7E869FA5D74648BBDD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E9C32D21CEF5D26006D389A /* detaillocation.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = detaillocation.plist; sourceTree = "<group>"; };
+		2E9C32D41CEF5DC5006D389A /* DetailLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailLocation.h; path = mine/address/DetailLocation.h; sourceTree = "<group>"; };
+		2E9C32D51CEF5DC5006D389A /* DetailLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailLocation.m; path = mine/address/DetailLocation.m; sourceTree = "<group>"; };
+		2E9C32D71CEF5E6C006D389A /* DetailArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailArea.h; path = mine/address/DetailArea.h; sourceTree = "<group>"; };
+		2E9C32D81CEF5E6C006D389A /* DetailArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailArea.m; path = mine/address/DetailArea.m; sourceTree = "<group>"; };
+		2E9C32DA1CEF5F0E006D389A /* DetailCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailCity.h; path = mine/address/DetailCity.h; sourceTree = "<group>"; };
+		2E9C32DB1CEF5F0E006D389A /* DetailCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailCity.m; path = mine/address/DetailCity.m; sourceTree = "<group>"; };
+		2E9C32DD1CEF6777006D389A /* AddressInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressInfo.h; path = mine/address/AddressInfo.h; sourceTree = "<group>"; };
+		2E9C32DE1CEF6777006D389A /* AddressInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressInfo.m; path = mine/address/AddressInfo.m; sourceTree = "<group>"; };
+		2E9C32E01CEF6B44006D389A /* AddressInfoUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressInfoUpdater.h; path = mine/address/AddressInfoUpdater.h; sourceTree = "<group>"; };
+		2E9C32E11CEF6B44006D389A /* AddressInfoUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressInfoUpdater.m; path = mine/address/AddressInfoUpdater.m; sourceTree = "<group>"; };
 		4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.debug.xcconfig"; sourceTree = "<group>"; };
 		B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.release.xcconfig"; sourceTree = "<group>"; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
@@ -1484,6 +1501,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E9C32D11CEF4AB3006D389A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				2E9C32D41CEF5DC5006D389A /* DetailLocation.h */,
+				2E9C32D51CEF5DC5006D389A /* DetailLocation.m */,
+				2E9C32D71CEF5E6C006D389A /* DetailArea.h */,
+				2E9C32D81CEF5E6C006D389A /* DetailArea.m */,
+				2E9C32DA1CEF5F0E006D389A /* DetailCity.h */,
+				2E9C32DB1CEF5F0E006D389A /* DetailCity.m */,
+				2E9C32DD1CEF6777006D389A /* AddressInfo.h */,
+				2E9C32DE1CEF6777006D389A /* AddressInfo.m */,
+				2E9C32E01CEF6B44006D389A /* AddressInfoUpdater.h */,
+				2E9C32E11CEF6B44006D389A /* AddressInfoUpdater.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		8B36CB4D54E72C4D41168BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1943,6 +1977,7 @@
 		B91896AE1CCF1FCB0061D0B6 /* address */ = {
 			isa = PBXGroup;
 			children = (
+				2E9C32D11CEF4AB3006D389A /* model */,
 				B91896BC1CCF31320061D0B6 /* view */,
 				B91896B91CCF28170061D0B6 /* AddressListViewController.h */,
 				B91896BA1CCF28170061D0B6 /* AddressListViewController.m */,
@@ -2377,6 +2412,7 @@
 				B964F8FE1CC39670003E0D44 /* AppDelegate.m */,
 				B964F9381CC39894003E0D44 /* CrazeMM-prefix.pch */,
 				B964F90E1CC39670003E0D44 /* Info.plist */,
+				2E9C32D21CEF5D26006D389A /* detaillocation.plist */,
 				B964F9061CC39670003E0D44 /* CrazeMM.xcdatamodeld */,
 				B964F8FB1CC39670003E0D44 /* main.m */,
 				B9AD44101CD3966900012B31 /* Launch Screen.storyboard */,
@@ -3159,6 +3195,7 @@
 				B99D13191CC7AAB2000DFF95 /* fontawesome-webfont.ttf in Resources */,
 				B9A780421CD9E32E00A89047 /* ProductRecommendView.xib in Resources */,
 				B964F98B1CC50344003E0D44 /* slide-3.jpg in Resources */,
+				2E9C32D31CEF5D26006D389A /* detaillocation.plist in Resources */,
 				B99194801CCCA26C0032A393 /* CommonBottomView.xib in Resources */,
 				B9A780361CD9A2D000A89047 /* MMAlertViewWithOK.xib in Resources */,
 				B98878861CC896BE00990AA4 /* product_debug.png in Resources */,
@@ -3520,6 +3557,7 @@
 				B9EFADE71CECBBDB00F81157 /* SwitchCell.m in Sources */,
 				B99955211CE3078A007F26D2 /* HttpAddIntention.m in Sources */,
 				B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */,
+				2E9C32DC1CEF5F0E006D389A /* DetailCity.m in Sources */,
 				B917322B1CD1F05400C29698 /* FadeInDownBigAnimation.m in Sources */,
 				B9FE72021CD7877D00F5EC9F /* SignWithPicCapViewController.m in Sources */,
 				B98878AF1CC9923800990AA4 /* CDFInitialsAvatar.m in Sources */,
@@ -3548,6 +3586,7 @@
 				B982191B1CE9A63B00B279E6 /* MineSupplyProductDTO.m in Sources */,
 				B967E7381CE57EBD00621F28 /* MASViewAttribute.m in Sources */,
 				B91732451CD1F05400C29698 /* RotateInUpLeftAnimation.m in Sources */,
+				2E9C32D91CEF5E6C006D389A /* DetailArea.m in Sources */,
 				B967E73B1CE57EBD00621F28 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				B967E6E81CE4B4EB00621F28 /* HttpOrderStatus.m in Sources */,
 				B9A780491CD9FC2900A89047 /* HttpSupplyRequest.m in Sources */,
@@ -3576,6 +3615,7 @@
 				B9BBEEC51CEB4C5900275416 /* AddrCommonCell.m in Sources */,
 				B91732221CD1F05400C29698 /* BounceInUpAnimation.m in Sources */,
 				B98878AA1CC98ED300990AA4 /* AvataCell.m in Sources */,
+				2E9C32DF1CEF6777006D389A /* AddressInfo.m in Sources */,
 				B99D130B1CC73FDA000DFF95 /* SearchListCell.m in Sources */,
 				B99D13201CC7C862000DFF95 /* FilterViewController.m in Sources */,
 				B967E7481CE602C300621F28 /* HttpOrderRemove.m in Sources */,
@@ -3586,6 +3626,7 @@
 				B9156F441CDC5DD90041E535 /* UIImage+Utils.m in Sources */,
 				B91732301CD1F05400C29698 /* FadeInUpAnimation.m in Sources */,
 				B9FE71F51CD71D0C00F5EC9F /* ProductListCell.m in Sources */,
+				2E9C32E21CEF6B44006D389A /* AddressInfoUpdater.m in Sources */,
 				B95924891CDEBA9000533E77 /* UIView+AnyPromise.m in Sources */,
 				B99194981CCCF70B0032A393 /* ProductFlageView.m in Sources */,
 				B99D12FD1CC66ED3000DFF95 /* SearchHistoryCell.m in Sources */,
@@ -3634,6 +3675,7 @@
 				B964F9901CC50E1E003E0D44 /* BuyItemCell.m in Sources */,
 				B991947B1CCC76E60032A393 /* OrderListViewController.m in Sources */,
 				B95924681CDEBA9000533E77 /* CLGeocoder+AnyPromise.m in Sources */,
+				2E9C32D61CEF5DC5006D389A /* DetailLocation.m in Sources */,
 				B91732341CD1F05400C29698 /* FadeOutDownBigAnimation.m in Sources */,
 				B95924061CDEB26300533E77 /* CommonOrderListViewController.m in Sources */,
 				B967E7371CE57EBD00621F28 /* MASLayoutConstraint.m in Sources */,

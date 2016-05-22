@@ -18,6 +18,7 @@
         self.region = dict[@"region"];
         self.mobile = dict[@"mobile"];
         self.contact = dict[@"contact"];
+        //self.zipCode = dict[@"zipCode"];
     }
     
     return self;

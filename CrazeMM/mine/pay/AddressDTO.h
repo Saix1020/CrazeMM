@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString* contact;
 @property (nonatomic, copy) NSString* mobile;
 @property (nonatomic, copy) NSString* region;
+//@property (nonatomic, copy) NSString* zipCode;
 
 
 

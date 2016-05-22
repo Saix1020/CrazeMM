@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AddressDTO.h"
+#import "AddressInfo.h"
 
 @interface AddressListCell : UITableViewCell
 
@@ -17,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @property (nonatomic, strong) AddressDTO* addrDto;
+@property (nonatomic, strong) AddressInfo* addrInfo;
 
 @end
