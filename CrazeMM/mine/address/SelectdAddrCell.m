@@ -28,6 +28,14 @@
 
 }
 
+-(void)setAddressDto:(AddressDTO *)addressDto
+{
+    _addressDto = addressDto;
+//    self.titleLabel.text = addressDto.contact;
+//    self.companyAndPhoneLabel.text = addressDto.mobile;
+//    self.
+}
+
 +(NSAttributedString*)recommandString
 {
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"[推荐寄存]"];

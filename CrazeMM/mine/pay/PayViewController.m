@@ -243,10 +243,28 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 {
     if (!_addrCell) {
         _addrCell = [[[NSBundle mainBundle]loadNibNamed:@"FirstAddrCell" owner:nil options:nil] firstObject];
-        
+        @weakify(self);
         _addrCell.detailButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-            AddressListViewController *addrVC = [AddressListViewController new];
+            @strongify(self);
+            AddressListViewController *addrVC = [[AddressListViewController alloc] init];
             [self.navigationController pushViewController:addrVC animated:YES];
+
+//            @strongify(self);
+//            HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
+//            [request request]
+//            .then(^(id responseObj){
+//                HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
+//                if (response.ok) {
+//                    AddressListViewController *addrVC = [[AddressListViewController alloc] initWithAddresses:response.addresses];;
+//                    [self.navigationController pushViewController:addrVC animated:YES];
+//                }
+//                else {
+//                    [self showAlertViewWithMessage:response.errorMsg];
+//                }
+//            })
+//            .catch(^(NSError* error){
+//                [self showAlertViewWithMessage:error.localizedDescription];
+//            });
             
             return [RACSignal empty];
         }];
@@ -437,8 +455,24 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row== kAddrRow) {
-        AddressListViewController *addrVC = [AddressListViewController new];
+        AddressListViewController *addrVC = [[AddressListViewController alloc] init];
         [self.navigationController pushViewController:addrVC animated:YES];
+
+//        HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
+//        [request request]
+//        .then(^(id responseObj){
+//            HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
+//            if (response.ok) {
+//                AddressListViewController *addrVC = [[AddressListViewController alloc] initWithAddresses:response.addresses];;
+//                [self.navigationController pushViewController:addrVC animated:YES];
+//            }
+//            else {
+//                [self showAlertViewWithMessage:response.errorMsg];
+//            }
+//        })
+//        .catch(^(NSError* error){
+//            [self showAlertViewWithMessage:error.localizedDescription];
+//        });
         
     }
     else {

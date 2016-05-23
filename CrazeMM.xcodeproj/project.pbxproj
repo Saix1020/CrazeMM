@@ -393,6 +393,10 @@
 		B9C3951C1CF1EE7400AB44B6 /* HttpLogis.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3951A1CF1EE7400AB44B6 /* HttpLogis.m */; };
 		B9C395201CF1EF7D00AB44B6 /* LogisDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3951F1CF1EF7D00AB44B6 /* LogisDTO.m */; };
 		B9C395211CF1EF7D00AB44B6 /* LogisDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3951F1CF1EF7D00AB44B6 /* LogisDTO.m */; };
+		B9C395251CF2EDCF00AB44B6 /* HttpAllRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395241CF2EDCF00AB44B6 /* HttpAllRegion.m */; };
+		B9C395261CF2EDCF00AB44B6 /* HttpAllRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395241CF2EDCF00AB44B6 /* HttpAllRegion.m */; };
+		B9C395291CF2EE0D00AB44B6 /* RegionDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395281CF2EE0D00AB44B6 /* RegionDTO.m */; };
+		B9C3952A1CF2EE0D00AB44B6 /* RegionDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395281CF2EE0D00AB44B6 /* RegionDTO.m */; };
 		B9E84BC11CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC21CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */; };
@@ -1465,6 +1469,10 @@
 		B9C3951A1CF1EE7400AB44B6 /* HttpLogis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpLogis.m; path = restful/HttpLogis.m; sourceTree = "<group>"; };
 		B9C3951E1CF1EF7D00AB44B6 /* LogisDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogisDTO.h; path = mine/order/LogisDTO.h; sourceTree = "<group>"; };
 		B9C3951F1CF1EF7D00AB44B6 /* LogisDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogisDTO.m; path = mine/order/LogisDTO.m; sourceTree = "<group>"; };
+		B9C395231CF2EDCF00AB44B6 /* HttpAllRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpAllRegion.h; path = restful/HttpAllRegion.h; sourceTree = "<group>"; };
+		B9C395241CF2EDCF00AB44B6 /* HttpAllRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpAllRegion.m; path = restful/HttpAllRegion.m; sourceTree = "<group>"; };
+		B9C395271CF2EE0D00AB44B6 /* RegionDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegionDTO.h; path = mine/address/RegionDTO.h; sourceTree = "<group>"; };
+		B9C395281CF2EE0D00AB44B6 /* RegionDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegionDTO.m; path = mine/address/RegionDTO.m; sourceTree = "<group>"; };
 		B9E84BBF1CEF496B003FEAF5 /* MineBuyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyEditViewController.h; path = mine/buy/MineBuyEditViewController.h; sourceTree = "<group>"; };
 		B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyEditViewController.m; path = mine/buy/MineBuyEditViewController.m; sourceTree = "<group>"; };
 		B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBuyOrder.h; path = restful/HttpBuyOrder.h; sourceTree = "<group>"; };
@@ -1602,6 +1610,7 @@
 		B9156F3D1CDBA3D80041E535 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B9C395221CF2ED8800AB44B6 /* address */,
 				B9E84BD21CF0AB9B003FEAF5 /* account */,
 				B9EFAF7C1CED9A3B00F81157 /* good */,
 				B9B5BCE71CDDBE460085E132 /* order */,
@@ -3020,8 +3029,19 @@
 				B967E6EE1CE4B68A00621F28 /* AddrDTO.m */,
 				B9C3951E1CF1EF7D00AB44B6 /* LogisDTO.h */,
 				B9C3951F1CF1EF7D00AB44B6 /* LogisDTO.m */,
+				B9C395271CF2EE0D00AB44B6 /* RegionDTO.h */,
+				B9C395281CF2EE0D00AB44B6 /* RegionDTO.m */,
 			);
 			name = modal;
+			sourceTree = "<group>";
+		};
+		B9C395221CF2ED8800AB44B6 /* address */ = {
+			isa = PBXGroup;
+			children = (
+				B9C395231CF2EDCF00AB44B6 /* HttpAllRegion.h */,
+				B9C395241CF2EDCF00AB44B6 /* HttpAllRegion.m */,
+			);
+			name = address;
 			sourceTree = "<group>";
 		};
 		B9E84BD21CF0AB9B003FEAF5 /* account */ = {
@@ -3630,6 +3650,7 @@
 				B917323C1CD1F05400C29698 /* FlipInXAnimation.m in Sources */,
 				B917321E1CD1F05400C29698 /* BounceInAnimation.m in Sources */,
 				B91896A31CCE67BB0061D0B6 /* ProductWithNumberView.m in Sources */,
+				B9C395251CF2EDCF00AB44B6 /* HttpAllRegion.m in Sources */,
 				B91732211CD1F05400C29698 /* BounceInRightAnimation.m in Sources */,
 				B91732111CD1F05400C29698 /* AnimationBuilder.m in Sources */,
 				B99955241CE30AD8007F26D2 /* HttpSupplyOrder.m in Sources */,
@@ -3833,6 +3854,7 @@
 				B99D13131CC75B84000DFF95 /* LabelWithSeperatorLine.m in Sources */,
 				B91732151CD1F05400C29698 /* FlashAnimation.m in Sources */,
 				B95924661CDEBA9000533E77 /* CKDatabase+AnyPromise.m in Sources */,
+				B9C395291CF2EE0D00AB44B6 /* RegionDTO.m in Sources */,
 				B967E74E1CE6171A00621F28 /* BuyProductViewController.m in Sources */,
 				B9AD461A1CD6509900012B31 /* NSString+Utils.m in Sources */,
 				B91732381CD1F05400C29698 /* FadeOutRightBigAnimation.m in Sources */,
@@ -3986,6 +4008,7 @@
 				B9EFAE2E1CED514100F81157 /* MineSegmentCell.m in Sources */,
 				B9EFAE2F1CED514100F81157 /* NSNotificationCenter+AnyPromise.m in Sources */,
 				B9EFAE301CED514100F81157 /* UINib+Utils.m in Sources */,
+				B9C395261CF2EDCF00AB44B6 /* HttpAllRegion.m in Sources */,
 				B9EFAE311CED514100F81157 /* FlipInXAnimation.m in Sources */,
 				B9EFAE321CED514100F81157 /* BounceInAnimation.m in Sources */,
 				B9EFAE331CED514100F81157 /* ProductWithNumberView.m in Sources */,
@@ -4092,6 +4115,7 @@
 				B9E84BD11CF0A54D003FEAF5 /* BankCardListViewController.m in Sources */,
 				B9EFAE921CED514100F81157 /* BounceOutRightAnimation.m in Sources */,
 				B9EFAE931CED514100F81157 /* BuySlideDetailViewController.m in Sources */,
+				B9C3952A1CF2EE0D00AB44B6 /* RegionDTO.m in Sources */,
 				B9EFAE941CED514100F81157 /* UISearchBar+RACSignalSupport.m in Sources */,
 				B9EFAE951CED514100F81157 /* CitySelectTableViewController.m in Sources */,
 				B9EFAE961CED514100F81157 /* ZoomInAnimation.m in Sources */,

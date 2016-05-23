@@ -10,6 +10,7 @@
 #import "SelectdAddrCell.h"
 #import "AddressListCell.h"
 #import "AddressEditViewController.h"
+#import "HttpAddress.h"
 
 typedef NS_ENUM(NSInteger, MineAddressListSection){
     kSectionRecommand = 0,
@@ -20,21 +21,33 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
 @interface AddressListViewController ()
 
 @property (nonatomic, strong) UITableView* tableView;
-@property (nonatomic, strong) SelectdAddrCell* recommandCell;
+@property (nonatomic, strong) AddressListCell* recommandCell;
+@property (nonatomic, copy) NSArray* addresses;
 
 @end
 
 
 @implementation AddressListViewController
 
--(SelectdAddrCell*)recommandCell
+-(AddressListCell*)recommandCell
 {
     if (!_recommandCell) {
-        _recommandCell = [[[NSBundle mainBundle]loadNibNamed:@"SelectdAddrCell" owner:nil options:nil] firstObject];
-
+        _recommandCell = [[[NSBundle mainBundle]loadNibNamed:@"AddressListCell" owner:nil options:nil] firstObject];
+        _recommandCell.isDefault = YES;
+        _recommandCell.delegate = self;
     }
     
     return _recommandCell;
+}
+
+-(instancetype)initWithAddresses:(NSArray*)addresses
+{
+    self = [super init];
+    if (self) {
+        self.addresses = addresses;
+    }
+    
+    return self;
 }
 
 -(void)viewDidLoad
@@ -70,19 +83,43 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
 {
     [super viewWillLayoutSubviews];
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    
+
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
+    [request request]
+    .then(^(id responseObj){
+        HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
+        if (response.ok) {
+            self.addresses = response.addresses;
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+}
 
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (!self.addresses) {
+        return 0;
+    }
     return kSectionNumber;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     
     switch (section) {
         case kSectionRecommand:
@@ -92,7 +129,7 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
             break;
         case kSectionAllAddress:
         {
-            return 2;
+            return self.addresses.count>1?self.addresses.count-1:0;
         }
             break;
         default:
@@ -111,21 +148,25 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
     switch (indexPath.section) {
         case kSectionRecommand:
         {
+            self.recommandCell.addrDto = self.addresses[0];
             cell = self.recommandCell;
         }
             break;
         case kSectionAllAddress:
         {
             AddressListCell* addressCell = [tableView dequeueReusableCellWithIdentifier:@"AddressListCell"];
-            if(addressCell.editButton.rac_command == nil){
-                addressCell.editButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x) {
-                    
-                    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] init];
-                    [self.navigationController pushViewController:addrEditVC animated:YES];
-                    
-                    return [RACSignal empty];
-                }];
-            }
+            addressCell.isDefault = NO;
+            addressCell.addrDto = self.addresses[indexPath.row+1];
+//            if(addressCell.editButton.rac_command == nil){
+//                addressCell.editButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x) {
+//                    
+//                    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] init];
+//                    [self.navigationController pushViewController:addrEditVC animated:YES];
+//                    
+//                    return [RACSignal empty];
+//                }];
+//            }
+            addressCell.delegate = self;
             cell = addressCell;
         }
             break;
@@ -149,7 +190,7 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
     switch (indexPath.section) {
         case kSectionRecommand:
         {
-            return 100.f;
+            return 85.f;
         }
             break;
         case kSectionAllAddress:
@@ -166,8 +207,18 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+//    AddrDTO* addrDto = self.addresses[indexPath.row];
+//    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] initWithAddress:addrDto];
+//    [self.navigationController pushViewController:addrEditVC animated:YES];
+
 }
 
+#pragma -- mark AddressListCell delegate
+-(void)editButtonClicked:(AddressListCell *)cell
+{
+    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] initWithAddress:cell.addrDto];
+    [self.navigationController pushViewController:addrEditVC animated:YES];
+
+}
 
 @end

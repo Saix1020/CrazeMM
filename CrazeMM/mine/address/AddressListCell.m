@@ -24,23 +24,17 @@
     self.addressLabel.adjustsFontSizeToFitWidth = YES;
     self.addressLabel.textColor = [UIColor grayColorL2];
     
-    self.nameLabel.text = @"徐赛";
-    self.phoneLabel.text = @"1324324234324";
-  
-    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithAttributedString:[[self class] defaultString]];
-    [attrString appendAttributedString:[[self class] addressString:@"江苏省南京市浦口区百润路2号天 润城1-4街区66栋102室"]];
-    self.addressLabel.attributedText = attrString;
-
-
-
+    [self.editButton addTarget:self action:@selector(editAddress:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
-+(NSAttributedString*)defaultString
+-(NSAttributedString*)defaultString
 {
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"[默认地址]"];
+    NSString* string = self.isDefault? @"[默认地址]" : @"[设为默认地址]";
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:string];
     
-    [attributedText setAttributes:@{NSForegroundColorAttributeName:[UIColor blueColor]}
-                            range:NSMakeRange(0, [@"[默认地址]" length])];
+    [attributedText setAttributes:@{NSForegroundColorAttributeName:self.isDefault?[UIColor redColor]:[UIColor blueColor]}
+                            range:NSMakeRange(0, string.length)];
     return attributedText;
 }
 
@@ -52,10 +46,21 @@
     return attributedText;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+-(void)setAddrDto:(AddrDTO *)addrDto
+{
+    _addrDto = addrDto;
+    self.nameLabel.text = addrDto.contact;
+    self.phoneLabel.text = NotNilAndNull(addrDto.phone)? addrDto.phone: addrDto.mobile;
+    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithAttributedString:[self defaultString]];
+    [attrString appendAttributedString:[[self class] addressString:[NSString stringWithFormat:@" %@ %@", addrDto.region, addrDto.street]]];
+    self.addressLabel.attributedText = attrString;
+}
 
-    // Configure the view for the selected state
+-(void)editAddress:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(editButtonClicked:)]) {
+        [self.delegate editButtonClicked:self];
+    }
 }
 
 @end

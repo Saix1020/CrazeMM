@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdk-8R-G5I">
-                        <rect key="frame" x="8" y="37" width="255" height="39"/>
+                        <rect key="frame" x="8" y="37" width="304" height="39"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -49,12 +49,12 @@
                 <constraints>
                     <constraint firstItem="AnT-qb-u0c" firstAttribute="firstBaseline" secondItem="X6k-Nv-SNr" secondAttribute="firstBaseline" id="4DS-ip-Tuj"/>
                     <constraint firstItem="Hdk-8R-G5I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6oa-jA-2Cj"/>
-                    <constraint firstItem="AnT-qb-u0c" firstAttribute="trailing" secondItem="Hdk-8R-G5I" secondAttribute="trailing" id="8Nm-Vk-eeU"/>
+                    <constraint firstItem="AnT-qb-u0c" firstAttribute="trailing" secondItem="Hdk-8R-G5I" secondAttribute="trailing" constant="-49" id="8Nm-Vk-eeU"/>
                     <constraint firstItem="AnT-qb-u0c" firstAttribute="centerY" secondItem="CEp-eQ-8ad" secondAttribute="centerY" id="AvS-mL-TLs"/>
                     <constraint firstItem="AnT-qb-u0c" firstAttribute="top" secondItem="CEp-eQ-8ad" secondAttribute="top" id="Ci4-Ej-gfG"/>
                     <constraint firstItem="CEp-eQ-8ad" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="E8G-yS-Gjy"/>
                     <constraint firstAttribute="bottomMargin" secondItem="CEp-eQ-8ad" secondAttribute="bottom" constant="48" id="F17-jx-J1O"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Hdk-8R-G5I" secondAttribute="trailing" constant="49" id="JFk-nK-4ft"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Hdk-8R-G5I" secondAttribute="trailing" id="JFk-nK-4ft"/>
                     <constraint firstItem="eZg-61-7hx" firstAttribute="trailing" secondItem="CEp-eQ-8ad" secondAttribute="trailing" id="L2h-z1-MdS"/>
                     <constraint firstItem="CEp-eQ-8ad" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="MIJ-87-drU"/>
                     <constraint firstItem="Hdk-8R-G5I" firstAttribute="top" secondItem="X6k-Nv-SNr" secondAttribute="bottom" constant="8" symbolic="YES" id="NM3-Se-kls"/>

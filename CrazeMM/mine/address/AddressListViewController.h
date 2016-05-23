@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressListCell.h"
 
-@interface AddressListViewController : UIViewController<UITableViewDataSource,  UITableViewDelegate>
+@interface AddressListViewController : UIViewController<UITableViewDataSource,  UITableViewDelegate, AddressListCellDelegate>
+
+-(instancetype)initWithAddresses:(NSArray*)addresses;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressDTO.h"
 
 // call me RecommandCell!!
 @interface SelectdAddrCell : UITableViewCell
@@ -14,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *companyAndPhoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+
+@property (nonatomic, strong) AddressDTO* addressDto;
 
 @end
