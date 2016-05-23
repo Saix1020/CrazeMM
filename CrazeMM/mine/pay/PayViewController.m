@@ -305,6 +305,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         NSLog(@"%@", responseObj);
         if (payRequest.response.ok) {
             OnlinePayViewController* vc = [[OnlinePayViewController alloc] initWithPayInfoDto:self.payInfoDto];
+            vc.orderDetailDtos = self.orderDetailDtos;
             [self.navigationController pushViewController:vc animated:YES];
         }
         else {

@@ -18,6 +18,6 @@
 @interface OrderListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate, BEMCheckBoxDelegate, OrderDetailViewControllerDelegate, OrderListCellDelegate, OrderSendViewControllerDelegate>
 
 -(instancetype)initWithOrderType:(MMOrderType)orderType andSubType:(MMOrderSubType)subType;
-
+-(void)removeOrderDtoByOderIds:(NSArray*)ids;
 
 @end

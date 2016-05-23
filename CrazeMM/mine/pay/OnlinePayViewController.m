@@ -9,6 +9,7 @@
 #import "OnlinePayViewController.h"
 #import "HttpPay.h"
 #import "PayResultViewController.h"
+#import "OrderListViewController.h"
 
 @interface OnlinePayViewController ()
 
@@ -152,14 +153,23 @@
                 if (response.paySuccess) {
                     
                     [self showAlertViewWithMessage:@"支付成功!" withCallback:^(id x){
-                        NSArray* vcs = self.navigationController.viewControllers;
-                        if (vcs.count>2) {
-                            UIViewController* vc = vcs[vcs.count-3];
-                            [self.navigationController popToViewController:vc animated:YES];
+                        UIViewController* popToVC = nil;
+                        for (UIViewController* vc in self.navigationController.viewControllers) {
+                            if ([vc isKindOfClass:[OrderListViewController class]]) {
+                                [(OrderListViewController*)vc operatorDoneForOrder:self.orderDetailDtos];
+                                popToVC = vc;
+                                break;
+                            }
+                            else if([vc isKindOfClass:NSClassFromString(@"ProductViewController")]){
+                                popToVC = vc;
+                                break;
+                            }
+                        }
+                        if (!popToVC) {
+                            [self.navigationController popToRootViewControllerAnimated:YES];
                         }
                         else {
-                            NSLog(@"Warning: Online Pay View: vcs count <2");
-                            [self.navigationController popToRootViewControllerAnimated:YES];
+                           [self.navigationController popToViewController:popToVC animated:YES]; 
                         }
                     }];
                     

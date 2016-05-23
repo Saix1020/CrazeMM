@@ -460,9 +460,32 @@
     [super viewWillAppear:animated];
 //    self.orderListPageNumber = 0;
     [self.tabBarController setTabBarHidden:YES animated:YES];
+    
     [self.tableView reloadData];
+    self.commonBottomView.selectAllCheckBox.on = YES;
+    if (self.dataSource.count == 0){
+        self.commonBottomView.selectAllCheckBox.on = NO;
+    }
+    for (OrderDetailDTO* dto  in self.dataSource) {
+        if (!dto.selected) {
+            self.commonBottomView.selectAllCheckBox.on = NO;
+            break;
+        }
+    }
+    [self refreshTotalPriceLabel];
+}
 
-//    self.commonBottomView.selectAllCheckBox.on = NO;
+-(void)removeOrderDtoByOderIds:(NSArray*)ids
+{
+    NSMutableArray* temp = [self.dataSource mutableCopy];
+    [self.dataSource removeAllObjects];
+    for (OrderDetailDTO* dto in temp) {
+        if (![ids containsObject:@(dto.id)]) {
+            [self.dataSource addObject:dto];
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 -(void)clearOrderList
@@ -794,6 +817,14 @@
 {
     if(self.dataSource){
         [self.dataSource removeObject:orderDto];
+        [self.tableView reloadData];
+    }
+}
+
+-(void)operatorDoneForOrder:(NSArray *)orderDtos
+{
+    if(self.dataSource){
+        [self.dataSource removeObjectsInArray:orderDtos];
         [self.tableView reloadData];
     }
 }

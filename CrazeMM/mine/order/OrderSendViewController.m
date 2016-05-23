@@ -207,6 +207,13 @@
                             [self showAlertViewWithMessage:error.localizedDescription];
                         })
                         .finally(^(){
+                            
+                            NSMutableArray* vcs = [self.navigationController.viewControllers mutableCopy];
+                            if ([vcs[vcs.count-2] isKindOfClass:NSClassFromString(@"OrderDetailViewController")]) {
+                                [vcs removeObject:vcs[vcs.count-2]];
+                                self.navigationController.viewControllers = vcs;
+                            }
+                            
                             [self.navigationController popViewControllerAnimated:YES];
                         });
     

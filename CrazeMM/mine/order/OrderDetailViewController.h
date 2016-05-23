@@ -14,6 +14,7 @@
 
 -(void)removeOrder:(OrderDetailDTO*)orderDto;
 -(void)cancelOrder:(OrderDetailDTO*)orderDto;
+-(void)operatorDoneForOrder:(NSArray*)orderDtos;
 
 @end
 
