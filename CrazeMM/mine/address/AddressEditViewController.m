@@ -105,6 +105,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         _regionCell.title = @"所在地区";
         _regionCell.placehoder = @"请选择所在区域";
         _regionCell.tintColor = [UIColor clearColor];
+        _regionCell.textFieldCell.delegate = self;
         _regionCell.value = self.address.region;
 
     }
@@ -456,8 +457,9 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     
     self.selectedRegionDto = self.regionDto[self.provinceIndex];
     self.selectedCityDto = self.selectedRegionDto.cities[self.cityIndex];
-    self.areaIndex = row;
-    self.selectedAreaDto = self.selectedCityDto.areas[row];
+    NSInteger areaIndex = [self.cityPicker selectedRowInComponent:2];
+    self.areaIndex = areaIndex;
+    self.selectedAreaDto = self.selectedCityDto.areas[areaIndex];
 
     self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
 }
@@ -526,10 +528,18 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 
 
 
-#pragma -- City list vc delegate
-//- (void)didSelectCityWithName:(NSString *)cityName
-//{
-//    self.regionCell.regionLabel.text = cityName;
-//}
+#pragma -- UItextfield delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField.text.length == 0) {
+        self.selectedRegionDto = self.regionDto[0];
+        self.selectedCityDto = self.selectedRegionDto.cities[0];
+        self.selectedAreaDto = self.selectedCityDto.areas[0];
+
+        textField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+
+    }
+}
+
 
 @end
