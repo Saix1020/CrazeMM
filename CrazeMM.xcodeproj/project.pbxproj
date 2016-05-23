@@ -385,6 +385,14 @@
 		B9BBEECB1CEB4DDE00275416 /* AddrRegionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEEC91CEB4DDE00275416 /* AddrRegionCell.xib */; };
 		B9BBEECF1CEB51BF00275416 /* AddrDefaultCheckboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEECD1CEB51BF00275416 /* AddrDefaultCheckboxCell.m */; };
 		B9BBEED01CEB51BF00275416 /* AddrDefaultCheckboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEECE1CEB51BF00275416 /* AddrDefaultCheckboxCell.xib */; };
+		B9C395131CF1D56100AB44B6 /* HttpOrderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395121CF1D56100AB44B6 /* HttpOrderOperation.m */; };
+		B9C395141CF1D56100AB44B6 /* HttpOrderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395121CF1D56100AB44B6 /* HttpOrderOperation.m */; };
+		B9C395171CF1E50300AB44B6 /* OrderSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395161CF1E50300AB44B6 /* OrderSendViewController.m */; };
+		B9C395181CF1E50300AB44B6 /* OrderSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395161CF1E50300AB44B6 /* OrderSendViewController.m */; };
+		B9C3951B1CF1EE7400AB44B6 /* HttpLogis.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3951A1CF1EE7400AB44B6 /* HttpLogis.m */; };
+		B9C3951C1CF1EE7400AB44B6 /* HttpLogis.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3951A1CF1EE7400AB44B6 /* HttpLogis.m */; };
+		B9C395201CF1EF7D00AB44B6 /* LogisDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3951F1CF1EF7D00AB44B6 /* LogisDTO.m */; };
+		B9C395211CF1EF7D00AB44B6 /* LogisDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3951F1CF1EF7D00AB44B6 /* LogisDTO.m */; };
 		B9E84BC11CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC21CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */; };
@@ -1449,6 +1457,14 @@
 		B9BBEECC1CEB51BF00275416 /* AddrDefaultCheckboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddrDefaultCheckboxCell.h; path = mine/address/AddrDefaultCheckboxCell.h; sourceTree = "<group>"; };
 		B9BBEECD1CEB51BF00275416 /* AddrDefaultCheckboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddrDefaultCheckboxCell.m; path = mine/address/AddrDefaultCheckboxCell.m; sourceTree = "<group>"; };
 		B9BBEECE1CEB51BF00275416 /* AddrDefaultCheckboxCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrDefaultCheckboxCell.xib; path = mine/address/AddrDefaultCheckboxCell.xib; sourceTree = "<group>"; };
+		B9C395111CF1D56100AB44B6 /* HttpOrderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpOrderOperation.h; path = restful/HttpOrderOperation.h; sourceTree = "<group>"; };
+		B9C395121CF1D56100AB44B6 /* HttpOrderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpOrderOperation.m; path = restful/HttpOrderOperation.m; sourceTree = "<group>"; };
+		B9C395151CF1E50300AB44B6 /* OrderSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderSendViewController.h; path = mine/order/OrderSendViewController.h; sourceTree = "<group>"; };
+		B9C395161CF1E50300AB44B6 /* OrderSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderSendViewController.m; path = mine/order/OrderSendViewController.m; sourceTree = "<group>"; };
+		B9C395191CF1EE7400AB44B6 /* HttpLogis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpLogis.h; path = restful/HttpLogis.h; sourceTree = "<group>"; };
+		B9C3951A1CF1EE7400AB44B6 /* HttpLogis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpLogis.m; path = restful/HttpLogis.m; sourceTree = "<group>"; };
+		B9C3951E1CF1EF7D00AB44B6 /* LogisDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogisDTO.h; path = mine/order/LogisDTO.h; sourceTree = "<group>"; };
+		B9C3951F1CF1EF7D00AB44B6 /* LogisDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogisDTO.m; path = mine/order/LogisDTO.m; sourceTree = "<group>"; };
 		B9E84BBF1CEF496B003FEAF5 /* MineBuyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyEditViewController.h; path = mine/buy/MineBuyEditViewController.h; sourceTree = "<group>"; };
 		B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyEditViewController.m; path = mine/buy/MineBuyEditViewController.m; sourceTree = "<group>"; };
 		B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBuyOrder.h; path = restful/HttpBuyOrder.h; sourceTree = "<group>"; };
@@ -1475,7 +1491,7 @@
 		B9EFADE51CECBBDB00F81157 /* SwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwitchCell.h; path = mine/supply/SwitchCell.h; sourceTree = "<group>"; };
 		B9EFADE61CECBBDB00F81157 /* SwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwitchCell.m; path = mine/supply/SwitchCell.m; sourceTree = "<group>"; };
 		B9EFADE81CECBBF800F81157 /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SwitchCell.xib; path = mine/supply/SwitchCell.xib; sourceTree = "<group>"; };
-		B9EFAF661CED514200F81157 /* CrazeMM_Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazeMM_Simulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9EFAF661CED514200F81157 /* CrazeMM_Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazeMM_Phone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9EFAF671CED514200F81157 /* CrazeMM copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CrazeMM copy-Info.plist"; path = "/Users/saix/github/CrazeMM copy-Info.plist"; sourceTree = "<absolute>"; };
 		B9EFAF7D1CED9A6D00F81157 /* HttpGoodInfoQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpGoodInfoQuery.h; path = mine/good/HttpGoodInfoQuery.h; sourceTree = "<group>"; };
 		B9EFAF7E1CED9A6D00F81157 /* HttpGoodInfoQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpGoodInfoQuery.m; path = mine/good/HttpGoodInfoQuery.m; sourceTree = "<group>"; };
@@ -1974,6 +1990,8 @@
 				B991947A1CCC76E60032A393 /* OrderListViewController.m */,
 				B99955301CE37372007F26D2 /* OrderDetailViewController.h */,
 				B99955311CE37372007F26D2 /* OrderDetailViewController.m */,
+				B9C395151CF1E50300AB44B6 /* OrderSendViewController.h */,
+				B9C395161CF1E50300AB44B6 /* OrderSendViewController.m */,
 			);
 			name = order;
 			sourceTree = "<group>";
@@ -2412,7 +2430,7 @@
 				B964F8F71CC39670003E0D44 /* CrazeMM.app */,
 				B964F9131CC39670003E0D44 /* CrazeMMTests.xctest */,
 				B964F91E1CC39671003E0D44 /* CrazeMMUITests.xctest */,
-				B9EFAF661CED514200F81157 /* CrazeMM_Simulator.app */,
+				B9EFAF661CED514200F81157 /* CrazeMM_Phone.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2983,6 +3001,10 @@
 				B967E7471CE602C300621F28 /* HttpOrderRemove.m */,
 				B967E7491CE60C8100621F28 /* HttpOrderCancel.h */,
 				B967E74A1CE60C8100621F28 /* HttpOrderCancel.m */,
+				B9C395111CF1D56100AB44B6 /* HttpOrderOperation.h */,
+				B9C395121CF1D56100AB44B6 /* HttpOrderOperation.m */,
+				B9C395191CF1EE7400AB44B6 /* HttpLogis.h */,
+				B9C3951A1CF1EE7400AB44B6 /* HttpLogis.m */,
 			);
 			name = order;
 			sourceTree = "<group>";
@@ -2996,6 +3018,8 @@
 				B9B5BCEE1CDE00C40085E132 /* OrderDetailDTO.m */,
 				B967E6ED1CE4B68A00621F28 /* AddrDTO.h */,
 				B967E6EE1CE4B68A00621F28 /* AddrDTO.m */,
+				B9C3951E1CF1EF7D00AB44B6 /* LogisDTO.h */,
+				B9C3951F1CF1EF7D00AB44B6 /* LogisDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -3146,9 +3170,9 @@
 			productReference = B964F91E1CC39671003E0D44 /* CrazeMMUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		B9EFADF41CED514100F81157 /* CrazeMM_Simulator */ = {
+		B9EFADF41CED514100F81157 /* CrazeMM_Phone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B9EFAF631CED514100F81157 /* Build configuration list for PBXNativeTarget "CrazeMM_Simulator" */;
+			buildConfigurationList = B9EFAF631CED514100F81157 /* Build configuration list for PBXNativeTarget "CrazeMM_Phone" */;
 			buildPhases = (
 				B9EFADF51CED514100F81157 /* 📦 Check Pods Manifest.lock */,
 				B9EFADF61CED514100F81157 /* Sources */,
@@ -3163,9 +3187,9 @@
 			);
 			dependencies = (
 			);
-			name = CrazeMM_Simulator;
+			name = CrazeMM_Phone;
 			productName = CrazeMM;
-			productReference = B9EFAF661CED514200F81157 /* CrazeMM_Simulator.app */;
+			productReference = B9EFAF661CED514200F81157 /* CrazeMM_Phone.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3210,7 +3234,7 @@
 			projectRoot = "";
 			targets = (
 				B964F8F61CC39670003E0D44 /* CrazeMM */,
-				B9EFADF41CED514100F81157 /* CrazeMM_Simulator */,
+				B9EFADF41CED514100F81157 /* CrazeMM_Phone */,
 				B964F9121CC39670003E0D44 /* CrazeMMTests */,
 				B964F91D1CC39671003E0D44 /* CrazeMMUITests */,
 			);
@@ -3561,6 +3585,7 @@
 				B95A94A81CE0C19900A5D9BA /* CityListViewController.m in Sources */,
 				B917324C1CD1F05400C29698 /* ScaleSmallOutAnimation.m in Sources */,
 				B917324D1CD1F05400C29698 /* SlideInDownAnimation.m in Sources */,
+				B9C395171CF1E50300AB44B6 /* OrderSendViewController.m in Sources */,
 				B917321F1CD1F05400C29698 /* BounceInDownAnimation.m in Sources */,
 				B95A94AC1CE0C19900A5D9BA /* HotCityTableViewCell.m in Sources */,
 				B91732571CD1F05500C29698 /* RollInAnimation.m in Sources */,
@@ -3628,6 +3653,7 @@
 				B9AD460F1CD4FF0200012B31 /* OrderListNoCheckBoxCell.m in Sources */,
 				B991948D1CCCF32F0032A393 /* ProductLadderCell.m in Sources */,
 				B9156F411CDBA41D0041E535 /* HttpOrderSummary.m in Sources */,
+				B9C395201CF1EF7D00AB44B6 /* LogisDTO.m in Sources */,
 				B917325B1CD1F05500C29698 /* ZoomInLeftAnimation.m in Sources */,
 				B91896D91CCFAFC90061D0B6 /* TransferAlertView.m in Sources */,
 				B967E6EF1CE4B68A00621F28 /* AddrDTO.m in Sources */,
@@ -3659,6 +3685,7 @@
 				B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */,
 				B917322F1CD1F05400C29698 /* FadeInRightBigAnimation.m in Sources */,
 				B9FE71E91CD6E70400F5EC9F /* UserHistory.m in Sources */,
+				B9C3951B1CF1EE7400AB44B6 /* HttpLogis.m in Sources */,
 				B9EFADE71CECBBDB00F81157 /* SwitchCell.m in Sources */,
 				B99955211CE3078A007F26D2 /* HttpAddIntention.m in Sources */,
 				B964F8FF1CC39670003E0D44 /* AppDelegate.m in Sources */,
@@ -3790,6 +3817,7 @@
 				B917325E1CD1F05500C29698 /* ZoomOutAnimation.m in Sources */,
 				B91896DF1CCFB3A70061D0B6 /* SupplyViewController.m in Sources */,
 				B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */,
+				B9C395131CF1D56100AB44B6 /* HttpOrderOperation.m in Sources */,
 				B967E7341CE57EBD00621F28 /* MASCompositeConstraint.m in Sources */,
 				B967E74B1CE60C8100621F28 /* HttpOrderCancel.m in Sources */,
 				B98878BF1CC9BB1F00990AA4 /* CustomSegment.m in Sources */,
@@ -3922,6 +3950,7 @@
 				B9EFAE0B1CED514100F81157 /* RollInAnimation.m in Sources */,
 				B9EFAE0C1CED514100F81157 /* MineWrapViewController.m in Sources */,
 				B9EFAE0D1CED514100F81157 /* OrderDetailAddrCell.m in Sources */,
+				B9C395181CF1E50300AB44B6 /* OrderSendViewController.m in Sources */,
 				B9EFAE0E1CED514100F81157 /* SupplyProductDTO.m in Sources */,
 				B9EFAE0F1CED514100F81157 /* RubberBandAnimation.m in Sources */,
 				B9EFAE101CED514100F81157 /* HttpLogout.m in Sources */,
@@ -3976,6 +4005,7 @@
 				B9EFAE411CED514100F81157 /* SlideOutRightAnimation.m in Sources */,
 				B9EFAE421CED514100F81157 /* UIViewController+AnyPromise.m in Sources */,
 				B9EFAE431CED514100F81157 /* ScaleLargeInAnimation.m in Sources */,
+				B9C3951C1CF1EE7400AB44B6 /* HttpLogis.m in Sources */,
 				B9EFAE441CED514100F81157 /* TTModalWindow.m in Sources */,
 				B9EFAE451CED514100F81157 /* UIAlertView+AnyPromise.m in Sources */,
 				B9EFAE461CED514100F81157 /* OrderListNoCheckBoxCell.m in Sources */,
@@ -4112,6 +4142,7 @@
 				B9EFAEC21CED514100F81157 /* RotateInDownRightAnimation.m in Sources */,
 				B9EFAEC31CED514100F81157 /* ProductRecommendView.m in Sources */,
 				B9EFAEC41CED514100F81157 /* PayResultViewController.m in Sources */,
+				B9C395141CF1D56100AB44B6 /* HttpOrderOperation.m in Sources */,
 				B9EFAEC51CED514100F81157 /* ZoomOutDownAnimation.m in Sources */,
 				B9EFAEC61CED514100F81157 /* MMTimer.m in Sources */,
 				B9EFAEC71CED514100F81157 /* BounceOutLeftAnimation.m in Sources */,
@@ -4169,6 +4200,7 @@
 				B9EFAEF81CED514100F81157 /* SelectdAddrCell.m in Sources */,
 				B9EFAEF91CED514100F81157 /* FadeOutRightAnimation.m in Sources */,
 				B9EFAEFA1CED514100F81157 /* NSArray+MASAdditions.m in Sources */,
+				B9C395211CF1EF7D00AB44B6 /* LogisDTO.m in Sources */,
 				B9EFAEFB1CED514100F81157 /* NSMutableAttributedString+M80.m in Sources */,
 				B9EFAEFC1CED514100F81157 /* NSDateComponents+Utils.m in Sources */,
 				B9EFAEFD1CED514100F81157 /* PayAlertView.m in Sources */,
@@ -4538,7 +4570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B9EFAF631CED514100F81157 /* Build configuration list for PBXNativeTarget "CrazeMM_Simulator" */ = {
+		B9EFAF631CED514100F81157 /* Build configuration list for PBXNativeTarget "CrazeMM_Phone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9EFAF641CED514100F81157 /* Debug */,

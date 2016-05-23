@@ -18,4 +18,5 @@
 @property (nonatomic) NSInteger state;
 @property (nonatomic) NSInteger uid;
 
+@property (nonatomic, readonly) NSString* bankDesc;
 @end

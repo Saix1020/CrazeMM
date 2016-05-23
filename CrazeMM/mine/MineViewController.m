@@ -49,10 +49,10 @@
                  @"我的账户",
                  @"我的供货",
                  @"我的求购",
-                 @"我的抵押",
-                 @"我的站内信息",
+//                 @"我的抵押",
+//                 @"我的站内信息",
                  @"我的收货地址",
-                 @"我的自提人"
+//                 @"我的自提人"
                  ];
     }
     else {
@@ -584,7 +584,15 @@
             
         }
             break;
-            
+        case kSectionContact:
+        {
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", @"025847272229"]];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+
+        }
+            break;
         default:
             break;
     }

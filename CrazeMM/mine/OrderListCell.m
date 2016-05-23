@@ -70,7 +70,7 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    
+    [self.reactiveButton addTarget:self action:@selector(reactiveButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
 
 }
@@ -196,6 +196,15 @@
     self.backgroundLabel.width = screenWidth ;
     
     self.totalPriceLabel.right = self.backgroundLabel.width-8.f;
+}
+
+-(void)reactiveButtonClicked:(id)sender
+{
+    if (sender == self.reactiveButton) {
+        if ([self.delegate respondsToSelector:@selector(reactiveButtonClicked:)]) {
+            [self.delegate reactiveButtonClicked:self.orderDetailDTO];
+        }
+    }
 }
 
 +(CGFloat)cellHeight

@@ -16,6 +16,9 @@
 #import "MJRefresh.h"
 #import "OrderDetailViewController.h"
 #import "HttpOrderRemove.h"
+#import "HttpOrderOperation.h"
+#import "OrderSendViewController.h"
+
 
 #define kSegmentCellHeight 40.f
 #define kTableViewInsetTopWithoutSegment (kSegmentCellHeight+64)
@@ -167,7 +170,16 @@
 -(void)handleButtomButtonClicked:(UIButton*)send
 {
     NSInteger segmentIndex = self.segmentCell.segment.currentIndex;
+    NSMutableArray* operatorDtos = [[NSMutableArray alloc] init];
+    NSMutableArray* operatorDtoIds = [[NSMutableArray alloc] init];
+    for (OrderDetailDTO* dto in self.dataSource) {
+        if (dto.selected) {
+            [operatorDtos addObject:dto];
+            [operatorDtoIds addObject:[NSString stringWithFormat:@"%ld", dto.id]];
+        }
+    }
     
+    @weakify(self);
     if (self.orderType == kOrderTypeBuy) {
         switch (self.subType ) {
             case kOrderSubTypePay:
@@ -176,58 +188,51 @@
                     case 0:
                     {
                         NSLog(@"我买的货->待付款->付款");
-                        NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
-                        for (OrderDetailDTO* dto in self.dataSource) {
-                            if (dto.selected) {
-                                [selectedDtos addObject:dto];
-                            }
-                        }
-                        if (selectedDtos.count == 0) {
+                        
+                        if (operatorDtos.count == 0) {
                             [self showAlertViewWithMessage:@"请选择待付款的商品"];
                             break;
                         }
-                        PayViewController* payVC = [[PayViewController alloc] initWithOrderDetailDTOs:selectedDtos];
+                        PayViewController* payVC = [[PayViewController alloc] initWithOrderDetailDTOs:operatorDtos];
                         [self.navigationController pushViewController:payVC animated:YES];
                     }
                         break;
                     case 1:
-                        NSLog(@"我买的货->待付款->超时");
                     {
-                        NSMutableArray* removeIds = [[NSMutableArray alloc] init];
-                        NSMutableArray* removeObjs = [[NSMutableArray alloc] init];
-                        for (OrderDetailDTO* dto in self.dataSource) {
-                            if (dto.selected) {
-                                [removeIds addObject:[NSString stringWithFormat:@"%ld", dto.id]];
-                                [removeObjs addObject:dto];
-                            }
-                        }
-                        if (removeIds.count == 0) {
+                        NSLog(@"我买的货->待付款->超时");
+                        
+                        if (operatorDtos.count == 0) {
                             [self showAlertViewWithMessage:@"请选择需要删除的订单"];
                             break;
                         }
-                        HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:removeIds];
-                        [request request]
-                        .then(^(id responseObj){
-                            NSLog(@"%@", responseObj);
-                            if (request.response.ok) {
-//                                [self clearOrderList];
-//                                [self getOrderList];
-                                for (OrderDetailDTO* dto in removeObjs){
-                                    [self.dataSource removeObject:dto];
-                                }
-                                [self.tableView reloadData];
-                            }
-                            else {
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        });
+                        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确定要删除选中的%ld条订单吗?", operatorDtos.count]
+                                        withOKCallback:^(id x){
+                                            @strongify(self);
+                                            HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:operatorDtoIds];
+                                            [request request]
+                                            .then(^(id responseObj){
+                                                NSLog(@"%@", responseObj);
+                                                if (request.response.ok) {
+                                                    for (OrderDetailDTO* dto in operatorDtos){
+                                                        [self.dataSource removeObject:dto];
+                                                    }
+                                                    [self.tableView reloadData];
+                                                }
+                                                else {
+                                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                                }
+                                            })
+                                            .catch(^(NSError* error){
+                                                [self showAlertViewWithMessage:error.localizedDescription];
+                                            });
+                                    }
+                                     andCancelCallback:nil];
                     }
                         break;
                     case 2:
+                    {
                         NSLog(@"我买的货->待付款->已支付");
+                    }
                         break;
                     default:
                         break;
@@ -237,7 +242,36 @@
             case kOrderSubTypeReceived:
                 switch (segmentIndex) {
                     case 0:
+                    {
                         NSLog(@"我买的货->待签收->签收");
+                        if (operatorDtos.count == 0) {
+                            [self showAlertViewWithMessage:@"请选择需要签收的订单"];
+                            break;
+                        }
+                        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确定要签收选中的%ld条订单吗?", operatorDtos.count]
+                                        withOKCallback:^(id x){
+                                            @strongify(self);
+                                            HttpOrderReceiveRequest* request = [[HttpOrderReceiveRequest alloc] initWithOids:operatorDtoIds];
+                                            [request request]
+                                            .then(^(id responseObj){
+                                                NSLog(@"%@", responseObj);
+                                                if (request.response.ok) {
+                                                    for (OrderDetailDTO* dto in operatorDtos){
+                                                        [self.dataSource removeObject:dto];
+                                                    }
+                                                    [self.tableView reloadData];
+                                                }
+                                                else {
+                                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                                }
+                                            })
+                                            .catch(^(NSError* error){
+                                                [self showAlertViewWithMessage:error.localizedDescription];
+                                            });
+                                        }
+                                     andCancelCallback:nil];
+
+                    }
                         break;
                     case 1:
                         NSLog(@"我买的货->待签收->已签收");
@@ -258,7 +292,17 @@
                         NSLog(@"我卖的货->待发货->待付款");
                         break;
                     case 1:
+                    {
                         NSLog(@"我卖的货->待发货->发货");
+                        if (operatorDtos.count == 0) {
+                            [self showAlertViewWithMessage:@"请选择需要发货的订单"];
+                            break;
+                        }
+
+                        OrderSendViewController* sendVC = [[OrderSendViewController alloc] initWithOrderDetaildtos:operatorDtos];
+                        sendVC.delegate = self;
+                        [self.navigationController pushViewController:sendVC animated:YES];
+                    }
                         break;
                     case 2:
                         NSLog(@"我卖的货->待发货->已发货");
@@ -273,7 +317,35 @@
                         NSLog(@"我卖的货->待确认->待结款");
                         break;
                     case 1:
+                    {
                         NSLog(@"我卖的货->待确认->待确认");
+                        if (operatorDtos.count == 0) {
+                            [self showAlertViewWithMessage:@"请选择需要确认的订单"];
+                            break;
+                        }
+                        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确定要确认选中的%ld条订单吗?", operatorDtos.count]
+                                        withOKCallback:^(id x){
+                                            @strongify(self);
+                                            HttpOrderConfirmRequest* request = [[HttpOrderConfirmRequest alloc] initWithOids:operatorDtoIds];
+                                            [request request]
+                                            .then(^(id responseObj){
+                                                NSLog(@"%@", responseObj);
+                                                if (request.response.ok) {
+                                                    for (OrderDetailDTO* dto in operatorDtos){
+                                                        [self.dataSource removeObject:dto];
+                                                    }
+                                                    [self.tableView reloadData];
+                                                }
+                                                else {
+                                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                                }
+                                            })
+                                            .catch(^(NSError* error){
+                                                [self showAlertViewWithMessage:error.localizedDescription];
+                                            });
+                                        }
+                                     andCancelCallback:nil];
+                    }
                         break;
                     case 2:
                         NSLog(@"我卖的货->待确认->完成");
@@ -388,8 +460,9 @@
     [super viewWillAppear:animated];
 //    self.orderListPageNumber = 0;
     [self.tabBarController setTabBarHidden:YES animated:YES];
-//    [self clearOrderList];
-//    [self getOrderList];
+    [self.tableView reloadData];
+
+//    self.commonBottomView.selectAllCheckBox.on = NO;
 }
 
 -(void)clearOrderList
@@ -537,31 +610,22 @@
         return cell;
     }
     
-    // TODO .....
     OrderDetailDTO* dto = (OrderDetailDTO*)self.dataSource[indexPath.row];
     OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListCell"];
     if ((self.currentSegmentIndex == 1 &&
          (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))
-        || self.currentSegmentIndex == 0) {
-        if (self.currentSegmentIndex == 1) {
+        ) {
             cell.reactiveButton.hidden = NO;
-        }
-        else {
-            cell.reactiveButton.hidden = YES;
-        }
-        
-        if (!cell.selectedCheckBox.delegate) {
-            cell.selectedCheckBox.delegate = self;
-        }
-        cell.selectedCheckBox.tag = 10000 + indexPath.row;
-        cell.selectedCheckBox.on = cell.orderDetailDTO.selected;
     }
     else {
-        cell.hiddenCheckbox = self.commonBottomView.hidden;
         cell.reactiveButton.hidden = YES;
     }
+    cell.selectedCheckBox.tag = 10000 + indexPath.row;
     cell.hiddenCheckbox = self.commonBottomView.hidden;
+    cell.selectedCheckBox.on = dto.selected;
     cell.orderDetailDTO = dto;
+    cell.selectedCheckBox.delegate = self;
+    cell.delegate = self;
 
     return cell;
 }
@@ -732,6 +796,47 @@
         [self.dataSource removeObject:orderDto];
         [self.tableView reloadData];
     }
+}
+
+#pragma -- mark order list cell delegate
+-(void)reactiveButtonClicked:(OrderDetailDTO *)orderDetailDTO
+{
+    @weakify(self);
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要激活订单: %ld 吗?", orderDetailDTO.id]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpOrderReactiveRequest* request = [[HttpOrderReactiveRequest alloc] initWithOid:orderDetailDTO.id];
+                        [request request]
+                        .then(^(id responseObj){
+                            if (request.response.ok) {
+                                [self.dataSource removeObject:orderDetailDTO];
+                                [self.tableView reloadData];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                    }
+                 andCancelCallback:^(id x){
+                     
+                 }];
+}
+
+
+#pragma  -- mark OrderSendVC delegate
+-(void)sendSuccessWithOrderDetailDtos:(NSArray *)orderDetailDtos
+{
+    [self.dataSource removeObjectsInArray:orderDetailDtos];
+}
+
+
+
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", [self class]);
 }
 
 @end

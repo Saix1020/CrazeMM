@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 
 @property (nonatomic) SearchType searchType;
 @property (nonatomic, strong) UISearchBar* searchBar;
+@property (nonatomic, strong) UIView* searchView;
 @property (nonatomic, strong) UIBarButtonItem* backButtonItem;
 @property (nonatomic, strong) UIBarButtonItem* searchButtonItem;
 @property (nonatomic, strong) UITableView* tableView;
@@ -65,10 +66,14 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 -(UISearchBar*)searchBar
 {
     if(!_searchBar){
-        _searchBar = [[UISearchBar alloc] init];
-        _searchBar.tintColor = [UIColor blueColor];
-        _searchBar.placeholder = [NSString stringWithFormat:@"输入你所需要的%@信息", self.searchType==kSearchTypeBuy?@"求购":@"供货"];
+        _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(12.f,0.0f,250.0f,44.0f)];
         _searchBar.delegate = self;
+        _searchBar.placeholder = [NSString stringWithFormat:@"搜索%@信息, 逗号隔开多个关键字", self.searchType==kSearchTypeBuy?@"求购":@"供货"];
+        [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont systemFontOfSize:12.f]];
+
+        _searchBar.tintColor = [UIColor blueColor];
+        _searchBar.backgroundImage = [[UIImage alloc] init];
+
     }
     return _searchBar;
 }
@@ -96,6 +101,17 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         }]];
     }
     return _searchButtonItem;
+}
+
+-(UIView*)searchView
+{
+    if (!_searchView) {
+        _searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 768, 44)];
+        _searchView.backgroundColor = [UIColor clearColor];
+        [_searchView addSubview:self.searchBar];
+    }
+    
+    return _searchView;
 }
 
 
@@ -168,13 +184,13 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 //    [self.tableView setTableFooterView:view];
 
     
-    self.navigationItem.titleView = self.searchBar;
+    self.navigationItem.titleView = self.searchView;
     self.navigationItem.rightBarButtonItem = self.searchButtonItem;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SearchHistoryCell" bundle:nil] forCellReuseIdentifier:@"SearchHistoryCell"];
 
     
-    self.searchKeywords = [@[@"苹果", @"美图", @"诺基亚", @"Samsung/三星", @"小米", @"华为"] mutableCopy];
+    self.searchKeywords = [@[@"苹果", @"美图", @"诺基亚", @"三星", @"小米", @"华为"] mutableCopy];
     @weakify(self);
     [self.keywordsCell setKeywords:self.searchKeywords andBlock:^(id sender){
         @strongify(self);
@@ -195,15 +211,16 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
     [self.tabBarController setTabBarHidden:YES animated:YES];
-
+    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         self.searchHistory = [[SearchHistory findAll:self.managedObjectcontent] mutableCopy];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
     });
+    [super viewWillAppear:animated];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated

@@ -24,4 +24,17 @@
     return self;
 }
 
+-(NSString*)bankDesc
+{
+    NSString* bankAccout;
+    if (self.bankaccount.length<4) {
+        bankAccout = self.bankaccount;
+    }
+    else {
+        bankAccout = [self.bankaccount substringFromIndex:self.bankaccount.length-4];
+    }
+    
+    return [NSString stringWithFormat:@"%@(%@)", self.openingbank, bankAccout];
+}
+
 @end
