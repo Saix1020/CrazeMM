@@ -183,8 +183,8 @@
         @strongify(self);
         self.finishButton.enabled = [signupActive boolValue];
         if(!self.finishButton.enabled){
-            self.finishButton.backgroundColor = [UIColor whiteColor];
-            [self.finishButton setTitleColor: RGBCOLOR(200, 200, 200)  forState:UIControlStateDisabled];
+            self.finishButton.backgroundColor = [UIColor light_Gray_Color];;
+            [self.finishButton setTitleColor: RGBCOLOR(150, 150, 150)  forState:UIControlStateDisabled];
             
         }
         else {
@@ -258,13 +258,10 @@
         if (checkMessageCode.response.ok) {
             [self showAlertViewWithMessage:@"注册成功, 欢迎使用189疯狂买卖"];
 //            [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
-
             
             NSArray* controllers = self.navigationController.viewControllers;
             NSMutableArray* newVCs = [[NSMutableArray alloc] init];
-            // we should pop login vc
-            //if (controllers.count > 2) {
-                
+            
             for (UIViewController* vc in controllers) {
                 if ([vc isMemberOfClass:[LoginViewController class]]) {
                     if (((LoginViewController*)vc).nextVC) {
@@ -275,12 +272,26 @@
                     [newVCs addObject:vc];
                 }
             }
-                self.navigationController.viewControllers = [newVCs copy];
-            //}
+            self.navigationController.viewControllers = [newVCs copy];
             
             [UserCenter defaultCenter].userName = self.phoneTextField.text;
             [[UserCenter defaultCenter] setLogined];
-            
+            // store the user name
+            NSMutableArray* accountHistoryArray = [[[NSUserDefaults standardUserDefaults] valueForKey:@"AccountHistory"] mutableCopy];
+            if(accountHistoryArray == nil){
+                accountHistoryArray = [[NSMutableArray alloc] init];
+            }
+            NSInteger index = [accountHistoryArray indexOfObject:self.phoneTextField.text];
+            if (index == NSNotFound) {
+                [accountHistoryArray insertObject:self.phoneTextField.text atIndex:0];
+            }
+            else {
+                NSString* userName = accountHistoryArray[index];
+                [accountHistoryArray removeObject:userName];
+                [accountHistoryArray insertObject:userName atIndex:0];
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:accountHistoryArray forKey:@"AccountHistory"];
+
             [self.navigationController popViewControllerAnimated:YES];
             
             return (AnyPromise*)responseObject;

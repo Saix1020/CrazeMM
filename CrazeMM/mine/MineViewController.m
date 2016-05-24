@@ -97,7 +97,7 @@
         [self.cancelButton setTitle:@"退出" forState:UIControlStateNormal];
         [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.cancelButton.backgroundColor = [UIColor redColor];
-        self.cancelButton.layer.cornerRadius = 4.f;
+//        self.cancelButton.layer.cornerRadius = 4.f;
         self.cancelButton.clipsToBounds = YES;
         self.cancelButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);
         
@@ -226,35 +226,31 @@
 
 -(void)logout
 {
-    HttpLogoutRequest* logoutRequest = [[HttpLogoutRequest alloc] init];
-    [self showProgressIndicatorWithTitle:@"正在注销..."];
-    [logoutRequest request]
-    .then(^(id responseObject){
-        if (logoutRequest.response.ok) {
-//            [[UserCenter defaultCenter] resetKeychainItem];
-            [[UserCenter defaultCenter] setLogouted];
-            
-            //navigate to login page
-//            LoginViewController* loginVC = [[LoginViewController alloc] init];
-//            //[self presentViewController:loginVC animated:YES completion:nil];
-//            [self.navigationController pushViewController:loginVC animated:YES];
-//            self.cancelButton.enabled = NO;
-
-            [self.tableView reloadData];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast object:nil userInfo:nil];
-        }
-        else {
-            [self showAlertViewWithMessage:@"注销失败!"];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        [self dismissProgressIndicator];
-    });
-    
-    //[self.tableView reloadData];
+    @weakify(self);
+    [self showAlertViewWithMessage:@"您确认需要退出吗?"
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpLogoutRequest* logoutRequest = [[HttpLogoutRequest alloc] init];
+                        [self showProgressIndicatorWithTitle:@"正在注销..."];
+                        [logoutRequest request]
+                        .then(^(id responseObject){
+                            if (logoutRequest.response.ok) {
+                                [[UserCenter defaultCenter] setLogouted];
+                                [self.tableView reloadData];
+//                                [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast object:nil userInfo:nil];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:@"注销失败!"];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        })
+                        .finally(^(){
+                            [self dismissProgressIndicator];
+                        });
+                    }
+                 andCancelCallback:nil];
 }
 
 -(void)viewWillLayoutSubviews
