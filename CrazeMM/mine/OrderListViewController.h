@@ -10,12 +10,14 @@
 #import "CustomSegment.h"
 #import "BEMCheckBox.h"
 #import "OrderDefine.h"
+#import "OrderListCell.h"
 #import "OrderDetailViewController.h"
+#import "OrderSendViewController.h"
 
 
-@interface OrderListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate, BEMCheckBoxDelegate, OrderDetailViewControllerDelegate>
+@interface OrderListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, CustomSegmentDelegate, BEMCheckBoxDelegate, OrderDetailViewControllerDelegate, OrderListCellDelegate, OrderSendViewControllerDelegate>
 
 -(instancetype)initWithOrderType:(MMOrderType)orderType andSubType:(MMOrderSubType)subType;
-
+-(void)removeOrderDtoByOderIds:(NSArray*)ids;
 
 @end

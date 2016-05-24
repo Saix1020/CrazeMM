@@ -10,8 +10,9 @@
 #import "OrderDetailDTO.h"
 #import "OrderStatusDTO.h"
 #import "BaseProductDetailDTO.h"
+#import "AddressListViewController.h"
 
-@interface PayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface PayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AddressListViewControllerDelegate>
 
 -(instancetype)initWithOrderStatusDTO:(OrderStatusDTO*)orderStatusDto;
 -(instancetype)initWithOrderDetailDTOs:(NSArray<OrderDetailDTO*>*)orderStatusDtos;

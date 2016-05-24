@@ -14,4 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *chooseButton;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 
+@property (nonatomic, strong) NSString* value;
+@property (nonatomic, strong) NSString* title;
+
+-(void)hideChooseButton;
+
 @end

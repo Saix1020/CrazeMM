@@ -109,5 +109,9 @@ static UserCenter *defaultUserCenter = nil;
     return (user && password && user.length!=0 && password.length!=0);
 }
 
+-(NSString*)userName
+{
+    return [self.keyChainWrapper  objectForKey:(id)kSecAttrAccount];
+}
 
 @end

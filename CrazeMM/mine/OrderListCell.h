@@ -21,6 +21,12 @@
 
 @end
 
+@protocol OrderListCellDelegate <NSObject>
+
+-(void)reactiveButtonClicked:(OrderDetailDTO*)orderDetailDTO;
+
+@end
+
 
 @interface OrderListCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *reactiveButton;
@@ -36,6 +42,8 @@
 @property (weak, nonatomic) IBOutlet UIView *backgroundLabel;
 @property (nonatomic) BOOL hiddenCheckbox;
 @property (strong, nonatomic) OrderDetailDTO* orderDetailDTO;
+
+@property (nonatomic, weak) id<OrderListCellDelegate> delegate;
 
 +(CGFloat)cellHeight;
 

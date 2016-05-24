@@ -16,5 +16,5 @@
 
 
 -(UIImage*)imageForView;
-
+- (UIResponder*)findFirstResponder;
 @end

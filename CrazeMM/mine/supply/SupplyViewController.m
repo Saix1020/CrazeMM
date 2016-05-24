@@ -22,7 +22,6 @@
 //@property (nonatomic, strong) SegmentedCell* segmentCell;
 //@property (nonatomic, strong) CommonBottomView* bottomView;
 @property (nonatomic) SupplyListCellStyle cellStyle;
-@property (nonatomic, strong) NSMutableArray<MineSupplyProductDTO*>* dataSource;
 @property (nonatomic, copy) NSArray* nomalDataSource;
 @property (nonatomic, copy) NSArray* offShelfDataSource;
 @property (nonatomic, copy) NSArray* dealDataSource;
@@ -52,7 +51,7 @@
 {
     if(!_bottomView){
         _bottomView = [super bottomView];
-        [_bottomView.confirmButton setTitle:@"下架" forState:UIControlStateNormal];
+        [_bottomView.confirmButton setTitle:@"批量下架" forState:UIControlStateNormal];
         [_bottomView.totalPriceLabel setText:@""];
 
     }
@@ -90,6 +89,7 @@
 -(void)addSupply:(id)sender
 {
     MineSupplyEditViewController* editVC = [[MineSupplyEditViewController alloc] init];
+    editVC.delegate = self;
     [self.navigationController pushViewController:editVC animated:YES];
 }
 
@@ -283,31 +283,10 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    NSInteger num = self.dataSource.count;
-    return num*2;
-}
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell;
-    
-    if (indexPath.row%2 == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"UselessHeadCell"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UselessHeadCell"];
-            cell.backgroundColor = RGBCOLOR(240, 240, 240);
-        }
-    }
-    else {
+    UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (!cell) {
         // we should use this style for cell reuse to support iOS8
         cell = [tableView dequeueReusableCellWithIdentifier:@"SupplyListCell"];
         if (cell==nil) {
@@ -318,11 +297,9 @@
         ((SupplyListCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
         ((SupplyListCell*)cell).selectCheckBox.delegate = self;
         ((SupplyListCell*)cell).delegate = self;
-
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     return cell;
 }
 
@@ -330,10 +307,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row %2 == 0) {
-        return 12.f;
+    if (indexPath.row % 2 == 0) {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
-    
     else {
         if (self.segmentCell.segment.currentIndex != 2) {
             return [SupplyListCell cellHeight];
@@ -370,11 +346,11 @@
         NSLog(@"%@", responseObj);
         HttpMineSupplyResponse* response = (HttpMineSupplyResponse*)request.response;
         if (response.ok) {
-            [self.dataSource addObjectsFromArray:response.productDTOs];
-            self.totalPage = response.totalPage;
-            self.pageNumber = response.pageNumber>=self.totalPage?self.totalPage:response.pageNumber;
-            [self.tableView reloadData];
-            if (response.productDTOs.count>0) {
+            if(response.productDTOs.count>0){
+                [self.dataSource addObjectsFromArray:response.productDTOs];
+                self.totalPage = response.totalPage;
+                self.pageNumber = response.pageNumber>=self.totalPage?self.totalPage:response.pageNumber;
+                [self.tableView reloadData];
                 self.bottomView.selectAllCheckBox.on = NO;
             }
         }
@@ -396,15 +372,18 @@
     
     if (index == 0) {
         self.cellStyle = kNomalStyle;
-        [self.bottomView.confirmButton setTitle:@"下架" forState:UIControlStateNormal];
+        self.bottomView.hidden = NO;
+        [self.bottomView.confirmButton setTitle:@"批量下架" forState:UIControlStateNormal];
     }
     else if(index==1){
         self.cellStyle = kOffShelfStyle;
-        [self.bottomView.confirmButton setTitle:@"上架" forState:UIControlStateNormal];
+        self.bottomView.hidden = NO;
+        [self.bottomView.confirmButton setTitle:@"批量上架" forState:UIControlStateNormal];
 
     }
     else {
         self.cellStyle = kDealStyle;
+        self.bottomView.hidden = YES;
         [self.bottomView.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
 
     }
@@ -458,6 +437,17 @@
         default:
             break;
     }
+}
+
+#pragma -- mark MineSupplyEditViewController Delegate
+-(void)editSupplyGoodSuccess
+{
+    [self.dataSource removeAllObjects];
+    [self.tableView reloadData];
+    
+    self.pageNumber = 0;
+    [self getMineSupply];
+
 }
 
 @end

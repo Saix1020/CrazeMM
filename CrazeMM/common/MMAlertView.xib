@@ -53,7 +53,6 @@
                 <constraint firstItem="Z74-5X-Oav" firstAttribute="top" secondItem="Pho-uQ-Sb3" secondAttribute="top" constant="16" id="1XA-eS-f0a"/>
                 <constraint firstItem="6pA-VA-lML" firstAttribute="leading" secondItem="gpg-9r-pr1" secondAttribute="trailing" id="1Yi-BD-qoZ"/>
                 <constraint firstItem="gpg-9r-pr1" firstAttribute="height" secondItem="6pA-VA-lML" secondAttribute="height" id="4tY-GI-GZf"/>
-                <constraint firstItem="6pA-VA-lML" firstAttribute="leading" secondItem="NTf-9g-pfa" secondAttribute="trailing" constant="-1" id="817-O8-c7g"/>
                 <constraint firstItem="6pA-VA-lML" firstAttribute="top" secondItem="Z74-5X-Oav" secondAttribute="bottom" constant="8" id="975-Ve-uyZ"/>
                 <constraint firstAttribute="trailing" secondItem="6pA-VA-lML" secondAttribute="trailing" id="KRs-Dg-4GU"/>
                 <constraint firstItem="NTf-9g-pfa" firstAttribute="centerX" secondItem="Pho-uQ-Sb3" secondAttribute="centerX" id="KfO-ys-isd"/>

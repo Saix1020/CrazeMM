@@ -10,4 +10,17 @@
 
 @implementation BuyProductDetailDTO
 
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [super initWith:dict];
+    if (self) {
+        if (dict[@"addr"]) {
+            self.addrDto = [[AddrDTO alloc] initWith:dict[@"addr"]];
+            if(IsNilOrNull(self.region) || self.region.length==0){
+                self.region = [NSString stringWithFormat:@"%@ %@", self.addrDto.region, self.addrDto.street];
+            }
+        }
+    }
+    return self;
+}
 @end

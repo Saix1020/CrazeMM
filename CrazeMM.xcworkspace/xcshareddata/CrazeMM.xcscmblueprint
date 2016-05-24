@@ -1,30 +1,37 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4BE184A9993D527888B5AD99B53FF5E017862A3F",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4BE184A9993D527888B5AD99B53FF5E017862A3F+++137EF15",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "4BE184A9993D527888B5AD99B53FF5E017862A3F" : 0,
-    "76D94A087732FFD8B84FD7B9F14E6392387528A4" : 0
+    "76D94A087732FFD8B84FD7B9F14E6392387528A4+++D5C88A7" : 0,
+    "4BE184A9993D527888B5AD99B53FF5E017862A3F+++7CB2E4E" : 0,
+    "4BE184A9993D527888B5AD99B53FF5E017862A3F+++137EF15" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "56256476-B14C-4636-9FC1-46E341CADCC1",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "45EE1B25-A358-470C-9B9F-488E44742A51",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "4BE184A9993D527888B5AD99B53FF5E017862A3F" : "CrazeMM\/",
-    "76D94A087732FFD8B84FD7B9F14E6392387528A4" : ".."
+    "76D94A087732FFD8B84FD7B9F14E6392387528A4+++D5C88A7" : "",
+    "4BE184A9993D527888B5AD99B53FF5E017862A3F+++7CB2E4E" : "",
+    "4BE184A9993D527888B5AD99B53FF5E017862A3F+++137EF15" : "CrazeMM\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "CrazeMM",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CrazeMM.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:OrcMan1020\/CrazeMM.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:basara7\/CrazeMM.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4BE184A9993D527888B5AD99B53FF5E017862A3F"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4BE184A9993D527888B5AD99B53FF5E017862A3F+++137EF15"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:basara7\/Farm.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/OrcMan1020\/CrazeMM.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "76D94A087732FFD8B84FD7B9F14E6392387528A4"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4BE184A9993D527888B5AD99B53FF5E017862A3F+++7CB2E4E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:basara7\/CrazeMM.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "76D94A087732FFD8B84FD7B9F14E6392387528A4+++D5C88A7"
     }
   ]
 }

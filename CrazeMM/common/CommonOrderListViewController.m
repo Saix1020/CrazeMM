@@ -285,9 +285,49 @@
 
 #pragma -- UITableViewCell delegate
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger num = self.dataSource.count;
+    return num*2 + 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == self.dataSource.count*2){
+        return [CommonBottomView cellHeight];
+    }
+    else if(indexPath.row %2 ==0){
+        return 12.f;
+    }
     return 0;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell* cell = nil;
+    if (indexPath.row%2 == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"UselessHeadCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UselessHeadCell"];
+            cell.backgroundColor = RGBCOLOR(240, 240, 240);
+        }
+    }
+    else if (indexPath.row == self.dataSource.count*2) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"LastUselessCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"lastUselessCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = [UIColor clearColor];
+        }
+    }
+    
+    return cell;
 }
 
 @end

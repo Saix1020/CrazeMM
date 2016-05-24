@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titlelabel;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *checkBox2;
 
+@property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel2;
 @end

@@ -18,4 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *frozenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 
+@property (nonatomic) CGFloat frozenMoney;
+@property (nonatomic) CGFloat money;
+
 @end

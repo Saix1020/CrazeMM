@@ -22,6 +22,8 @@
 #import "NoLoginHeadCell.h"
 #import "HttpOrderSummary.h"
 #import "HttpLogout.h"
+#import "MineBuyViewController.h"
+#import "AddressesViewController.h"
 
 
 
@@ -48,10 +50,10 @@
                  @"我的账户",
                  @"我的供货",
                  @"我的求购",
-                 @"我的抵押",
-                 @"我的站内信息",
+//                 @"我的抵押",
+//                 @"我的站内信息",
                  @"我的收货地址",
-                 @"我的自提人"
+//                 @"我的自提人"
                  ];
     }
     else {
@@ -454,6 +456,9 @@
         {
             switch (row) {
                 case 0:
+                    self.avataCell.nameLabel.text = [[UserCenter defaultCenter] userName];
+                    self.avataCell.frozenMoney = 0;
+                    self.avataCell.money = 0;
                     return self.avataCell;
                 case 1:
                     return self.segmentCell;
@@ -567,14 +572,35 @@
                 
                 return;
             }
-//            
+            else if(indexPath.row== 2){
+                MineBuyViewController* mineBuyVC = [[MineBuyViewController alloc] init];
+                [self.navigationController pushViewController:mineBuyVC animated:YES];
+                return;
+
+            }
+            else if(indexPath.row== 3){
+                AddressesViewController* addrVC = [[AddressesViewController alloc] init];
+                [self.navigationController pushViewController:addrVC animated:YES];
+                return;
+                
+            }
+            
+//
 //            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
 //            [self.navigationController pushViewController:mineSellProductVC animated:YES];
             
             
         }
             break;
-            
+        case kSectionContact:
+        {
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", @"025847272229"]];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+
+        }
+            break;
         default:
             break;
     }

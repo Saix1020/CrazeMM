@@ -8,6 +8,7 @@
 
 #import "BaseHttpRequest.h"
 #import "AddressDTO.h"
+#import "AddrDTO.h"
 
 @interface HttpAddressRequest : BaseHttpRequest
 
@@ -17,5 +18,21 @@
 
 @property (nonatomic, readonly) NSArray* addr;
 @property (nonatomic, strong) NSMutableArray* addresses;
+
+@end
+
+@interface HttpAddressDetailRequest : BaseHttpRequest
+
+@end
+@interface HttpAddressDetailResponse : BaseHttpResponse
+
+@property (nonatomic, readonly) NSArray* addr;
+@property (nonatomic, strong) NSMutableArray* addresses;
+
+@end
+
+@interface HttpAddressSaveRequest : BaseHttpRequest
+
+-(instancetype)initWithAddrDto:(AddrDTO*)addrDto;
 
 @end

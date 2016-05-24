@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B9EFADF41CED514100F81157"
-               BuildableName = "CrazeMM_Simulator.app"
-               BlueprintName = "CrazeMM_Simulator"
+               BuildableName = "CrazeMM_Phone.app"
+               BlueprintName = "CrazeMM_Phone"
                ReferencedContainer = "container:CrazeMM.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B9EFADF41CED514100F81157"
-            BuildableName = "CrazeMM_Simulator.app"
-            BlueprintName = "CrazeMM_Simulator"
+            BuildableName = "CrazeMM_Phone.app"
+            BlueprintName = "CrazeMM_Phone"
             ReferencedContainer = "container:CrazeMM.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B9EFADF41CED514100F81157"
-            BuildableName = "CrazeMM_Simulator.app"
-            BlueprintName = "CrazeMM_Simulator"
+            BuildableName = "CrazeMM_Phone.app"
+            BlueprintName = "CrazeMM_Phone"
             ReferencedContainer = "container:CrazeMM.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B9EFADF41CED514100F81157"
-            BuildableName = "CrazeMM_Simulator.app"
-            BlueprintName = "CrazeMM_Simulator"
+            BuildableName = "CrazeMM_Phone.app"
+            BlueprintName = "CrazeMM_Phone"
             ReferencedContainer = "container:CrazeMM.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -143,6 +143,9 @@
             case kOrderSubTypeSend:
             {
                 switch (_orderState) {
+                    case WAITFORPAY:
+                        self.hidden = YES;
+                        break;
                     case TOBESENT:
                         self.hidden = NO;
                         self.selectAllCheckBox.hidden = NO;
@@ -161,6 +164,9 @@
             case kOrderSubTypeConfirmed:
             {
                 switch (_orderState) {
+                    case TOBESETTLED:
+                        self.hidden = YES;
+                        break;
                     case TOBECONFIRMED:
                         self.hidden = NO;
                         self.selectAllCheckBox.hidden = NO;

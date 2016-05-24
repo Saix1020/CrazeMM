@@ -13,4 +13,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *textFieldCell;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 
+@property (nonatomic, strong) NSString* title;
+@property (nonatomic, strong) NSString* value;
+@property (nonatomic, strong) NSString* placehoder;
+
 @end

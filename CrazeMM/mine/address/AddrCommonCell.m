@@ -15,10 +15,35 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setTitle:(NSString *)title
+{
+    self.titleLabel.text = title;
 }
+
+-(NSString*)title
+{
+    return self.titleLabel.text;
+}
+
+-(void)setValue:(NSString *)value
+{
+    self.textFieldCell.text = value;
+}
+
+-(NSString*)value
+{
+    return self.textFieldCell.text;
+}
+
+-(void)setPlacehoder:(NSString *)placehoder
+{
+    self.textFieldCell.placeholder = placehoder;
+}
+
+-(NSString*)placehoder
+{
+    return self.textFieldCell.placeholder;
+}
+
 
 @end

@@ -23,5 +23,7 @@
 @property (nonatomic, strong) CommonBottomView* bottomView;
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic) CGFloat contentHeightOffset;
+@property (nonatomic, strong) NSMutableArray* dataSource;
+
 
 @end

@@ -46,7 +46,7 @@
                                     <constraint firstAttribute="width" constant="78" id="DmZ-8D-vzG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="匿名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRf-As-sW8">
@@ -56,7 +56,7 @@
                                     <constraint firstAttribute="width" constant="78" id="U8W-0x-L2V"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -94,6 +94,7 @@
             <connections>
                 <outlet property="checkBox" destination="3OV-ea-gbU" id="CKl-G7-jP6"/>
                 <outlet property="checkBox2" destination="URp-6U-H1l" id="Vl6-ur-Vfz"/>
+                <outlet property="seperatorLine" destination="Lng-Z5-D9v" id="WLh-d3-WhI"/>
                 <outlet property="titleLabel2" destination="XRf-As-sW8" id="vYg-6l-xkN"/>
                 <outlet property="titlelabel" destination="7td-aj-cpT" id="GPb-Sc-9gx"/>
             </connections>

@@ -57,51 +57,86 @@
 @end
 
 
+
 @implementation HttpPayRequest
 
--(AFHTTPRequestOperationManager*)manager
-{
-    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
-    
-//    [manager.requestSerializer setValue:COMB_URL(@"") forHTTPHeaderField:@"\"Origin\""];
-//    [manager.requestSerializer setValue:COMB_URL(@"") forHTTPHeaderField:@"\"Referer\""];
-//
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-
-    return manager;
-}
-
--(instancetype)initWithPayDetail:(PayInfoDTO*)payInfoDto
+-(instancetype)initWithPayNo:(NSString*)payNo andOrderId:(NSInteger)orders andAddrId:(NSInteger)addrId
 {
     self = [super init];
     if (self) {
         self.params = [@{
-                         @"MERCHANTID" : payInfoDto.MERCHANTID,
-                             @"POSID" :  payInfoDto.POSID,
-                             @"BRANCHID" :  payInfoDto.BRANCHID,
-                             @"ORDERID" :  payInfoDto.ORDERID,
-                             @"PAYMENT" :  @(payInfoDto.PAYMENT),
-                             @"CURCODE" :  payInfoDto.CURCODE,
-                             @"REMARK1" :  payInfoDto.REMARK1,
-                             @"REMARK2" :  payInfoDto.REMARK2,
-                             @"TXCODE" :  payInfoDto.TXCODE,
-                             @"TYPE" :  @(payInfoDto.TYPE),
-                             @"GATEWAY" :  payInfoDto.GATEWAY,
-                             @"CLIENTIP" : payInfoDto.CLIENTIP,
-                        } mutableCopy];
+                         @"payNo" : payNo,
+                         @"orders": @(orders),
+                         @"addrId": @(addrId)
+                         } mutableCopy];
     }
+    
     return self;
 }
 
 
 -(NSString*)url
 {
-        return @"https://ibsbjstar.ccb.com.cn/app/ccbMain";
+        return COMB_URL(@"/rest/pay");
 }
 
 -(NSString*)method
 {
     return @"POST";
+}
+
+@end
+
+@implementation HttpPayResultRequest
+
+-(instancetype)initWithPayNo:(NSString *)payNo
+{
+    self = [super init];
+    if (self) {
+        self.payNo = payNo;
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/pay/%@", self.payNo];
+    return COMB_URL(absUrl);
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpPayResultResponse class];
+}
+
+@end
+
+@implementation HttpPayResultResponse
+
+-(NSString*)endTime
+{
+    return self.all[@"pay"][@"endTime"];
+}
+
+-(BOOL)procSuc
+{
+    return [self.all[@"pay"][@"procSuc"] integerValue] == 1;
+}
+
+-(BOOL)isSuc
+{
+    return [self.all[@"pay"][@"isSuc"] integerValue] == 1;
+}
+
+-(BOOL)paySuccess
+{
+    return NotNilAndNull(self.endTime) && self.procSuc && self.isSuc;
 }
 
 @end

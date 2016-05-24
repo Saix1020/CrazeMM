@@ -10,6 +10,7 @@
 #import "HttpProductDetail.h"
 #import "BuyProductView.h"
 #import "HttpAddIntention.h"
+#import "HttpBuyOrder.h"
 
 @interface BuyProductViewController ()
 
@@ -92,6 +93,9 @@
         _supplyProductView  =  [[[NSBundle mainBundle]loadNibNamed:@"BuyProductView" owner:nil options:nil] firstObject];
         [self.view addSubview:_supplyProductView];
         _supplyProductView.amountLabel.text = @"供货数量";
+        _supplyProductView.amountTextField.userInteractionEnabled = NO;
+        _supplyProductView.subButton.userInteractionEnabled = NO;
+        _supplyProductView.addButton.userInteractionEnabled = NO;
         @weakify(self);
         _supplyProductView.determineButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             @strongify(self);
@@ -100,7 +104,7 @@
             
             if ([_supplyProductView.amountTextField.text integerValue] > 0  && [_supplyProductView.amountTextField.text integerValue] <= self.productDetailDto.quantity) {
                 [self.modalView dismiss];
-                [self handleBuyWithQuantity:[_supplyProductView.amountTextField.text integerValue] andMessage:_supplyProductView.descTextView.text];
+                [self handleOrderWithQuantity:[_supplyProductView.amountTextField.text integerValue] andMessage:_supplyProductView.descTextView.text];
             }
             else {
                 [self showAlertViewWithMessage:@"请输入正确的数量!"];
@@ -148,9 +152,17 @@
     .then(^(id responseObject){
         NSLog(@"%@", responseObject);
         HttpBuyProductDetailResponse* response = (HttpBuyProductDetailResponse*)request.response;
+        
         self.productDetailDto = response.dto;
         [self.productDto resetByProductDetailDto:self.productDetailDto];
-//        [self.tableView reloadData];
+        if (!self.productDto.isActive) {
+            self.supplyButton.enabled = NO;
+            self.supplyButton.backgroundColor = [UIColor clearColor];
+        }
+        else {
+            self.supplyButton.enabled = YES;
+            self.supplyButton.backgroundColor = [UIColor redButtonColor];
+        }
     })
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
@@ -164,22 +176,23 @@
 
 -(void)handleOrderWithQuantity:(NSInteger)quantity andMessage:(NSString *)message
 {
-    [super handleOrderWithQuantity:quantity andMessage:message];
-//    HttpSupplyOrderRequest* request = [[HttpSupplyOrderRequest alloc] initWithSid:self.productDto.id andVersion:self.productDetailDto.version andQuantity:quantity andMessage:message];
-//    [request request]
-//    .then(^(id responseObj){
-//        NSLog(@"%@", responseObj);
-//        if (request.response.ok) {
-//            [self getProductDetail:NO];
-//        }
-//        else {
-//            [self showAlertViewWithMessage:request.response.errorMsg];
-//            
-//        }
-//    })
-//    .catch(^(NSError* error){
-//        [self showAlertViewWithMessage:error.localizedDescription];
-//    });
+    HttpBuyOrderRequest* request = [[HttpBuyOrderRequest alloc] initWithBid:self.productDto.id andQuantity:quantity andMessage:message];
+    
+    [request request]
+    .then(^(id responseObj){
+        if (request.response.ok) {
+            [self showAlertViewWithMessage:@"供货成功"];
+            [self getProductDetail:NO];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+    
+    
 }
 
 -(void)dealloc

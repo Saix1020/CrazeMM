@@ -21,3 +21,15 @@
 
 
 @end
+
+@interface HttpMineBuyReshelveRequest : HttpMineSupplyReshelveRequest
+
+
+
+@end
+
+@interface HttpMineBuyUnshelveRequest : HttpMineSupplyUnshelveRequest
+
+
+
+@end

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PayInfoDTO.h"
+#import "OrderDetailDTO.h"
 
 @interface OnlinePayViewController : UIViewController<UIWebViewDelegate>
-
+@property (nonatomic, strong) NSArray* orderDetailDtos;
 -(instancetype)initWithPayInfoDto:(PayInfoDTO*)payInfoDto;
 
 

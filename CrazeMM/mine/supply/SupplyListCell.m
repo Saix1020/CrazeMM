@@ -42,6 +42,7 @@
     //self.shareButton.buttonType =
     
     self.shareButton.tintColor = [UIColor UIColorFromRGB:0x444444];
+    
     self.offButton.tintColor = [UIColor UIColorFromRGB:0x444444];
     
 //    [self.shareButton setTintColor:[UIColor UIColorFromRGB:0x444444]  forState:UIControlStateNormal];
@@ -84,6 +85,7 @@
             self.backgroundView.hidden = NO;
             self.shareButton.hidden = NO;
             self.offButton.hidden = NO;
+            self.selectCheckBox.hidden = NO;
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(0);
 
@@ -93,6 +95,7 @@
             self.shareButton.hidden = YES;
             self.backgroundView.hidden = NO;
             self.offButton.hidden = NO;
+            self.selectCheckBox.hidden = NO;
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
             [self.offButton setTitle:@"上架" forState:UIControlStateNormal];
@@ -101,9 +104,30 @@
             self.backgroundView.hidden = YES;
             self.offButton.hidden = YES;
             self.shareButton.hidden = YES;
+            self.selectCheckBox.hidden = YES;
             break;
         default:
             break;
+    }
+    NSLayoutConstraint* constraint = nil;
+    for (constraint in self.contentView.constraints) {
+        if (constraint.firstItem == self.titleLabel
+            && constraint.secondItem == self.contentView
+            && constraint.firstAttribute == NSLayoutAttributeLeading
+            && constraint.secondAttribute == NSLayoutAttributeLeading) {
+            break;
+        }
+    }
+    if (constraint) {
+        [self.contentView removeConstraint:constraint];
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel
+                                                                     attribute:NSLayoutAttributeLeading
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.contentView
+                                                                     attribute:NSLayoutAttributeLeading
+                                                                    multiplier:1.0 constant:self.selectCheckBox.hidden?8.f:32.f ]];
+        [self updateConstraints];
+
     }
 }
 
@@ -118,6 +142,18 @@
     self.priceLabel.text = [NSString stringWithFormat:@"单台定价: ￥%.02f", mineSupplyProductDto.price];
     [self fomartPriceLabel];
     self.selectCheckBox.on = mineSupplyProductDto.selected;
+    
+    if (self.style == kOffShelfStyle) {
+        NSString* title = mineSupplyProductDto.state==400 ? @"已过期" : @"已下架";
+        self.shareButton.hidden = NO;
+        self.shareButton.userInteractionEnabled = NO;
+        [self.shareButton setTitle:title forState:UIControlStateNormal];
+//        self.shareButton.imageView.hidden = YES;
+    }
+    else {
+        self.shareButton.hidden = YES;
+        self.shareButton.userInteractionEnabled = YES;
+    }
     
 }
 
@@ -138,6 +174,12 @@
             [self.delegate buttonClicked:button andType:kUnkonwStyle andSid:self.mineSupplyProductDto.id];
         }
     }
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+
 }
 
 @end

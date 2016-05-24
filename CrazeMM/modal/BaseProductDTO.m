@@ -28,11 +28,12 @@
         self.isAnoy = [dict[@"isAnoy"] boolValue];
         self.millisecond = [dict[@"millisecond"] integerValue];
         self.isStep = [dict[@"isStep"] boolValue];
-        self.price = [dict[@"price"] integerValue];
+        self.price = [dict[@"price"] floatValue];
         self.quantity = [dict[@"quantity"] integerValue];
         self.views = [dict[@"views"] integerValue];
         self.createTime = dict[@"createTime"];
         self.goodImage = dict[@"goodImage"];
+        self.address = dict[@"address"];
         self.selected = NO;
 
     }
@@ -53,6 +54,9 @@
     self.price = detailDto.price;
     self.quantity = detailDto.quantity;
     self.views = detailDto.views;
+    
+    
+
 }
 
 

@@ -16,7 +16,7 @@
     
     self.checkBox.on = NO;
     self.checkBox.animationDuration = 0.f;
-    
+//    self.clipsToBounds
     self.checkBox2.hidden = YES;
     self.titleLabel2.hidden = YES;
     

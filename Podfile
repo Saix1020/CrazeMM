@@ -15,7 +15,7 @@ target "CrazeMM" do
 	pod 'PPiFlatSegmentedControl', '~> 1.4.0'
 	pod 'ZZPopoverWindow', '~> 1.0.0'
 #pod 'MLPAutoCompleteTextField', '~> 1.5'
-	pod 'BEMCheckBox', '~> 1.2.1'
+#	pod 'BEMCheckBox', '~> 1.2.1'
 	pod 'UIView+FrameEx', '~> 0.0.1'
 #pod 'DSCarouselView', '~> 1.1.9'
 #pod 'M80AttributedLabel', '~> 1.3.3'

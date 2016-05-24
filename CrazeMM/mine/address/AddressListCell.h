@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddressDTO.h"
-#import "AddressInfo.h"
+#import "AddrDTO.h"
+@class  AddressListCell;
+
+@protocol AddressListCellDelegate <NSObject>
+
+-(void)editButtonClicked:(AddressListCell*)cell;
+
+@end
+
 
 @interface AddressListCell : UITableViewCell
 
@@ -17,7 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
-@property (nonatomic, strong) AddressDTO* addrDto;
-@property (nonatomic, strong) AddressInfo* addrInfo;
+@property (nonatomic) BOOL isDefault;
+@property (nonatomic, strong) AddrDTO* addrDto;
 
+@property (nonatomic, weak) id<AddressListCellDelegate> delegate;
 @end

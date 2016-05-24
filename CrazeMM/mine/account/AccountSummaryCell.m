@@ -23,6 +23,18 @@
     self.amountMoneyLabel.adjustsFontSizeToFitWidth = YES;
     self.aviliableMoney.adjustsFontSizeToFitWidth = YES;
     self.fronzenMoney.adjustsFontSizeToFitWidth = YES;
+    
+//    [RACObserve(self, aviliableMoney.text) subscribeNext:^(id x){
+//        
+//    }];
+    self.money = 0;
+    self.frozenMoney = 0;
+    RACSignal* aviliableMoneySignal = RACObserve(self, money);
+    RACSignal* fronzenMoneySignal = RACObserve(self, frozenMoney);
+    RACSignal* signal = [RACSignal combineLatest:@[aviliableMoneySignal, fronzenMoneySignal]];
+    [signal subscribeNext:^(id x){
+        self.amountMoneyLabel.text = [NSString stringWithFormat:@"%.2f", self.money + self.frozenMoney];
+    }];
 }
 
 +(CGFloat)cellHeight
@@ -30,10 +42,18 @@
     return 125.f;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setMoney:(CGFloat)money
+{
+    _money = money;
+    self.aviliableMoney.text = [NSString stringWithFormat:@"%.2f元", money];
 }
+
+-(void)setFrozenMoney:(CGFloat)frozenMoney
+{
+    _frozenMoney = frozenMoney;
+    self.fronzenMoney.text = [NSString stringWithFormat:@"%.2f元", _frozenMoney];
+    
+}
+
 
 @end

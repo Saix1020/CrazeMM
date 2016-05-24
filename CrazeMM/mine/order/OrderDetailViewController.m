@@ -18,6 +18,9 @@
 #import "PayViewController.h"
 #import "HttpOrderRemove.h"
 #import "HttpOrderCancel.h"
+#import "HttpOrderOperation.h"
+#import "OrderSendViewController.h"
+#import "OrderListViewController.h"
 
 
 typedef NS_ENUM(NSInteger, OrderDetailRow){
@@ -343,6 +346,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     NSString* bottomButtonTitle = @"";
     NSDate* updateTime = [self.orderDto.updateTime convertToDate];
     NSInteger leftSeconds = floor(updateTime.timeIntervalSinceReferenceDate + 1*60*60 -  [NSDate date].timeIntervalSinceReferenceDate);
+    if (leftSeconds < 0) {
+        NSLog(@"invalid left seconds %ld", leftSeconds);
+    }
     NSDate* createTime = [self.orderStatusDto.logs[0].createTime convertToDate];
     NSInteger elapseSeconds = floor([NSDate date].timeIntervalSinceReferenceDate - createTime.timeIntervalSinceReferenceDate);
 
@@ -399,7 +405,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 subString = [NSString stringWithFormat:@"已发货%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
             case TOBESETTLED:
-                string =  @"请您尽快结款";
+                string =  @"请您等待网站结款";
+                subString = [NSString stringWithFormat:@"已签收%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 bottomButtonTitle = @"结款";
                 break;
             case TOBECONFIRMED:
@@ -424,6 +431,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 -(void)handleButtomButtonClicked:(UIButton*)send
 {
+    @weakify(self);
+    NSArray* operatorDtoIds = @[@(self.orderStatusDto.id)];
+    
     if (self.style.orderType == kOrderTypeBuy) {
         switch (self.style.orderSubType ) {
             case kOrderSubTypePay:
@@ -436,28 +446,32 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     case PAYTIMEOUT:
                         NSLog(@"我买的货->待付款->超时");
                     {
-                        NSMutableArray* removeIds = [[NSMutableArray alloc] init];
-                        [removeIds addObject:[NSString stringWithFormat:@"%ld", self.orderStatusDto.id]];
-                        HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:removeIds];
-                        [request request]
-                        .then(^(id responseObj){
-                            NSLog(@"%@", responseObj);
-                            if (request.response.ok) {
-                                if ([self.delegate respondsToSelector:@selector(removeOrder:)]){
-                                    [self.delegate removeOrder:self.orderDto];
-                                }
-                            }
-                            else {
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        })
-                        .finally(^(){
-                            [self.navigationController popViewControllerAnimated:YES];
-                        });
-                    }
+                        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确定要删除该订单吗?"]
+                                        withOKCallback:^(id x){
+                                            @strongify(self);
+                                            HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:operatorDtoIds];
+                                            [request request]
+                                            .then(^(id responseObj){
+                                                NSLog(@"%@", responseObj);
+                                                if (request.response.ok) {
+                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
+                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    }
+                                                }
+                                                else {
+                                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                                }
+                                            })
+                                            .catch(^(NSError* error){
+                                                [self showAlertViewWithMessage:error.localizedDescription];
+                                            })
+                                            .finally(^(){
+                                                [self.navigationController popViewControllerAnimated:YES];
+                                            });
+                                        }
+                                     andCancelCallback:nil];
+                        
+                        }
                         break;
                     case PAYCOMPLETE:
                         NSLog(@"我买的货->待付款->已支付");
@@ -470,7 +484,34 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
             case kOrderSubTypeReceived:
                 switch (self.style.orderState) {
                     case TOBERECEIVED:
+                    {
                         NSLog(@"我买的货->待签收->签收");
+                        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确定要签改订单吗?"]
+                                        withOKCallback:^(id x){
+                                            @strongify(self);
+                                            HttpOrderReceiveRequest* request = [[HttpOrderReceiveRequest alloc] initWithOids:operatorDtoIds];
+                                            [request request]
+                                            .then(^(id responseObj){
+                                                NSLog(@"%@", responseObj);
+                                                if (request.response.ok) {
+                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
+                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    }
+                                                }
+                                                else {
+                                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                                }
+                                            })
+                                            .catch(^(NSError* error){
+                                                [self showAlertViewWithMessage:error.localizedDescription];
+                                            })
+                                            .finally(^(){
+                                                [self.navigationController popViewControllerAnimated:YES];
+                                            });;
+                                        }
+                                     andCancelCallback:nil];
+
+                    }
                         break;
                     case RECEIVECOMPLETE:
                         NSLog(@"我买的货->待签收->已签收");
@@ -488,7 +529,21 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
             case kOrderSubTypeSend:
                 switch (self.style.orderState) {
                     case TOBESENT:
+                    {
                         NSLog(@"我卖的货->待发货->发货");
+                        OrderSendViewController* sendVC = [[OrderSendViewController alloc] initWithOrderDetaildtos:@[self.orderDto]];
+                        NSArray* vcs = self.navigationController.viewControllers;
+                        if (vcs.count < 3) {
+                            return;
+                        }
+                        OrderListViewController* orderListVC = vcs[vcs.count-2];
+                        if (![orderListVC isKindOfClass:[OrderListViewController class]]) {
+                            return;
+                        }
+                        sendVC.delegate = orderListVC;
+                        [self.navigationController pushViewController:sendVC animated:YES];
+
+                    }
                         break;
                     case SENTCOMPLETE:
                         NSLog(@"我卖的货->待发货->已发货");
@@ -500,7 +555,33 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
             case kOrderSubTypeConfirmed:
                 switch (self.style.orderState) {
                     case TOBECONFIRMED:
+                    {
                         NSLog(@"我卖的货->待确认->确认");
+                        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确定要确认该订单吗?"]
+                                        withOKCallback:^(id x){
+                                            @strongify(self);
+                                            HttpOrderConfirmRequest* request = [[HttpOrderConfirmRequest alloc] initWithOids:operatorDtoIds];
+                                            [request request]
+                                            .then(^(id responseObj){
+                                                NSLog(@"%@", responseObj);
+                                                if (request.response.ok) {
+                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
+                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    }
+                                                }
+                                                else {
+                                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                                }
+                                            })
+                                            .catch(^(NSError* error){
+                                                [self showAlertViewWithMessage:error.localizedDescription];
+                                            })
+                                            .finally(^(){
+                                                [self.navigationController popViewControllerAnimated:YES];
+                                            });;
+                                        }
+                                     andCancelCallback:nil];
+                    }
                         break;
                     case CONFIRMEDCOMPLETE:
                         NSLog(@"我卖的货->待确认->已确认");

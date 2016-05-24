@@ -11,11 +11,9 @@
 #import "AddrCommonCell.h"
 #import "AddrRegionCell.h"
 #import "AddrDefaultCheckboxCell.h"
-#import "DetailArea.h"
-#import "DetailCity.h"
-#import "DetailLocation.h"
-#import "AddressInfo.h"
-#import "AddressInfoUpdater.h"
+#import "RegionDTO.h"
+#import "HttpAllRegion.h"
+#import "HttpAddress.h"
 
 
 typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
@@ -31,7 +29,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 };
 
 @interface AddressEditViewController ()
-//@property (weak, nonatomic) IBOutlet UIView *lastLine;
+@property (weak, nonatomic) IBOutlet UIView *lastLine;
 
 @property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
 @property (nonatomic) BOOL isEditingAddr;
@@ -44,12 +42,14 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 @property (nonatomic, strong) AddrDefaultCheckboxCell* defaultCheckboxCell;
 @property (nonatomic, strong) UITableViewCell* confirmCell;
 @property (nonatomic, strong) UIButton* confirmButton;
-
 @property (nonatomic, strong) UIPickerView *cityPicker;
-@property (nonatomic, strong) NSArray *locData;
+@property (nonatomic, strong) NSArray* regionDto;
 @property (nonatomic, assign) NSInteger provinceIndex;
 @property (nonatomic, assign) NSInteger cityIndex;
-
+@property (nonatomic, assign) NSInteger areaIndex;
+@property (nonatomic, strong) RegionDTO* selectedRegionDto;
+@property (nonatomic, strong) CityDTO* selectedCityDto;
+@property (nonatomic, strong) AreaDTO* selectedAreaDto;
 
 @end
 
@@ -60,7 +60,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_receiverCell) {
         _receiverCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
         _receiverCell.titleLabel.text = @"收货人";
-        //_receiverCell.textFieldCell.text = self.address.contact;
+        _receiverCell.value = self.address.contact;
+
     }
     
     return _receiverCell;
@@ -70,8 +71,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_mobileCell) {
         _mobileCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
         _mobileCell.titleLabel.text = @"联系电话";
-        _mobileCell.textFieldCell.keyboardType = UIKeyboardTypePhonePad;
-        //_mobileCell.textFieldCell.text = self.address.mobile;
+        _mobileCell.value = self.address.mobile;
+
     }
     
     return _mobileCell;
@@ -81,7 +82,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_addressCell) {
         _addressCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
         _addressCell.titleLabel.text = @"详细地址";
-        //_addressCell.textFieldCell.text = self.address.street;
+        _addressCell.value = self.address.street;
     }
     
     return _addressCell;
@@ -91,8 +92,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_zipCell) {
         _zipCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
         _zipCell.titleLabel.text = @"邮政编码";
-        _zipCell.textFieldCell.keyboardType = UIKeyboardTypeNumberPad;
-        //_zipCell.textFieldCell.text = self.address.zipCode;
+        _zipCell.value = self.address.zipCode;
     }
     
     return _zipCell;
@@ -102,8 +102,12 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 {
     if (!_regionCell) {
         _regionCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
-        _regionCell.titleLabel.text = @"所在地区";
-        //_regionCell.textFieldCell.text = self.address.region;
+        _regionCell.title = @"所在地区";
+        _regionCell.placehoder = @"请选择所在区域";
+        _regionCell.tintColor = [UIColor clearColor];
+        _regionCell.textFieldCell.delegate = self;
+        _regionCell.value = self.address.region;
+
     }
     
     return _regionCell;
@@ -114,6 +118,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (!_defaultCheckboxCell) {
         _defaultCheckboxCell = (AddrDefaultCheckboxCell*)[UINib viewFromNib:@"AddrDefaultCheckboxCell"];
         _defaultCheckboxCell.checkBox.boxType = BEMBoxTypeSquare;
+        _defaultCheckboxCell.checkBox.animationDuration = 0.f;
+        _defaultCheckboxCell.checkBox.on = self.address.isDefault;
     }
     
     return _defaultCheckboxCell;
@@ -123,37 +129,23 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 {
     if (!_confirmCell) {
         _confirmCell = [[UITableViewCell alloc] init];
-
+        
         _confirmButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [_confirmButton setTitle:@"保存" forState:UIControlStateNormal];
         _confirmButton.titleLabel.font = [UIFont systemFontOfSize:18.f];
-        [_confirmButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-        [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [_confirmButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+//        [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+//
+//        [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _confirmButton.frame = CGRectMake(16.f, 40.f, [UIScreen mainScreen].bounds.size.width-16.f*2, 40.f);
-        _confirmButton.backgroundColor = [UIColor redColor];
+//        _confirmButton.backgroundColor = [UIColor light_Gray_Color];
         [_confirmCell addSubview:self.confirmButton];
         
-        @weakify(self);
-        _confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-            @strongify(self);
-            
-            [self dataValidation];
-            
-            return [RACSignal empty];
-        }];
+        [_confirmButton addTarget:self action:@selector(saveAddress:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _confirmCell;
 }
-
-- (AddressInfo*)addressInfo {
-    if (!_addressInfo) {
-        _addressInfo = [[AddressInfo alloc] init];
-    }
-    return _addressInfo;
-}
-
-#pragma mark - init
 
 -(instancetype)init
 {
@@ -165,7 +157,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     return self;
 }
 
--(instancetype)initWithAddress:(AddressDTO*)address
+-(instancetype)initWithAddress:(AddrDTO*)address
 {
     self = [super init];
     if (self) {
@@ -176,30 +168,108 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     return self;
 }
 
--(instancetype)initWithAddressInfo:(AddressInfo*)addressInfo ofIndex:(NSInteger)infoIndex
+-(void)saveAddress:(id)sender
 {
-    self = [super init];
-    if (self) {
-        self.isEditingAddr = YES;
-        self.addressInfo = addressInfo;
-        self.infoIndex = infoIndex;
-    }
-    
-    return self;
-}
+//    @"address.contact" : addrDto.contact,
+//    @"address.mobile" : addrDto.mobile,
+//    @"address.pid" : @(addrDto.pid),
+//    @"address.cid": @(addrDto.cid),
+//    @"address.did": @(addrDto.did),
+//    @"address.street": addrDto.street,
+//    @"address.zipCode" : addrDto.zipCode,
+//    @"address.isDefault" : @(addrDto.isDefault)
 
-#pragma mark - view load
+    AddrDTO* newAddrDTO = [[AddrDTO alloc] init];
+    newAddrDTO.contact = self.receiverCell.value;
+    newAddrDTO.mobile = self.mobileCell.value;
+    newAddrDTO.pid = self.selectedRegionDto.id;
+    newAddrDTO.cid = self.selectedCityDto.id;
+    newAddrDTO.did = self.selectedAreaDto.id;
+    newAddrDTO.street =self.addressCell.value;
+    newAddrDTO.zipCode = self.zipCell.value;
+    newAddrDTO.isDefault = self.defaultCheckboxCell.checkBox.on;
+    if (self.isEditingAddr) {
+        // not support yet
+        newAddrDTO.uid = self.address.uid;
+    }
+    else {
+        newAddrDTO.uid = -1;
+    }
+    HttpAddressSaveRequest* request = [[HttpAddressSaveRequest alloc] initWithAddrDto:newAddrDTO];
+    [request request]
+    .then(^(id responseObj){
+        if (!request.response.ok) {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+        else {
+            [self.navigationController popViewControllerAnimated:YES];
+
+        }
+    })
+    .catch(^(NSError* error){
+
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+    });
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     if (self.isEditingAddr) {
         self.navigationItem.title = @"修改收货地址";
+        self.confirmButton.enabled = YES;
     }
     else {
         self.navigationItem.title = @"新增收货地址";
+        self.confirmButton.enabled = NO;
     }
+    
+    @weakify(self);
+    self.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+        @strongify(self);
+        [self.navigationController popViewControllerAnimated:YES];
+        return [RACSignal empty];
+    }];
+    
+    HttpAllRegionRequest* request = [[HttpAllRegionRequest alloc] init];
+    self.regionCell.textFieldCell.enabled = NO;
+    [request request]
+    .then(^(id responseObj){
+        if (request.response.ok) {
+            HttpAllRegionResponse* response = (HttpAllRegionResponse*)request.response;
+            self.regionDto = response.regionDtos;
+            
+            [self setupCityPicker];
+            self.regionCell.textFieldCell.enabled = YES;
+            if (self.address){
+                self.selectedRegionDto = [self findRegion];
+                self.selectedCityDto = [self findCity];
+                self.selectedAreaDto = [self findArea];
+                self.provinceIndex = [self.regionDto indexOfObject:self.selectedRegionDto];
+                self.cityIndex = [self.selectedRegionDto.cities indexOfObject:self.selectedCityDto];
+                self.areaIndex = [self.selectedCityDto.areas indexOfObject:self.selectedAreaDto];
+                
+                [self.cityPicker selectRow:self.provinceIndex inComponent:0 animated:NO];
+                [self.cityPicker selectRow:self.cityIndex inComponent:1 animated:NO];
+                [self.cityPicker selectRow:self.areaIndex inComponent:2 animated:NO];
+                
+                self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+            }
+            
 
+        }
+        else {
+            //[self showAlertViewWithMessage:request.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        //[self showAlertViewWithMessage:error.localizedDescription];
+    });
+
+    
     self.tableView = [[TPKeyboardAvoidingTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -211,16 +281,189 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.frame = self.view.frame;
-    [self loadAddressInfo:self.addressInfo];
-    [self setupCityPicker];
-    
+//    @weakify(self);
 }
 
+-(RegionDTO*)findRegion
+{
+    NSInteger found = NSNotFound;
+    
+    for (NSInteger index = 0; index < self.regionDto.count; ++index) {
+        AddrDTO* dto = self.regionDto[index];
+        if (dto.id == self.address.pid) {
+            found = index;
+            break;
+        }
+    }
+    return found==NSNotFound?nil : self.regionDto[found];
+}
+
+-(CityDTO*)findCity
+{
+    NSInteger found = NSNotFound;
+    RegionDTO* region = [self findRegion];
+    if (!region){
+        return nil;
+    }
+    NSArray* cities = region.cities;
+    for (NSInteger index = 0; index<cities.count; ++index) {
+        CityDTO* city = cities[index];
+        if (city.id == self.address.cid){
+            found = index;
+            break;
+        }
+    }
+    return found == NSNotFound? nil : cities[found];
+}
+
+-(AreaDTO*)findArea
+{
+    CityDTO* city = [self findCity];
+    if (!city){
+        return nil;
+    }
+    
+    NSArray* ares = city.areas;
+    for (NSInteger index = 0; index<ares.count; ++index) {
+        AreaDTO* area = ares[index];
+        if (area.id == self.address.did){
+            return area;
+        }
+    }
+    return nil;
+}
 
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    @weakify(self);
+    RACSignal* enableSaveButtonSignal = [RACSignal combineLatest:@[self.receiverCell.textFieldCell.rac_textSignal,
+                                                                   self.mobileCell.textFieldCell.rac_textSignal,
+                                                                   self.addressCell.textFieldCell.rac_textSignal,
+                                                                   self.regionCell.textFieldCell.rac_textSignal,
+                                                                   self.zipCell.textFieldCell.rac_textSignal]
+                                                          reduce:^id(NSString* receiver, NSString* mobile, NSString* addr,
+                                                                     NSString* region, NSString* zipCode){
+                                                              return @(receiver.length>0 && mobile.length>0
+                                                              && addr.length>0 && region.length>0 && zipCode.length>0);
+                                                          }];
+    
+    [enableSaveButtonSignal subscribeNext:^(NSNumber* enable){
+        @strongify(self);
+        self.confirmButton.enabled = [enable boolValue];
+        if(![enable boolValue]){
+            self.confirmButton.backgroundColor = [UIColor light_Gray_Color];
+            [self.confirmButton setTitleColor: RGBCOLOR(150, 150, 150)  forState:UIControlStateDisabled];
+            
+        }
+        else {
+            self.confirmButton.backgroundColor = [UIColor greenTextColor];
+            [self.confirmButton setTitleColor: [UIColor whiteColor]  forState:UIControlStateNormal];
+            
+        }
+    }];
+
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)setupCityPicker {
+    _cityPicker = [[UIPickerView alloc] init];
+    _cityPicker.delegate = self;
+    _cityPicker.dataSource = self;
+    _cityPicker.backgroundColor = [UIColor whiteColor];
+    self.regionCell.textFieldCell.inputView = _cityPicker;
+}
+
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 3;
+}
+
+#pragma mark - UIPickerViewDataSource
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    NSUInteger count = 0;
+    if (!self.regionDto) {
+        return 0;
+    }
+    
+    switch (component) {
+        case 0:
+            count = self.regionDto.count;
+            break;
+        case 1:
+        {
+            NSArray* cities = ((RegionDTO*)self.regionDto[self.provinceIndex]).cities;
+            count = cities.count;
+        }
+            break;
+        case 2:
+        {
+            NSArray* cities = ((RegionDTO*)self.regionDto[self.provinceIndex]).cities;
+            NSArray* areas = ((CityDTO*)cities[self.cityIndex]).areas;
+            count = areas.count;
+        }
+            break;
+        default:
+            break;
+    }
+    
+    return count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component {
+    
+    NSString *title;
+    if (component == 0){
+        RegionDTO* region = self.regionDto[row];
+        title = region.name;
+    }
+    else if (component == 1) {
+        RegionDTO* region = self.regionDto[self.provinceIndex];
+        CityDTO* city = region.cities[row];
+        title = city.name;
+    }
+    else if (component == 2) {
+        RegionDTO* region = self.regionDto[self.provinceIndex];
+        CityDTO* city = region.cities[self.cityIndex];
+        AreaDTO* area = city.areas[row];
+        title = area.name;
+    }
+    return title;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component {
+    
+    if (component == 0) {
+        self.provinceIndex = row;
+        self.cityIndex = 0; // 恢复为0
+        [self.cityPicker reloadComponent:1];
+        [self.cityPicker reloadComponent:2];
+        [self.cityPicker selectRow:0 inComponent:1 animated:YES];
+        [self.cityPicker selectRow:0 inComponent:2 animated:YES];
+    } else if (component == 1) {
+        self.cityIndex = row;
+        [self.cityPicker reloadComponent:2];
+        [self.cityPicker selectRow:0 inComponent:2 animated:YES];
+    }
+    
+    self.selectedRegionDto = self.regionDto[self.provinceIndex];
+    self.selectedCityDto = self.selectedRegionDto.cities[self.cityIndex];
+    NSInteger areaIndex = [self.cityPicker selectedRowInComponent:2];
+    self.areaIndex = areaIndex;
+    self.selectedAreaDto = self.selectedCityDto.areas[areaIndex];
+
+    self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+}
+
 
 #pragma -- mark UITableView delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -276,181 +519,27 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         case kRowSave:
         default:
             cell = self.confirmCell;
-            break;
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
-#pragma mark - UIPickerViewDataSource
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 3;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    NSUInteger count;
-    DetailLocation *deLoc = self.locData[[self.cityPicker selectedRowInComponent:0]];
-    if (component == 0) {
-        count = self.locData.count;
-    } else if (component == 1) {
-        count = deLoc.citylist.count;
-    } else if (component == 2) {
-        DetailLocation *deLoc = self.locData[self.provinceIndex];
-        DetailCity *deCity = deLoc.citylist[self.cityIndex];
-        count = deCity.arealist.count;
-    }
-    return count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component {
-    
-    NSString *title;
-    if (component == 0) {
-        title = [self.locData[row] provinceName];
-    } else if (component == 1) {
-        NSArray *cityList = [self.locData[self.provinceIndex] citylist];
-        title = [cityList[row] cityName];
-    } else if (component == 2) {
-        NSArray *cityList = [self.locData[self.provinceIndex] citylist];
-        NSArray *areaList = [cityList[self.cityIndex] arealist];
-        title = [areaList[row] areaName];
-    }
-    return title;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component {
-    
-    if (component == 0) {
-        self.provinceIndex = row;
-        self.cityIndex = 0; // 恢复为0
-        [self.cityPicker reloadComponent:1];
-        [self.cityPicker reloadComponent:2];
-        [self.cityPicker selectRow:0 inComponent:1 animated:YES];
-        [self.cityPicker selectRow:0 inComponent:2 animated:YES];
-    } else if (component == 1) {
-        self.cityIndex = row;
-        [self.cityPicker reloadComponent:2];
-        [self.cityPicker selectRow:0 inComponent:2 animated:YES];
-    }
-    
-    DetailLocation *province = self.locData[self.provinceIndex];
-    DetailCity *city = province.citylist[self.cityIndex];
-    NSInteger areaIndex = [self.cityPicker selectedRowInComponent:2];
-    DetailArea *area = city.arealist[areaIndex];
-    
-    self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@,%@,%@", province.provinceName, city.cityName, area.areaName];
-    //!self.editingLocationBlock ? : self.editingLocationBlock(self.regionCell.regionLabel.text);
-}
 
 
-- (NSArray *)locData {
-    if (!_locData) {
-        NSArray *dataArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"detaillocation" ofType:@"plist"]];
-        NSMutableArray *newArray = [NSMutableArray array];
-        for (NSDictionary *dict in dataArray) {
-            DetailLocation *loc = [DetailLocation detailLocationWithDict:dict];
-            [newArray addObject:loc];
-        }
-        _locData = newArray;
-    }
-    return _locData;
-}
 
-
-#pragma mark - 属性
-- (void)setupCityPicker {
-    _cityPicker = [[UIPickerView alloc] init];
-    _cityPicker.delegate = self;
-    _cityPicker.dataSource = self;
-    _cityPicker.backgroundColor = [UIColor whiteColor];
-    self.regionCell.textFieldCell.inputView = _cityPicker;
-}
-
-
-- (void)loadAddressInfo:(AddressInfo *)addressInfo {
-    self.receiverCell.textFieldCell.text= addressInfo.name;
-    self.mobileCell.textFieldCell.text = addressInfo.phone;
-    self.regionCell.textFieldCell.text = addressInfo.province;
-    self.addressCell.textFieldCell.text = addressInfo.detailAddress;
-    self.zipCell.textFieldCell.text = addressInfo.zipCode;
-    self.defaultCheckboxCell.checkBox.on = addressInfo.state;
-}
-
-
-- (void)updateAddressInfo
+#pragma -- UItextfield delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.addressInfo.name = self.receiverCell.textFieldCell.text;
-    self.addressInfo.phone = self.mobileCell.textFieldCell.text;
-    self.addressInfo.province = self.regionCell.textFieldCell.text;
-    self.addressInfo.detailAddress = self.addressCell.textFieldCell.text;
-    self.addressInfo.zipCode = self.zipCell.textFieldCell.text;
-    self.addressInfo.state = self.defaultCheckboxCell.checkBox.on;
-    
-    if ( NO == self.isEditingAddr )
-    {
-        if (NO == self.addressInfo.state)
-        {
-            [AddressInfoUpdater addInfo:self.addressInfo];
-        }
-        else
-        {
-            [AddressInfoUpdater updateInfoforDefaultAddr:self.addressInfo];
-        }
-    }
-    else
-    {
-        if (NO == self.addressInfo.state)
-        {
-            [AddressInfoUpdater updateInfoAtIndex:self.infoIndex withInfo:self.addressInfo];
-        }
-        else
-        {
-            [AddressInfoUpdater removeInfoAtIndex:self.infoIndex];
-            [AddressInfoUpdater updateInfoforDefaultAddr:self.addressInfo];
-        }
-    }
+    if (textField.text.length == 0) {
+        self.selectedRegionDto = self.regionDto[0];
+        self.selectedCityDto = self.selectedRegionDto.cities[0];
+        self.selectedAreaDto = self.selectedCityDto.areas[0];
 
+        textField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+
+    }
 }
 
-- (void) dataValidation
-{
-     NSString *message;
-    if (0 == self.receiverCell.textFieldCell.text.length)
-    {
-        message = @"收货人姓名不能是空";
-    }
-    else if (0 == self.mobileCell.textFieldCell.text.length)
-    {
-        message = @"收货人手机号码不能是空";
-    }
-    else if (0 == self.regionCell.textFieldCell.text.length)
-    {
-        message = @"请选择所在地区";
-    }
-    else if (0 == self.addressCell.textFieldCell.text.length)
-    {
-        message = @"地址不能是空";
-    }
-    else if (0 == self.zipCell.textFieldCell.text.length)
-    {
-        message = @"邮政编码不能是空";
-    }
-    
-    if (message)
-    {
-        [self showAlertViewWithMessage:message];
-    }
-    else
-    {
-        [self updateAddressInfo];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 @end

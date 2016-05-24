@@ -279,13 +279,15 @@
     NSString* quantity;
     self.priceLabel.text = @"";
     if (self.productDto) {
-        price = [NSString stringWithFormat:@"%.0f", self.productDto.price];
+        price = [NSString stringWithFormat:@"%.02f", self.productDto.price];
         quantity = [NSString stringWithFormat:@"%ld", self.productDto.quantity];
     }
     else {
         price = @"1020";
         quantity = @"100";
     }
+    NSArray* priceComp = [NSString  formatePrice:self.productDto.price];
+    NSString* string = [priceComp[0] stringByReplacingOccurrencesOfString:@"," withString:@""];
     self.priceLabel.text = @"";
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -298,7 +300,7 @@
     NSArray *fonts = @[smallFont, largFont, smallFont,
                        /*smallFont,*/ largFont, middleFont];
     
-    NSArray* components = @[@"￥", price, @".00   ", /*@"起  ",*/ quantity, @"台"];
+    NSArray* components = @[@"￥", string, [NSString stringWithFormat:@"%@   ", priceComp[1]], /*@"起  ",*/ quantity, @"台"];
     NSMutableArray* stringWithAttrs = [[NSMutableArray alloc] init];
     NSInteger index = 0;
     for (NSString *text in components)

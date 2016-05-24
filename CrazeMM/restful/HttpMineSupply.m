@@ -79,6 +79,20 @@
 
 @end
 
+@implementation HttpMineBuyRequest
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/buy/mine");
+}
+
+-(Class)responseClass
+{
+    return [HttpMineBuyResponse class];
+}
+
+@end
+
 
 @implementation HttpMineSupplyResponse
 
@@ -173,4 +187,23 @@
         return [self.productDTOs filteredArrayUsingPredicate:predicate];
     }
 }
+@end
+
+@implementation HttpMineBuyResponse
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    self.productDTOs = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary* dict in self.productList) {
+        MineSupplyProductDTO* dto = [[MineBuyProductDTO alloc] initWith:dict];
+        NSLog(@"%@", dto);
+        [self.productDTOs  addObject:dto];
+    }
+    
+}
+
 @end

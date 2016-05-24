@@ -18,11 +18,61 @@
         self.region = dict[@"region"];
         self.mobile = dict[@"mobile"];
         self.contact = dict[@"contact"];
-        //self.zipCode = dict[@"zipCode"];
     }
     
     return self;
 }
 
+-(instancetype)initWithAddr:(AddrDTO *)addr
+{
+    self = [super init];
+    if (self) {
+        self.street = addr.street;
+        self.region = addr.region;
+        self.mobile = addr.mobile;
+        self.id = addr.id;
+        self.contact = addr.contact;
+    }
+    
+    return self;
+}
+
+-(NSString*)address{
+    return [NSString stringWithFormat:@"%@ %@",self.region, self.street];
+}
 
 @end
+
+//@implementation AddressDetailDTO
+//
+////@property (nonatomic) BOOL applied;
+////@property (nonatomic) NSInteger pid;
+////@property (nonatomic) NSInteger uid;
+////@property (nonatomic) NSInteger did;
+////@property (nonatomic) NSInteger cid;
+////@property (nonatomic) BOOL deleted;
+////@property (nonatomic, copy) NSString* phone;
+////@property (nonatomic) BOOL isDefault;
+////@property (nonatomic, copy) NSString* zipCode;
+//
+//
+//-(instancetype)initWith:(NSDictionary *)dict
+//{
+//    self = [super initWith:dict];
+//    if (self) {
+//        self.zipCode = dict[@"zipCode"];
+//        self.applied = [dict[@"applied"] boolValue];
+//        self.pid = [dict[@"pid"] integerValue];
+//        self.uid = [dict[@"pid"] integerValue];
+//        self.did = [dict[@"pid"] integerValue];
+//        self.cid = [dict[@"pid"] integerValue];
+//        self.deleted = [dict[@"deleted"] boolValue];
+//        self.isDefault = [dict[@"isDefault"] boolValue];
+//        self.phone = dict[@"phone"];
+//
+//    }
+//    
+//    return self;
+//}
+//
+//@end

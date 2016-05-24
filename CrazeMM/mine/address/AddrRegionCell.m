@@ -15,9 +15,9 @@
     self.regionLabel.adjustsFontSizeToFitWidth = YES;
     // Initialization code
     
-    CGSize fontSize = [self.chooseButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.chooseButton.titleLabel.font}];
-    [self.chooseButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.chooseButton.imageView.frame.size.width-2.f, 0, self.chooseButton.imageView.frame.size.width+2.f)];
-    [self.chooseButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
+//    CGSize fontSize = [self.chooseButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.chooseButton.titleLabel.font}];
+//    [self.chooseButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.chooseButton.imageView.frame.size.width-2.f, 0, self.chooseButton.imageView.frame.size.width+2.f)];
+//    [self.chooseButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
 
 }
 
@@ -25,6 +25,31 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)hideChooseButton
+{
+    self.chooseButton.width = 0;
+}
+
+-(void)setValue:(NSString *)value
+{
+    self.regionLabel.text = value;
+}
+
+-(NSString*)value
+{
+    return self.regionLabel.text;
+}
+
+-(void)setTitle:(NSString *)title
+{
+    self.titleLabel.text = title;
+}
+
+-(NSString*)title
+{
+    return self.titleLabel.text;
 }
 
 @end

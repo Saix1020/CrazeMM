@@ -44,7 +44,7 @@
 
 @property (nonatomic) SearchCategory searchCategory;
 @property (nonatomic, strong) NSArray* dataSourceArray;
-@property (nonatomic, strong) NSMutableArray<SearchResultDTO*>* dataSource;
+@property (nonatomic, strong) NSMutableArray* dataSource;
 @property (nonatomic, strong) NSString* searchCategoryString;
 @property (nonatomic) NSUInteger currentPage;
 @property (nonatomic) NSUInteger totalPage;

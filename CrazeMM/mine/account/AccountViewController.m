@@ -9,6 +9,7 @@
 #import "AccountViewController.h"
 #import "AccountSummaryCell.h"
 #import "AccountDetailCell.h"
+#import "BankCardListViewController.h"
 
 @interface AccountViewController ()
 @property (nonatomic, strong) UITableView* tableView;
@@ -31,6 +32,7 @@
 {
     if (!_detailCell) {
         _detailCell = [[[NSBundle mainBundle]loadNibNamed:@"AccountDetailCell" owner:nil options:nil] firstObject];
+        _detailCell.delegate = self;
     }
     
     return _detailCell;
@@ -75,7 +77,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //[self.tabBarController setTabBarHidden:YES animated:YES];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
 }
 
 -(void)viewWillLayoutSubviews
@@ -84,12 +86,6 @@
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -142,5 +138,13 @@
     return 12.f;
 }
 
+#pragma  -- mark AccountDetailCellDelegate
+-(void)itemClicked:(NSInteger)type
+{
+    if (type == 2) {
+        BankCardListViewController* bankCardListVC = [[BankCardListViewController alloc] init];
+        [self.navigationController pushViewController:bankCardListVC animated:YES];
+    }
+}
 
 @end

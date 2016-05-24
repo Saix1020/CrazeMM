@@ -11,3 +11,8 @@
 @interface MineSupplyProductDTO : BaseProductDTO
 @property (nonatomic) NSInteger state;
 @end
+
+@interface MineBuyProductDTO : MineSupplyProductDTO
+
+
+@end

@@ -10,7 +10,8 @@
 #import "CustomSegment.h"
 #import "CommonOrderListViewController.h"
 #import "SupplyListCell.h"
+#import "MineSupplyEditViewController.h"
 
-@interface SupplyViewController : CommonOrderListViewController<SupplyListCellDelegate>
+@interface SupplyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineEditViewControllerDelegate>
 
 @end

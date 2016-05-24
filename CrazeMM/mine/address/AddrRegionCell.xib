@@ -25,17 +25,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsC-2P-eML">
-                        <rect key="frame" x="237" y="13" width="83" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="83" id="iPZ-7S-ojk"/>
-                            <constraint firstAttribute="height" constant="24" id="wle-GC-Glm"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <state key="normal" title="请选择" image="arrow_left">
-                            <color key="titleColor" red="0.62466461490000003" green="0.62466461490000003" blue="0.62466461490000003" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="prz-Ne-F2H">
                         <rect key="frame" x="8" y="43" width="304" height="1"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -44,7 +33,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTT-ys-KTQ">
-                        <rect key="frame" x="84" y="14" width="157" height="21"/>
+                        <rect key="frame" x="84" y="14" width="206" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="blH-vX-66b"/>
                         </constraints>
@@ -52,20 +41,34 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsC-2P-eML">
+                        <rect key="frame" x="294" y="11" width="26" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="26" id="eZL-ga-BPq"/>
+                            <constraint firstAttribute="height" constant="24" id="wle-GC-Glm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" image="arrow_left">
+                            <color key="titleColor" red="0.62466461490000003" green="0.62466461490000003" blue="0.62466461490000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bsC-2P-eML" firstAttribute="leading" secondItem="yTT-ys-KTQ" secondAttribute="trailing" constant="-4" id="CPx-kB-NxA"/>
                     <constraint firstItem="yTT-ys-KTQ" firstAttribute="baseline" secondItem="THt-DM-7pa" secondAttribute="baseline" id="PJw-m5-tEY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bsC-2P-eML" secondAttribute="trailing" constant="-8" id="Xmc-MC-mqR"/>
-                    <constraint firstItem="yTT-ys-KTQ" firstAttribute="leading" secondItem="THt-DM-7pa" secondAttribute="trailing" constant="10" id="YX1-sn-ldR"/>
                     <constraint firstAttribute="bottomMargin" secondItem="THt-DM-7pa" secondAttribute="bottom" constant="0.5" id="YdW-2h-spp"/>
+                    <constraint firstItem="bsC-2P-eML" firstAttribute="leading" secondItem="yTT-ys-KTQ" secondAttribute="trailing" constant="4" id="kyN-cP-eoz"/>
+                    <constraint firstItem="yTT-ys-KTQ" firstAttribute="leading" secondItem="THt-DM-7pa" secondAttribute="trailing" constant="10" id="m4P-wt-yN3"/>
                     <constraint firstItem="THt-DM-7pa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="nvf-dB-80q"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="prz-Ne-F2H" secondAttribute="trailing" id="smf-HO-Qdm"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="bsC-2P-eML" secondAttribute="bottom" constant="-1.5" id="twn-KB-dIj"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bsC-2P-eML" secondAttribute="bottom" constant="0.5" id="twn-KB-dIj"/>
                     <constraint firstAttribute="leadingMargin" secondItem="prz-Ne-F2H" secondAttribute="leading" id="uNU-7Y-dVb"/>
                     <constraint firstAttribute="bottomMargin" secondItem="prz-Ne-F2H" secondAttribute="bottom" constant="-8" id="zz5-kz-2oV"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="bsC-2P-eML" secondAttribute="trailing" id="G7j-NT-yT9"/>
+                <constraint firstAttribute="trailing" secondItem="prz-Ne-F2H" secondAttribute="trailing" constant="8" id="xgo-a5-EC5"/>
+            </constraints>
             <connections>
                 <outlet property="chooseButton" destination="bsC-2P-eML" id="hhd-U8-Ujg"/>
                 <outlet property="regionLabel" destination="yTT-ys-KTQ" id="oZz-HQ-6jh"/>

@@ -13,6 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *aviliableMoney;
 @property (weak, nonatomic) IBOutlet UILabel *fronzenMoney;
 
+@property (nonatomic) CGFloat frozenMoney;
+@property (nonatomic) CGFloat money;
+
 
 +(CGFloat)cellHeight;
 

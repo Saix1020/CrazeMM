@@ -7,17 +7,35 @@
 //
 
 #import "BaseDTO.h"
+#import "AddrDTO.h"
 
 @interface AddressDTO : BaseDTO
 
-//{"ok":true,"addr":[{"street":"山西路68号27FAB座","contact":"周墨宣","mobile":"15301598286","id":17,"region":"江苏-南京-鼓楼区"},{"street":"天润城64-102","contact":"周墨宣","mobile":"15301598286","id":16,"region":"江苏-南京-玄武区"}]}
+
+//{"ok":true,"addr":[{"street":"测试地址#12345","contact":"sai","mobile":"18652072345","id":175,"region":"北京-北京-东城区"}]}
+
 
 @property (nonatomic, copy) NSString* street;
 @property (nonatomic, copy) NSString* contact;
 @property (nonatomic, copy) NSString* mobile;
 @property (nonatomic, copy) NSString* region;
-//@property (nonatomic, copy) NSString* zipCode;
+@property (nonatomic, readonly) NSString* address;
 
-
+-(instancetype)initWithAddr:(AddrDTO *)addr;
 
 @end
+
+//{"ok":true,"addr":[{"zipCode":"200000","applied":true,"mobile":"18652072345","pid":2,"uid":366,"isDefault":false,"deleted":false,"phone":"01088786545","street":"测试地址#12345","contact":"sai","id":175,"region":"北京-北京-东城区","did":500,"cid":52}]}
+//@interface AddressDetailDTO : AddressDTO
+//
+//@property (nonatomic) BOOL applied;
+//@property (nonatomic) NSInteger pid;
+//@property (nonatomic) NSInteger uid;
+//@property (nonatomic) NSInteger did;
+//@property (nonatomic) NSInteger cid;
+//@property (nonatomic) BOOL deleted;
+//@property (nonatomic, copy) NSString* phone;
+//@property (nonatomic) BOOL isDefault;
+//@property (nonatomic, copy) NSString* zipCode;
+//
+//@end

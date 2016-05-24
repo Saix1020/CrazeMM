@@ -247,6 +247,18 @@
         HttpSupplyProductDetailResponse* response = (HttpSupplyProductDetailResponse*)request.response;
         self.productDetailDto = response.dto;
         [self.productDto resetByProductDetailDto:self.productDetailDto];
+        if (!self.productDto.isActive) {
+            self.payButton.enabled = NO;
+            self.orderButton.enabled = NO;
+            self.payButton.backgroundColor = [UIColor clearColor];
+            self.orderButton.backgroundColor = [UIColor clearColor];
+        }
+        else {
+            self.payButton.enabled = YES;
+            self.orderButton.enabled = YES;
+            self.payButton.backgroundColor = [UIColor blueButtonColor];
+            self.orderButton.backgroundColor = [UIColor redButtonColor];
+        }
     })
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
