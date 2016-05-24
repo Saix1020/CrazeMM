@@ -330,7 +330,7 @@
     HttpMobileExistCheckRequest* mobileExistCheckrequest = [[HttpMobileExistCheckRequest alloc] initWithMobile:phoneNumber];
     HttpGenMobileVcodeRequest* genMobileVcodeRequest = [[HttpGenMobileVcodeRequest alloc] initWithMobile:phoneNumber];
 
-    [self showProgressIndicatorWithTitle:@"正在获取手机验证码..."];
+//    [self showProgressIndicatorWithTitle:@"正在获取手机验证码..."];
 
     @weakify(self);
     [mobileExistCheckrequest request]
@@ -354,16 +354,18 @@
             self.pinButtonFronzenLeftTime = 60;
             [self.pinButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
             
-            self.pinButtonDispose = [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
-                self.pinButtonFronzenLeftTime--;
-                if (self.pinButtonFronzenLeftTime == 0) {
-                    [self.pinButtonDispose dispose];
-                    self.pinButton.enabled = YES;
-                }
+            self.pinButtonDispose = [[MMTimer sharedInstance].oneSecondSignal
+                                     subscribeNext:^(id x){
+                                         @strongify(self);
+                                         self.pinButtonFronzenLeftTime--;
+                                         if (self.pinButtonFronzenLeftTime == 0) {
+                                             [self.pinButtonDispose dispose];
+                                             self.pinButton.enabled = YES;
+                                         }
                 
-                [self.pinButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
-                self.pinButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-            }];
+                                         [self.pinButton setTitle:[NSString stringWithFormat:@"%ld秒后重新获取", (long)self.pinButtonFronzenLeftTime] forState:UIControlStateDisabled];
+                                         self.pinButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+                                     }];
             
             return (AnyPromise*)responseObject;
         }
@@ -376,12 +378,10 @@
         self.pinButton.enabled = YES;
         [self showAlertViewWithMessage:error.localizedDescription];
 
-        NSLog(@"error happened: %@", error.localizedDescription);
-        NSLog(@"original operation: %@", error.userInfo[AFHTTPRequestOperationErrorKey]);
     })
     .finally(^(){
 
-        [self dismissProgressIndicator];
+//        [self dismissProgressIndicator];
     });
 
 }

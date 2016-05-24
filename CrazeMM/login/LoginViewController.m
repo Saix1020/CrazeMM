@@ -122,7 +122,7 @@
     self.rememberMeCheckBox.boxType = BEMBoxTypeSquare;
     self.rememberMeCheckBox.onFillColor = [UIColor clearColor];
     self.rememberMeCheckBox.onAnimationType = BEMAnimationTypeOneStroke;
-//    self.rememberMeCheckBox.animationDuration = 0.3f;
+    self.rememberMeCheckBox.animationDuration = 0.f;
     self.rememberMeCheckBox.lineWidth = 1;
     
     self.rememberMeLabel.text = @"下次自动登录";
@@ -130,6 +130,10 @@
     
     self.wechartLabel.textColor = RGBCOLOR(40, 40, 40);
     self.wechartLabel.text = @"微信登录";
+    //wechart login not support now
+    self.wechartLabel.hidden = YES;
+    self.wechartIcon.hidden = YES;
+    self.line3.hidden = YES;
     
     self.userNameRightView = [[UIButton alloc] init];
     [self.userNameRightView setImage:[UIImage imageNamed:@"icon_pulldown"] forState:UIControlStateNormal];
@@ -366,7 +370,6 @@
     self.line1.frame = CGRectMake(kLeadingPad, CGRectGetMaxY(self.userNameField.frame), maxWidth, 1);
     self.line2.frame = CGRectMake(kLeadingPad, CGRectGetMaxY(self.passwordField.frame), maxWidth, 1);
     self.line3.frame = CGRectMake(kLeadingPad, self.wechartIcon.frame.origin.y-8.f, maxWidth, 1);
-    
 }
 
 -(void)viewDidLayoutSubviews
