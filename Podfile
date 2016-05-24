@@ -1,7 +1,8 @@
 platform :ios, '8.0'
 use_frameworks!
 target "CrazeMM" do
-#pod 'AFNetworking', '~> 3.1.0'
+	pod 'AFNetworking', '~> 3.1.0'
+	pod 'PromiseKit', '~> 3.2.0'
 	pod 'ReactiveCocoa', '~> 4.0.0'
 	pod 'MBProgressHUD', '~> 0.9.2'
 #pod 'WebViewJavascriptBridge', '~> 5.0.5'
@@ -23,7 +24,6 @@ target "CrazeMM" do
 #pod 'TTModalView', '~> 1.0.1'
 	pod 'TPKeyboardAvoiding', '~> 1.3'
 #pod 'PromiseKit', '~> 3.1.1'
-	pod 'PromiseKit-AFNetworking', '~> 0.6.0'
+#pod 'PromiseKit-AFNetworking', '~> 0.6.0'
 #pod 'KeychainItemWrapper', '~> 1.2'
-	pod 'Reachability', '~> 3.2'
 end

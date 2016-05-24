@@ -237,7 +237,7 @@
                                                                andPassword:self.passwordField.text
                                                                andRemember:self.rememberMeCheckBox.on];
         [self showProgressIndicatorWithTitle:@"正在登陆..."];
-        [request request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        [request request2].then(^(id responseObject){
 //            [self dismissProgressIndicator];
 
             if (request.response.ok) {

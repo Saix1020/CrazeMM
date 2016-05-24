@@ -10,9 +10,9 @@
 
 @implementation HttpPayInfoRequest
 
--(AFHTTPRequestOperationManager*)manager
+-(AFHTTPSessionManager*)manager
 {
-    AFHTTPRequestOperationManager* manager = super.manager;
+    AFHTTPSessionManager* manager = super.manager;
     [manager.requestSerializer setValue:@"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36" forHTTPHeaderField:@"User-Agent"];
     return manager;
 }
