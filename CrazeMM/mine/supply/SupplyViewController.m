@@ -372,15 +372,18 @@
     
     if (index == 0) {
         self.cellStyle = kNomalStyle;
+        self.bottomView.hidden = NO;
         [self.bottomView.confirmButton setTitle:@"批量下架" forState:UIControlStateNormal];
     }
     else if(index==1){
         self.cellStyle = kOffShelfStyle;
+        self.bottomView.hidden = NO;
         [self.bottomView.confirmButton setTitle:@"批量上架" forState:UIControlStateNormal];
 
     }
     else {
         self.cellStyle = kDealStyle;
+        self.bottomView.hidden = YES;
         [self.bottomView.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
 
     }

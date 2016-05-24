@@ -85,6 +85,7 @@
             self.backgroundView.hidden = NO;
             self.shareButton.hidden = NO;
             self.offButton.hidden = NO;
+            self.selectCheckBox.hidden = NO;
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(0);
 
@@ -94,6 +95,7 @@
             self.shareButton.hidden = YES;
             self.backgroundView.hidden = NO;
             self.offButton.hidden = NO;
+            self.selectCheckBox.hidden = NO;
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
             [self.offButton setTitle:@"上架" forState:UIControlStateNormal];
@@ -102,9 +104,30 @@
             self.backgroundView.hidden = YES;
             self.offButton.hidden = YES;
             self.shareButton.hidden = YES;
+            self.selectCheckBox.hidden = YES;
             break;
         default:
             break;
+    }
+    NSLayoutConstraint* constraint = nil;
+    for (constraint in self.contentView.constraints) {
+        if (constraint.firstItem == self.titleLabel
+            && constraint.secondItem == self.contentView
+            && constraint.firstAttribute == NSLayoutAttributeLeading
+            && constraint.secondAttribute == NSLayoutAttributeLeading) {
+            break;
+        }
+    }
+    if (constraint) {
+        [self.contentView removeConstraint:constraint];
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel
+                                                                     attribute:NSLayoutAttributeLeading
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.contentView
+                                                                     attribute:NSLayoutAttributeLeading
+                                                                    multiplier:1.0 constant:self.selectCheckBox.hidden?8.f:32.f ]];
+        [self updateConstraints];
+
     }
 }
 

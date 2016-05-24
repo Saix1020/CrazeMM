@@ -61,7 +61,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-04-30 10:20:20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exd-Ba-xmg">
-                        <rect key="frame" x="171" y="9" width="141" height="16"/>
+                        <rect key="frame" x="171" y="8" width="141" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -96,7 +96,7 @@
                     <constraint firstItem="PFU-Ln-pYw" firstAttribute="leading" secondItem="H7E-ec-eIb" secondAttribute="leading" id="5OB-qW-biW"/>
                     <constraint firstItem="phd-iT-fgd" firstAttribute="leading" secondItem="zxG-I9-pRt" secondAttribute="trailing" constant="8" symbolic="YES" id="6Hh-sv-BP7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ezj-O7-f4O" secondAttribute="trailing" constant="30" id="6pw-iS-gxp"/>
-                    <constraint firstItem="Exd-Ba-xmg" firstAttribute="top" secondItem="mL9-6a-XSY" secondAttribute="topMargin" constant="1" id="CFl-cs-Ncz"/>
+                    <constraint firstItem="Exd-Ba-xmg" firstAttribute="top" secondItem="mL9-6a-XSY" secondAttribute="topMargin" id="CFl-cs-Ncz"/>
                     <constraint firstItem="PFU-Ln-pYw" firstAttribute="trailing" secondItem="H7E-ec-eIb" secondAttribute="trailing" id="DeF-Bm-7AV"/>
                     <constraint firstItem="H7E-ec-eIb" firstAttribute="trailing" secondItem="T9Z-MR-8bg" secondAttribute="trailing" id="G3R-oo-XM5"/>
                     <constraint firstItem="LYK-7g-pjH" firstAttribute="leading" secondItem="PFU-Ln-pYw" secondAttribute="leading" id="IOq-ia-GEm"/>
