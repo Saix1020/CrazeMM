@@ -122,7 +122,7 @@
     self.rememberMeCheckBox.boxType = BEMBoxTypeSquare;
     self.rememberMeCheckBox.onFillColor = [UIColor clearColor];
     self.rememberMeCheckBox.onAnimationType = BEMAnimationTypeOneStroke;
-    self.rememberMeCheckBox.animationDuration = 0.f;
+    self.rememberMeCheckBox.animationDuration = 0.f; 
     self.rememberMeCheckBox.lineWidth = 1;
     
     self.rememberMeLabel.text = @"下次自动登录";
