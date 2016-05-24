@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "AddressListCell.h"
 
-@interface AddressListViewController : UIViewController<UITableViewDataSource,  UITableViewDelegate, AddressListCellDelegate>
+@protocol AddressListViewControllerDelegate <NSObject>
 
+-(void)didSelectedAddress:(AddrDTO*)address;
+
+@end
+
+
+@interface AddressListViewController : UIViewController<UITableViewDataSource,  UITableViewDelegate, AddressListCellDelegate>
+@property (nonatomic, weak) id<AddressListViewControllerDelegate> delegate;
 -(instancetype)initWithAddresses:(NSArray*)addresses;
 
 @end

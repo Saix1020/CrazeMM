@@ -207,10 +207,23 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    AddrDTO* addrDto = self.addresses[indexPath.row];
-//    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] initWithAddress:addrDto];
-//    [self.navigationController pushViewController:addrEditVC animated:YES];
+    if (indexPath.section == 0){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        AddrDTO* addrDto = self.addresses[indexPath.row+1];
+        
+        //    AddressEditViewController* addrEditVC = [[AddressEditViewController alloc] initWithAddress:addrDto];
+        //    [self.navigationController pushViewController:addrEditVC animated:YES];
+        
+        if ([self.delegate respondsToSelector:@selector(didSelectedAddress:)]) {
+            [self.delegate didSelectedAddress:addrDto];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
 
+
+    }
+    
 }
 
 #pragma -- mark AddressListCell delegate

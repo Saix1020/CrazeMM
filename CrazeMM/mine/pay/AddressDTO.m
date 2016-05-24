@@ -23,6 +23,19 @@
     return self;
 }
 
+-(instancetype)initWithAddr:(AddrDTO *)addr
+{
+    self = [super init];
+    if (self) {
+        self.street = addr.street;
+        self.region = addr.region;
+        self.mobile = addr.mobile;
+        self.id = addr.id;
+        self.contact = addr.contact;
+    }
+    
+    return self;
+}
 
 -(NSString*)address{
     return [NSString stringWithFormat:@"%@ %@",self.region, self.street];

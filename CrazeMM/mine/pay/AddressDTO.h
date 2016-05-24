@@ -7,6 +7,7 @@
 //
 
 #import "BaseDTO.h"
+#import "AddrDTO.h"
 
 @interface AddressDTO : BaseDTO
 
@@ -20,6 +21,7 @@
 @property (nonatomic, copy) NSString* region;
 @property (nonatomic, readonly) NSString* address;
 
+-(instancetype)initWithAddr:(AddrDTO *)addr;
 
 @end
 

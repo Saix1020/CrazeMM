@@ -96,14 +96,6 @@
 
 -(instancetype)initWithAddrDto:(AddrDTO *)addrDto
 {
-//    * address.contact:sai
-//    * address.mobile:18652072345
-//    * address.pid:2
-//    * address.cid:52
-//    * address.did:500
-//    * address.street:fdsfdsfsdfs fsdfds
-//    * address.zipCode:212300
-
     self = [super init];
     if (self) {
         self.params = [@{

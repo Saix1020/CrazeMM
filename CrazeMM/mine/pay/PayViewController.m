@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 @property (nonatomic, readonly) BOOL needHiddenAddrCell;
 @property (nonatomic, copy) NSArray* addresses;
 @property (nonatomic, readonly) CGFloat totalPrice;
-
+@property (nonatomic, strong) AddressDTO* selectedAddrDto;
 @property (nonatomic, strong) PayInfoDTO* payInfoDto;
 
 @end
@@ -98,6 +98,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         HttpAddressResponse* response = (HttpAddressResponse*)request.response;
         if (response.ok) {
             self.addresses = response.addresses;
+            self.selectedAddrDto = self.addresses.firstObject;
             [self.tableView reloadData];
         }
         else {
@@ -316,7 +317,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 
 -(void)pay
 {
-    AddrDTO* addr = self.addresses[0];
+    AddressDTO* addr = self.selectedAddrDto;
     HttpPayRequest* payRequest = [[HttpPayRequest alloc] initWithPayNo:self.payInfoDto.ORDERID andOrderId:self.orderStatusDto.id andAddrId:addr.id];
     [payRequest request]
     .then(^(id responseObj){
@@ -353,7 +354,9 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     [self.tableView setTableFooterView:view];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    [self getOneOrderStatusDto];
+    [self getOrderAddresses];
+
     
 }
 
@@ -368,8 +371,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getOneOrderStatusDto];
-    [self getOrderAddresses];
+    [self.tableView reloadData];
 }
 
 
@@ -396,7 +398,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         }
         else {
             cell = self.addrCell;
-            self.addrCell.addrDto = self.addresses[0];
+            self.addrCell.addrDto = self.selectedAddrDto;
         }
     }
     else if(indexPath.row== kProductSumRow){
@@ -456,23 +458,8 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 {
     if (indexPath.row== kAddrRow) {
         AddressListViewController *addrVC = [[AddressListViewController alloc] init];
+        addrVC.delegate = self;
         [self.navigationController pushViewController:addrVC animated:YES];
-
-//        HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
-//        [request request]
-//        .then(^(id responseObj){
-//            HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
-//            if (response.ok) {
-//                AddressListViewController *addrVC = [[AddressListViewController alloc] initWithAddresses:response.addresses];;
-//                [self.navigationController pushViewController:addrVC animated:YES];
-//            }
-//            else {
-//                [self showAlertViewWithMessage:response.errorMsg];
-//            }
-//        })
-//        .catch(^(NSError* error){
-//            [self showAlertViewWithMessage:error.localizedDescription];
-//        });
         
     }
     else {
@@ -482,5 +469,12 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
+
+#pragma -- mark AddressListViewController Delegate
+-(void)didSelectedAddress:(AddrDTO *)address
+{
+    self.selectedAddrDto = [[AddressDTO alloc] initWithAddr:address];
+}
+
 
 @end

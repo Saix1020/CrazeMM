@@ -2710,8 +2710,6 @@
 		B98218F41CE84CA600B279E6 /* pay */ = {
 			isa = PBXGroup;
 			children = (
-				B98218F51CE84CEB00B279E6 /* HttpAddress.h */,
-				B98218F61CE84CEB00B279E6 /* HttpAddress.m */,
 				B98219001CE8697E00B279E6 /* HttpPay.h */,
 				B98219011CE8697E00B279E6 /* HttpPay.m */,
 			);
@@ -3038,6 +3036,8 @@
 		B9C395221CF2ED8800AB44B6 /* address */ = {
 			isa = PBXGroup;
 			children = (
+				B98218F51CE84CEB00B279E6 /* HttpAddress.h */,
+				B98218F61CE84CEB00B279E6 /* HttpAddress.m */,
 				B9C395231CF2EDCF00AB44B6 /* HttpAllRegion.h */,
 				B9C395241CF2EDCF00AB44B6 /* HttpAllRegion.m */,
 			);
