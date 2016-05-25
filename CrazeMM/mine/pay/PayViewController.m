@@ -457,7 +457,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row== kAddrRow) {
-        AddressListViewController *addrVC = [[AddressListViewController alloc] init];
+        AddressesViewController *addrVC = [[AddressesViewController alloc] init];
         addrVC.delegate = self;
         [self.navigationController pushViewController:addrVC animated:YES];
         

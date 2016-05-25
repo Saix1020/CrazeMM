@@ -386,6 +386,12 @@
 		B9C395361CF4183400AB44B6 /* NewAddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C395321CF4183400AB44B6 /* NewAddressListCell.xib */; };
 		B9C3953F1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3953E1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m */; };
 		B9C395401CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C3953E1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m */; };
+		B9C395461CF5DB1100AB44B6 /* AddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395451CF5DB1100AB44B6 /* AddressesViewController.m */; };
+		B9C3954A1CF5DB2900AB44B6 /* AddrDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395481CF5DB2900AB44B6 /* AddrDetailCell.m */; };
+		B9C3954B1CF5DB2900AB44B6 /* AddrDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C395491CF5DB2900AB44B6 /* AddrDetailCell.xib */; };
+		B9C3954D1CF5DB7100AB44B6 /* AddrDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395481CF5DB2900AB44B6 /* AddrDetailCell.m */; };
+		B9C3954F1CF5DB8700AB44B6 /* AddrDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C395491CF5DB2900AB44B6 /* AddrDetailCell.xib */; };
+		B9C395501CF5DB9200AB44B6 /* AddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395451CF5DB1100AB44B6 /* AddressesViewController.m */; };
 		B9E84BC11CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC21CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */; };
@@ -1416,6 +1422,11 @@
 		B9C395321CF4183400AB44B6 /* NewAddressListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewAddressListCell.xib; path = mine/address/NewAddressListCell.xib; sourceTree = "<group>"; };
 		B9C3953D1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AFNetworking+PromiseKit.h"; path = "common/AFNetworking+PromiseKit.h"; sourceTree = "<group>"; };
 		B9C3953E1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AFNetworking+PromiseKit.m"; path = "common/AFNetworking+PromiseKit.m"; sourceTree = "<group>"; };
+		B9C395441CF5DB1100AB44B6 /* AddressesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressesViewController.h; path = mine/address/AddressesViewController.h; sourceTree = "<group>"; };
+		B9C395451CF5DB1100AB44B6 /* AddressesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressesViewController.m; path = mine/address/AddressesViewController.m; sourceTree = "<group>"; };
+		B9C395471CF5DB2900AB44B6 /* AddrDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddrDetailCell.h; path = mine/address/AddrDetailCell.h; sourceTree = "<group>"; };
+		B9C395481CF5DB2900AB44B6 /* AddrDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddrDetailCell.m; path = mine/address/AddrDetailCell.m; sourceTree = "<group>"; };
+		B9C395491CF5DB2900AB44B6 /* AddrDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrDetailCell.xib; path = mine/address/AddrDetailCell.xib; sourceTree = "<group>"; };
 		B9E84BBF1CEF496B003FEAF5 /* MineBuyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyEditViewController.h; path = mine/buy/MineBuyEditViewController.h; sourceTree = "<group>"; };
 		B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyEditViewController.m; path = mine/buy/MineBuyEditViewController.m; sourceTree = "<group>"; };
 		B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBuyOrder.h; path = restful/HttpBuyOrder.h; sourceTree = "<group>"; };
@@ -1980,6 +1991,8 @@
 				B91896BA1CCF28170061D0B6 /* AddressListViewController.m */,
 				B91896C21CCF38C10061D0B6 /* AddressEditViewController.h */,
 				B91896C31CCF38C10061D0B6 /* AddressEditViewController.m */,
+				B9C395441CF5DB1100AB44B6 /* AddressesViewController.h */,
+				B9C395451CF5DB1100AB44B6 /* AddressesViewController.m */,
 			);
 			name = address;
 			sourceTree = "<group>";
@@ -1987,6 +2000,9 @@
 		B91896BC1CCF31320061D0B6 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B9C395471CF5DB2900AB44B6 /* AddrDetailCell.h */,
+				B9C395481CF5DB2900AB44B6 /* AddrDetailCell.m */,
+				B9C395491CF5DB2900AB44B6 /* AddrDetailCell.xib */,
 				B9BBEEC21CEB4C5900275416 /* AddrCommonCell.h */,
 				B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */,
 				B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */,
@@ -3103,6 +3119,7 @@
 				B91896EC1CD07AD50061D0B6 /* SupplyListCell.xib in Resources */,
 				B91896CE1CCF97AE0061D0B6 /* PaySuccessProductCell.xib in Resources */,
 				B9AD44161CD39C8300012B31 /* NewWelcomeViewController.xib in Resources */,
+				B9C3954B1CF5DB2900AB44B6 /* AddrDetailCell.xib in Resources */,
 				B91896DB1CCFAFEC0061D0B6 /* TransferAlertView.xib in Resources */,
 				B964F9511CC49DF2003E0D44 /* WelcomeViewController.xib in Resources */,
 			);
@@ -3128,6 +3145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9C3954F1CF5DB8700AB44B6 /* AddrDetailCell.xib in Resources */,
 				B9EFAF151CED514100F81157 /* javascript-bridge.html in Resources */,
 				B9EFAF161CED514100F81157 /* slide-2.jpg in Resources */,
 				B9EFAF171CED514100F81157 /* AddrDefaultCheckboxCell.xib in Resources */,
@@ -3464,6 +3482,8 @@
 				B91896991CCE53AB0061D0B6 /* SecondProductDetailCell.m in Sources */,
 				B91732531CD1F05500C29698 /* SlideOutLeftAnimation.m in Sources */,
 				B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */,
+				B9C395461CF5DB1100AB44B6 /* AddressesViewController.m in Sources */,
+				B9C3954A1CF5DB2900AB44B6 /* AddrDetailCell.m in Sources */,
 				B917322F1CD1F05400C29698 /* FadeInRightBigAnimation.m in Sources */,
 				B9FE71E91CD6E70400F5EC9F /* UserHistory.m in Sources */,
 				B9C3951B1CF1EE7400AB44B6 /* HttpLogis.m in Sources */,
@@ -3689,6 +3709,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9C395501CF5DB9200AB44B6 /* AddressesViewController.m in Sources */,
+				B9C3954D1CF5DB7100AB44B6 /* AddrDetailCell.m in Sources */,
 				B9EFAFAB1CEEF81200F81157 /* MineBuyViewController.m in Sources */,
 				B9EFAF9E1CEDF39D00F81157 /* SelectionViewController.m in Sources */,
 				B9EFAF9C1CEDF37E00F81157 /* HttpGoodInfoQuery.h in Sources */,

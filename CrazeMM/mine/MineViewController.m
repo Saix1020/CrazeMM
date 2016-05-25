@@ -23,7 +23,7 @@
 #import "HttpOrderSummary.h"
 #import "HttpLogout.h"
 #import "MineBuyViewController.h"
-
+#import "AddressesViewController.h"
 
 
 @interface MineViewController()
@@ -573,10 +573,12 @@
                 return;
 
             }
-//
-//            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-//            [self.navigationController pushViewController:mineSellProductVC animated:YES];
-            
+            else if(indexPath.row== 3){
+                AddressesViewController* addrVC = [[AddressesViewController alloc] init];
+                [self.navigationController pushViewController:addrVC animated:YES];
+                return;
+                
+            }
             
         }
             break;
