@@ -1,0 +1,19 @@
+//
+//  ut_prefix.pch
+//  CrazeMM
+//
+//  Created by saix on 16/4/30.
+//  Copyright © 2016年 189. All rights reserved.
+//
+
+#ifndef ut_prefix_pch
+#define ut_prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UserCenter.h"
+
+#endif /* ut_prefix_pch */

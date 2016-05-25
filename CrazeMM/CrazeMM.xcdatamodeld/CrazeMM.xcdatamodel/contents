@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="LastProducts" syncable="YES"/>
+    <entity name="SearchHistory" representedClassName="SearchHistory" syncable="YES">
+        <attribute name="keyword" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UserHistory" representedClassName="UserHistory" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
+        <attribute name="logged" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SearchHistory" positionX="-54" positionY="-9" width="128" height="60"/>
+        <element name="UserHistory" positionX="-54" positionY="9" width="128" height="60"/>
+        <element name="UserInfo" positionX="-54" positionY="0" width="128" height="75"/>
+        <element name="LastProducts" positionX="-54" positionY="9" width="128" height="45"/>
+    </elements>
+</model>
