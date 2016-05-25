@@ -8,6 +8,9 @@
 
 #import "HttpAddress.h"
 
+
+#pragma mark - HttpAddressRequest
+
 @implementation HttpAddressRequest
 
 -(NSString*)url
@@ -48,6 +51,9 @@
 }
 
 @end
+
+
+#pragma mark - HttpAddressDetailRequest
 
 @implementation HttpAddressDetailRequest
 
@@ -91,8 +97,10 @@
 
 @end
 
+#pragma mark - HttpAddressSaveRequest
 
 @implementation HttpAddressSaveRequest
+
 
 -(instancetype)initWithAddrDto:(AddrDTO *)addrDto
 {
@@ -106,7 +114,8 @@
                              @"address.did": @(addrDto.did),
                              @"address.street": addrDto.street,
                              @"address.zipCode" : addrDto.zipCode,
-                             @"address.isDefault" : @(addrDto.isDefault)
+                             @"address.isDefault" : @(addrDto.isDefault),
+                            //@"address.region" : addrDto.region
                          } mutableCopy];
         if (addrDto.uid>0) {
             [self.params setValue:@(addrDto.uid) forKey:@"address.uid"];
@@ -128,6 +137,93 @@
 -(NSString*)url
 {
     return COMB_URL(@"/rest/addr");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+@end
+
+
+#pragma mark - HttpAddressDeleteRequest
+
+@interface HttpAddressDeleteRequest()
+
+@property(nonatomic) NSInteger addrId;
+
+@end
+
+@implementation HttpAddressDeleteRequest
+
+-(instancetype)initWithAddrId:(NSInteger)addrId
+{
+    self = [super init];
+    if (self) {
+        self.addrId = addrId;
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* url = [NSString stringWithFormat:@"/rest/addr/delete/%ld", self.addrId];
+    return COMB_URL(url);
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+
+@end
+
+
+#pragma mark - HttpAddressUpdateRequest
+
+@interface HttpAddressUpdateRequest()
+
+@property(nonatomic) NSInteger addrId;
+
+@end
+
+
+@implementation HttpAddressUpdateRequest
+
+-(instancetype)initWithAddrDto:(AddrDTO *)addrDto
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"address.contact" : addrDto.contact,
+                         @"address.mobile" : addrDto.mobile,
+                         @"address.pid" : @(addrDto.pid),
+                         @"address.cid": @(addrDto.cid),
+                         @"address.did": @(addrDto.did),
+                         @"address.street": addrDto.street,
+                         @"address.zipCode" : addrDto.zipCode,
+                         @"address.isDefault" : @(addrDto.isDefault),
+                         //@"address.region" : addrDto.region
+                         } mutableCopy];
+        if (addrDto.uid>0) {
+            [self.params setValue:@(addrDto.uid) forKey:@"address.uid"];
+        }
+        self.addrId = addrDto.id;
+    }
+    return self;
+}
+
+-(BOOL)needToken
+{
+    return NO;
+}
+
+-(NSString*)url
+{
+    NSString* url = [NSString stringWithFormat:@"/rest/addr/update/%ld", self.addrId];
+    return COMB_URL(url);
 }
 
 -(NSString*)method

@@ -36,3 +36,20 @@
 -(instancetype)initWithAddrDto:(AddrDTO*)addrDto;
 
 @end
+
+
+@interface HttpAddressUpdateRequest : BaseHttpRequest
+
+-(instancetype)initWithAddrDto:(AddrDTO*)addrDto;
+
+@end
+
+
+@interface HttpAddressDeleteRequest : BaseHttpRequest
+
+-(instancetype)initWithAddrId:(NSInteger)addrId;
+
+@end
+
+
+

@@ -73,23 +73,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
-    [request request]
-    .then(^(id responseObj){
-        HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
-        if (response.ok) {
-            self.addresses = response.addresses;
-            [self sortAddressByDefault];
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    });
-}
+    [self refreshAddressList];
+   }
 
 #pragma mark - Table view data source
 
@@ -137,23 +122,28 @@
 
 -(void)deleteButtonClicked:(AddrDetailCell *)cell
 {
-    /*
-    HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
-    [request request]
-    .then(^(id responseObj){
-        HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
-        if (response.ok) {
-            self.addresses = response.addresses;
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    });
-     */
+   
+     @weakify(self);
+     [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要删除该地址吗?"]
+     withOKCallback:^(id x){
+     @strongify(self);
+     HttpAddressDeleteRequest* request = [[HttpAddressDeleteRequest alloc] initWithAddrId:cell.addrDto.id];
+     [request request]
+     .then(^(id responseObj){
+     if (request.response.ok) {
+     [self refreshAddressList];
+     }
+     else {
+     [self showAlertViewWithMessage:request.response.errorMsg];
+     }
+     })
+     .catch(^(NSError* error){
+     [self showAlertViewWithMessage:error.localizedDescription];
+     });
+     }
+     andCancelCallback:^(id x){
+     
+     }];
 
     
 }
@@ -163,6 +153,82 @@
 {
     NSInteger index = checkBox.tag - 1000;
     //NSLog(@"index %ld is checked!", index);
+    AddrDTO* addrDto = self.addresses[index];
+    AddrDTO* defaultAddrDto = nil;
+    if(NO == addrDto.isDefault)
+    {
+        NSInteger index = 0;
+        for (AddrDTO* addr in self.addresses)
+        {
+             if (YES == addr.isDefault)
+             {
+                 addr.isDefault = NO;
+                 defaultAddrDto = addr;
+                 
+                 break;
+             }else
+             {
+                 index++;
+             }
+            
+            
+        }
+        addrDto.isDefault = YES;
+        
+        //update 2 addrDto
+        //we has a risk here: the first addrDto is updated failed, then the sencond one will not be launched.
+        
+        @weakify(self);
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要设为默认地址吗?"]
+                        withOKCallback:^(id x){
+                            @strongify(self);
+                            HttpAddressUpdateRequest* request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:defaultAddrDto];
+                            [request request]
+                            .then(^(id responseObj){
+                                NSLog(@"%@", responseObj);
+                                if (!request.response.ok) {
+                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                }
+                                else {
+                                    [self refreshAddressList];
+                                    HttpAddressUpdateRequest* request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:addrDto];
+                                    [request request]
+                                    .then(^(id responseObj){
+                                        NSLog(@"%@", responseObj);
+                                        if (!request.response.ok) {
+                                            [self showAlertViewWithMessage:request.response.errorMsg];
+                                        }
+                                        else {
+                                            [self refreshAddressList];
+                                        }
+                                    })
+                                    .catch(^(NSError* error){
+                                        
+                                        [self showAlertViewWithMessage:error.localizedDescription];
+                                    })
+                                    .finally(^(){
+                                    });
+                                    
+                                }
+                            })
+                            .catch(^(NSError* error){
+                                
+                                [self showAlertViewWithMessage:error.localizedDescription];
+                            })
+                            .finally(^(){
+                            });
+                        }
+                     andCancelCallback:^(id x){
+                         
+                     }];
+        
+    }
+    else
+    {
+        //do nothing
+    }
+    
+    
 }
 
 #pragma mark - sort address by default
@@ -187,6 +253,28 @@
             addr.isDefault = NO;
         }
     }
+}
+
+- (void)refreshAddressList
+{
+    HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
+        if (response.ok) {
+            self.addresses = response.addresses;
+            [self sortAddressByDefault];
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+
 }
 
 
