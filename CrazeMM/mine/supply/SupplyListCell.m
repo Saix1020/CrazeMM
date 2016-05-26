@@ -125,8 +125,8 @@
                                                                      relatedBy:NSLayoutRelationEqual
                                                                         toItem:self.contentView
                                                                      attribute:NSLayoutAttributeLeading
-                                                                    multiplier:1.0 constant:self.selectCheckBox.hidden?8.f:32.f ]];
-        [self updateConstraints];
+                                                                    multiplier:1.0 constant:self.selectCheckBox.hidden?8.f:32.f]];
+        [self setNeedsUpdateConstraints];
 
     }
 }

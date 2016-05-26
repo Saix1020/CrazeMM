@@ -34,7 +34,7 @@
         _tagLabel.backgroundColor = [UIColor UIColorFromRGB:0xbddcfa];
         _tagLabel.textColor = [UIColor UIColorFromRGB:0x346796];
         _tagLabel.textAlignment = NSTextAlignmentCenter;
-        _tagLabel.text = @"原封";
+//        _tagLabel.text = @"原封";
         _tagLabel.font = [UIFont systemFontOfSize:14.f];
         [_tagLabel sizeToFit];
         _tagLabel.width += 16.f;
@@ -244,24 +244,11 @@
         title = _searchResultDTO.goodName;
     }
     else {
-        title = @"飞利浦 -V387 黑色 1GB 联通 3G WCDMA";
+        //title = @"飞利浦 -V387 黑色 1GB 联通 3G WCDMA";
     }
     
     self.titleLabel.text = title;
-//    UIFont* font = [UIFont systemFontOfSize:20.f];
-//    
-//    if (title.length > kMaxTitleLength) {
-//        title = [NSString stringWithFormat:@"%@...", [title substringToIndex:kMaxTitleLength]];
-//    }
-//    
-//    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:title];
-//    [attributedText m80_setFont:font];
-//    [self.titleLabel appendAttributedText:attributedText];
-//    [self.titleLabel appendText:@" "];
-//    [self.titleLabel appendView:self.tagLabel margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
     [self.titleLabel sizeToFit];
-//    self.titleLabel.numberOfLines = 2;
-    //[attributedText
 
 }
 
@@ -277,7 +264,7 @@
         timeLeftString = [NSString leftTimeString:_searchResultDTO.millisecond];
     }
     else {
-        timeLeftString = @"10 天 18 小时 20 分钟";
+//        timeLeftString = @"10 天 18 小时 20 分钟";
     }
     NSArray *colors = @[[UIColor redColor], [UIColor blackColor]];
     NSArray *components = [timeLeftString componentsSeparatedByString:@" "];
@@ -307,8 +294,8 @@
         quantity = [NSString stringWithFormat:@"%ld", _searchResultDTO.quantity];
     }
     else {
-        price = @"1020";
-        quantity = @"100";
+//        price = @"1020";
+//        quantity = @"100";
     }
 //    NSString* detailString = self.priceLabel.text;
     self.priceLabel.text = @"";

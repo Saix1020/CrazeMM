@@ -122,7 +122,7 @@
     self.rememberMeCheckBox.boxType = BEMBoxTypeSquare;
     self.rememberMeCheckBox.onFillColor = [UIColor clearColor];
     self.rememberMeCheckBox.onAnimationType = BEMAnimationTypeOneStroke;
-//    self.rememberMeCheckBox.animationDuration = 0.3f;
+    self.rememberMeCheckBox.animationDuration = 0.f;
     self.rememberMeCheckBox.lineWidth = 1;
     
     self.rememberMeLabel.text = @"下次自动登录";
@@ -130,6 +130,10 @@
     
     self.wechartLabel.textColor = RGBCOLOR(40, 40, 40);
     self.wechartLabel.text = @"微信登录";
+    //wechart login not support now
+    self.wechartLabel.hidden = YES;
+    self.wechartIcon.hidden = YES;
+    self.line3.hidden = YES;
     
     self.userNameRightView = [[UIButton alloc] init];
     [self.userNameRightView setImage:[UIImage imageNamed:@"icon_pulldown"] forState:UIControlStateNormal];
@@ -172,7 +176,7 @@
         return [RACSignal empty];
     }];
     
-    RACSignal *validUsernameSignal = [self.userNameField.rac_textSignal
+    RACSignal *validUsernameSignal = [RACObserve(self, userNameField.text)
                                       map:^id(NSString *text) {
                                           @strongify(self);
                                           return @([self isValidUsername:text]);
@@ -186,16 +190,18 @@
     RACSignal *signUpActiveSignal =
     [RACSignal combineLatest:@[validUsernameSignal, validPasswordSignal]
                       reduce:^id(NSNumber*usernameValid, NSNumber *passwordValid){
-                          return @([usernameValid boolValue] && [passwordValid boolValue]);
+                          @strongify(self);
+                          // for we can choose the user name from suggestion table view
+                          // we check self.userNameField.text here
+                          return  @([self isValidUsername:self.userNameField.text] && [passwordValid boolValue]);
                       }];
     
     [signUpActiveSignal subscribeNext:^(NSNumber*signupActive){
         @strongify(self);
         self.loginButton.enabled = [signupActive boolValue];
         if(!self.loginButton.enabled){
-            self.loginButton.backgroundColor = [UIColor whiteColor];
+            self.loginButton.backgroundColor = [UIColor light_Gray_Color];
             [self.loginButton setTitleColor: RGBCOLOR(150, 150, 150)  forState:UIControlStateDisabled];
-
         }
         else {
             self.loginButton.backgroundColor = [UIColor greenTextColor];
@@ -206,7 +212,25 @@
     
     self.loginButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id sender){
         
+        
+        
         @strongify(self);
+        // store the user name
+        NSMutableArray* accountHistoryArray = [[[NSUserDefaults standardUserDefaults] valueForKey:@"AccountHistory"] mutableCopy];
+        if(accountHistoryArray == nil){
+            accountHistoryArray = [[NSMutableArray alloc] init];
+        }
+        NSInteger index = [accountHistoryArray indexOfObject:self.userNameField.text];
+        if (index == NSNotFound) {
+            [accountHistoryArray insertObject:self.userNameField.text atIndex:0];
+        }
+        else {
+            NSString* userName = accountHistoryArray[index];
+            [accountHistoryArray removeObject:userName];
+            [accountHistoryArray insertObject:userName atIndex:0];
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:accountHistoryArray forKey:@"AccountHistory"];
+
 //        NSString* userName = [self.userNameField.text copy];
         
         HttpLoginRequest* request = [[HttpLoginRequest alloc] initWithUser:self.userNameField.text
@@ -244,29 +268,33 @@
         return [RACSignal empty];
     }];
     
-    self.suggestVC = [[SuggestViewController alloc] init];
-    self.suggestVC.suggestedStrings = @[@"Sai Xu", @"Liang guo", @"Haipeng Luo", @"Taodong Lu"];
-    self.suggestVC.delegate = self;
+    
                       
     self.userNameRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         @strongify(self);
-        self.suggestVC.view.frame = CGRectMake(0, 0, self.userNameField.frame.size.width, self.suggestVC.height);
-//        self.suggestVC.view.backgroundColor = RGBCOLOR(150, 150, 150);
-        self.popover                    = [[ZZPopoverWindow alloc] init];
-        self.popover.popoverPosition = ZZPopoverPositionDown;
-        self.popover.contentView        = self.suggestVC.view;
-        self.popover.animationSpring = NO;
-//        self.popover.backgroundColor = RGBCOLOR(150, 150, 150);
-        self.popover.showArrow = NO;
-        self.popover.didShowHandler = ^() {
-            //self.popover.layer.cornerRadius = 0;
-        };
-        self.popover.didDismissHandler = ^() {
-            //NSLog(@"Did dismiss");
-        };
+        self.suggestVC = [[SuggestViewController alloc] init];
+        NSArray* accountHistoryArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"AccountHistory"];
+        if (accountHistoryArray.count != 0) {
+            self.suggestVC.suggestedStrings = accountHistoryArray;
+            self.suggestVC.delegate = self;
+            self.suggestVC.view.frame = CGRectMake(0, 0, self.userNameField.frame.size.width, self.suggestVC.height);
+            self.popover                    = [[ZZPopoverWindow alloc] init];
+            self.popover.popoverPosition = ZZPopoverPositionDown;
+            self.popover.contentView        = self.suggestVC.view;
+            self.popover.animationSpring = NO;
+            self.popover.showArrow = NO;
+            self.popover.didShowHandler = ^() {
+                //self.popover.layer.cornerRadius = 0;
+            };
+            self.popover.didDismissHandler = ^() {
+                //NSLog(@"Did dismiss");
+            };
+            
+            [self.popover showAtView:self.userNameField];
+        }
         
-        [self.popover showAtView:self.userNameField];
+        
 
         
         return [RACSignal empty];
@@ -342,7 +370,6 @@
     self.line1.frame = CGRectMake(kLeadingPad, CGRectGetMaxY(self.userNameField.frame), maxWidth, 1);
     self.line2.frame = CGRectMake(kLeadingPad, CGRectGetMaxY(self.passwordField.frame), maxWidth, 1);
     self.line3.frame = CGRectMake(kLeadingPad, self.wechartIcon.frame.origin.y-8.f, maxWidth, 1);
-    
 }
 
 -(void)viewDidLayoutSubviews

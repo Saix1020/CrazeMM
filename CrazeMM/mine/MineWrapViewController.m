@@ -60,14 +60,21 @@
 
 -(void)logout
 {
-    [[UserCenter defaultCenter] resetKeychainItem];
-    [[UserCenter defaultCenter] setLogouted];
-    
-    //    UIViewController* parentVC = self.parentViewController;
-    
-    [self transitionFromViewController:self.mineVC  toViewController:self.nologinMineVC duration:1 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-    }  completion:^(BOOL finished) {
-    }];
+    @weakify(self);
+    [self showAlertViewWithMessage:@"您确认需要退出吗?"
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        [[UserCenter defaultCenter] resetKeychainItem];
+                        [[UserCenter defaultCenter] setLogouted];
+                        
+                        //    UIViewController* parentVC = self.parentViewController;
+                        
+                        [self transitionFromViewController:self.mineVC  toViewController:self.nologinMineVC duration:1 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+                        }  completion:^(BOOL finished) {
+                        }];
+
+                    }
+                 andCancelCallback:nil];
 }
 
 
