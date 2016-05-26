@@ -381,9 +381,9 @@
 
 -(void)keyboardWillHide: (NSNotification *)notification
 {
-    NSDictionary *userInfo = [notification userInfo];
-    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
+//    NSDictionary *userInfo = [notification userInfo];
+//    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+//    CGRect keyboardRect = [aValue CGRectValue];
 
     [UIView animateWithDuration:0.5 animations:^{
         self.modalView.contentView.y = [UIScreen mainScreen].bounds.size.height - self.modalView.contentView.height;

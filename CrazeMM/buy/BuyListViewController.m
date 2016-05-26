@@ -176,8 +176,6 @@
     [self.tableView setTableFooterView:view];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
-
-
     
     // add some mock data
     for (int i=0; i<10; i++) {
@@ -533,6 +531,7 @@
     if (!cell) {
         cell = [[ProductSummaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductSummaryCell"];
         cell.cellType = @"求购";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.productDto = [self.dataSource objectAtIndex:indexPath.row];
     return cell;

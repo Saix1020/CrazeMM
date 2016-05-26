@@ -91,7 +91,6 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ProductSummaryCell *cell = (ProductSummaryCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
-    
     cell.cellType = @"供货";
     cell.productDto = [self.dataSource objectAtIndex:indexPath.row];
     return cell;

@@ -23,24 +23,29 @@ typedef enum {
 //@property (nonatomic, readonly) AFHTTPRequestOperationManager *manager;
 @end
 
+static AFHTTPSessionManager* g_manager = nil;
 
 @implementation BaseHttpRequest
 
 -(AFHTTPSessionManager*)manager
 {
-    AFHTTPSessionManager* mgr = [AFHTTPSessionManager manager];
-    
+//    @synchronized([BaseHttpRequest class]){
+//        if (!g_manager) {
+//            g_manager = [AFHTTPSessionManager manager];
+//            
+//        }
+//        
+//        _manager = g_manager;
+//    }
+    if(!_manager){
+        _manager = [AFHTTPSessionManager manager];
+    }
     NSURL* url = [NSURL URLWithString:COMB_URL(@"")];
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
     NSDictionary* requestHeaderFieldsWithCookies = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
-    [mgr.requestSerializer setValue:requestHeaderFieldsWithCookies[@"Cookie"] forHTTPHeaderField:@"Cookie"];
-    
-    // set request timeout 10s
-//    [mgr.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-//    mgr.requestSerializer.timeoutInterval = 10.f;
-//    [mgr.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-
-    return mgr;
+    [_manager.requestSerializer setValue:requestHeaderFieldsWithCookies[@"Cookie"] forHTTPHeaderField:@"Cookie"];
+    //[_manager.requestSerializer setValue:nil forHTTPHeaderField:@"User-Agent"];
+    return _manager;
 }
 
 
@@ -356,7 +361,10 @@ typedef enum {
     });
 }
 
-
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", self.class);
+}
 
 @end
 
@@ -426,6 +434,11 @@ typedef enum {
     }
     
     return self.all[@"data"];
+}
+
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", self.class);
 }
 
 @end

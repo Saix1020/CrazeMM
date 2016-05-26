@@ -48,8 +48,9 @@ typedef enum {
 
 - (AFPromise *)GET:(NSString *)URLString parameters:(id)parameters
 {
-    
+    @weakify(self);
     return [AFPromise promiseWithResolverBlock:^(PMKResolver resolver){
+        @strongify(self);
         [self GET:URLString
        parameters:parameters
          progress:nil

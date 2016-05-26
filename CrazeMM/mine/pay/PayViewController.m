@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 
 -(CGFloat)totalPrice
 {
-    CGFloat totalPrice;
+    CGFloat totalPrice = 0.f;
     for(OrderDetailDTO* dto in self.orderDetailDtos)
     {
         totalPrice += dto.quantity * dto.price;

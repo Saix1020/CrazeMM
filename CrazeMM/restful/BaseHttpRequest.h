@@ -27,7 +27,7 @@ typedef void (^errorCallback)(NSError *error);
 @property (nonatomic, strong) NSMutableDictionary* params;
 @property (nonatomic, readonly) NSString* tokenName;
 @property (nonatomic, strong) BaseHttpResponse* response;
-@property (nonatomic, readonly) AFHTTPSessionManager* manager;
+@property (nonatomic, strong) AFHTTPSessionManager* manager;
 
 @property (nonatomic, weak) UIViewController* caller;
 -(Class)responseClass;
