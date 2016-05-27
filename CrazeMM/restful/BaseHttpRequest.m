@@ -362,7 +362,9 @@ static AFHTTPSessionManager* g_manager = nil;
 -(void)dealloc
 {
     NSLog(@"dealloc %@", self.class);
-    [self.manager invalidateSessionCancelingTasks:YES];
+    if (_manager) {
+        [self.manager invalidateSessionCancelingTasks:YES];
+    }
 }
 
 @end

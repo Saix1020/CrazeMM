@@ -8,8 +8,16 @@
 
 #import "SearchListCell.h"
 #import "NSAttributedString+Utils.h"
+//#import "UITableView+FDTemplateLayoutCell.h"
+
 
 #define kMaxTitleLength 36
+#define kMaxTitleHeight 72.f
+#define kPriceLabelHeight 24.f
+#define kTypeLabelWidth 44.f
+#define kTypeLabelHeight 18.f
+
+
 
 @interface SearchListCell()
 @property(nonatomic, strong) UIImageView* clockView;
@@ -113,7 +121,10 @@
         self.scopeLabel.text = [NSString stringWithFormat:@"收货地址: %@", searchResultDTO.address];
 
     }
-    [self.scopeLabel sizeToFit];
+    //[self.scopeLabel sizeToFit];
+    CGSize size = [self.self.scopeLabel.text boundingRectWithFont:self.self.scopeLabel.font andWidth:self.self.scopeLabel.width];
+    self.scopeLabel.height = ceil(size.height);
+
     
     if (searchResultDTO.isAnoy) {
         [self.companyImageView setImageWithURL:[NSURL URLWithString:COMB_URL(@"/weui/images/img_01.jpg")] placeholderImage:[UIImage imageNamed:@"company_icon"]];
@@ -145,6 +156,7 @@
                                                  [NSString stringWithFormat:@"意向: %ld", searchResultDTO.intentions]];
     
     self.typeLabel.textLabel.text = self.typeName;
+//    self.fd_enforceFrameLayout = YES;
 
     [self layoutAllLabels];
 
@@ -248,8 +260,16 @@
     }
     
     self.titleLabel.text = title;
-    [self.titleLabel sizeToFit];
-
+    //[self.titleLabel sizeToFit];
+    
+    CGSize size = [self.titleLabel.text boundingRectWithFont:self.titleLabel.font andWidth:self.titleLabel.width];
+    
+    if (ceil(size.height) > kMaxTitleHeight) {
+        self.titleLabel.height = kMaxTitleHeight;
+    }
+    else {
+        self.titleLabel.height = ceil(size.height);
+    }
 }
 
 
@@ -299,7 +319,6 @@
     }
 //    NSString* detailString = self.priceLabel.text;
     self.priceLabel.text = @"";
-    
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
 
     
@@ -319,10 +338,6 @@
     NSInteger index = 0;
     for (NSString *text in components)
     {
-//        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
-//        [attributedText m80_setFont:[fonts objectAtIndex:index]];
-//        [attributedText m80_setTextColor:[colors objectAtIndex:index]];
-//        [self.priceLabel appendAttributedText:attributedText];
         [stringWithAttrs addObject:@{@"string" : text,
                                      @"attributes" : @{NSForegroundColorAttributeName:[colors objectAtIndex:index],
                                                        NSFontAttributeName : [fonts objectAtIndex:index]}
@@ -337,7 +352,7 @@
 
 -(void)layoutAllLabels
 {
-    [self.priceLabel sizeToFit];
+//    [self.priceLabel sizeToFit];
     //[self.typeLabel sizeToFit];
     
     CGRect bounds = self.contentView.bounds;
@@ -345,14 +360,20 @@
     CGFloat y = 16.f;
     self.previewAndTransctionsLabels.frame = CGRectMake(bounds.size.width-50-16.f, y, 50, 60);
     self.titleLabel.frame = CGRectMake(16.f, y,
-                                       bounds.size.width-70-16.f*2, self.titleLabel.height+6.f);
+                                       bounds.size.width-70-16.f*2,
+                                       self.titleLabel.height+6.f);
     y += self.titleLabel.frame.size.height + 4.f;
     
     
-    self.priceLabel.frame = CGRectMake(16.f, y,
-                                       self.priceLabel.frame.size.width, self.priceLabel.height);
-    self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.priceLabel.frame)+4.f, self.priceLabel.center.y - self.typeLabel.frame.size.height/2,
-                                      43.f, 18.f);
+    self.priceLabel.frame = CGRectMake(16.f,
+                                       y,
+                                       self.priceLabel.frame.size.width,
+                                       kPriceLabelHeight);
+    
+    self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.priceLabel.frame)+4.f,
+                                      self.priceLabel.center.y - self.typeLabel.frame.size.height/2,
+                                      kTypeLabelWidth,
+                                      kTypeLabelHeight);
     self.typeLabel.y = self.titleLabel.bottom+6.f;
     //self.typeLabel.height = self.priceLabel.height;
     
@@ -390,7 +411,30 @@
 
 }
 
++(CGFloat)cellHeightWithDTO:(SearchResultDTO*)dto
+{
+    CGFloat height = 16.f;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    CGSize size = [dto.goodName boundingRectWithFont:[UIFont systemFontOfSize:20.f] andWidth:screenWidth-70-16.f*2];
+    if (size.height > 72.f) {
+        size.height = 72.f;
+    }
 
+    height += ceil(size.height) + 4.f;
+    height += kPriceLabelHeight + 12.f + 1.f + 12.f;
+    height += 24.f;
+    
+    size = [[NSString stringWithFormat:@"供货范围: %@", dto.region]
+            boundingRectWithFont:[UIFont systemFontOfSize:13]
+            andWidth:screenWidth-16.f*2];
+    
+    height += ceil(size.height) + 12.f;
+    height += 24.f + 4.f;
+
+    
+    return height;
+}
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -402,5 +446,9 @@
     return 204.f;
 }
 
+-(CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, self.height);
+}
 
 @end

@@ -5,6 +5,7 @@ target "CrazeMM" do
 	pod 'PromiseKit', '~> 3.2.0'
 	pod 'ReactiveCocoa', '~> 4.0.0'
 	pod 'MBProgressHUD', '~> 0.9.2'
+	pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
 #pod 'WebViewJavascriptBridge', '~> 5.0.5'
 #pod 'QuickDialog', '~> 1.1.0'
 	pod 'LLBootstrapButton', '~> 0.0.1'
