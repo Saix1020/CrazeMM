@@ -1584,6 +1584,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EB7796D1CF8948600163A09 /* stock */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = stock;
+			sourceTree = "<group>";
+		};
 		8B36CB4D54E72C4D41168BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2561,6 +2568,7 @@
 		B964F9581CC4A747003E0D44 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				2EB7796D1CF8948600163A09 /* stock */,
 				B9B5BCEC1CDE00710085E132 /* modal */,
 				B98878A71CC98E5D00990AA4 /* view */,
 				B9EFAFA61CEEF7B000F81157 /* buy */,

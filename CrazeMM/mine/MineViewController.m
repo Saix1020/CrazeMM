@@ -48,6 +48,7 @@
     if ([UserCenter defaultCenter].isLogined) {
         return @[
                  @"我的账户",
+                 @"我的库存",
                  @"我的供货",
                  @"我的求购",
 //                 @"我的抵押",
@@ -59,6 +60,7 @@
     else {
         return @[
                  @"我的账户",
+                 @"我的库存",
                  @"我的供货",
                  @"我的求购",
                  @"我的抵押",
@@ -71,6 +73,7 @@
     if ([UserCenter defaultCenter].isLogined) {
         return @[
                  @"account",
+                 @"stock",
                  @"gonghuo",
                  @"qiugou",
                  @"diya",
@@ -82,6 +85,7 @@
     else {
         return @[
                  @"account",
+                 @"stock",
                  @"gonghuo",
                  @"qiugou",
                  @"diya",
@@ -556,7 +560,7 @@
     switch (indexPath.section) {
         case kSectionInfo:
         {
-            if (indexPath.row == 1) {
+            if (indexPath.row == 2) {
                 SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
                 [self.navigationController pushViewController:supplyVC animated:YES];
                 
@@ -568,13 +572,13 @@
                 
                 return;
             }
-            else if(indexPath.row== 2){
+            else if(indexPath.row== 3){
                 MineBuyViewController* mineBuyVC = [[MineBuyViewController alloc] init];
                 [self.navigationController pushViewController:mineBuyVC animated:YES];
                 return;
 
             }
-            else if(indexPath.row== 3){
+            else if(indexPath.row== 4){
                 AddressesViewController* addrVC = [[AddressesViewController alloc] init];
                 [self.navigationController pushViewController:addrVC animated:YES];
                 return;
