@@ -2413,8 +2413,6 @@
 				B9B5BCE21CDCDF690085E132 /* NSError+Utils.m */,
 				B959248D1CDF90A900533E77 /* NSNull+Utils.h */,
 				B959248E1CDF90A900533E77 /* NSNull+Utils.m */,
-				B9C3953D1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.h */,
-				B9C3953E1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -2511,6 +2509,8 @@
 				B91896FF1CD10EE00061D0B6 /* RestURL.h */,
 				B91732771CD2036300C29698 /* BaseHttpRequest.h */,
 				B91732781CD2036300C29698 /* BaseHttpRequest.m */,
+				B9C3953D1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.h */,
+				B9C3953E1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m */,
 			);
 			name = common;
 			sourceTree = "<group>";

@@ -32,9 +32,7 @@ static AFHTTPSessionManager* g_manager = nil;
 //    @synchronized([BaseHttpRequest class]){
 //        if (!g_manager) {
 //            g_manager = [AFHTTPSessionManager manager];
-//            
 //        }
-//        
 //        _manager = g_manager;
 //    }
     if(!_manager){
@@ -44,7 +42,7 @@ static AFHTTPSessionManager* g_manager = nil;
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
     NSDictionary* requestHeaderFieldsWithCookies = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
     [_manager.requestSerializer setValue:requestHeaderFieldsWithCookies[@"Cookie"] forHTTPHeaderField:@"Cookie"];
-    //[_manager.requestSerializer setValue:nil forHTTPHeaderField:@"User-Agent"];
+    [_manager.requestSerializer setValue:nil forHTTPHeaderField:@"User-Agent"];
     return _manager;
 }
 
@@ -152,7 +150,7 @@ static AFHTTPSessionManager* g_manager = nil;
 //    self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
 
-    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:self.url] sessionConfiguration:configuration];
+    _manager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:self.url] sessionConfiguration:configuration];
 
 //    AFHTTPResponseSerializer           二进制格式
 //    AFJSONResponseSerializer           JSON
@@ -162,11 +160,11 @@ static AFHTTPSessionManager* g_manager = nil;
 //    AFImageResponseSerializer          Image
 //    AFCompoundResponseSerializer       组合
     
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = AcceptContentTypes;
+    _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    _manager.responseSerializer.acceptableContentTypes = AcceptContentTypes;
 
 
-    return [self doResqustWithSessionManage:manager];
+    return [self doResqustWithSessionManage:_manager];
     
 //    return [manager GET:self.url parameters:self.params].then(^(id responseObject, AFHTTPRequestOperation *operation){
 //        self.response = [[[self responseClass] alloc] initWith:responseObject];
@@ -364,6 +362,7 @@ static AFHTTPSessionManager* g_manager = nil;
 -(void)dealloc
 {
     NSLog(@"dealloc %@", self.class);
+    [self.manager invalidateSessionCancelingTasks:YES];
 }
 
 @end
