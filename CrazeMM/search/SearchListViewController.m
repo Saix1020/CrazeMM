@@ -24,7 +24,7 @@
 #import "SupplyProductViewController.h"
 #import "BuyProductViewController.h"
 #import "HttpAddIntention.h"
-//#import "UITableView+FDTemplateLayoutCell.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 
 #define kSegmentCellHeight 40.f
@@ -327,17 +327,18 @@
             self.currentPage = response.pageNumber;
             self.totalPage = response.totalPage;
             [self.dataSource addObjectsFromArray:response.productDTOs];
-            @weakify(self);
-            dispatch_async(dispatch_get_global_queue(0, 0), ^(){
-                @strongify(self);
-                for(SearchResultDTO* dto in response.productDTOs) {
-                    [self.cellHeight addObject:@([SearchListCell cellHeightWithDTO:dto])];
-                }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                    self.emptyView.hidden = YES;
-                });
-            });
+//            @weakify(self);
+//            dispatch_async(dispatch_get_global_queue(0, 0), ^(){
+//                @strongify(self);
+//                for(SearchResultDTO* dto in response.productDTOs) {
+//                    [self.cellHeight addObject:@([SearchListCell cellHeightWithDTO:dto])];
+//                }
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                });
+//            });
+            [self.tableView reloadData];
+            self.emptyView.hidden = YES;
+
             
         }
         else {
@@ -428,15 +429,15 @@
  
 //    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
 //    return cell.height;
-//    return [tableView fd_heightForCellWithIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString] cacheByIndexPath:indexPath configuration:^(SearchListCell* cell) {
-//        // configurations
-//        if (cell.searchResultDTO.id != ((SearchResultDTO*)[self.dataSource objectAtIndex:indexPath.row]).id){
-//
-//            cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
-//        }
-//
-//    }];
-    return ceil([self.cellHeight[indexPath.row] floatValue]);
+    return [tableView fd_heightForCellWithIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString] cacheByIndexPath:indexPath configuration:^(SearchListCell* cell) {
+        // configurations
+        if (cell.searchResultDTO.id != ((SearchResultDTO*)[self.dataSource objectAtIndex:indexPath.row]).id){
+
+            cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
+        }
+
+    }];
+//    return ceil([self.cellHeight[indexPath.row] floatValue]);
 ////    return [SearchListCell cellHeight];
     
 }

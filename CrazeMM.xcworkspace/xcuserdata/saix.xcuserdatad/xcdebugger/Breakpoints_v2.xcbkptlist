@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/search/SearchListViewController.m"
-            timestampString = "486053861.374379"
+            timestampString = "486054946.725796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "374"
-            endingLineNumber = "374"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "-viewWillLayoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
@@ -3002,44 +3002,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/search/SearchListViewController.m"
-            timestampString = "486053861.374379"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
-            landmarkName = "-scrollViewDidScroll:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CrazeMM/search/SearchListViewController.m"
             timestampString = "486051875.983355"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "286"
             endingLineNumber = "286"
             landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CrazeMM/search/SearchListViewController.m"
-            timestampString = "486053861.374379"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "513"
-            endingLineNumber = "513"
-            landmarkName = "-scrollViewDidScroll:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3274,11 +3242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/search/SearchListViewController.m"
-            timestampString = "486053861.374379"
+            timestampString = "486054946.725796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "-getSearchList"
             landmarkType = "5">
          </BreakpointContent>
@@ -6432,22 +6400,6 @@
             startingLineNumber = "416"
             endingLineNumber = "416"
             landmarkName = "+cellHeightWithDTO:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CrazeMM/search/SearchListViewController.m"
-            timestampString = "486053861.374379"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
-            landmarkName = "-segment:didSelectAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

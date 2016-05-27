@@ -8,7 +8,7 @@
 
 #import "SearchListCell.h"
 #import "NSAttributedString+Utils.h"
-//#import "UITableView+FDTemplateLayoutCell.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 
 #define kMaxTitleLength 36
@@ -156,7 +156,7 @@
                                                  [NSString stringWithFormat:@"意向: %ld", searchResultDTO.intentions]];
     
     self.typeLabel.textLabel.text = self.typeName;
-//    self.fd_enforceFrameLayout = YES;
+    self.fd_enforceFrameLayout = YES;
 
     [self layoutAllLabels];
 
