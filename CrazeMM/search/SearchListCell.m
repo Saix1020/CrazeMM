@@ -121,9 +121,9 @@
         self.scopeLabel.text = [NSString stringWithFormat:@"收货地址: %@", searchResultDTO.address];
 
     }
-    //[self.scopeLabel sizeToFit];
-    CGSize size = [self.self.scopeLabel.text boundingRectWithFont:self.self.scopeLabel.font andWidth:self.self.scopeLabel.width];
-    self.scopeLabel.height = ceil(size.height);
+    [self.scopeLabel sizeToFit];
+//    CGSize size = [self.self.scopeLabel.text boundingRectWithFont:self.self.scopeLabel.font andWidth:self.self.scopeLabel.width];
+//    self.scopeLabel.height = ceil(size.height);
 
     
     if (searchResultDTO.isAnoy) {
@@ -264,12 +264,13 @@
     
     CGSize size = [self.titleLabel.text boundingRectWithFont:self.titleLabel.font andWidth:self.titleLabel.width];
     
-    if (ceil(size.height) > kMaxTitleHeight) {
-        self.titleLabel.height = kMaxTitleHeight;
-    }
-    else {
-        self.titleLabel.height = ceil(size.height);
-    }
+//    if (ceil(size.height) > kMaxTitleHeight) {
+//        self.titleLabel.height = kMaxTitleHeight;
+//    }
+//    else {
+//        self.titleLabel.height = ceil(size.height);
+//    }
+    [self.titleLabel sizeToFit];
 }
 
 
@@ -407,7 +408,7 @@
     
     self.buttonLine.y = y-1.0f;
     
-    self.height = y;
+    self.height = self.countdownLabel.bottom;
 
 }
 

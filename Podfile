@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 use_frameworks!
 target "CrazeMM" do
+	pod 'SDAutoLayout', '~> 2.1.1'
 	pod 'AFNetworking', '~> 3.1.0'
 	pod 'PromiseKit', '~> 3.2.0'
 	pod 'ReactiveCocoa', '~> 4.0.0'

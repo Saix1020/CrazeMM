@@ -1079,6 +1079,8 @@
 		B918970A1CD119D90061D0B6 /* BaseDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseDTO.m; path = modal/BaseDTO.m; sourceTree = "<group>"; };
 		B918970C1CD11B5F0061D0B6 /* ProductDescriptionDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDescriptionDTO.h; path = buy/ProductDescriptionDTO.h; sourceTree = "<group>"; };
 		B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDescriptionDTO.m; path = buy/ProductDescriptionDTO.m; sourceTree = "<group>"; };
+		B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewSearchListCell.h; path = search/NewSearchListCell.h; sourceTree = "<group>"; };
+		B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewSearchListCell.m; path = search/NewSearchListCell.m; sourceTree = "<group>"; };
 		B95924041CDEB26300533E77 /* CommonOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonOrderListViewController.h; path = common/CommonOrderListViewController.h; sourceTree = "<group>"; };
 		B95924051CDEB26300533E77 /* CommonOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonOrderListViewController.m; path = common/CommonOrderListViewController.m; sourceTree = "<group>"; };
 		B959248D1CDF90A900533E77 /* NSNull+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNull+Utils.h"; path = "common/NSNull+Utils.h"; sourceTree = "<group>"; };
@@ -2669,6 +2671,8 @@
 				B99D13081CC73FDA000DFF95 /* SearchListCell.h */,
 				B99D13091CC73FDA000DFF95 /* SearchListCell.m */,
 				B9156F3B1CDB91630041E535 /* SearchEmpty.xib */,
+				B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */,
+				B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";

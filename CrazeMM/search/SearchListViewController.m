@@ -418,28 +418,21 @@
     return 1;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-//    return cell.height;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-//    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-//    return cell.height;
-    return [tableView fd_heightForCellWithIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString] cacheByIndexPath:indexPath configuration:^(SearchListCell* cell) {
-        // configurations
-        if (cell.searchResultDTO.id != ((SearchResultDTO*)[self.dataSource objectAtIndex:indexPath.row]).id){
+    SearchResultDTO* dto = [self.dataSource objectAtIndex:indexPath.row];
 
+    return [tableView fd_heightForCellWithIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString] cacheByKey:@(dto.id) configuration:^(SearchListCell* cell) {
+        // configurations
+        if (cell.searchResultDTO.id != dto.id){
+            cell.typeName = self.searchCategoryString;
             cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
         }
 
     }];
-//    return ceil([self.cellHeight[indexPath.row] floatValue]);
-////    return [SearchListCell cellHeight];
-    
+//    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    return cell.height;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
