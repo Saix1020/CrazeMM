@@ -426,8 +426,10 @@
     return [tableView fd_heightForCellWithIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString] cacheByKey:@(dto.id) configuration:^(SearchListCell* cell) {
         // configurations
         if (cell.searchResultDTO.id != dto.id){
-            cell.typeName = self.searchCategoryString;
-            cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
+            [cell setSearchResultDTO:[self.dataSource objectAtIndex:indexPath.row] andTypeName:self.searchCategoryString];
+
+//            cell.typeName = self.searchCategoryString;
+//            cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
         }
 
     }];
@@ -444,9 +446,10 @@
                                      reuseIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString]
                                              andType:self.searchCategoryString];
     }
-    cell.typeName = self.searchCategoryString;
+    //cell.typeName = self.searchCategoryString;
     if (cell.searchResultDTO.id != ((SearchResultDTO*)[self.dataSource objectAtIndex:indexPath.row]).id){
-        cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
+        [cell setSearchResultDTO:[self.dataSource objectAtIndex:indexPath.row] andTypeName:self.searchCategoryString];
+        //cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
     }
     return cell;
 }

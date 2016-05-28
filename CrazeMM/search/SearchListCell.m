@@ -25,6 +25,7 @@
 @property(nonatomic, strong) UIView* topSeperatorView;
 @property(nonatomic, strong) UIView* buttonLine;
 @property(nonatomic, strong) UIView* topLine;
+@property (readwrite, strong, nonatomic) SearchResultDTO* searchResultDTO;
 
 @end
 
@@ -101,6 +102,12 @@
     }
     
     return self;
+}
+
+-(void)setSearchResultDTO:(SearchResultDTO *)searchResultDTO andTypeName:(NSString*)typeName
+{
+    self.typeName = typeName;
+    self.searchResultDTO = searchResultDTO;
 }
 
 -(void)setSearchResultDTO:(SearchResultDTO *)searchResultDTO

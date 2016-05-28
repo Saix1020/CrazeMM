@@ -31,9 +31,11 @@
 @property (strong, nonatomic) NSString* typeName;
 
 @property (strong, nonatomic)  LabelWithSeperatorLine *previewAndTransctionsLabels;
-@property (strong, nonatomic) SearchResultDTO* searchResultDTO;
+@property (readonly, strong, nonatomic) SearchResultDTO* searchResultDTO;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andType:(NSString*)type;
+
+-(void)setSearchResultDTO:(SearchResultDTO *)searchResultDTO andTypeName:(NSString*)typeName;
 
 +(CGFloat)cellHeightWithDTO:(SearchResultDTO*)dto;
 
