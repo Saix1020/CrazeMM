@@ -24,6 +24,7 @@
 #import "HttpLogout.h"
 #import "MineBuyViewController.h"
 #import "AddressesViewController.h"
+#import "MineStockViewController.h"
 
 
 @interface MineViewController()
@@ -560,8 +561,8 @@
         case kSectionInfo:
         {
             if (indexPath.row == 1) {
-                SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
-                [self.navigationController pushViewController:supplyVC animated:YES];
+                MineStockViewController* stockVC = [[MineStockViewController alloc] init];
+                [self.navigationController pushViewController:stockVC animated:YES];
                 
                 return;
             }

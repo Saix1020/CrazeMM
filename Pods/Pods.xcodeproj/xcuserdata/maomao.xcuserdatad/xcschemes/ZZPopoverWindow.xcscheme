@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '666CDB8FF5C2FA84B90ADA48'
+               BlueprintIdentifier = 'F1087F62D9891A2B00190EB4'
                BlueprintName = 'ZZPopoverWindow'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'ZZPopoverWindow.framework'>
