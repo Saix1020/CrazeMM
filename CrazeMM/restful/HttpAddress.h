@@ -37,7 +37,6 @@
 
 @end
 
-
 @interface HttpAddressUpdateRequest : BaseHttpRequest
 
 -(instancetype)initWithAddrDto:(AddrDTO*)addrDto;
@@ -50,6 +49,4 @@
 -(instancetype)initWithAddrId:(NSInteger)addrId;
 
 @end
-
-
 

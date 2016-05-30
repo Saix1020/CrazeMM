@@ -24,6 +24,7 @@
 #import "SupplyProductViewController.h"
 #import "BuyProductViewController.h"
 #import "HttpAddIntention.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 
 #define kSegmentCellHeight 40.f
@@ -45,6 +46,7 @@
 @property (nonatomic) SearchCategory searchCategory;
 @property (nonatomic, strong) NSArray* dataSourceArray;
 @property (nonatomic, strong) NSMutableArray* dataSource;
+@property (nonatomic, strong) NSMutableArray* cellHeight;
 @property (nonatomic, strong) NSString* searchCategoryString;
 @property (nonatomic) NSUInteger currentPage;
 @property (nonatomic) NSUInteger totalPage;
@@ -111,6 +113,7 @@
     for (NSMutableArray* array in [self dataSourceArray]) {
         [array removeAllObjects];
     }
+    [self.cellHeight removeAllObjects];
     
     // we should reload data here
     [self.tableView reloadData];
@@ -206,7 +209,6 @@
         UIView *view = [UIView new];
         view.backgroundColor = [UIColor clearColor];
         [self.tableView setTableFooterView:view];
-    
     [self.view addSubview:self.segmentCell];
     
     self.navigationItem.title = [NSString stringWithFormat:@"%@(%@)", @"搜索结果", self.searchKeyword];
@@ -220,6 +222,9 @@
 
 
     }
+    
+    [self.tableView registerClass:[SearchListCell class] forCellReuseIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString]];
+
     
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -243,7 +248,6 @@
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
 
-    
     //self.tableView.tableHeaderView = self.segmentCell;
 //    [self.tableView addSubview:self.segmentCell];
     
@@ -287,6 +291,7 @@
     
     
     self.dataSource = self.dataSourceArray[0];
+    self.cellHeight = [[NSMutableArray alloc] init];
     [self getSearchList:YES].finally(^(){
         //        if (self.emptyView.hidden == YES) {
         //            [self removeSearchViewController];
@@ -322,8 +327,19 @@
             self.currentPage = response.pageNumber;
             self.totalPage = response.totalPage;
             [self.dataSource addObjectsFromArray:response.productDTOs];
+//            @weakify(self);
+//            dispatch_async(dispatch_get_global_queue(0, 0), ^(){
+//                @strongify(self);
+//                for(SearchResultDTO* dto in response.productDTOs) {
+//                    [self.cellHeight addObject:@([SearchListCell cellHeightWithDTO:dto])];
+//                }
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                });
+//            });
             [self.tableView reloadData];
             self.emptyView.hidden = YES;
+
+            
         }
         else {
             if (self.dataSource.count == 0){
@@ -402,12 +418,27 @@
     return 1;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    return cell.height;
+//}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
-    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];;
-    return cell.height;
-//    return [SearchListCell cellHeight];
+//    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    return cell.height;
+    return [tableView fd_heightForCellWithIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString] cacheByIndexPath:indexPath configuration:^(SearchListCell* cell) {
+        // configurations
+        if (cell.searchResultDTO.id != ((SearchResultDTO*)[self.dataSource objectAtIndex:indexPath.row]).id){
+
+            cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
+        }
+
+    }];
+//    return ceil([self.cellHeight[indexPath.row] floatValue]);
+////    return [SearchListCell cellHeight];
     
 }
 
@@ -420,7 +451,10 @@
                                      reuseIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString]
                                              andType:self.searchCategoryString];
     }
-    cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
+    cell.typeName = self.searchCategoryString;
+    if (cell.searchResultDTO.id != ((SearchResultDTO*)[self.dataSource objectAtIndex:indexPath.row]).id){
+        cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
+    }
     return cell;
 }
 

@@ -34,6 +34,9 @@
 @property (strong, nonatomic) SearchResultDTO* searchResultDTO;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andType:(NSString*)type;
+
++(CGFloat)cellHeightWithDTO:(SearchResultDTO*)dto;
+
 +(CGFloat)cellHeight;
 
 @end

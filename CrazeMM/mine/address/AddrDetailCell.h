@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *isDefaultLabel;
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UILabel *defaultLabel;
 
 @property (nonatomic) BOOL isDefault;
 @property (nonatomic, strong) AddrDTO* addrDto;

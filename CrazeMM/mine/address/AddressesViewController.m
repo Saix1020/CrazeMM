@@ -14,7 +14,8 @@
 @interface AddressesViewController ()
 
 @property (nonatomic, strong) UITableView* tableView;
-@property (nonatomic, copy) NSMutableArray* addresses;
+@property (nonatomic, strong) NSMutableArray* addresses;
+@property (nonatomic, strong) AddrDTO* defaultAddrDto;
 @end
 
 @implementation AddressesViewController
@@ -73,8 +74,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
     [self refreshAddressList];
-   }
+}
 
 #pragma mark - Table view data source
 
@@ -112,6 +114,13 @@
     return 110.f;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectedAddress:)]) {
+        [self.delegate didSelectedAddress:self.addresses[indexPath.row]];
+    }
+}
+
 #pragma -- mark AddressListCell delegate
 -(void)editButtonClicked:(AddrDetailCell *)cell
 {
@@ -123,134 +132,168 @@
 -(void)deleteButtonClicked:(AddrDetailCell *)cell
 {
    
-     @weakify(self);
-     [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要删除该地址吗?"]
-     withOKCallback:^(id x){
-     @strongify(self);
-     HttpAddressDeleteRequest* request = [[HttpAddressDeleteRequest alloc] initWithAddrId:cell.addrDto.id];
-     [request request]
-     .then(^(id responseObj){
-     if (request.response.ok) {
-     [self refreshAddressList];
-     }
-     else {
-     [self showAlertViewWithMessage:request.response.errorMsg];
-     }
-     })
-     .catch(^(NSError* error){
-     [self showAlertViewWithMessage:error.localizedDescription];
-     });
-     }
-     andCancelCallback:^(id x){
-     
-     }];
-
-    
+    @weakify(self);
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要删除该地址吗?"]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpAddressDeleteRequest* request = [[HttpAddressDeleteRequest alloc] initWithAddrId:cell.addrDto.id];
+                        [request request]
+                        .then(^(id responseObj){
+                            if (request.response.ok) {
+                                [self refreshAddressList];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                    }
+                 andCancelCallback:nil];
 }
 
 #pragma mark - didTapCheckBox delegate
-- (void)didTapCheckBox:(BEMCheckBox*)checkBox
+-(BOOL)willTapCheckBox:(BEMCheckBox*)checkBox
 {
     NSInteger index = checkBox.tag - 1000;
-    //NSLog(@"index %ld is checked!", index);
     AddrDTO* addrDto = self.addresses[index];
-    AddrDTO* defaultAddrDto = nil;
-    if(NO == addrDto.isDefault)
-    {
-        NSInteger index = 0;
-        for (AddrDTO* addr in self.addresses)
-        {
-             if (YES == addr.isDefault)
-             {
-                 addr.isDefault = NO;
-                 defaultAddrDto = addr;
-                 
-                 break;
-             }else
-             {
-                 index++;
-             }
-            
-            
-        }
-        addrDto.isDefault = YES;
-        
-        //update 2 addrDto
-        //we has a risk here: the first addrDto is updated failed, then the sencond one will not be launched. TBD
-        
-        @weakify(self);
-        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要设为默认地址吗?"]
-                        withOKCallback:^(id x){
-                            @strongify(self);
-                            HttpAddressUpdateRequest * request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:defaultAddrDto];
-                            [request request]
-                            .then(^(id responseObj){
-                                //NSLog(@"1.%@", responseObj);
-                                if (!request.response.ok) {
-                                    [self showAlertViewWithMessage:request.response.errorMsg];
-                                }
-                                else {
-                                    HttpAddressUpdateRequest* request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:addrDto];
-                                    [request request]
-                                    .then(^(id responseObj){
-                                        //NSLog(@"2.%@", responseObj);
-                                        if (!request.response.ok) {
-                                            [self showAlertViewWithMessage:request.response.errorMsg];
-                                        }
-                                        else {
-                                            [self refreshAddressList];
-                                        }
-                                    })
-                                    .catch(^(NSError* error){
-                                        
-                                        [self showAlertViewWithMessage:error.localizedDescription];
-                                    })
-                                    .finally(^(){
-                                    });
-                                    
-                                }
-                            })
-                            .catch(^(NSError* error){
-                                
-                                [self showAlertViewWithMessage:error.localizedDescription];
-                            })
-                            .finally(^(){
-                            });
-                        }
-                     andCancelCallback:^(id x){
-                         [self refreshAddressList];
-                     }];
-        
-    }
-    else
-    {
-        [self refreshAddressList];
+    if (addrDto.isDefault) {
+        return NO;
     }
     
+    addrDto.isDefault = YES;
     
+    @weakify(self);
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要设为默认地址吗?"]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpAddressUpdateRequest* request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:addrDto];
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+                                self.defaultAddrDto.isDefault = NO;
+                                self.defaultAddrDto = addrDto;
+                                [self sortAddressByDefault];
+                                [self.tableView reloadData];
+                                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                                      atScrollPosition:UITableViewScrollPositionTop
+                                                              animated:YES];
+                            }
+                            else {
+                                addrDto.isDefault = NO;
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                    }
+                 andCancelCallback:nil];
+    
+    return NO;
 }
+
+//- (void)didTapCheckBox:(BEMCheckBox*)checkBox
+//{
+//    NSInteger index = checkBox.tag - 1000;
+//    //NSLog(@"index %ld is checked!", index);
+//    AddrDTO* addrDto = self.addresses[index];
+//    AddrDTO* defaultAddrDto = nil;
+//    if(NO == addrDto.isDefault)
+//    {
+//        NSInteger index = 0;
+//        for (AddrDTO* addr in self.addresses)
+//        {
+//             if (YES == addr.isDefault)
+//             {
+//                 addr.isDefault = NO;
+//                 defaultAddrDto = addr;
+//                 
+//                 break;
+//             }else
+//             {
+//                 index++;
+//             }
+//            
+//            
+//        }
+//        addrDto.isDefault = YES;
+//        
+//        //update 2 addrDto
+//        //we has a risk here: the first addrDto is updated failed, then the sencond one will not be launched. TBD
+//        
+//        @weakify(self);
+//        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要设为默认地址吗?"]
+//                        withOKCallback:^(id x){
+//                            @strongify(self);
+//                            HttpAddressUpdateRequest * request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:defaultAddrDto];
+//                            [request request]
+//                            .then(^(id responseObj){
+//                                //NSLog(@"1.%@", responseObj);
+//                                if (!request.response.ok) {
+//                                    [self showAlertViewWithMessage:request.response.errorMsg];
+//                                }
+//                                else {
+//                                    HttpAddressUpdateRequest* request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:addrDto];
+//                                    [request request]
+//                                    .then(^(id responseObj){
+//                                        //NSLog(@"2.%@", responseObj);
+//                                        if (!request.response.ok) {
+//                                            [self showAlertViewWithMessage:request.response.errorMsg];
+//                                        }
+//                                        else {
+//                                            [self refreshAddressList];
+//                                        }
+//                                    })
+//                                    .catch(^(NSError* error){
+//                                        
+//                                        [self showAlertViewWithMessage:error.localizedDescription];
+//                                    })
+//                                    .finally(^(){
+//                                    });
+//                                    
+//                                }
+//                            })
+//                            .catch(^(NSError* error){
+//                                
+//                                [self showAlertViewWithMessage:error.localizedDescription];
+//                            })
+//                            .finally(^(){
+//                            });
+//                        }
+//                     andCancelCallback:^(id x){
+//                         [self refreshAddressList];
+//                     }];
+//        
+//    }
+//    else
+//    {
+//        [self refreshAddressList];
+//    }
+//    
+//    
+//}
 
 #pragma mark - sort address by default
 - (void) sortAddressByDefault
 {
-    NSInteger index = 0;
-    BOOL isFind = NO;
+    self.defaultAddrDto = nil;
+
     for (AddrDTO* addr in self.addresses)
     {
-        if (YES == addr.isDefault && NO == isFind)
-        {
-            if (0 != index)
-            {
-                [self.addresses exchangeObjectAtIndex:index withObjectAtIndex:0];
-            }
-            isFind = YES;
-            NSLog(@"index %ld is found!", index);
+        if (addr.isDefault == YES) {
+            self.defaultAddrDto = addr;
+            break;
         }
-        else
-        {
-            index ++;
-            addr.isDefault = NO;
+        else {
+            addr.isDefault = nil;
         }
+    }
+    if (self.defaultAddrDto && self.addresses.firstObject != self.defaultAddrDto) {
+        [self.addresses removeObject:self.defaultAddrDto];
+        [self.addresses insertObject:self.defaultAddrDto atIndex:0];
     }
 }
 
@@ -259,10 +302,9 @@
     HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
     [request request]
     .then(^(id responseObj){
-        //NSLog(@"%@", responseObj);
         HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
         if (response.ok) {
-            self.addresses = response.addresses;
+            self.addresses = [response.addresses mutableCopy];
             [self sortAddressByDefault];
             [self.tableView reloadData];
         }
@@ -275,16 +317,5 @@
     });
 
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

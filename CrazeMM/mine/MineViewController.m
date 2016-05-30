@@ -26,7 +26,6 @@
 #import "AddressesViewController.h"
 
 
-
 @interface MineViewController()
 
 @property (nonatomic, strong) AvataCell* avataCell;
@@ -560,7 +559,13 @@
     switch (indexPath.section) {
         case kSectionInfo:
         {
-            if (indexPath.row == 2) {
+            if (indexPath.row == 1) {
+                SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
+                [self.navigationController pushViewController:supplyVC animated:YES];
+                
+                return;
+            }
+            else if (indexPath.row == 2) {
                 SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
                 [self.navigationController pushViewController:supplyVC animated:YES];
                 
@@ -584,11 +589,6 @@
                 return;
                 
             }
-            
-//
-//            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-//            [self.navigationController pushViewController:mineSellProductVC animated:YES];
-            
             
         }
             break;

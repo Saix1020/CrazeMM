@@ -50,3 +50,46 @@
 }
 
 @end
+
+@implementation HttpSearchQueryKeywordsRequest 
+
+-(instancetype)initWithQueryCata:(NSInteger)cata
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"type" : cata==0?@"supply":@"buy"
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/search");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpSearchQueryKeywordsResponse class];
+}
+
+@end
+
+@implementation HttpSearchQueryKeywordsResponse
+
+-(void)parserResponse
+{
+    self.keywords = [[NSMutableArray alloc] init];
+    for (NSDictionary* dict in self.all[@"search"]) {
+        [self.keywords addObject:dict[@"content"]];
+    }
+}
+
+@end

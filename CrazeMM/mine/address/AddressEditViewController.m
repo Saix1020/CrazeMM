@@ -191,47 +191,27 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     if (self.isEditingAddr) {
         // not support yet
         newAddrDTO.uid = self.address.uid;
-        newAddrDTO.id = self.address.id;
-        HttpAddressUpdateRequest* request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:newAddrDTO];
-        [request request]
-        .then(^(id responseObj){
-            //NSLog(@"2.%@", responseObj);
-            if (!request.response.ok) {
-                [self showAlertViewWithMessage:request.response.errorMsg];
-            }
-            else {
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        })
-        .catch(^(NSError* error){
-            
-            [self showAlertViewWithMessage:error.localizedDescription];
-        })
-        .finally(^(){
-        });
-
     }
     else {
         newAddrDTO.uid = -1;
-        HttpAddressSaveRequest* request = [[HttpAddressSaveRequest alloc] initWithAddrDto:newAddrDTO];
-        [request request]
-        .then(^(id responseObj){
-            if (!request.response.ok) {
-                [self showAlertViewWithMessage:request.response.errorMsg];
-            }
-            else {
-                [self.navigationController popViewControllerAnimated:YES];
-                
-            }
-        })
-        .catch(^(NSError* error){
-            
-            [self showAlertViewWithMessage:error.localizedDescription];
-        })
-        .finally(^(){
-        });
-
     }
+    HttpAddressSaveRequest* request = [[HttpAddressSaveRequest alloc] initWithAddrDto:newAddrDTO];
+    [request request]
+    .then(^(id responseObj){
+        if (!request.response.ok) {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+        else {
+            [self.navigationController popViewControllerAnimated:YES];
+
+        }
+    })
+    .catch(^(NSError* error){
+
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+    });
     
 }
 

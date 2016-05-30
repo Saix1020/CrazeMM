@@ -130,7 +130,7 @@
     }];
 }
 
--(void)showAlertViewWithMessage:(NSString*)message withOKCallback:(void(^)(id x))okCallback andCancelCallback:(void(^)(id x))cancelCallback;
+-(void)showAlertViewWithMessage:(NSString*)message withOKCallback:(void(^)(id x))okCallback andCancelCallback:(void(^)(id x))cancelCallback
 {
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;

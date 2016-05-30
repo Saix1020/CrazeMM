@@ -177,7 +177,7 @@ const float VIEW_WIDTH = 225.0;
         i++;
     }
     
-    viewheight = fittingSizeLabel.height;
+//    viewheight = fittingSizeLabel.height;
     timeLabelsHeight = totlaHeight-BETTWEEN_LABEL_OFFSET;
     
     // tell constraints they need updating

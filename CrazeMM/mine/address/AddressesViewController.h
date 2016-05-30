@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "AddrDetailCell.h"
 
+@protocol AddressesViewControllerDelegate <NSObject>
+
+-(void)didSelectedAddress:(AddrDTO*)address;
+
+@end
+
+
 @interface AddressesViewController : UIViewController<UITableViewDataSource,  UITableViewDelegate, AddrDetailCellDelegate, BEMCheckBoxDelegate>
+@property (nonatomic, weak) id<AddressesViewControllerDelegate> delegate;
 
 -(instancetype)initWithAddresses:(NSArray*)addresses;
+
 
 @end

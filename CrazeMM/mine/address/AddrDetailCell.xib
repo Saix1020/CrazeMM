@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13813811111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwo-vL-vRu" userLabel="mobile">
-                        <rect key="frame" x="225.5" y="13" width="84.5" height="21"/>
+                        <rect key="frame" x="225" y="13" width="84.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="XkU-w6-6Fr"/>
                         </constraints>
@@ -67,20 +67,20 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="qxP-y6-dvx"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJp-YK-0up" userLabel="编辑">
-                        <rect key="frame" x="216" y="82" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title=" 编辑" image="edit_gray">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJp-YK-0up" userLabel="编辑">
+                        <rect key="frame" x="203" y="81" width="44" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title=" 编辑">
                             <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOu-cV-elR" userLabel="删除">
-                        <rect key="frame" x="266" y="81" width="42" height="21"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOu-cV-elR" userLabel="删除">
+                        <rect key="frame" x="265" y="81" width="47" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="rKF-PK-L5k"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title=" 删除" image="delete_gray">
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title=" 删除">
                             <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -88,7 +88,8 @@
                 <constraints>
                     <constraint firstItem="B0N-ZT-4cp" firstAttribute="leading" secondItem="oWz-ls-gjq" secondAttribute="trailing" constant="8" symbolic="YES" id="1C9-RF-1UQ"/>
                     <constraint firstItem="B0N-ZT-4cp" firstAttribute="centerY" secondItem="oWz-ls-gjq" secondAttribute="centerY" id="1Cj-Q4-Rbb"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="bOu-cV-elR" secondAttribute="trailing" constant="4" id="5qk-ZC-lDQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="bOu-cV-elR" secondAttribute="trailing" id="5qk-ZC-lDQ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="B0N-ZT-4cp" secondAttribute="bottom" constant="-1.5" id="5tg-9e-uod"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2Ow-gJ-t9I" secondAttribute="trailing" id="B4P-Pe-M2q"/>
                     <constraint firstItem="bOu-cV-elR" firstAttribute="centerY" secondItem="oWz-ls-gjq" secondAttribute="centerY" id="D0j-xV-ovL"/>
                     <constraint firstItem="Dwo-vL-vRu" firstAttribute="centerY" secondItem="oo4-tY-Jh3" secondAttribute="centerY" id="DDd-PB-nfb"/>
@@ -103,14 +104,15 @@
                     <constraint firstItem="B0N-ZT-4cp" firstAttribute="top" secondItem="pEo-Qk-ao5" secondAttribute="bottom" constant="8" symbolic="YES" id="dEG-bX-BTH"/>
                     <constraint firstItem="bOu-cV-elR" firstAttribute="leading" secondItem="UJp-YK-0up" secondAttribute="trailing" constant="268" id="feg-pF-EQE"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Dwo-vL-vRu" secondAttribute="trailing" constant="2" id="gPV-cv-CIE"/>
-                    <constraint firstItem="bOu-cV-elR" firstAttribute="leading" secondItem="UJp-YK-0up" secondAttribute="trailing" constant="8" id="j1d-YE-f9y"/>
-                    <constraint firstItem="UJp-YK-0up" firstAttribute="top" secondItem="2Ow-gJ-t9I" secondAttribute="bottom" constant="4" id="jOW-XV-NdT"/>
+                    <constraint firstItem="bOu-cV-elR" firstAttribute="leading" secondItem="UJp-YK-0up" secondAttribute="trailing" constant="18" id="j1d-YE-f9y"/>
+                    <constraint firstItem="UJp-YK-0up" firstAttribute="top" secondItem="2Ow-gJ-t9I" secondAttribute="bottom" constant="3" id="jOW-XV-NdT"/>
                     <constraint firstItem="B0N-ZT-4cp" firstAttribute="centerY" secondItem="oWz-ls-gjq" secondAttribute="centerY" id="mca-Xp-i0q"/>
                     <constraint firstItem="pEo-Qk-ao5" firstAttribute="leading" secondItem="k0f-xG-YjP" secondAttribute="leadingMargin" constant="2" id="mft-dC-vZT"/>
                     <constraint firstItem="oWz-ls-gjq" firstAttribute="top" secondItem="2Ow-gJ-t9I" secondAttribute="bottom" constant="6" id="sHc-Yc-u9o"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="dEG-bX-BTH"/>
                         <exclude reference="feg-pF-EQE"/>
                     </mask>
                 </variation>
@@ -118,6 +120,7 @@
             <connections>
                 <outlet property="addressLabel" destination="pEo-Qk-ao5" id="5fX-xh-aps"/>
                 <outlet property="defaultCheckBox" destination="oWz-ls-gjq" id="tg5-ZV-fie"/>
+                <outlet property="defaultLabel" destination="B0N-ZT-4cp" id="VUO-kX-Ax7"/>
                 <outlet property="deleteButton" destination="bOu-cV-elR" id="OBv-wt-107"/>
                 <outlet property="editButton" destination="UJp-YK-0up" id="KcC-em-fap"/>
                 <outlet property="isDefaultLabel" destination="B0N-ZT-4cp" id="xaI-Qn-zoQ"/>
@@ -127,8 +130,4 @@
             <point key="canvasLocation" x="262" y="271"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="delete_gray" width="14" height="14"/>
-        <image name="edit_gray" width="14" height="14"/>
-    </resources>
 </document>

@@ -8,6 +8,12 @@
 
 #import "AddrDetailCell.h"
 
+@interface AddrDetailCell ()
+
+@property (nonatomic, strong) NSLayoutConstraint* defaultLabelLeadingConstraint;
+
+@end
+
 @implementation AddrDetailCell
 
 - (void)awakeFromNib {
@@ -26,9 +32,32 @@
     [self.editButton addTarget:self action:@selector(editAddress:) forControlEvents:UIControlEventTouchUpInside];
     [self.deleteButton addTarget:self action:@selector(deleteAddress:) forControlEvents:UIControlEventTouchUpInside];
     
+    self.editButton.tintColor = [UIColor grayColor];
+    self.deleteButton.tintColor = [UIColor grayColor];
+    
+    [self.editButton setImage:[[UIImage imageNamed:@"edit_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+    [self.deleteButton setImage:[[UIImage imageNamed:@"delete"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+
+    for (NSLayoutConstraint* constraint in self.contentView.constraints) {
+        if(constraint.firstItem == self.defaultLabel
+           && constraint.secondItem == self.defaultCheckBox){
+            self.defaultLabelLeadingConstraint = constraint;
+            break;
+        }
+            
+    }
+    
 }
 
-
+-(NSAttributedString*)defaultString
+{
+    NSString* string = self.addrDto.isDefault? @"[默认地址]" : @"设为默认";
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:string];
+    
+    [attributedText setAttributes:@{NSForegroundColorAttributeName:self.addrDto.isDefault?[UIColor redColor]:[UIColor grayColor]}
+                            range:NSMakeRange(0, string.length)];
+    return attributedText;
+}
 
 +(NSAttributedString*)addressString:(NSString*)string
 {
@@ -43,10 +72,19 @@
     _addrDto = addrDto;
     self.nameLabel.text = addrDto.contact;
     self.phoneLabel.text = NotNilAndNull(addrDto.phone)? addrDto.phone: addrDto.mobile;
-    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] init];
-    [attrString appendAttributedString:[[self class] addressString:[NSString stringWithFormat:@" %@ %@", addrDto.region, addrDto.street]]];
-    self.addressLabel.attributedText = attrString;
+    self.addressLabel.attributedText = [[self class] addressString:[NSString stringWithFormat:@" %@ %@", addrDto.region, addrDto.street]];
     self.defaultCheckBox.on = addrDto.isDefault;
+    self.defaultLabel.attributedText = [self defaultString];
+
+    if (addrDto.isDefault) {
+         self.defaultCheckBox.hidden = YES;
+        self.defaultLabelLeadingConstraint.constant = -16.f;
+    }
+    else {
+        self.defaultCheckBox.hidden = NO;
+        self.defaultLabelLeadingConstraint.constant = 4.f;
+    }
+    [self.contentView updateConstraints];
 }
 
 -(void)editAddress:(id)sender
@@ -61,5 +99,10 @@
         [self.delegate deleteButtonClicked:self];
     }
 }
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    }
 
 @end

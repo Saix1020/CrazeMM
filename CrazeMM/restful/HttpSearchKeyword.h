@@ -17,3 +17,15 @@
 @interface HttpSearchRemoveKeywordsRequest : BaseHttpRequest
 
 @end
+
+@interface HttpSearchQueryKeywordsRequest : BaseHttpRequest
+
+-(instancetype)initWithQueryCata:(NSInteger)cata; // 0: supply, 1 : buy
+
+@end
+
+@interface HttpSearchQueryKeywordsResponse : BaseHttpResponse
+
+@property (nonatomic, strong) NSMutableArray* keywords;
+
+@end

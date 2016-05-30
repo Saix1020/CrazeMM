@@ -8,9 +8,6 @@
 
 #import "HttpAddress.h"
 
-
-#pragma mark - HttpAddressRequest
-
 @implementation HttpAddressRequest
 
 -(NSString*)url
@@ -51,9 +48,6 @@
 }
 
 @end
-
-
-#pragma mark - HttpAddressDetailRequest
 
 @implementation HttpAddressDetailRequest
 
@@ -97,10 +91,8 @@
 
 @end
 
-#pragma mark - HttpAddressSaveRequest
 
 @implementation HttpAddressSaveRequest
-
 
 -(instancetype)initWithAddrDto:(AddrDTO *)addrDto
 {
@@ -144,7 +136,6 @@
 }
 
 @end
-
 
 #pragma mark - HttpAddressDeleteRequest
 
@@ -233,5 +224,4 @@
 {
     return @"POST";
 }
-
 @end

@@ -141,7 +141,7 @@
 
 -(void)layoutAllSubviews
 {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     self.phoneImageView.frame = CGRectMake(kImageViewStartX, kImageViewStartY, 100.f, 100.f);
     self.statusLabel.frame = CGRectMake(kStatusLabelStartX, kStatusLabelStartY, 30.f, 16.f);
