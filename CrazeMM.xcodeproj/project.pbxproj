@@ -11,6 +11,7 @@
 		2E3DC07E1CFC803A0052B5B5 /* DepotDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC07D1CFC803A0052B5B5 /* DepotDTO.m */; };
 		2E3DC0811CFC87E30052B5B5 /* MineStockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC0801CFC87E30052B5B5 /* MineStockViewController.m */; };
 		2E3DC0841CFC88270052B5B5 /* MineStockEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC0831CFC88270052B5B5 /* MineStockEditViewController.m */; };
+		2EA41FF21CFDE938005A1896 /* MineStockDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA41FF11CFDE938005A1896 /* MineStockDTO.m */; };
 		31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
@@ -815,6 +816,8 @@
 		2E3DC0801CFC87E30052B5B5 /* MineStockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineStockViewController.m; path = mine/MineStockViewController.m; sourceTree = "<group>"; };
 		2E3DC0821CFC88270052B5B5 /* MineStockEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineStockEditViewController.h; path = mine/MineStockEditViewController.h; sourceTree = "<group>"; };
 		2E3DC0831CFC88270052B5B5 /* MineStockEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineStockEditViewController.m; path = mine/MineStockEditViewController.m; sourceTree = "<group>"; };
+		2EA41FF01CFDE938005A1896 /* MineStockDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineStockDTO.h; path = mine/MineStockDTO.h; sourceTree = "<group>"; };
+		2EA41FF11CFDE938005A1896 /* MineStockDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineStockDTO.m; path = mine/MineStockDTO.m; sourceTree = "<group>"; };
 		4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.debug.xcconfig"; sourceTree = "<group>"; };
 		B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.release.xcconfig"; sourceTree = "<group>"; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
@@ -1549,6 +1552,8 @@
 			children = (
 				2E3DC07C1CFC803A0052B5B5 /* DepotDTO.h */,
 				2E3DC07D1CFC803A0052B5B5 /* DepotDTO.m */,
+				2EA41FF01CFDE938005A1896 /* MineStockDTO.h */,
+				2EA41FF11CFDE938005A1896 /* MineStockDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -3621,6 +3626,7 @@
 				B91732171CD1F05400C29698 /* PulseAnimation.m in Sources */,
 				B91732331CD1F05400C29698 /* FadeOutDownAnimation.m in Sources */,
 				B91896EF1CD082A70061D0B6 /* SupplyBottomOffView.m in Sources */,
+				2EA41FF21CFDE938005A1896 /* MineStockDTO.m in Sources */,
 				B91896EB1CD07AD50061D0B6 /* SupplyListCell.m in Sources */,
 				B91732291CD1F05400C29698 /* FadeInAnimation.m in Sources */,
 				B9FE71EB1CD6E70400F5EC9F /* _SearchHistory.m in Sources */,

@@ -14,6 +14,7 @@
 #import "MineSupplyProductDTO.h"
 #import "HttpMineSupplyShelve.h"
 #import "MineStockEditViewController.h"
+#import "MineStockDTO.h"
 
 
 @interface MineStockViewController()
@@ -67,10 +68,11 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addStock:)];
     //disable segmentCell
-    self.segmentCell.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0);
+    self.segmentCell.frame = CGRectMake(0, 0, 0, 0);
     self.isShelving = NO;
     self.pageNumber = 0;
-    //[self getMineBuy];
+    self.cellStyle = kOffShelfStyle;
+    [self getMineStock];
 }
 
 
@@ -83,16 +85,17 @@
 
 -(AnyPromise*)handleHeaderRefresh
 {
-    return [self getMineBuy];
+    return [self getMineStock];
 }
 
 -(AnyPromise*)handleFooterRefresh
 {
-    return [self getMineBuy];
+    return [self getMineStock];
 }
 
 -(void)bottomViewButtonClicked:(UIButton*)button
 {
+    /*
     if (button == self.bottomView.confirmButton) {
         switch (self.cellStyle) {
             case kNomalStyle:
@@ -107,9 +110,11 @@
                 break;
         }
     }
+     */
     
 }
 
+/*
 -(void)reshelveProducts
 {
     if (self.isShelving) {
@@ -268,6 +273,7 @@
         self.isShelving = NO;
     });
 }
+ */
 
 #pragma mark - Table view data source
 
@@ -287,6 +293,8 @@
         ((SupplyListCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
         ((SupplyListCell*)cell).selectCheckBox.delegate = self;
         ((SupplyListCell*)cell).delegate = self;
+        [((SupplyListCell*)cell).offButton setTitle:@"出货" forState:UIControlStateNormal];
+        [((SupplyListCell*)cell).shareButton setTitle:(((MineStockDTO *)self.dataSource[indexPath.row/2]).depotDto.name) forState:UIControlStateNormal];
         
     }
     
@@ -315,32 +323,18 @@
     }
 }
 
--(AnyPromise*)getMineBuy
+-(AnyPromise*)getMineStock
 {
     
-    HttpMineSupplyRequest * request = [[HttpMineBuyRequest alloc]init];
-    
-    switch (self.cellStyle) {
-        case kNomalStyle:
-            request = [[HttpMineBuyRequest alloc] initStateNomalWithPageNumber:self.pageNumber+1];
-            break;
-        case kOffShelfStyle:
-            request = [[HttpMineBuyRequest alloc] initStateOffShelfWithPageNumber:self.pageNumber+1];
-            break;
-        case kDealStyle:
-            request = [[HttpMineBuyRequest alloc] initStateSoldOutWithPageNumber:self.pageNumber+1];
-            break;
-        default:
-            break;
-    }
+    HttpMineStockRequest * request = [[HttpMineStockRequest alloc]initWithPageNumber:self.pageNumber+1];
     
     return [request request]
     .then(^(id responseObj){
         NSLog(@"%@", responseObj);
-        HttpMineBuyResponse* response = (HttpMineBuyResponse*)request.response;
+        HttpMineStockResponse * response = (HttpMineStockResponse*)request.response;
         if (response.ok) {
-            if (response.productDTOs.count>0) {
-                [self.dataSource addObjectsFromArray:response.productDTOs];
+            if (response.stockDTOs.count>0) {
+                [self.dataSource addObjectsFromArray:response.stockDTOs];
                 self.totalPage = response.totalPage;
                 self.pageNumber = response.pageNumber>=self.totalPage?self.totalPage:response.pageNumber;
                 [self.tableView reloadData];
@@ -356,38 +350,6 @@
         [self showAlertViewWithMessage:error.localizedDescription];
         
     });
-}
-
-- (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
-{
-    if (segment.prevIndex == index) {
-        return;
-    }
-    
-    if (index == 0) {
-        self.bottomView.hidden = NO;
-        self.cellStyle = kNomalStyle;
-        [self.bottomView.confirmButton setTitle:@"批量下架" forState:UIControlStateNormal];
-    }
-    else if(index==1){
-        self.bottomView.hidden = NO;
-        self.cellStyle = kOffShelfStyle;
-        [self.bottomView.confirmButton setTitle:@"批量上架" forState:UIControlStateNormal];
-        
-    }
-    else {
-        self.bottomView.hidden = YES;
-        self.cellStyle = kDealStyle;
-        [self.bottomView.confirmButton setTitle:@"批量删除" forState:UIControlStateNormal];
-        
-    }
-    self.bottomView.selectAllCheckBox.on = NO;
-    
-    [self.dataSource removeAllObjects];
-    [self.tableView reloadData];
-    
-    self.pageNumber = 0;
-    [self getMineBuy];
 }
 
 #pragma -- mark BEMCheckBox Delegate
@@ -421,10 +383,10 @@
 {
     switch (type) {
         case kNomalStyle: //unshelve
-            [self unshelveProductsWithSid:sid];
+            //[self unshelveProductsWithSid:sid];
             break;
         case kOffShelfStyle: //reshelve
-            [self reshelveProductsWithSid:sid];
+            //[self reshelveProductsWithSid:sid];
             break;
             
         case kUnkonwStyle: //share
@@ -440,7 +402,7 @@
     [self.tableView reloadData];
     
     self.pageNumber = 0;
-    [self getMineBuy];
+    [self getMineStock];
     
 }
 

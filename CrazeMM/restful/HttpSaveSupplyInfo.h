@@ -28,6 +28,7 @@
 @interface GoodCreateInfo : NSObject
 
 @property (nonatomic) NSInteger id;
+@property (nonatomic) NSInteger depotId;
 @property (nonatomic) NSInteger brand;
 @property (nonatomic) NSInteger quantity;
 @property (nonatomic) NSInteger deadline;
@@ -56,6 +57,12 @@
 @end
 
 @interface HttpSaveBuyInfoRequest : BaseHttpRequest
+
+-(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo;
+
+@end
+
+@interface HttpSaveStockInfoRequest : BaseHttpRequest
 
 -(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo;
 
