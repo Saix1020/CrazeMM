@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BEMCheckBox.h"
 
-@interface MineStockSellViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface MineStockSellViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, BEMCheckBoxDelegate>
 
+-(instancetype)initWith:(NSArray*)stocks;
 
 @end

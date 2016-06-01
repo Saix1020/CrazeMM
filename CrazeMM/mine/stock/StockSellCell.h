@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
 #import "M80AttributedLabel.h"
+#import "MineStockDTO.h"
 
-@interface StockSellCell : UITableViewCell
+@interface StockSellCell : UITableViewCell<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *productTitleLabel;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectCheckBox;
 @property (weak, nonatomic) IBOutlet UITextField *unitPriceField;
@@ -27,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIView *backgroundLabel;
 
 @property (nonatomic) NSInteger totalCountNum;
+
+@property (nonatomic, strong) MineStockDTO* stockDto;
 
 +(CGFloat)cellHeight;
 @end

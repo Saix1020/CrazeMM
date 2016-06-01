@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8071BB2848F0D23C8322A008'
+               BlueprintIdentifier = 'D009D1D2F68EA0D00F0BB160'
                BlueprintName = 'PPiFlatSegmentedControl'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'PPiFlatSegmentedControl.framework'>

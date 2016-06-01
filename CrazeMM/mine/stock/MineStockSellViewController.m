@@ -12,6 +12,7 @@
 #import "TTModalView.h"
 #import "TransferAlertView.h"
 #import "StockSellCell.h"
+#import "MineStockDTO.h"
 //#import "SupplyViewController.h"
 //#import "MineViewController.h"
 
@@ -19,6 +20,7 @@
 
 @property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
 @property (nonatomic, strong) CommonBottomView* payBottomView;
+@property (nonatomic, copy) NSArray* stocks;
 
 @property (nonatomic) BOOL keyboardShowing;
 
@@ -92,9 +94,19 @@
     return _payBottomView;
 }
 
+-(instancetype)initWith:(NSArray*)stocks
+{
+    self = [super init];
+    if (self)
+    {
+        self.stocks = stocks;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"支付成功";
+    self.navigationItem.title = @"库存出货";
     
     
     self.tableView = [[TPKeyboardAvoidingTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -167,8 +179,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-       //TBD
-       return 1;
+       return [self.stocks count]*2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -178,13 +189,14 @@
     if (indexPath.row%2==1) {
         cell = [[UITableViewCell alloc] init];
         cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        //        cell.layer.borderWidth = .5f;
-        //        cell.layer.borderColor = [UIColor grayColor].CGColor;
         return cell;
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"StockSellCell"];
-    }
+        ((StockSellCell*)cell).stockDto = self.stocks[indexPath.row/2];
+        ((StockSellCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
+        ((StockSellCell*)cell).selectCheckBox.delegate = self;
+        }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

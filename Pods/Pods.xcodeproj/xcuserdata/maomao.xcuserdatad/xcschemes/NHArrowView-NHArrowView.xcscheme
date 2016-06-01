@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '108908A0DFBE8170A1463FBA'
+               BlueprintIdentifier = '978C68B51029D96D3DF7940F'
                BlueprintName = 'NHArrowView-NHArrowView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'NHArrowView.bundle'>

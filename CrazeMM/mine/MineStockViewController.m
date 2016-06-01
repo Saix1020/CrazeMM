@@ -15,17 +15,17 @@
 #import "HttpMineSupplyShelve.h"
 #import "MineStockEditViewController.h"
 #import "MineStockDTO.h"
+#import "MineStockSellViewController.h"
 
 
 @interface MineStockViewController()
 
 @property (nonatomic) SupplyListCellStyle cellStyle;
-//@property (nonatomic, strong) NSMutableArray* dataSource;
 
 @property (nonatomic) NSInteger pageNumber;
 @property (nonatomic) NSInteger totalPage;
 
-@property (nonatomic) BOOL isShelving;
+
 
 @end
 
@@ -72,7 +72,6 @@
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     self.segmentCell.frame = CGRectMake(0, 0, 0, 0);
     
-    self.isShelving = NO;
     self.pageNumber = 0;
     self.cellStyle = kOffShelfStyle;
     [self getMineStock];
@@ -98,185 +97,44 @@
 
 -(void)bottomViewButtonClicked:(UIButton*)button
 {
-    /*
+    
     if (button == self.bottomView.confirmButton) {
-        switch (self.cellStyle) {
-            case kNomalStyle:
-                [self unshelveProducts];
-                break;
-            case kOffShelfStyle:
-                [self reshelveProducts];
-                break;
-            case kDealStyle:
-                break;
-            default:
-                break;
+        
+            [self shippingProducts];
+
         }
-    }
-     */
     
 }
 
-/*
--(void)reshelveProducts
+-(void)shippingProducts
 {
-    if (self.isShelving) {
-        [self showAlertViewWithMessage:@"你还不能上架该求购"];
-        return;
-    }
     NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
-    NSMutableArray* selectedIds = [[NSMutableArray alloc] init];
     
-    for (MineSupplyProductDTO* dto in self.dataSource) {
+    for (MineStockDTO* dto in self.dataSource) {
         if (dto.selected) {
             [selectedDtos addObject:dto];
-            [selectedIds addObject:@(dto.id)];
         }
     }
+    MineStockSellViewController* stockSellVc = [[MineStockSellViewController alloc]initWith:selectedDtos];
+    [self.navigationController pushViewController:stockSellVc animated:YES];
     
-    HttpMineBuyReshelveRequest *request = [[HttpMineBuyReshelveRequest alloc] initWithIds:selectedIds];
-    self.isShelving = YES;
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            for (MineSupplyProductDTO* dto in selectedDtos) {
-                [self.dataSource removeObject:dto];
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        self.isShelving = NO;
-    });
 }
 
--(void)reshelveProductsWithSid:(NSInteger)sid
+-(void)shippingProductsWithSid:(NSInteger)sid
 {
-    if (self.isShelving) {
-        [self showAlertViewWithMessage:@"你还不能上架该求购"];
-        return;
-    }
-    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
-    NSArray* selectedIds = @[@(sid)];
     
-    for (MineSupplyProductDTO* dto in self.dataSource) {
+    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+    
+    for (MineStockDTO* dto in self.dataSource) {
         if (sid == dto.id) {
             [selectedDtos addObject:dto];
             break;
         }
     }
     
-    HttpMineBuyReshelveRequest *request = [[HttpMineBuyReshelveRequest alloc] initWithIds:selectedIds];
-    self.isShelving = YES;
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            for (MineSupplyProductDTO* dto in selectedDtos) {
-                [self.dataSource removeObject:dto];
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        self.isShelving = NO;
-    });
+    MineStockSellViewController* stockSellVc = [[MineStockSellViewController alloc]initWith:selectedDtos];
+    [self.navigationController pushViewController:stockSellVc animated:YES];
 }
-
--(void)unshelveProducts
-{
-    if (self.isShelving) {
-        [self showAlertViewWithMessage:@"你还不能下架该求购"];
-        return;
-    }
-    
-    
-    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
-    NSMutableArray* selectedIds = [[NSMutableArray alloc] init];
-    
-    for (MineSupplyProductDTO* dto in self.dataSource) {
-        if (dto.selected) {
-            [selectedDtos addObject:dto];
-            [selectedIds addObject:@(dto.id)];
-        }
-    }
-    
-    HttpMineBuyUnshelveRequest *request = [[HttpMineBuyUnshelveRequest alloc] initWithIds:selectedIds];
-    
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            for (MineSupplyProductDTO* dto in selectedDtos) {
-                [self.dataSource removeObject:dto];
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        self.isShelving = NO;
-    });
-}
--(void)unshelveProductsWithSid:(NSInteger)sid
-{
-    if (self.isShelving) {
-        [self showAlertViewWithMessage:@"你还不能下架该求购"];
-        return;
-    }
-    
-    
-    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
-    NSArray* selectedIds = @[@(sid)];
-    
-    for (MineSupplyProductDTO* dto in self.dataSource) {
-        if (sid == dto.id) {
-            [selectedDtos addObject:dto];
-            break;
-        }
-    }
-    
-    HttpMineBuyUnshelveRequest *request = [[HttpMineBuyUnshelveRequest alloc] initWithIds:selectedIds];
-    
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            for (MineSupplyProductDTO* dto in selectedDtos) {
-                [self.dataSource removeObject:dto];
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        self.isShelving = NO;
-    });
-}
- */
 
 #pragma mark - Table view data source
 
@@ -291,6 +149,7 @@
         if (cell==nil) {
             cell= [[[NSBundle mainBundle]loadNibNamed:@"SupplyListCell" owner:nil options:nil] firstObject];
         }
+        //TBD
         ((SupplyListCell*)cell).style = self.cellStyle;
         ((SupplyListCell*)cell).mineSupplyProductDto = self.dataSource[indexPath.row/2];
         ((SupplyListCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
@@ -381,22 +240,13 @@
     
 }
 
+
 #pragma -- mark SupplyListCell delegate
 -(void)buttonClicked:(UIButton *)sender andType:(SupplyListCellStyle)type andSid:(NSInteger)sid
 {
-    switch (type) {
-        case kNomalStyle: //unshelve
-            //[self unshelveProductsWithSid:sid];
-            break;
-        case kOffShelfStyle: //reshelve
-            //[self reshelveProductsWithSid:sid];
-            break;
-            
-        case kUnkonwStyle: //share
-        default:
-            break;
-    }
+        [self shippingProductsWithSid:sid];
 }
+
 
 #pragma -- mark MineSupplyEditViewController Delegate
 -(void)editSupplyGoodSuccess

@@ -18,13 +18,15 @@
     
     self.totalNumField.layer.borderColor = [UIColor light_Gray_Color].CGColor;
     self.totalNumField.layer.borderWidth = .5f;
-    self.totalNumField.text = [NSString stringWithFormat:@"%ld", self.totalCountNum];
     self.totalNumField.keyboardType = UIKeyboardTypeNumberPad;
     
     self.seperateNumField.layer.borderColor = [UIColor light_Gray_Color].CGColor;
     self.seperateNumField.layer.borderWidth = .5f;
     self.seperateNumField.text = @"1";
     self.seperateNumField.keyboardType = UIKeyboardTypeNumberPad;
+    self.totalNumField.delegate = self;
+    self.unitPriceField.delegate = self;
+    self.seperateNumField.delegate = self;
     
     //totalNumField
     @weakify(self);
@@ -35,7 +37,7 @@
         NSUInteger currentNumber = [self.totalNumField.text integerValue];
         
         if (currentNumber  < totalNumber) {
-            self.seperateNumField.text = [NSString stringWithFormat:@"%lu", currentNumber+1];
+            self.totalNumField.text = [NSString stringWithFormat:@"%lu", currentNumber+1];
         }
         
         return [RACSignal empty];
@@ -47,7 +49,7 @@
         NSUInteger currentNumber = [self.totalNumField.text integerValue];
         
         if (currentNumber  > 0) {
-            self.seperateNumField.text = [NSString stringWithFormat:@"%lu", currentNumber-1];
+            self.totalNumField.text = [NSString stringWithFormat:@"%lu", currentNumber-1];
         }
         
         return [RACSignal empty];
@@ -83,10 +85,71 @@
     self.selectCheckBox.onTintColor = [UIColor redColor];
     self.selectCheckBox.onFillColor = [UIColor redColor];
     self.selectCheckBox.boxType = BEMBoxTypeCircle;
-    self.selectCheckBox.on = YES  ;
+    self.selectCheckBox.on = NO;
     
     [self fomartTotalPriceLabel];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString* finnalString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+
+    if (textField == self.totalNumField)
+    {
+        if (finnalString.length == 0)
+        {
+            textField.text = @"";
+        }
+        else if ([finnalString integerValue] > self.totalCountNum)
+        {
+             textField.text = [NSString stringWithFormat:@"%ld", self.totalCountNum];
+        }
+        else if([finnalString integerValue] <= 0)
+        {
+            textField.text = @"1";
+        }
+        else {
+            textField.text = finnalString;
+        }
+        [self fomartTotalPriceLabel];
+    }
+    else if (textField == self.unitPriceField)
+    {
+        if (finnalString.length == 0)
+        {
+            textField.text = @"";
+        }
+        else if ([finnalString integerValue] <= 0)
+        {
+            textField.text = @"1";
+        }
+        else {
+            textField.text = finnalString;
+        }
+        [self fomartTotalPriceLabel];
+    }
+    else if (textField == self.seperateNumField)
+    {
+        if (finnalString.length == 0)
+        {
+            textField.text = @"";
+        }
+        else if ([finnalString integerValue] > [self.totalNumField.text integerValue])
+        {
+            textField.text = self.totalNumField.text;
+        }
+        else if ([finnalString integerValue] <= 0)
+        {
+            textField.text = @"1";
+        }
+        else {
+            textField.text = finnalString;
+        }
+    }
+    
+    return NO;
+}
+
 
 -(void)fomartTotalPriceLabel
 {
@@ -106,7 +169,11 @@
     [attributedText m80_setTextColor:[UIColor redColor]];
     [self.totalPriceLabel appendAttributedText:attributedText];
     
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@"10200"];
+    //calculate earning
+     NSInteger earning = [self.totalNumField.text integerValue]*([self.unitPriceField.text integerValue] - self.stockDto.price );
+   NSString* strEarning = [[NSString alloc] initWithFormat:@"%ld", earning];
+    
+    attributedText = [[NSMutableAttributedString alloc]initWithString:strEarning];
     [attributedText m80_setFont:[UIFont boldSystemFontOfSize:16.f]];
     [attributedText m80_setTextColor:[UIColor redColor]];
     [self.totalPriceLabel appendAttributedText:attributedText];
@@ -122,6 +189,16 @@
     //self.totalPriceLabel.baselineAdjustment = UIBaselineAdjustmentNone;
 }
 
+- (void)setStockDto:(MineStockDTO *)stockDto
+{
+    _stockDto = stockDto;
+    self.totalCountNum = stockDto.quantity;
+    self.productTitleLabel.text = stockDto.goodName;
+    self.orignalUnitPriceLabel.text = [NSString stringWithFormat:@"￥%lu", (NSInteger)stockDto.price];
+    self.unitPriceField.text = [NSString stringWithFormat:@"%lu", (NSInteger)stockDto.price];
+    self.totalNumField.text = [NSString stringWithFormat:@"%lu", stockDto.quantity];
+    
+}
 
 +(CGFloat)cellHeight
 {
