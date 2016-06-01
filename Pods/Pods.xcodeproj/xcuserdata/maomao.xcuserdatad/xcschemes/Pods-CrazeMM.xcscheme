@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9D5ECFAA92855BC5A70F2183'
+               BlueprintIdentifier = 'DD6E9FD49AD8A069A675AA4F'
                BlueprintName = 'Pods-CrazeMM'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_CrazeMM.framework'>

@@ -68,7 +68,10 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addStock:)];
     //disable segmentCell
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     self.segmentCell.frame = CGRectMake(0, 0, 0, 0);
+    
     self.isShelving = NO;
     self.pageNumber = 0;
     self.cellStyle = kOffShelfStyle;
