@@ -116,6 +116,7 @@
         }
     }
     MineStockSellViewController* stockSellVc = [[MineStockSellViewController alloc]initWith:selectedDtos];
+    stockSellVc.delegate = self;
     [self.navigationController pushViewController:stockSellVc animated:YES];
     
 }
@@ -133,6 +134,7 @@
     }
     
     MineStockSellViewController* stockSellVc = [[MineStockSellViewController alloc]initWith:selectedDtos];
+    stockSellVc.delegate = self;
     [self.navigationController pushViewController:stockSellVc animated:YES];
 }
 
@@ -250,6 +252,17 @@
 
 #pragma -- mark MineSupplyEditViewController Delegate
 -(void)editSupplyGoodSuccess
+{
+    [self.dataSource removeAllObjects];
+    [self.tableView reloadData];
+    
+    self.pageNumber = 0;
+    [self getMineStock];
+    
+}
+
+#pragma -- mark MineStockSellViewControllerDelegate Delegate
+-(void)sendStockSellSuccess
 {
     [self.dataSource removeAllObjects];
     [self.tableView reloadData];

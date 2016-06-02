@@ -85,6 +85,7 @@
     self.selectCheckBox.onTintColor = [UIColor redColor];
     self.selectCheckBox.onFillColor = [UIColor redColor];
     self.selectCheckBox.boxType = BEMBoxTypeCircle;
+    self.selectCheckBox.animationDuration = 0.f;
     self.selectCheckBox.on = NO;
     
     [self fomartTotalPriceLabel];
@@ -112,6 +113,10 @@
             textField.text = finnalString;
         }
         [self fomartTotalPriceLabel];
+        if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
+            [self.delegate refreshTotalPriceLabel];
+        }
+
     }
     else if (textField == self.unitPriceField)
     {
@@ -127,6 +132,10 @@
             textField.text = finnalString;
         }
         [self fomartTotalPriceLabel];
+        if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
+            [self.delegate refreshTotalPriceLabel];
+        }
+
     }
     else if (textField == self.seperateNumField)
     {
@@ -170,8 +179,9 @@
     [self.totalPriceLabel appendAttributedText:attributedText];
     
     //calculate earning
-     NSInteger earning = [self.totalNumField.text integerValue]*([self.unitPriceField.text integerValue] - self.stockDto.price );
-   NSString* strEarning = [[NSString alloc] initWithFormat:@"%ld", earning];
+     self.earning = [self.totalNumField.text integerValue]*([self.unitPriceField.text integerValue] - self.stockDto.price );
+   NSString* strEarning = [[NSString alloc] initWithFormat:@"%ld", self.earning];
+    self.stockDto.earning = self.earning;
     
     attributedText = [[NSMutableAttributedString alloc]initWithString:strEarning];
     [attributedText m80_setFont:[UIFont boldSystemFontOfSize:16.f]];
@@ -197,6 +207,7 @@
     self.orignalUnitPriceLabel.text = [NSString stringWithFormat:@"￥%lu", (NSInteger)stockDto.price];
     self.unitPriceField.text = [NSString stringWithFormat:@"%lu", (NSInteger)stockDto.price];
     self.totalNumField.text = [NSString stringWithFormat:@"%lu", stockDto.quantity];
+    self.selectCheckBox.on = stockDto.selected;
     
 }
 

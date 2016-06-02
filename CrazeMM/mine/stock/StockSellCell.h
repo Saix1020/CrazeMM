@@ -11,6 +11,12 @@
 #import "M80AttributedLabel.h"
 #import "MineStockDTO.h"
 
+@protocol StockSellCellDelegate <NSObject>
+
+-(void)refreshTotalPriceLabel;
+
+@end
+
 @interface StockSellCell : UITableViewCell<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *productTitleLabel;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectCheckBox;
@@ -29,7 +35,11 @@
 
 @property (nonatomic) NSInteger totalCountNum;
 
+@property (nonatomic) NSInteger earning;
+
 @property (nonatomic, strong) MineStockDTO* stockDto;
+
+@property (nonatomic, weak) id<StockSellCellDelegate> delegate;
 
 +(CGFloat)cellHeight;
 @end

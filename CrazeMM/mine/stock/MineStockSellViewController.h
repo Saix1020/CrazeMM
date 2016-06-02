@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
+#import "StockSellCell.h"
 
-@interface MineStockSellViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, BEMCheckBoxDelegate>
+@protocol MineStockSellViewControllerDelegate <NSObject>
 
+-(void)sendStockSellSuccess;
+
+@end
+
+@interface MineStockSellViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, StockSellCellDelegate>
+
+@property (nonatomic, weak) id<MineStockSellViewControllerDelegate> delegate;
 -(instancetype)initWith:(NSArray*)stocks;
 
 @end

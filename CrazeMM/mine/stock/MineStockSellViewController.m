@@ -22,7 +22,7 @@
 @property (nonatomic, strong) CommonBottomView* payBottomView;
 @property (nonatomic, copy) NSArray* stocks;
 
-@property (nonatomic) BOOL keyboardShowing;
+//@property (nonatomic) BOOL keyboardShowing;
 
 
 @end
@@ -36,62 +36,48 @@
         ;
         [self.view addSubview:_payBottomView];
         [_payBottomView.confirmButton setTitle:@"转手" forState:UIControlStateNormal];
+        _payBottomView.selectAllCheckBox.hidden = YES;
+        _payBottomView.selectAllLabel.hidden = YES;
         
-        @weakify(self);
-        _payBottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-            @strongify(self);
-            
-            
-            /*
-            [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
-                
-                contentView.centerX = self.view.centerX;
-                contentView.centerY = self.view.centerY;
-                
-                
-                self.transferAlertView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-                    @strongify(self);
-                    [self.confirmModalView dismiss];
-                    [self.tableView reloadData];
-                    
-                    return [RACSignal empty];
-                }];
-                
-                self.transferAlertView.linkButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-                    @strongify(self);
-                    [self.confirmModalView dismiss];
-                    
-                    //[self.navigationController po];
-                    NSArray* vcs = self.navigationController.viewControllers;
-                    NSMutableArray* newVcs = [[NSMutableArray alloc] init];
-                    //self.navigationController.viewControllers = [newVcs copy];
-                    
-                    
-                    if ([[vcs firstObject] isMemberOfClass:[MineViewController class]]) {
-                        SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
-                        //                        BaseNavigationController* baseNav = (BaseNavigationController*)self.navigationController;
-                        //                        baseNav.nextViewController = supplyVC;
-                        //                        [self.navigationController popToRootViewControllerAnimated:YES];
-                        [newVcs addObject:[vcs firstObject]];
-                        [newVcs addObject:supplyVC];
-                        [newVcs addObject:self];
-                        
-                        self.navigationController.viewControllers = [newVcs copy];
-                        [self.navigationController popViewControllerAnimated:YES];
-                        
-                    }
-                    return [RACSignal empty];
-                }];
-                
-                
-            }];
-             */
-            return [RACSignal empty];
-        }];
-        
-    }
+        [_payBottomView.confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        }
     
     return _payBottomView;
+}
+
+-(void)handleButtomButtonClicked:(UIButton*)send
+{
+    @weakify(self);
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.stocks count]]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        NSLog(@"I am in!");
+                        if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
+                            [self showAlertViewWithMessage:@"库存转手成功"];
+                            [self.delegate sendStockSellSuccess];
+                        [self.navigationController popViewControllerAnimated:YES];
+                        }
+                        
+                        
+                        /*
+                        HttpAddressUpdateRequest* request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:addrDto];
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+                                
+                            }
+                            else {
+                                
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                         */
+                    }
+                 andCancelCallback:nil];
 }
 
 -(instancetype)initWith:(NSArray*)stocks
@@ -171,6 +157,20 @@
     return YES;
 }
 
+
+#pragma mark - StockSellCellDelegate
+-(void)refreshTotalPriceLabel
+{
+        NSInteger totalPrice = 0;
+        for (NSInteger index = 0; index<self.stocks.count; ++index) {
+            MineStockDTO* dto = self.stocks[index];
+            totalPrice += dto.earning;
+        }
+        self.payBottomView.totalPrice = totalPrice;
+
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -193,9 +193,14 @@
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"StockSellCell"];
-        ((StockSellCell*)cell).stockDto = self.stocks[indexPath.row/2];
+        
+        MineStockDTO* dto = self.stocks[indexPath.row/2];
+        dto.earning = 0;
+
+        ((StockSellCell*)cell).stockDto = dto;
         ((StockSellCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
-        ((StockSellCell*)cell).selectCheckBox.delegate = self;
+        ((StockSellCell*)cell).selectCheckBox.hidden = YES;
+        ((StockSellCell*)cell).delegate = self;
         }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -217,6 +222,34 @@
     }
 
 }
+
+/*
+#pragma -- mark BEMCheckBox Delegate
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox
+{
+    if (checkBox != self.payBottomView.selectAllCheckBox) {
+        NSInteger index = checkBox.tag - 10000;
+        MineStockDTO* dto = self.stocks[index];
+        dto.selected = checkBox.on;
+        
+        NSArray* onArray = [self.stocks filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
+        if (onArray.count == self.stocks.count) {
+            self.payBottomView.selectAllCheckBox.on = YES;
+        }
+        else {
+            self.payBottomView.selectAllCheckBox.on = NO;
+        }
+    }
+    else {
+        for (NSInteger index = 0; index<self.stocks.count; ++index) {
+            MineStockDTO* dto = self.stocks[index];
+            dto.selected = checkBox.on;
+        }
+        [self.tableView reloadData];
+    }
+    
+}
+ */
 
 /*
 #pragma mark - Navigation

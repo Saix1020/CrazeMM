@@ -12,5 +12,6 @@
 
 @interface MineStockDTO : MineSupplyProductDTO
 @property (nonatomic, strong) DepotDTO* depotDto;
+@property (nonatomic) NSInteger earning;
 
 @end

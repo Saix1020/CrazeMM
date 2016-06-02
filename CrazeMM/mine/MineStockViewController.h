@@ -9,8 +9,9 @@
 #import "CommonOrderListViewController.h"
 #import "SupplyListCell.h"
 #import "MineBuyEditViewController.h"
+#import "MineStockSellViewController.h"
 
-@interface MineStockViewController : CommonOrderListViewController <SupplyListCellDelegate, MineEditViewControllerDelegate>
+@interface MineStockViewController : CommonOrderListViewController <SupplyListCellDelegate, MineEditViewControllerDelegate, MineStockSellViewControllerDelegate>
 
 
 @end
