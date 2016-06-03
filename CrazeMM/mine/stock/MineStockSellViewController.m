@@ -13,8 +13,8 @@
 #import "TransferAlertView.h"
 #import "StockSellCell.h"
 #import "MineStockDTO.h"
-//#import "SupplyViewController.h"
-//#import "MineViewController.h"
+#import "HttpStock.h"
+
 
 @interface MineStockSellViewController ()
 
@@ -51,6 +51,9 @@
     [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.stocks count]]
                     withOKCallback:^(id x){
                         @strongify(self);
+                        
+                        StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
+                        
                         NSLog(@"I am in!");
                         if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
                             [self showAlertViewWithMessage:@"库存转手成功"];

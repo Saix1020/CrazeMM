@@ -15,3 +15,4 @@
 @property (nonatomic) NSInteger earning;
 
 @end
+
