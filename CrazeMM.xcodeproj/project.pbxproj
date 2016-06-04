@@ -11,6 +11,14 @@
 		2E3DC07E1CFC803A0052B5B5 /* DepotDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC07D1CFC803A0052B5B5 /* DepotDTO.m */; };
 		2E3DC0811CFC87E30052B5B5 /* MineStockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC0801CFC87E30052B5B5 /* MineStockViewController.m */; };
 		2E3DC0841CFC88270052B5B5 /* MineStockEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC0831CFC88270052B5B5 /* MineStockEditViewController.m */; };
+		2E8A7A081D009A9D000FF033 /* MineStockDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA41FF11CFDE938005A1896 /* MineStockDTO.m */; };
+		2E8A7A091D009AA3000FF033 /* DepotDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC07D1CFC803A0052B5B5 /* DepotDTO.m */; };
+		2E8A7A0A1D009ABB000FF033 /* StockSellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA883821CFEC2CF00FB4B26 /* StockSellCell.m */; };
+		2E8A7A0B1D009AC6000FF033 /* StockSellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EA883841CFEC2FC00FB4B26 /* StockSellCell.xib */; };
+		2E8A7A0C1D009ACB000FF033 /* MineStockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC0801CFC87E30052B5B5 /* MineStockViewController.m */; };
+		2E8A7A0D1D009ACE000FF033 /* MineStockSellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA883871CFEDF1F00FB4B26 /* MineStockSellViewController.m */; };
+		2E8A7A0E1D009AD1000FF033 /* MineStockEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC0831CFC88270052B5B5 /* MineStockEditViewController.m */; };
+		2E8A7A0F1D009AF6000FF033 /* HttpStock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DC0791CFC7F190052B5B5 /* HttpStock.m */; };
 		2EA41FF21CFDE938005A1896 /* MineStockDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA41FF11CFDE938005A1896 /* MineStockDTO.m */; };
 		2EA883831CFEC2CF00FB4B26 /* StockSellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA883821CFEC2CF00FB4B26 /* StockSellCell.m */; };
 		2EA883851CFEC2FC00FB4B26 /* StockSellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EA883841CFEC2FC00FB4B26 /* StockSellCell.xib */; };
@@ -3246,6 +3254,7 @@
 				B9EFAF2B1CED514100F81157 /* citydict1.plist in Resources */,
 				B9EFAF2C1CED514100F81157 /* CityListViewController.xib in Resources */,
 				B9EFAF2D1CED514100F81157 /* SearchHistoryCell.xib in Resources */,
+				2E8A7A0B1D009AC6000FF033 /* StockSellCell.xib in Resources */,
 				B9EFAF2E1CED514100F81157 /* HotCityTableViewCell.xib in Resources */,
 				B9EFAF2F1CED514100F81157 /* ph_phone.png in Resources */,
 				B9EFAF301CED514100F81157 /* AccountDetailCell.xib in Resources */,
@@ -3836,6 +3845,7 @@
 				B9EFAE171CED514100F81157 /* UserInfo.m in Sources */,
 				B9EFAE181CED514100F81157 /* TabBarController.m in Sources */,
 				B9EFAE191CED514100F81157 /* NSNull+Utils.m in Sources */,
+				2E8A7A0D1D009ACE000FF033 /* MineStockSellViewController.m in Sources */,
 				B9EFAE1A1CED514100F81157 /* BounceOutAnimation.m in Sources */,
 				B9EFAE1B1CED514100F81157 /* MineSupplyEditViewController.m in Sources */,
 				B9EFAE1C1CED514100F81157 /* RotateOutUpLeftAnimation.m in Sources */,
@@ -3891,6 +3901,7 @@
 				B9EFAE4F1CED514100F81157 /* BounceAnimation.m in Sources */,
 				B9EFAE501CED514100F81157 /* BounceOutUpAnimation.m in Sources */,
 				B9EFAE511CED514100F81157 /* _UserInfo.m in Sources */,
+				2E8A7A0F1D009AF6000FF033 /* HttpStock.m in Sources */,
 				B9EFAE521CED514100F81157 /* NSDictionary+HttpHelp.m in Sources */,
 				B9EFAE531CED514100F81157 /* PayResultCell.m in Sources */,
 				B9EFAE541CED514100F81157 /* _UserHistory.m in Sources */,
@@ -3908,6 +3919,7 @@
 				B9EFAE5F1CED514100F81157 /* HttpGenMobileVcodeRequest.m in Sources */,
 				B9EFAE601CED514100F81157 /* SecondProductDetailCell.m in Sources */,
 				B9EFAE611CED514100F81157 /* SlideOutLeftAnimation.m in Sources */,
+				2E8A7A0A1D009ABB000FF033 /* StockSellCell.m in Sources */,
 				B9EFAE621CED514100F81157 /* RotateInAnimation.m in Sources */,
 				B9EFAE631CED514100F81157 /* FadeInRightBigAnimation.m in Sources */,
 				B9EFAE641CED514100F81157 /* UserHistory.m in Sources */,
@@ -3957,6 +3969,7 @@
 				B9E84BD11CF0A54D003FEAF5 /* BankCardListViewController.m in Sources */,
 				B9EFAE921CED514100F81157 /* BounceOutRightAnimation.m in Sources */,
 				B9EFAE931CED514100F81157 /* BuySlideDetailViewController.m in Sources */,
+				2E8A7A0C1D009ACB000FF033 /* MineStockViewController.m in Sources */,
 				B9C3952A1CF2EE0D00AB44B6 /* RegionDTO.m in Sources */,
 				B9EFAE941CED514100F81157 /* UISearchBar+RACSignalSupport.m in Sources */,
 				B9EFAE951CED514100F81157 /* CitySelectTableViewController.m in Sources */,
@@ -3995,6 +4008,7 @@
 				B9EFAEB61CED514100F81157 /* OrderLogsCell.m in Sources */,
 				B9EFAEB71CED514100F81157 /* ZoomOutLeftAnimation.m in Sources */,
 				B9EFAEB81CED514100F81157 /* CATransform3DExtend.m in Sources */,
+				2E8A7A081D009A9D000FF033 /* MineStockDTO.m in Sources */,
 				B9EFAEB91CED514100F81157 /* MASConstraint.m in Sources */,
 				B9EFAEBA1CED514100F81157 /* UIBarButtonItem+FontAwesome.m in Sources */,
 				B9EFAEBB1CED514100F81157 /* PulseAnimation.m in Sources */,
@@ -4020,6 +4034,7 @@
 				B9EFAECF1CED514100F81157 /* FadeInRightAnimation.m in Sources */,
 				B9EFAED01CED514100F81157 /* NewWelcomeViewController.m in Sources */,
 				B9EFAED11CED514100F81157 /* HttpMineSupply.m in Sources */,
+				2E8A7A091D009AA3000FF033 /* DepotDTO.m in Sources */,
 				B9EFAED21CED514100F81157 /* OrderListCell.m in Sources */,
 				B9EFAED31CED514100F81157 /* NoLoginHeadCell.m in Sources */,
 				B9EFAED41CED514100F81157 /* HttpCheckMessageCodeRequest.m in Sources */,
@@ -4045,6 +4060,7 @@
 				B9EFAEE81CED514100F81157 /* BasicAnimation.m in Sources */,
 				B9EFAEE91CED514100F81157 /* ProductNumberLabel.m in Sources */,
 				B9EFAEEA1CED514100F81157 /* OrderDetailViewController.m in Sources */,
+				2E8A7A0E1D009AD1000FF033 /* MineStockEditViewController.m in Sources */,
 				B9EFAEEB1CED514100F81157 /* ProductSumLabel.m in Sources */,
 				B9EFAEEC1CED514100F81157 /* SlideInUpAnimation.m in Sources */,
 				B9E84BF51CF1422D003FEAF5 /* BEMPathManager.m in Sources */,
