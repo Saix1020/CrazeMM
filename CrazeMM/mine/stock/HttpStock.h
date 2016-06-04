@@ -9,6 +9,7 @@
 #import "BaseHttpRequest.h"
 #import "DepotDTO.h"
 #import "MineStockDTO.h"
+#import "StockDetailDTO.h"
 
 @interface StockSellInfo : NSObject
 
@@ -46,6 +47,6 @@
 
 @interface HttpStockDetailResponse : BaseHttpResponse
 
-@property (nonatomic, strong) MineStockDTO* stockDto;
+@property (nonatomic, strong) StockDetailDTO* stockDto;
 
 @end

@@ -112,18 +112,12 @@
 
 -(void)parserResponse
 {
-    /*
-    NSArray* depots = self.all[@"depot"];
-    self.depotDtos = [[NSMutableArray alloc] init];
     
-    for (NSDictionary* depot in depots) {
-        NSLog(@"%@", depot);
-        DepotDTO* dto = [[DepotDTO alloc] initWith:depot];
-        [self.depotDtos addObject:dto];
-    }
-    */
+    NSDictionary* stock = self.all[@"stock"];
+        NSLog(@"%@", stock);
+        self.stockDto = [[StockDetailDTO alloc] initWith:stock];
+    
 }
-
 
 @end
 

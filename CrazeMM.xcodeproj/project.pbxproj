@@ -15,6 +15,8 @@
 		2EA883831CFEC2CF00FB4B26 /* StockSellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA883821CFEC2CF00FB4B26 /* StockSellCell.m */; };
 		2EA883851CFEC2FC00FB4B26 /* StockSellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EA883841CFEC2FC00FB4B26 /* StockSellCell.xib */; };
 		2EA883881CFEDF1F00FB4B26 /* MineStockSellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA883871CFEDF1F00FB4B26 /* MineStockSellViewController.m */; };
+		2EAAF6271D02FD3C00EC9798 /* StockDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAAF6261D02FD3C00EC9798 /* StockDetailDTO.m */; };
+		2EAAF62A1D030E9300EC9798 /* MIneStockInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAAF6291D030E9300EC9798 /* MIneStockInfoViewController.m */; };
 		31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F2E1CDA3C5C0041E535 /* SearchResultDTO.m */; };
 		B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9156F321CDA43190041E535 /* HttpSearchRequest.m */; };
@@ -826,6 +828,10 @@
 		2EA883841CFEC2FC00FB4B26 /* StockSellCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StockSellCell.xib; path = mine/stock/StockSellCell.xib; sourceTree = "<group>"; };
 		2EA883861CFEDF1F00FB4B26 /* MineStockSellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineStockSellViewController.h; path = mine/stock/MineStockSellViewController.h; sourceTree = "<group>"; };
 		2EA883871CFEDF1F00FB4B26 /* MineStockSellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineStockSellViewController.m; path = mine/stock/MineStockSellViewController.m; sourceTree = "<group>"; };
+		2EAAF6251D02FD3C00EC9798 /* StockDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StockDetailDTO.h; path = mine/stock/StockDetailDTO.h; sourceTree = "<group>"; };
+		2EAAF6261D02FD3C00EC9798 /* StockDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StockDetailDTO.m; path = mine/stock/StockDetailDTO.m; sourceTree = "<group>"; };
+		2EAAF6281D030E9300EC9798 /* MIneStockInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIneStockInfoViewController.h; path = mine/stock/MIneStockInfoViewController.h; sourceTree = "<group>"; };
+		2EAAF6291D030E9300EC9798 /* MIneStockInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MIneStockInfoViewController.m; path = mine/stock/MIneStockInfoViewController.m; sourceTree = "<group>"; };
 		4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.debug.xcconfig"; sourceTree = "<group>"; };
 		B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.release.xcconfig"; sourceTree = "<group>"; };
 		B9156F2D1CDA3C5C0041E535 /* SearchResultDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchResultDTO.h; path = search/SearchResultDTO.h; sourceTree = "<group>"; };
@@ -1560,6 +1566,8 @@
 			children = (
 				2E3DC07C1CFC803A0052B5B5 /* DepotDTO.h */,
 				2E3DC07D1CFC803A0052B5B5 /* DepotDTO.m */,
+				2EAAF6251D02FD3C00EC9798 /* StockDetailDTO.h */,
+				2EAAF6261D02FD3C00EC9798 /* StockDetailDTO.m */,
 				2EA41FF01CFDE938005A1896 /* MineStockDTO.h */,
 				2EA41FF11CFDE938005A1896 /* MineStockDTO.m */,
 			);
@@ -1577,6 +1585,8 @@
 				2EA883871CFEDF1F00FB4B26 /* MineStockSellViewController.m */,
 				2E3DC0821CFC88270052B5B5 /* MineStockEditViewController.h */,
 				2E3DC0831CFC88270052B5B5 /* MineStockEditViewController.m */,
+				2EAAF6281D030E9300EC9798 /* MIneStockInfoViewController.h */,
+				2EAAF6291D030E9300EC9798 /* MIneStockInfoViewController.m */,
 			);
 			name = stock;
 			sourceTree = "<group>";
@@ -3609,6 +3619,7 @@
 				B99D12D51CC5D4C5000DFF95 /* BuySlideDetailViewController.m in Sources */,
 				B99D12D21CC5CAAD000DFF95 /* UISearchBar+RACSignalSupport.m in Sources */,
 				B95A94AA1CE0C19900A5D9BA /* CitySelectTableViewController.m in Sources */,
+				2EAAF6271D02FD3C00EC9798 /* StockDetailDTO.m in Sources */,
 				B91732591CD1F05500C29698 /* ZoomInAnimation.m in Sources */,
 				B99D13061CC72AD0000DFF95 /* CustomSeperatorLineCell.m in Sources */,
 				B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */,
@@ -3662,6 +3673,7 @@
 				B917326B1CD1F09400C29698 /* TTModalView.m in Sources */,
 				B917325A1CD1F05500C29698 /* ZoomInDownAnimation.m in Sources */,
 				B967E7391CE57EBD00621F28 /* MASViewConstraint.m in Sources */,
+				2EAAF62A1D030E9300EC9798 /* MIneStockInfoViewController.m in Sources */,
 				B91732161CD1F05400C29698 /* JelloAnimation.m in Sources */,
 				B98218F71CE84CEB00B279E6 /* HttpAddress.m in Sources */,
 				B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */,

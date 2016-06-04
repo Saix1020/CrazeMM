@@ -16,6 +16,7 @@
 #import "MineStockEditViewController.h"
 #import "MineStockDTO.h"
 #import "MineStockSellViewController.h"
+#import "MIneStockInfoViewController.h"
 
 
 @interface MineStockViewController()
@@ -185,6 +186,13 @@
         }
         
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MineSupplyProductDTO* dto = self.dataSource[indexPath.row/2];
+    MIneStockInfoViewController* mVc = [[MIneStockInfoViewController alloc] initWithId:dto.id];
+    [self.navigationController pushViewController:mVc animated:YES];
 }
 
 -(AnyPromise*)getMineStock
