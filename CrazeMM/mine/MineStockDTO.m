@@ -18,6 +18,7 @@
         self.price = [dict[@"inprice"] floatValue];
         self.quantity = [dict[@"presale"] integerValue];
         self.createTime = dict[@"updateTime"];
+        self.version = [dict[@"version"] integerValue];
     }
     return self;
 }

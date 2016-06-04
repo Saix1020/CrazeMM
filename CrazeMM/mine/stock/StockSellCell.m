@@ -156,6 +156,7 @@
         }
     }
     
+    [self updateDto];
     return NO;
 }
 
@@ -209,6 +210,13 @@
     self.totalNumField.text = [NSString stringWithFormat:@"%lu", stockDto.quantity];
     self.selectCheckBox.on = stockDto.selected;
     
+}
+
+- (void)updateDto
+{
+    self.stockDto.currentPrice = [self.unitPriceField.text integerValue];
+    self.stockDto.currentSale = [self.totalNumField.text integerValue];
+    self.stockDto.currentNum = [self.seperateNumField.text integerValue];
 }
 
 +(CGFloat)cellHeight

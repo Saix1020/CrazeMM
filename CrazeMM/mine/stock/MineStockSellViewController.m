@@ -13,8 +13,8 @@
 #import "TransferAlertView.h"
 #import "StockSellCell.h"
 #import "MineStockDTO.h"
-//#import "SupplyViewController.h"
-//#import "MineViewController.h"
+#import "HttpStock.h"
+
 
 @interface MineStockSellViewController ()
 
@@ -51,31 +51,11 @@
     [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.stocks count]]
                     withOKCallback:^(id x){
                         @strongify(self);
-                        NSLog(@"I am in!");
-                        if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
-                            [self showAlertViewWithMessage:@"库存转手成功"];
-                            [self.delegate sendStockSellSuccess];
-                        [self.navigationController popViewControllerAnimated:YES];
-                        }
                         
+                        NSInteger count = [self.stocks count];
                         
-                        /*
-                        HttpAddressUpdateRequest* request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:addrDto];
-                        [request request]
-                        .then(^(id responseObj){
-                            NSLog(@"%@", responseObj);
-                            if (request.response.ok) {
-                                
-                            }
-                            else {
-                                
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        });
-                         */
+                        [self sendStockSellReq:count];
+
                     }
                  andCancelCallback:nil];
 }
@@ -223,6 +203,48 @@
 
 }
 
+- (void) sendStockSellReq: (NSInteger)count
+{
+        if (count <= 0)
+        {
+            NSLog(@"I am done!");
+            if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
+                [self showAlertViewWithMessage:@"库存转手成功"];
+                [self.delegate sendStockSellSuccess];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            return;
+        }
+        StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
+        MineStockDTO* dto = self.stocks[count-1];
+        stockSellInfo.price = dto.currentPrice;
+        stockSellInfo.sale = dto.currentSale;
+        stockSellInfo.num = dto.currentNum;
+        stockSellInfo.version = dto.version;
+        stockSellInfo.sellId = dto.id;
+        HttpStockSellRequest* request = [[HttpStockSellRequest alloc]initWithStocks:stockSellInfo];
+        [request request]
+        .then(^(id responseObj){
+            NSLog(@"%@", responseObj);
+            if (request.response.ok) {
+                
+                [self sendStockSellReq:(count-1)];
+            }
+            else {
+                
+                [self showAlertViewWithMessage:request.response.errorMsg];
+                return ;
+            }
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+            return ;
+        })
+        .finally(^(){
+        });
+
+}
+
 /*
 #pragma -- mark BEMCheckBox Delegate
 -(void)didTapCheckBox:(BEMCheckBox *)checkBox
@@ -231,7 +253,7 @@
         NSInteger index = checkBox.tag - 10000;
         MineStockDTO* dto = self.stocks[index];
         dto.selected = checkBox.on;
-        
+ 
         NSArray* onArray = [self.stocks filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
         if (onArray.count == self.stocks.count) {
             self.payBottomView.selectAllCheckBox.on = YES;

@@ -12,6 +12,10 @@
 
 @interface MineStockDTO : MineSupplyProductDTO
 @property (nonatomic, strong) DepotDTO* depotDto;
+@property (nonatomic) NSUInteger version;
 @property (nonatomic) NSInteger earning;
-
+@property (nonatomic) NSInteger currentPrice;
+@property (nonatomic)NSInteger currentSale;
+@property (nonatomic)NSInteger currentNum;
 @end
+
