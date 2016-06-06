@@ -81,6 +81,24 @@
         return [RACSignal empty];
     }];
     
+    
+    RACSignal* totalPriceSignal =
+        [RACSignal combineLatest:@[self.seperateNumField.rac_textSignal,
+                                   RACObserve(self, seperateNumField.text),
+                                   self.totalNumField.rac_textSignal,
+                                   RACObserve(self, totalNumField.text),
+                                   self.unitPriceField.rac_textSignal,
+                                   RACObserve(self, unitPriceField.text)]];
+    [totalPriceSignal subscribeNext:^(id x){
+        @strongify(self);
+        [self fomartTotalPriceLabel];
+        if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
+            [self.delegate refreshTotalPriceLabel];
+        }
+        
+    }];
+    
+    
     self.selectCheckBox.onCheckColor = [UIColor whiteColor];
     self.selectCheckBox.onTintColor = [UIColor redColor];
     self.selectCheckBox.onFillColor = [UIColor redColor];
@@ -155,7 +173,8 @@
             textField.text = finnalString;
         }
     }
-    
+    [self updateDto];
+
     return NO;
 }
 
@@ -180,6 +199,7 @@
     
     //calculate earning
      self.earning = [self.totalNumField.text integerValue]*([self.unitPriceField.text integerValue] - self.stockDto.inprice );
+    self.earning = self.earning>=0?self.earning:0;
    NSString* strEarning = [[NSString alloc] initWithFormat:@"%ld", self.earning];
     self.stockDto.earning = self.earning;
     
@@ -211,9 +231,22 @@
     
 }
 
+- (void)updateDto
+{
+    self.stockDto.currentPrice = [self.unitPriceField.text integerValue];
+    self.stockDto.currentSale = [self.totalNumField.text integerValue];
+    self.stockDto.currentNum = [self.seperateNumField.text integerValue];
+}
+
+
 +(CGFloat)cellHeight
 {
     return 150.f;
+}
+
+-(void)dealloc
+{
+    NSLog(@"Dealloc %@", self.class);
 }
 
 @end

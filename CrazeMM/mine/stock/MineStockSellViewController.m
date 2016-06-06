@@ -13,8 +13,7 @@
 #import "TransferAlertView.h"
 #import "StockSellCell.h"
 #import "MineStockDTO.h"
-//#import "SupplyViewController.h"
-//#import "MineViewController.h"
+#import "HttpStock.h"
 
 @interface MineStockSellViewController ()
 
@@ -51,13 +50,12 @@
     [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.stocks count]]
                     withOKCallback:^(id x){
                         @strongify(self);
-                        NSLog(@"I am in!");
-                        if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
-                            [self showAlertViewWithMessage:@"库存转手成功"];
-                            [self.delegate sendStockSellSuccess];
-                        [self.navigationController popViewControllerAnimated:YES];
-                        }
-                }
+                        
+                        NSInteger count = [self.stocks count];
+                        
+                        [self sendStockSellReq:count];
+                        
+                    }
                  andCancelCallback:nil];
 }
 
@@ -138,7 +136,6 @@
     return YES;
 }
 
-
 #pragma mark - StockSellCellDelegate
 -(void)refreshTotalPriceLabel
 {
@@ -212,42 +209,46 @@
 
 }
 
-/*
-#pragma -- mark BEMCheckBox Delegate
--(void)didTapCheckBox:(BEMCheckBox *)checkBox
+- (void) sendStockSellReq: (NSInteger)count
 {
-    if (checkBox != self.payBottomView.selectAllCheckBox) {
-        NSInteger index = checkBox.tag - 10000;
-        MineStockDTO* dto = self.stocks[index];
-        dto.selected = checkBox.on;
-        
-        NSArray* onArray = [self.stocks filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
-        if (onArray.count == self.stocks.count) {
-            self.payBottomView.selectAllCheckBox.on = YES;
+    if (count <= 0)
+    {
+//        NSLog(@"I am done!");
+        if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
+            [self showAlertViewWithMessage:@"库存转手成功"];
+            [self.delegate sendStockSellSuccess];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        return;
+    }
+    StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
+    MineStockDTO* dto = self.stocks[count-1];
+    stockSellInfo.price = dto.currentPrice;
+    stockSellInfo.sale = dto.currentSale;
+    stockSellInfo.num = dto.currentNum;
+    stockSellInfo.version = dto.version;
+    stockSellInfo.sellId = dto.id;
+    HttpStockSellRequest* request = [[HttpStockSellRequest alloc]initWithStocks:stockSellInfo];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            
+            [self sendStockSellReq:(count-1)];
         }
         else {
-            self.payBottomView.selectAllCheckBox.on = NO;
+            
+            [self showAlertViewWithMessage:request.response.errorMsg];
+            return ;
         }
-    }
-    else {
-        for (NSInteger index = 0; index<self.stocks.count; ++index) {
-            MineStockDTO* dto = self.stocks[index];
-            dto.selected = checkBox.on;
-        }
-        [self.tableView reloadData];
-    }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+        return ;
+    })
+    .finally(^(){
+    });
     
 }
- */
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
