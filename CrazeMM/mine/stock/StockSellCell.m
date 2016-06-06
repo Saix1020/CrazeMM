@@ -199,7 +199,7 @@
     
     //calculate earning
      self.earning = [self.totalNumField.text integerValue]*([self.unitPriceField.text integerValue] - self.stockDto.inprice );
-    self.earning = self.earning>=0?self.earning:0;
+//    self.earning = self.earning>=0?self.earning:0;
    NSString* strEarning = [[NSString alloc] initWithFormat:@"%ld", self.earning];
     self.stockDto.earning = self.earning;
     

@@ -211,9 +211,11 @@
 
 - (void) sendStockSellReq: (NSInteger)count
 {
+    
+    // TODO
+    // we should refresh the selected stock dtos.
     if (count <= 0)
     {
-//        NSLog(@"I am done!");
         if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
             [self showAlertViewWithMessage:@"库存转手成功"];
             [self.delegate sendStockSellSuccess];
@@ -237,7 +239,6 @@
             [self sendStockSellReq:(count-1)];
         }
         else {
-            
             [self showAlertViewWithMessage:request.response.errorMsg];
             return ;
         }
