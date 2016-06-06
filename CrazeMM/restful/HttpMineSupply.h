@@ -49,3 +49,59 @@ typedef NS_ENUM(NSInteger, MMMineSupplyState){
 
 
 @end
+
+
+
+@interface HttpMineStockRequest : BaseHttpRequest
+
+-(instancetype)initWithPageNumber:(NSInteger)pageNumber;
+
+@end
+
+/*
+ {
+ "page": {
+ "totalRow": 6,
+ "pageNumber": 1,
+ "totalPage": 1,
+ "pageSize": 10,
+ "list": [{
+ "gid": 1666,
+ "depot": {
+ "name": "良晋栖霞仓库",
+ "id": 2,
+ "info": "位于江苏省南京市栖霞区"
+ },
+ "inprice": 2999,
+ "depotId": 2,
+ "updateTime": "2016-05-31 22:59:09",
+ "presale": 1000,
+ "aftersale": 0,
+ "gvolume": "16G",
+ "version": 0,
+ "isSerial": true,
+ "uid": 366,
+ "isOriginal": true,
+ "goodName": "苹果-iPhone SE 粉 16G 全网通",
+ "gcolor": "粉",
+ "isOriginalBox": true,
+ "id": 16,
+ "insale": 0,
+ "gnetwork": "全网通",
+ "isBrushMachine": false
+ }]
+ },
+ "ok": true
+ }
+ */
+
+@interface HttpMineStockResponse : BaseHttpResponse
+
+
+@property (nonatomic, readonly) NSArray* stockList;
+@property (nonatomic, readonly) NSUInteger pageNumber;
+@property (nonatomic, readonly) NSUInteger totalPage;
+@property (nonatomic, readonly) NSUInteger totalRow;
+@property (nonatomic, strong) NSMutableArray* stockDTOs;
+
+@end

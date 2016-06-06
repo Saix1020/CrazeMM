@@ -69,12 +69,17 @@
                         <rect key="frame" x="210" y="128" width="72" height="22"/>
                         <state key="normal" title="下架" image="down"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYg-eW-OMY">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYg-eW-OMY">
                         <rect key="frame" x="24" y="128" width="63" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="63" id="jlW-Ld-VuU"/>
                         </constraints>
                         <state key="normal" title="分享"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jlW-Ld-VuU"/>
+                            </mask>
+                        </variation>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数量:    10台" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7E-ec-eIb">
                         <rect key="frame" x="8" y="72" width="304" height="21"/>

@@ -157,6 +157,23 @@
     
 }
 
+-(void)setMineStockDto:(MineStockDTO *)mineStockDto
+{
+    _mineStockDto = mineStockDto;
+    self.titleLabel.text = [NSString stringWithFormat:@"编号: %ld", mineStockDto.id];
+    self.dateLabel.text = mineStockDto.updateTime;
+    self.productLabel.text = mineStockDto.goodName;
+    self.numberLabel.text = [NSString stringWithFormat:@"数量: %ld", mineStockDto.presale];
+    self.priceLabel.text = [NSString stringWithFormat:@"单台定价: ￥%.02f", mineStockDto.inprice];
+    [self fomartPriceLabel];
+    self.selectCheckBox.on = mineStockDto.selected;
+    
+    self.shareButton.hidden = NO;
+    self.shareButton.userInteractionEnabled = NO;
+    [self.shareButton setTitle:mineStockDto.depotDto.name forState:UIControlStateNormal];
+
+}
+
 +(CGFloat)cellHeight
 {
     return 150.f;

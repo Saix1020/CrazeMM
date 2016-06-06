@@ -71,6 +71,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 @property (nonatomic, strong) GoodInfoDTO* currentGoodDetail;
 @property (nonatomic, readonly) NSArray* cycleStringArray;
 
+@property (nonatomic) BOOL enableSubEdit;
 
 -(void)saveNewGood:(UIButton*)sender;
 @end

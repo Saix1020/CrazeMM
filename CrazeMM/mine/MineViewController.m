@@ -24,6 +24,7 @@
 #import "HttpLogout.h"
 #import "MineBuyViewController.h"
 #import "AddressesViewController.h"
+#import "MineStockViewController.h"
 
 
 @interface MineViewController()
@@ -47,17 +48,19 @@
     if ([UserCenter defaultCenter].isLogined) {
         return @[
                  @"我的账户",
+                 @"我的库存",
                  @"我的供货",
                  @"我的求购",
-//                 @"我的抵押",
-//                 @"我的站内信息",
+                 //                 @"我的抵押",
+                 //                 @"我的站内信息",
                  @"我的收货地址",
-//                 @"我的自提人"
+                 //                 @"我的自提人"
                  ];
     }
     else {
         return @[
                  @"我的账户",
+                 @"我的库存",
                  @"我的供货",
                  @"我的求购",
                  @"我的抵押",
@@ -70,6 +73,7 @@
     if ([UserCenter defaultCenter].isLogined) {
         return @[
                  @"account",
+                 @"stock",
                  @"gonghuo",
                  @"qiugou",
                  @"diya",
@@ -81,6 +85,7 @@
     else {
         return @[
                  @"account",
+                 @"stock",
                  @"gonghuo",
                  @"qiugou",
                  @"diya",
@@ -97,14 +102,14 @@
         [self.cancelButton setTitle:@"退出" forState:UIControlStateNormal];
         [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.cancelButton.backgroundColor = [UIColor redColor];
-//        self.cancelButton.layer.cornerRadius = 4.f;
+        //        self.cancelButton.layer.cornerRadius = 4.f;
         self.cancelButton.clipsToBounds = YES;
         self.cancelButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);
         
         [self.cancelButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-
+        
         [_logoutCell addSubview:self.cancelButton];
-
+        
     }
     
     return _logoutCell;
@@ -128,7 +133,7 @@
         }];
         
         _noLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        
     }
     
     return _noLoginCell;
@@ -162,8 +167,8 @@
 {
     if(!_contactCell){
         _contactCell = [[[NSBundle mainBundle]loadNibNamed:@"ContactCell" owner:nil options:nil] firstObject];
-//        _contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        //        _contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
     }
     
     return _contactCell;
@@ -178,7 +183,7 @@
         [_segmentCell setTitles:@[@"我买的货", @"我卖的货"] andIcons:@[@"buy_product", @"sell_product"]];
         _segmentCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _segmentCell.segment.delegate = self;
-
+        
     }
     
     return _segmentCell;
@@ -220,7 +225,7 @@
                                                  name:kLogoutSuccessBroadCast
                                                object:nil];
     
-
+    
     
 }
 
@@ -237,7 +242,7 @@
                             if (logoutRequest.response.ok) {
                                 [[UserCenter defaultCenter] setLogouted];
                                 [self.tableView reloadData];
-//                                [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast object:nil userInfo:nil];
+                                //                                [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast object:nil userInfo:nil];
                             }
                             else {
                                 [self showAlertViewWithMessage:@"注销失败!"];
@@ -286,7 +291,7 @@
                 
             }
         });
-
+        
     }
 }
 
@@ -445,7 +450,7 @@
             return self.noLoginCell;
         }
     }
-
+    
     switch (section) {
         case kSectionOverview:
         {
@@ -494,7 +499,7 @@
     }
     
     //cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
     return cell;
 }
 
@@ -514,7 +519,7 @@
             default:
                 break;
         }
-
+        
     }
     else {
         switch (section) {
@@ -540,8 +545,8 @@
         switch (indexPath.section) {
             case kSectionInfo:
             {
-//                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-//                [self.navigationController pushViewController:mineSellProductVC animated:YES];
+                //                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
+                //                [self.navigationController pushViewController:mineSellProductVC animated:YES];
                 return;
             }
                 break;
@@ -556,6 +561,12 @@
         case kSectionInfo:
         {
             if (indexPath.row == 1) {
+                MineStockViewController* stockVC = [[MineStockViewController alloc] init];
+                [self.navigationController pushViewController:stockVC animated:YES];
+                
+                return;
+            }
+            else if (indexPath.row == 2) {
                 SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
                 [self.navigationController pushViewController:supplyVC animated:YES];
                 
@@ -567,13 +578,13 @@
                 
                 return;
             }
-            else if(indexPath.row== 2){
+            else if(indexPath.row== 3){
                 MineBuyViewController* mineBuyVC = [[MineBuyViewController alloc] init];
                 [self.navigationController pushViewController:mineBuyVC animated:YES];
                 return;
-
+                
             }
-            else if(indexPath.row== 3){
+            else if(indexPath.row== 4){
                 AddressesViewController* addrVC = [[AddressesViewController alloc] init];
                 [self.navigationController pushViewController:addrVC animated:YES];
                 return;
@@ -588,14 +599,14 @@
             if ([[UIApplication sharedApplication] canOpenURL:url]) {
                 [[UIApplication sharedApplication] openURL:url];
             }
-
+            
         }
             break;
         default:
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -603,7 +614,7 @@
     if (section == kSectionOverview) {
         return 0.f;
     }
-
+    
     return 12.f;
 }
 
@@ -619,7 +630,7 @@
     MMOrderType orderType;
     MMOrderSubType orderSubType;
     
-
+    
     if (self.segmentCell.segment.currentIndex == 0) {
         orderType = kOrderTypeBuy;
         
@@ -648,7 +659,7 @@
                 orderSubType = kOrderSubTypeSend;
                 break;
         }
-
+        
     }
     
     OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
