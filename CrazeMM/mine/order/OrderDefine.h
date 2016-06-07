@@ -17,7 +17,8 @@ typedef NS_ENUM(NSInteger, MMOrderSubType){
     kOrderSubTypePay = 0,
     kOrderSubTypeReceived,
     kOrderSubTypeConfirmed,
-    kOrderSubTypeSend
+    kOrderSubTypeSend,
+    kOrderSubTypeAll
 };
 
 // Will this state code be changed?
@@ -29,6 +30,7 @@ typedef NS_ENUM(NSInteger, MMOrderState){
     TOBERECEIVED = 300,//待签收
     TOBESENT = 200,// 待发货
     TOBESETTLED = 400, //待结款
+    ORDERCLOSE = 600,
     
     // TOBEPAID -> TOBESENT(PAYCOMPLETE) -> TOBERECEIVED(SENTCOMPLETE) -> TOBESETTLED(RECEIVECOMPLETE) -> TOBECONFIRMED -> COMPLETED(CONFIRMEDCOMPLETE)
     WAITFORPAY = TOBEPAID,

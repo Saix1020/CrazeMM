@@ -34,6 +34,17 @@
 @property (nonatomic, copy) NSString* updateTime;
 @property (nonatomic) MMOrderState state;
 @property (nonatomic, copy) NSString* userName;
+//isBrushMachine = 0;
+//isOriginal = 1;
+//isOriginalBox = 1;
+//isSerial = 1;
+@property (nonatomic) BOOL isBrushMachine;
+@property (nonatomic) BOOL isOriginal;
+@property (nonatomic) BOOL isOriginalBox;
+@property (nonatomic) BOOL isSerial;
+
+@property (nonatomic, copy) NSString* stateLabel;
+
 
 @property (nonatomic) BOOL selected;
 

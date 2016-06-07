@@ -10,6 +10,7 @@
 #import "AccountSummaryCell.h"
 #import "AccountDetailCell.h"
 #import "BankCardListViewController.h"
+#import "HttpBalance.h"
 
 @interface AccountViewController ()
 @property (nonatomic, strong) UITableView* tableView;
@@ -78,6 +79,17 @@
 {
     [super viewWillAppear:animated];
     [self.tabBarController setTabBarHidden:YES animated:YES];
+    
+    HttpBalanceRequest* balanceRequest = [[HttpBalanceRequest alloc] init];
+    [balanceRequest request]
+    .then(^(id responseObj){
+        HttpBalanceResponse* response = (HttpBalanceResponse*)balanceRequest.response;
+        self.summaryCell.money = response.balanceDto.money;
+        self.summaryCell.frozenMoney = response.balanceDto.freezeMoney;
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
 }
 
 -(void)viewWillLayoutSubviews

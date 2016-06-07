@@ -197,6 +197,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
         }
@@ -209,8 +210,12 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
+        }
+        else {
+            self.bottomView.hidden = YES;
         }
     }
     else if (self.style.orderType == kOrderTypeSupply){
@@ -226,6 +231,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
         }
@@ -241,8 +247,12 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
+        }
+        else {
+            self.bottomView.hidden = YES;
         }
     }
     
@@ -384,6 +394,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 string = @"已完成";
                 subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
+            case ORDERCLOSE:
+                string = @"订单状态: 600";
+                subString = [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
+
+                break;
             default:
                 break;
         }
@@ -418,7 +433,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 string =  @"已完成";
                 subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
+            case ORDERCLOSE:
+                string = @"订单状态: 600";
+                subString = [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
                 
+                break;
             default:
                 break;
         }
@@ -641,6 +660,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 break;
         }
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

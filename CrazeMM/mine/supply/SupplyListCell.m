@@ -50,6 +50,10 @@
     
     //[self.shareButton setim:<#(nullable UIColor *)#> forState:<#(UIControlState)#>]
 
+    self.flagLabel.backgroundColor = [UIColor UIColorFromRGB:0xbddcfa];//
+    self.flagLabel.layer.cornerRadius = 4.f;
+    self.flagLabel.clipsToBounds = YES;
+    self.flagLabel.textColor = [UIColor UIColorFromRGB:0x3972a2];
 
 }
 
@@ -90,6 +94,7 @@
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(0);
 
             [self.offButton setTitle:@"下架" forState:UIControlStateNormal];
+            self.flagLabel.text = @" 在售 ";
             break;
         case kOffShelfStyle:
             self.shareButton.hidden = YES;
@@ -99,36 +104,28 @@
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
             [self.offButton setTitle:@"上架" forState:UIControlStateNormal];
+            self.flagLabel.text = @" 已下架 ";
             break;
         case kDealStyle:
             self.backgroundView.hidden = YES;
             self.offButton.hidden = YES;
             self.shareButton.hidden = YES;
             self.selectCheckBox.hidden = YES;
+            self.flagLabel.text = @" 已成交 ";
+
             break;
         default:
             break;
     }
-    NSLayoutConstraint* constraint = nil;
-    for (constraint in self.contentView.constraints) {
-        if (constraint.firstItem == self.titleLabel
-            && constraint.secondItem == self.contentView
-            && constraint.firstAttribute == NSLayoutAttributeLeading
-            && constraint.secondAttribute == NSLayoutAttributeLeading) {
-            break;
-        }
+    
+    
+    if (self.selectCheckBox.hidden) {
+        self.titleLabelLeadingContraint.constant = -16.f;
     }
-    if (constraint) {
-        [self.contentView removeConstraint:constraint];
-        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel
-                                                                     attribute:NSLayoutAttributeLeading
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self.contentView
-                                                                     attribute:NSLayoutAttributeLeading
-                                                                    multiplier:1.0 constant:self.selectCheckBox.hidden?8.f:32.f]];
-        [self setNeedsUpdateConstraints];
-
+    else {
+        self.titleLabelLeadingContraint.constant = 8.f;
     }
+    [self updateConstraints];
 }
 
 -(void)setMineSupplyProductDto:(MineSupplyProductDTO *)mineSupplyProductDto
@@ -167,6 +164,7 @@
     self.priceLabel.text = [NSString stringWithFormat:@"单台定价: ￥%.02f", mineStockDto.inprice];
     [self fomartPriceLabel];
     self.selectCheckBox.on = mineStockDto.selected;
+    [self fomartPriceLabel];
     
     self.shareButton.hidden = NO;
     self.shareButton.userInteractionEnabled = NO;
@@ -174,9 +172,30 @@
 
 }
 
+-(void)fomartStatusLabel
+{
+    NSMutableString* string = [[NSMutableString alloc]init];
+    if (self.mineStockDto.isSerial) {
+        [string appendString:@"带串码"];
+    }
+    if (self.mineStockDto.isOriginal) {
+        [string appendString:@"原装"];
+    }
+    if (self.mineStockDto.isOriginalBox) {
+        [string appendString:@"原封箱"];
+    }
+    if (self.mineStockDto.isBrushMachine) {
+        [string appendString:@"已刷机"];
+    }
+    else {
+        [string appendString:@"未刷机"];
+    }
+    self.statusLabel.text = string;
+}
+
 +(CGFloat)cellHeight
 {
-    return 150.f;
+    return 160.f;
 }
 
 -(void)buttonClicked:(UIButton*)button

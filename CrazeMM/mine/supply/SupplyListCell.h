@@ -35,7 +35,10 @@ typedef NS_ENUM(NSInteger, SupplyListCellStyle){
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet UIButton *offButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelLeadingContraint;
+@property (weak, nonatomic) IBOutlet UILabel *flagLabel;
 @property (nonatomic) SupplyListCellStyle style;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @property (nonatomic, strong) MineSupplyProductDTO* mineSupplyProductDto;
 

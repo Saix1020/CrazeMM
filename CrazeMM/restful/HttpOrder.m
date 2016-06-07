@@ -134,3 +134,39 @@
 
 
 @end
+
+@implementation HttpAllBuyOrderRequest
+
+-(instancetype)initWithPage:(NSInteger)pn
+{
+    MMOrderListStyle style = {
+        .orderType = kOrderTypeBuy
+    };
+    self = [super initWithOrderListType:style andPage:pn];
+    if (self) {
+        self.params[@"state"] = @"all";
+        self.params[@"t"] = @"b";
+    }
+    
+    return self;
+}
+
+@end
+
+@implementation HttpAllSupplyOrderRequest
+
+-(instancetype)initWithPage:(NSInteger)pn
+{
+    MMOrderListStyle style = {
+        .orderType = kOrderTypeBuy
+    };
+    self = [super initWithOrderListType:style andPage:pn];
+    if (self) {
+        self.params[@"state"] = @"all";
+        self.params[@"t"] = @"s";
+    }
+    
+    return self;
+}
+
+@end

@@ -15,6 +15,7 @@
 @property (nonatomic) NSInteger oldState;
 @property (nonatomic) NSInteger oid;
 @property (nonatomic) NSInteger newState;
+//@property (nonatomic, copy) NSString* newStateLabel;
 @property (nonatomic, copy) NSString* stateLabelNew;
 @property (nonatomic, copy) NSString* createTime;
 @property (nonatomic, copy) NSString* comment;

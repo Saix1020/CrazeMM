@@ -33,6 +33,14 @@
         self.goodImage = dict[@"goodImage"];
         self.updateTime = dict[@"updateTime"];
         self.userName = dict[@"userName"];
+        
+        self.isBrushMachine = [dict[@"isBrushMachine"] integerValue] == 1;
+        self.isOriginal = [dict[@"isOriginal"] integerValue] == 1;
+        self.isOriginalBox = [dict[@"isOriginalBox"] integerValue] == 1;
+        self.isSerial = [dict[@"isSerial"] integerValue] == 1;
+        
+        self.stateLabel = dict[@"stateLabel"];
+        
         self.selected = NO;
     }
     return self;

@@ -25,6 +25,9 @@
 #import "MineBuyViewController.h"
 #import "AddressesViewController.h"
 #import "MineStockViewController.h"
+#import "HttpBalance.h"
+#import "AllOrderListViewController.h"
+
 
 
 @interface MineViewController()
@@ -292,6 +295,17 @@
             }
         });
         
+        HttpBalanceRequest* balanceRequest = [[HttpBalanceRequest alloc] init];
+        [balanceRequest request]
+        .then(^(id responseObj){
+            HttpBalanceResponse* response = (HttpBalanceResponse*)balanceRequest.response;
+            self.avataCell.money = response.balanceDto.money;
+            self.avataCell.frozenMoney = response.balanceDto.freezeMoney;
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
+        
     }
 }
 
@@ -309,7 +323,7 @@
                          @"number" : @(self.orderSummary.tobereceived)
                          },
                      @{
-                         @"name" : @"其他",
+                         @"name" : @"所有买货",
                          @"number" : @(-1)
                          },
                      
@@ -326,7 +340,7 @@
                          @"number" : @(self.orderSummary.tobeconfirmed)
                          },
                      @{
-                         @"name" : @"其他",
+                         @"name" : @"所有卖货",
                          @"number" : @(-1)
                          },
                      
@@ -345,7 +359,7 @@
                          @"number" : @(0)
                          },
                      @{
-                         @"name" : @"其他",
+                         @"name" : @"所有买货",
                          @"number" : @(-1)
                          },
                      
@@ -362,7 +376,7 @@
                          @"number" : @(0)
                          },
                      @{
-                         @"name" : @"其他",
+                         @"name" : @"所有卖货",
                          @"number" : @(-1)
                          },
                      
@@ -642,11 +656,11 @@
                 orderSubType = kOrderSubTypeReceived;
                 break;
             default:
-                orderSubType = kOrderSubTypePay;
+                orderSubType = kOrderSubTypeAll;
                 break;
         }
     }
-    else {
+    else  {
         orderType = kOrderTypeSupply;
         switch (index) {
             case 1:
@@ -656,14 +670,21 @@
                 orderSubType = kOrderSubTypeConfirmed;
                 break;
             default:
-                orderSubType = kOrderSubTypeSend;
+                orderSubType = kOrderSubTypeAll;
                 break;
         }
         
     }
+    if (orderSubType!=kOrderSubTypeAll) {
+        OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
+        [self.navigationController pushViewController:orderListVC animated:YES];
+    }
+    else {
+        AllOrderListViewController* allOrderListVC = [[AllOrderListViewController alloc] initWithOrderType:orderType];
+        [self.navigationController pushViewController:allOrderListVC animated:YES];
+
+    }
     
-    OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
-    [self.navigationController pushViewController:orderListVC animated:YES];
 }
 
 
