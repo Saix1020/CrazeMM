@@ -23,6 +23,8 @@
 @property (nonatomic) NSInteger totalPage;
 @property (nonatomic) NSInteger pageSize;
 
+@property (nonatomic) BOOL requesting;
+
 
 @end
 
@@ -99,9 +101,12 @@
 
 -(AnyPromise*)refreshBlanceLog
 {
-//    if (self.pageNumber+1>self.totalPage) {
-//        return nil;
-//    }
+    @synchronized (self) {
+        if (self.requesting) {
+            return nil;
+        }
+        self.requesting = YES;
+    }
     HttpBalanceLogRequest* request = [[HttpBalanceLogRequest alloc] initWithPageNum:self.pageNumber+1];
     return [request request]
     .then(^(id responseObj){
@@ -117,6 +122,9 @@
 
             }
         }
+    })
+    .finally(^(){
+        self.requesting = NO;
     });
 }
 

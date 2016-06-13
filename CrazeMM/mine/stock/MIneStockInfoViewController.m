@@ -108,10 +108,12 @@
     self.timeline = [[TimeLineViewControl alloc] initWithTimeArray:timesPlacehoderArray
                                            andTimeDescriptionArray:commentsArray
                                                   andCurrentStatus:1
-                                                          andFrame:CGRectMake(-40, 16+20.f, self.view.bounds.size.width*0.8 , self.view.bounds.size.height+40.f)];
+                                                          andFrame:CGRectMake(-40, 16+20.f, 320 , self.view.bounds.size.height+40.f)];
     [self.scrollView addSubview:self.timeline];
     [self.timeline sizeToFit];
-
+    CGFloat needHeight = MAX(self.timeline.timeLabelsHeight, self.timeline.descLabelsHeight) + 40.f;
+    //needHeight = MAX(self.view.bounds.size.height, needHeight);
+    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, needHeight);
 }
 
 - (AnyPromise*)getStockInfo
