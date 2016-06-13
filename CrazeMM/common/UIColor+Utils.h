@@ -10,9 +10,9 @@
 
 @interface UIColor (Utils)
 
-+(id)UIColorFromRGB:(NSUInteger) rgbValue;
++(UIColor*)UIColorFromRGB:(NSUInteger) rgbValue;
 
-+(id)UIColorFromRGB:(NSUInteger)rgbValue
++(UIColor*)UIColorFromRGB:(NSUInteger)rgbValue
          alphaValue:(CGFloat) alphaValue;
 
 

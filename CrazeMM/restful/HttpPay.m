@@ -29,6 +29,19 @@
     return self;
 }
 
+-(instancetype)initWithPayPrice:(CGFloat)price andTarget:(NSString*)target
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"t" : @(price),
+                         @"target" : target
+                         } mutableCopy];
+    }
+    return self;
+
+}
+
 -(NSString*)url
 {
     return COMB_URL(@"/rest/order/payinfo");
@@ -73,11 +86,51 @@
     
     return self;
 }
-
+-(instancetype)initWithPayNo:(NSString*)payNo andMethod:(NSInteger)method andMoney:(CGFloat)money
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"no" : payNo,
+                         @"method": @(method),
+                         @"money": @(money)
+                         } mutableCopy];
+    }
+    
+    return self;
+}
 
 -(NSString*)url
 {
-        return COMB_URL(@"/rest/pay");
+    return COMB_URL(@"/rest/pay");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+@end
+
+@implementation HttpRechargeRequest
+
+-(instancetype)initWithPayNo:(NSString*)payNo andMethod:(NSInteger)method andMoney:(CGFloat)money
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"no" : payNo,
+                         @"method": @(method),
+                         @"money": @(money)
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/recharge");
 }
 
 -(NSString*)method

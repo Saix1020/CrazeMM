@@ -76,16 +76,16 @@
     CGFloat timelineHeight = MAX(self.timeline.timeLabelsHeight, self.timeline.descLabelsHeight);
     
     if (timelineHeight < 90.f) {
-        return 90.f;
+        return 90.f+60.f;
     }
-    return timelineHeight + 16.f;
+    return timelineHeight + 16.f + 60.f;
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
     self.timeline.x = -48.f;
-    self.timeline.y = 8.f;
+    self.timeline.y = 8.f+20.f;
     self.timeline.height = self.height - 16.f;
     self.timeline.width = self.contentView.width + 48.f;
 }

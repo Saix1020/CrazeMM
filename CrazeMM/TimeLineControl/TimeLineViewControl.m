@@ -16,7 +16,7 @@
 
 const float BETTWEEN_LABEL_OFFSET = 10;
 const float LINE_WIDTH = 2.0;
-const float CIRCLE_RADIUS = 3.0;
+const float CIRCLE_RADIUS = 5.0;
 const float INITIAL_PROGRESS_CONTAINER_WIDTH = 20.0;
 const float PROGRESS_VIEW_CONTAINER_LEFT = 51.0;
 const float VIEW_WIDTH = 225.0;
@@ -193,21 +193,35 @@ const float VIEW_WIDTH = 225.0;
     CGPoint lastpoint;
     CGFloat yCenter;
     UIColor *strokeColor;
+    UIColor *fillColor;
     CGPoint toPoint;
     CGPoint fromPoint;
     circleLayers = [[NSMutableArray alloc] init];
     layers = [[NSMutableArray alloc] init];
     
+    // add the head line
+    {
+        UIBezierPath *line = [self getLineWithStartPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, -20.f) endPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, totlaHeight-CIRCLE_RADIUS)];
+        CAShapeLayer *lineLayer = [self getLayerWithLine:line andStrokeColor:strokeColor];
+        [layers addObject:lineLayer];
+        //add static background gray line
+        CAShapeLayer *grayStaticLineLayer = [self getLayerWithLine:line andStrokeColor:[UIColor lightGrayColor]];
+        [self.progressViewContainer.layer addSublayer:grayStaticLineLayer];
+        //totlaHeight += 20.f;
+    }
+    
     for (UILabel *label in labels) {
         //configure circle
         
         CGSize fittingSize = [label systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
-        strokeColor = i < currentStatus ? [UIColor UIColorFromRGB:0x0c9145] : [UIColor lightGrayColor];
+        strokeColor = i < currentStatus ? [UIColor whiteColor] : [UIColor lightGrayColor];
+        fillColor = i < currentStatus ? [UIColor UIColorFromRGB:0x0c9145] : [UIColor lightGrayColor];
+
         yCenter = (totlaHeight /*+ fittingSize.height/2*/);
         
         UIBezierPath *circle = [UIBezierPath bezierPath];
         [self configureBezierCircle:circle withCenterY:yCenter];
-        CAShapeLayer *circleLayer = [self getLayerWithCircle:circle andStrokeColor:strokeColor];
+        CAShapeLayer *circleLayer = [self getLayerWithCircle:circle andStrokeColor:strokeColor andFillColor:fillColor];
         [circleLayers addObject:circleLayer];
         //add static background gray circle
         CAShapeLayer *grayStaticCircleLayer = [self getLayerWithCircle:circle andStrokeColor:[UIColor lightGrayColor]];
@@ -233,6 +247,17 @@ const float VIEW_WIDTH = 225.0;
         i++;
     }
     
+    // add the foot line
+    {
+        UIBezierPath *line = [self getLineWithStartPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, yCenter+CIRCLE_RADIUS) endPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, yCenter+40.f+CIRCLE_RADIUS)];
+        CAShapeLayer *lineLayer = [self getLayerWithLine:line andStrokeColor:strokeColor];
+        [layers addObject:lineLayer];
+        //add static background gray line
+        CAShapeLayer *grayStaticLineLayer = [self getLayerWithLine:line andStrokeColor:[UIColor lightGrayColor]];
+        [self.progressViewContainer.layer addSublayer:grayStaticLineLayer];
+        //totlaHeight += 40.f;
+    }
+    
     [self startAnimatingLayers:circleLayers forStatus:currentStatus];
 }
 
@@ -248,6 +273,8 @@ const float VIEW_WIDTH = 225.0;
 
 - (UIBezierPath *)getLineWithStartPoint:(CGPoint)start endPoint:(CGPoint)end {
     UIBezierPath *line = [UIBezierPath bezierPath];
+//    start.y -= 20.f;
+//    end.y += 20.f;
     [line moveToPoint:start];
     [line addLineToPoint:end];
     
@@ -261,6 +288,21 @@ const float VIEW_WIDTH = 225.0;
     
     circleLayer.strokeColor = strokeColor.CGColor;
     circleLayer.fillColor = nil;
+    circleLayer.lineWidth = LINE_WIDTH;
+    circleLayer.lineJoin = kCALineJoinBevel;
+    
+    return circleLayer;
+}
+
+- (CAShapeLayer *)getLayerWithCircle:(UIBezierPath *)circle andStrokeColor:(UIColor *)strokeColor andFillColor:(UIColor*)fillColor{
+    CAShapeLayer *circleLayer = [CAShapeLayer layer];
+    circleLayer.frame = self.progressViewContainer.bounds;
+    circleLayer.path = circle.CGPath;
+    
+    circleLayer.strokeColor = strokeColor.CGColor;
+    circleLayer.borderColor = strokeColor.CGColor;
+    circleLayer.borderWidth = 1.f;
+    circleLayer.fillColor = fillColor.CGColor;//((UIColor*)[UIColor UIColorFromRGB:0x0c9145]).CGColor;
     circleLayer.lineWidth = LINE_WIDTH;
     circleLayer.lineJoin = kCALineJoinBevel;
     
@@ -299,25 +341,37 @@ const float VIEW_WIDTH = 225.0;
             [self.progressViewContainer.layer addSublayer:cilrclLayer];
             
             CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-            animation.duration = 0.2;
+            animation.duration = 0;
             animation.beginTime = [cilrclLayer convertTime:CACurrentMediaTime() fromLayer:nil] + circleTimeOffset;
             animation.fromValue = [NSNumber numberWithFloat:0.0f];
             animation.toValue   = [NSNumber numberWithFloat:1.0f];
             animation.fillMode = kCAFillModeForwards;
             animation.delegate = self;
             circleTimeOffset += .4;
-            [cilrclLayer setHidden:YES];
-            [cilrclLayer addAnimation:animation forKey:@"strokeCircleAnimation"];
+            //[cilrclLayer setHidden:YES];
+            //[cilrclLayer addAnimation:animation forKey:@"strokeCircleAnimation"];
             if (i == currentStatus && i != [layersToAnimate count]) {
                 CABasicAnimation *strokeAnim = [CABasicAnimation animationWithKeyPath:@"strokeColor"];
-                strokeAnim.fromValue         = (id) ((UIColor*)[UIColor UIColorFromRGB:0x0c9145]).CGColor;
-                strokeAnim.toValue         = (id) ((UIColor*)[UIColor UIColorFromRGB:0x0c9145]).CGColor;
+                strokeAnim.fromValue         = (id) ((UIColor*)[UIColor whiteColor]).CGColor;
+                strokeAnim.toValue         = (id) ((UIColor*)[UIColor whiteColor]).CGColor;
 
 //                strokeAnim.toValue           = (id) [UIColor clearColor].CGColor;
                 strokeAnim.duration          = 1.f;
                 strokeAnim.repeatCount       = HUGE_VAL;
                 strokeAnim.autoreverses      = NO;
                 [cilrclLayer addAnimation:strokeAnim forKey:@"animateStrokeColor"];
+            }
+            else {
+                CABasicAnimation *strokeAnim = [CABasicAnimation animationWithKeyPath:@"strokeColor"];
+                strokeAnim.fromValue         = (id) ((UIColor*)[UIColor whiteColor]).CGColor;
+                strokeAnim.toValue         = (id) ((UIColor*)[UIColor whiteColor]).CGColor;
+                
+                //                strokeAnim.toValue           = (id) [UIColor clearColor].CGColor;
+                strokeAnim.duration          = 1.f;
+                strokeAnim.repeatCount       = HUGE_VAL;
+                strokeAnim.autoreverses      = NO;
+                [cilrclLayer addAnimation:strokeAnim forKey:@"animateStrokeColor"];
+
             }
             i++;
         }

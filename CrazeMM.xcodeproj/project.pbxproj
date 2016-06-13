@@ -377,6 +377,10 @@
 		B9AD462C1CD6523100012B31 /* M80AttributedLabelURL.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46241CD6523100012B31 /* M80AttributedLabelURL.m */; };
 		B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
 		B9AD462E1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
+		B9B3E4BE1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */; };
+		B9B3E4BF1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */; };
+		B9B3E4C21D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4C11D0DA5DF005E9B4B /* BalanceLogViewController.m */; };
+		B9B3E4C31D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4C11D0DA5DF005E9B4B /* BalanceLogViewController.m */; };
 		B9B5BCDF1CDCD5110085E132 /* HttpLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCDE1CDCD5110085E132 /* HttpLogout.m */; };
 		B9B5BCE31CDCDF690085E132 /* NSError+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE21CDCDF690085E132 /* NSError+Utils.m */; };
 		B9B5BCEA1CDDBE670085E132 /* HttpOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE91CDDBE670085E132 /* HttpOrder.m */; };
@@ -422,6 +426,15 @@
 		B9D1C5811D0701000099BA95 /* BalanceDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C57F1D0701000099BA95 /* BalanceDTO.m */; };
 		B9D1C5841D0719DB0099BA95 /* AllOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5831D0719DB0099BA95 /* AllOrderListViewController.m */; };
 		B9D1C5851D0719DB0099BA95 /* AllOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5831D0719DB0099BA95 /* AllOrderListViewController.m */; };
+		B9D1C5891D0A414E0099BA95 /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5881D0A414E0099BA95 /* RechargeViewController.m */; };
+		B9D1C58A1D0A414E0099BA95 /* RechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5881D0A414E0099BA95 /* RechargeViewController.m */; };
+		B9D1C58D1D0A62A40099BA95 /* HttpWithDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C58C1D0A62A40099BA95 /* HttpWithDraw.m */; };
+		B9D1C58E1D0A62A40099BA95 /* HttpWithDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C58C1D0A62A40099BA95 /* HttpWithDraw.m */; };
+		B9D1C5911D0A64340099BA95 /* WithDrawAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5901D0A64340099BA95 /* WithDrawAlertView.m */; };
+		B9D1C5921D0A64340099BA95 /* WithDrawAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5901D0A64340099BA95 /* WithDrawAlertView.m */; };
+		B9D1C5941D0A64440099BA95 /* WithDrawAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9D1C5931D0A64440099BA95 /* WithDrawAlertView.xib */; };
+		B9D1C5951D0A64440099BA95 /* WithDrawAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9D1C5931D0A64440099BA95 /* WithDrawAlertView.xib */; };
+		B9D1C5961D0C575E0099BA95 /* StockSellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B902B6DB1D026C88005B6F5C /* StockSellCell.m */; };
 		B9E84BC11CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC21CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */; };
@@ -1439,6 +1452,10 @@
 		B9AD46241CD6523100012B31 /* M80AttributedLabelURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M80AttributedLabelURL.m; sourceTree = "<group>"; };
 		B9AD46251CD6523100012B31 /* NSMutableAttributedString+M80.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+M80.h"; sourceTree = "<group>"; };
 		B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+M80.m"; sourceTree = "<group>"; };
+		B9B3E4BC1D0CF24D005E9B4B /* WithDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithDrawViewController.h; path = mine/account/WithDrawViewController.h; sourceTree = "<group>"; };
+		B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithDrawViewController.m; path = mine/account/WithDrawViewController.m; sourceTree = "<group>"; };
+		B9B3E4C01D0DA5DF005E9B4B /* BalanceLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BalanceLogViewController.h; path = mine/account/BalanceLogViewController.h; sourceTree = "<group>"; };
+		B9B3E4C11D0DA5DF005E9B4B /* BalanceLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BalanceLogViewController.m; path = mine/account/BalanceLogViewController.m; sourceTree = "<group>"; };
 		B9B5BCDD1CDCD5110085E132 /* HttpLogout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpLogout.h; path = restful/HttpLogout.h; sourceTree = "<group>"; };
 		B9B5BCDE1CDCD5110085E132 /* HttpLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpLogout.m; path = restful/HttpLogout.m; sourceTree = "<group>"; };
 		B9B5BCE11CDCDF690085E132 /* NSError+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSError+Utils.h"; path = "common/NSError+Utils.h"; sourceTree = "<group>"; };
@@ -1489,6 +1506,13 @@
 		B9D1C57F1D0701000099BA95 /* BalanceDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BalanceDTO.m; path = mine/BalanceDTO.m; sourceTree = "<group>"; };
 		B9D1C5821D0719DB0099BA95 /* AllOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AllOrderListViewController.h; path = mine/order/AllOrderListViewController.h; sourceTree = "<group>"; };
 		B9D1C5831D0719DB0099BA95 /* AllOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AllOrderListViewController.m; path = mine/order/AllOrderListViewController.m; sourceTree = "<group>"; };
+		B9D1C5871D0A414E0099BA95 /* RechargeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RechargeViewController.h; path = mine/account/RechargeViewController.h; sourceTree = "<group>"; };
+		B9D1C5881D0A414E0099BA95 /* RechargeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RechargeViewController.m; path = mine/account/RechargeViewController.m; sourceTree = "<group>"; };
+		B9D1C58B1D0A62A40099BA95 /* HttpWithDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpWithDraw.h; path = mine/account/HttpWithDraw.h; sourceTree = "<group>"; };
+		B9D1C58C1D0A62A40099BA95 /* HttpWithDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpWithDraw.m; path = mine/account/HttpWithDraw.m; sourceTree = "<group>"; };
+		B9D1C58F1D0A64340099BA95 /* WithDrawAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithDrawAlertView.h; path = mine/account/WithDrawAlertView.h; sourceTree = "<group>"; };
+		B9D1C5901D0A64340099BA95 /* WithDrawAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithDrawAlertView.m; path = mine/account/WithDrawAlertView.m; sourceTree = "<group>"; };
+		B9D1C5931D0A64440099BA95 /* WithDrawAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithDrawAlertView.xib; sourceTree = "<group>"; };
 		B9E84BBF1CEF496B003FEAF5 /* MineBuyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyEditViewController.h; path = mine/buy/MineBuyEditViewController.h; sourceTree = "<group>"; };
 		B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyEditViewController.m; path = mine/buy/MineBuyEditViewController.m; sourceTree = "<group>"; };
 		B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBuyOrder.h; path = restful/HttpBuyOrder.h; sourceTree = "<group>"; };
@@ -2215,6 +2239,12 @@
 				B9E84BCF1CF0A54D003FEAF5 /* BankCardListViewController.m */,
 				B9E84BFB1CF15069003FEAF5 /* BankCardEditingViewController.h */,
 				B9E84BFC1CF15069003FEAF5 /* BankCardEditingViewController.m */,
+				B9D1C5871D0A414E0099BA95 /* RechargeViewController.h */,
+				B9D1C5881D0A414E0099BA95 /* RechargeViewController.m */,
+				B9B3E4BC1D0CF24D005E9B4B /* WithDrawViewController.h */,
+				B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */,
+				B9B3E4C01D0DA5DF005E9B4B /* BalanceLogViewController.h */,
+				B9B3E4C11D0DA5DF005E9B4B /* BalanceLogViewController.m */,
 			);
 			name = account;
 			sourceTree = "<group>";
@@ -2231,6 +2261,9 @@
 				B9E84BC71CF0A23E003FEAF5 /* BankCardCell.h */,
 				B9E84BC81CF0A23E003FEAF5 /* BankCardCell.m */,
 				B9E84BCB1CF0A25F003FEAF5 /* BankCardCell.xib */,
+				B9D1C58F1D0A64340099BA95 /* WithDrawAlertView.h */,
+				B9D1C5901D0A64340099BA95 /* WithDrawAlertView.m */,
+				B9D1C5931D0A64440099BA95 /* WithDrawAlertView.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2960,6 +2993,8 @@
 			children = (
 				B9E84BD31CF0ABD8003FEAF5 /* HttpMineAccount.h */,
 				B9E84BD41CF0ABD8003FEAF5 /* HttpMineAccount.m */,
+				B9D1C58B1D0A62A40099BA95 /* HttpWithDraw.h */,
+				B9D1C58C1D0A62A40099BA95 /* HttpWithDraw.m */,
 			);
 			name = account;
 			sourceTree = "<group>";
@@ -3249,6 +3284,7 @@
 				B98878861CC896BE00990AA4 /* product_debug.png in Resources */,
 				B91896A81CCF01A20061D0B6 /* LastPayMethodCell.xib in Resources */,
 				B967E7431CE589B600621F28 /* OrderLogsCell.xib in Resources */,
+				B9D1C5941D0A64440099BA95 /* WithDrawAlertView.xib in Resources */,
 				B9A780401CD9E2D000A89047 /* pop_eg.png in Resources */,
 				B99194781CCC690E0032A393 /* OrderListCell.xib in Resources */,
 				B95A94A51CE0C19900A5D9BA /* citydict.plist in Resources */,
@@ -3352,6 +3388,7 @@
 				B9EFAF511CED514100F81157 /* product_debug.png in Resources */,
 				B9EFAF521CED514100F81157 /* LastPayMethodCell.xib in Resources */,
 				B9EFAF531CED514100F81157 /* OrderLogsCell.xib in Resources */,
+				B9D1C5951D0A64440099BA95 /* WithDrawAlertView.xib in Resources */,
 				B9EFAF541CED514100F81157 /* pop_eg.png in Resources */,
 				B9EFAF551CED514100F81157 /* OrderListCell.xib in Resources */,
 				B9EFAF561CED514100F81157 /* citydict.plist in Resources */,
@@ -3515,6 +3552,7 @@
 				B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */,
 				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
 				B98218FB1CE84D3400B279E6 /* AddressDTO.m in Sources */,
+				B9D1C5911D0A64340099BA95 /* WithDrawAlertView.m in Sources */,
 				B917323F1CD1F05400C29698 /* FlipOutYAnimation.m in Sources */,
 				B91732481CD1F05400C29698 /* RotateOutDownLeftAnimation.m in Sources */,
 				B95A94C61CE1E4FF00A5D9BA /* SupplyProductViewController.m in Sources */,
@@ -3609,6 +3647,7 @@
 				B91732141CD1F05400C29698 /* BounceAnimation.m in Sources */,
 				B91732271CD1F05400C29698 /* BounceOutUpAnimation.m in Sources */,
 				B9FE71ED1CD6E70400F5EC9F /* _UserInfo.m in Sources */,
+				B9D1C5891D0A414E0099BA95 /* RechargeViewController.m in Sources */,
 				B91732831CD25F3200C29698 /* NSDictionary+HttpHelp.m in Sources */,
 				B91896D21CCF9E8B0061D0B6 /* PayResultCell.m in Sources */,
 				B9FE71EC1CD6E70400F5EC9F /* _UserHistory.m in Sources */,
@@ -3684,6 +3723,7 @@
 				B95A94AA1CE0C19900A5D9BA /* CitySelectTableViewController.m in Sources */,
 				B91732591CD1F05500C29698 /* ZoomInAnimation.m in Sources */,
 				B99D13061CC72AD0000DFF95 /* CustomSeperatorLineCell.m in Sources */,
+				B9B3E4BE1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */,
 				B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */,
 				B99955361CE37988007F26D2 /* OrderDetailHeadCell.m in Sources */,
 				B967E6F11CE4CDC500621F28 /* OrderDefine.m in Sources */,
@@ -3706,6 +3746,7 @@
 				B99D12FD1CC66ED3000DFF95 /* SearchHistoryCell.m in Sources */,
 				B964F96A1CC4AAC6003E0D44 /* UIColor+Utils.m in Sources */,
 				B964F9081CC39670003E0D44 /* CrazeMM.xcdatamodeld in Sources */,
+				B9D1C58D1D0A62A40099BA95 /* HttpWithDraw.m in Sources */,
 				B917328A1CD26A7200C29698 /* UIViewController+TTModalView.m in Sources */,
 				B992C5751CCA282600DC49E8 /* ContactCell.m in Sources */,
 				B9BBEECA1CEB4DDE00275416 /* AddrRegionCell.m in Sources */,
@@ -3738,6 +3779,7 @@
 				B91732161CD1F05400C29698 /* JelloAnimation.m in Sources */,
 				B98218F71CE84CEB00B279E6 /* HttpAddress.m in Sources */,
 				B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */,
+				B9B3E4C21D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */,
 				B917322E1CD1F05400C29698 /* FadeInRightAnimation.m in Sources */,
 				B9AD44151CD39C8300012B31 /* NewWelcomeViewController.m in Sources */,
 				B9E84BF41CF1422D003FEAF5 /* BEMPathManager.m in Sources */,
@@ -3898,6 +3940,7 @@
 				B9EFAE0B1CED514100F81157 /* RollInAnimation.m in Sources */,
 				B9EFAE0C1CED514100F81157 /* MineWrapViewController.m in Sources */,
 				B9EFAE0D1CED514100F81157 /* OrderDetailAddrCell.m in Sources */,
+				B9D1C5961D0C575E0099BA95 /* StockSellCell.m in Sources */,
 				B9C395181CF1E50300AB44B6 /* OrderSendViewController.m in Sources */,
 				B9EFAE0E1CED514100F81157 /* SupplyProductDTO.m in Sources */,
 				B9EFAE0F1CED514100F81157 /* RubberBandAnimation.m in Sources */,
@@ -3911,10 +3954,12 @@
 				B9EFAE181CED514100F81157 /* TabBarController.m in Sources */,
 				B9EFAE191CED514100F81157 /* NSNull+Utils.m in Sources */,
 				B9EFAE1A1CED514100F81157 /* BounceOutAnimation.m in Sources */,
+				B9D1C5921D0A64340099BA95 /* WithDrawAlertView.m in Sources */,
 				B9EFAE1B1CED514100F81157 /* MineSupplyEditViewController.m in Sources */,
 				B9EFAE1C1CED514100F81157 /* RotateOutUpLeftAnimation.m in Sources */,
 				B9EFAE1D1CED514100F81157 /* HttpBuyRequest.m in Sources */,
 				B9EFAE1E1CED514100F81157 /* BounceInLeftAnimation.m in Sources */,
+				B9D1C58E1D0A62A40099BA95 /* HttpWithDraw.m in Sources */,
 				B9EFAE201CED514100F81157 /* FlipAnimation.m in Sources */,
 				B9EFAE211CED514100F81157 /* BaseHttpRequest.m in Sources */,
 				B9EFAE221CED514100F81157 /* SearchHistory.m in Sources */,
@@ -3977,6 +4022,7 @@
 				B9EFAE591CED514100F81157 /* BuyProductDetailDTO.m in Sources */,
 				B9EFAE5A1CED514100F81157 /* FlipOutXAnimation.m in Sources */,
 				B9E84BF11CF1422D003FEAF5 /* BEMAnimationManager.m in Sources */,
+				B9B3E4C31D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */,
 				B9EFAE5B1CED514100F81157 /* SupplyProductDetailDTO.m in Sources */,
 				B9EFAE5C1CED514100F81157 /* UISearchBar+Utils.m in Sources */,
 				B9EFAE5D1CED514100F81157 /* SearchListViewController.m in Sources */,
@@ -4006,6 +4052,7 @@
 				B9EFAE751CED514100F81157 /* main.m in Sources */,
 				B9EFAE761CED514100F81157 /* OrderDetailDTO.m in Sources */,
 				B9EFAE771CED514100F81157 /* FadeInLeftBigAnimation.m in Sources */,
+				B9D1C58A1D0A414E0099BA95 /* RechargeViewController.m in Sources */,
 				B9D1C5811D0701000099BA95 /* BalanceDTO.m in Sources */,
 				B9EFAE781CED514100F81157 /* AddressEditViewController.m in Sources */,
 				B9EFAE791CED514100F81157 /* PayInfoDTO.m in Sources */,
@@ -4116,6 +4163,7 @@
 				B9EFAEDB1CED514100F81157 /* MASLayoutConstraint.m in Sources */,
 				B9EFAEDC1CED514100F81157 /* LightSpeedOutAnimation.m in Sources */,
 				B9EFAEDD1CED514100F81157 /* AnimationParams.m in Sources */,
+				B9B3E4BF1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */,
 				B9EFAEDE1CED514100F81157 /* PaySuccessProductCell.m in Sources */,
 				B9EFAEDF1CED514100F81157 /* OrderStatusCell.m in Sources */,
 				B9EFAEE01CED514100F81157 /* ProductSummaryCell.m in Sources */,

@@ -12,6 +12,7 @@
 @interface HttpPayInfoRequest : BaseHttpRequest
 
 -(instancetype)initWithPayPrice:(CGFloat)price;
+-(instancetype)initWithPayPrice:(CGFloat)price andTarget:(NSString*)target;
 
 @end
 
@@ -27,7 +28,10 @@
 //orders:1079
 //addrId:183
 -(instancetype)initWithPayNo:(NSString*)payNo andOrderId:(NSInteger)orders andAddrId:(NSInteger)addrId;
+@end
 
+@interface HttpRechargeRequest : BaseHttpRequest
+-(instancetype)initWithPayNo:(NSString*)payNo andMethod:(NSInteger)method andMoney:(CGFloat)money;
 @end
 
 @interface HttpPayResultRequest : BaseHttpRequest

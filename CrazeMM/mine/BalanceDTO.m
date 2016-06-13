@@ -33,3 +33,43 @@
 }
 
 @end
+
+@implementation BalanceLogDTO
+
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [super initWith:dict];
+    
+    if (self) {
+        self.build = [dict[@"build"] integerValue];
+        self.balanceOrderId = [dict[@"balanceOrderId"] integerValue];
+        self.uid = [dict[@"uid"] integerValue];
+        self.state = [dict[@"state"] integerValue];
+        
+        self.afterMoney = [dict[@"afterMoney"] floatValue];
+        self.beforeMoney = [dict[@"beforeMoney"] floatValue];
+        self.afterFreezeMoney = [dict[@"afterFreezeMoney"] floatValue];
+        self.beforeFreezeMoney = [dict[@"beforeFreezeMoney"] floatValue];
+        self.amountOfMoney = [dict[@"amountOfMoney"] floatValue];
+        
+        self.message = dict[@"message"];
+        self.type = dict[@"type"];
+        self.createTime = dict[@"createTime"];
+
+    }
+    return self;
+    
+}
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:
+            @"【金额：%.0f】 %@\n"
+            @"可用金额：%.02f, 冻结金额：%.02f\n"
+            @"%@",
+            self.amountOfMoney, self.createTime,
+            self.afterMoney, self.afterFreezeMoney,
+            self.message];
+}
+
+@end

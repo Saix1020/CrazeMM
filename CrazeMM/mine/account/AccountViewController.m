@@ -11,11 +11,16 @@
 #import "AccountDetailCell.h"
 #import "BankCardListViewController.h"
 #import "HttpBalance.h"
+#import "RechargeViewController.h"
+#import "WithDrawViewController.h"
+#import "BalanceLogViewController.h"
 
 @interface AccountViewController ()
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) AccountSummaryCell* summaryCell;
 @property (nonatomic, strong) AccountDetailCell* detailCell;
+
+@property (nonatomic, strong) UIActionSheet* moreActionSheet;
 @end
 
 @implementation AccountViewController
@@ -39,6 +44,21 @@
     return _detailCell;
 }
 
+-(UIActionSheet*)moreActionSheet
+{
+    if (!_moreActionSheet) {
+        _moreActionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"取消"
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"交易记录", @"充值记录", @"提现记录", @"支付管理", nil];
+        _moreActionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+
+    }
+    
+    return _moreActionSheet;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [super viewDidLoad];
@@ -56,6 +76,8 @@
             return [RACSignal empty];
         }];
     }
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStylePlain target:self action:@selector(moreServices:)];
     
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -98,6 +120,10 @@
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
+-(void)moreServices:(id)sender
+{
+    [self.moreActionSheet showInView:self.view];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -153,10 +179,49 @@
 #pragma  -- mark AccountDetailCellDelegate
 -(void)itemClicked:(NSInteger)type
 {
-    if (type == 2) {
+    if (type == 0) { //recharge
+        RechargeViewController* rechargeVC = [[RechargeViewController alloc] init];
+        [self.navigationController pushViewController:rechargeVC animated:YES];
+
+    }
+    else if (type == 3) {
+        WithDrawViewController* withDrawVC = [[WithDrawViewController alloc] init];
+        [self.navigationController pushViewController:withDrawVC animated:YES];
+    }
+
+    else if (type == 2) {
         BankCardListViewController* bankCardListVC = [[BankCardListViewController alloc] init];
         [self.navigationController pushViewController:bankCardListVC animated:YES];
     }
 }
+
+
+#pragma mark -- action sheet delegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    switch (buttonIndex) {
+        case 0:
+        {
+            BalanceLogViewController* balanceLogView = [[BalanceLogViewController alloc] init];
+            [self.navigationController pushViewController:balanceLogView animated:YES];
+        }
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+  
+        default:
+            break;
+    }
+    
+}
+
 
 @end
