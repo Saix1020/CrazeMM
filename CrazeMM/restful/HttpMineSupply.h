@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger, MMMineSupplyState){
 @interface HttpMineStockRequest : BaseHttpRequest
 
 -(instancetype)initWithPageNumber:(NSInteger)pageNumber;
+-(instancetype)initWithPageNumber:(NSInteger)pageNumber andStatus:(NSString*)status;
 
 @end
 

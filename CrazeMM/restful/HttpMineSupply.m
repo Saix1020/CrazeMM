@@ -224,6 +224,16 @@
     return self;
 }
 
+-(instancetype)initWithPageNumber:(NSInteger)pageNumber andStatus:(NSString*)status
+{
+    self = [self initWithPageNumber:pageNumber];
+    if (self) {
+        self.params[@"state"] = status;
+    }
+    return self;
+}
+
+
 -(NSString*)url
 {
     return COMB_URL(@"/rest/stock");

@@ -86,7 +86,6 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-    
     self.segmentCell.frame = CGRectMake(0, 64.f, [UIScreen mainScreen].bounds.size.width, kSegmentCellHeight);
     self.tableView.frame = self.view.bounds;
     

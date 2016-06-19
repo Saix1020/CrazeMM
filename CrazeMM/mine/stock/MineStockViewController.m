@@ -27,12 +27,23 @@
 @property (nonatomic) NSInteger pageNumber;
 @property (nonatomic) NSInteger totalPage;
 
-
-
 @end
 
 @implementation MineStockViewController
 
+-(SegmentedCell*)segmentCell
+{
+    if (!_segmentCell) {
+        _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
+        _segmentCell.buttonStyle = kButtonStyleB;
+        _segmentCell.height = @(40.0f);
+        [_segmentCell setTitles:@[@"待入库", @"已入库", @"待出库", @"历史"]];
+        _segmentCell.segment.delegate = self;
+        _segmentCell.segment.currentIndex = 1;
+        [self.view addSubview:_segmentCell];
+    }
+    return _segmentCell;
+}
 
 
 -(CommonBottomView*)bottomView
@@ -70,9 +81,12 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addStock:)];
     //disable segmentCell
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.segmentCell.frame = CGRectMake(0, 0, 0, 0);
+#define kSegmentCellHeight (40.f+self.contentHeightOffset)
+
+    self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    
+    self.segmentCell.frame = CGRectMake(0, 64.f, [UIScreen mainScreen].bounds.size.width, kSegmentCellHeight);
     
     self.pageNumber = 0;
     self.cellStyle = kOffShelfStyle;
@@ -199,8 +213,26 @@
 
 -(AnyPromise*)getMineStock
 {
+    NSInteger currentSelectedSegment = self.segmentCell.segment.currentIndex;
+    NSString* status = @"100";
+    switch (currentSelectedSegment) {
+        case 0:
+            status = [NSString stringWithFormat:@"%d", 100];
+            break;
+        case 1:
+            status = [NSString stringWithFormat:@"%d", 200];;
+            break;
+        case 2:
+            status = [NSString stringWithFormat:@"%d", 300];;
+            break;
+        case 3:
+            status = [NSString stringWithFormat:@"%d,%d", 400, 500];;
+            break;
+        default:
+            break;
+    }
     
-    HttpMineStockRequest * request = [[HttpMineStockRequest alloc]initWithPageNumber:self.pageNumber+1];
+    HttpMineStockRequest * request = [[HttpMineStockRequest alloc]initWithPageNumber:self.pageNumber+1 andStatus:status];
     
     return [request request]
     .then(^(id responseObj){
@@ -225,6 +257,7 @@
         
     });
 }
+
 
 #pragma -- mark BEMCheckBox Delegate
 -(void)didTapCheckBox:(BEMCheckBox *)checkBox
@@ -280,6 +313,18 @@
     self.pageNumber = 0;
     [self getMineStock];
     
+}
+
+#pragma -- mark custom segment delegate
+
+- (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
+{
+    [self.dataSource removeAllObjects];
+    [self.tableView reloadData];
+    self.pageNumber = 0;
+    self.totalPage = 0;
+
+    [self getMineStock];
 }
 
 

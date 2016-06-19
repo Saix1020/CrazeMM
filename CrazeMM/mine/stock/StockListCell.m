@@ -31,6 +31,11 @@
     
     self.containerView.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
 
+    self.flagLabel.backgroundColor = [UIColor UIColorFromRGB:0xbddcfa];//
+    self.flagLabel.layer.cornerRadius = 4.f;
+    self.flagLabel.clipsToBounds = YES;
+    self.flagLabel.textColor = [UIColor UIColorFromRGB:0x3972a2];
+
 }
 
 
@@ -123,6 +128,7 @@
     [self fomartNumberLabel];
     self.selectCheckBox.on = mineStockDto.selected;
     self.stockLabel.text = mineStockDto.depotName;
+    self.flagLabel.text = [NSString stringWithFormat:@" %@  ", mineStockDto.stateLabel];
 }
 
 +(CGFloat)cellHeight

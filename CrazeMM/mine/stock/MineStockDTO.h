@@ -32,6 +32,9 @@
 @property (nonatomic, strong) NSString* gvolume;
 @property (nonatomic, strong) NSString* goodName;
 @property (nonatomic, strong) NSString* gnetwork;
+@property (nonatomic) NSInteger state;
+@property (nonatomic, strong) NSString* stateLabel;
+
 
 @property (nonatomic) BOOL selected;
 @property (nonatomic) NSInteger currentPrice;

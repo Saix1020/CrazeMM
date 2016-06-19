@@ -36,6 +36,9 @@
         self.gvolume = dict[@"gvolume"];
         self.goodName = dict[@"goodName"];
         self.gnetwork = dict[@"gnetwork"];
+        
+        self.state = [dict[@"state"] integerValue];
+        self.stateLabel = dict[@"stateLabel"];
 
         self.selected = NO;
     }
