@@ -141,7 +141,8 @@
     self.selectCheckBox.on = mineSupplyProductDto.selected;
     
     if (self.style == kOffShelfStyle) {
-        NSString* title = mineSupplyProductDto.state==400 ? @"已过期" : @"已下架";
+        // issue #1
+        NSString* title = mineSupplyProductDto.state==400 ? @"已下架" : @"已过期";
         self.shareButton.hidden = NO;
         self.shareButton.userInteractionEnabled = NO;
         [self.shareButton setTitle:title forState:UIControlStateNormal];

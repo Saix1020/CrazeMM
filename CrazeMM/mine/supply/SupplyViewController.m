@@ -138,27 +138,35 @@
         }
     }
     
-    HttpMineSupplyReshelveRequest *request = [[HttpMineSupplyReshelveRequest alloc] initWithIds:selectedIds];
-    self.isShelving = YES;
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            for (MineSupplyProductDTO* dto in selectedDtos) {
-                [self.dataSource removeObject:dto];
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        self.isShelving = NO;
-    });
+    @weakify(self);
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要上架 %@ 吗?", [selectedIds componentsJoinedByString:@","]]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpMineSupplyReshelveRequest *request = [[HttpMineSupplyReshelveRequest alloc] initWithIds:selectedIds];
+                        self.isShelving = YES;
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+                                for (MineSupplyProductDTO* dto in selectedDtos) {
+                                    [self.dataSource removeObject:dto];
+                                }
+                                [self.tableView reloadData];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        })
+                        .finally(^(){
+                            self.isShelving = NO;
+                        });
+                    }
+                 andCancelCallback:nil];
+    
+    
 }
 
 -(void)reshelveProductsWithSid:(NSInteger)sid
@@ -176,28 +184,35 @@
             break;
         }
     }
+    @weakify(self);
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要上架 %@ 吗?", [selectedIds componentsJoinedByString:@","]]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpMineSupplyReshelveRequest *request = [[HttpMineSupplyReshelveRequest alloc] initWithIds:selectedIds];
+                        self.isShelving = YES;
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+                                for (MineSupplyProductDTO* dto in selectedDtos) {
+                                    [self.dataSource removeObject:dto];
+                                }
+                                [self.tableView reloadData];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        })
+                        .finally(^(){
+                            self.isShelving = NO;
+                        });
+                    }
+                 andCancelCallback:nil];
+
     
-    HttpMineSupplyReshelveRequest *request = [[HttpMineSupplyReshelveRequest alloc] initWithIds:selectedIds];
-    self.isShelving = YES;
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            for (MineSupplyProductDTO* dto in selectedDtos) {
-                [self.dataSource removeObject:dto];
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        self.isShelving = NO;
-    });
 }
 
 -(void)unshelveProducts
@@ -217,28 +232,36 @@
             [selectedIds addObject:@(dto.id)];
         }
     }
+    @weakify(self);
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要下架 %@ 吗?", [selectedIds componentsJoinedByString:@","]]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpMineSupplyUnshelveRequest *request = [[HttpMineSupplyUnshelveRequest alloc] initWithIds:selectedIds];
+                        
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+                                for (MineSupplyProductDTO* dto in selectedDtos) {
+                                    [self.dataSource removeObject:dto];
+                                }
+                                [self.tableView reloadData];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        })
+                        .finally(^(){
+                            self.isShelving = NO;
+                        });
+
+                    }
+                 andCancelCallback:nil];
     
-    HttpMineSupplyUnshelveRequest *request = [[HttpMineSupplyUnshelveRequest alloc] initWithIds:selectedIds];
-    
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            for (MineSupplyProductDTO* dto in selectedDtos) {
-                [self.dataSource removeObject:dto];
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        self.isShelving = NO;
-    });
+
 }
 -(void)unshelveProductsWithSid:(NSInteger)sid
 {
@@ -258,27 +281,35 @@
         }
     }
     
-    HttpMineSupplyUnshelveRequest *request = [[HttpMineSupplyUnshelveRequest alloc] initWithIds:selectedIds];
+    @weakify(self);
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要下架 %@ 吗?", [selectedIds componentsJoinedByString:@","]]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpMineSupplyUnshelveRequest *request = [[HttpMineSupplyUnshelveRequest alloc] initWithIds:selectedIds];
+                        
+                        [request request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (request.response.ok) {
+                                for (MineSupplyProductDTO* dto in selectedDtos) {
+                                    [self.dataSource removeObject:dto];
+                                }
+                                [self.tableView reloadData];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        })
+                        .finally(^(){
+                            self.isShelving = NO;
+                        });
+
+                    }
+                 andCancelCallback:nil];
     
-    [request request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (request.response.ok) {
-            for (MineSupplyProductDTO* dto in selectedDtos) {
-                [self.dataSource removeObject:dto];
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    })
-    .finally(^(){
-        self.isShelving = NO;
-    });
 }
 
 #pragma mark - Table view data source

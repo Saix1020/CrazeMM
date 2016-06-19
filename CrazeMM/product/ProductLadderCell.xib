@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -111,10 +111,6 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <view contentMode="scaleToFill" id="HlY-wZ-8SO" customClass="M80AttributedLabel">
-                        <rect key="frame" x="137" y="145" width="234" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </view>
                     <view contentMode="scaleToFill" id="COM-Pg-V3M" customClass="UILabel">
                         <rect key="frame" x="137" y="161" width="234" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -172,7 +168,6 @@
                 <outlet property="sellLabel" destination="kgD-8K-zLy" id="IOF-xU-gBk"/>
                 <outlet property="seperatorLine" destination="0iR-gT-8gy" id="ru8-3N-BOc"/>
                 <outlet property="stepPricesView" destination="7Bl-0W-bqr" id="hA3-yP-bQg"/>
-                <outlet property="stockLabel" destination="HlY-wZ-8SO" id="l1q-e6-YI8"/>
                 <outlet property="titleLabel" destination="3Je-X9-bqw" id="9hU-Hp-kfs"/>
                 <outlet property="triangleView" destination="IU9-bC-Uu4" id="11k-FV-6M5"/>
             </connections>

@@ -64,7 +64,7 @@
 
 -(NSArray*)receiveWay
 {
-    return @[@"银行转账", @"账户余额"];
+    return @[@"账户余额", @"银行转账"];
 }
 
 -(instancetype)initWithOrderDetaildtos:(NSArray*)orderDetailDtos
@@ -162,8 +162,8 @@
         [ids addObject:[NSString stringWithFormat:@"%ld", dto.id]];
     }
     
-    NSInteger checkoutMethod = [self.receiveWay indexOfObject:self.receiveWayCell.value] + 1;
     
+    NSInteger checkoutMethod = [self.receiveWay indexOfObject:self.receiveWayCell.value]+1;
     NSInteger bankIndex;
     for (bankIndex = 0; bankIndex<self.bankAccounts.count; ++bankIndex) {
         BankCardDTO* dto = self.bankAccounts[bankIndex];
@@ -185,9 +185,14 @@
     [self showAlertViewWithMessage:@"确认发货吗?"
                     withOKCallback:^(id x){
                         @strongify(self);
+                        [self showProgressIndicator];
+                        NSInteger bankAccountId = 0;
+                        if (checkoutMethod==0) {
+                            bankAccountId = ((BankCardDTO*)self.bankAccounts[bankIndex]).id;
+                        }
                         HttpOrderSendRequest *request = [[HttpOrderSendRequest alloc] initWithOids:ids
                                                                                  andCheckoutMethod:checkoutMethod
-                                                                                        andAccount:((BankCardDTO*)self.bankAccounts[bankIndex]).id
+                                                                                        andAccount:bankAccountId
                                                                                         andLogisId:((LogisDTO*)self.logisArray[logisIndex]).id
                                                                                       andLogisName:((LogisDTO*)self.logisArray[logisIndex]).name
                                                                                       andOrderCode:self.logisNoCell.value];
@@ -198,6 +203,20 @@
                                 if ([self.delegate respondsToSelector:@selector(sendSuccessWithOrderDetailDtos:)]) {
                                     [self.delegate sendSuccessWithOrderDetailDtos:self.orderDetailDtos];
                                 }
+                                
+                                UIViewController* popToVC = nil;
+                                for (UIViewController* vc in self.navigationController.viewControllers) {
+                                    if ([vc isKindOfClass:NSClassFromString(@"OrderDetailViewController")]) {
+                                        popToVC = vc;
+                                        break;
+                                    }
+                                }
+                                if (popToVC) {
+                                    [self.navigationController popToViewController:popToVC animated:YES];
+                                }
+                                else {
+                                    [self.navigationController popToRootViewControllerAnimated:YES];
+                                }
                             }
                             else {
                                 [self showAlertViewWithMessage:request.response.errorMsg];
@@ -207,14 +226,7 @@
                             [self showAlertViewWithMessage:error.localizedDescription];
                         })
                         .finally(^(){
-                            
-                            NSMutableArray* vcs = [self.navigationController.viewControllers mutableCopy];
-                            if ([vcs[vcs.count-2] isKindOfClass:NSClassFromString(@"OrderDetailViewController")]) {
-                                [vcs removeObject:vcs[vcs.count-2]];
-                                self.navigationController.viewControllers = vcs;
-                            }
-                            
-                            [self.navigationController popViewControllerAnimated:YES];
+                            [self dismissProgressIndicator];
                         });
     
                     }
@@ -243,6 +255,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section==0 && indexPath.row==1) {
+        if(![self.receiveWayCell.value isEqualToString:self.receiveWay[1]]){
+            return 0.f;
+        }
+    }
+    
     return 44.f;
 }
 
@@ -336,7 +355,7 @@
     if (self.editingIndexPath.section == 0) {
         if (self.editingIndexPath.row == 0) {
             self.receiveWayCell.value = self.receiveWay[selectedIndex];
-            if(selectedIndex == 1){
+            if(selectedIndex == 0){
                 self.bankAccoutCell.value = @"";
                 self.bankAccoutCell.userInteractionEnabled = NO;
             }
@@ -349,6 +368,7 @@
                 self.bankAccoutCell.userInteractionEnabled = YES;
 
             }
+            [self.tableView reloadData]; 
         }
         else {
             self.bankAccoutCell.value = ((BankCardDTO*)self.bankAccounts[selectedIndex]).bankDesc;
