@@ -14,6 +14,8 @@
 #import "MineSupplyProductDTO.h"
 #import "HttpMineSupplyShelve.h"
 #import "MineSupplyEditViewController.h"
+#import "MineSupplyInfoViewController.h"
+
 //#import <objc/runtime.h>
 
 @interface SupplyViewController ()
@@ -152,6 +154,7 @@
                                     [self.dataSource removeObject:dto];
                                 }
                                 [self.tableView reloadData];
+                                [self showAlertViewWithMessage:@"上架成功"];
                             }
                             else {
                                 [self showAlertViewWithMessage:request.response.errorMsg];
@@ -198,6 +201,7 @@
                                     [self.dataSource removeObject:dto];
                                 }
                                 [self.tableView reloadData];
+                                [self showAlertViewWithMessage:@"上架成功"];
                             }
                             else {
                                 [self showAlertViewWithMessage:request.response.errorMsg];
@@ -246,6 +250,7 @@
                                     [self.dataSource removeObject:dto];
                                 }
                                 [self.tableView reloadData];
+                                [self showAlertViewWithMessage:@"下架成功"];
                             }
                             else {
                                 [self showAlertViewWithMessage:request.response.errorMsg];
@@ -295,6 +300,7 @@
                                     [self.dataSource removeObject:dto];
                                 }
                                 [self.tableView reloadData];
+                                [self showAlertViewWithMessage:@"下架成功"];
                             }
                             else {
                                 [self showAlertViewWithMessage:request.response.errorMsg];
@@ -350,6 +356,18 @@
             return [SupplyListCell cellHeight] - 30;
         }
 
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row%2==0) {
+        return;
+    }
+    else {
+        MineSupplyProductDTO* dto = self.dataSource[indexPath.row/2];
+        MineSupplyInfoViewController* vc = [[MineSupplyInfoViewController alloc] initWithId:dto.id];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

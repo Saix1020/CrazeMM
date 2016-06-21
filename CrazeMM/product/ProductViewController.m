@@ -295,6 +295,9 @@
         }
     }
     else if(indexPath.row == 3){
+        
+        //if(self.productDetailDto.
+        
         return [ProductCompanyCell cellHeight];
     }
     else {

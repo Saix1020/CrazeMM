@@ -169,10 +169,15 @@ const float VIEW_WIDTH = 225.0;
         [label setPreferredMaxLayoutWidth:leftWidth];
         [label sizeToFit];
         CGSize fittingSizeLabel = [label systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
+//        fittingSizeLabel.height += 8.f;
+//        fittingSizeLabel.width += 8.f;
+////        label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.x, fittingSizeLabel.width, fittingSizeLabel.height);
+//        label.size = fittingSizeLabel;
+
         betweenLabelOffset = BETTWEEN_LABEL_OFFSET;
         totlaHeight += (fittingSizeLabel.height + betweenLabelOffset);
         lastLabel = label;
-        
+
         [self.labelDscriptionsArray addObject:label];
         i++;
     }
@@ -201,6 +206,8 @@ const float VIEW_WIDTH = 225.0;
     
     // add the head line
     {
+        strokeColor = [UIColor lightGrayColor];
+
         UIBezierPath *line = [self getLineWithStartPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, -20.f) endPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, totlaHeight-CIRCLE_RADIUS)];
         CAShapeLayer *lineLayer = [self getLayerWithLine:line andStrokeColor:strokeColor];
         [layers addObject:lineLayer];
@@ -212,10 +219,12 @@ const float VIEW_WIDTH = 225.0;
     
     for (UILabel *label in labels) {
         //configure circle
-        
+//        label.backgroundColor = [UIColor whiteColor];
         CGSize fittingSize = [label systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
         strokeColor = i < currentStatus ? [UIColor whiteColor] : [UIColor lightGrayColor];
         fillColor = i < currentStatus ? [UIColor UIColorFromRGB:0x0c9145] : [UIColor lightGrayColor];
+//        fittingSize.height += 8.f;
+//        fittingSize.width += 8.f;
 
         yCenter = (totlaHeight /*+ fittingSize.height/2*/);
         
@@ -249,6 +258,7 @@ const float VIEW_WIDTH = 225.0;
     
     // add the foot line
     {
+        strokeColor = [UIColor lightGrayColor];
         UIBezierPath *line = [self getLineWithStartPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, yCenter+CIRCLE_RADIUS) endPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, yCenter+40.f+CIRCLE_RADIUS)];
         CAShapeLayer *lineLayer = [self getLayerWithLine:line andStrokeColor:strokeColor];
         [layers addObject:lineLayer];

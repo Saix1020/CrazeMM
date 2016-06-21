@@ -161,7 +161,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"账户充值";
+    self.navigationItem.title = @"账户提现";
     
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];

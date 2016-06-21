@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="337" height="130"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B9Q-Ru-XDm" id="LF6-me-2IZ">
-                <rect key="frame" x="0.0" y="0.0" width="337" height="129.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="337" height="129"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5bm-0A-lKx">
@@ -35,7 +35,7 @@
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLw-Ca-bZW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Test 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLw-Ca-bZW">
                                 <rect key="frame" x="182" y="8" width="115" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="115" id="WDi-6O-LKE"/>
@@ -56,6 +56,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7C-vo-UA0" customClass="BEMCheckBox">
                                 <rect key="frame" x="14" y="86" width="12" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="uYB-ke-AIx"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="默认" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjO-BC-R0n">
                                 <rect key="frame" x="34" y="81" width="42" height="21"/>
@@ -104,6 +107,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Qb2-81-zTH"/>
+                                <exclude reference="qgx-W5-8WS"/>
                                 <exclude reference="6lQ-CZ-znF"/>
                             </mask>
                         </variation>

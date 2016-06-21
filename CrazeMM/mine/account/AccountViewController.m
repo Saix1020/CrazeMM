@@ -39,6 +39,7 @@
     if (!_detailCell) {
         _detailCell = [[[NSBundle mainBundle]loadNibNamed:@"AccountDetailCell" owner:nil options:nil] firstObject];
         _detailCell.delegate = self;
+        _detailCell.mortgageCell.hidden = YES;
     }
     
     return _detailCell;

@@ -109,7 +109,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.backgroundColor = [UIColor whiteColor];
         _contentCell.needHeadView = NO;
         _contentCell.canelButton.hidden = NO;
-        _contentCell.productDescLabel.font = [UIFont systemFontOfSize:15.f];
+        _contentCell.productDescLabel.font = [UIFont boldSystemFontOfSize:15.f];
         UIColor* textColor = [UIColor UIColorFromRGB:0x666666];
         _contentCell.orderLabel.textColor = textColor;
         _contentCell.productDescLabel.textColor = textColor;
@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.amountLabel.textColor = textColor;
         _contentCell.priceLabel.textColor = textColor;
         
-                _contentCell.layer.borderWidth = 0.f;
+        _contentCell.layer.borderWidth = 0.f;
 
     }
     return _contentCell;

@@ -21,11 +21,17 @@
 
 #import "OnlinePayViewController.h"
 #import "BuySlideDetailViewController.h"
+#import "SuggestViewController.h"
+#import "ZZPopoverWindow.h"
+#import "HttpBalance.h"
+
 
 typedef NS_ENUM(NSInteger, MinePayRow){
     kAddrRow = 1,
     kProductSumRow = 3,
     kPayWayRow = 5,
+    kAccountInfoTitle = 6,
+    kAccountInfo = 7,
     kMaxPayRow
 };
 
@@ -34,6 +40,9 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) FirstAddrCell* addrCell;
 @property (nonatomic, strong) UITableViewCell* addAddrCell;
+@property (nonatomic, strong) UITableViewCell* accountInfoTitleCell;
+@property (nonatomic, strong) UITableViewCell* accountInfoCell;
+
 
 @property (nonatomic, strong) SecondProductDetailCell* productDetailCell;
 @property (nonatomic, strong) LastPayMethodCell* payWayCell;
@@ -52,6 +61,8 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 @property (nonatomic, strong) AddressDTO* selectedAddrDto;
 @property (nonatomic, strong) PayInfoDTO* payInfoDto;
 
+@property (nonatomic, strong) SuggestViewController* suggestVC;
+@property (nonatomic, strong) ZZPopoverWindow* popover;
 @end
 
 
@@ -147,6 +158,33 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     return NO;
 }
 
+-(UITableViewCell*)accountInfoTitleCell
+{
+    if (!_accountInfoTitleCell) {
+        _accountInfoTitleCell = [[UITableViewCell alloc] init];
+        _accountInfoTitleCell.backgroundColor = [UIColor clearColor];
+        _accountInfoTitleCell.textLabel.font = [UIFont systemFontOfSize:13.f];
+        _accountInfoTitleCell.textLabel.textColor = [UIColor lightGrayColor];
+        _accountInfoTitleCell.textLabel.text = @"账户信息";
+    }
+    
+    return _accountInfoTitleCell;
+}
+
+-(UITableViewCell*)accountInfoCell
+{
+    if (!_accountInfoCell) {
+        _accountInfoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"accountInfoCell"];
+//        _accountInfoCell.backgroundColor = [UIColor clearColor];
+        _accountInfoCell.textLabel.font = [UIFont systemFontOfSize:15.f];
+        _accountInfoCell.detailTextLabel.font = [UIFont systemFontOfSize:15.f];
+        _accountInfoCell.detailTextLabel.textColor = [UIColor redColor];
+//        _accountInfoCell.textLabel.textColor = [UIColor lightGrayColor];
+    }
+    
+    return _accountInfoCell;
+}
+
 -(UIButton*)confirmButton
 {
     if (!_confirmButton) {
@@ -234,7 +272,10 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     if (!_addAddrCell) {
         _addAddrCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"addAddrCell"];
         _addAddrCell.textLabel.text = @"请先创建您的收货地址";
-        _addAddrCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
+        [button setImage:[@"arrow_left" image] forState:UIControlStateNormal];
+        _addAddrCell.accessoryView = button;
+        
     }
     
     return _addAddrCell;
@@ -287,6 +328,8 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 {
     if (!_payWayCell) {
         _payWayCell = [[[NSBundle mainBundle]loadNibNamed:@"LastPayMethodCell" owner:nil options:nil] firstObject];
+        [_payWayCell.accessoryButton addTarget:self action:@selector(changePayWay) forControlEvents:UIControlEventTouchUpInside];
+        _payWayCell.payWay = @"账户余额";
     }
     
     return _payWayCell;
@@ -315,25 +358,53 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     return _payAlertView;
 }
 
+-(void)changePayWay
+{
+    self.suggestVC = [[SuggestViewController alloc] init];
+    NSArray* accountHistoryArray = @[@"个人网银", @"企业网银", @"账户余额", @"线下转账"];
+    if (accountHistoryArray.count != 0) {
+        self.suggestVC.suggestedStrings = accountHistoryArray;
+        self.suggestVC.delegate = self;
+        self.suggestVC.view.frame = CGRectMake(0, 0, self.payWayCell.frame.size.width, self.suggestVC.height);
+        self.popover                    = [[ZZPopoverWindow alloc] init];
+        self.popover.popoverPosition = ZZPopoverPositionDown;
+        self.popover.contentView        = self.suggestVC.view;
+        self.popover.animationSpring = NO;
+        self.popover.showArrow = NO;
+        self.popover.didShowHandler = ^() {
+            //self.popover.layer.cornerRadius = 0;
+        };
+        self.popover.didDismissHandler = ^() {
+            //NSLog(@"Did dismiss");
+        };
+        
+        [self.popover showAtView:self.payWayCell];
+    }
+
+}
+
 -(void)pay
 {
-    AddressDTO* addr = self.selectedAddrDto;
-    HttpPayRequest* payRequest = [[HttpPayRequest alloc] initWithPayNo:self.payInfoDto.ORDERID andOrderId:self.orderStatusDto.id andAddrId:addr.id];
-    [payRequest request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        if (payRequest.response.ok) {
-            OnlinePayViewController* vc = [[OnlinePayViewController alloc] initWithPayInfoDto:self.payInfoDto];
-            vc.orderDetailDtos = self.orderDetailDtos;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        else {
-            [self showAlertViewWithMessage:payRequest.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    });
+    if ([self.payWayCell.payWay isEqualToString:@"个人网银"]) {
+        AddressDTO* addr = self.selectedAddrDto;
+        HttpPayRequest* payRequest = [[HttpPayRequest alloc] initWithPayNo:self.payInfoDto.ORDERID andOrderId:self.orderStatusDto.id andAddrId:addr.id];
+        [payRequest request]
+        .then(^(id responseObj){
+            NSLog(@"%@", responseObj);
+            if (payRequest.response.ok) {
+                OnlinePayViewController* vc = [[OnlinePayViewController alloc] initWithPayInfoDto:self.payInfoDto];
+                vc.orderDetailDtos = self.orderDetailDtos;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else {
+                [self showAlertViewWithMessage:payRequest.response.errorMsg];
+            }
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
+    }
+    
     
 }
 
@@ -357,7 +428,20 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     [self getOneOrderStatusDto];
     [self getOrderAddresses];
 
-    
+    HttpBalanceRequest* balanceRequest = [[HttpBalanceRequest alloc] init];
+    [balanceRequest request]
+    .then(^(id responseObj){
+        HttpBalanceResponse* response = (HttpBalanceResponse*)balanceRequest.response;
+        self.accountInfoCell.textLabel.text = [NSString stringWithFormat:@"可用金额: ￥%.02f", response.balanceDto.money];
+        if (response.balanceDto.money < self.productDetailCell.totalPrice) {
+            self.accountInfoCell.detailTextLabel.text = @"账户余额不足";
+        }
+        //self.summaryCell.frozenMoney = response.balanceDto.freezeMoney;
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+
 }
 
 -(void)viewWillLayoutSubviews
@@ -383,8 +467,11 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return kMaxPayRow;
+    if([self.payWayCell.payWay isEqualToString:@"账户余额"]){
+        return kMaxPayRow;
+
+    }
+    return kMaxPayRow-2;
 }
 
 
@@ -409,6 +496,13 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     else if(indexPath.row == kPayWayRow){
         cell = self.payWayCell;
     }
+    else if (indexPath.row == kAccountInfoTitle) {
+        cell = self.accountInfoTitleCell;
+    }
+    else    if (indexPath.row == kAccountInfo){
+        cell = self.accountInfoCell;
+    }
+    
     else {
         cell = [[UITableViewCell alloc] init];
         cell.backgroundColor = [UIColor clearColor];
@@ -430,6 +524,25 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == kAccountInfoTitle) {
+        if([self.payWayCell.payWay isEqualToString:@"账户余额"]){
+            return 24.f;
+        }
+        else {
+            return 0.f;
+        }
+    }
+    
+    if (indexPath.row == kAccountInfo){
+        if([self.payWayCell.payWay isEqualToString:@"账户余额"]){
+            return 44.f;
+        }
+        else {
+            return 0.f;
+        }
+    }
+    
+    
     if (indexPath.row== kAddrRow) {
         if (self.addresses.count>0) {
             return [FirstAddrCell cellHeight];
@@ -462,6 +575,9 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         [self.navigationController pushViewController:addrVC animated:YES];
         
     }
+    else if(indexPath.row == kPayWayRow){
+        [self changePayWay];
+    }
     else {
         
     }
@@ -474,6 +590,21 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 -(void)didSelectedAddress:(AddrDTO *)address
 {
     self.selectedAddrDto = [[AddressDTO alloc] initWithAddr:address];
+}
+
+
+#pragma -- mark SugguestViewController delegate
+
+-(void)didSelectSuggestString:(NSString*)selectedString
+{
+    if ([selectedString isEqualToString:@"个人网银"] || [selectedString isEqualToString:@"账户余额"]) {
+        self.payWayCell.payWay = selectedString;
+        [self.tableView reloadData];
+    }
+    else {
+        [self showAlertViewWithMessage:@"该支付方式暂未支持，请选择其它方式"];
+    }
+    [self.popover dismiss];
 }
 
 

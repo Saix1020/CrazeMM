@@ -173,6 +173,10 @@
 		B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B91897041CD117CB0061D0B6 /* UITableView+Utils.m */; };
 		B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B918970A1CD119D90061D0B6 /* BaseDTO.m */; };
 		B918970E1CD11B5F0061D0B6 /* ProductDescriptionDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */; };
+		B942E7891D1967DF0067931B /* SupplyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E7881D1967DF0067931B /* SupplyDetailDTO.m */; };
+		B942E78A1D1967DF0067931B /* SupplyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E7881D1967DF0067931B /* SupplyDetailDTO.m */; };
+		B942E78D1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */; };
+		B942E78E1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */; };
 		B95924061CDEB26300533E77 /* CommonOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95924051CDEB26300533E77 /* CommonOrderListViewController.m */; };
 		B959248F1CDF90A900533E77 /* NSNull+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B959248E1CDF90A900533E77 /* NSNull+Utils.m */; };
 		B95924991CE0394C00533E77 /* lauch-screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B95924981CE0394C00533E77 /* lauch-screen.jpg */; };
@@ -1142,6 +1146,10 @@
 		B918970A1CD119D90061D0B6 /* BaseDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseDTO.m; path = modal/BaseDTO.m; sourceTree = "<group>"; };
 		B918970C1CD11B5F0061D0B6 /* ProductDescriptionDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDescriptionDTO.h; path = buy/ProductDescriptionDTO.h; sourceTree = "<group>"; };
 		B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDescriptionDTO.m; path = buy/ProductDescriptionDTO.m; sourceTree = "<group>"; };
+		B942E7871D1967DF0067931B /* SupplyDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyDetailDTO.h; path = mine/SupplyDetailDTO.h; sourceTree = "<group>"; };
+		B942E7881D1967DF0067931B /* SupplyDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyDetailDTO.m; path = mine/SupplyDetailDTO.m; sourceTree = "<group>"; };
+		B942E78B1D19732C0067931B /* MineSupplyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineSupplyInfoViewController.h; path = mine/supply/MineSupplyInfoViewController.h; sourceTree = "<group>"; };
+		B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineSupplyInfoViewController.m; path = mine/supply/MineSupplyInfoViewController.m; sourceTree = "<group>"; };
 		B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewSearchListCell.h; path = search/NewSearchListCell.h; sourceTree = "<group>"; };
 		B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewSearchListCell.m; path = search/NewSearchListCell.m; sourceTree = "<group>"; };
 		B95924041CDEB26300533E77 /* CommonOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonOrderListViewController.h; path = common/CommonOrderListViewController.h; sourceTree = "<group>"; };
@@ -2179,6 +2187,8 @@
 				B9EFADE01CECB7AC00F81157 /* MineSupplyEditViewController.m */,
 				B9EFAF8D1CEDA91200F81157 /* SelectionViewController.h */,
 				B9EFAF8E1CEDA91200F81157 /* SelectionViewController.m */,
+				B942E78B1D19732C0067931B /* MineSupplyInfoViewController.h */,
+				B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */,
 			);
 			name = supply;
 			sourceTree = "<group>";
@@ -2688,6 +2698,8 @@
 				B982191A1CE9A63B00B279E6 /* MineSupplyProductDTO.m */,
 				B9EFAF801CED9BED00F81157 /* GoodDTO.h */,
 				B9EFAF811CED9BED00F81157 /* GoodDTO.m */,
+				B942E7871D1967DF0067931B /* SupplyDetailDTO.h */,
+				B942E7881D1967DF0067931B /* SupplyDetailDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -3709,6 +3721,7 @@
 				B9A780491CD9FC2900A89047 /* HttpSupplyRequest.m in Sources */,
 				B9AD46291CD6523100012B31 /* M80AttributedLabelAttachment.m in Sources */,
 				B95A94BD1CE1D68600A5D9BA /* BaseProductDTO.m in Sources */,
+				B942E7891D1967DF0067931B /* SupplyDetailDTO.m in Sources */,
 				B91732321CD1F05400C29698 /* FadeOutAnimation.m in Sources */,
 				B917323A1CD1F05400C29698 /* FadeOutUpBigAnimation.m in Sources */,
 				B9D1C5801D0701000099BA95 /* BalanceDTO.m in Sources */,
@@ -3771,6 +3784,7 @@
 				B9A780451CD9E34D00A89047 /* ProductRecommendView.m in Sources */,
 				B91896D61CCFA0140061D0B6 /* PayResultViewController.m in Sources */,
 				B917325F1CD1F05500C29698 /* ZoomOutDownAnimation.m in Sources */,
+				B942E78D1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */,
 				B91731571CD1C9E600C29698 /* MMTimer.m in Sources */,
 				B91732251CD1F05400C29698 /* BounceOutLeftAnimation.m in Sources */,
 				B917326B1CD1F09400C29698 /* TTModalView.m in Sources */,
@@ -4057,6 +4071,7 @@
 				B9EFAE781CED514100F81157 /* AddressEditViewController.m in Sources */,
 				B9EFAE791CED514100F81157 /* PayInfoDTO.m in Sources */,
 				B9EFAE7A1CED514100F81157 /* FadeOutLeftAnimation.m in Sources */,
+				B942E78A1D1967DF0067931B /* SupplyDetailDTO.m in Sources */,
 				B9EFAE7B1CED514100F81157 /* MASConstraintMaker.m in Sources */,
 				B9E84BC21CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */,
 				B9EFAE7D1CED514100F81157 /* FlipInYAnimation.m in Sources */,
@@ -4115,6 +4130,7 @@
 				B9EFAEAE1CED514100F81157 /* UIViewController+TTModalView.m in Sources */,
 				B9C395401CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m in Sources */,
 				B9D1C5391D05B0440099BA95 /* StockDetailDTO.m in Sources */,
+				B942E78E1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */,
 				B9EFAEAF1CED514100F81157 /* ContactCell.m in Sources */,
 				B9EFAEB01CED514100F81157 /* AddrRegionCell.m in Sources */,
 				B9EFAEB11CED514100F81157 /* ProductDescriptionDTO.m in Sources */,

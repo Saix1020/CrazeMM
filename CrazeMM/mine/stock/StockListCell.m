@@ -128,7 +128,7 @@
     [self fomartNumberLabel];
     self.selectCheckBox.on = mineStockDto.selected;
     self.stockLabel.text = mineStockDto.depotName;
-    self.flagLabel.text = [NSString stringWithFormat:@" %@  ", mineStockDto.stateLabel];
+    self.flagLabel.text = [NSString stringWithFormat:@" %@ ", mineStockDto.stateLabel];
 }
 
 +(CGFloat)cellHeight

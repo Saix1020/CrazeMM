@@ -12,9 +12,10 @@
 #import "BaseProductDetailDTO.h"
 #import "AddressListViewController.h"
 #import "AddressesViewController.h"
+#import "SuggestViewController.h"
 
 
-@interface PayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AddressesViewControllerDelegate>
+@interface PayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AddressesViewControllerDelegate, SuggestVCDelegate>
 
 -(instancetype)initWithOrderStatusDTO:(OrderStatusDTO*)orderStatusDto;
 -(instancetype)initWithOrderDetailDTOs:(NSArray<OrderDetailDTO*>*)orderStatusDtos;

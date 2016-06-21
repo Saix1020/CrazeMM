@@ -311,3 +311,50 @@
 
 
 @end
+
+
+@implementation HttpMineStockDetailRequest
+
+-(instancetype)initWithId:(NSInteger)sid
+{
+    self = [super init];
+    if (self) {
+        self.sid = sid;
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/supply/detail/%ld", self.sid];
+    return COMB_URL(absUrl);
+}
+
+-(NSString*)method{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpMineStockDetailResponse class];
+}
+
+@end
+
+@implementation HttpMineStockDetailResponse
+
+-(NSDictionary*)supply
+{
+    return  self.all?self.all[@"supply"]:@{};
+}
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    
+    self.supplyDtailDto = [[MineSupplyDetailDTO alloc] initWith:self.supply];
+}
+
+@end

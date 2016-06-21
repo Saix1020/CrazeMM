@@ -112,7 +112,8 @@
             self.shareButton.hidden = YES;
             self.selectCheckBox.hidden = YES;
             self.flagLabel.text = @" 已成交 ";
-
+//            self.shareButton.hidden = NO;
+//            [self.shareButton setTitle:@"" forState:<#(UIControlState)#>]
             break;
         default:
             break;

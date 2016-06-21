@@ -19,6 +19,7 @@
     self.defaultCheckBox.onCheckColor = [UIColor whiteColor];
     self.defaultCheckBox.animationDuration = 0.f;
     self.defaultCheckBox.boxType = BEMBoxTypeSquare;
+    
 //    self.defaultCheckBox.userInteractionEnabled = NO;
     
     self.cardView.backgroundColor = [UIColor UIColorFromRGB:0x2391E8];

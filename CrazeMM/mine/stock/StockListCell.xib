@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lOE-y2-R1c" id="iAd-1S-0to">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="160.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFs-uk-4jl" customClass="BEMCheckBox">
@@ -109,16 +109,19 @@
                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbv-Bs-LP9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbv-Bs-LP9">
                         <rect key="frame" x="121" y="6" width="42" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="ypL-gw-hPp"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="LFo-HJ-Qat" firstAttribute="top" secondItem="pd3-I0-dEz" secondAttribute="bottom" constant="8" symbolic="YES" id="03D-Re-Drh"/>
-                    <constraint firstItem="wbv-Bs-LP9" firstAttribute="leading" secondItem="pd3-I0-dEz" secondAttribute="trailing" constant="4" id="2qZ-HT-GRa"/>
+                    <constraint firstItem="wbv-Bs-LP9" firstAttribute="leading" secondItem="pd3-I0-dEz" secondAttribute="trailing" constant="8" id="2qZ-HT-GRa"/>
                     <constraint firstItem="YP7-2V-tEM" firstAttribute="leading" secondItem="iAd-1S-0to" secondAttribute="leadingMargin" id="3eX-Rv-K1H"/>
                     <constraint firstItem="KXn-jV-zTk" firstAttribute="trailing" secondItem="LFo-HJ-Qat" secondAttribute="trailing" id="43C-h0-Z6V"/>
                     <constraint firstItem="wbv-Bs-LP9" firstAttribute="baseline" secondItem="pd3-I0-dEz" secondAttribute="baseline" id="4oU-K0-aiz"/>
@@ -126,6 +129,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="KXn-jV-zTk" secondAttribute="trailing" id="B5P-Zu-mqD"/>
                     <constraint firstItem="LFo-HJ-Qat" firstAttribute="leading" secondItem="YP7-2V-tEM" secondAttribute="leading" id="EhS-Aj-HUc"/>
                     <constraint firstItem="FFs-uk-4jl" firstAttribute="top" secondItem="iAd-1S-0to" secondAttribute="topMargin" id="FHo-sw-PTG"/>
+                    <constraint firstItem="wbv-Bs-LP9" firstAttribute="leading" secondItem="pd3-I0-dEz" secondAttribute="trailing" constant="4" id="GLz-be-l1t"/>
                     <constraint firstItem="YP7-2V-tEM" firstAttribute="top" secondItem="LFo-HJ-Qat" secondAttribute="bottom" constant="8" id="GtI-dj-CkC"/>
                     <constraint firstAttribute="leadingMargin" secondItem="Yfi-xS-hsl" secondAttribute="leading" id="J2U-bR-c34"/>
                     <constraint firstAttribute="leadingMargin" secondItem="e5f-aP-nvR" secondAttribute="leading" id="LIX-8a-Xyo"/>
@@ -138,7 +142,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="XsC-L6-x7t" secondAttribute="bottom" constant="-5.5" id="hok-df-69Z"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hUP-pN-lZE" secondAttribute="trailing" id="iCZ-qN-fMV"/>
                     <constraint firstItem="pd3-I0-dEz" firstAttribute="leading" secondItem="FFs-uk-4jl" secondAttribute="trailing" constant="8" symbolic="YES" id="jCe-RF-Kwc"/>
-                    <constraint firstItem="wbv-Bs-LP9" firstAttribute="top" secondItem="iAd-1S-0to" secondAttribute="topMargin" constant="-2" id="l1h-o3-tuM"/>
+                    <constraint firstItem="wbv-Bs-LP9" firstAttribute="top" secondItem="iAd-1S-0to" secondAttribute="topMargin" id="l1h-o3-tuM"/>
                     <constraint firstItem="KXn-jV-zTk" firstAttribute="baseline" secondItem="pd3-I0-dEz" secondAttribute="firstBaseline" id="luA-O5-uWH"/>
                     <constraint firstItem="YP7-2V-tEM" firstAttribute="top" secondItem="iAd-1S-0to" secondAttribute="top" constant="41" id="neC-rx-ayZ"/>
                     <constraint firstAttribute="leadingMargin" secondItem="hUP-pN-lZE" secondAttribute="leading" id="own-or-W3L"/>
@@ -151,6 +155,8 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="qAW-JY-uMU"/>
+                        <exclude reference="2qZ-HT-GRa"/>
                         <exclude reference="4oU-K0-aiz"/>
                     </mask>
                 </variation>

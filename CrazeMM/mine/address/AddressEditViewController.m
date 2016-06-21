@@ -184,7 +184,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     newAddrDTO.mobile = self.mobileCell.value;
     newAddrDTO.pid = self.selectedRegionDto.id;
     newAddrDTO.cid = self.selectedCityDto.id;
-    newAddrDTO.did = self.selectedAreaDto.id;
+    newAddrDTO.did = self.selectedAreaDto?self.selectedAreaDto.id:0;
     newAddrDTO.street =self.addressCell.value;
     newAddrDTO.zipCode = self.zipCell.value;
     newAddrDTO.isDefault = self.defaultCheckboxCell.checkBox.on;
@@ -459,9 +459,14 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     self.selectedCityDto = self.selectedRegionDto.cities[self.cityIndex];
     NSInteger areaIndex = [self.cityPicker selectedRowInComponent:2];
     self.areaIndex = areaIndex;
-    self.selectedAreaDto = self.selectedCityDto.areas[areaIndex];
+    if (self.selectedCityDto.areas.count>areaIndex) {
+        self.selectedAreaDto = self.selectedCityDto.areas[areaIndex];
+    }
+    else {
+        self.selectedAreaDto = nil;
+    }
 
-    self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+    self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto?self.selectedAreaDto.name:@""];
 }
 
 

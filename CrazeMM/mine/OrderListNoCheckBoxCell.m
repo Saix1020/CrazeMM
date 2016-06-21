@@ -46,6 +46,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.needHeadView = YES;
+    
+    self.productDescLabel.font = [UIFont boldSystemFontOfSize:15.f];
 }
 
 -(void)fomartTotalPriceLabel
@@ -133,7 +135,7 @@
         self.productDescLabel.text = self.orderDetailDTO.goodName;
     }
     else {
-        self.productDescLabel.text = @"苹果-iPhone6 (金色/16G/全网通)";
+//        self.productDescLabel.text = @"苹果-iPhone6 (金色/16G/全网通)";
     }
 }
 

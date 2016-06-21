@@ -12,18 +12,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qE-JP-moD">
-                        <rect key="frame" x="8" y="13" width="81" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="81" id="3ws-oq-rtH"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RH-5r-po1">
                         <rect key="frame" x="292" y="11" width="20" height="20"/>
                         <constraints>
@@ -32,10 +23,19 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="在线支付-个人网银" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffl-Cq-Dvi">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="账户余额" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffl-Cq-Dvi">
                         <rect key="frame" x="154" y="11" width="130" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qE-JP-moD">
+                        <rect key="frame" x="16" y="13" width="81" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="81" id="3ws-oq-rtH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -44,13 +44,14 @@
                     <constraint firstItem="2RH-5r-po1" firstAttribute="centerY" secondItem="ffl-Cq-Dvi" secondAttribute="centerY" id="EbT-md-Xvi"/>
                     <constraint firstItem="ffl-Cq-Dvi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="IE7-S0-xUx"/>
                     <constraint firstItem="ffl-Cq-Dvi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IZT-Js-aOf"/>
-                    <constraint firstItem="1qE-JP-moD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Jf4-io-o2F"/>
+                    <constraint firstItem="1qE-JP-moD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Jf4-io-o2F"/>
                     <constraint firstItem="2RH-5r-po1" firstAttribute="leading" secondItem="ffl-Cq-Dvi" secondAttribute="trailing" constant="8" id="Qrb-De-F5D"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2RH-5r-po1" secondAttribute="trailing" id="w4B-si-f7g"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="accessoryButton" destination="2RH-5r-po1" id="etn-lo-Rr4"/>
+                <outlet property="payWayLabel" destination="ffl-Cq-Dvi" id="Ezt-Ri-5LV"/>
             </connections>
             <point key="canvasLocation" x="529" y="323"/>
         </tableViewCell>

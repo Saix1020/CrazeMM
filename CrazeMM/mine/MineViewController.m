@@ -77,8 +77,8 @@
         return @[
                  @"account",
                  @"stock",
-                 @"gonghuo",
-                 @"qiugou",
+                 @"ico_supply",
+                 @"ico_buy",
                  @"diya",
                  @"info",
                  @"addr",
@@ -89,8 +89,8 @@
         return @[
                  @"account",
                  @"stock",
-                 @"gonghuo",
-                 @"qiugou",
+                 @"ico_supply",
+                 @"ico_buy",
                  @"diya",
                  ];
     }
