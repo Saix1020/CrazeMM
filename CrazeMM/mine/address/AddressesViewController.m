@@ -100,6 +100,7 @@
     cell.defaultCheckBox.tag = 1000 + indexPath.section;
     cell.defaultCheckBox.delegate = self;
     cell.delegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -116,7 +117,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.delegate respondsToSelector:@selector(didSelectedAddress:)]) {
-        [self.delegate didSelectedAddress:self.addresses[indexPath.row]];
+        [self.delegate didSelectedAddress:self.addresses[indexPath.section]];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

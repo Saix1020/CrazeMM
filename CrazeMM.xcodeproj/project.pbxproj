@@ -149,9 +149,7 @@
 		B91896AD1CCF0B650061D0B6 /* PayAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896AC1CCF0B650061D0B6 /* PayAlertView.m */; };
 		B91896B21CCF20010061D0B6 /* SelectdAddrCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896B01CCF20010061D0B6 /* SelectdAddrCell.m */; };
 		B91896B31CCF20010061D0B6 /* SelectdAddrCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896B11CCF20010061D0B6 /* SelectdAddrCell.xib */; };
-		B91896B71CCF20240061D0B6 /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896B51CCF20240061D0B6 /* AddressListCell.m */; };
 		B91896B81CCF20240061D0B6 /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896B61CCF20240061D0B6 /* AddressListCell.xib */; };
-		B91896BB1CCF28170061D0B6 /* AddressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896BA1CCF28170061D0B6 /* AddressListViewController.m */; };
 		B91896C51CCF38C10061D0B6 /* AddressEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896C31CCF38C10061D0B6 /* AddressEditViewController.m */; };
 		B91896CD1CCF97AE0061D0B6 /* PaySuccessProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896CB1CCF97AE0061D0B6 /* PaySuccessProductCell.m */; };
 		B91896CE1CCF97AE0061D0B6 /* PaySuccessProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B91896CC1CCF97AE0061D0B6 /* PaySuccessProductCell.xib */; };
@@ -575,7 +573,6 @@
 		B9EFAE691CED514100F81157 /* SignWithPicCapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE72001CD7877D00F5EC9F /* SignWithPicCapViewController.m */; };
 		B9EFAE6A1CED514100F81157 /* CDFInitialsAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878AE1CC9923800990AA4 /* CDFInitialsAvatar.m */; };
 		B9EFAE6B1CED514100F81157 /* ZoomInRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732031CD1F05400C29698 /* ZoomInRightAnimation.m */; };
-		B9EFAE6C1CED514100F81157 /* AddressListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896B51CCF20240061D0B6 /* AddressListCell.m */; };
 		B9EFAE6D1CED514100F81157 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99D13221CC86A04000DFF95 /* BaseNavigationController.m */; };
 		B9EFAE6E1CED514100F81157 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B98878C51CC9BCBC00990AA4 /* UIColor+Helper.m */; };
 		B9EFAE6F1CED514100F81157 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9731CC4B073003E0D44 /* MineViewController.m */; };
@@ -719,7 +716,6 @@
 		B9EFAF041CED514100F81157 /* ProductOtherCompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896841CCE05AF0061D0B6 /* ProductOtherCompanyCell.m */; };
 		B9EFAF051CED514100F81157 /* ZoomOutRightAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B917320E1CD1F05400C29698 /* ZoomOutRightAnimation.m */; };
 		B9EFAF061CED514100F81157 /* FadeInLeftAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B91731991CD1F05400C29698 /* FadeInLeftAnimation.m */; };
-		B9EFAF071CED514100F81157 /* AddressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91896BA1CCF28170061D0B6 /* AddressListViewController.m */; };
 		B9EFAF081CED514100F81157 /* BuyProductDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B999552B1CE36FC7007F26D2 /* BuyProductDTO.m */; };
 		B9EFAF091CED514100F81157 /* HttpRandomCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD44251CD48DAD00012B31 /* HttpRandomCodeRequest.m */; };
 		B9EFAF0A1CED514100F81157 /* CommonBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B991947D1CCCA26C0032A393 /* CommonBottomView.m */; };
@@ -3692,7 +3688,6 @@
 				B9FE72021CD7877D00F5EC9F /* SignWithPicCapViewController.m in Sources */,
 				B98878AF1CC9923800990AA4 /* CDFInitialsAvatar.m in Sources */,
 				B917325C1CD1F05500C29698 /* ZoomInRightAnimation.m in Sources */,
-				B91896B71CCF20240061D0B6 /* AddressListCell.m in Sources */,
 				B99D13231CC86A04000DFF95 /* BaseNavigationController.m in Sources */,
 				B98878C61CC9BCBC00990AA4 /* UIColor+Helper.m in Sources */,
 				B964F9741CC4B073003E0D44 /* MineViewController.m in Sources */,
@@ -3859,7 +3854,6 @@
 				B91896861CCE05AF0061D0B6 /* ProductOtherCompanyCell.m in Sources */,
 				B91732611CD1F05500C29698 /* ZoomOutRightAnimation.m in Sources */,
 				B917322C1CD1F05400C29698 /* FadeInLeftAnimation.m in Sources */,
-				B91896BB1CCF28170061D0B6 /* AddressListViewController.m in Sources */,
 				B999552C1CE36FC7007F26D2 /* BuyProductDTO.m in Sources */,
 				B9AD44261CD48DAD00012B31 /* HttpRandomCodeRequest.m in Sources */,
 				B991947F1CCCA26C0032A393 /* CommonBottomView.m in Sources */,
@@ -4054,7 +4048,6 @@
 				B9EFAE691CED514100F81157 /* SignWithPicCapViewController.m in Sources */,
 				B9EFAE6A1CED514100F81157 /* CDFInitialsAvatar.m in Sources */,
 				B9EFAE6B1CED514100F81157 /* ZoomInRightAnimation.m in Sources */,
-				B9EFAE6C1CED514100F81157 /* AddressListCell.m in Sources */,
 				B9EFAE6D1CED514100F81157 /* BaseNavigationController.m in Sources */,
 				B9EFAE6E1CED514100F81157 /* UIColor+Helper.m in Sources */,
 				B9EFAE6F1CED514100F81157 /* MineViewController.m in Sources */,
@@ -4225,7 +4218,6 @@
 				B9EFAF041CED514100F81157 /* ProductOtherCompanyCell.m in Sources */,
 				B9EFAF051CED514100F81157 /* ZoomOutRightAnimation.m in Sources */,
 				B9EFAF061CED514100F81157 /* FadeInLeftAnimation.m in Sources */,
-				B9EFAF071CED514100F81157 /* AddressListViewController.m in Sources */,
 				B9EFAF081CED514100F81157 /* BuyProductDTO.m in Sources */,
 				B9EFAF091CED514100F81157 /* HttpRandomCodeRequest.m in Sources */,
 				B9EFAF0A1CED514100F81157 /* CommonBottomView.m in Sources */,

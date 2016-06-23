@@ -878,6 +878,8 @@
                             .then(^(id responseObj){
                                 NSLog(@"%@", responseObj);
                                 if (request.response.ok) {
+                                    [self.dataSource removeObject:orderDetailDTO];
+                                    [self.tableView reloadData];
                                     [self showAlertViewWithMessage:@"撤销成功"];
                                 }
                                 else {

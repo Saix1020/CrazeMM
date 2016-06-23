@@ -95,7 +95,17 @@ static AFHTTPSessionManager* g_manager = nil;
 //            return (NSError *)nil;
 //        }
 //        else {
-            return error ;
+        if (error.code < -1000) {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"网络连接错误"                                                                     forKey:NSLocalizedDescriptionKey];
+            return [[NSError alloc] initWithDomain:CustomErrorDomain code:k189MMHttpRequestFailed userInfo:userInfo];
+        }
+        else if(error.code <= -500 && error.code>-600){
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"服务器错误"                                                                     forKey:NSLocalizedDescriptionKey];
+            return [[NSError alloc] initWithDomain:CustomErrorDomain code:error.code userInfo:userInfo];
+        }
+        else {
+            return error;
+        }
 //        }
     });
 }
@@ -187,7 +197,21 @@ static AFHTTPSessionManager* g_manager = nil;
         
         [self.params setObject:responseObject[self.tokenName] forKey:self.tokenName];
         return [self doResqust];
-    });
+    })
+    .catch(^(NSError *error){
+        if (error.code <= -1000) {
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"网络连接错误"                                                                     forKey:NSLocalizedDescriptionKey];
+            return [[NSError alloc] initWithDomain:CustomErrorDomain code:k189MMHttpRequestFailed userInfo:userInfo];
+        }
+        else if(error.code <= -500 && error.code>-600){
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"服务器错误"                                                                     forKey:NSLocalizedDescriptionKey];
+            return [[NSError alloc] initWithDomain:CustomErrorDomain code:error.code userInfo:userInfo];
+        }
+        else {
+            return error;
+        }
+    })
+    ;
 }
 
 +(AFPromise*)httpRequestError:(NSString*)errorString

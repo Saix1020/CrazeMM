@@ -180,11 +180,6 @@
                 self.payAlertView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
                     @strongify(self);
                     [self.confirmModalView dismiss];
-                    
-                    //                            PayResultViewController* payResultVC = [[PayResultViewController alloc] init];
-                    //
-                    //                            [self.navigationController pushViewController:payResultVC animated:YES];
-                    
                     return [RACSignal empty];
                 }];
                 

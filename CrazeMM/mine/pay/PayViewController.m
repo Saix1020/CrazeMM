@@ -12,7 +12,7 @@
 #import "LastPayMethodCell.h"
 #import "TTModalView.h"
 #import "PayAlertView.h"
-#import "AddressListViewController.h"
+#import "AddressesViewController.h"
 #import "PayResultViewController.h"
 #import "HttpOrderStatus.h"
 #import "HttpAddress.h"
@@ -288,9 +288,9 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         @weakify(self);
         _addrCell.detailButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             @strongify(self);
-            AddressListViewController *addrVC = [[AddressListViewController alloc] init];
+            AddressesViewController *addrVC = [[AddressesViewController alloc] init];
             [self.navigationController pushViewController:addrVC animated:YES];
-
+            addrVC.delegate = self;
 //            @strongify(self);
 //            HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
 //            [request request]
@@ -606,6 +606,5 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     }
     [self.popover dismiss];
 }
-
 
 @end

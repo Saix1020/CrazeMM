@@ -165,8 +165,9 @@
     
     NSInteger checkoutMethod = [self.receiveWay indexOfObject:self.receiveWayCell.value]+1;
     NSInteger bankIndex;
+    BankCardDTO* dto = nil;
     for (bankIndex = 0; bankIndex<self.bankAccounts.count; ++bankIndex) {
-        BankCardDTO* dto = self.bankAccounts[bankIndex];
+        dto = self.bankAccounts[bankIndex];
         if ([dto.bankDesc isEqualToString:self.bankAccoutCell.value]) {
             break;
         }
@@ -187,8 +188,8 @@
                         @strongify(self);
                         [self showProgressIndicator];
                         NSInteger bankAccountId = 0;
-                        if (checkoutMethod==0) {
-                            bankAccountId = ((BankCardDTO*)self.bankAccounts[bankIndex]).id;
+                        if (checkoutMethod==2) {
+                            bankAccountId = dto.id;
                         }
                         HttpOrderSendRequest *request = [[HttpOrderSendRequest alloc] initWithOids:ids
                                                                                  andCheckoutMethod:checkoutMethod
