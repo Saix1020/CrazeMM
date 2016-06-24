@@ -85,8 +85,8 @@ static AFHTTPSessionManager* g_manager = nil;
 
 -(AFPromise*)request
 {
-
-    
+    // TODO check net status
+    //
     return [self request2]
     .catch(^(NSError *error){
 //        if ([error needLogin] && self.caller) {

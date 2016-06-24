@@ -56,6 +56,7 @@
         _typeCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _typeCell.title = @"银行账号";
         _typeCell.titleLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        [_typeCell.chooseButton addTarget:self action:@selector(popBankCards) forControlEvents:UIControlEventTouchUpInside];
 //        _typeCell.value = @"个人网银";
     }
     return _typeCell;
@@ -136,6 +137,7 @@
     self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     self.withDrawAlertView = (WithDrawAlertView*)[UINib viewFromNib:@"WithDrawAlertView"];
     self.withDrawAlertView.delegate = self;
+    self.withDrawAlertView.amount = [self.moneyCell.value floatValue];
     self.withDrawAlertView.layer.cornerRadius = 6.f;
     self.confirmModalView.contentView = self.withDrawAlertView;
     @weakify(self);
@@ -177,12 +179,22 @@
         if (request.response.ok) {
             HttpMineAccountResponse* response = (HttpMineAccountResponse*)request.response;
             self.bankInfo = response.backCards;
-            for (BankCardDTO* dto in self.bankInfo) {
-                if (dto.isDefault) {
-                    self.typeCell.value = dto.bankDesc;
-                    self.selectedBankCardIndex = [self.bankInfo indexOfObject:dto];
-                    break;
+            if(self.bankInfo.count == 0){
+                @weakify(self);
+                [self showAlertViewWithMessage:@"请先绑定银行卡" withCallback:^(id x){
+                    @strongify(self);
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            }
+            else {
+                for (BankCardDTO* dto in self.bankInfo) {
+                    if (dto.isDefault) {
+                        self.typeCell.value = dto.bankDesc;
+                        self.selectedBankCardIndex = [self.bankInfo indexOfObject:dto];
+                        break;
+                    }
                 }
+
             }
         }
     });
@@ -238,37 +250,52 @@
     return cell;
 }
 
+-(void)popBankCards
+{
+    self.suggestVC = [[SuggestViewController alloc] init];
+    NSMutableArray* suggestStrings = [[NSMutableArray alloc] init];
+    for (BankCardDTO* dto in self.bankInfo) {
+        [suggestStrings addObject:dto.bankDesc];
+    }
+    if (suggestStrings.count != 0) {
+        self.suggestVC.suggestedStrings = suggestStrings;
+        self.suggestVC.delegate = self;
+        self.suggestVC.view.frame = CGRectMake(0, 0, self.typeCell.width, self.suggestVC.height);
+        self.popover                    = [[ZZPopoverWindow alloc] init];
+        self.popover.popoverPosition = ZZPopoverPositionDown;
+        self.popover.contentView        = self.suggestVC.view;
+        self.popover.animationSpring = NO;
+        self.popover.showArrow = NO;
+        self.popover.didShowHandler = ^() {
+            //self.popover.layer.cornerRadius = 0;
+        };
+        self.popover.didDismissHandler = ^() {
+            //NSLog(@"Did dismiss");
+        };
+        
+        [self.popover showAtView:self.typeCell.regionLabel];
+    }
+
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row==0) {
         //
-        
-        self.suggestVC = [[SuggestViewController alloc] init];
-        NSMutableArray* suggestStrings = [[NSMutableArray alloc] init];
-        for (BankCardDTO* dto in self.bankInfo) {
-            [suggestStrings addObject:dto.bankDesc];
-        }
-        if (suggestStrings.count != 0) {
-            self.suggestVC.suggestedStrings = suggestStrings;
-            self.suggestVC.delegate = self;
-            self.suggestVC.view.frame = CGRectMake(0, 0, self.typeCell.width, self.suggestVC.height);
-            self.popover                    = [[ZZPopoverWindow alloc] init];
-            self.popover.popoverPosition = ZZPopoverPositionDown;
-            self.popover.contentView        = self.suggestVC.view;
-            self.popover.animationSpring = NO;
-            self.popover.showArrow = NO;
-            self.popover.didShowHandler = ^() {
-                //self.popover.layer.cornerRadius = 0;
-            };
-            self.popover.didDismissHandler = ^() {
-                //NSLog(@"Did dismiss");
-            };
-            
-            [self.popover showAtView:self.typeCell.regionLabel];
-        }
-        
+        [self popBankCards];
     }
 }
+
+//-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (indexPath.row==0) {
+//        //
+//        [self popBankCards];
+//    }
+//}
+
+
+
 
 -(void)didSelectSuggestString:(NSString*)selectedString
 {
