@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2yr-3Q-CqS" customClass="WithDrawLogCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2yr-3Q-CqS" id="Ugn-fk-D0a">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GU-NO-dFs">
+                        <rect key="frame" x="8" y="34" width="304" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="YsG-0G-qO6"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="¥1.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Rr-wG-szE">
+                        <rect key="frame" x="8" y="10" width="75" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="7Pn-ai-bT6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="待审批" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="og6-Cy-XGH">
+                        <rect key="frame" x="91" y="10" width="42" height="21"/>
+                        <color key="backgroundColor" red="0.51687711477279663" green="0.62109953165054321" blue="0.91562765836715698" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="y4f-A0-jQd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2016-06-10 10:03:04" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5o-Z7-8Cq">
+                        <rect key="frame" x="164" y="10" width="148" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="148" id="OXU-Uw-s5x"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试银行(3434)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4t-wy-Kzi">
+                        <rect key="frame" x="8" y="43" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="6LT-Vt-bkx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="u5o-Z7-8Cq" firstAttribute="centerY" secondItem="4Rr-wG-szE" secondAttribute="centerY" id="2SC-bR-Rvy"/>
+                    <constraint firstItem="og6-Cy-XGH" firstAttribute="leading" secondItem="4Rr-wG-szE" secondAttribute="trailing" constant="8" id="6Jo-dh-U2J"/>
+                    <constraint firstItem="a4t-wy-Kzi" firstAttribute="top" secondItem="3GU-NO-dFs" secondAttribute="bottom" constant="8" id="Fah-Al-cyh"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="3GU-NO-dFs" secondAttribute="leading" id="Od2-UK-b32"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3GU-NO-dFs" secondAttribute="trailing" id="SwF-jg-p6Y"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="4Rr-wG-szE" secondAttribute="leading" id="Vnl-62-qDj"/>
+                    <constraint firstItem="3GU-NO-dFs" firstAttribute="centerY" secondItem="Ugn-fk-D0a" secondAttribute="centerY" id="bOn-ps-RuF"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="a4t-wy-Kzi" secondAttribute="trailing" id="bcR-sm-roH"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="a4t-wy-Kzi" secondAttribute="leading" id="frX-uR-u1m"/>
+                    <constraint firstItem="4Rr-wG-szE" firstAttribute="top" secondItem="Ugn-fk-D0a" secondAttribute="topMargin" constant="2" id="goO-af-8lY"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="u5o-Z7-8Cq" secondAttribute="trailing" id="oyW-ub-5ZS"/>
+                    <constraint firstItem="og6-Cy-XGH" firstAttribute="centerY" secondItem="4Rr-wG-szE" secondAttribute="centerY" id="yeG-AW-nRO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="amountLabel" destination="4Rr-wG-szE" id="Q09-84-KFR"/>
+                <outlet property="bankDescLabel" destination="a4t-wy-Kzi" id="nr6-PC-4Gm"/>
+                <outlet property="createTime" destination="u5o-Z7-8Cq" id="mva-IY-0Co"/>
+                <outlet property="stateLabel" destination="og6-Cy-XGH" id="2Ei-JN-SJT"/>
+            </connections>
+            <point key="canvasLocation" x="403" y="256"/>
+        </tableViewCell>
+    </objects>
+</document>

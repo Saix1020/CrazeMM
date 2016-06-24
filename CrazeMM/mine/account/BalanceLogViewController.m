@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"账户充值";
+    self.navigationItem.title = @"交易记录";
     
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];

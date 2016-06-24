@@ -14,6 +14,10 @@
 #import "RechargeViewController.h"
 #import "WithDrawViewController.h"
 #import "BalanceLogViewController.h"
+#import "RechargeLogViewController.h"
+#import "WithdrawListViewController.h"
+
+
 
 @interface AccountViewController ()
 @property (nonatomic, strong) UITableView* tableView;
@@ -209,9 +213,19 @@
         }
             break;
         case 1:
+        {
+            RechargeLogViewController* rechargeLogVC = [[RechargeLogViewController alloc] init];
+            [self.navigationController pushViewController:rechargeLogVC animated:YES];
+
+        }
             
             break;
         case 2:
+        {
+            WithdrawListViewController* vc = [[WithdrawListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+
+        }
             
             break;
         case 3:

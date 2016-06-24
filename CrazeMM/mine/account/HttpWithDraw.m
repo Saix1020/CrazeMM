@@ -35,3 +35,29 @@
 }
 
 @end
+
+
+@implementation HttpWithDrawLogRequest
+
+-(NSString*)url
+{
+    return  COMB_URL(@"/rest/withdraw") ;
+}
+
+-(Class)responseClass
+{
+    return [HttpWithDrawLogResponse class];
+}
+
+@end
+
+@implementation HttpWithDrawLogResponse
+
+-(id)makeDtoWith:(NSDictionary*)dict
+{
+    WithDrawLogDTO* dto = [[WithDrawLogDTO alloc] initWith:dict];
+    return dto;
+}
+
+@end
+
