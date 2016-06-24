@@ -135,13 +135,14 @@
     self.wechartIcon.hidden = YES;
     self.line3.hidden = YES;
     
+    self.userNameField.placeholder = @"请输入用户名/手机/邮箱";
     self.userNameRightView = [[UIButton alloc] init];
     [self.userNameRightView setImage:[UIImage imageNamed:@"icon_pulldown"] forState:UIControlStateNormal];
     self.userNameField.rightView = self.userNameRightView;
     [self.userNameRightView sizeToFit];
     self.userNameField.rightViewMode = UITextFieldViewModeAlways;
 
-    
+    self.passwordField.placeholder = @"请输入密码";
     self.passwordRightView = [[UIButton alloc] init];
     [self.passwordRightView setTitle:@"忘记密码?" forState:UIControlStateNormal];
     [self.passwordRightView setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
