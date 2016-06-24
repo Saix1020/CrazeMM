@@ -11,6 +11,8 @@
 #import "MMAlertView.h"
 #import "MMAlertViewWithOK.h"
 
+static BOOL isAlertViewShowing;
+
 
 @implementation UIViewController (TTModalView)
 
@@ -73,6 +75,11 @@
 
 -(void)showAlertViewWithMessage:(NSString*)message
 {
+    if (isAlertViewShowing) {
+        return;
+    }
+    isAlertViewShowing = YES;
+    
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
@@ -94,6 +101,7 @@
         
         transferAlertView.comfirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             [confirmModalView dismiss];
+            isAlertViewShowing = NO;
             return [RACSignal empty];
         }];
     }];
@@ -101,6 +109,12 @@
 
 -(void)showAlertViewWithMessage:(NSString*)message withCallback:(void(^)(id x))callback
 {
+    
+    if (isAlertViewShowing) {
+        return;
+    }
+    isAlertViewShowing = YES;
+    
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
@@ -121,6 +135,7 @@
         
         
         transferAlertView.comfirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            isAlertViewShowing = NO;
             [confirmModalView dismiss];
             if (callback) {
                 callback(confirmModalView);
@@ -132,6 +147,11 @@
 
 -(void)showAlertViewWithMessage:(NSString*)message withOKCallback:(void(^)(id x))okCallback andCancelCallback:(void(^)(id x))cancelCallback
 {
+    if (isAlertViewShowing) {
+        return;
+    }
+    isAlertViewShowing = YES;
+
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
@@ -152,6 +172,7 @@
         
         
         transferAlertView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            isAlertViewShowing = NO;
             [confirmModalView dismiss];
             if (okCallback) {
                 okCallback(confirmModalView);
@@ -159,6 +180,7 @@
             return [RACSignal empty];
         }];
         transferAlertView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+            isAlertViewShowing = NO;
             [confirmModalView dismiss];
             if (cancelCallback) {
                 cancelCallback(confirmModalView);
