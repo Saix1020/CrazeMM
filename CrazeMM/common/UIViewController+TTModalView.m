@@ -83,6 +83,7 @@ static BOOL isAlertViewShowing;
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
+    confirmModalView.isCancelAble = NO;
     
     MMAlertViewWithOK *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertViewWithOK" owner:nil options:nil] lastObject];
     transferAlertView.layer.cornerRadius = 6.f;
@@ -118,7 +119,8 @@ static BOOL isAlertViewShowing;
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
-    
+    confirmModalView.isCancelAble = NO;
+
     MMAlertViewWithOK *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertViewWithOK" owner:nil options:nil] lastObject];
     transferAlertView.layer.cornerRadius = 6.f;
     
@@ -155,7 +157,8 @@ static BOOL isAlertViewShowing;
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
-    
+    confirmModalView.isCancelAble = NO;
+
     MMAlertViewWithOKAndCancel *transferAlertView = [[[NSBundle mainBundle]loadNibNamed:@"MMAlertView" owner:nil options:nil] lastObject];
     transferAlertView.layer.cornerRadius = 6.f;
     

@@ -58,6 +58,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         [self.view addSubview:_bottomView];
         [_bottomView addSubview:self.confirmButton];
         _bottomView.backgroundColor = [UIColor whiteColor];
+        
+        // we hide it now
+        _bottomView.hidden = YES;
     }
     
     return _bottomView;
@@ -141,7 +144,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 {
     if (!_logsCell) {
         _logsCell = (OrderLogsCell*)[UINib viewFromNib:@"OrderLogsCell"];
-        _logsCell.backgroundColor = [UIColor whiteColor];
+        _logsCell.backgroundColor = [UIColor clearColor];
 //        _logsCell.layer.borderWidth = .5f;
 //        _logsCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
 
@@ -184,6 +187,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 -(void)initBottomView
 {
+    // no need call it now
+    return;
+    
     if (self.style.orderType == kOrderTypeBuy) {
         if (self.style.orderSubType == kOrderSubTypePay) {
             switch (self.style.orderState) {

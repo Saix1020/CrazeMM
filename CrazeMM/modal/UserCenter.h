@@ -25,6 +25,7 @@ typedef enum {
 
 @property (nonatomic, readonly) BOOL isLogined;
 @property (nonatomic, copy) NSString* userName;
+@property (nonatomic) NSUInteger userId;
 @property (nonatomic, readonly) NSString* userNameInKeychain;
 @property (nonatomic, readonly) NSString* passwordInKeychain;
 @property (nonatomic, readonly) BOOL accountSaved;
