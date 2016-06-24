@@ -223,6 +223,8 @@
 		B965B6F11D1D30A40021C809 /* HttpUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B965B6EF1D1D30A40021C809 /* HttpUserInfo.m */; };
 		B965B6F41D1D31200021C809 /* MineUserInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B965B6F31D1D31200021C809 /* MineUserInfoDTO.m */; };
 		B965B6F51D1D31200021C809 /* MineUserInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B965B6F31D1D31200021C809 /* MineUserInfoDTO.m */; };
+		B965B7031D1D621E0021C809 /* product_placehoder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B965B7021D1D621E0021C809 /* product_placehoder.jpg */; };
+		B965B7041D1D621E0021C809 /* product_placehoder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B965B7021D1D621E0021C809 /* product_placehoder.jpg */; };
 		B967E6E81CE4B4EB00621F28 /* HttpOrderStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E6E71CE4B4EB00621F28 /* HttpOrderStatus.m */; };
 		B967E6EC1CE4B52F00621F28 /* OrderStatusDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E6EB1CE4B52F00621F28 /* OrderStatusDTO.m */; };
 		B967E6EF1CE4B68A00621F28 /* AddrDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E6EE1CE4B68A00621F28 /* AddrDTO.m */; };
@@ -1223,6 +1225,7 @@
 		B965B6EF1D1D30A40021C809 /* HttpUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpUserInfo.m; path = restful/HttpUserInfo.m; sourceTree = "<group>"; };
 		B965B6F21D1D31200021C809 /* MineUserInfoDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineUserInfoDTO.h; path = mine/MineUserInfoDTO.h; sourceTree = "<group>"; };
 		B965B6F31D1D31200021C809 /* MineUserInfoDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineUserInfoDTO.m; path = mine/MineUserInfoDTO.m; sourceTree = "<group>"; };
+		B965B7021D1D621E0021C809 /* product_placehoder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = product_placehoder.jpg; sourceTree = "<group>"; };
 		B967E6E61CE4B4EB00621F28 /* HttpOrderStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpOrderStatus.h; path = restful/HttpOrderStatus.h; sourceTree = "<group>"; };
 		B967E6E71CE4B4EB00621F28 /* HttpOrderStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpOrderStatus.m; path = restful/HttpOrderStatus.m; sourceTree = "<group>"; };
 		B967E6EA1CE4B52F00621F28 /* OrderStatusDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderStatusDTO.h; path = mine/order/OrderStatusDTO.h; sourceTree = "<group>"; };
@@ -2604,6 +2607,7 @@
 				B964F9851CC50316003E0D44 /* slide-2.jpg */,
 				B964F9891CC50344003E0D44 /* slide-3.jpg */,
 				B964F98A1CC50344003E0D44 /* slide-4.jpg */,
+				B965B7021D1D621E0021C809 /* product_placehoder.jpg */,
 				B99D12CA1CC522FC000DFF95 /* logo_channel.png */,
 			);
 			name = resouce;
@@ -3305,6 +3309,7 @@
 				B91896A81CCF01A20061D0B6 /* LastPayMethodCell.xib in Resources */,
 				B967E7431CE589B600621F28 /* OrderLogsCell.xib in Resources */,
 				B9D1C5941D0A64440099BA95 /* WithDrawAlertView.xib in Resources */,
+				B965B7031D1D621E0021C809 /* product_placehoder.jpg in Resources */,
 				B9A780401CD9E2D000A89047 /* pop_eg.png in Resources */,
 				B99194781CCC690E0032A393 /* OrderListCell.xib in Resources */,
 				B95A94A51CE0C19900A5D9BA /* citydict.plist in Resources */,
@@ -3352,6 +3357,7 @@
 				B9EFAF1C1CED514100F81157 /* SelectdAddrCell.xib in Resources */,
 				B9EFAF1D1CED514100F81157 /* ProductNumberLabel.xib in Resources */,
 				B9EFAF1E1CED514100F81157 /* AddressListCell.xib in Resources */,
+				B965B7041D1D621E0021C809 /* product_placehoder.jpg in Resources */,
 				B9EFAF1F1CED514100F81157 /* segment_line_Horizontal_orange.png in Resources */,
 				B9C395361CF4183400AB44B6 /* NewAddressListCell.xib in Resources */,
 				B9EFAF201CED514100F81157 /* BuyItemCell.xib in Resources */,
