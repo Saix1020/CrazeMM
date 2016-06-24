@@ -27,8 +27,7 @@
 #import "MineStockViewController.h"
 #import "HttpBalance.h"
 #import "AllOrderListViewController.h"
-
-
+#import "HttpUserInfo.h"
 
 @interface MineViewController()
 
@@ -306,6 +305,24 @@
             [self showAlertViewWithMessage:error.localizedDescription];
         });
         
+        HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
+        [userInfoRequest request]
+        .then(^(id responseObj){
+            NSLog(@"%@", responseObj);
+            if (userInfoRequest.response.ok) {
+                HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)userInfoRequest.response;
+                [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
+                self.avataCell.nameLabel.text = [UserCenter defaultCenter].displayName;
+            }
+            else {
+                [self showAlertViewWithMessage:userInfoRequest.response.errorMsg];
+            }
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
+
+        
     }
 }
 
@@ -470,7 +487,7 @@
         {
             switch (row) {
                 case 0:
-                    self.avataCell.nameLabel.text = [[UserCenter defaultCenter] userName];
+                    self.avataCell.nameLabel.text = [UserCenter defaultCenter].displayName;
                     self.avataCell.frozenMoney = 0;
                     self.avataCell.money = 0;
                     return self.avataCell;

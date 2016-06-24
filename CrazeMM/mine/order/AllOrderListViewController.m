@@ -124,10 +124,12 @@
     });
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
 }
+
 
 #pragma mark - Table view data source
 

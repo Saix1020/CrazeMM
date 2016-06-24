@@ -32,6 +32,22 @@ static UserCenter *defaultUserCenter = nil;
     return defaultUserCenter;
 }
 
+-(NSString*)displayName
+{
+    if (NotNilAndNull(self.userInfoDto.username) && self.userInfoDto.username.length > 0) {
+        return self.userName;
+    }
+    else if(NotNilAndNull(self.userInfoDto.mobile) && self.userInfoDto.mobile.length > 0){
+        return self.userInfoDto.mobile;
+    }
+    else if(NotNilAndNull(self.userInfoDto.email) && self.userInfoDto.email.length > 0) {
+        return self.userInfoDto.email;
+    }
+    else {
+        return @"";
+    }
+}
+
 -(void)setLogined
 {
     [UserCenter defaultCenter].isLogined = true;

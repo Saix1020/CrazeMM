@@ -219,6 +219,10 @@
 		B964F98C1CC50344003E0D44 /* slide-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B964F98A1CC50344003E0D44 /* slide-4.jpg */; };
 		B964F9901CC50E1E003E0D44 /* BuyItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F98E1CC50E1E003E0D44 /* BuyItemCell.m */; };
 		B964F9911CC50E1E003E0D44 /* BuyItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B964F98F1CC50E1E003E0D44 /* BuyItemCell.xib */; };
+		B965B6F01D1D30A40021C809 /* HttpUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B965B6EF1D1D30A40021C809 /* HttpUserInfo.m */; };
+		B965B6F11D1D30A40021C809 /* HttpUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B965B6EF1D1D30A40021C809 /* HttpUserInfo.m */; };
+		B965B6F41D1D31200021C809 /* MineUserInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B965B6F31D1D31200021C809 /* MineUserInfoDTO.m */; };
+		B965B6F51D1D31200021C809 /* MineUserInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B965B6F31D1D31200021C809 /* MineUserInfoDTO.m */; };
 		B967E6E81CE4B4EB00621F28 /* HttpOrderStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E6E71CE4B4EB00621F28 /* HttpOrderStatus.m */; };
 		B967E6EC1CE4B52F00621F28 /* OrderStatusDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E6EB1CE4B52F00621F28 /* OrderStatusDTO.m */; };
 		B967E6EF1CE4B68A00621F28 /* AddrDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B967E6EE1CE4B68A00621F28 /* AddrDTO.m */; };
@@ -1215,6 +1219,10 @@
 		B964F98D1CC50E1E003E0D44 /* BuyItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyItemCell.h; path = buy/BuyItemCell.h; sourceTree = "<group>"; };
 		B964F98E1CC50E1E003E0D44 /* BuyItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyItemCell.m; path = buy/BuyItemCell.m; sourceTree = "<group>"; };
 		B964F98F1CC50E1E003E0D44 /* BuyItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BuyItemCell.xib; path = buy/BuyItemCell.xib; sourceTree = "<group>"; };
+		B965B6EE1D1D30A40021C809 /* HttpUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpUserInfo.h; path = restful/HttpUserInfo.h; sourceTree = "<group>"; };
+		B965B6EF1D1D30A40021C809 /* HttpUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpUserInfo.m; path = restful/HttpUserInfo.m; sourceTree = "<group>"; };
+		B965B6F21D1D31200021C809 /* MineUserInfoDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineUserInfoDTO.h; path = mine/MineUserInfoDTO.h; sourceTree = "<group>"; };
+		B965B6F31D1D31200021C809 /* MineUserInfoDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineUserInfoDTO.m; path = mine/MineUserInfoDTO.m; sourceTree = "<group>"; };
 		B967E6E61CE4B4EB00621F28 /* HttpOrderStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpOrderStatus.h; path = restful/HttpOrderStatus.h; sourceTree = "<group>"; };
 		B967E6E71CE4B4EB00621F28 /* HttpOrderStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpOrderStatus.m; path = restful/HttpOrderStatus.m; sourceTree = "<group>"; };
 		B967E6EA1CE4B52F00621F28 /* OrderStatusDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderStatusDTO.h; path = mine/order/OrderStatusDTO.h; sourceTree = "<group>"; };
@@ -2972,6 +2980,8 @@
 				B9C395281CF2EE0D00AB44B6 /* RegionDTO.m */,
 				B9D1C57E1D0701000099BA95 /* BalanceDTO.h */,
 				B9D1C57F1D0701000099BA95 /* BalanceDTO.m */,
+				B965B6F21D1D31200021C809 /* MineUserInfoDTO.h */,
+				B965B6F31D1D31200021C809 /* MineUserInfoDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -2992,6 +3002,8 @@
 			children = (
 				B9D1C57A1D0700D90099BA95 /* HttpBalance.h */,
 				B9D1C57B1D0700D90099BA95 /* HttpBalance.m */,
+				B965B6EE1D1D30A40021C809 /* HttpUserInfo.h */,
+				B965B6EF1D1D30A40021C809 /* HttpUserInfo.m */,
 			);
 			name = uitils;
 			sourceTree = "<group>";
@@ -3678,6 +3690,7 @@
 				B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */,
 				B9C395461CF5DB1100AB44B6 /* AddressesViewController.m in Sources */,
 				B9C3954A1CF5DB2900AB44B6 /* AddrDetailCell.m in Sources */,
+				B965B6F01D1D30A40021C809 /* HttpUserInfo.m in Sources */,
 				B917322F1CD1F05400C29698 /* FadeInRightBigAnimation.m in Sources */,
 				B9FE71E91CD6E70400F5EC9F /* UserHistory.m in Sources */,
 				B9C3951B1CF1EE7400AB44B6 /* HttpLogis.m in Sources */,
@@ -3813,6 +3826,7 @@
 				B917325E1CD1F05500C29698 /* ZoomOutAnimation.m in Sources */,
 				B91896DF1CCFB3A70061D0B6 /* SupplyViewController.m in Sources */,
 				B902B6F71D027392005B6F5C /* GoodCreateInfo.m in Sources */,
+				B965B6F41D1D31200021C809 /* MineUserInfoDTO.m in Sources */,
 				B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */,
 				B9C395131CF1D56100AB44B6 /* HttpOrderOperation.m in Sources */,
 				B967E7341CE57EBD00621F28 /* MASCompositeConstraint.m in Sources */,
@@ -4133,6 +4147,7 @@
 				B9EFAEB61CED514100F81157 /* OrderLogsCell.m in Sources */,
 				B9EFAEB71CED514100F81157 /* ZoomOutLeftAnimation.m in Sources */,
 				B9EFAEB81CED514100F81157 /* CATransform3DExtend.m in Sources */,
+				B965B6F11D1D30A40021C809 /* HttpUserInfo.m in Sources */,
 				B902B6FC1D027AAC005B6F5C /* StockListCell.m in Sources */,
 				B902B6E81D026CFB005B6F5C /* MineStockDTO.m in Sources */,
 				B9EFAEB91CED514100F81157 /* MASConstraint.m in Sources */,
@@ -4142,6 +4157,7 @@
 				B9EFAEBD1CED514100F81157 /* SupplyBottomOffView.m in Sources */,
 				B9EFAEBE1CED514100F81157 /* SupplyListCell.m in Sources */,
 				B9EFAEBF1CED514100F81157 /* FadeInAnimation.m in Sources */,
+				B965B6F51D1D31200021C809 /* MineUserInfoDTO.m in Sources */,
 				B9EFAEC01CED514100F81157 /* _SearchHistory.m in Sources */,
 				B9EFAEC11CED514100F81157 /* MMAlertView.m in Sources */,
 				B9EFAEC21CED514100F81157 /* RotateInDownRightAnimation.m in Sources */,
@@ -4472,6 +4488,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -4510,6 +4527,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

@@ -16,7 +16,7 @@
 #import "HttpLoginRequest.h"
 #import "HttpRandomCodeRequest.h"
 #import "SignWithPicCapViewController.h"
-
+#import "HttpUserInfo.h"
 
 #define kLeadingPad 16.f
 #define kTailingPad 16.f
@@ -238,19 +238,31 @@
                                                                andPassword:self.passwordField.text
                                                                andRemember:self.rememberMeCheckBox.on];
         [self showProgressIndicatorWithTitle:@"正在登陆..."];
-        [request request2].then(^(id responseObject){
+        [request login].then(^(id responseObject){
 //            [self dismissProgressIndicator];
 
             if (request.response.ok) {
                 [UserCenter defaultCenter].userName = self.userNameField.text;
                 [[UserCenter defaultCenter] setLogined];
-                [self.navigationController popViewControllerAnimated:YES];
                 
                 if (self.rememberMeCheckBox.on) {
                     [[UserCenter defaultCenter] saveToKeychainWithUserName:self.userNameField.text andPassword:self.passwordField.text];
                 }
-//                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+                [self.navigationController popViewControllerAnimated:YES];
 
+//                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+//                HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
+//                [userInfoRequest request]
+//                .then(^(id responseObj){
+//                    NSLog(@"%@", responseObj);
+//                    if (request.response.ok) {
+//                        HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)request.response;
+//                        [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
+//                    }
+//                    else {
+//                        [self showAlertViewWithMessage:request.response.errorMsg];
+//                    }
+//                });
 
             }
             else {

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MineUserInfoDTO.h"
 typedef enum {
     
     eUserUnLogin,         //用户未登录
@@ -32,8 +32,8 @@ typedef enum {
 @property (nonatomic, copy) NSString* cookie;
 @property (nonatomic) BOOL isFakeLogouted;
 
-
-
+@property (nonatomic, strong) MineUserInfoDTO* userInfoDto;
+@property (nonatomic, readonly) NSString* displayName;
 + (UserCenter *)defaultCenter;
 //
 -(void)setLogined;

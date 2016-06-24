@@ -77,7 +77,15 @@
 
 -(AFPromise*)login
 {
-    return [super request];
+    // set login time out
+    [self.manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    self.manager.requestSerializer.timeoutInterval = 30.f;
+    [self.manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+
+    return [super request].then(^(id responseObj){
+        
+        return responseObj;
+    });
 }
 
 -(NSDictionary*)getTokenParams
