@@ -260,7 +260,7 @@
     if (suggestStrings.count != 0) {
         self.suggestVC.suggestedStrings = suggestStrings;
         self.suggestVC.delegate = self;
-        self.suggestVC.view.frame = CGRectMake(0, 0, self.typeCell.width, self.suggestVC.height);
+        self.suggestVC.view.frame = CGRectMake(0, 0, 280, self.suggestVC.height);
         self.popover                    = [[ZZPopoverWindow alloc] init];
         self.popover.popoverPosition = ZZPopoverPositionDown;
         self.popover.contentView        = self.suggestVC.view;
@@ -273,7 +273,7 @@
             //NSLog(@"Did dismiss");
         };
         
-        [self.popover showAtView:self.typeCell.regionLabel];
+        [self.popover showAtView:self.typeCell.regionLabel position:ZZPopoverPositionDown];
     }
 
 }
