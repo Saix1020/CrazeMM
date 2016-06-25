@@ -574,10 +574,15 @@
 {
     if (![UserCenter defaultCenter].isLogined) {
         switch (indexPath.section) {
+                //    kSectionInfo,
+                // kSectionContact,
+            case kSectionOverview:
             case kSectionInfo:
+//            case kSectionContact:
             {
-                //                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-                //                [self.navigationController pushViewController:mineSellProductVC animated:YES];
+                LoginViewController* loginVC = [[LoginViewController alloc] init];
+                loginVC.nextVC = self;
+                [self.navigationController pushViewController:loginVC animated:YES];
                 return;
             }
                 break;
@@ -653,6 +658,11 @@
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
     self.orderStatusCell.titleArray = [self titleArray];
+    if (![UserCenter defaultCenter].isLogined) {
+        LoginViewController* loginVC = [[LoginViewController alloc] init];
+        loginVC.nextVC = self;
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
 }
 
 #pragma -- mark order status cell delegate
