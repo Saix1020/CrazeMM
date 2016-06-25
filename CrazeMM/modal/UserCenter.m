@@ -35,7 +35,7 @@ static UserCenter *defaultUserCenter = nil;
 -(NSString*)displayName
 {
     if (NotNilAndNull(self.userInfoDto.username) && self.userInfoDto.username.length > 0) {
-        return self.userName;
+        return self.userInfoDto.username;
     }
     else if(NotNilAndNull(self.userInfoDto.mobile) && self.userInfoDto.mobile.length > 0){
         return self.userInfoDto.mobile;
@@ -46,6 +46,12 @@ static UserCenter *defaultUserCenter = nil;
     else {
         return @"";
     }
+}
+
+-(void)setUserInfoDto:(MineUserInfoDTO *)userInfoDto
+{
+    _userInfoDto = userInfoDto;
+//    self.userName = self.displayName;
 }
 
 -(void)setLogined

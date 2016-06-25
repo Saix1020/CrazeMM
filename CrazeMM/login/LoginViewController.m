@@ -242,27 +242,33 @@
 //            [self dismissProgressIndicator];
 
             if (request.response.ok) {
-                [UserCenter defaultCenter].userName = self.userNameField.text;
-                [[UserCenter defaultCenter] setLogined];
                 
-                if (self.rememberMeCheckBox.on) {
-                    [[UserCenter defaultCenter] saveToKeychainWithUserName:self.userNameField.text andPassword:self.passwordField.text];
-                }
-                [self.navigationController popViewControllerAnimated:YES];
 
 //                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
-//                HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
-//                [userInfoRequest request]
-//                .then(^(id responseObj){
-//                    NSLog(@"%@", responseObj);
-//                    if (request.response.ok) {
-//                        HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)request.response;
-//                        [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
-//                    }
-//                    else {
-//                        [self showAlertViewWithMessage:request.response.errorMsg];
-//                    }
-//                });
+                HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
+                [userInfoRequest request]
+                .then(^(id responseObj){
+                    NSLog(@"%@", responseObj);
+                    if (userInfoRequest.response.ok) {
+                        HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)userInfoRequest.response;
+                        [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
+                        [[UserCenter defaultCenter] setLogined];
+                        if (self.rememberMeCheckBox.on) {
+                            NSString* userName = [UserCenter defaultCenter].displayName;
+                            if ([userName containsString:@"******"]) {
+                                userName = self.userNameField.text;
+                            }
+                            [[UserCenter defaultCenter] saveToKeychainWithUserName:userName andPassword:self.passwordField.text];
+                        }
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    else {
+                        [self showAlertViewWithMessage:userInfoRequest.response.errorMsg];
+                    }
+                }).catch(^(NSError *error){
+                    [self showAlertViewWithMessage:error.localizedDescription];
+                })
+                ;
 
             }
             else {
