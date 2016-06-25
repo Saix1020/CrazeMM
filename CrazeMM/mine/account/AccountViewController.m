@@ -16,7 +16,7 @@
 #import "BalanceLogViewController.h"
 #import "RechargeLogViewController.h"
 #import "WithdrawListViewController.h"
-
+#import "PayManageViewController.h"
 
 
 @interface AccountViewController ()
@@ -229,7 +229,10 @@
             
             break;
         case 3:
-            
+        {
+            PayManageViewController* vc = [[PayManageViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
   
         default:

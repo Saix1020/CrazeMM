@@ -152,6 +152,9 @@
 -(void)setProductDetailDto:(BaseProductDetailDTO *)productDetailDto
 {
     _productDetailDto = productDetailDto;
+//    if (<#condition#>) {
+//        <#statements#>
+//    }
     _productDetailDto.goodImage = self.productDto.goodImage;
     [self fomartTimeLabel];
     if(productDetailDto.isStep){

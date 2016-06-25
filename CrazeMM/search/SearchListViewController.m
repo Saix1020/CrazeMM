@@ -211,7 +211,7 @@
         [self.tableView setTableFooterView:view];
     [self.view addSubview:self.segmentCell];
     
-    self.navigationItem.title = [NSString stringWithFormat:@"%@(%@)", @"搜索结果", self.searchKeyword];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", @"搜索结果"];
     if (self.tabBarController.selectedIndex == 0) {
         self.searchCategory = kSupplySearch;
         self.searchCategoryString = @"供货";
@@ -219,8 +219,6 @@
     else {
         self.searchCategory = kBuySearch;
         self.searchCategoryString = @"求购";
-
-
     }
     
     [self.tableView registerClass:[SearchListCell class] forCellReuseIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString]];

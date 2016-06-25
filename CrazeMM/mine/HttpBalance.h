@@ -37,3 +37,23 @@
 
 @property (nonatomic, strong) NSMutableArray* balanceLogDtos;
 @end
+
+
+@interface HttpBalanceValidatePwdRequest : BaseHttpRequest
+
+-(instancetype)initWithOrignalPassword:(NSString*)orignalPassword;
+
+@end
+
+@interface HttpBalanceModifyPayPwdRequest : BaseHttpRequest
+
+-(instancetype)initWithOrignalPassword:(NSString*)oPasswd andNewPassword:(NSString*)nPasswd andConfirmPassword:(NSString*)cPassword;
+-(instancetype)initWithCaptchaMobile:(NSString*)captchaMobile andNewPassword:(NSString*)nPasswd andConfirmPassword:(NSString*)cPassword;
+
+@end
+
+@interface HttpBalanceValidateCodeRequest : BaseHttpRequest
+
+-(instancetype)initWithVCode:(NSString*)vcode;
+
+@end

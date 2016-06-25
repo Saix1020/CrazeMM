@@ -31,11 +31,7 @@
 {
     self = [super initWithProductDTO:dto];
     if (self) {
-//        self.supplyOrBuyButton.hidden = YES;
-//        self.payButton.hidden = NO;
-//        self.orderButton.hidden = NO;
-        
-        if (!self.productDto.isActive) {
+        if (!self.productDto.isActive || self.productDto.millisecond<0) {
             self.payButton.enabled = NO;
             self.orderButton.enabled = NO;
             self.payButton.backgroundColor = [UIColor clearColor];
@@ -247,7 +243,7 @@
         HttpSupplyProductDetailResponse* response = (HttpSupplyProductDetailResponse*)request.response;
         self.productDetailDto = response.dto;
         [self.productDto resetByProductDetailDto:self.productDetailDto];
-        if (!self.productDto.isActive) {
+        if (!self.productDto.isActive || self.productDto.millisecond<0) {
             self.payButton.enabled = NO;
             self.orderButton.enabled = NO;
             self.payButton.backgroundColor = [UIColor clearColor];

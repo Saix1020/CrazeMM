@@ -211,6 +211,13 @@
         self.triangleView.tintColor = [UIColor UIColorFromRGB:0x097939];
     }
 
+    NSString* imageURL;
+    if (![_productDetailDto.goodImage hasPrefix:@"http"]){
+        imageURL = COMB_URL(_productDetailDto.goodImage);
+    }
+    else {
+        imageURL = _productDetailDto.goodImage;
+    }
     [self.productImageView setImageWithURL:[NSURL URLWithString:_productDetailDto.goodImage] placeholderImage:[@"product_placehoder.jpg" image]];
     self.browseLabel.text = [NSString stringWithFormat:@"浏览:%ld", productDetailDto.views];
     self.sellLabel.text = [NSString stringWithFormat:@"意向:%ld", productDetailDto.intentions];

@@ -45,7 +45,7 @@
         _moneyCell = (AddrCommonCell*)[UINib viewFromNib:@"AddrCommonCell"];
         _moneyCell.title = @"提现金额";
         _moneyCell.placehoder = @"请输入金额";
-        _moneyCell.textFieldCell.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+        _moneyCell.textFieldCell.keyboardType = UIKeyboardTypeDecimalPad;
     }
     return _moneyCell;
 }
@@ -110,7 +110,7 @@
 {
     if (!_confirmModalView) {
         _confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
-        _confirmModalView.isCancelAble = YES;
+        _confirmModalView.isCancelAble = NO;
         _confirmModalView.modalWindowLevel = UIWindowLevelNormal;
 //        _confirmModalView.contentView = self.withDrawAlertView;
     }
