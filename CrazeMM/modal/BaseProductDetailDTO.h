@@ -7,7 +7,7 @@
 //
 
 #import "BaseDTO.h"
-
+#import "DepotDTO.h"
 
 @interface ProductUserInfo : BaseDTO
 @property (nonatomic, copy) NSString* typeName;
@@ -67,6 +67,9 @@
 @property (nonatomic) CGFloat price;
 
 @property (nonatomic, strong) ProductUserInfo* users;
+@property (nonatomic, strong) NSDictionary* stock;
+@property (nonatomic, strong) DepotDTO* depotDto;
+
 @property (nonatomic, strong) NSMutableArray<ProductStepPrice*>* stepPrices;
 @property (nonatomic, strong) NSMutableArray* logs;
 

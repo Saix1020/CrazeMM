@@ -8,6 +8,7 @@
 
 #import "BaseDTO.h"
 #import "BaseProductDetailDTO.h"
+#import "DepotDTO.h"
 
 @interface BaseProductDTO : BaseDTO
 
@@ -32,6 +33,9 @@
 @property (nonatomic, strong) NSString* createTime;
 @property (nonatomic, strong) NSString* goodImage;
 @property (nonatomic) BOOL selected;
+
+@property (nonatomic, strong) NSDictionary* stock;
+@property (nonatomic, strong) DepotDTO* depotDto;
 
 -(instancetype)initWith:(NSDictionary*)dict;
 

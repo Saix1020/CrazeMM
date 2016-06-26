@@ -243,7 +243,7 @@
         HttpSupplyProductDetailResponse* response = (HttpSupplyProductDetailResponse*)request.response;
         self.productDetailDto = response.dto;
         [self.productDto resetByProductDetailDto:self.productDetailDto];
-        if (!self.productDto.isActive || self.productDto.millisecond<0) {
+        if (!self.productDto.isActive) {
             self.payButton.enabled = NO;
             self.orderButton.enabled = NO;
             self.payButton.backgroundColor = [UIColor clearColor];

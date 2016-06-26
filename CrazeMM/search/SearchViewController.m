@@ -91,6 +91,15 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     [SearchHistory createIfNotExist:self.searchBar.text andManagedObjectContext:self.managedObjectcontent];
                 });
+                HttpSearchAddKeywordsRequest* request = [[HttpSearchAddKeywordsRequest alloc] initWithKeywords:@[self.searchBar.text] andType:self.searchType==kSearchTypeBuy?2:1];
+
+                [request request]
+                .then(^(id responseObj){
+                    NSLog(@"%@", responseObj);
+                })
+                .catch(^(NSError* error){
+                    
+                });
             }
             SearchListViewController* searchListVC = [[SearchListViewController alloc] initWithKeyword:self.searchBar.text];
             [self.navigationController pushViewController:searchListVC animated:YES];
@@ -200,21 +209,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
-    HttpSearchQueryKeywordsRequest* request = [[HttpSearchQueryKeywordsRequest alloc] initWithQueryCata:self.searchType];
-    [request request]
-    .then(^(id responseObj){
-        HttpSearchQueryKeywordsResponse* response = (HttpSearchQueryKeywordsResponse*)request.response;
-        if (response.ok) {
-            self.searchHistory = [response.keywords mutableCopy];
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    });
+    
     
 }
 
@@ -236,6 +231,21 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 //        });
 //    });
     [super viewWillAppear:animated];
+    HttpSearchQueryKeywordsRequest* request = [[HttpSearchQueryKeywordsRequest alloc] initWithQueryCata:self.searchType];
+    [request request]
+    .then(^(id responseObj){
+        HttpSearchQueryKeywordsResponse* response = (HttpSearchQueryKeywordsResponse*)request.response;
+        if (response.ok) {
+            self.searchHistory = [response.keywords mutableCopy];
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
     
 }
 
@@ -432,7 +442,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             [SearchHistory createIfNotExist:self.searchBar.text andManagedObjectContext:self.managedObjectcontent];
         });
-        HttpSearchAddKeywordsRequest* request = [[HttpSearchAddKeywordsRequest alloc] initWithKeywords:@[self.searchBar.text]];
+        HttpSearchAddKeywordsRequest* request = [[HttpSearchAddKeywordsRequest alloc] initWithKeywords:@[self.searchBar.text] andType:self.searchType==kSearchTypeBuy?2:1];
         [request request]
         .then(^(id responseObj){
             NSLog(@"%@", responseObj);

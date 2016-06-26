@@ -81,7 +81,6 @@ static BOOL isAlertViewShowing;
     isAlertViewShowing = YES;
     
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
-    confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
     confirmModalView.isCancelAble = NO;
     

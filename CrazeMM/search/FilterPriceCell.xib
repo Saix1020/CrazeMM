@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rP3-b8-t65" customClass="FilterPriceCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rP3-b8-t65" id="F7V-YM-Tec">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="47.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lfr-gw-6Le">
+                        <rect key="frame" x="180" y="8" width="132" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kox-1a-fCy">
+                        <rect key="frame" x="148" y="22.5" width="24" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="AYh-4t-1WR"/>
+                            <constraint firstAttribute="height" constant="1" id="Qmx-dM-KhI"/>
+                        </constraints>
+                    </view>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dFx-ei-GZh">
+                        <rect key="frame" x="8" y="8" width="132" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="dFx-ei-GZh" secondAttribute="trailing" constant="172" id="2Zm-VC-Ay4"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="dFx-ei-GZh" secondAttribute="bottom" constant="0.5" id="41C-h6-y7m"/>
+                    <constraint firstItem="Lfr-gw-6Le" firstAttribute="top" secondItem="F7V-YM-Tec" secondAttribute="topMargin" id="9gk-aV-sx4"/>
+                    <constraint firstItem="kox-1a-fCy" firstAttribute="centerX" secondItem="F7V-YM-Tec" secondAttribute="centerX" id="Edo-Hu-ekc"/>
+                    <constraint firstItem="kox-1a-fCy" firstAttribute="centerY" secondItem="F7V-YM-Tec" secondAttribute="centerY" id="KYs-kL-Lpr"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Lfr-gw-6Le" secondAttribute="bottom" constant="0.5" id="REQ-V5-CI3"/>
+                    <constraint firstItem="dFx-ei-GZh" firstAttribute="top" secondItem="F7V-YM-Tec" secondAttribute="topMargin" id="Wf7-vf-GAs"/>
+                    <constraint firstItem="Lfr-gw-6Le" firstAttribute="leading" secondItem="kox-1a-fCy" secondAttribute="trailing" constant="8" id="bkU-wt-s8K"/>
+                    <constraint firstItem="dFx-ei-GZh" firstAttribute="width" secondItem="Lfr-gw-6Le" secondAttribute="width" id="iko-YY-o3Y"/>
+                    <constraint firstItem="dFx-ei-GZh" firstAttribute="baseline" secondItem="Lfr-gw-6Le" secondAttribute="baseline" id="orc-ZY-lCg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Lfr-gw-6Le" secondAttribute="trailing" id="wrD-iO-K1W"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="dFx-ei-GZh" secondAttribute="leading" id="zs1-TW-GuO"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="orc-ZY-lCg"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="maxField" destination="Lfr-gw-6Le" id="RC7-jm-cgq"/>
+                <outlet property="minField" destination="dFx-ei-GZh" id="dyD-hE-8i5"/>
+            </connections>
+            <point key="canvasLocation" x="262" y="215"/>
+        </tableViewCell>
+    </objects>
+</document>

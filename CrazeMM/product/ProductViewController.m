@@ -84,6 +84,8 @@
     }
     else {
         if (self.productDetailDto && (self.productDetailDto.active && self.productDetailDto.millisecond>0)) {
+            self.timeLabel.hidden = NO;
+
             UIImageView* clockView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
             clockView.image = [UIImage imageNamed:@"clock_white"];
             [self.timeLabel appendView:clockView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
@@ -91,6 +93,7 @@
             timeString = [NSString leftTimeString:self.productDetailDto.millisecond];
         }
         else {
+            self.timeLabel.hidden = YES;
             timeString = self.productDetailDto.stateLabel;
         }
     }
@@ -152,9 +155,6 @@
 -(void)setProductDetailDto:(BaseProductDetailDTO *)productDetailDto
 {
     _productDetailDto = productDetailDto;
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
     _productDetailDto.goodImage = self.productDto.goodImage;
     [self fomartTimeLabel];
     if(productDetailDto.isStep){

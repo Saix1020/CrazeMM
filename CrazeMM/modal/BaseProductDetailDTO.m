@@ -113,6 +113,17 @@
         if (logs.count) {
             [self parseProductLogs:logs];
         }
+        
+        if ([dict[@"stock"] isKindOfClass:[NSNumber class]]) {
+            self.stock = nil;
+        }
+        else {
+            self.stock = dict[@"stock"];
+        }
+        if (NotNilAndNull(self.stock)) {
+            self.depotDto = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
+        }
+
     }
     
     return self;

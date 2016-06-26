@@ -10,6 +10,15 @@
 
 @implementation SearchResultDTO
 
-
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [super initWith:dict];
+    
+    if (self) {
+        self.isActive = [dict[@"isActive"] boolValue];
+    }
+    
+    return self;
+}
 
 @end
