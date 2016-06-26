@@ -63,6 +63,8 @@
         textField.userInteractionEnabled = NO;
     }
 
+    [self.cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 -(void)setAmount:(float)amount
@@ -105,7 +107,12 @@
     return YES;
 }
 
-
+-(void)dismiss
+{
+    if ([self.delegate respondsToSelector:@selector(dismiss)]) {
+        [self.delegate dismiss];
+    }
+}
 
 
 

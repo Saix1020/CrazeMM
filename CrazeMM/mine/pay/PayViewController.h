@@ -13,9 +13,10 @@
 #import "AddressesViewController.h"
 #import "AddressesViewController.h"
 #import "SuggestViewController.h"
+#import "WithDrawAlertView.h"
 
 
-@interface PayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AddressesViewControllerDelegate, SuggestVCDelegate, AddressesViewControllerDelegate>
+@interface PayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AddressesViewControllerDelegate, SuggestVCDelegate, AddressesViewControllerDelegate, WithDrawAlertViewDelegate>
 
 -(instancetype)initWithOrderStatusDTO:(OrderStatusDTO*)orderStatusDto;
 -(instancetype)initWithOrderDetailDTOs:(NSArray<OrderDetailDTO*>*)orderStatusDtos;

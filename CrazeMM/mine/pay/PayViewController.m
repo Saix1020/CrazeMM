@@ -24,7 +24,7 @@
 #import "SuggestViewController.h"
 #import "ZZPopoverWindow.h"
 #import "HttpBalance.h"
-
+#import "WithDrawAlertView.h"
 
 typedef NS_ENUM(NSInteger, MinePayRow){
     kAddrRow = 1,
@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 
 @property (nonatomic, strong) TTModalView* confirmModalView;
 @property (nonatomic, strong) PayAlertView* payAlertView;
+@property (nonatomic, strong) WithDrawAlertView* payWithAccountAlertView; // use WithDrawAlertView to do "账户余额支付"
 
 @property (nonatomic, strong) OrderStatusDTO* orderStatusDto;
 @property (nonatomic, copy) NSArray<OrderDetailDTO*>* orderDetailDtos;
@@ -198,56 +199,77 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         _confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             @strongify(self);
             
-            
-            HttpPayInfoRequest* request = [[HttpPayInfoRequest alloc] initWithPayPrice:self.totalPrice];
-            [request request]
-            .then(^(id responseObj){
-                NSLog(@"%@", responseObj);
-                HttpPayInfoResponse* response = (HttpPayInfoResponse*)request.response;
-                if (response.ok) {
-                    self.payInfoDto = response.payInfoDto;
-                    self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-                    self.confirmModalView.presentAnimationStyle = fadeIn;
-                    self.confirmModalView.dismissAnimationStyle = fadeOut ;
-                    
-                    self.payAlertView.totalPriceLabel.text = [NSString stringWithFormat:@"%.02f", self.productDetailCell.totalPrice];
-                    self.payAlertView.orderNoLabel.text = self.payInfoDto.ORDERID;
-                    
-                    [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
-                        
-                        contentView.centerX = self.view.centerX;
-                        contentView.centerY = self.view.centerY;
-                        
-                        
-                        self.payAlertView.dismissButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-                            @strongify(self);
-                            [self.confirmModalView dismiss];
-                            
-                            return [RACSignal empty];
-                        }];
-                        
-                        self.payAlertView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-                            @strongify(self);
-                            [self.confirmModalView dismiss];
-                            
-//                            PayResultViewController* payResultVC = [[PayResultViewController alloc] init];
-//                            
-//                            [self.navigationController pushViewController:payResultVC animated:YES];
-                            
-                            return [RACSignal empty];
-                        }];
-                        
-                        
-                    }];
-                }
-                else {
-                    [self showAlertViewWithMessage:response.errorMsg];
-                }
+            if ([self.payWayCell.payWay isEqualToString:@"账户余额"]) {
+                self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+                self.confirmModalView.presentAnimationStyle = fadeIn;
+                self.confirmModalView.dismissAnimationStyle = fadeOut ;
+                self.payWithAccountAlertView = (WithDrawAlertView*)[UINib viewFromNib:@"WithDrawAlertView"];
+                self.payWithAccountAlertView.layer.cornerRadius = 6.f;
+                self.payWithAccountAlertView.titleLabel.text = @"确定支付";
+                self.payWithAccountAlertView.delegate = self;
+
+                self.confirmModalView.contentView = self.payWithAccountAlertView;
                 
-            })
-            .catch(^(NSError* error){
-                [self showAlertViewWithMessage:error.localizedDescription];
-            });
+                self.payWithAccountAlertView.amount = self.productDetailCell.totalPrice;
+                [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+                    contentView.centerX = self.view.centerX;
+                    contentView.centerY = self.view.centerY;
+                }];
+
+            }
+            else{
+                HttpPayInfoRequest* request = [[HttpPayInfoRequest alloc] initWithPayPrice:self.totalPrice];
+                [request request]
+                .then(^(id responseObj){
+                    NSLog(@"%@", responseObj);
+                    HttpPayInfoResponse* response = (HttpPayInfoResponse*)request.response;
+                    if (response.ok) {
+                        self.payInfoDto = response.payInfoDto;
+                        self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+                        self.confirmModalView.presentAnimationStyle = fadeIn;
+                        self.confirmModalView.dismissAnimationStyle = fadeOut ;
+                        
+                        self.confirmModalView.contentView = self.payAlertView;
+                        self.payAlertView.totalPriceLabel.text = [NSString stringWithFormat:@"%.02f", self.productDetailCell.totalPrice];
+                        self.payAlertView.orderNoLabel.text = self.payInfoDto.ORDERID;
+                        
+                        [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+                            
+                            contentView.centerX = self.view.centerX;
+                            contentView.centerY = self.view.centerY;
+                            
+                            
+                            self.payAlertView.dismissButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                                @strongify(self);
+                                [self.confirmModalView dismiss];
+                                
+                                return [RACSignal empty];
+                            }];
+                            
+                            self.payAlertView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+                                @strongify(self);
+                                [self.confirmModalView dismiss];
+                                
+                                //                            PayResultViewController* payResultVC = [[PayResultViewController alloc] init];
+                                //
+                                //                            [self.navigationController pushViewController:payResultVC animated:YES];
+                                
+                                return [RACSignal empty];
+                            }];
+                            
+                            
+                        }];
+                    }
+                    else {
+                        [self showAlertViewWithMessage:response.errorMsg];
+                    }
+                    
+                })
+                .catch(^(NSError* error){
+                    [self showAlertViewWithMessage:error.localizedDescription];
+                });
+            }
+            
             
             
             return [RACSignal empty];
@@ -341,7 +363,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         _confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
         _confirmModalView.isCancelAble = YES;
         _confirmModalView.modalWindowLevel = UIWindowLevelNormal;
-        _confirmModalView.contentView = self.payAlertView;
+//        _confirmModalView.contentView = self.payAlertView;
     }
     
     return _confirmModalView;
@@ -357,6 +379,19 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     
     return _payAlertView;
 }
+
+//-(WithDrawAlertView*)payWithAccountAlertView
+//{
+//    // always return a new instance
+////    if (!_payWithAccountAlertView){
+//        _payWithAccountAlertView = (WithDrawAlertView*)[UINib viewFromNib:@"WithDrawAlertView"];
+//        _payWithAccountAlertView.layer.cornerRadius = 6.f;
+//        _payWithAccountAlertView.titleLabel.text = @"确定支付";
+//    _payWithAccountAlertView.delegate = self;
+////    }
+//    
+//    return _payWithAccountAlertView;
+//}
 
 -(void)changePayWay
 {
@@ -605,6 +640,47 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         [self showAlertViewWithMessage:@"该支付方式暂未支持，请选择其它方式"];
     }
     [self.popover dismiss];
+}
+
+#pragma mark WithDrawAlertViewDelegate
+-(void)DidFinishInput:(NSString*)inputString
+{
+    // blance pay
+    // http://b.189mm.com/rest/token?name=balance_pay_token
+    //http://b.189mm.com/rest/balance/pay post
+//    amount	4476
+//    orders	1281
+//    payPassword	111111
+//    balance_pay_token	8411554032545728222
+    
+//    {
+//        "ok": true,
+//        "stock": [{
+//            "gid": 1670,
+//            "inprice": 1119.00,
+//            "depotId": 5,
+//            "updateTime": "2016-06-26",
+//            "gvolume": "16G",
+//            "presale": 4,
+//            "version": 0,
+//            "isSerial": true,
+//            "isOriginal": true,
+//            "uid": 4,
+//            "goodName": "华硕-飞马X003 黑 16G 电信版",
+//            "gcolor": "黑",
+//            "isOriginalBox": true,
+//            "id": 109,
+//            "gnetwork": "电信版",
+//            "isBrushMachine": false
+//        }]
+//    }
+    
+    [self.confirmModalView dismiss];
+}
+
+-(void)dismiss
+{
+    [self.confirmModalView dismiss];
 }
 
 @end

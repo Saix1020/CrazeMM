@@ -11,7 +11,7 @@
 @protocol WithDrawAlertViewDelegate <NSObject>
 
 -(void)DidFinishInput:(NSString*)inputString;
-
+-(void)dismiss;
 @end
 
 
