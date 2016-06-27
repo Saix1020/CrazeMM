@@ -52,6 +52,8 @@
 
     }
     
+    cell.textLabel.font = [UIFont systemFontOfSize:16.f];
+    
     return cell;
 }
 

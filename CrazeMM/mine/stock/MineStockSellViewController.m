@@ -59,6 +59,7 @@
                  andCancelCallback:nil];
 }
 
+
 -(instancetype)initWith:(NSArray*)stocks
 {
     self = [super init];

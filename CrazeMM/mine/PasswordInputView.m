@@ -22,7 +22,12 @@
     if (!_hiddenTextField) {
         _hiddenTextField = [[UITextField alloc] initWithFrame:CGRectZero];
         [self addSubview:_hiddenTextField];
-        _hiddenTextField.keyboardType = UIKeyboardTypeNumberPad;
+//        if ([[[UIDevice currentDevice] systemVersion] floatValue]<9.0){
+//            _hiddenTextField.frame = CGRectMake(-50, 0, 30, 30);
+//        }
+//        else {
+            _hiddenTextField.keyboardType = UIKeyboardTypeNumberPad;
+//        }
         _hiddenTextField.delegate = self;
     }
     
@@ -50,7 +55,8 @@
         textField.layer.borderColor = [UIColor light_Gray_Color].CGColor;
         textField.layer.borderWidth = 1.f;
     }
-    
+    //[self.hiddenTextField becomeFirstResponder];
+
 }
 
 

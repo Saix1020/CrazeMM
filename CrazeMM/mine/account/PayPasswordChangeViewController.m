@@ -132,9 +132,10 @@
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.passwordInputView becomeFirstResponder];
 }
 
 #pragma mark - Table view data source
@@ -192,23 +193,34 @@
         [self showProgressIndicatorWithTitle:@"正在验证支付密码..."];
         [request request]
         .then(^(id responseObj){
+            @weakify(self);
             if (request.response.ok) {
                 self.oPassword = inputString;
                 self.currentStep = 2;
                 [self.passwordInputView resetWithTitile:@"请输入新的支付密码"];
+                [self.passwordInputView becomeFirstResponder];
+
             }
             else {
                 [self.passwordInputView reset];
-                [self showAlertViewWithMessage:request.response.errorMsg];
+                [self showAlertViewWithMessage:request.response.errorMsg withCallback:^(id x){
+                    @strongify(self);
+                    [self.passwordInputView becomeFirstResponder];
+
+                }];
             }
         })
         .catch(^(NSError* error){
             [self.passwordInputView reset];
-            [self showAlertViewWithMessage:error.localizedDescription];
+            @weakify(self);
+            [self showAlertViewWithMessage:error.localizedDescription withCallback:^(id x){
+                @strongify(self);
+                [self.passwordInputView becomeFirstResponder];
+                
+            }];
         })
         .finally(^(){
             [self dismissProgressIndicator];
-            [self.passwordInputView becomeFirstResponder];
         });
     }
     else if(self.currentStep == 2){ //set new password

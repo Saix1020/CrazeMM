@@ -202,6 +202,9 @@
 //    self.earning = self.earning>=0?self.earning:0;
    NSString* strEarning = [[NSString alloc] initWithFormat:@"%ld", self.earning];
     self.stockDto.earning = self.earning;
+    if (self.stockDetailDto) {
+        self.stockDetailDto.earning = self.earning;
+    }
     
     attributedText = [[NSMutableAttributedString alloc]initWithString:strEarning];
     [attributedText m80_setFont:[UIFont boldSystemFontOfSize:16.f]];
@@ -231,11 +234,24 @@
     
 }
 
+-(void)setStockDetailDto:(StockDetailDTO *)stockDetailDto
+{
+    _stockDetailDto = stockDetailDto;
+    MineStockDTO* stockDto = [[MineStockDTO alloc] initWithStockDetailDTO:stockDetailDto];
+    self.stockDto = stockDto;
+}
+
 - (void)updateDto
 {
     self.stockDto.currentPrice = [self.unitPriceField.text integerValue];
     self.stockDto.currentSale = [self.totalNumField.text integerValue];
     self.stockDto.currentNum = [self.seperateNumField.text integerValue];
+    
+    if (self.stockDetailDto) {
+        self.stockDetailDto.currentPrice = [self.unitPriceField.text integerValue];
+        self.stockDetailDto.currentSale = [self.totalNumField.text integerValue];
+        self.stockDetailDto.currentNum = [self.seperateNumField.text integerValue];
+    }
 }
 
 

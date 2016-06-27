@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "StockDetailDTO.h"
+#import "StockSellCell.h"
 
-@interface PayResultViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface PayResultViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, StockSellCellDelegate>
 
 -(instancetype)initWithStockDetailDtos:(NSArray*)stockDetailDTOs;
 

@@ -44,5 +44,10 @@
 
 @property (nonatomic, strong) NSMutableArray<StockLogDTO*>* logs;
 
+@property (nonatomic) float earning;
+@property (nonatomic) BOOL selected;
+@property (nonatomic) NSInteger currentPrice;
+@property (nonatomic) NSInteger currentSale;
+@property (nonatomic) NSInteger currentNum;
 
 @end

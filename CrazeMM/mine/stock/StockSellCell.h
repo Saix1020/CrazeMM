@@ -11,6 +11,7 @@
 #import "M80AttributedLabel.h"
 #import "MineStockDTO.h"
 
+
 @protocol StockSellCellDelegate <NSObject>
 
 -(void)refreshTotalPriceLabel;
@@ -38,6 +39,7 @@
 @property (nonatomic) NSInteger earning;
 
 @property (nonatomic, strong) MineStockDTO* stockDto;
+@property (nonatomic, strong) StockDetailDTO* stockDetailDto;
 
 @property (nonatomic, weak) id<StockSellCellDelegate> delegate;
 
