@@ -47,6 +47,7 @@
 @property (nonatomic) BOOL isOriginalBox;
 @property (nonatomic) BOOL isBrushMachine;
 @property (nonatomic) BOOL isStep;
+@property (nonatomic) BOOL isAnoy;
 
 @property (nonatomic, copy) NSString* deadlineStr;
 @property (nonatomic, copy) NSString* message;

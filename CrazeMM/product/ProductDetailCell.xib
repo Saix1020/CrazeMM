@@ -102,6 +102,13 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="egR-8K-TSo">
+                        <rect key="frame" x="137" y="150" width="234" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -117,6 +124,7 @@
                 <outlet property="priceLabel" destination="84C-mT-r3R" id="BcU-wa-V54"/>
                 <outlet property="productImageView" destination="EFx-0i-wnN" id="jlZ-Cm-9AK"/>
                 <outlet property="seperatorLine" destination="eev-zd-Qti" id="jFJ-hg-V94"/>
+                <outlet property="stockLabel" destination="egR-8K-TSo" id="KmF-b0-zlE"/>
                 <outlet property="titleLable" destination="7hb-9V-TuL" id="Mqo-7Q-ei6"/>
                 <outlet property="traingleView" destination="a3N-1W-Wje" id="LDj-BT-pcC"/>
             </connections>

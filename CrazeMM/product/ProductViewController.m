@@ -338,6 +338,12 @@
     }
     else if(indexPath.row == 3){
         cell = self.companyCell;
+        if (self.productDetailDto.isAnoy) {
+            cell.hidden = YES;
+        }
+        else {
+            cell.hidden = NO;
+        }
     }
     else{
         cell = self.otherCompayCell;

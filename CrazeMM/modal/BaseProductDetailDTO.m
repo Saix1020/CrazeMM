@@ -86,6 +86,7 @@
         self.isTop = [dict[@"isTop"] boolValue];
         self.isOriginalBox = [dict[@"isOriginalBox"] boolValue];
         self.isOriginal = [dict[@"isOriginal"] boolValue];
+        self.isAnoy = [dict[@"isAnoy"] boolValue];
         
         self.quantity = [dict[@"quantity"] integerValue];
         self.millisecond = [dict[@"millisecond"] integerValue];

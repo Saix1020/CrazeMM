@@ -12,6 +12,7 @@
 #import "ArrowView.h"
 
 @interface ProductDetailCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *stockLabel;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet UILabel *browserLabel;
 @property (weak, nonatomic) IBOutlet UILabel *buyLabel;

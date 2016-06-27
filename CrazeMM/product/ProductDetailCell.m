@@ -45,7 +45,7 @@
 //    self.detalLabel.adjustsFontSizeToFitWidth = YES;
 //    self.detalLabel.text = @"原装 原封箱 带串码 网站担保 开票 保证金";
     self.detalLabel.textColor = [UIColor grayColorL2];
-
+    
     
     self.line2.backgroundColor = [UIColor light_Gray_Color];
     self.line2.width = screenWidth - self.line2.x -16.f;
@@ -74,6 +74,10 @@
     self.messageLabel.textColor = [UIColor grayColorL2];
     self.messageLabel.font = [UIFont systemFontOfSize:12];
     
+    self.stockLabel.numberOfLines = 1;
+    self.stockLabel.width = screenWidth - self.expressLabel.x -16.f;
+    self.stockLabel.textColor = [UIColor grayColorL2];
+    self.stockLabel.font = [UIFont systemFontOfSize:12];
     
     self.traingleView.image = [[UIImage imageNamed:@"triangle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
@@ -205,8 +209,16 @@
     if (self.productDetailDto.isStep) {
         [moreInfo appendString:@"阶梯价 "];
     }
-    [moreInfo appendString:[NSString stringWithFormat:@"%@到货", self.productDetailDto.deadlineStr]];
+//    [moreInfo appendString:[NSString stringWithFormat:@"%@到货", self.productDetailDto.deadlineStr]];
     self.addrLabel.text = moreInfo;
+    
+    if (self.productDetailDto.stock) {
+        self.stockLabel.text = [NSString stringWithFormat:@"所在仓库: %@", self.productDetailDto.depotDto.name];
+    }
+    else {
+        self.stockLabel.text = [NSString stringWithFormat:@"卖家发货: %@", self.productDetailDto.deadlineStr];
+    }
+
     
     NSString* scopeString = [self.productDetailDto isKindOfClass:NSClassFromString(@"SupplyProductDetailDTO")]? @"供货范围" : @"收货地址";
     self.expressLabel.text = [NSString stringWithFormat:@"%@: %@", scopeString, self.productDetailDto.region];
@@ -246,16 +258,22 @@
     self.detalLabel.x = self.titleLable.x;
     self.detalLabel.y = self.titleLable.bottom + 4.f;
     
+    
     self.addrLabel.width = screenWidth - self.addrLabel.x -16.f;
     y = self.addrLabel.y;
     [self.addrLabel sizeToFit];
     self.addrLabel.x = self.titleLable.x;
     self.addrLabel.y = y;
     
+    self.stockLabel.width = screenWidth - self.addrLabel.x -16.f;
+    [self.stockLabel sizeToFit];
+    self.stockLabel.x = self.titleLable.x;
+    self.stockLabel.y = self.addrLabel.bottom+4.f;
+    
     self.expressLabel.width = screenWidth - self.expressLabel.x -16.f;
     [self.expressLabel sizeToFit];
     self.expressLabel.x = self.titleLable.x;
-    self.expressLabel.y = self.addrLabel.bottom + 4.f;
+    self.expressLabel.y = self.stockLabel.bottom + 4.f;
     
     self.messageLabel.width = screenWidth - self.messageLabel.x -16.f;
     if (self.messageLabel.text.length == 0) {
