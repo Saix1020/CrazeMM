@@ -21,6 +21,7 @@
 @property (nonatomic, readonly) MMOrderSubType orderSubtype;
 @property (nonatomic, readonly) MMOrderState orderState;
 @property (nonatomic) MMOrderListStyle orderStyle;
+@property (weak, nonatomic) IBOutlet UIButton *addtionalButton;
 
 @property (nonatomic) CGFloat totalPrice;
 

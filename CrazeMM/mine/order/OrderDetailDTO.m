@@ -41,6 +41,17 @@
         
         self.stateLabel = dict[@"stateLabel"];
         
+        if ([dict[@"stock"] isKindOfClass:[NSNumber class]]) {
+            self.stock = nil;
+        }
+        else {
+            self.stock = dict[@"stock"];
+        }
+        if (NotNilAndNull(self.stock)) {
+            self.depotDto = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
+        }
+
+        
         self.selected = NO;
     }
     return self;

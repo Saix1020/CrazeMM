@@ -34,6 +34,18 @@
         self.createTime = dict[@"createTime"];
         self.goodImage = dict[@"goodImage"];
         self.address = dict[@"address"];
+        
+        //isBrushMachine = 1;
+        //isOriginal = 1;
+        //isOriginalBox = 1;
+        //isSerial = 1;
+        self.isBrushMachine = [dict[@"isBrushMachine"] boolValue];
+        self.isOriginal = [dict[@"isOriginal"] boolValue];
+        self.isOriginalBox = [dict[@"isOriginalBox"] boolValue];
+        self.isSerial = [dict[@"isSerial"] boolValue];
+
+
+        
         self.selected = NO;
         if ([dict[@"stock"] isKindOfClass:[NSNumber class]]) {
             self.stock = nil;

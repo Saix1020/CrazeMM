@@ -136,7 +136,17 @@
     self.titleLabel.text = [NSString stringWithFormat:@"供货单号: %ld", mineSupplyProductDto.id];
     self.dateLabel.text = mineSupplyProductDto.createTime;
     self.productLabel.text = mineSupplyProductDto.goodName;
-    self.numberLabel.text = [NSString stringWithFormat:@"数量: %ld", mineSupplyProductDto.quantity];
+    NSMutableString* numberLabelText = [[NSMutableString alloc] initWithFormat:@"数量: %ld", mineSupplyProductDto.quantity];
+//    self.numberLabel.text = [NSString stringWithFormat:@"数量: %ld", mineSupplyProductDto.quantity];
+    if (![mineSupplyProductDto isKindOfClass:[MineBuyProductDTO class]]) {
+        if(mineSupplyProductDto.stock){
+            [numberLabelText appendString:[NSString stringWithFormat:@" (%@)", mineSupplyProductDto.depotDto.name]];
+        }
+        else {
+            [numberLabelText appendString:@" (卖家发货)"];
+        }
+    }
+    self.numberLabel.text = numberLabelText;
     self.priceLabel.text = [NSString stringWithFormat:@"单台定价: ￥%.02f", mineSupplyProductDto.price];
     [self fomartPriceLabel];
     self.selectCheckBox.on = mineSupplyProductDto.selected;
@@ -154,6 +164,8 @@
         self.shareButton.userInteractionEnabled = YES;
     }
     
+    [self fomartStatusLabel];
+    
 }
 
 -(void)setMineStockDto:(MineStockDTO *)mineStockDto
@@ -161,8 +173,12 @@
     _mineStockDto = mineStockDto;
     self.titleLabel.text = [NSString stringWithFormat:@"编号: %ld", mineStockDto.id];
     self.dateLabel.text = mineStockDto.updateTime;
-    self.productLabel.text = mineStockDto.goodName;
-    self.numberLabel.text = [NSString stringWithFormat:@"数量: %ld", mineStockDto.presale];
+    self.productLabel.text = mineStockDto.goodName;    
+    NSMutableString* numberLabelText = [[NSMutableString alloc] initWithFormat:@"数量: %ld", mineStockDto.presale];
+    [numberLabelText appendString:[NSString stringWithFormat:@" (%@)", mineStockDto.depotName]];
+    self.numberLabel.text = numberLabelText;
+
+    
     self.priceLabel.text = [NSString stringWithFormat:@"单台定价: ￥%.02f", mineStockDto.inprice];
     [self fomartPriceLabel];
     self.selectCheckBox.on = mineStockDto.selected;
@@ -172,27 +188,63 @@
     self.shareButton.userInteractionEnabled = NO;
     [self.shareButton setTitle:mineStockDto.depotDto.name forState:UIControlStateNormal];
 
+    [self fomartStatusLabel];
+
 }
 
 -(void)fomartStatusLabel
 {
     NSMutableString* string = [[NSMutableString alloc]init];
-    if (self.mineStockDto.isSerial) {
-        [string appendString:@"带串码"];
-    }
-    if (self.mineStockDto.isOriginal) {
-        [string appendString:@"原装"];
-    }
-    if (self.mineStockDto.isOriginalBox) {
-        [string appendString:@"原封箱"];
-    }
-    if (self.mineStockDto.isBrushMachine) {
-        [string appendString:@"已刷机"];
+    if (self.mineSupplyProductDto){
+        if (self.mineSupplyProductDto.isSerial) {
+            [string appendString:@"带串码 "];
+        }
+        if (self.mineSupplyProductDto.isOriginal) {
+            [string appendString:@"原装 "];
+        }
+        if (self.mineSupplyProductDto.isOriginalBox) {
+            [string appendString:@"原封箱 "];
+        }
+        if (self.mineSupplyProductDto.isBrushMachine) {
+            [string appendString:@"已刷机"];
+        }
+        if (string.length==0) {
+            self.numberLabelTopConstraint.constant = -18.f;
+            
+        }
+        else {
+            self.numberLabelTopConstraint.constant = -1.f;
+            
+        }
     }
     else {
-        [string appendString:@"未刷机"];
+        if (self.mineStockDto.isSerial) {
+            [string appendString:@"带串码 "];
+        }
+        if (self.mineStockDto.isOriginal) {
+            [string appendString:@"原装 "];
+        }
+        if (self.mineStockDto.isOriginalBox) {
+            [string appendString:@"原封箱 "];
+        }
+        if (self.mineStockDto.isBrushMachine) {
+            [string appendString:@"已刷机"];
+
+        }
+        if (string.length==0) {
+            self.numberLabelTopConstraint.constant = -18.f;
+            
+        }
+        else {
+            self.numberLabelTopConstraint.constant = -1.f;
+            
+        }
+        
     }
+
     self.statusLabel.text = string;
+    [self updateConstraints];
+
 }
 
 +(CGFloat)cellHeight

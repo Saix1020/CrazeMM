@@ -645,42 +645,41 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 #pragma mark WithDrawAlertViewDelegate
 -(void)DidFinishInput:(NSString*)inputString
 {
-    // blance pay
-    // http://b.189mm.com/rest/token?name=balance_pay_token
-    //http://b.189mm.com/rest/balance/pay post
-//    amount	4476
-//    orders	1281
-//    payPassword	111111
-//    balance_pay_token	8411554032545728222
-    
-//    {
-//        "ok": true,
-//        "stock": [{
-//            "gid": 1670,
-//            "inprice": 1119.00,
-//            "depotId": 5,
-//            "updateTime": "2016-06-26",
-//            "gvolume": "16G",
-//            "presale": 4,
-//            "version": 0,
-//            "isSerial": true,
-//            "isOriginal": true,
-//            "uid": 4,
-//            "goodName": "华硕-飞马X003 黑 16G 电信版",
-//            "gcolor": "黑",
-//            "isOriginalBox": true,
-//            "id": 109,
-//            "gnetwork": "电信版",
-//            "isBrushMachine": false
-//        }]
-//    }
-    
+        
     [self.confirmModalView dismiss];
+    
+    [self showProgressIndicatorWithTitle:@"正在支付, 请稍等..."];
+    
+    NSMutableArray* orderIds = [[NSMutableArray alloc] init];
+    [self.orderDetailDtos enumerateObjectsUsingBlock:^(OrderDetailDTO* dto, NSUInteger idx, BOOL *stop){
+        [orderIds addObject:[NSString stringWithFormat:@"%ld", dto.id]];
+    }];
+    
+    HttpBlancePayRequest* request = [[HttpBlancePayRequest  alloc] initWithAmount:self.productDetailCell.totalPrice andOrders:orderIds andPayPassword:inputString andAddrId:self.selectedAddrDto.id];
+    [request request]
+    .then(^(id responseObj){
+        HttpBlancePayResponse* response = (HttpBlancePayResponse*)request.response;
+        if (response.ok) {
+            PayResultViewController* vc = [[PayResultViewController alloc] initWithStockDetailDtos:response.stockDetailDtos];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        [self dismissProgressIndicator];
+    });
+    
 }
 
 -(void)dismiss
 {
     [self.confirmModalView dismiss];
+
 }
 
 @end

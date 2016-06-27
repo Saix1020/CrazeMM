@@ -13,7 +13,7 @@
 
 @property (nonatomic) NSUInteger productNumber;
 @property (nonatomic) CGFloat height;
-@property (nonatomic, readonly) CGFloat totalPrice;
+@property (nonatomic, readonly) float totalPrice;
 @property (nonatomic, copy) NSArray<OrderDetailDTO*>* orderDetailDtos;
 
 //-(instancetype)initWithOrderDetailDTO:(OrderDetailDTO*)orderDetailDto;

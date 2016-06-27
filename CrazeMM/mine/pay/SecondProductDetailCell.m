@@ -16,7 +16,7 @@
 
 //@property (nonatomic) NSUInteger productNumber;
 @property (nonatomic) NSInteger totalAmount;
-@property (nonatomic) CGFloat totalPrice;
+@property (nonatomic) float totalPrice;
 @property (nonatomic, strong) NSMutableArray* imageViews;
 //@property (nonatomic, copy) 
 

@@ -195,7 +195,7 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(kSegmentCellHeight);
-        [_segmentCell setTitles:@[@"人气", @"价格", @"供货量"] andIcons:@[@"", @"arrow_up", @"arrow_up"]];
+        [_segmentCell setTitles:@[@"综合", @"价格", @"供货量"] andIcons:@[@"", @"arrow_up", @"arrow_up"]];
 //        ((UIButton*)(_segmentCell.segment.buttons[1])).imageView.hidden = ((UIButton*)(_segmentCell.segment.buttons[2])).imageView.hidden = YES;
         
         _segmentCell.segment.delegate = self;
@@ -211,18 +211,18 @@
 
     switch (selectedIndex) {
         case 0:
-            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"人气" andIcon:icon],
+            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"综合" andIcon:icon],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"价格" andIcon:nil],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"供货量" andIcon:nil]];
             break;
         case 1:
-            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"人气" andIcon:nil],
+            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"综合" andIcon:nil],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"价格" andIcon:icon],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"供货量" andIcon:nil]];
             break;
 
         case 2:
-            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"人气" andIcon:nil],
+            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"综合" andIcon:nil],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"价格" andIcon:nil],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"供货量" andIcon:icon]];
             break;

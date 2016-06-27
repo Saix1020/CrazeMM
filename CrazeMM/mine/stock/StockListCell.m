@@ -29,6 +29,12 @@
     self.stockLabel.tintColor = [UIColor UIColorFromRGB:0x444444];
     self.offButton.tintColor = [UIColor UIColorFromRGB:0x444444];
     
+    
+    [self.pickupButton exchangeImageAndText];
+    [self.pickupButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    self.pickupButton.tintColor = [UIColor UIColorFromRGB:0x444444];
+
+    
     self.containerView.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];
 
     self.flagLabel.backgroundColor = [UIColor UIColorFromRGB:0xbddcfa];//
@@ -66,7 +72,9 @@
     
     NSString* firstComponent = [NSString stringWithFormat:@"总数: %ld ", self.mineStockDto.presale];
     
-    NSString* secondComopent = [NSString stringWithFormat:@"在售: %ld", self.mineStockDto.insale];
+    NSString* secondComopent = [NSString stringWithFormat:@"在售: %ld ", self.mineStockDto.insale];
+    NSString* thirdComopent = self.mineStockDto.depotName.length>0?[NSString stringWithFormat:@"(%@)", self.mineStockDto.depotName] :@"";
+
     NSMutableAttributedString *attributedText =
     [[NSMutableAttributedString alloc] initWithString:firstComponent
                                            attributes:@{
@@ -82,6 +90,13 @@
                                                              NSFontAttributeName : [UIFont systemFontOfSize:12.f]                                                      }]];
     }
     
+    [attributedText appendAttributedString:[
+                                            [NSAttributedString alloc] initWithString:thirdComopent
+                                            attributes:@{
+                                                         NSForegroundColorAttributeName: self.numberLabel.textColor,
+                                                         NSFontAttributeName : [UIFont systemFontOfSize:14.f]
+                                                         
+                                                         }]];
     
     self.numberLabel.text = @"";
     self.numberLabel.attributedText = attributedText;
@@ -91,25 +106,26 @@
 {
     NSMutableString* string = [[NSMutableString alloc]init];
     if (self.mineStockDto.isSerial) {
-        [string appendString:@"带串码"];
+        [string appendString:@"带串码 "];
     }
     if (self.mineStockDto.isOriginal) {
-        [string appendString:@"原装"];
+        [string appendString:@"原装 "];
     }
     if (self.mineStockDto.isOriginalBox) {
-        [string appendString:@"原封箱"];
+        [string appendString:@"原封箱 "];
     }
     if (self.mineStockDto.isBrushMachine) {
         [string appendString:@"已刷机"];
     }
     
     if (string.length>0) {
-        self.stockLabel.hidden = NO;
-        self.stockLabel.text = string;
-        self.topSpaceContraint.constant = 42;
+        self.statusLabel.hidden = NO;
+        self.statusLabel.text = string;
+        self.topSpaceContraint.constant = 25;
     }
     else {
-        self.stockLabel.hidden = YES;
+        self.statusLabel.hidden = YES;
+        self.statusLabel.text = @"";
         self.topSpaceContraint.constant = 4;
 
     }
@@ -129,6 +145,8 @@
     self.selectCheckBox.on = mineStockDto.selected;
     self.stockLabel.text = mineStockDto.depotName;
     self.flagLabel.text = [NSString stringWithFormat:@" %@ ", mineStockDto.stateLabel];
+    
+    [self fomartStatusLabel];
 }
 
 +(CGFloat)cellHeight
@@ -138,11 +156,12 @@
 
 -(void)buttonClicked:(UIButton*)button
 {
-    if (button == self.offButton){
+    //if (button == self.offButton){
         if ([self.delegate respondsToSelector:@selector(buttonClicked:andSid:)]) {
             [self.delegate buttonClicked:button andSid:self.mineStockDto.id];
         }
-    }
+    //}
+    
 }
 
 @end

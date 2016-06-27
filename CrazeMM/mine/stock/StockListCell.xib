@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lOE-y2-R1c" id="iAd-1S-0to">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="160.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFs-uk-4jl" customClass="BEMCheckBox">
@@ -82,22 +82,33 @@
                                 </constraints>
                                 <state key="normal" title="出货" image="down"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="良晋浦口仓库" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8b-Dh-r3R">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="良晋浦口仓库" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8b-Dh-r3R">
                                 <rect key="frame" x="14" y="3" width="202" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCx-bq-7RA">
+                                <rect key="frame" x="14" y="3" width="72" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="sKg-PL-z7w"/>
+                                </constraints>
+                                <state key="normal" title="提货" image="down"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="hCx-bq-7RA" firstAttribute="firstBaseline" secondItem="XsC-L6-x7t" secondAttribute="baseline" id="2qj-AZ-0Za"/>
                             <constraint firstItem="XsC-L6-x7t" firstAttribute="leading" secondItem="m8b-Dh-r3R" secondAttribute="trailing" constant="2" id="6Lb-a2-IwD"/>
                             <constraint firstItem="m8b-Dh-r3R" firstAttribute="leading" secondItem="DpB-J1-if4" secondAttribute="leading" constant="14" id="8h8-I6-3Q6"/>
+                            <constraint firstItem="hCx-bq-7RA" firstAttribute="top" secondItem="m8b-Dh-r3R" secondAttribute="top" id="AgW-Ka-cYd"/>
+                            <constraint firstItem="hCx-bq-7RA" firstAttribute="leading" secondItem="m8b-Dh-r3R" secondAttribute="leading" id="L2d-12-sAJ"/>
                             <constraint firstAttribute="height" constant="26.5" id="QUZ-3D-93b"/>
                             <constraint firstItem="XsC-L6-x7t" firstAttribute="top" secondItem="DpB-J1-if4" secondAttribute="top" constant="3" id="Uv9-FB-rei"/>
                             <constraint firstItem="m8b-Dh-r3R" firstAttribute="top" secondItem="XsC-L6-x7t" secondAttribute="top" id="hOj-88-wtm"/>
                             <constraint firstAttribute="trailing" secondItem="XsC-L6-x7t" secondAttribute="trailing" constant="30" id="m7L-Bq-zm8"/>
                             <constraint firstItem="m8b-Dh-r3R" firstAttribute="centerY" secondItem="XsC-L6-x7t" secondAttribute="centerY" id="rus-0n-xF7"/>
+                            <constraint firstItem="hCx-bq-7RA" firstAttribute="baseline" secondItem="XsC-L6-x7t" secondAttribute="firstBaseline" id="u5D-FO-7cW"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="带串号 原装 原封箱 已刷机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUP-pN-lZE">
@@ -172,6 +183,7 @@
                 <outlet property="flagLabel" destination="wbv-Bs-LP9" id="FjK-iW-3pe"/>
                 <outlet property="numberLabel" destination="e5f-aP-nvR" id="EX5-Cf-JCT"/>
                 <outlet property="offButton" destination="XsC-L6-x7t" id="JUX-8I-wfC"/>
+                <outlet property="pickupButton" destination="hCx-bq-7RA" id="R4U-Cs-Gfx"/>
                 <outlet property="priceLabel" destination="Yfi-xS-hsl" id="FPj-qD-6sA"/>
                 <outlet property="productLabel" destination="YP7-2V-tEM" id="KZd-du-wxA"/>
                 <outlet property="selectCheckBox" destination="FFs-uk-4jl" id="uil-ct-co6"/>

@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, SupplyListCellStyle){
 @end
 
 @interface SupplyListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *numberLabelTopConstraint;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectCheckBox;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *productLabel;

@@ -207,7 +207,11 @@
     _orderDetailDTO = orderDetailDTO;
     [self fomartOrderLabel];
     [self fomartProductDescLabel];
-    self.amountLabel.text = [NSString stringWithFormat:@"数量: %ld", _orderDetailDTO.quantity];
+    NSMutableString* amountLabelString = [[NSMutableString alloc] initWithFormat:@"数量: %ld", _orderDetailDTO.quantity ];
+    if (NotNilAndNull(orderDetailDTO.depotDto) && orderDetailDTO.depotDto.name.length>0) {
+        [amountLabelString appendString:[NSString stringWithFormat:@" (%@)", orderDetailDTO.depotDto.name]];
+    }
+    self.amountLabel.text = amountLabelString;
     self.priceLabel.text = [NSString stringWithFormat:@"单台定价: %.02f", _orderDetailDTO.price];
     if (!_orderDetailDTO.isAony) {
         [self fomartCompanyLabel];

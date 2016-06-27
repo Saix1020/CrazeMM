@@ -479,6 +479,8 @@
 		B9C3954D1CF5DB7100AB44B6 /* AddrDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395481CF5DB2900AB44B6 /* AddrDetailCell.m */; };
 		B9C3954F1CF5DB8700AB44B6 /* AddrDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C395491CF5DB2900AB44B6 /* AddrDetailCell.xib */; };
 		B9C395501CF5DB9200AB44B6 /* AddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395451CF5DB1100AB44B6 /* AddressesViewController.m */; };
+		B9C4BCB11D20FDB800C719CE /* SearchViewForNav.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCB01D20FDB800C719CE /* SearchViewForNav.m */; };
+		B9C4BCB21D20FDB800C719CE /* SearchViewForNav.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCB01D20FDB800C719CE /* SearchViewForNav.m */; };
 		B9D1C5351D05ADC10099BA95 /* StockDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */; };
 		B9D1C5381D05AF1B0099BA95 /* MIneStockInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5371D05AF1B0099BA95 /* MIneStockInfoViewController.m */; };
 		B9D1C5391D05B0440099BA95 /* StockDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */; };
@@ -1613,6 +1615,8 @@
 		B9C395471CF5DB2900AB44B6 /* AddrDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddrDetailCell.h; path = mine/address/AddrDetailCell.h; sourceTree = "<group>"; };
 		B9C395481CF5DB2900AB44B6 /* AddrDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddrDetailCell.m; path = mine/address/AddrDetailCell.m; sourceTree = "<group>"; };
 		B9C395491CF5DB2900AB44B6 /* AddrDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrDetailCell.xib; path = mine/address/AddrDetailCell.xib; sourceTree = "<group>"; };
+		B9C4BCAF1D20FDB800C719CE /* SearchViewForNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewForNav.h; path = search/SearchViewForNav.h; sourceTree = "<group>"; };
+		B9C4BCB01D20FDB800C719CE /* SearchViewForNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewForNav.m; path = search/SearchViewForNav.m; sourceTree = "<group>"; };
 		B9D1C5331D05ADC00099BA95 /* StockDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockDetailDTO.h; sourceTree = "<group>"; };
 		B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockDetailDTO.m; sourceTree = "<group>"; };
 		B9D1C5361D05AF1B0099BA95 /* MIneStockInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIneStockInfoViewController.h; sourceTree = "<group>"; };
@@ -2985,6 +2989,8 @@
 				B9A149351D1FA277005080D1 /* BrandHeadView.xib */,
 				B9A149381D1FA385005080D1 /* BrandHeadView.h */,
 				B9A149391D1FA385005080D1 /* BrandHeadView.m */,
+				B9C4BCAF1D20FDB800C719CE /* SearchViewForNav.h */,
+				B9C4BCB01D20FDB800C719CE /* SearchViewForNav.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3853,6 +3859,7 @@
 				B91896F81CD0EF260061D0B6 /* AccountSummaryCell.m in Sources */,
 				B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */,
 				B91732241CD1F05400C29698 /* BounceOutDownAnimation.m in Sources */,
+				B9C4BCB11D20FDB800C719CE /* SearchViewForNav.m in Sources */,
 				B902B6DF1D026C88005B6F5C /* MineStockSellViewController.m in Sources */,
 				B99D12EB1CC66045000DFF95 /* SearchViewController.m in Sources */,
 				B999552F1CE36FF7007F26D2 /* BuyProductDetailDTO.m in Sources */,
@@ -4167,6 +4174,7 @@
 				B9EFAE101CED514100F81157 /* HttpLogout.m in Sources */,
 				B9EFAE111CED514100F81157 /* ShakeAnimation.m in Sources */,
 				B9EFAE121CED514100F81157 /* TTOverlayView.m in Sources */,
+				B9C4BCB21D20FDB800C719CE /* SearchViewForNav.m in Sources */,
 				B9EFAE131CED514100F81157 /* UserCenter.m in Sources */,
 				B9EFAE141CED514100F81157 /* SupplyListViewController.m in Sources */,
 				B9EFAE161CED514100F81157 /* BaseDTO.m in Sources */,

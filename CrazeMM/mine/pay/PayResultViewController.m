@@ -24,9 +24,21 @@
 @property (nonatomic, strong) TransferAlertView* transferAlertView;
 @property (nonatomic) BOOL keyboardShowing;
 
+@property (nonatomic, copy) NSArray* stockDetailDTOs;
+
 @end
 
 @implementation PayResultViewController
+
+-(instancetype)initWithStockDetailDtos:(NSArray *)stockDetailDTOs
+{
+    self = [self init];
+    if (self) {
+        self.stockDetailDTOs = stockDetailDTOs;
+    }
+    return self;
+}
+
 
 -(TransferAlertView*)transferAlertView
 {
@@ -154,7 +166,13 @@
     [super viewWillLayoutSubviews];
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     
-    self.payBottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
+    if (self.stockDetailDTOs.count) {
+        self.payBottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
+
+    }
+    else {
+        self.payBottomView.frame = CGRectZero;
+    }
     //[self.view bringSubviewToFront:self.payBottomView];
     
     //self.tableView.contentSize = CGSizeMake(0, 100);
@@ -218,7 +236,7 @@
         return 1*2;
     }
     else {
-        return 4*2-1;
+        return self.stockDetailDTOs.count*2;
     };
 }
 

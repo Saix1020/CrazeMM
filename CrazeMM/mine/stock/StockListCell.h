@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UILabel *flagLabel;
+@property (weak, nonatomic) IBOutlet UIButton *pickupButton;
 
 @property (weak, nonatomic) id<StockListCellDelegate> delegate;
 

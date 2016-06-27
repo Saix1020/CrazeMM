@@ -50,6 +50,8 @@
         [self.view addSubview:_bottomView];
 
         [_bottomView.confirmButton addTarget:self action:@selector(bottomViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView.addtionalButton addTarget:self action:@selector(bottomViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
         
         _bottomView.selectAllCheckBox.delegate = self;
     }

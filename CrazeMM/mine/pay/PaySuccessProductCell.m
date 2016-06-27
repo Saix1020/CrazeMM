@@ -58,6 +58,14 @@
     [self fomartTotalPriceLabel];
 }
 
+-(void)setStockDetailDto:(StockDetailDTO *)stockDetailDto
+{
+    _stockDetailDto = stockDetailDto;
+    
+    self.productTitleLabel.text = stockDetailDto.goodName;
+    self.orignalUnitPriceLabel.text = [NSString stringWithFormat:@"%.02f", stockDetailDto.inprice];
+}
+
 -(void)fomartTotalPriceLabel
 {
     self.totalPriceLabel.backgroundColor = [UIColor UIColorFromRGB:0xf7f7f7];

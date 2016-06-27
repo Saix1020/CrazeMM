@@ -40,6 +40,7 @@
 @property (nonatomic, strong) NSString* gvolume;
 @property (nonatomic, strong) NSString* gcolor;
 @property (nonatomic, strong) NSString* gnetwork;
+@property (nonatomic, strong) NSString* goodName;
 
 @property (nonatomic, strong) NSMutableArray<StockLogDTO*>* logs;
 

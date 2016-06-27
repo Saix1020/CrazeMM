@@ -51,6 +51,9 @@
     if(!_bottomView){
         _bottomView = [super bottomView];
         [_bottomView.confirmButton setTitle:@"批量出货" forState:UIControlStateNormal];
+        _bottomView.addtionalButton.hidden = NO;
+        [_bottomView.addtionalButton setTitle:@"合并提货" forState:UIControlStateNormal];
+
         [_bottomView.totalPriceLabel setText:@""];
         
     }
@@ -118,8 +121,26 @@
         
             [self shippingProducts];
 
-        }
+    }
+    else if(button == self.bottomView.addtionalButton){
+        
+    }
     
+}
+
+-(void)pickupProducts
+{
+    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+    
+    for (MineStockDTO* dto in self.dataSource) {
+        if (dto.selected) {
+            [selectedDtos addObject:dto];
+        }
+    }
+    if (!selectedDtos.count) {
+        [self showAlertViewWithMessage:@"请选择需要提货的库存"];
+        return;
+    }
 }
 
 -(void)shippingProducts
@@ -131,6 +152,11 @@
             [selectedDtos addObject:dto];
         }
     }
+    if (!selectedDtos.count) {
+        [self showAlertViewWithMessage:@"请选择需要出货的库存"];
+        return;
+    }
+    
     MineStockSellViewController* stockSellVc = [[MineStockSellViewController alloc]initWith:selectedDtos];
     stockSellVc.delegate = self;
     [self.navigationController pushViewController:stockSellVc animated:YES];
@@ -289,7 +315,7 @@
 #pragma -- mark SupplyListCell delegate
 -(void)buttonClicked:(UIButton *)sender andSid:(NSInteger)sid
 {
-        [self shippingProductsWithSid:sid];
+    [self shippingProductsWithSid:sid];
 }
 
 
@@ -319,6 +345,13 @@
 
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
+    //已入库
+    if (index == 1) {
+        self.bottomView.hidden = NO;
+    }
+    else {
+        self.bottomView.hidden = YES;
+    }
     [self.dataSource removeAllObjects];
     [self.tableView reloadData];
     self.pageNumber = 0;

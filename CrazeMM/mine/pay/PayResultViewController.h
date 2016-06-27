@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StockDetailDTO.h"
 
 @interface PayResultViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+-(instancetype)initWithStockDetailDtos:(NSArray*)stockDetailDTOs;
 
 @end

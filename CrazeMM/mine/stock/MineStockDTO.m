@@ -36,11 +36,37 @@
         self.gvolume = dict[@"gvolume"];
         self.goodName = dict[@"goodName"];
         self.gnetwork = dict[@"gnetwork"];
+        self.gnetwork = dict[@"gcolor"];
+
         
         self.state = [dict[@"state"] integerValue];
         self.stateLabel = dict[@"stateLabel"];
 
         self.selected = NO;
+    }
+    return self;
+}
+
+-(instancetype)initWithStockDetailDTO:(StockDetailDTO*)stockDetailDto
+{
+    self = [super init];
+    if (self) {
+        self.gid = stockDetailDto.gid;
+        self.depotId = stockDetailDto.depotId;
+        self.presale = stockDetailDto.presale;
+        self.aftersale = stockDetailDto.aftersale;
+        self.version = stockDetailDto.version;
+        self.uid = stockDetailDto.uid;
+        self.insale = stockDetailDto.insale;
+        self.inprice = stockDetailDto.inprice;
+        self.isSerial = stockDetailDto.isSerial;
+        self.isOriginal = stockDetailDto.isOriginal;
+        self.isOriginalBox = stockDetailDto.isOriginalBox;
+        self.updateTime = stockDetailDto.updateTime;
+        self.gvolume = stockDetailDto.gvolume;
+        self.gnetwork = stockDetailDto.gnetwork;
+        self.gcolor = stockDetailDto.gcolor;
+        self.goodName = stockDetailDto.goodName;
     }
     return self;
 }

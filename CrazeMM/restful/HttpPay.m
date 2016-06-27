@@ -193,3 +193,64 @@
 }
 
 @end
+
+@implementation HttpBlancePayRequest
+
+-(instancetype)initWithAmount:(float)amount andOrders:(NSArray *)orders andPayPassword:(NSString *)payPassword andAddrId:(NSInteger)addrId
+{
+    
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"amount" : @(amount),
+                         @"orders": [orders componentsJoinedByString:@","],
+                         @"payPassword": payPassword,
+                         @"addrId" : @(addrId)
+                         } mutableCopy];
+    }
+    return self;
+}
+
+-(BOOL)needToken
+{
+    return YES;
+}
+
+-(NSString*)tokenName
+{
+    return @"balance_pay_token";
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/balance/pay");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+-(Class)responseClass
+{
+    return [HttpBlancePayResponse class];
+}
+
+@end
+
+
+@implementation HttpBlancePayResponse
+
+-(void)parserResponse
+{
+    if (NotNilAndNull(self.all[@"stock"])) {
+        self.stockDetailDtos = [[NSMutableArray alloc] init];
+        NSArray* stocks = self.all[@"stock"];
+        for (NSDictionary* stock in stocks) {
+            StockDetailDTO* stockDetail = [[StockDetailDTO alloc] initWith:stock];
+            [self.stockDetailDtos addObject:stockDetail];
+        }
+    }
+}
+
+@end

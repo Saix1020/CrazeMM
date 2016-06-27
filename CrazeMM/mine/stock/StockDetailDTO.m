@@ -48,6 +48,7 @@
         self.gvolume = dict[@"gvolume"];
         self.gcolor = dict[@"gcolor"];
         self.gnetwork = dict[@"gnetwork"];
+        self.goodName = dict[@"goodName"];
         
         [self parserStockLog:dict[@"logs"]];
     }

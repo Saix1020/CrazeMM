@@ -15,6 +15,7 @@
 #import "SearchListViewController.h"
 #import "SearchHistory.h"
 #import "HttpSearchKeyWord.h"
+#import "SearchViewForNav.h"
 
 typedef NS_ENUM(NSInteger, SearchTableViewSection){
     kSectionKeywords = 0,
@@ -27,7 +28,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 
 @property (nonatomic) SearchType searchType;
 @property (nonatomic, strong) UISearchBar* searchBar;
-@property (nonatomic, strong) UIView* searchView;
+@property (nonatomic, strong) SearchViewForNav* searchView;
 @property (nonatomic, strong) UIBarButtonItem* backButtonItem;
 @property (nonatomic, strong) UIBarButtonItem* searchButtonItem;
 @property (nonatomic, strong) UITableView* tableView;
@@ -112,12 +113,13 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
     return _searchButtonItem;
 }
 
--(UIView*)searchView
+-(SearchViewForNav*)searchView
 {
     if (!_searchView) {
-        _searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 768, 44)];
+        _searchView = [[SearchViewForNav alloc]initWithFrame:CGRectMake(0, 0, 768, 44)];
         _searchView.backgroundColor = [UIColor clearColor];
         [_searchView addSubview:self.searchBar];
+        _searchView.searchBar = self.searchBar;
     }
     
     return _searchView;

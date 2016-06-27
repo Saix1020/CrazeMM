@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="loq-eU-YmN" id="mL9-6a-XSY">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="159.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zxG-I9-pRt" customClass="BEMCheckBox">
@@ -112,6 +112,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="28" id="7QA-el-7D4"/>
                             <constraint firstAttribute="trailing" secondItem="ezj-O7-f4O" secondAttribute="trailing" constant="28" id="A0Y-iP-i2G"/>
                             <constraint firstItem="JYg-eW-OMY" firstAttribute="top" secondItem="ezj-O7-f4O" secondAttribute="top" id="Vxe-yL-uw7"/>
                             <constraint firstItem="ezj-O7-f4O" firstAttribute="baseline" secondItem="JYg-eW-OMY" secondAttribute="firstBaseline" id="W9q-uG-Wkc"/>
@@ -167,6 +168,7 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="PjS-Kp-uuf"/>
+                        <exclude reference="eRS-tl-xze"/>
                         <exclude reference="Btp-H9-VWj"/>
                     </mask>
                 </variation>
@@ -175,6 +177,7 @@
                 <outlet property="dateLabel" destination="Exd-Ba-xmg" id="SBm-EP-z5A"/>
                 <outlet property="flagLabel" destination="VMc-Yf-yz2" id="uht-BZ-eYs"/>
                 <outlet property="numberLabel" destination="H7E-ec-eIb" id="8BT-5f-far"/>
+                <outlet property="numberLabelTopConstraint" destination="SKW-dt-GOa" id="g01-dt-Y5B"/>
                 <outlet property="offButton" destination="ezj-O7-f4O" id="4FC-zx-aOT"/>
                 <outlet property="priceLabel" destination="T9Z-MR-8bg" id="x5u-7A-WVa"/>
                 <outlet property="productLabel" destination="PFU-Ln-pYw" id="mNb-yq-f3Z"/>
