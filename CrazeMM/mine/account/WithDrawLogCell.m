@@ -26,7 +26,7 @@
     self.stateLabel.text = [NSString stringWithFormat:@" %@ ", withDrawLogDto.stateLabel];
     self.createTime.text = withDrawLogDto.createTime;
     self.amountLabel.text = [NSString stringWithFormat:@"¥%.02f", withDrawLogDto.amount];
-    self.bankDescLabel.text = [NSString stringWithFormat:@"%@(%@)", withDrawLogDto.openingbank, [withDrawLogDto.bankaccount substringToIndex:4]];
+    self.bankDescLabel.text = withDrawLogDto.bankDesc;
 
 }
 

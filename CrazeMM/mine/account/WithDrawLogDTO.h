@@ -25,4 +25,6 @@
 @property (nonatomic, copy) NSString* applyTime;
 @property (nonatomic, copy) NSString* openingbank;
 
+@property (nonatomic, readonly) NSString* bankDesc;
+
 @end
