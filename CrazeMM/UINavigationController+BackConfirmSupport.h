@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationController (BackComfirmSupport)
+@interface UINavigationController (BackConfirmSupport)
 
 @property (nonatomic, copy) NSString* confirmString;
 

@@ -495,8 +495,8 @@
 		B9C4BCCD1D22623B00C719CE /* ConsigneeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C4BCC91D22623B00C719CE /* ConsigneeCell.xib */; };
 		B9C4BCD01D22689700C719CE /* ConsigneeAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCCF1D22689700C719CE /* ConsigneeAddViewController.m */; };
 		B9C4BCD11D22689700C719CE /* ConsigneeAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCCF1D22689700C719CE /* ConsigneeAddViewController.m */; };
-		B9C4BCD41D226C9600C719CE /* UINavigationController+BackComfirmSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCD31D226C9600C719CE /* UINavigationController+BackComfirmSupport.m */; };
-		B9C4BCD51D226C9600C719CE /* UINavigationController+BackComfirmSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCD31D226C9600C719CE /* UINavigationController+BackComfirmSupport.m */; };
+		B9C4BCD41D226C9600C719CE /* UINavigationController+BackConfirmSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCD31D226C9600C719CE /* UINavigationController+BackConfirmSupport.m */; };
+		B9C4BCD51D226C9600C719CE /* UINavigationController+BackConfirmSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCD31D226C9600C719CE /* UINavigationController+BackConfirmSupport.m */; };
 		B9D1C5351D05ADC10099BA95 /* StockDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */; };
 		B9D1C5381D05AF1B0099BA95 /* MIneStockInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5371D05AF1B0099BA95 /* MIneStockInfoViewController.m */; };
 		B9D1C5391D05B0440099BA95 /* StockDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */; };
@@ -1646,8 +1646,8 @@
 		B9C4BCC91D22623B00C719CE /* ConsigneeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsigneeCell.xib; sourceTree = "<group>"; };
 		B9C4BCCE1D22689700C719CE /* ConsigneeAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsigneeAddViewController.h; sourceTree = "<group>"; };
 		B9C4BCCF1D22689700C719CE /* ConsigneeAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsigneeAddViewController.m; sourceTree = "<group>"; };
-		B9C4BCD21D226C9600C719CE /* UINavigationController+BackComfirmSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackComfirmSupport.h"; sourceTree = "<group>"; };
-		B9C4BCD31D226C9600C719CE /* UINavigationController+BackComfirmSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BackComfirmSupport.m"; sourceTree = "<group>"; };
+		B9C4BCD21D226C9600C719CE /* UINavigationController+BackConfirmSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackConfirmSupport.h"; sourceTree = "<group>"; };
+		B9C4BCD31D226C9600C719CE /* UINavigationController+BackConfirmSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BackConfirmSupport.m"; sourceTree = "<group>"; };
 		B9D1C5331D05ADC00099BA95 /* StockDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockDetailDTO.h; sourceTree = "<group>"; };
 		B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockDetailDTO.m; sourceTree = "<group>"; };
 		B9D1C5361D05AF1B0099BA95 /* MIneStockInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIneStockInfoViewController.h; sourceTree = "<group>"; };
@@ -3061,8 +3061,8 @@
 				B95924051CDEB26300533E77 /* CommonOrderListViewController.m */,
 				B965B7201D1D7DF70021C809 /* ListQueryViewController.h */,
 				B965B7211D1D7DF70021C809 /* ListQueryViewController.m */,
-				B9C4BCD21D226C9600C719CE /* UINavigationController+BackComfirmSupport.h */,
-				B9C4BCD31D226C9600C719CE /* UINavigationController+BackComfirmSupport.m */,
+				B9C4BCD21D226C9600C719CE /* UINavigationController+BackConfirmSupport.h */,
+				B9C4BCD31D226C9600C719CE /* UINavigationController+BackConfirmSupport.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -4024,7 +4024,7 @@
 				B967E7421CE589B600621F28 /* OrderLogsCell.m in Sources */,
 				B91732601CD1F05500C29698 /* ZoomOutLeftAnimation.m in Sources */,
 				B91732731CD1F78900C29698 /* CATransform3DExtend.m in Sources */,
-				B9C4BCD41D226C9600C719CE /* UINavigationController+BackComfirmSupport.m in Sources */,
+				B9C4BCD41D226C9600C719CE /* UINavigationController+BackConfirmSupport.m in Sources */,
 				B967E7351CE57EBD00621F28 /* MASConstraint.m in Sources */,
 				B965B7261D1D80100021C809 /* WithDrawLogCell.m in Sources */,
 				B99D131C1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.m in Sources */,
@@ -4273,7 +4273,7 @@
 				B9EFAE391CED514100F81157 /* MMAlertViewWithOK.m in Sources */,
 				B9EFAE3A1CED514100F81157 /* AccountViewController.m in Sources */,
 				B9C4BCC21D2255EC00C719CE /* ConsigneeDTO.m in Sources */,
-				B9C4BCD51D226C9600C719CE /* UINavigationController+BackComfirmSupport.m in Sources */,
+				B9C4BCD51D226C9600C719CE /* UINavigationController+BackConfirmSupport.m in Sources */,
 				B9EFAE3B1CED514100F81157 /* OrderDetailStatusCell.m in Sources */,
 				B9A149201D1EC870005080D1 /* HttpGoodCatagory.m in Sources */,
 				B9EFAE3C1CED514100F81157 /* HttpMineSupplyShelve.m in Sources */,
