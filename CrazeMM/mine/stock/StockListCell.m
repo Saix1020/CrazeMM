@@ -70,9 +70,17 @@
 -(void)fomartNumberLabel
 {
     
-    NSString* firstComponent = [NSString stringWithFormat:@"总数: %ld ", self.mineStockDto.presale];
+    NSString* firstComponent = [NSString stringWithFormat:@"总数: %ld ", self.mineStockDto.presale+self.mineStockDto.insale];
     
-    NSString* secondComopent = [NSString stringWithFormat:@"在售: %ld ", self.mineStockDto.insale];
+    NSString* secondComopent;
+    if (self.mineStockDto.insale>0) {
+        secondComopent = [NSString stringWithFormat:@"在售: %ld ", self.mineStockDto.insale];
+    }
+    else if(self.mineStockDto.outstock>0){
+        secondComopent = [NSString stringWithFormat:@"待出库: %ld ", self.mineStockDto.outstock];
+
+    }
+    
     NSString* thirdComopent = self.mineStockDto.depotName.length>0?[NSString stringWithFormat:@"(%@)", self.mineStockDto.depotName] :@"";
 
     NSMutableAttributedString *attributedText =
@@ -82,7 +90,7 @@
                                                         NSFontAttributeName : [UIFont systemFontOfSize:14.f]
                                                         
                                                         }];
-    if (self.mineStockDto.insale>0) {
+    if (secondComopent.length>0) {
         [attributedText appendAttributedString:[
                                                 [NSAttributedString alloc] initWithString:secondComopent
                                                 attributes:@{
@@ -144,7 +152,9 @@
     [self fomartNumberLabel];
     self.selectCheckBox.on = mineStockDto.selected;
     self.stockLabel.text = mineStockDto.depotName;
-    self.flagLabel.text = [NSString stringWithFormat:@" %@ ", mineStockDto.stateLabel];
+    if(mineStockDto.stateLabel.length>0){
+        self.flagLabel.text = [NSString stringWithFormat:@" %@ ", mineStockDto.stateLabel];
+    }
     
     [self fomartStatusLabel];
 }
@@ -156,11 +166,44 @@
 
 -(void)buttonClicked:(UIButton*)button
 {
-    //if (button == self.offButton){
+    if (button == self.offButton){
+        if ([self.delegate respondsToSelector:@selector(sellButtonClicked:andSid:)]) {
+            [self.delegate sellButtonClicked:button andSid:self.mineStockDto.id];
+        }
+    }
+    else if(button == self.pickupButton) {
+        if ([self.delegate respondsToSelector:@selector(pickupButtonClicked:andSid:)]) {
+            [self.delegate pickupButtonClicked:button andSid:self.mineStockDto.id];
+        }
+    }
+    else {
         if ([self.delegate respondsToSelector:@selector(buttonClicked:andSid:)]) {
             [self.delegate buttonClicked:button andSid:self.mineStockDto.id];
         }
-    //}
+
+    }
+    
+}
+
+-(void)setHiddenButtons:(BOOL)hiddenButtons
+{
+    _hiddenButtons = hiddenButtons;
+    self.offButton.hidden = hiddenButtons;
+    self.pickupButton.hidden = hiddenButtons;
+}
+
+-(void)setHiddenCheckBox:(BOOL)hiddenButtons
+{
+    _hiddenCheckBox = hiddenButtons;
+    self.selectCheckBox.hidden = hiddenButtons;
+    if(hiddenButtons){
+        self.titleLeadingConstraint.constant = 8.f;
+    }
+    else {
+        self.titleLeadingConstraint.constant = 32.f;
+
+    }
+    [self updateConstraints];
     
 }
 

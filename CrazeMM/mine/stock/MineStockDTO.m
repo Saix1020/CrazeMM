@@ -24,6 +24,7 @@
         self.aftersale = [dict[@"aftersale"] integerValue];
         self.version = [dict[@"version"] integerValue];
         self.insale = [dict[@"insale"] integerValue];
+        self.outstock = [dict[@"outstock"] integerValue];
         
         self.isSerial = [dict[@"isSerial"] boolValue];
         self.isOriginal = [dict[@"isOriginal"] boolValue];
@@ -35,6 +36,8 @@
         self.gimage = dict[@"gimage"];
         self.gvolume = dict[@"gvolume"];
         self.goodName = dict[@"goodName"];
+        self.goodImage = dict[@"goodImage"];
+
         self.gnetwork = dict[@"gnetwork"];
         self.gnetwork = dict[@"gcolor"];
 

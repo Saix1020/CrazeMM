@@ -14,9 +14,14 @@
 
 -(void)buttonClicked:(UIButton*)sender andSid:(NSInteger)sid;
 
+-(void)pickupButtonClicked:(UIButton*)sender andSid:(NSInteger)sid;
+-(void)sellButtonClicked:(UIButton*)sender andSid:(NSInteger)sid;
+
+
 @end
 
 @interface StockListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLeadingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topSpaceContraint;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectCheckBox;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -35,6 +40,9 @@
 @property (weak, nonatomic) id<StockListCellDelegate> delegate;
 
 @property (nonatomic, strong) MineStockDTO* mineStockDto;
+
+@property (nonatomic) BOOL hiddenButtons;
+@property (nonatomic) BOOL hiddenCheckBox;
 
 +(CGFloat)cellHeight;
 

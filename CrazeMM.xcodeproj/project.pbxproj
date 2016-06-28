@@ -481,6 +481,22 @@
 		B9C395501CF5DB9200AB44B6 /* AddressesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C395451CF5DB1100AB44B6 /* AddressesViewController.m */; };
 		B9C4BCB11D20FDB800C719CE /* SearchViewForNav.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCB01D20FDB800C719CE /* SearchViewForNav.m */; };
 		B9C4BCB21D20FDB800C719CE /* SearchViewForNav.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCB01D20FDB800C719CE /* SearchViewForNav.m */; };
+		B9C4BCB91D21736400C719CE /* OutStockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCB81D21736400C719CE /* OutStockViewController.m */; };
+		B9C4BCBA1D21736400C719CE /* OutStockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCB81D21736400C719CE /* OutStockViewController.m */; };
+		B9C4BCBD1D22559F00C719CE /* HttpConsignee.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCBC1D22559F00C719CE /* HttpConsignee.m */; };
+		B9C4BCBE1D22559F00C719CE /* HttpConsignee.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCBC1D22559F00C719CE /* HttpConsignee.m */; };
+		B9C4BCC11D2255EC00C719CE /* ConsigneeDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCC01D2255EC00C719CE /* ConsigneeDTO.m */; };
+		B9C4BCC21D2255EC00C719CE /* ConsigneeDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCC01D2255EC00C719CE /* ConsigneeDTO.m */; };
+		B9C4BCC51D2260F500C719CE /* ConsigneeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCC41D2260F500C719CE /* ConsigneeListViewController.m */; };
+		B9C4BCC61D2260F500C719CE /* ConsigneeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCC41D2260F500C719CE /* ConsigneeListViewController.m */; };
+		B9C4BCCA1D22623B00C719CE /* ConsigneeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCC81D22623B00C719CE /* ConsigneeCell.m */; };
+		B9C4BCCB1D22623B00C719CE /* ConsigneeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCC81D22623B00C719CE /* ConsigneeCell.m */; };
+		B9C4BCCC1D22623B00C719CE /* ConsigneeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C4BCC91D22623B00C719CE /* ConsigneeCell.xib */; };
+		B9C4BCCD1D22623B00C719CE /* ConsigneeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9C4BCC91D22623B00C719CE /* ConsigneeCell.xib */; };
+		B9C4BCD01D22689700C719CE /* ConsigneeAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCCF1D22689700C719CE /* ConsigneeAddViewController.m */; };
+		B9C4BCD11D22689700C719CE /* ConsigneeAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCCF1D22689700C719CE /* ConsigneeAddViewController.m */; };
+		B9C4BCD41D226C9600C719CE /* UINavigationController+BackComfirmSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCD31D226C9600C719CE /* UINavigationController+BackComfirmSupport.m */; };
+		B9C4BCD51D226C9600C719CE /* UINavigationController+BackComfirmSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4BCD31D226C9600C719CE /* UINavigationController+BackComfirmSupport.m */; };
 		B9D1C5351D05ADC10099BA95 /* StockDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */; };
 		B9D1C5381D05AF1B0099BA95 /* MIneStockInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5371D05AF1B0099BA95 /* MIneStockInfoViewController.m */; };
 		B9D1C5391D05B0440099BA95 /* StockDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */; };
@@ -1617,6 +1633,21 @@
 		B9C395491CF5DB2900AB44B6 /* AddrDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrDetailCell.xib; path = mine/address/AddrDetailCell.xib; sourceTree = "<group>"; };
 		B9C4BCAF1D20FDB800C719CE /* SearchViewForNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewForNav.h; path = search/SearchViewForNav.h; sourceTree = "<group>"; };
 		B9C4BCB01D20FDB800C719CE /* SearchViewForNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewForNav.m; path = search/SearchViewForNav.m; sourceTree = "<group>"; };
+		B9C4BCB71D21736400C719CE /* OutStockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutStockViewController.h; sourceTree = "<group>"; };
+		B9C4BCB81D21736400C719CE /* OutStockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutStockViewController.m; sourceTree = "<group>"; };
+		B9C4BCBB1D22559F00C719CE /* HttpConsignee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpConsignee.h; path = restful/HttpConsignee.h; sourceTree = "<group>"; };
+		B9C4BCBC1D22559F00C719CE /* HttpConsignee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpConsignee.m; path = restful/HttpConsignee.m; sourceTree = "<group>"; };
+		B9C4BCBF1D2255EC00C719CE /* ConsigneeDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsigneeDTO.h; sourceTree = "<group>"; };
+		B9C4BCC01D2255EC00C719CE /* ConsigneeDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsigneeDTO.m; sourceTree = "<group>"; };
+		B9C4BCC31D2260F500C719CE /* ConsigneeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsigneeListViewController.h; sourceTree = "<group>"; };
+		B9C4BCC41D2260F500C719CE /* ConsigneeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsigneeListViewController.m; sourceTree = "<group>"; };
+		B9C4BCC71D22623B00C719CE /* ConsigneeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsigneeCell.h; sourceTree = "<group>"; };
+		B9C4BCC81D22623B00C719CE /* ConsigneeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsigneeCell.m; sourceTree = "<group>"; };
+		B9C4BCC91D22623B00C719CE /* ConsigneeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsigneeCell.xib; sourceTree = "<group>"; };
+		B9C4BCCE1D22689700C719CE /* ConsigneeAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsigneeAddViewController.h; sourceTree = "<group>"; };
+		B9C4BCCF1D22689700C719CE /* ConsigneeAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsigneeAddViewController.m; sourceTree = "<group>"; };
+		B9C4BCD21D226C9600C719CE /* UINavigationController+BackComfirmSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackComfirmSupport.h"; sourceTree = "<group>"; };
+		B9C4BCD31D226C9600C719CE /* UINavigationController+BackComfirmSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BackComfirmSupport.m"; sourceTree = "<group>"; };
 		B9D1C5331D05ADC00099BA95 /* StockDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockDetailDTO.h; sourceTree = "<group>"; };
 		B9D1C5341D05ADC00099BA95 /* StockDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockDetailDTO.m; sourceTree = "<group>"; };
 		B9D1C5361D05AF1B0099BA95 /* MIneStockInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIneStockInfoViewController.h; sourceTree = "<group>"; };
@@ -1754,6 +1785,12 @@
 				B902B6D91D026C88005B6F5C /* MineStockSellViewController.m */,
 				B9D1C5361D05AF1B0099BA95 /* MIneStockInfoViewController.h */,
 				B9D1C5371D05AF1B0099BA95 /* MIneStockInfoViewController.m */,
+				B9C4BCB71D21736400C719CE /* OutStockViewController.h */,
+				B9C4BCB81D21736400C719CE /* OutStockViewController.m */,
+				B9C4BCC31D2260F500C719CE /* ConsigneeListViewController.h */,
+				B9C4BCC41D2260F500C719CE /* ConsigneeListViewController.m */,
+				B9C4BCCE1D22689700C719CE /* ConsigneeAddViewController.h */,
+				B9C4BCCF1D22689700C719CE /* ConsigneeAddViewController.m */,
 			);
 			name = stock;
 			path = mine/stock;
@@ -1768,6 +1805,9 @@
 				B902B6F91D027AAC005B6F5C /* StockListCell.h */,
 				B902B6FA1D027AAC005B6F5C /* StockListCell.m */,
 				B902B6FD1D027ACD005B6F5C /* StockListCell.xib */,
+				B9C4BCC71D22623B00C719CE /* ConsigneeCell.h */,
+				B9C4BCC81D22623B00C719CE /* ConsigneeCell.m */,
+				B9C4BCC91D22623B00C719CE /* ConsigneeCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1777,6 +1817,8 @@
 			children = (
 				B902B6D61D026C88005B6F5C /* HttpStock.h */,
 				B902B6D71D026C88005B6F5C /* HttpStock.m */,
+				B9C4BCBB1D22559F00C719CE /* HttpConsignee.h */,
+				B9C4BCBC1D22559F00C719CE /* HttpConsignee.m */,
 			);
 			name = stock;
 			sourceTree = "<group>";
@@ -1790,6 +1832,8 @@
 				B902B6E61D026CF5005B6F5C /* MineStockDTO.m */,
 				B902B6D41D026C88005B6F5C /* DepotDTO.h */,
 				B902B6D51D026C88005B6F5C /* DepotDTO.m */,
+				B9C4BCBF1D2255EC00C719CE /* ConsigneeDTO.h */,
+				B9C4BCC01D2255EC00C719CE /* ConsigneeDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -3017,6 +3061,8 @@
 				B95924051CDEB26300533E77 /* CommonOrderListViewController.m */,
 				B965B7201D1D7DF70021C809 /* ListQueryViewController.h */,
 				B965B7211D1D7DF70021C809 /* ListQueryViewController.m */,
+				B9C4BCD21D226C9600C719CE /* UINavigationController+BackComfirmSupport.h */,
+				B9C4BCD31D226C9600C719CE /* UINavigationController+BackComfirmSupport.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -3469,6 +3515,7 @@
 				B91896A01CCE66710061D0B6 /* ProductWithNumberView.xib in Resources */,
 				B98878C31CC9BB4100990AA4 /* segment_line_vertical_gray@2x.png in Resources */,
 				B99D13191CC7AAB2000DFF95 /* fontawesome-webfont.ttf in Resources */,
+				B9C4BCCC1D22623B00C719CE /* ConsigneeCell.xib in Resources */,
 				B9A780421CD9E32E00A89047 /* ProductRecommendView.xib in Resources */,
 				B964F98B1CC50344003E0D44 /* slide-3.jpg in Resources */,
 				B99194801CCCA26C0032A393 /* CommonBottomView.xib in Resources */,
@@ -3561,6 +3608,7 @@
 				B9EFAF381CED514100F81157 /* AddrRegionCell.xib in Resources */,
 				B9EFAF391CED514100F81157 /* lauch-screen.jpg in Resources */,
 				B9EFAF3A1CED514100F81157 /* citydictionary.plist in Resources */,
+				B9C4BCCD1D22623B00C719CE /* ConsigneeCell.xib in Resources */,
 				B9EFAF3B1CED514100F81157 /* prod_placeholder.jpg in Resources */,
 				B9EFAF3C1CED514100F81157 /* BrowserDealView.xib in Resources */,
 				B9EFAF3D1CED514100F81157 /* OrderDetailHeadCell.xib in Resources */,
@@ -3860,6 +3908,7 @@
 				B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */,
 				B91732241CD1F05400C29698 /* BounceOutDownAnimation.m in Sources */,
 				B9C4BCB11D20FDB800C719CE /* SearchViewForNav.m in Sources */,
+				B9C4BCB91D21736400C719CE /* OutStockViewController.m in Sources */,
 				B902B6DF1D026C88005B6F5C /* MineStockSellViewController.m in Sources */,
 				B99D12EB1CC66045000DFF95 /* SearchViewController.m in Sources */,
 				B999552F1CE36FF7007F26D2 /* BuyProductDetailDTO.m in Sources */,
@@ -3878,6 +3927,7 @@
 				B965B74A1D1E54860021C809 /* HttpGenMobileVcodeForUser.m in Sources */,
 				B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */,
 				B9C395461CF5DB1100AB44B6 /* AddressesViewController.m in Sources */,
+				B9C4BCD01D22689700C719CE /* ConsigneeAddViewController.m in Sources */,
 				B9C3954A1CF5DB2900AB44B6 /* AddrDetailCell.m in Sources */,
 				B965B6F01D1D30A40021C809 /* HttpUserInfo.m in Sources */,
 				B917322F1CD1F05400C29698 /* FadeInRightBigAnimation.m in Sources */,
@@ -3941,6 +3991,7 @@
 				B9B3E4BE1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */,
 				B988788D1CC8AB8B00990AA4 /* SuggestViewController.m in Sources */,
 				B99955361CE37988007F26D2 /* OrderDetailHeadCell.m in Sources */,
+				B9C4BCBD1D22559F00C719CE /* HttpConsignee.m in Sources */,
 				B967E6F11CE4CDC500621F28 /* OrderDefine.m in Sources */,
 				B91732801CD20E9000C29698 /* HttpLoginRequest.m in Sources */,
 				B965B7121D1D6B680021C809 /* RechargeLogCell.m in Sources */,
@@ -3973,6 +4024,7 @@
 				B967E7421CE589B600621F28 /* OrderLogsCell.m in Sources */,
 				B91732601CD1F05500C29698 /* ZoomOutLeftAnimation.m in Sources */,
 				B91732731CD1F78900C29698 /* CATransform3DExtend.m in Sources */,
+				B9C4BCD41D226C9600C719CE /* UINavigationController+BackComfirmSupport.m in Sources */,
 				B967E7351CE57EBD00621F28 /* MASConstraint.m in Sources */,
 				B965B7261D1D80100021C809 /* WithDrawLogCell.m in Sources */,
 				B99D131C1CC7C373000DFF95 /* UIBarButtonItem+FontAwesome.m in Sources */,
@@ -4017,6 +4069,7 @@
 				B91732341CD1F05400C29698 /* FadeOutDownBigAnimation.m in Sources */,
 				B95924061CDEB26300533E77 /* CommonOrderListViewController.m in Sources */,
 				B967E7371CE57EBD00621F28 /* MASLayoutConstraint.m in Sources */,
+				B9C4BCC51D2260F500C719CE /* ConsigneeListViewController.m in Sources */,
 				B91732411CD1F05400C29698 /* LightSpeedOutAnimation.m in Sources */,
 				B965B7431D1E1A270021C809 /* PasswordInputView.m in Sources */,
 				B965B73B1D1E184E0021C809 /* PayPasswordChangeViewController.m in Sources */,
@@ -4034,7 +4087,9 @@
 				B967E7341CE57EBD00621F28 /* MASCompositeConstraint.m in Sources */,
 				B967E74B1CE60C8100621F28 /* HttpOrderCancel.m in Sources */,
 				B98878BF1CC9BB1F00990AA4 /* CustomSegment.m in Sources */,
+				B9C4BCCA1D22623B00C719CE /* ConsigneeCell.m in Sources */,
 				B917322A1CD1F05400C29698 /* FadeInDownAnimation.m in Sources */,
+				B9C4BCC11D2255EC00C719CE /* ConsigneeDTO.m in Sources */,
 				B917321D1CD1F05400C29698 /* BasicAnimation.m in Sources */,
 				B91896931CCE518F0061D0B6 /* ProductNumberLabel.m in Sources */,
 				B99955321CE37372007F26D2 /* OrderDetailViewController.m in Sources */,
@@ -4146,6 +4201,7 @@
 				B9EFADF81CED514100F81157 /* ZoomOutUpAnimation.m in Sources */,
 				B9EFADF91CED514100F81157 /* OnlinePayViewController.m in Sources */,
 				B9EFADFA1CED514100F81157 /* TadaAnimation.m in Sources */,
+				B9C4BCC61D2260F500C719CE /* ConsigneeListViewController.m in Sources */,
 				B9EFADFB1CED514100F81157 /* AddressDTO.m in Sources */,
 				B9EFADFC1CED514100F81157 /* FlipOutYAnimation.m in Sources */,
 				B9EFADFD1CED514100F81157 /* RotateOutDownLeftAnimation.m in Sources */,
@@ -4164,6 +4220,7 @@
 				B9EFAE091CED514100F81157 /* BounceInDownAnimation.m in Sources */,
 				B9EFAE0A1CED514100F81157 /* HotCityTableViewCell.m in Sources */,
 				B9EFAE0B1CED514100F81157 /* RollInAnimation.m in Sources */,
+				B9C4BCCB1D22623B00C719CE /* ConsigneeCell.m in Sources */,
 				B9EFAE0C1CED514100F81157 /* MineWrapViewController.m in Sources */,
 				B9EFAE0D1CED514100F81157 /* OrderDetailAddrCell.m in Sources */,
 				B9D1C5961D0C575E0099BA95 /* StockSellCell.m in Sources */,
@@ -4215,10 +4272,13 @@
 				B902B6EB1D026D08005B6F5C /* HttpStock.m in Sources */,
 				B9EFAE391CED514100F81157 /* MMAlertViewWithOK.m in Sources */,
 				B9EFAE3A1CED514100F81157 /* AccountViewController.m in Sources */,
+				B9C4BCC21D2255EC00C719CE /* ConsigneeDTO.m in Sources */,
+				B9C4BCD51D226C9600C719CE /* UINavigationController+BackComfirmSupport.m in Sources */,
 				B9EFAE3B1CED514100F81157 /* OrderDetailStatusCell.m in Sources */,
 				B9A149201D1EC870005080D1 /* HttpGoodCatagory.m in Sources */,
 				B9EFAE3C1CED514100F81157 /* HttpMineSupplyShelve.m in Sources */,
 				B9EFAE3D1CED514100F81157 /* SlideInLeftAnimation.m in Sources */,
+				B9C4BCD11D22689700C719CE /* ConsigneeAddViewController.m in Sources */,
 				B965B7171D1D6F2C0021C809 /* RechargeLogDTO.m in Sources */,
 				B9EFAE3E1CED514100F81157 /* BrowserDealView.m in Sources */,
 				B9EFAE3F1CED514100F81157 /* RotateOutAnimation.m in Sources */,
@@ -4369,6 +4429,7 @@
 				B9EFAEBB1CED514100F81157 /* PulseAnimation.m in Sources */,
 				B9EFAEBC1CED514100F81157 /* FadeOutDownAnimation.m in Sources */,
 				B9EFAEBD1CED514100F81157 /* SupplyBottomOffView.m in Sources */,
+				B9C4BCBE1D22559F00C719CE /* HttpConsignee.m in Sources */,
 				B9EFAEBE1CED514100F81157 /* SupplyListCell.m in Sources */,
 				B9EFAEBF1CED514100F81157 /* FadeInAnimation.m in Sources */,
 				B965B6F51D1D31200021C809 /* MineUserInfoDTO.m in Sources */,
@@ -4441,6 +4502,7 @@
 				B9EFAEF61CED514100F81157 /* LastPayMethodCell.m in Sources */,
 				B9EFAEF71CED514100F81157 /* UIImageView+Utils.m in Sources */,
 				B9EFAEF81CED514100F81157 /* SelectdAddrCell.m in Sources */,
+				B9C4BCBA1D21736400C719CE /* OutStockViewController.m in Sources */,
 				B9EFAEF91CED514100F81157 /* FadeOutRightAnimation.m in Sources */,
 				B9EFAEFA1CED514100F81157 /* NSArray+MASAdditions.m in Sources */,
 				B9A149251D1ECB3E005080D1 /* FilterGoodInfo.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SuggestViewController.h"
 
 @interface AddrRegionCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -19,4 +20,9 @@
 
 -(void)hideChooseButton;
 
+-(void)popSelection:(NSArray*)options andDelegate:(id<SuggestVCDelegate>)delegate;
+-(void)dismissSelection;
+
 @end
+
+

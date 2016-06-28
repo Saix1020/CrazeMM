@@ -313,23 +313,6 @@ typedef NS_ENUM(NSInteger, MinePayRow){
             AddressesViewController *addrVC = [[AddressesViewController alloc] init];
             [self.navigationController pushViewController:addrVC animated:YES];
             addrVC.delegate = self;
-//            @strongify(self);
-//            HttpAddressDetailRequest* request = [[HttpAddressDetailRequest  alloc] init];
-//            [request request]
-//            .then(^(id responseObj){
-//                HttpAddressDetailResponse* response = (HttpAddressDetailResponse*)request.response;
-//                if (response.ok) {
-//                    AddressListViewController *addrVC = [[AddressListViewController alloc] initWithAddresses:response.addresses];;
-//                    [self.navigationController pushViewController:addrVC animated:YES];
-//                }
-//                else {
-//                    [self showAlertViewWithMessage:response.errorMsg];
-//                }
-//            })
-//            .catch(^(NSError* error){
-//                [self showAlertViewWithMessage:error.localizedDescription];
-//            });
-            
             return [RACSignal empty];
         }];
     }

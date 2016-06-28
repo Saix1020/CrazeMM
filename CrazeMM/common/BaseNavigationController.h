@@ -11,5 +11,6 @@
 @interface BaseNavigationController : UINavigationController
 
 @property (nonatomic, strong) UIViewController* nextViewController;
+@property (nonatomic, copy) NSString* confirmString;
 
 @end

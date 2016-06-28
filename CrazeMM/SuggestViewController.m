@@ -69,17 +69,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-//    if(cell.accessoryType != UITableViewCellAccessoryCheckmark) {
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    }
-//    else {
-//        cell.accessoryType = UITableViewCellAccessoryNone;
-//    }
-    
+        
     if(self.delegate && [self.delegate respondsToSelector:@selector(didSelectSuggestString:)]){
         [self.delegate performSelector:@selector(didSelectSuggestString:) withObject:cell.textLabel.text];
     }
+}
+
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", self.class);
 }
 
 

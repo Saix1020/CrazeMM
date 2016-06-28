@@ -96,7 +96,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="addrLabel" destination="XTR-VP-rpv" id="1Cz-ra-JOl"/>
+                <outlet property="addrLabelLeadingConstraint" destination="nuS-kf-GYp" id="paS-XD-oxB"/>
                 <outlet property="detailButton" destination="oPn-Fe-TzY" id="UVW-Qk-tSS"/>
+                <outlet property="geoIcon" destination="gNx-8Z-0fI" id="JAT-r3-tCR"/>
                 <outlet property="nameLabel" destination="ic9-Bg-ZDa" id="1TJ-0P-lLj"/>
                 <outlet property="phoneNumLabel" destination="4OH-lU-aXf" id="dmK-yF-97W"/>
             </connections>

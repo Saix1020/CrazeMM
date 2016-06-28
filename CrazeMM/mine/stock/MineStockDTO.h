@@ -23,6 +23,7 @@
 @property (nonatomic) NSInteger aftersale;
 @property (nonatomic) NSInteger version;
 @property (nonatomic) NSInteger insale;
+@property (nonatomic) NSInteger outstock;
 @property (nonatomic) BOOL isSerial;
 @property (nonatomic) BOOL isOriginal;
 @property (nonatomic) BOOL isOriginalBox;
@@ -32,6 +33,8 @@
 @property (nonatomic, strong) NSString* updateTime;
 @property (nonatomic, strong) NSString* gvolume;
 @property (nonatomic, strong) NSString* goodName;
+@property (nonatomic, strong) NSString* goodImage;
+
 @property (nonatomic, strong) NSString* gnetwork;
 @property (nonatomic, strong) NSString* gcolor;
 @property (nonatomic) NSInteger state;

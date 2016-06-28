@@ -26,6 +26,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -49,10 +50,20 @@
 {
     ProductWithNumberView* view = [[[NSBundle mainBundle]loadNibNamed:@"ProductWithNumberView" owner:nil options:nil] firstObject];
     view.frame = CGRectMake(0, 0, 68, 64);
-    if (![imageName hasPrefix:@"http"]) {
-        imageName = COMB_URL(imageName);
+    if (imageName) {
+        if (![imageName hasPrefix:@"http"]) {
+            if ([imageName hasPrefix:@"/"]) {
+                imageName = COMB_URL(imageName);
+            }
+            else {
+                imageName = [NSString stringWithFormat:@"/%@", imageName];
+                imageName = COMB_URL(imageName);
+                
+            }
+        }
+        [view.imageView setImageWithURL:[NSURL URLWithString:imageName] placeholderImage: [@"android" image]];
     }
-    [view.imageView setImageWithURL:[NSURL URLWithString:imageName] placeholderImage: [@"android" image]];
+    
     view.numberLabel.text = [NSString stringWithFormat:@"%ld台", num];
     view.numberLabel.adjustsFontSizeToFitWidth = YES;
     
@@ -72,31 +83,37 @@
     //[view.totalPriceLabel sizeToFit];
     //view.frame = CGRectMake(170, 32, 160, 60);
     self.productSumLabel = view;
-
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"实付金额:"];
-    [attributedText m80_setFont:[UIFont boldSystemFontOfSize:14.f]];
-    [attributedText m80_setTextColor:[UIColor grayColor]];
-    [self.productSumLabel.totalPriceLabel appendAttributedText:attributedText];
+    if (self.stockDTOs) {
+        self.productSumLabel.totalPriceLabel.text = @"";
+//        view.totalNumLabel.centerY = view.centerY;
+    }
+    else {
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"实付金额:"];
+        [attributedText m80_setFont:[UIFont boldSystemFontOfSize:14.f]];
+        [attributedText m80_setTextColor:[UIColor grayColor]];
+        [self.productSumLabel.totalPriceLabel appendAttributedText:attributedText];
+        
+        attributedText = [[NSMutableAttributedString alloc]initWithString:@"￥"];
+        [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
+        [attributedText m80_setTextColor:[UIColor redColor]];
+        [self.productSumLabel.totalPriceLabel appendAttributedText:attributedText];
+        
+        
+        NSString* totalPrice = [NSString stringWithFormat:@"%.02f", self.totalPrice];
+        NSString* comp1 = [totalPrice componentsSeparatedByString:@"."][0];
+        NSString* comp2 = [NSString stringWithFormat:@".%@",  [totalPrice componentsSeparatedByString:@"."][1]];
+        
+        attributedText = [[NSMutableAttributedString alloc]initWithString:comp1];
+        [attributedText m80_setFont:[UIFont boldSystemFontOfSize:18.f]];
+        [attributedText m80_setTextColor:[UIColor redColor]];
+        [self.productSumLabel.totalPriceLabel appendAttributedText:attributedText];
+        
+        attributedText = [[NSMutableAttributedString alloc]initWithString:comp2];
+        [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
+        [attributedText m80_setTextColor:[UIColor redColor]];
+        [self.productSumLabel.totalPriceLabel appendAttributedText:attributedText];
+    }
     
-    attributedText = [[NSMutableAttributedString alloc]initWithString:@"￥"];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
-    [attributedText m80_setTextColor:[UIColor redColor]];
-    [self.productSumLabel.totalPriceLabel appendAttributedText:attributedText];
-    
-    
-    NSString* totalPrice = [NSString stringWithFormat:@"%.02f", self.totalPrice];
-    NSString* comp1 = [totalPrice componentsSeparatedByString:@"."][0];
-    NSString* comp2 = [NSString stringWithFormat:@".%@",  [totalPrice componentsSeparatedByString:@"."][1]];
-    
-    attributedText = [[NSMutableAttributedString alloc]initWithString:comp1];
-    [attributedText m80_setFont:[UIFont boldSystemFontOfSize:18.f]];
-    [attributedText m80_setTextColor:[UIColor redColor]];
-    [self.productSumLabel.totalPriceLabel appendAttributedText:attributedText];
-    
-    attributedText = [[NSMutableAttributedString alloc]initWithString:comp2];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:14.f]];
-    [attributedText m80_setTextColor:[UIColor redColor]];
-    [self.productSumLabel.totalPriceLabel appendAttributedText:attributedText];
     [self.contentView addSubview:view];
     
     return view;
@@ -127,11 +144,37 @@
     [self refreshSubviews];
 }
 
+-(void)setStockDTOs:(NSArray<MineStockDTO *> *)stockDTOs
+{
+    _stockDTOs = stockDTOs;
+    self.totalAmount = 0;
+    self.totalPrice = 0;
+    for (UIView* view in self.imageViews) {
+        [view removeFromSuperview];
+    }
+    
+    self.imageViews = [[NSMutableArray alloc] init];
+    
+    NSUInteger tag = 0;
+    for(MineStockDTO* dto in stockDTOs)
+    {
+        self.totalAmount += dto.presale;
+        
+        UIView* view = [self createProductViewWithImage:dto.goodImage andNumber:dto.presale andTag:tag];
+        [self.imageViews addObject:view];
+    }
+    
+    [self refreshSubviews];
+}
+
 -(void)commonInit
 {
     if (self.productNumber == 0) {
         self.productNumber = 5;
     }
+    
+    self.clipsToBounds = YES;
+
     
     NSArray* imges = @[@"iphone", @"android"];
     
@@ -140,7 +183,7 @@
     self.imageViews = [[NSMutableArray alloc]  init];
     for (NSUInteger i=0; i<self.productNumber; i+=2) {
         x = 8.f;
-        UIView* view1 = [self createProductViewWithImage:imges[0] andNumber:100 andTag:i];
+        UIView* view1 = [self createProductViewWithImage:nil andNumber:100 andTag:i];
         view1.x = x;
         view1.y = y;
         [self.contentView addSubview:view1];
@@ -148,7 +191,7 @@
         x += 8.f+view1.width;
         
         if (i+1 < self.productNumber) {
-            UIView* view2 = [self createProductViewWithImage:imges[1] andNumber:100 andTag:i];
+            UIView* view2 = [self createProductViewWithImage:nil andNumber:100 andTag:i];
             view2.x = x;
             view2.y = y;
             [self.imageViews addObject:view2];
@@ -204,7 +247,14 @@
     self.productSumLabel.width = self.contentView.width - 64*2 -16.f*3 +8.f;
     self.productSumLabel.x = 64*2 + 16.f*2;
     self.productSumLabel.height = 60.f;
-    self.productSumLabel.y = self.height/2-self.productSumLabel.height/2;
+    if (self.stockDTOs) {
+        self.productSumLabel.y = self.height/2-self.productSumLabel.height/2 + 20.f;
+
+    }
+    else {
+        self.productSumLabel.y = self.height/2-self.productSumLabel.height/2;
+ 
+    }
 
 }
 

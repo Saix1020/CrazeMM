@@ -18,7 +18,7 @@
 #import "MineStockSellViewController.h"
 #import "HttpSaveSupplyInfo.h"
 #import "MIneStockInfoViewController.h"
-
+#import "OutStockViewController.h"
 
 @interface MineStockViewController()
 
@@ -123,7 +123,7 @@
 
     }
     else if(button == self.bottomView.addtionalButton){
-        
+        [self pickupProducts];
     }
     
 }
@@ -134,6 +134,10 @@
     
     for (MineStockDTO* dto in self.dataSource) {
         if (dto.selected) {
+            if (dto.insale>0) {
+                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品在售，暂不能出库", dto.id] ];
+                return;
+            }
             [selectedDtos addObject:dto];
         }
     }
@@ -141,6 +145,9 @@
         [self showAlertViewWithMessage:@"请选择需要提货的库存"];
         return;
     }
+    
+    OutStockViewController* outStockVC = [[OutStockViewController alloc] initWithStockDtos:selectedDtos];
+    [self.navigationController pushViewController:outStockVC animated:YES];
 }
 
 -(void)shippingProducts
@@ -195,10 +202,21 @@
         }
         //TBD
 //        ((StockListCell*)cell).style = self.cellStyle;
-        ((StockListCell*)cell).mineStockDto = self.dataSource[indexPath.row/2];
-        ((StockListCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
-        ((StockListCell*)cell).selectCheckBox.delegate = self;
-        ((StockListCell*)cell).delegate = self;
+        StockListCell* stockListCell = (StockListCell*)cell;
+        stockListCell.mineStockDto = self.dataSource[indexPath.row/2];
+        stockListCell.selectCheckBox.tag = 10000 + indexPath.row/2;
+        stockListCell.selectCheckBox.delegate = self;
+        stockListCell.delegate = self;
+        
+        if (self.segmentCell.segment.currentIndex==1) {
+            stockListCell.hiddenButtons = NO;
+            stockListCell.hiddenCheckBox = NO;
+        }
+        else {
+            stockListCell.hiddenButtons = YES;
+            stockListCell.hiddenCheckBox = YES;
+        }
+        
 //        [((StockListCell*)cell).offButton setTitle:@"出货" forState:UIControlStateNormal];
 //        [((StockListCell*)cell).shareButton setTitle:(((MineStockDTO *)self.dataSource[indexPath.row/2]).depotDto.name) forState:UIControlStateNormal];
         
@@ -223,7 +241,7 @@
             
         }
         else {
-            return [StockListCell cellHeight] - 30;
+            return [StockListCell cellHeight];
         }
         
     }
@@ -316,6 +334,38 @@
 -(void)buttonClicked:(UIButton *)sender andSid:(NSInteger)sid
 {
     [self shippingProductsWithSid:sid];
+}
+
+-(void)pickupButtonClicked:(UIButton *)sender andSid:(NSInteger)sid
+{
+    //[self pickupProductsWithSid:sid];
+    MineStockDTO* stockDto;
+    for (MineStockDTO* dto in self.dataSource)
+    {
+        if (dto.id == sid) {
+            stockDto = dto;
+            break;
+        }
+    }
+    if (stockDto) {
+        [self pickupProductsWithMineStockDTO:stockDto];
+    }
+}
+
+-(void)sellButtonClicked:(UIButton *)sender andSid:(NSInteger)sid
+{
+    [self shippingProductsWithSid:sid];
+}
+
+-(void)pickupProductsWithMineStockDTO:(MineStockDTO*)stockDto
+{
+    if (stockDto.insale>0) {
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品在售，暂不能出库", stockDto.id] ];
+        return;
+    }
+    
+    OutStockViewController* vc = [[OutStockViewController alloc] initWithStockDtos:@[stockDto]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

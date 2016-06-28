@@ -21,6 +21,7 @@
 #import "HttpWithDraw.h"
 
 
+
 @interface WithDrawViewController ()
 
 @property (nonatomic, strong) AddrCommonCell* moneyCell;
@@ -257,24 +258,25 @@
     for (BankCardDTO* dto in self.bankInfo) {
         [suggestStrings addObject:dto.bankDesc];
     }
-    if (suggestStrings.count != 0) {
-        self.suggestVC.suggestedStrings = suggestStrings;
-        self.suggestVC.delegate = self;
-        self.suggestVC.view.frame = CGRectMake(0, 0, 280, self.suggestVC.height);
-        self.popover                    = [[ZZPopoverWindow alloc] init];
-        self.popover.popoverPosition = ZZPopoverPositionDown;
-        self.popover.contentView        = self.suggestVC.view;
-        self.popover.animationSpring = NO;
-        self.popover.showArrow = NO;
-        self.popover.didShowHandler = ^() {
-            //self.popover.layer.cornerRadius = 0;
-        };
-        self.popover.didDismissHandler = ^() {
-            //NSLog(@"Did dismiss");
-        };
-        
-        [self.popover showAtView:self.typeCell.regionLabel position:ZZPopoverPositionDown];
-    }
+    [self.typeCell popSelection:suggestStrings andDelegate:self];
+//    if (suggestStrings.count != 0) {
+//        self.suggestVC.suggestedStrings = suggestStrings;
+//        self.suggestVC.delegate = self;
+//        self.suggestVC.view.frame = CGRectMake(0, 0, 280, self.suggestVC.height);
+//        self.popover                    = [[ZZPopoverWindow alloc] init];
+//        self.popover.popoverPosition = ZZPopoverPositionDown;
+//        self.popover.contentView        = self.suggestVC.view;
+//        self.popover.animationSpring = NO;
+//        self.popover.showArrow = NO;
+//        self.popover.didShowHandler = ^() {
+//            //self.popover.layer.cornerRadius = 0;
+//        };
+//        self.popover.didDismissHandler = ^() {
+//            //NSLog(@"Did dismiss");
+//        };
+//        
+//        [self.popover showAtView:self.typeCell.regionLabel position:ZZPopoverPositionDown];
+//    }
 
 }
 
@@ -299,13 +301,6 @@
 
 -(void)didSelectSuggestString:(NSString*)selectedString
 {
-    //    self.userNameField.text = selectedString;
-    
-//    if (![selectedString isEqualToString:@"个人网银"]) {
-//        [self showAlertViewWithMessage:@"改充值方式暂不支持, 敬请期待"];
-//    }
-//    
-//    self.typeCell.value = @"个人网银";
     self.typeCell.value = selectedString;
     for (NSInteger i=0; i<self.bankInfo.count; ++i) {
         if ([((BankCardDTO*)self.bankInfo[i]).bankDesc isEqualToString:selectedString]) {
@@ -313,8 +308,8 @@
             break;
         }
     }
-    
-    [self.popover dismiss];
+    [self.typeCell dismissSelection];
+//    [self.popover dismiss];
 }
 
 -(void)DidFinishInput:(NSString *)inputString

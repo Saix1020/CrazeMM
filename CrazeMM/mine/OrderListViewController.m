@@ -168,17 +168,43 @@
     return self;
 }
 
+-(BOOL)isMixed:(NSArray*)selectedDtos
+{
+    if (selectedDtos.count==0) {
+        return NO;
+    }
+    
+    OrderDetailDTO* firstDto = selectedDtos[0];
+    BOOL hasStock = NO;
+    if (firstDto.stock) {
+        hasStock = YES;
+    }
+    
+    for (OrderDetailDTO* dto in self.dataSource){
+        if (dto.stock) {
+            if (!hasStock) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
 -(void)handleButtomButtonClicked:(UIButton*)send
 {
     NSInteger segmentIndex = self.segmentCell.segment.currentIndex;
     NSMutableArray* operatorDtos = [[NSMutableArray alloc] init];
     NSMutableArray* operatorDtoIds = [[NSMutableArray alloc] init];
+    
     for (OrderDetailDTO* dto in self.dataSource) {
         if (dto.selected) {
             [operatorDtos addObject:dto];
             [operatorDtoIds addObject:[NSString stringWithFormat:@"%ld", dto.id]];
         }
     }
+    
+    
     
     @weakify(self);
     if (self.orderType == kOrderTypeBuy) {
@@ -194,6 +220,12 @@
                             [self showAlertViewWithMessage:@"请选择待付款的商品"];
                             break;
                         }
+                        
+                        if ([self isMixed:operatorDtos]) {
+                            [self showAlertViewWithMessage:@"仓库发货与卖家发货不能同时支付"];
+                            break;
+                        }
+                        
                         PayViewController* payVC = [[PayViewController alloc] initWithOrderDetailDTOs:operatorDtos];
                         [self.navigationController pushViewController:payVC animated:YES];
                     }
@@ -360,6 +392,11 @@
         }
     }
 }
+
+//-(BOOL)isMixed:(NSArray*)selectedOrders
+//{
+//    
+//}
 
 -(void)setIsRefreshing:(BOOL)isRefreshing
 {

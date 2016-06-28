@@ -20,6 +20,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFs-uk-4jl" customClass="BEMCheckBox">
                         <rect key="frame" x="8" y="8" width="16" height="16"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="kd7-ID-40l"/>
+                        </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="订单号: 6881" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pd3-I0-dEz">
                         <rect key="frame" x="32" y="8" width="97" height="16"/>
@@ -167,6 +170,7 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="qAW-JY-uMU"/>
+                        <exclude reference="jCe-RF-Kwc"/>
                         <exclude reference="2qZ-HT-GRa"/>
                         <exclude reference="4oU-K0-aiz"/>
                     </mask>
@@ -191,6 +195,7 @@
                 <outlet property="statusLabel" destination="hUP-pN-lZE" id="Kpp-3G-9hJ"/>
                 <outlet property="stockLabel" destination="m8b-Dh-r3R" id="MoB-ow-WRf"/>
                 <outlet property="titleLabel" destination="pd3-I0-dEz" id="hkg-k3-do5"/>
+                <outlet property="titleLeadingConstraint" destination="rY3-ku-GJZ" id="qt6-uT-Eef"/>
                 <outlet property="topSpaceContraint" destination="UP1-5s-Hdz" id="dlc-1g-RSX"/>
             </connections>
             <point key="canvasLocation" x="474" y="254.5"/>
