@@ -187,3 +187,36 @@
 
 @end
 
+@implementation HttpDepotOutRequest
+
+-(instancetype)initWithStockIds:(NSArray*)stockIds andMethod:(NSInteger)method andXId:(NSInteger)xid
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"stockIds": [stockIds componentsJoinedByString:@","],
+                         } mutableCopy];
+        if (method == 1) { //自提
+            self.params[@"method"] = @(1);
+            self.params[@"ucId"] = @(xid);
+        }
+        else{
+            self.params[@"method"] = @(2);
+            self.params[@"addrId"] = @(xid);
+
+        }
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/depotOut");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+@end

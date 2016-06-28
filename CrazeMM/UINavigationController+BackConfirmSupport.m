@@ -6,7 +6,7 @@
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "UINavigationController+BackConfirmSupport"
+#import "UINavigationController+BackConfirmSupport.h"
 
 
 @implementation UINavigationController (BackConfirmSupport)

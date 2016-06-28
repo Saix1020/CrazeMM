@@ -58,3 +58,7 @@
 
 @end
 
+@interface HttpDepotOutRequest : BaseHttpRequest
+
+-(instancetype)initWithStockIds:(NSArray*)stockIds andMethod:(NSInteger)method andXId:(NSInteger)xid;
+@end

@@ -74,7 +74,7 @@
         @strongify(self);
         NSUInteger currentNumber = [self.seperateNumField.text integerValue];
         
-        if (currentNumber  > 0) {
+        if (currentNumber  ) {
             self.seperateNumField.text = [NSString stringWithFormat:@"%lu", currentNumber-1];
         }
         
@@ -125,7 +125,7 @@
         }
         else if([finnalString integerValue] <= 0)
         {
-            textField.text = @"1";
+            textField.text = @"0";
         }
         else {
             textField.text = finnalString;

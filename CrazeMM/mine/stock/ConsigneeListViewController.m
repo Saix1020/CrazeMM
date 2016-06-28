@@ -41,6 +41,8 @@
         return [RACSignal empty];
     }];
 
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 14.f)];
+    self.tableView.tableHeaderView.backgroundColor = RGBCOLOR(240, 240, 240);
     
     [self getConsignees];
 }
@@ -93,6 +95,14 @@
     cell.consigneeDto = self.dataSource[indexPath.row];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectedConsignee:)]) {
+        [self.delegate didSelectedConsignee:self.dataSource[indexPath.row]];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark ConsigneeCell Delegate

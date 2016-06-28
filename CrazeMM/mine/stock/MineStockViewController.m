@@ -93,9 +93,18 @@
     
     self.pageNumber = 0;
     self.cellStyle = kOffShelfStyle;
-    [self getMineStock];
+//    [self getMineStock];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.pageNumber = 0;
+    self.totalPage = 0;
+    [self.dataSource removeAllObjects];
+    [self.tableView reloadData];
+    [self getMineStock];
+}
 
 -(void)addStock:(id)sender
 {
@@ -135,7 +144,7 @@
     for (MineStockDTO* dto in self.dataSource) {
         if (dto.selected) {
             if (dto.insale>0) {
-                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品在售，暂不能出库", dto.id] ];
+                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品在售, 暂不能提货", dto.id] ];
                 return;
             }
             [selectedDtos addObject:dto];
@@ -156,6 +165,11 @@
     
     for (MineStockDTO* dto in self.dataSource) {
         if (dto.selected) {
+            if (dto.insale>0){
+                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld无货品在售, 暂不能出库", dto.id] ];
+                return;
+
+            }
             [selectedDtos addObject:dto];
         }
     }
@@ -177,6 +191,11 @@
     
     for (MineStockDTO* dto in self.dataSource) {
         if (sid == dto.id) {
+            if (dto.insale>0){
+                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld无货品在售, 暂不能出库", dto.id] ];
+                return;
+                
+            }
             [selectedDtos addObject:dto];
             break;
         }

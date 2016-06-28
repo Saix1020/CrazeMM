@@ -14,7 +14,7 @@
 #import "SecondProductDetailCell.h"
 #import "HttpConsignee.h"
 #import "ConsigneeListViewController.h"
-
+#import "HttpStock.h"
 
 
 @interface OutStockViewController ()
@@ -33,6 +33,9 @@
 
 @property (nonatomic, strong) ConsigneeDTO* selectedConsigneeDto;
 @property (nonatomic, copy) NSArray* consignees;
+
+@property (nonatomic, strong) UIView* bottomView;
+@property (nonatomic, strong) UIButton* confirmButton;
 
 
 @property (nonatomic, readonly) NSInteger type;
@@ -137,7 +140,72 @@
     [self.typeCell popSelection:@[@"自提", @"快递"] andDelegate:self];
 }
 
+-(UIButton*)confirmButton
+{
+    if (!_confirmButton) {
+        _confirmButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _confirmButton.backgroundColor = [UIColor redColor];
+        [_confirmButton setTitle:@"确认" forState:UIControlStateNormal];
+        [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _confirmButton.titleLabel.font = [UIFont systemFontOfSize:18.f];
+        [_confirmButton addTarget:self action:@selector(outStock:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _confirmButton;
+}
 
+-(UIView*)bottomView
+{
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc] init];
+        [_bottomView addSubview:self.confirmButton];
+        [self.view addSubview:_bottomView];
+    }
+    
+    return _bottomView;
+}
+
+-(void)outStock:(id)sender
+{
+    @weakify(self);
+    [self showAlertViewWithMessage:@"确认出库?"
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpDepotOutRequest* request;
+                        NSMutableArray* ids = [[NSMutableArray alloc] init];
+                        for (MineStockDTO* dto in self.stockDtos) {
+                            [ids addObject:@(dto.id)];
+                        }
+                        if (self.type == 0) { //自提
+                            request = [[HttpDepotOutRequest alloc] initWithStockIds:ids
+                                                                          andMethod:1
+                                                                             andXId:self.selectedConsigneeDto.id];
+                        }
+                        else {
+                            request = [[HttpDepotOutRequest alloc] initWithStockIds:ids
+                                                                          andMethod:2
+                                                                             andXId:self.selectedAddrDto.id];
+                            
+                        }
+                        
+                        [request request]
+                        .then(^(id responseObj){
+                            if (request.response.ok) {
+                                [self.navigationController popViewControllerAnimated:YES];
+                                
+                                //            [self showAlertViewWithMessage:@"提货成功"
+                                //                               withCallback:^(id x){
+                                //                               }];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                    }
+                 andCancelCallback:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -193,6 +261,15 @@
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
     });
+}
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+//    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    self.bottomView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height-45-64.f, [UIScreen mainScreen].bounds.size.width, 45);
+    self.confirmButton.frame = self.bottomView.bounds;
+
 }
 
 #pragma mark - Table view data source
@@ -347,7 +424,7 @@
 #pragma mark
 -(void)didSelectedConsignee:(ConsigneeDTO*)consignee
 {
-    if (self.type == 2) {
+    if (self.type == 0) {
         if (self.selectedConsigneeDto.id != consignee.id) {
             self.selectedConsigneeDto = consignee;
         }
