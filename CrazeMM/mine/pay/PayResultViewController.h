@@ -10,8 +10,9 @@
 #import "StockDetailDTO.h"
 #import "StockSellCell.h"
 
-@interface PayResultViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, StockSellCellDelegate>
+@interface PayResultViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, StockSellCellDelegate, BEMCheckBoxDelegate>
 
 -(instancetype)initWithStockDetailDtos:(NSArray*)stockDetailDTOs;
+-(instancetype)initWithOrderDetailDtos:(NSArray *)orderDetailDTOs;
 
 @end

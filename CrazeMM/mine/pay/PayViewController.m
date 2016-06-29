@@ -498,13 +498,13 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     
     UITableViewCell* cell;
     if (indexPath.row == kAddrRow) {
-        if (self.addresses.count == 0) {
-            cell = self.addAddrCell;
-        }
-        else {
+//        if (self.addresses.count == 0) {
+//            cell = self.addAddrCell;
+//        }
+//        else {
             cell = self.addrCell;
             self.addrCell.addrDto = self.selectedAddrDto;
-        }
+//        }
     }
     else if(indexPath.row== kProductSumRow){
         cell = self.productDetailCell;
@@ -542,7 +542,30 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == kAccountInfoTitle) {
+    
+    if (indexPath.row == 0) {
+        OrderDetailDTO* dto = self.orderDetailDtos.firstObject;
+        if (NotNilAndNull(dto.stock)) {
+            return 0.f;
+        }
+        else {
+            return 16.f;
+        }
+    }
+    
+    else if (indexPath.row == kAddrRow) {
+        OrderDetailDTO* dto = self.orderDetailDtos.firstObject;
+        if (NotNilAndNull(dto.stock)) {
+            self.addrCell.hidden = YES;
+            return 0.f;
+        }
+        else {
+            self.addrCell.hidden = NO;
+            return [FirstAddrCell cellHeight];
+        }
+    }
+    
+    else if (indexPath.row == kAccountInfoTitle) {
         if([self.payWayCell.payWay isEqualToString:@"账户余额"]){
             return 24.f;
         }
@@ -551,7 +574,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         }
     }
     
-    if (indexPath.row == kAccountInfo){
+    else if (indexPath.row == kAccountInfo){
         if([self.payWayCell.payWay isEqualToString:@"账户余额"]){
             return 44.f;
         }
@@ -561,15 +584,15 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     }
     
     
-    if (indexPath.row== kAddrRow) {
-        if (self.addresses.count>0) {
-            return [FirstAddrCell cellHeight];
-        }
-        else {
-            return 60.f;
-        }
-
-    }
+//    else if (indexPath.row== kAddrRow) {
+//        if (self.addresses.count>0) {
+//            return [FirstAddrCell cellHeight];
+//        }
+//        else {
+//            return 60.f;
+//        }
+//
+//    }
     else if(indexPath.row== kProductSumRow){
         return self.productDetailCell.height;
     }
@@ -583,6 +606,8 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         }
         return 16.f;
     }
+    
+    return 0.f;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

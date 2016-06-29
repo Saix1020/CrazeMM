@@ -55,6 +55,7 @@
     [super layoutSubviews];
     self.imageView.x = 12.f;
     self.imageView.y += 6.f;
+//    self.imageView.centerY = self.contentView.height/2;
     self.imageView.width = 18.f;
     self.imageView.height = 18.f;
     
@@ -65,7 +66,7 @@
 
     
     self.textLabel.x = 36.f;
-    self.textLabel.centerY = self.imageView.centerY;
+    self.textLabel.centerY = self.contentView.height/2;
     
     self.bottomLine.y = self.height;
     self.bottomLine.x = self.textLabel.x;

@@ -53,7 +53,7 @@
                  @"我的库存",
                  @"我的供货",
                  @"我的求购",
-                 //                 @"我的抵押",
+                 @"我的抵押",
                  //                 @"我的站内信息",
                  @"我的收货地址",
                  //                 @"我的自提人"
@@ -79,7 +79,8 @@
                  @"ico_supply",
                  @"ico_buy",
                  @"diya",
-                 @"info",
+                 //@"icon_mortgage",
+//                 @"info",
                  @"addr",
                  @"ziti"
                  ];
@@ -621,6 +622,12 @@
                 
             }
             else if(indexPath.row== 4){
+                AddressesViewController* addrVC = [[AddressesViewController alloc] init];
+                [self.navigationController pushViewController:addrVC animated:YES];
+                return;
+                
+            }
+            else if(indexPath.row== 5){
                 AddressesViewController* addrVC = [[AddressesViewController alloc] init];
                 [self.navigationController pushViewController:addrVC animated:YES];
                 return;

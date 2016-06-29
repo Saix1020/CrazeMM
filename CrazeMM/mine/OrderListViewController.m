@@ -180,7 +180,7 @@
         hasStock = YES;
     }
     
-    for (OrderDetailDTO* dto in self.dataSource){
+    for (OrderDetailDTO* dto in selectedDtos){
         if (dto.stock) {
             if (!hasStock) {
                 return YES;
@@ -204,8 +204,6 @@
         }
     }
     
-    
-    
     @weakify(self);
     if (self.orderType == kOrderTypeBuy) {
         switch (self.subType ) {
@@ -222,7 +220,7 @@
                         }
                         
                         if ([self isMixed:operatorDtos]) {
-                            [self showAlertViewWithMessage:@"仓库发货与卖家发货不能同时支付"];
+                            [self showAlertViewWithMessage:@"不支持将卖家发货的订单与库存订单合并支付"];
                             break;
                         }
                         

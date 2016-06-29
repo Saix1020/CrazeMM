@@ -47,7 +47,12 @@
         else {
             self.stock = dict[@"stock"];
         }
-        if (NotNilAndNull(self.stock)) {
+        
+        if (NotNilAndNull(dict[@"depot"])) {
+            self.depotDto = [[DepotDTO alloc] initWith:dict[@"depot"]];
+        }
+        
+        else if (NotNilAndNull(self.stock)) {
             self.depotDto = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
         }
 
@@ -71,6 +76,8 @@
         self.goodImage = statusDto.goodImage;
         self.updateTime = statusDto.updateTime;
         self.userName = statusDto.userName;
+        self.stock = statusDto.stock;
+        self.depotDto = statusDto.depot;
         self.selected = NO;
     }
     return self;

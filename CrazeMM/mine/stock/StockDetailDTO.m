@@ -43,7 +43,8 @@
         self.isOriginal = [dict[@"isOriginal"] boolValue];
         self.isOriginalBox = [dict[@"isOriginalBox"] boolValue];
         self.isBrushMachine = [dict[@"isBrushMachine"] boolValue];
-        
+        self.isMortgage = [dict[@"isMortgage"] boolValue];
+
         self.updateTime = dict[@"updateTime"];
         self.gvolume = dict[@"gvolume"];
         self.gcolor = dict[@"gcolor"];
@@ -51,6 +52,8 @@
         self.goodName = dict[@"goodName"];
         
         [self parserStockLog:dict[@"logs"]];
+        
+        self.selected = NO;
     }
     return self;
 }

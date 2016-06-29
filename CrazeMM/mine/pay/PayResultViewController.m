@@ -16,6 +16,7 @@
 #import "SupplyViewController.h"
 #import "MineViewController.h"
 #import "HttpStock.h"
+#import "OrderDetailDTO.h"
 
 @interface PayResultViewController ()
 @property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
@@ -26,10 +27,26 @@
 @property (nonatomic) BOOL keyboardShowing;
 
 @property (nonatomic, copy) NSArray* stockDetailDTOs;
+@property (nonatomic, copy) NSArray* orderDetailDTOs;
+@property (nonatomic, readonly) NSArray* selectedDtos;
 
 @end
 
 @implementation PayResultViewController
+
+-(NSArray*)selectedDtos
+{
+    return [self.stockDetailDTOs filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
+}
+
+//-(instancetype)initWithOrderDetailDtos:(NSArray *)orderDetailDTOs
+//{
+//    self = [self init];
+//    if (self) {
+//        self.orderDetailDTOs = orderDetailDTOs;
+//    }
+//    return self;
+//}
 
 -(instancetype)initWithStockDetailDtos:(NSArray *)stockDetailDTOs
 {
@@ -69,60 +86,9 @@
         _payBottomView = [[[NSBundle mainBundle]loadNibNamed:@"CommonBottomView" owner:nil options:nil] firstObject];
         ;
         [self.view addSubview:_payBottomView];
+        [_payBottomView.confirmButton setTitle:@"转手" forState:UIControlStateNormal];
         [_payBottomView.confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-//        [_payBottomView.confirmButton setTitle:@"转手" forState:UIControlStateNormal];
-//        
-//        @weakify(self);
-//        _payBottomView.confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-//            @strongify(self);
-//            self.confirmModalView.presentAnimationStyle = fadeIn;
-//            self.confirmModalView.dismissAnimationStyle = fadeOut ;
-//            
-//            
-//            [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
-//                
-//                contentView.centerX = self.view.centerX;
-//                contentView.centerY = self.view.centerY;
-//                
-//                
-//                self.transferAlertView.cancelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-//                    @strongify(self);
-//                    [self.confirmModalView dismiss];
-//                    [self.tableView reloadData];
-//                    
-//                    return [RACSignal empty];
-//                }];
-//                
-//                self.transferAlertView.linkButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
-//                    @strongify(self);
-//                    [self.confirmModalView dismiss];
-// 
-//                    //[self.navigationController po];
-//                    NSArray* vcs = self.navigationController.viewControllers;
-//                    NSMutableArray* newVcs = [[NSMutableArray alloc] init];
-//                    //self.navigationController.viewControllers = [newVcs copy];
-//                    
-//                    
-//                    if ([[vcs firstObject] isMemberOfClass:[MineViewController class]]) {
-//                        SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
-////                        BaseNavigationController* baseNav = (BaseNavigationController*)self.navigationController;
-////                        baseNav.nextViewController = supplyVC;
-////                        [self.navigationController popToRootViewControllerAnimated:YES];
-//                        [newVcs addObject:[vcs firstObject]];
-//                        [newVcs addObject:supplyVC];
-//                        [newVcs addObject:self];
-//
-//                        self.navigationController.viewControllers = [newVcs copy];
-//                        [self.navigationController popViewControllerAnimated:YES];
-//
-//                    }
-//                    return [RACSignal empty];
-//                }];
-//                
-//                
-//            }];
-//            return [RACSignal empty];
-//        }];
+        _payBottomView.selectAllCheckBox.delegate = self;
     }
     
     return _payBottomView;
@@ -194,23 +160,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    NSMutableArray* vcs = [self.navigationController.viewControllers mutableCopy];
-//    NSInteger count = vcs.count;
-//    if (count > 2) {
-//        if ([vcs[count-2] isKindOfClass:NSClassFromString(@"OnlinePayViewController")]) {
-//            [vcs removeObject:vcs[count-2]]; // OnlinePayViewController
-//        }
-//        count = vcs.count;
-//        if (count > 2) {
-//            if ([vcs[count-2] isKindOfClass:NSClassFromString(@"PayViewController")]) {
-//                [vcs removeObject:vcs[count-2]]; // PayViewController
-//            }
-//        }
-//        
-//    }
-//    
-//    
-//    self.navigationController.viewControllers = vcs;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -260,8 +209,11 @@
     }
     else {
         StockSellCell* stockSellCell = [tableView dequeueReusableCellWithIdentifier:@"PaySuccessProductCell"];
-        StockDetailDTO* stockDetailDto = self.stockDetailDTOs[indexPath.row];
+        StockDetailDTO* stockDetailDto = self.stockDetailDTOs[indexPath.row/2];
         stockSellCell.stockDetailDto = stockDetailDto;
+        stockSellCell.delegate = self;
+        stockSellCell.checkBox.on = stockDetailDto.selected;
+        stockSellCell.checkBox.tag = 10000 + indexPath.row/2;
         cell = stockSellCell;
     }
     
@@ -270,7 +222,31 @@
     return cell;
 }
 
-
+#pragma -- mark BEMCheckBox Delegate
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox
+{
+    if (checkBox != self.payBottomView.selectAllCheckBox) {
+        NSInteger index = checkBox.tag - 10000;
+        MineStockDTO* dto = self.stockDetailDTOs[index];
+        dto.selected = checkBox.on;
+        
+        NSArray* onArray = [self.stockDetailDTOs filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
+        if (onArray.count == self.stockDetailDTOs.count) {
+            self.payBottomView.selectAllCheckBox.on = YES;
+        }
+        else {
+            self.payBottomView.selectAllCheckBox.on = NO;
+        }
+    }
+    else {
+        for (NSInteger index = 0; index<self.stockDetailDTOs.count; ++index) {
+            MineStockDTO* dto = self.stockDetailDTOs[index];
+            dto.selected = checkBox.on;
+        }
+        [self.tableView reloadData];
+    }
+    
+}
 
 //-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 //{
@@ -304,35 +280,57 @@
 
 -(void)handleButtomButtonClicked:(UIButton*)send
 {
+    if (self.selectedDtos.count==0) {
+        [self showAlertViewWithMessage:@"请选择需要转手的库存"];
+        return;
+    }
+    
     @weakify(self);
-    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.stockDetailDTOs count]]
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.selectedDtos count]]
                     withOKCallback:^(id x){
                         @strongify(self);
-                        
-                        NSInteger count = [self.stockDetailDTOs count];
-                        
+                        NSInteger count = [self.selectedDtos count];
                         [self sendStockSellReq:count];
-                        
                     }
                  andCancelCallback:nil];
 }
 
 - (void) sendStockSellReq: (NSInteger)count
 {
+    if (count <= 0)
+    {
+        [self showAlertViewWithMessage:@"库存转手成功"
+                          withCallback:^(id x){
+                              [self.navigationController popToRootViewControllerAnimated:YES];
+                              
+                          }];
+        return;
+    }
+    
+//price:234
+//sale:1
+//num:1
+//version:0
+    
     StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
-    StockDetailDTO* dto = self.stockDetailDTOs[count-1];
+    if (count-1 >= self.selectedDtos.count) {
+        return;
+    }
+    StockDetailDTO* dto = self.selectedDtos[count-1];
     stockSellInfo.price = dto.currentPrice;
     stockSellInfo.sale = dto.currentSale;
     stockSellInfo.num = dto.currentNum;
     stockSellInfo.version = dto.version;
+//    if(dto.stock)
     stockSellInfo.sellId = dto.id;
     HttpStockSellRequest* request = [[HttpStockSellRequest alloc]initWithStocks:stockSellInfo];
     [request request]
     .then(^(id responseObj){
         NSLog(@"%@", responseObj);
         if (request.response.ok) {
-            
-            [self sendStockSellReq:(count-1)];
+//            if (count-1>0) {
+                [self sendStockSellReq:(count-1)];
+//            }
         }
         else {
             [self showAlertViewWithMessage:request.response.errorMsg];
@@ -347,5 +345,6 @@
     });
     
 }
+
 
 @end

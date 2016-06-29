@@ -211,6 +211,10 @@
     if (NotNilAndNull(orderDetailDTO.depotDto) && orderDetailDTO.depotDto.name.length>0) {
         [amountLabelString appendString:[NSString stringWithFormat:@" (%@)", orderDetailDTO.depotDto.name]];
     }
+    else {
+        [amountLabelString appendString:[NSString stringWithFormat:@" (%@)", @"卖家发货"]];
+
+    }
     self.amountLabel.text = amountLabelString;
     self.priceLabel.text = [NSString stringWithFormat:@"单台定价: %.02f", _orderDetailDTO.price];
     if (!_orderDetailDTO.isAony) {

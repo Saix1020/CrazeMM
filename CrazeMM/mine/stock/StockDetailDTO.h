@@ -35,6 +35,7 @@
 @property (nonatomic) BOOL isOriginal;
 @property (nonatomic) BOOL isOriginalBox;
 @property (nonatomic) BOOL isBrushMachine;
+@property (nonatomic) BOOL isMortgage;
 
 @property (nonatomic, strong) NSString* updateTime;
 @property (nonatomic, strong) NSString* gvolume;

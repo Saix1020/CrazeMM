@@ -15,12 +15,13 @@
 @protocol StockSellCellDelegate <NSObject>
 
 -(void)refreshTotalPriceLabel;
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox;
 
 @end
 
-@interface StockSellCell : UITableViewCell<UITextFieldDelegate>
+@interface StockSellCell : UITableViewCell<UITextFieldDelegate, BEMCheckBoxDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelLeadingConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *productTitleLabel;
-@property (weak, nonatomic) IBOutlet BEMCheckBox *selectCheckBox;
 @property (weak, nonatomic) IBOutlet UITextField *unitPriceField;
 @property (weak, nonatomic) IBOutlet UILabel *orignalUnitPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addButton1;
@@ -42,6 +43,7 @@
 @property (nonatomic, strong) StockDetailDTO* stockDetailDto;
 
 @property (nonatomic, weak) id<StockSellCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet BEMCheckBox *checkBox;
 
 +(CGFloat)cellHeight;
 @end

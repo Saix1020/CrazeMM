@@ -42,7 +42,7 @@
 
 @property (nonatomic, copy) NSString* stateLabel;
 
-@property (nonatomic, strong) NSDictionary* stock;
+@property (nonatomic, copy) NSDictionary* stock;
 @property (nonatomic, strong) DepotDTO* depotDto;
 
 @property (nonatomic) BOOL selected;

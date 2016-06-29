@@ -149,6 +149,32 @@
 
 }
 
+#pragma -- mark BEMCheckBox Delegate
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox
+{
+    if (checkBox != self.payBottomView.selectAllCheckBox) {
+        NSInteger index = checkBox.tag - 10000;
+        MineStockDTO* dto = self.stocks[index];
+        dto.selected = checkBox.on;
+        
+        NSArray* onArray = [self.stocks filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
+        if (onArray.count == self.stocks.count) {
+            self.payBottomView.selectAllCheckBox.on = YES;
+        }
+        else {
+            self.payBottomView.selectAllCheckBox.on = NO;
+        }
+    }
+    else {
+        for (NSInteger index = 0; index<self.stocks.count; ++index) {
+            MineStockDTO* dto = self.stocks[index];
+            dto.selected = checkBox.on;
+        }
+        [self.tableView reloadData];
+    }
+    
+}
+
 
 #pragma mark - Table view data source
 
@@ -182,8 +208,8 @@
         dto.earning = 0;
 
         ((StockSellCell*)cell).stockDto = dto;
-        ((StockSellCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
-        ((StockSellCell*)cell).selectCheckBox.hidden = YES;
+        ((StockSellCell*)cell).checkBox.tag = 10000 + indexPath.row/2;
+        ((StockSellCell*)cell).checkBox.hidden = YES;
         ((StockSellCell*)cell).delegate = self;
         }
     

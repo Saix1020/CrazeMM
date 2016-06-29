@@ -14,7 +14,7 @@
     // Initialization code
     self.unitPriceField.layer.borderColor = [UIColor light_Gray_Color].CGColor;
     self.unitPriceField.layer.borderWidth = .5f;
-    self.unitPriceField.keyboardType = UIKeyboardTypeNumberPad;
+    self.unitPriceField.keyboardType = UIKeyboardTypeDecimalPad;
     
     self.totalNumField.layer.borderColor = [UIColor light_Gray_Color].CGColor;
     self.totalNumField.layer.borderWidth = .5f;
@@ -73,9 +73,9 @@
         
         @strongify(self);
         NSUInteger currentNumber = [self.seperateNumField.text integerValue];
-        
-        if (currentNumber  ) {
-            self.seperateNumField.text = [NSString stringWithFormat:@"%lu", currentNumber-1];
+        currentNumber = currentNumber-1;
+        if (currentNumber) {
+            self.seperateNumField.text = [NSString stringWithFormat:@"%lu", currentNumber];
         }
         
         return [RACSignal empty];
@@ -91,6 +91,10 @@
                                    RACObserve(self, unitPriceField.text)]];
     [totalPriceSignal subscribeNext:^(id x){
         @strongify(self);
+//        @property (nonatomic) NSInteger currentPrice;
+//        @property (nonatomic) NSInteger currentSale;
+//        @property (nonatomic) NSInteger currentNum;
+//        self.stockDto.currentPrice =
         [self fomartTotalPriceLabel];
         if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
             [self.delegate refreshTotalPriceLabel];
@@ -99,14 +103,29 @@
     }];
     
     
-    self.selectCheckBox.onCheckColor = [UIColor whiteColor];
-    self.selectCheckBox.onTintColor = [UIColor redColor];
-    self.selectCheckBox.onFillColor = [UIColor redColor];
-    self.selectCheckBox.boxType = BEMBoxTypeCircle;
-    self.selectCheckBox.animationDuration = 0.f;
-    self.selectCheckBox.on = NO;
+    self.checkBox.onCheckColor = [UIColor whiteColor];
+    self.checkBox.onTintColor = [UIColor redColor];
+    self.checkBox.onFillColor = [UIColor redColor];
+    self.checkBox.boxType = BEMBoxTypeCircle;
+    self.checkBox.animationDuration = 0.f;
+    self.checkBox.on = NO;
+    self.checkBox.delegate = self;
     
     [self fomartTotalPriceLabel];
+    
+    
+    [RACObserve(self.checkBox, hidden) subscribeNext:^(NSNumber* x){
+        @strongify(self);
+        if ([x boolValue]) {
+            self.titleLabelLeadingConstraint.constant = 0;
+        }
+        else {
+            self.titleLabelLeadingConstraint.constant = 26;
+        }
+        [self updateFocusIfNeeded];
+    }];
+    
+
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -130,10 +149,10 @@
         else {
             textField.text = finnalString;
         }
-        [self fomartTotalPriceLabel];
-        if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
-            [self.delegate refreshTotalPriceLabel];
-        }
+//        [self fomartTotalPriceLabel];
+//        if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
+//            [self.delegate refreshTotalPriceLabel];
+//        }
 
     }
     else if (textField == self.unitPriceField)
@@ -149,10 +168,10 @@
         else {
             textField.text = finnalString;
         }
-        [self fomartTotalPriceLabel];
-        if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
-            [self.delegate refreshTotalPriceLabel];
-        }
+//        [self fomartTotalPriceLabel];
+//        if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
+//            [self.delegate refreshTotalPriceLabel];
+//        }
 
     }
     else if (textField == self.seperateNumField)
@@ -175,6 +194,7 @@
     }
     [self updateDto];
 
+    
     return NO;
 }
 
@@ -230,7 +250,14 @@
     self.orignalUnitPriceLabel.text = [NSString stringWithFormat:@"￥%lu", (NSInteger)stockDto.inprice];
     self.unitPriceField.text = [NSString stringWithFormat:@"%lu", (NSInteger)stockDto.inprice];
     self.totalNumField.text = [NSString stringWithFormat:@"%lu", stockDto.presale];
-    self.selectCheckBox.on = stockDto.selected;
+    self.checkBox.on = stockDto.selected;
+    [self updateDto];
+
+    
+//    @property (nonatomic) NSInteger currentPrice;
+//    @property (nonatomic) NSInteger currentSale;
+//    @property (nonatomic) NSInteger currentNum;
+
     
 }
 
@@ -239,6 +266,15 @@
     _stockDetailDto = stockDetailDto;
     MineStockDTO* stockDto = [[MineStockDTO alloc] initWithStockDetailDTO:stockDetailDto];
     self.stockDto = stockDto;
+}
+
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox
+{
+    self.stockDetailDto.selected = checkBox.on;
+    self.stockDto.selected = checkBox.on;
+    if ([self.delegate respondsToSelector:@selector(didTapCheckBox:)]) {
+        [self.delegate didTapCheckBox:checkBox];
+    }
 }
 
 - (void)updateDto

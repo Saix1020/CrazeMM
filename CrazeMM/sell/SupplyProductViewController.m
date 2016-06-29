@@ -70,9 +70,6 @@
                 [self showAlertViewWithMessage:@"请输入正确的数量!"];
             }
             
-            //            PayViewController* payVC = [[PayViewController alloc] init];
-            //            [self.navigationController pushViewController:payVC animated:YES];
-            
             return [RACSignal empty];
         }];
         
@@ -136,14 +133,6 @@
         @weakify(self);
         _payButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
-//            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
-//            [request request]
-//            .then(^(id responseObject){
-//                
-//            })
-//            .catch(^(NSError* error){
-//                
-//            });
             [HttpAddIntentionRequest addIntention:self.productDetailDto.id andType:kTypeSupply];
             if ([UserCenter defaultCenter].isLogined) {
                 self.modalView.presentAnimationStyle = SlideInUp;

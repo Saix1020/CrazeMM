@@ -54,7 +54,10 @@
             self.stock = dict[@"stock"];
         }
         
-        if (NotNilAndNull(self.stock)) {
+        if(NotNilAndNull(dict[@"depot"])){
+            self.depotDto = [[DepotDTO alloc] initWith:dict[@"depot"]];
+        }
+        else if (NotNilAndNull(self.stock)) {
             self.depotDto = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
         }
     }

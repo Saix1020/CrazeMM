@@ -32,6 +32,19 @@
         for (NSDictionary* log in dict[@"logs"]) {
             [self.logs addObject:[[OrderLogDTO alloc] initWith:log]];
         }
+        
+        if (NotNilAndNull(dict[@"stock"])) {
+            self.stock = dict[@"stock"];
+        }
+        
+        if (NotNilAndNull(dict[@"depot"])) {
+            self.depot = [[DepotDTO alloc] initWith:dict[@"depot"]];
+        }
+        else if(NotNilAndNull(self.stock[@"depot"])){
+            self.depot = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
+        }
+        
+
     }
     return self;
 }
@@ -54,6 +67,7 @@
         self.createTime = dict[@"createTime"];
         self.comment = dict[@"comment"];
         self.userName = dict[@"userName"];
+        
     }
     return self;
 }
