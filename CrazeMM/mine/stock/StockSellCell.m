@@ -95,7 +95,8 @@
         if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
             [self.delegate refreshTotalPriceLabel];
         }
-        
+        [self updateDto];
+
     }];
     
     
@@ -234,8 +235,6 @@
     [self.totalPriceLabel appendText:@""];
     self.totalPriceLabel.numberOfLines = 1;
     self.totalPriceLabel.offsetY = -4.f;
-    //[self.totalPriceLabel sizeToFit];
-    //self.totalPriceLabel.baselineAdjustment = UIBaselineAdjustmentNone;
 }
 
 - (void)setStockDto:(MineStockDTO *)stockDto
@@ -249,12 +248,6 @@
     self.checkBox.on = stockDto.selected;
     [self updateDto];
 
-    
-//    @property (nonatomic) NSInteger currentPrice;
-//    @property (nonatomic) NSInteger currentSale;
-//    @property (nonatomic) NSInteger currentNum;
-
-    
 }
 
 -(void)setStockDetailDto:(StockDetailDTO *)stockDetailDto
