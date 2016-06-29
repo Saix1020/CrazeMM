@@ -118,7 +118,7 @@
         else {
             self.titleLabelLeadingConstraint.constant = 26;
         }
-        [self updateFocusIfNeeded];
+        [self updateConstraints];
     }];
     
 

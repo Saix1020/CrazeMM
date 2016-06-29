@@ -36,7 +36,7 @@
 -(NSString*)bankDesc
 {
     NSString* bankAccout;
-    if (NotNilAndNull(self.bankaccount)) {
+    //if (NotNilAndNull(self.bankaccount)) {
         if (self.bankaccount.length<4) {
             bankAccout = self.bankaccount;
         }
@@ -45,11 +45,11 @@
         }
         
         return [NSString stringWithFormat:@"%@(%@)", self.openingbank, bankAccout];
-    }
+    //}
     
-    else {
+//    else {
         return @"";
-    }
+//    }
 }
 
 @end

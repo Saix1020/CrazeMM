@@ -23,7 +23,7 @@
         else {
             self.addrLabelLeadingConstraint.constant = 10.f;
         }
-        [self updateFocusIfNeeded];
+        [self updateConstraints];
     }];
 }
 
