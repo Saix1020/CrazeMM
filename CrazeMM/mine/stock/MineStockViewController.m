@@ -391,22 +391,22 @@
 #pragma -- mark MineSupplyEditViewController Delegate
 -(void)editSupplyGoodSuccess
 {
-    [self.dataSource removeAllObjects];
-    [self.tableView reloadData];
-    
-    self.pageNumber = 0;
-    [self getMineStock];
+//    [self.dataSource removeAllObjects];
+//    [self.tableView reloadData];
+//    
+//    self.pageNumber = 0;
+//    [self getMineStock];
     
 }
 
 #pragma -- mark MineStockSellViewControllerDelegate Delegate
 -(void)sendStockSellSuccess
 {
-    [self.dataSource removeAllObjects];
-    [self.tableView reloadData];
-    
-    self.pageNumber = 0;
-    [self getMineStock];
+//    [self.dataSource removeAllObjects];
+//    [self.tableView reloadData];
+//    
+//    self.pageNumber = 0;
+//    [self getMineStock];
     
 }
 

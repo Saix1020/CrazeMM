@@ -55,6 +55,7 @@
         _identityCell.value = self.consigneeDto.identity;
         _identityCell.placehoder = @"请输入身份证号";
         _identityCell.textFieldCell.delegate = self;
+        _identityCell.textFieldCell.keyboardType = UIKeyboardTypeNumberPad;
 
 
     }
@@ -71,7 +72,7 @@
         _mobileCell.value = self.consigneeDto.mobile;
         _mobileCell.placehoder = @"请输入手机号码";
         _mobileCell.textFieldCell.delegate = self;
-
+        _mobileCell.textFieldCell.keyboardType = UIKeyboardTypeNumberPad;
     }
     
     return _mobileCell;

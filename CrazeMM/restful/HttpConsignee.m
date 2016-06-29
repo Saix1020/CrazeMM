@@ -73,3 +73,23 @@
 
 
 @end
+
+@implementation HttpDeleteConsigneeRequest
+
+-(instancetype)initWithCId:(NSInteger)cid
+{
+    self = [self init];
+    if (self) {
+        self.cid = cid;
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/consignee/delete/%ld", self.cid];
+    return COMB_URL(absUrl);
+}
+
+
+@end

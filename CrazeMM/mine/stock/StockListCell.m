@@ -70,7 +70,7 @@
 -(void)fomartNumberLabel
 {
     
-    NSString* firstComponent = [NSString stringWithFormat:@"总数: %ld ", self.mineStockDto.presale+self.mineStockDto.insale+self.mineStockDto.outstock];
+    NSString* firstComponent = [NSString stringWithFormat:@"总数: %ld ", self.mineStockDto.presale+self.mineStockDto.insale+self.mineStockDto.outstock + self.mineStockDto.aftersale];
     
     NSString* secondComopent;
     if (self.mineStockDto.insale>0) {

@@ -29,3 +29,10 @@
 -(instancetype)initWithName:(NSString*)name andIdentity:(NSString*)identity andMobile:(NSString*)mobile;
 
 @end
+
+///rest/consignee/delete/
+@interface HttpDeleteConsigneeRequest : BaseHttpRequest
+@property (nonatomic) NSInteger cid;
+-(instancetype)initWithCId:(NSInteger)cid;
+
+@end

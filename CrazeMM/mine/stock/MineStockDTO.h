@@ -24,6 +24,11 @@
 @property (nonatomic) NSInteger version;
 @property (nonatomic) NSInteger insale;
 @property (nonatomic) NSInteger outstock;
+@property (nonatomic) NSInteger afterout;
+//@property (nonatomic) NSInteger aftersale;
+//@property (nonatomic) NSInteger outstock;
+
+
 @property (nonatomic) BOOL isSerial;
 @property (nonatomic) BOOL isOriginal;
 @property (nonatomic) BOOL isOriginalBox;
@@ -46,6 +51,8 @@
 @property (nonatomic)NSInteger currentSale;
 @property (nonatomic)NSInteger currentNum;
 @property (nonatomic)NSInteger seperateNum;
+
+
 
 
 -(instancetype)initWithStockDetailDTO:(StockDetailDTO*)stockDetailDto;

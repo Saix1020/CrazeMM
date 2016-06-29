@@ -12,7 +12,7 @@
 
 @interface ConsigneeListViewController ()
 
-@property (nonatomic, copy) NSArray* dataSource;
+@property (nonatomic, strong) NSMutableArray* dataSource;
 
 @end
 
@@ -20,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.dataSource = [[NSMutableArray alloc] init];
+    
     self.navigationItem.title = @"选择自提人";
     self.tableView.backgroundColor = RGBCOLOR(240, 240, 240);
     
@@ -110,6 +113,31 @@
 {
     ConsigneeAddViewController* consigneeAddVC = [[ConsigneeAddViewController alloc] initWithConsigneeDTO:cell.consigneeDto];
     [self.navigationController pushViewController:consigneeAddVC animated:YES];
+}
+
+-(void)removeButtonClicked:(ConsigneeCell *)cell
+{
+    @weakify(self);
+    [self showAlertViewWithMessage:@"确定删除该自提人吗?"
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        HttpDeleteConsigneeRequest* request = [[HttpDeleteConsigneeRequest alloc] initWithCId:cell.consigneeDto.id];
+                        [request request]
+                        .then(^(id responseObj){
+                            if (request.response.ok) {
+                                //
+                                [self.dataSource removeObject:cell.consigneeDto];
+                                [self.tableView reloadData];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                    }
+                 andCancelCallback:nil];
 }
 
 @end
