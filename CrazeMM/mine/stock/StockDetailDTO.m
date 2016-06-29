@@ -54,6 +54,14 @@
         [self parserStockLog:dict[@"logs"]];
         
         self.selected = NO;
+        
+        self.currentPrice = self.inprice;
+        self.currentSale = self.presale;
+        self.currentNum = 1;
+        
+        self.currentPrice = self.inprice;
+        self.currentSale = self.presale;
+
     }
     return self;
 }

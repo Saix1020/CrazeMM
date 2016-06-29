@@ -26,7 +26,7 @@
 @property (nonatomic, strong) TransferAlertView* transferAlertView;
 @property (nonatomic) BOOL keyboardShowing;
 
-@property (nonatomic, copy) NSArray* stockDetailDTOs;
+@property (nonatomic, strong) NSMutableArray* stockDetailDTOs;
 @property (nonatomic, copy) NSArray* orderDetailDTOs;
 @property (nonatomic, readonly) NSArray* selectedDtos;
 
@@ -52,7 +52,7 @@
 {
     self = [self init];
     if (self) {
-        self.stockDetailDTOs = stockDetailDTOs;
+        self.stockDetailDTOs = [stockDetailDTOs mutableCopy];
     }
     return self;
 }
@@ -289,11 +289,61 @@
     [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.selectedDtos count]]
                     withOKCallback:^(id x){
                         @strongify(self);
-                        NSInteger count = [self.selectedDtos count];
-                        [self sendStockSellReq:count];
+//                        NSInteger count = [self.selectedDtos count];
+//                        [self sendStockSellReq:count];
+                        [self sendStockSellRequest];
                     }
                  andCancelCallback:nil];
 }
+
+-(void)sendStockSellRequest
+{
+    if (self.stockDetailDTOs.count == 0) {
+        [self showAlertViewWithMessage:@"库存转手成功"
+                          withCallback:^(id x){
+                              [self.navigationController popToRootViewControllerAnimated:YES];
+                              
+                          }];
+        return;
+    }
+    else if(self.selectedDtos.count == 0){
+        return;
+    }
+    
+    StockDetailDTO* dto = self.selectedDtos.lastObject;
+    [self.stockDetailDTOs removeObject:dto];
+    [self.tableView reloadData];
+    StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
+    stockSellInfo.price = dto.currentPrice;
+    stockSellInfo.sale = dto.currentSale;
+    stockSellInfo.num = dto.currentNum;
+    stockSellInfo.version = dto.version;
+    stockSellInfo.sellId = dto.id;
+    
+    HttpStockSellRequest* request = [[HttpStockSellRequest alloc]initWithStocks:stockSellInfo];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            
+            [self sendStockSellRequest];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+            return ;
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+        return ;
+    })
+    .finally(^(){
+    });
+    
+    
+}
+
+
 
 - (void) sendStockSellReq: (NSInteger)count
 {

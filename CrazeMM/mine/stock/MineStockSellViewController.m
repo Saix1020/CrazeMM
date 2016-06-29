@@ -19,7 +19,7 @@
 
 @property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
 @property (nonatomic, strong) CommonBottomView* payBottomView;
-@property (nonatomic, copy) NSArray* stocks;
+@property (nonatomic, strong) NSMutableArray* stocks;
 
 //@property (nonatomic) BOOL keyboardShowing;
 
@@ -46,14 +46,16 @@
 
 -(void)handleButtomButtonClicked:(UIButton*)send
 {
+    [self.view endEditing:YES];
     @weakify(self);
     [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.stocks count]]
                     withOKCallback:^(id x){
                         @strongify(self);
                         
-                        NSInteger count = [self.stocks count];
-                        
-                        [self sendStockSellReq:count];
+//                        NSInteger count = [self.stocks count];
+//                        
+//                        [self sendStockSellReq:count];
+                        [self sendStockSellRequest];
                         
                     }
                  andCancelCallback:nil];
@@ -65,7 +67,7 @@
     self = [super init];
     if (self)
     {
-        self.stocks = stocks;
+        self.stocks = [stocks mutableCopy];
     }
     return self;
 }
@@ -236,6 +238,54 @@
 
 }
 
+#pragma mark send request
+
+-(void)sendStockSellRequest
+{
+    if (self.stocks.count == 0) {
+        if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
+            [self showAlertViewWithMessage:@"库存转手成功"];
+            [self.delegate sendStockSellSuccess];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        return;
+    }
+    
+    MineStockDTO* dto = self.stocks.lastObject;
+    [self.stocks removeObjectAtIndex:self.stocks.count-1];
+    [self.tableView reloadData];
+    StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
+    stockSellInfo.price = dto.currentPrice;
+    stockSellInfo.sale = dto.currentSale;
+    stockSellInfo.num = dto.currentNum;
+    stockSellInfo.version = dto.version;
+    stockSellInfo.sellId = dto.id;
+    
+    HttpStockSellRequest* request = [[HttpStockSellRequest alloc]initWithStocks:stockSellInfo];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            
+            [self sendStockSellRequest];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+            return ;
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+        return ;
+    })
+    .finally(^(){
+    });
+
+    
+}
+
+
+// TODO!!! remove the success dto...
 - (void) sendStockSellReq: (NSInteger)count
 {
     

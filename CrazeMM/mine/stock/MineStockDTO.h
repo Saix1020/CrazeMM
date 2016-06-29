@@ -45,6 +45,7 @@
 @property (nonatomic) NSInteger currentPrice;
 @property (nonatomic)NSInteger currentSale;
 @property (nonatomic)NSInteger currentNum;
+@property (nonatomic)NSInteger seperateNum;
 
 
 -(instancetype)initWithStockDetailDTO:(StockDetailDTO*)stockDetailDto;

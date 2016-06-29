@@ -44,6 +44,10 @@
         
         self.state = [dict[@"state"] integerValue];
         self.stateLabel = dict[@"stateLabel"];
+        
+        self.currentPrice = self.inprice;
+        self.currentSale = self.presale;
+        self.currentNum = self.seperateNum = 1;
 
         self.selected = NO;
     }
@@ -70,6 +74,12 @@
         self.gnetwork = stockDetailDto.gnetwork;
         self.gcolor = stockDetailDto.gcolor;
         self.goodName = stockDetailDto.goodName;
+        
+        self.currentPrice = self.inprice;
+        self.currentSale = self.presale;
+        self.currentNum = self.seperateNum = 1;
+        self.selected = NO;
+
     }
     return self;
 }

@@ -91,10 +91,6 @@
                                    RACObserve(self, unitPriceField.text)]];
     [totalPriceSignal subscribeNext:^(id x){
         @strongify(self);
-//        @property (nonatomic) NSInteger currentPrice;
-//        @property (nonatomic) NSInteger currentSale;
-//        @property (nonatomic) NSInteger currentNum;
-//        self.stockDto.currentPrice =
         [self fomartTotalPriceLabel];
         if ([self.delegate respondsToSelector:@selector(refreshTotalPriceLabel)]) {
             [self.delegate refreshTotalPriceLabel];
