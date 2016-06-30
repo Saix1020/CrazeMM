@@ -199,6 +199,15 @@ typedef NS_ENUM(NSInteger, MinePayRow){
         _confirmButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
             @strongify(self);
             
+            OrderDetailDTO* dto = self.orderDetailDtos.firstObject;
+            if (IsNilOrNull(dto.stock)) {
+                // we need set receiver address
+                if (self.selectedAddrDto == nil) {
+                    [self showAlertViewWithMessage:@"请您先设置收货地址"];
+                    return [RACSignal empty];
+                }
+            }
+            
             if ([self.payWayCell.payWay isEqualToString:@"账户余额"]) {
                 self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
                 self.confirmModalView.presentAnimationStyle = fadeIn;
@@ -403,6 +412,15 @@ typedef NS_ENUM(NSInteger, MinePayRow){
 
 -(void)pay
 {
+    OrderDetailDTO* dto = self.orderDetailDtos.firstObject;
+    if (IsNilOrNull(dto.stock)) {
+        // we need set receiver address
+        if (self.selectedAddrDto == nil) {
+            [self showAlertViewWithMessage:@"请您先设置收货地址"];
+        }
+    }
+    
+    
     if ([self.payWayCell.payWay isEqualToString:@"个人网银"]) {
         AddressDTO* addr = self.selectedAddrDto;
         HttpPayRequest* payRequest = [[HttpPayRequest alloc] initWithPayNo:self.payInfoDto.ORDERID andOrderId:self.orderStatusDto.id andAddrId:addr.id];

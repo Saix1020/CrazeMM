@@ -3002,11 +3002,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/HttpOrder.m"
-            timestampString = "484314575.119067"
+            timestampString = "488983828.876696"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-parserResponse"
             landmarkType = "5">
          </BreakpointContent>
@@ -3018,11 +3018,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/HttpOrder.m"
-            timestampString = "484315143.074874"
+            timestampString = "488983828.876696"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-page"
             landmarkType = "5">
          </BreakpointContent>
@@ -4970,11 +4970,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488858959.377637"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "425"
-            endingLineNumber = "425"
+            startingLineNumber = "443"
+            endingLineNumber = "443"
             landmarkName = "-pay"
             landmarkType = "5">
          </BreakpointContent>
@@ -5594,11 +5594,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488858959.377637"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "635"
-            endingLineNumber = "635"
+            startingLineNumber = "653"
+            endingLineNumber = "653"
             landmarkName = "-didSelectedAddress:"
             landmarkType = "5">
          </BreakpointContent>
@@ -5610,11 +5610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488858959.377637"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -6922,11 +6922,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488858959.377637"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -7002,11 +7002,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488858959.377637"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
             landmarkName = "-addrCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -7738,11 +7738,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488858959.377637"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-confirmButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -8218,11 +8218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488858959.377637"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "568"
-            endingLineNumber = "568"
+            startingLineNumber = "586"
+            endingLineNumber = "586"
             landmarkName = "-tableView:heightForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -8250,11 +8250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488858959.377637"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "671"
-            endingLineNumber = "671"
+            startingLineNumber = "689"
+            endingLineNumber = "689"
             landmarkName = "-DidFinishInput:"
             landmarkType = "5">
          </BreakpointContent>
@@ -8330,11 +8330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/pay/PayViewController.m"
-            timestampString = "488857999.547569"
+            timestampString = "488985353.187219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "670"
-            endingLineNumber = "670"
+            startingLineNumber = "688"
+            endingLineNumber = "688"
             landmarkName = "-DidFinishInput:"
             landmarkType = "5">
          </BreakpointContent>
@@ -8928,6 +8928,22 @@
             startingLineNumber = "189"
             endingLineNumber = "189"
             landmarkName = "-initWithAddrDto:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/pay/SecondProductDetailCell.m"
+            timestampString = "488982971.552566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-setStockDTOs:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

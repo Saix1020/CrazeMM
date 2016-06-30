@@ -158,9 +158,9 @@
     NSUInteger tag = 0;
     for(MineStockDTO* dto in stockDTOs)
     {
-        self.totalAmount += dto.presale;
+        self.totalAmount += dto.total;
         
-        UIView* view = [self createProductViewWithImage:dto.goodImage andNumber:dto.presale andTag:tag];
+        UIView* view = [self createProductViewWithImage:dto.goodImage andNumber:dto.total andTag:tag];
         [self.imageViews addObject:view];
     }
     

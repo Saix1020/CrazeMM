@@ -547,7 +547,7 @@
 
 -(AnyPromise*)getOrderList
 {
-    HttpOrderRequest* orderRequest = [[HttpOrderRequest alloc]initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
+    HttpOrderRequest* orderRequest = [[HttpOrderRequest alloc] initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
     return [orderRequest request]
     .then(^(id responseObject){
         NSLog(@"%@", responseObject);

@@ -61,7 +61,7 @@
 
 -(NSInteger)total
 {
-    return _presale+_insale+_outstock+_afterout+_inmortgage+_aftersale;
+    return _presale + _insale + _outstock + _afterout + _inmortgage + _aftersale;
 }
 
 -(instancetype)initWithStockDetailDTO:(StockDetailDTO*)stockDetailDto
