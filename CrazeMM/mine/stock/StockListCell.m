@@ -73,12 +73,27 @@
     NSString* firstComponent = [NSString stringWithFormat:@"总数: %ld ", self.mineStockDto.total];
     
     NSString* secondComopent;
-    if (self.mineStockDto.insale>0) {
-        secondComopent = [NSString stringWithFormat:@"在售: %ld ", self.mineStockDto.insale];
-    }
-    else if(self.mineStockDto.outstock>0){
-        secondComopent = [NSString stringWithFormat:@"待出库: %ld ", self.mineStockDto.outstock];
-
+    
+    switch (self.mineStockDto.state) {
+        case 100:
+            break;
+        case 200: //已入库
+            if (self.mineStockDto.insale>0) {
+                secondComopent = [NSString stringWithFormat:@"在售: %ld ", self.mineStockDto.insale];
+            }
+            break;
+        case 300:
+            if(self.mineStockDto.outstock>0){
+                secondComopent = [NSString stringWithFormat:@"待出库: %ld ", self.mineStockDto.outstock];
+            }
+            break;
+        default:
+            if(self.mineStockDto.aftersale>0){
+                secondComopent = [NSString stringWithFormat:@"已售: %ld ", self.mineStockDto.aftersale];
+            }
+            break;
+            
+            break;
     }
     
     NSString* thirdComopent = self.mineStockDto.depotName.length>0?[NSString stringWithFormat:@"(%@)", self.mineStockDto.depotName] :@"";
