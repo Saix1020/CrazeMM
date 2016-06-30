@@ -137,50 +137,84 @@
     
 }
 
++(NSString*)alertStringWithArray:(NSArray*)cannotDtos
+{
+    NSMutableArray* ids = [[NSMutableArray alloc] init];
+    NSString* string;
+#define  MaxIdNumber 8
+    if (cannotDtos.count >= MaxIdNumber) {
+        for (NSInteger i=0; i<MaxIdNumber; ++i) {
+            [ids addObject:@(((MineStockDTO*)cannotDtos[i]).id)];
+        }
+        string = [NSString stringWithFormat:@"%@...",[ids componentsJoinedByString:@","]];
+    }
+    else{
+        for (NSInteger i=0; i<cannotDtos.count; ++i) {
+            [ids addObject:@(((MineStockDTO*)cannotDtos[i]).id)];
+        }
+        
+        string = [ids componentsJoinedByString:@","];
+    }
+    
+    return string;
+}
+
 -(void)pickupProducts
 {
-    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+    NSArray* canShippingDtos = [self.selectedData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.insale == 0"]];
+    NSArray* cannotShippingDtos = [self.selectedData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.insale > 0"]];
     
-    for (MineStockDTO* dto in self.dataSource) {
-        if (dto.selected) {
-            if (dto.insale>0) {
-                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品在售, 暂不能提货", dto.id] ];
-                return;
+    NSMutableArray* selectedDtos = [canShippingDtos mutableCopy];
+    if (cannotShippingDtos.count>0) {
+        @weakify(self);
+        NSString* alertString = [MineStockViewController alertStringWithArray:cannotShippingDtos];
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%@有货品在售, 暂不能提货", alertString] withCallback:^(id x){
+            @strongify(self);
+            if (canShippingDtos.count>0) {
+                OutStockViewController* outStockVC = [[OutStockViewController alloc] initWithStockDtos:selectedDtos];
+                [self.navigationController pushViewController:outStockVC animated:YES];
             }
-            [selectedDtos addObject:dto];
-        }
+        }];
     }
-    if (!selectedDtos.count) {
+    else if (!selectedDtos.count) {
         [self showAlertViewWithMessage:@"请选择需要提货的库存"];
         return;
     }
-    
-    OutStockViewController* outStockVC = [[OutStockViewController alloc] initWithStockDtos:selectedDtos];
-    [self.navigationController pushViewController:outStockVC animated:YES];
+    else {
+        OutStockViewController* outStockVC = [[OutStockViewController alloc] initWithStockDtos:selectedDtos];
+        [self.navigationController pushViewController:outStockVC animated:YES];
+        
+    }
 }
 
 -(void)shippingProducts
 {
-    NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
+    NSArray* canShippingDtos = [self.selectedData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.presale > 0"]];
+    NSArray* cannotShippingDtos = [self.selectedData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.presale <= 0"]];
     
-    for (MineStockDTO* dto in self.dataSource) {
-        if (dto.selected) {
-            if (dto.presale<=0){
-                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld无货品在售, 暂不能出库", dto.id] ];
-                return;
-
+    NSMutableArray* selectedDtos = [canShippingDtos mutableCopy];
+    if (cannotShippingDtos.count>0) {
+        @weakify(self);
+        NSString* alertString = [MineStockViewController alertStringWithArray:cannotShippingDtos];
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%@无货品在售, 暂不能出货", alertString] withCallback:^(id x){
+            @strongify(self);
+            if (canShippingDtos.count>0) {
+                MineStockSellViewController* stockSellVc = [[MineStockSellViewController alloc]initWith:selectedDtos];
+                stockSellVc.delegate = self;
+                [self.navigationController pushViewController:stockSellVc animated:YES];
             }
-            [selectedDtos addObject:dto];
-        }
+        }];
     }
-    if (!selectedDtos.count) {
+    else if (!selectedDtos.count) {
         [self showAlertViewWithMessage:@"请选择需要出货的库存"];
         return;
     }
-    
-    MineStockSellViewController* stockSellVc = [[MineStockSellViewController alloc]initWith:selectedDtos];
-    stockSellVc.delegate = self;
-    [self.navigationController pushViewController:stockSellVc animated:YES];
+    else {
+        MineStockSellViewController* stockSellVc = [[MineStockSellViewController alloc]initWith:selectedDtos];
+        stockSellVc.delegate = self;
+        [self.navigationController pushViewController:stockSellVc animated:YES];
+
+    }
     
 }
 
@@ -188,11 +222,10 @@
 {
     
     NSMutableArray* selectedDtos = [[NSMutableArray alloc] init];
-    
     for (MineStockDTO* dto in self.dataSource) {
         if (sid == dto.id) {
             if (dto.presale<=0){
-                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld无货品可售, 暂不能出库", dto.id] ];
+                [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld无货品可售, 暂不能出货", dto.id] ];
                 return;
                 
             }
@@ -379,7 +412,7 @@
 -(void)pickupProductsWithMineStockDTO:(MineStockDTO*)stockDto
 {
     if (stockDto.insale>0) {
-        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品在售，暂不能出库", stockDto.id] ];
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品在售，暂不能提货", stockDto.id] ];
         return;
     }
     

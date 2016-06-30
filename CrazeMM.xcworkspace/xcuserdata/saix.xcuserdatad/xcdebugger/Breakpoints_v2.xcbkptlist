@@ -6762,11 +6762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "488811835.89969"
+            timestampString = "488988079.26684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "-getMineStock"
             landmarkType = "5">
          </BreakpointContent>
@@ -7882,11 +7882,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "488811835.89969"
+            timestampString = "488988079.26684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -8554,11 +8554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "488895961.28218"
+            timestampString = "488988079.26684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "-getMineStock"
             landmarkType = "5">
          </BreakpointContent>
@@ -8570,11 +8570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "488895973.996507"
+            timestampString = "488988079.26684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "-getMineStock"
             landmarkType = "5">
          </BreakpointContent>
@@ -8874,11 +8874,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "488957589.626224"
+            timestampString = "488988079.26684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "414"
+            endingLineNumber = "414"
             landmarkName = "-pickupProductsWithMineStockDTO:"
             landmarkType = "5">
          </BreakpointContent>
@@ -8890,11 +8890,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "488957651.085057"
+            timestampString = "488988079.26684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "-shippingProductsWithSid:"
             landmarkType = "5">
          </BreakpointContent>
