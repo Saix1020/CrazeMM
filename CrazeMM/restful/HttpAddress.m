@@ -196,9 +196,9 @@
                          @"address.zipCode" : addrDto.zipCode,
                          @"address.isDefault" : @(addrDto.isDefault)
                          } mutableCopy];
-        if (addrDto.uid>0) {
-            [self.params setValue:@(addrDto.uid) forKey:@"address.uid"];
-        }
+//        if (addrDto.uid>0) {
+//            [self.params setValue:@(addrDto.uid) forKey:@"address.uid"];
+//        }
         self.addrId = addrDto.id;
     }
     return self;

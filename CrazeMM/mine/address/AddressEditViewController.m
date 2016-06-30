@@ -188,14 +188,17 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     newAddrDTO.street =self.addressCell.value;
     newAddrDTO.zipCode = self.zipCell.value;
     newAddrDTO.isDefault = self.defaultCheckboxCell.checkBox.on;
+    BaseHttpRequest* request;
     if (self.isEditingAddr) {
-        // not support yet
         newAddrDTO.uid = self.address.uid;
+        newAddrDTO.id = self.address.id;
+        request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:newAddrDTO];
     }
     else {
         newAddrDTO.uid = -1;
+        request = [[HttpAddressSaveRequest alloc] initWithAddrDto:newAddrDTO];
     }
-    HttpAddressSaveRequest* request = [[HttpAddressSaveRequest alloc] initWithAddrDto:newAddrDTO];
+    
     [request request]
     .then(^(id responseObj){
         if (!request.response.ok) {
