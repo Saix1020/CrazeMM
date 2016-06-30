@@ -39,6 +39,11 @@
     self.usingDefaultCell = YES;
     self.autoRefresh = YES;
     
+    self.navigationItem.title = @"我的抵押";
+    self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x) {
+        return [RACSignal empty];
+    }];
+
 }
 
 
