@@ -68,8 +68,6 @@
         [label sizeToFit];
         label.frame = CGRectMake(8.f, (60.f-label.height)/2, label.width, label.height);
         [_addAddrCell addSubview:label];
-//        UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
-//        [button setImage:[@"arrow_left" image] forState:UIControlStateNormal];
         _addAddrCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }
