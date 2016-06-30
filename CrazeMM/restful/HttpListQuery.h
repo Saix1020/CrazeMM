@@ -7,6 +7,7 @@
 //
 
 #import "BaseHttpRequest.h"
+#import "BaseDTO.h"
 
 @interface HttpListQueryRequest : BaseHttpRequest
 
@@ -26,7 +27,7 @@
 @property (nonatomic) NSInteger pageSize;
 @property (nonatomic, readonly) NSDictionary* page;
 @property (nonatomic, readonly) NSArray* list;
-@property (nonatomic, strong) NSMutableArray* dtos;
--(id)makeDtoWith:(NSDictionary*)dict;
+@property (nonatomic, strong) NSMutableArray<BaseListDTO*>* dtos;
+-(BaseListDTO*)makeDtoWith:(NSDictionary*)dict;
 
 @end

@@ -348,13 +348,7 @@
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
     else {
-        if (self.segmentCell.segment.currentIndex != 2) {
-            return [SupplyListCell cellHeight];
-
-        }
-        else {
-            return [SupplyListCell cellHeight] - 30;
-        }
+        return [SupplyListCell cellHeight];
 
     }
 }

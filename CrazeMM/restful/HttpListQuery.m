@@ -25,12 +25,6 @@
     return self;
 }
 
-//-(NSString*)urlWithPn:(NSString*)url
-//{
-//    NSString* absUrl = [NSString stringWithFormat:@"%@/%ld", url, self.pn];
-//    return COMB_URL(absUrl);
-//}
-
 @end
 
 @implementation HttpListQueryResponse
@@ -55,14 +49,14 @@
 
         self.dtos = [[NSMutableArray alloc] init];
         for (NSDictionary* dict in self.list) {
-            id newObj = [self makeDtoWith:dict];
-            [self.dtos addObject:newObj];
+            BaseListDTO* dto = [self makeDtoWith:dict];
+            [self.dtos addObject:dto];
         }
     }
 }
 
--(id)makeDtoWith:(NSDictionary*)dict
+-(BaseListDTO*)makeDtoWith:(NSDictionary*)dict
 {
-    return [NSNull null];
+    return nil;
 }
 @end

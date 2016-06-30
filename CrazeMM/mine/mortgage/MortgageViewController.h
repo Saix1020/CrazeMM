@@ -7,6 +7,7 @@
 //
 
 #import "CommonOrderListViewController.h"
+#import "HttpMortgage.h"
 
 @interface MortgageViewController : CommonOrderListViewController
 

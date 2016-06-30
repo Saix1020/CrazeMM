@@ -28,6 +28,7 @@
 #import "HttpBalance.h"
 #import "AllOrderListViewController.h"
 #import "HttpUserInfo.h"
+#import "MortgageViewController.h"
 
 @interface MineViewController()
 
@@ -622,8 +623,8 @@
                 
             }
             else if(indexPath.row== 4){
-                AddressesViewController* addrVC = [[AddressesViewController alloc] init];
-                [self.navigationController pushViewController:addrVC animated:YES];
+                MortgageViewController* mortgageVC = [[MortgageViewController alloc] init];
+                [self.navigationController pushViewController:mortgageVC animated:YES];
                 return;
                 
             }

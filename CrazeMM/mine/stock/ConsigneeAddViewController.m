@@ -119,7 +119,7 @@
         else {
             [self showAlertViewWithMessage:request.response.errorMsg withCallback:^(id x){
                 @strongify(self);
-                [self.navigationController popViewControllerAnimated:YES];
+//                [self.navigationController popViewControllerAnimated:YES];
             }];
         }
     })

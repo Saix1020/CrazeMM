@@ -8,7 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
-@interface CommonListCell : UITableViewCell
+
+
+@class CommonListCell;
+
+@protocol CommonListCellDelegate <NSObject>
+
+-(void)didSelectedListCell:(CommonListCell*)cell;
+-(void)leftButtonClicked:(CommonListCell*)cell;
+-(void)rightButtonClicked:(CommonListCell*)cell;
+
+@end
+
+@interface CommonListCell : UITableViewCell<BEMCheckBoxDelegate>
 @property (weak, nonatomic) IBOutlet BEMCheckBox *checkBox;
 @property (weak, nonatomic) IBOutlet UILabel *orderLabel;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
@@ -21,5 +33,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
+
+@property (strong, nonatomic) BaseListDTO* dto;
+//@property (nonatomic, readonly) BOOL on;
+
+@property (weak, nonatomic) id<CommonListCellDelegate> delegate;
+
++(CGFloat)cellHeight;
 
 @end

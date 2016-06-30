@@ -47,6 +47,13 @@
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 14.f)];
     self.tableView.tableHeaderView.backgroundColor = RGBCOLOR(240, 240, 240);
     
+//    [self getConsignees];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.dataSource removeAllObjects];
     [self getConsignees];
 }
 

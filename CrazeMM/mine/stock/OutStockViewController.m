@@ -166,6 +166,15 @@
 
 -(void)outStock:(id)sender
 {
+    if (self.type == 0 && !self.selectedConsigneeDto) {
+        [self showAlertViewWithMessage:@"请您先选择自提人"];
+        return;
+    }
+    else if(self.type == 1 && !self.selectedAddrDto) {
+        [self showAlertViewWithMessage:@"请您先选择快递地址"];
+        return;
+    }
+    
     @weakify(self);
     [self showAlertViewWithMessage:@"确认出库?"
                     withOKCallback:^(id x){
@@ -219,8 +228,14 @@
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self getConsignees];
     [self getOrderAddresses];
+
 }
 
 -(void)getOrderAddresses
@@ -330,18 +345,7 @@
             return 40.f;
         }
         else if(indexPath.row/2==1){
-            if (self.type == 1) {
-                if (self.addresses.count==0) {
-                    return 60.f;
-                }
-                else {
-                    return self.addrCell.height;
-                }
-
-            }
-            else {
-                return self.addrCell.height;
-            }
+            return [FirstAddrCell cellHeight];
         }
         else if(indexPath.row/2==2) {
             return self.productDetailCell.height;
