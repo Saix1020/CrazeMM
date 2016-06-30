@@ -155,7 +155,7 @@
 -(void)setProductDetailDto:(BaseProductDetailDTO *)productDetailDto
 {
     _productDetailDto = productDetailDto;
-    _productDetailDto.goodImage = self.productDto.goodImage;
+//    _productDetailDto.goodImage = self.productDto.goodImage;
     [self fomartTimeLabel];
     if(productDetailDto.isStep){
         self.productLadderCell.productDetailDto = productDetailDto;

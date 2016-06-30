@@ -23,11 +23,18 @@
 
 @property (nonatomic) NSInteger gid;
 @property (nonatomic) NSInteger depotId;
-@property (nonatomic) NSInteger presale;
-@property (nonatomic) NSInteger aftersale;
 @property (nonatomic) NSInteger version;
 @property (nonatomic) NSInteger uid;
+
+
+@property (nonatomic) NSInteger presale;
 @property (nonatomic) NSInteger insale;
+@property (nonatomic) NSInteger outstock;
+@property (nonatomic) NSInteger afterout;
+@property (nonatomic) NSInteger inmortgage;
+@property (nonatomic) NSInteger aftersale;
+
+@property (nonatomic, readonly) NSInteger total;
 
 @property (nonatomic) CGFloat inprice;
 

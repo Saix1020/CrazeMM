@@ -32,12 +32,18 @@
     if (self) {
         self.gid = [dict[@"gid"] integerValue];
         self.depotId = [dict[@"depotId"] integerValue];
-        self.presale = [dict[@"presale"] integerValue];
-        self.aftersale = [dict[@"aftersale"] integerValue];
         self.version = [dict[@"version"] integerValue];
         self.uid = [dict[@"uid"] integerValue];
-        self.insale = [dict[@"insale"] integerValue];
         self.inprice = [dict[@"inprice"] floatValue];
+        
+        
+        self.afterout = [dict[@"afterout"] integerValue];
+        self.inmortgage = [dict[@"inmortgage"] integerValue];
+        self.insale = [dict[@"insale"] integerValue];
+        self.aftersale = [dict[@"aftersale"] integerValue];
+        self.presale = [dict[@"presale"] integerValue];
+        self.outstock = [dict[@"outstock"] integerValue];
+
         
         self.isSerial = [dict[@"isSerial"] boolValue];
         self.isOriginal = [dict[@"isOriginal"] boolValue];
@@ -74,6 +80,11 @@
         StockLogDTO* log = [[StockLogDTO alloc] initWith:stockLog];
         [self.logs addObject:log];
     }
+}
+
+-(NSInteger)total
+{
+    return _presale+_insale+_outstock+_afterout+_inmortgage+_aftersale;
 }
 
 

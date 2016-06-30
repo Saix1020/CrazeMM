@@ -45,8 +45,15 @@
     self.statusLabel.layer.cornerRadius = 4.f;
     self.statusLabel.clipsToBounds = YES;
     self.statusLabel.textColor = [UIColor UIColorFromRGB:0x3972a2];
-    
+    self.statusLabel2.backgroundColor = [UIColor UIColorFromRGB:0xbddcfa];//
+    self.statusLabel2.layer.cornerRadius = 4.f;
+    self.statusLabel2.clipsToBounds = YES;
+    self.statusLabel2.textColor = [UIColor UIColorFromRGB:0x3972a2];
+
+    @weakify(self);
     [RACObserve(self.checkBox, hidden) subscribeNext:^(id x){
+        @strongify(self);
+
         if (self.checkBox.hidden) {
             self.orderLabelLeadingContraint.constant = 0;
         }
@@ -57,12 +64,32 @@
         [self updateConstraintsIfNeeded];
     }];
     
+    
+    
 }
 
-//-(BOOL)on
-//{
-//    return self.checkBox.on;
-//}
+-(void)setDto:(BaseListDTO *)dto
+{
+    @weakify(self);
+    
+    if (_dto == dto) {
+        
+    }
+    else {
+        _dto = dto;
+        [RACObserve(dto, selected) subscribeNext:^(id x){
+            @strongify(self);
+            self.checkBox.on = dto.selected;
+        }];
+    }
+    
+    [self renderAllSubviews];
+}
+
+-(void)renderAllSubviews
+{
+    
+}
 
 -(void)didTapCheckBox:(BEMCheckBox *)checkBox
 {
@@ -88,7 +115,12 @@
 
 +(CGFloat)cellHeight
 {
-    return 180.f;
+    return 160.f;
+}
+
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", self.class);
 }
 
 @end

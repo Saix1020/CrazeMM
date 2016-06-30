@@ -102,6 +102,8 @@
         self.region = dict[@"region"];
         self.deadlineStr = dict[@"deadlineStr"];
         self.goodName = dict[@"goodName"];
+        self.goodImage = dict[@"goodImage"];
+
         self.stateLabel = dict[@"stateLabel"];
         self.message = dict[@"message"];
         

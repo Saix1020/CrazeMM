@@ -17,14 +17,19 @@
         self.depotDto = [[DepotDTO alloc] initWith:dict[@"depot"]];
     
         self.inprice = [dict[@"inprice"] floatValue];
-        self.presale = [dict[@"presale"] integerValue];
         self.gid = [dict[@"gid"] integerValue];
         self.uid = [dict[@"uid"] integerValue];
         self.depotId = [dict[@"depotId"] integerValue];
-        self.aftersale = [dict[@"aftersale"] integerValue];
         self.version = [dict[@"version"] integerValue];
+        
+        self.afterout = [dict[@"afterout"] integerValue];
+        self.inmortgage = [dict[@"inmortgage"] integerValue];
         self.insale = [dict[@"insale"] integerValue];
+        self.aftersale = [dict[@"aftersale"] integerValue];
+        self.presale = [dict[@"presale"] integerValue];
         self.outstock = [dict[@"outstock"] integerValue];
+
+        
         
         self.isSerial = [dict[@"isSerial"] boolValue];
         self.isOriginal = [dict[@"isOriginal"] boolValue];
@@ -54,17 +59,19 @@
     return self;
 }
 
+-(NSInteger)total
+{
+    return _presale+_insale+_outstock+_afterout+_inmortgage+_aftersale;
+}
+
 -(instancetype)initWithStockDetailDTO:(StockDetailDTO*)stockDetailDto
 {
     self = [super init];
     if (self) {
         self.gid = stockDetailDto.gid;
         self.depotId = stockDetailDto.depotId;
-        self.presale = stockDetailDto.presale;
-        self.aftersale = stockDetailDto.aftersale;
         self.version = stockDetailDto.version;
         self.uid = stockDetailDto.uid;
-        self.insale = stockDetailDto.insale;
         self.inprice = stockDetailDto.inprice;
         self.isSerial = stockDetailDto.isSerial;
         self.isOriginal = stockDetailDto.isOriginal;
@@ -74,6 +81,14 @@
         self.gnetwork = stockDetailDto.gnetwork;
         self.gcolor = stockDetailDto.gcolor;
         self.goodName = stockDetailDto.goodName;
+        
+        self.afterout = stockDetailDto.afterout;
+        self.inmortgage = stockDetailDto.inmortgage;
+        self.insale = stockDetailDto.insale;
+        self.aftersale = stockDetailDto.aftersale;
+        self.presale = stockDetailDto.presale;
+        self.outstock = stockDetailDto.outstock;
+        
         
         self.currentPrice = self.inprice;
         self.currentSale = self.presale;

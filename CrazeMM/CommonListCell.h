@@ -33,9 +33,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel2;
 
 @property (strong, nonatomic) BaseListDTO* dto;
-//@property (nonatomic, readonly) BOOL on;
+@property (nonatomic) BOOL on;
 
 @property (weak, nonatomic) id<CommonListCellDelegate> delegate;
 
