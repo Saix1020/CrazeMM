@@ -44,7 +44,33 @@
         return [RACSignal empty];
     }];
 
+    
+    self.bottomViewButtonTitle = @"批量删除";
+    
+    
+    UIBarButtonItem* addMortgageButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addMortgage:)];
+    UIBarButtonItem* moreButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更多" style:UIBarButtonItemStylePlain target:self action:@selector(moreActions:)];
+    self.navigationItem.rightBarButtonItems = @[moreButtonItem, addMortgageButtonItem];
 }
 
+-(void)bottomViewButtonClicked:(UIButton*)button
+{
+    
+}
+
+-(void)addMortgage:(id)sender
+{
+    
+}
+
+-(void)moreActions:(id)sender
+{
+    
+}
+
+-(void)updateBottomView
+{
+    [super updateBottomView];
+}
 
 @end

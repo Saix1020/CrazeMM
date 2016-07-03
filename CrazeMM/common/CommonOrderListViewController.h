@@ -50,4 +50,16 @@
 -(AnyPromise*)requestDataSource;
 -(void)resetDataSource;
 
+// method for bottomView
+@property (nonatomic) NSString* bottomViewButtonTitle;
+@property (nonatomic) NSString* bottomViewAddtionalButtonTitle;
+
+//-(void)setActionForBottomViewButtonWithTarget:(id)target andAction:(SEL)action;
+//-(void)setActionForBottomViewAddtonalButtonWithTarget:(id)target andAction:(SEL)action;
+
+-(void)bottomViewButtonClicked:(UIButton*)button;
+-(void)bottomViewAddtionalButtonClicked:(UIButton*)button;
+-(void)updateBottomView;
+
+
 @end

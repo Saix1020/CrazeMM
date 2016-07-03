@@ -350,6 +350,8 @@
 		B99578DB1D241BE900F3D30B /* HttpMortgage.m in Sources */ = {isa = PBXBuildFile; fileRef = B99578D91D241BE900F3D30B /* HttpMortgage.m */; };
 		B99578DF1D241D5C00F3D30B /* MortgageDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B99578DE1D241D5C00F3D30B /* MortgageDTO.m */; };
 		B99578E01D241D5C00F3D30B /* MortgageDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B99578DE1D241D5C00F3D30B /* MortgageDTO.m */; };
+		B99578FB1D29319000F3D30B /* CommonListCell+Mortgage.m in Sources */ = {isa = PBXBuildFile; fileRef = B99578FA1D29319000F3D30B /* CommonListCell+Mortgage.m */; };
+		B99578FC1D29319000F3D30B /* CommonListCell+Mortgage.m in Sources */ = {isa = PBXBuildFile; fileRef = B99578FA1D29319000F3D30B /* CommonListCell+Mortgage.m */; };
 		B99955211CE3078A007F26D2 /* HttpAddIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = B99955201CE3078A007F26D2 /* HttpAddIntention.m */; };
 		B99955241CE30AD8007F26D2 /* HttpSupplyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B99955231CE30AD8007F26D2 /* HttpSupplyOrder.m */; };
 		B99955291CE36F12007F26D2 /* HttpBuyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B99955281CE36F12007F26D2 /* HttpBuyRequest.m */; };
@@ -1491,6 +1493,8 @@
 		B99578D91D241BE900F3D30B /* HttpMortgage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMortgage.m; path = restful/HttpMortgage.m; sourceTree = "<group>"; };
 		B99578DD1D241D5C00F3D30B /* MortgageDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MortgageDTO.h; path = mine/mortgage/MortgageDTO.h; sourceTree = "<group>"; };
 		B99578DE1D241D5C00F3D30B /* MortgageDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MortgageDTO.m; path = mine/mortgage/MortgageDTO.m; sourceTree = "<group>"; };
+		B99578F91D29319000F3D30B /* CommonListCell+Mortgage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CommonListCell+Mortgage.h"; path = "mine/mortgage/CommonListCell+Mortgage.h"; sourceTree = "<group>"; };
+		B99578FA1D29319000F3D30B /* CommonListCell+Mortgage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CommonListCell+Mortgage.m"; path = "mine/mortgage/CommonListCell+Mortgage.m"; sourceTree = "<group>"; };
 		B999551F1CE3078A007F26D2 /* HttpAddIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpAddIntention.h; path = restful/HttpAddIntention.h; sourceTree = "<group>"; };
 		B99955201CE3078A007F26D2 /* HttpAddIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpAddIntention.m; path = restful/HttpAddIntention.m; sourceTree = "<group>"; };
 		B99955221CE30AD8007F26D2 /* HttpSupplyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSupplyOrder.h; path = restful/HttpSupplyOrder.h; sourceTree = "<group>"; };
@@ -1881,6 +1885,8 @@
 				B9076F4F1D22C7D9001FFDE4 /* MortgageListCell.h */,
 				B9076F501D22C7D9001FFDE4 /* MortgageListCell.m */,
 				B9076F541D22C7FB001FFDE4 /* MortgageListCell.xib */,
+				B99578F91D29319000F3D30B /* CommonListCell+Mortgage.h */,
+				B99578FA1D29319000F3D30B /* CommonListCell+Mortgage.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -4068,6 +4074,7 @@
 				B99955361CE37988007F26D2 /* OrderDetailHeadCell.m in Sources */,
 				B9C4BCBD1D22559F00C719CE /* HttpConsignee.m in Sources */,
 				B967E6F11CE4CDC500621F28 /* OrderDefine.m in Sources */,
+				B99578FB1D29319000F3D30B /* CommonListCell+Mortgage.m in Sources */,
 				B99578DF1D241D5C00F3D30B /* MortgageDTO.m in Sources */,
 				B91732801CD20E9000C29698 /* HttpLoginRequest.m in Sources */,
 				B965B7121D1D6B680021C809 /* RechargeLogCell.m in Sources */,
@@ -4553,6 +4560,7 @@
 				B9B3E4BF1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */,
 				B9EFAEDE1CED514100F81157 /* PaySuccessProductCell.m in Sources */,
 				B9EFAEDF1CED514100F81157 /* OrderStatusCell.m in Sources */,
+				B99578FC1D29319000F3D30B /* CommonListCell+Mortgage.m in Sources */,
 				B9EFAEE01CED514100F81157 /* ProductSummaryCell.m in Sources */,
 				B9EFAEE11CED514100F81157 /* ZoomOutAnimation.m in Sources */,
 				B9EFAEE21CED514100F81157 /* SupplyViewController.m in Sources */,
