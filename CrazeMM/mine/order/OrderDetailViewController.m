@@ -58,6 +58,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         [self.view addSubview:_bottomView];
         [_bottomView addSubview:self.confirmButton];
         _bottomView.backgroundColor = [UIColor whiteColor];
+        
+        // we hide it now
+        _bottomView.hidden = YES;
     }
     
     return _bottomView;
@@ -109,7 +112,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.backgroundColor = [UIColor whiteColor];
         _contentCell.needHeadView = NO;
         _contentCell.canelButton.hidden = NO;
-        _contentCell.productDescLabel.font = [UIFont systemFontOfSize:15.f];
+        _contentCell.productDescLabel.font = [UIFont boldSystemFontOfSize:15.f];
         UIColor* textColor = [UIColor UIColorFromRGB:0x666666];
         _contentCell.orderLabel.textColor = textColor;
         _contentCell.productDescLabel.textColor = textColor;
@@ -117,7 +120,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.amountLabel.textColor = textColor;
         _contentCell.priceLabel.textColor = textColor;
         
-                _contentCell.layer.borderWidth = 0.f;
+        _contentCell.layer.borderWidth = 0.f;
 
     }
     return _contentCell;
@@ -141,7 +144,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 {
     if (!_logsCell) {
         _logsCell = (OrderLogsCell*)[UINib viewFromNib:@"OrderLogsCell"];
-        _logsCell.backgroundColor = [UIColor whiteColor];
+        _logsCell.backgroundColor = [UIColor clearColor];
 //        _logsCell.layer.borderWidth = .5f;
 //        _logsCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
 
@@ -184,6 +187,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 -(void)initBottomView
 {
+    // no need call it now
+    return;
+    
     if (self.style.orderType == kOrderTypeBuy) {
         if (self.style.orderSubType == kOrderSubTypePay) {
             switch (self.style.orderState) {
@@ -197,6 +203,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
         }
@@ -209,8 +216,12 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
+        }
+        else {
+            self.bottomView.hidden = YES;
         }
     }
     else if (self.style.orderType == kOrderTypeSupply){
@@ -226,6 +237,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
         }
@@ -241,8 +253,12 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
+        }
+        else {
+            self.bottomView.hidden = YES;
         }
     }
     
@@ -384,6 +400,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 string = @"已完成";
                 subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
+            case ORDERCLOSE:
+                string = @"订单状态: 600";
+                subString = [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
+
+                break;
             default:
                 break;
         }
@@ -418,7 +439,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 string =  @"已完成";
                 subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
+            case ORDERCLOSE:
+                string = @"订单状态: 600";
+                subString = [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
                 
+                break;
             default:
                 break;
         }
@@ -641,6 +666,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 break;
         }
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

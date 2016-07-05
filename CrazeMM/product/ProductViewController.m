@@ -84,6 +84,8 @@
     }
     else {
         if (self.productDetailDto && (self.productDetailDto.active && self.productDetailDto.millisecond>0)) {
+            self.timeLabel.hidden = NO;
+
             UIImageView* clockView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
             clockView.image = [UIImage imageNamed:@"clock_white"];
             [self.timeLabel appendView:clockView margin:UIEdgeInsetsZero alignment:M80ImageAlignmentCenter];
@@ -91,6 +93,7 @@
             timeString = [NSString leftTimeString:self.productDetailDto.millisecond];
         }
         else {
+            self.timeLabel.hidden = YES;
             timeString = self.productDetailDto.stateLabel;
         }
     }
@@ -152,7 +155,7 @@
 -(void)setProductDetailDto:(BaseProductDetailDTO *)productDetailDto
 {
     _productDetailDto = productDetailDto;
-    _productDetailDto.goodImage = self.productDto.goodImage;
+//    _productDetailDto.goodImage = self.productDto.goodImage;
     [self fomartTimeLabel];
     if(productDetailDto.isStep){
         self.productLadderCell.productDetailDto = productDetailDto;
@@ -197,7 +200,9 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"商品详情";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"switch"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    // disable sharing
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"switch"] style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
@@ -295,6 +300,9 @@
         }
     }
     else if(indexPath.row == 3){
+        
+        //if(self.productDetailDto.
+        
         return [ProductCompanyCell cellHeight];
     }
     else {
@@ -330,6 +338,12 @@
     }
     else if(indexPath.row == 3){
         cell = self.companyCell;
+        if (self.productDetailDto.isAnoy) {
+            cell.hidden = YES;
+        }
+        else {
+            cell.hidden = NO;
+        }
     }
     else{
         cell = self.otherCompayCell;

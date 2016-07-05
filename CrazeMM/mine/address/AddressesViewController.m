@@ -74,9 +74,15 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.tabBarController setTabBarHidden:YES animated:YES];
     [self refreshAddressList];
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
+}
+
 
 #pragma mark - Table view data source
 
@@ -101,6 +107,7 @@
     cell.defaultCheckBox.tag = 1000 + indexPath.section;
     cell.defaultCheckBox.delegate = self;
     cell.delegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -117,7 +124,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.delegate respondsToSelector:@selector(didSelectedAddress:)]) {
-        [self.delegate didSelectedAddress:self.addresses[indexPath.row]];
+        [self.delegate didSelectedAddress:self.addresses[indexPath.section]];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

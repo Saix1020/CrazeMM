@@ -25,6 +25,7 @@
 @property(nonatomic, strong) UIView* topSeperatorView;
 @property(nonatomic, strong) UIView* buttonLine;
 @property(nonatomic, strong) UIView* topLine;
+@property (readwrite, strong, nonatomic) SearchResultDTO* searchResultDTO;
 
 @end
 
@@ -74,6 +75,13 @@
     return _typeLabel;
 }
 
+//-(UILabel*)createTimeLabel
+//{
+//    if (!_createTimeLabel) {
+//        _createTimeLabel = [UILabel]
+//    }
+//}
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andResultItem:(NSUInteger) item
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -103,6 +111,12 @@
     return self;
 }
 
+-(void)setSearchResultDTO:(SearchResultDTO *)searchResultDTO andTypeName:(NSString*)typeName
+{
+    self.typeName = typeName;
+    self.searchResultDTO = searchResultDTO;
+}
+
 -(void)setSearchResultDTO:(SearchResultDTO *)searchResultDTO
 {
     _searchResultDTO = searchResultDTO;
@@ -110,8 +124,16 @@
     [self fomartTitleLabel];
     [self fomartPriceLabel];
 
+    self.createTimeLabel.text = [NSString stringWithFormat:@"发布时间: %@", searchResultDTO.createTime];
+    [self.createTimeLabel sizeToFit];
 //    self.titleLabel.text = searchResultDTO.goodName;
-    self.arrivalTime.text = [NSString stringWithFormat:@"到货周期: %@", searchResultDTO.deadlineStr];
+    
+    if (NotNilAndNull(self.searchResultDTO.stock)) {
+        self.stockLabel.text = [NSString stringWithFormat:@"所在仓库: %@", self.searchResultDTO.depotDto.name ];
+    }
+    else {
+        self.arrivalTime.text = [NSString stringWithFormat:@"卖家发货: %@", searchResultDTO.deadlineStr]; 
+    }
     
     if ([self.typeName isEqualToString:@"供货"]) {
         self.scopeLabel.text = [NSString stringWithFormat:@"供货范围: %@", searchResultDTO.region];
@@ -121,10 +143,7 @@
         self.scopeLabel.text = [NSString stringWithFormat:@"收货地址: %@", searchResultDTO.address];
 
     }
-    //[self.scopeLabel sizeToFit];
-    CGSize size = [self.self.scopeLabel.text boundingRectWithFont:self.self.scopeLabel.font andWidth:self.self.scopeLabel.width];
-    self.scopeLabel.height = ceil(size.height);
-
+    [self.scopeLabel sizeToFit];
     
     if (searchResultDTO.isAnoy) {
         [self.companyImageView setImageWithURL:[NSURL URLWithString:COMB_URL(@"/weui/images/img_01.jpg")] placeholderImage:[UIImage imageNamed:@"company_icon"]];
@@ -141,7 +160,7 @@
         self.companyLabel.text = searchResultDTO.userName;
     }
     
-    if (searchResultDTO.isActive && searchResultDTO.duration > 0) {
+    if (searchResultDTO.isActive && searchResultDTO.millisecond > 0) {
         self.countdownLabel.hidden = YES;
         self.leftTimeLabel.hidden = NO;
         [self fomartTimeLeftLabel];
@@ -149,7 +168,7 @@
     else {
         self.countdownLabel.hidden = NO;
         self.leftTimeLabel.hidden = YES;
-
+        [self fomartCountDownLabel];
     }
     
     self.previewAndTransctionsLabels.strings = @[[NSString stringWithFormat:@"浏览: %ld", searchResultDTO.views],
@@ -183,7 +202,13 @@
     self.arrivalTime.numberOfLines = 1;
     self.arrivalTime.adjustsFontSizeToFitWidth = YES;
     self.arrivalTime.textColor = RGBCOLOR(131, 131, 131);
+    self.stockLabel = self.arrivalTime;
     
+    self.createTimeLabel = [[UILabel alloc] init];
+    self.createTimeLabel.font = [UIFont systemFontOfSize:13];
+    self.createTimeLabel.numberOfLines = 1;
+    self.createTimeLabel.adjustsFontSizeToFitWidth = YES;
+    self.createTimeLabel.textColor = RGBCOLOR(131, 131, 131);
     
     self.scopeLabel = [[UILabel alloc] init];
     self.scopeLabel.font = [UIFont systemFontOfSize:13];
@@ -206,10 +231,6 @@
     
     self.countdownLabel = [[M80AttributedLabel alloc] init];
     self.countdownLabel.backgroundColor = [UIColor lightGrayColor188];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"已成交"];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
-    [self.countdownLabel appendAttributedText:attributedText];
-    [self.countdownLabel sizeToFit];
     self.countdownLabel.textAlignment = kCTTextAlignmentCenter;
     self.countdownLabel.hidden = YES;
     
@@ -229,6 +250,7 @@
     [self.contentView addSubview:self.priceLabel];
     [self.contentView addSubview:self.seperatorLine];
     [self.contentView addSubview:self.arrivalTime];
+    [self.contentView addSubview:self.createTimeLabel];
     [self.contentView addSubview:self.companyLabel];
     [self.contentView addSubview:self.companyImageView];
     [self.contentView addSubview:self.scopeLabel];
@@ -248,6 +270,15 @@
 
 }
 
+-(void)fomartCountDownLabel
+{
+    self.countdownLabel.text = @"";
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.searchResultDTO.stateLabel];
+    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
+    [self.countdownLabel appendAttributedText:attributedText];
+    [self.countdownLabel sizeToFit];
+}
+
 -(void)fomartTitleLabel
 {
     self.titleLabel.text = @"";
@@ -264,12 +295,13 @@
     
     CGSize size = [self.titleLabel.text boundingRectWithFont:self.titleLabel.font andWidth:self.titleLabel.width];
     
-    if (ceil(size.height) > kMaxTitleHeight) {
-        self.titleLabel.height = kMaxTitleHeight;
-    }
-    else {
-        self.titleLabel.height = ceil(size.height);
-    }
+//    if (ceil(size.height) > kMaxTitleHeight) {
+//        self.titleLabel.height = kMaxTitleHeight;
+//    }
+//    else {
+//        self.titleLabel.height = ceil(size.height);
+//    }
+    [self.titleLabel sizeToFit];
 }
 
 
@@ -382,6 +414,10 @@
     self.seperatorLine.frame = CGRectMake(16.f, y, bounds.size.width-2*16.f, 1);
     
     y += self.seperatorLine.frame.size.height+12.f;
+    
+    self.createTimeLabel.frame = CGRectMake(16.f, y, bounds.size.width-2*16.f, self.createTimeLabel.height);
+    y += self.createTimeLabel.frame.size.height-4.f;
+
     self.arrivalTime.frame = CGRectMake(16.f, y,
                                         bounds.size.width-2*16.f, 24.f);
     
@@ -407,7 +443,7 @@
     
     self.buttonLine.y = y-1.0f;
     
-    self.height = y;
+    self.height = self.countdownLabel.bottom;
 
 }
 

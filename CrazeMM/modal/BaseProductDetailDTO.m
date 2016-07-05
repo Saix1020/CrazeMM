@@ -49,6 +49,26 @@
 
 @end
 
+@implementation BaseProductLogDTO
+
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [self init];
+    if (self) {
+        self.createTime = dict[@"createTime"];
+        self.message = dict[@"message"];
+        self.stateLabel = dict[@"newStateLabel"];
+
+        self.afterState = [dict[@"afterState"] integerValue];
+        self.beforeState = [dict[@"beforeState"] integerValue];
+    }
+    
+    return self;
+}
+
+@end
+
+
 
 
 @implementation BaseProductDetailDTO
@@ -66,6 +86,7 @@
         self.isTop = [dict[@"isTop"] boolValue];
         self.isOriginalBox = [dict[@"isOriginalBox"] boolValue];
         self.isOriginal = [dict[@"isOriginal"] boolValue];
+        self.isAnoy = [dict[@"isAnoy"] boolValue];
         
         self.quantity = [dict[@"quantity"] integerValue];
         self.millisecond = [dict[@"millisecond"] integerValue];
@@ -81,18 +102,51 @@
         self.region = dict[@"region"];
         self.deadlineStr = dict[@"deadlineStr"];
         self.goodName = dict[@"goodName"];
+        self.goodImage = dict[@"goodImage"];
+
         self.stateLabel = dict[@"stateLabel"];
         self.message = dict[@"message"];
         
+        NSArray* logs = dict[@"logs"];
+        
         if (self.isStep) {
-            [self parserProductSteporices:dict[@"stepPrices"]];
+            [self parseProductSteporices:dict[@"stepPrices"]];
         }
+        
+        if (logs.count) {
+            [self parseProductLogs:logs];
+        }
+        
+        if ([dict[@"stock"] isKindOfClass:[NSNumber class]]) {
+            self.stock = nil;
+        }
+        else {
+            self.stock = dict[@"stock"];
+        }
+        if (NotNilAndNull(self.stock)) {
+            self.depotDto = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
+        }
+
     }
     
     return self;
 }
 
--(void)parserProductSteporices:(NSArray*)stepPrices
+-(void)parseProductLogs:(NSArray*)logs
+{
+    self.logs = [[NSMutableArray alloc] init];
+    for (NSDictionary* log in logs) {
+        BaseProductLogDTO* logDto = [[[self logClass] alloc] initWith:log];
+        [self.logs addObject:logDto];
+    }
+}
+
+-(Class)logClass
+{
+    return [BaseProductLogDTO class];
+}
+
+-(void)parseProductSteporices:(NSArray*)stepPrices
 {
     self.stepPrices = [[NSMutableArray alloc] init];
     

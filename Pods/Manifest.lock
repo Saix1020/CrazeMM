@@ -54,7 +54,13 @@ PODS:
   - ReactiveCocoa/UI (4.0.1):
     - ReactiveCocoa/Core
     - Result (~> 1.0.2)
+  - RealReachability (1.1.7):
+    - RealReachability/Connection (= 1.1.7)
+    - RealReachability/Ping (= 1.1.7)
+  - RealReachability/Connection (1.1.7)
+  - RealReachability/Ping (1.1.7)
   - Result (1.0.2)
+  - SDAutoLayout (2.1.1)
   - TPKeyboardAvoiding (1.3)
   - UITableView+FDTemplateLayoutCell (1.4)
   - UIView+FrameEx (0.0.1)
@@ -70,6 +76,8 @@ DEPENDENCIES:
   - PPiFlatSegmentedControl (~> 1.4.0)
   - PromiseKit (~> 3.2.0)
   - ReactiveCocoa (~> 4.0.0)
+  - RealReachability (~> 1.1.7)
+  - SDAutoLayout (~> 2.1.1)
   - TPKeyboardAvoiding (~> 1.3)
   - UITableView+FDTemplateLayoutCell (~> 1.4)
   - UIView+FrameEx (~> 0.0.1)
@@ -88,7 +96,9 @@ SPEC CHECKSUMS:
   PPiFlatSegmentedControl: ed706988b57f887fc09852dd0da18b3355cd8bea
   PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
   ReactiveCocoa: f7011630aee4deeb16352fcb1b50d6bde9db4f90
+  RealReachability: 8b6644c6b3145f7552ed83bffb52c49b0f3b55e3
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  SDAutoLayout: c18678b6ae28c67d89cb132e770cfbac9ee20d25
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   UIView+FrameEx: ab0c53e158ef0621d7b0b0a26626e175ac17e471

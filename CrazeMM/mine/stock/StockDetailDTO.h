@@ -23,11 +23,18 @@
 
 @property (nonatomic) NSInteger gid;
 @property (nonatomic) NSInteger depotId;
-@property (nonatomic) NSInteger presale;
-@property (nonatomic) NSInteger aftersale;
 @property (nonatomic) NSInteger version;
 @property (nonatomic) NSInteger uid;
+
+
+@property (nonatomic) NSInteger presale;
 @property (nonatomic) NSInteger insale;
+@property (nonatomic) NSInteger outstock;
+@property (nonatomic) NSInteger afterout;
+@property (nonatomic) NSInteger inmortgage;
+@property (nonatomic) NSInteger aftersale;
+
+@property (nonatomic, readonly) NSInteger total;
 
 @property (nonatomic) CGFloat inprice;
 
@@ -35,13 +42,20 @@
 @property (nonatomic) BOOL isOriginal;
 @property (nonatomic) BOOL isOriginalBox;
 @property (nonatomic) BOOL isBrushMachine;
+@property (nonatomic) BOOL isMortgage;
 
 @property (nonatomic, strong) NSString* updateTime;
 @property (nonatomic, strong) NSString* gvolume;
 @property (nonatomic, strong) NSString* gcolor;
 @property (nonatomic, strong) NSString* gnetwork;
+@property (nonatomic, strong) NSString* goodName;
 
 @property (nonatomic, strong) NSMutableArray<StockLogDTO*>* logs;
 
+@property (nonatomic) float earning;
+@property (nonatomic) BOOL selected;
+@property (nonatomic) NSInteger currentPrice;
+@property (nonatomic) NSInteger currentSale;
+@property (nonatomic) NSInteger currentNum;
 
 @end

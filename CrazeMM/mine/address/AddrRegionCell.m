@@ -7,8 +7,16 @@
 //
 
 #import "AddrRegionCell.h"
+#import "SuggestViewController.h"
+#import "ZZPopoverWindow.h"
+
+@interface AddrRegionCell ()
+@property (nonatomic, strong) SuggestViewController* suggestVC;
+@property (nonatomic, strong) ZZPopoverWindow* popover;
+@end
 
 @implementation AddrRegionCell
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -51,5 +59,34 @@
 {
     return self.titleLabel.text;
 }
+
+
+-(void)popSelection:(NSArray*)options andDelegate:(id<SuggestVCDelegate>)delegate
+{
+    if (options.count != 0) {
+        self.suggestVC = [[SuggestViewController alloc] init];
+        self.suggestVC.suggestedStrings = options;
+        self.suggestVC.delegate = delegate;
+        self.suggestVC.view.frame = CGRectMake(0, 0, 280, self.suggestVC.height);
+        self.popover                    = [[ZZPopoverWindow alloc] init];
+        self.popover.popoverPosition = ZZPopoverPositionDown;
+        self.popover.contentView        = self.suggestVC.view;
+        self.popover.animationSpring = NO;
+        self.popover.showArrow = NO;
+        self.popover.didShowHandler = ^() {
+            //self.popover.layer.cornerRadius = 0;
+        };
+        self.popover.didDismissHandler = ^() {
+            //NSLog(@"Did dismiss");
+        };
+        
+        [self.popover showAtView:self.regionLabel position:ZZPopoverPositionDown];
+    }
+}
+-(void)dismissSelection
+{
+    [self.popover dismiss];
+}
+
 
 @end

@@ -33,7 +33,7 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(40.0f);
-        [_segmentCell setTitles:@[@"Segment1", @"Segment2", @"Segment3"]];
+//        [_segmentCell setTitles:self.segmentTitles];
         _segmentCell.segment.delegate = self;
         
         [self.view addSubview:_segmentCell];
@@ -43,6 +43,17 @@
     return _segmentCell;
 }
 
+-(void)setSegmentTitles:(NSArray *)segmentTitles
+{
+    _segmentTitles = segmentTitles;
+    [self.segmentCell setTitles:segmentTitles];
+}
+
+-(NSInteger)selectedSegmentIndex
+{
+    return self.segmentCell.segment.currentIndex;
+}
+
 -(CommonBottomView*)bottomView
 {
     if(!_bottomView){
@@ -50,6 +61,8 @@
         [self.view addSubview:_bottomView];
 
         [_bottomView.confirmButton addTarget:self action:@selector(bottomViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView.addtionalButton addTarget:self action:@selector(bottomViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
         
         _bottomView.selectAllCheckBox.delegate = self;
     }
@@ -63,6 +76,22 @@
                                                    message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+}
+
+-(NSArray*)selectedData
+{
+    return  [self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
+
+}
+-(NSArray*)unSelectedData
+{
+    return  [self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected == NO"]];
+    
+}
+
+-(HttpListQueryRequest*)makeListQueryRequest
+{
+    return nil;
 }
 
 - (void)viewDidLoad
@@ -86,7 +115,6 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-    
     self.segmentCell.frame = CGRectMake(0, 64.f, [UIScreen mainScreen].bounds.size.width, kSegmentCellHeight);
     self.tableView.frame = self.view.bounds;
     
@@ -96,6 +124,8 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    [self.tableView registerNib:[UINib nibWithNibName:@"CommonListCell" bundle:nil] forCellReuseIdentifier:@"CommonListCell"];
+    
     
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -130,6 +160,7 @@
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
     
+    self.dataSource = [[NSMutableArray alloc] init];
     self.isRefreshing = NO;
 }
 
@@ -147,6 +178,9 @@
 {
     [super viewWillAppear:animated];
     [self.tabBarController setTabBarHidden:YES animated:YES];
+    if (self.autoRefresh) {
+        [self resetDataSource];
+    }
     
 }
 
@@ -156,21 +190,83 @@
     self.bottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
 }
 
+
+-(void)resetDataSource
+{
+    self.totalRow = 0;
+    self.pageNumber = 0;
+    self.totalPage = 0;
+    self.pageSize = 0;
+    
+    [self.dataSource removeAllObjects];
+    [self.tableView reloadData];
+    
+    self.listQueryRequest = [self makeListQueryRequest];
+    [self requestDataSource];
+}
+
+-(AnyPromise*)requestDataSource
+{
+    //return nil;
+    [self showProgressIndicatorWithTitle:@"正在加载"];
+    return
+    [self.listQueryRequest request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        HttpListQueryResponse *response = (HttpListQueryResponse*)self.listQueryRequest.response;
+        if (response.ok) {
+            if (response.dtos.count>0) {
+                [self.dataSource addObjectsFromArray:response.dtos];
+                self.totalPage = response.totalPage;
+                self.pageNumber = response.pageNumber>=self.totalPage ? self.totalPage:response.pageNumber;
+                [self.tableView reloadData];
+                self.bottomView.selectAllCheckBox.on = NO;
+            }
+        }
+        else{
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        [self dismissProgressIndicator];
+    });
+}
+
+
+
 -(AnyPromise*)handleHeaderRefresh
 {
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    return [alert promise];
+    self.listQueryRequest = [self makeListQueryRequest];
+    if (self.listQueryRequest) {
+        return [self requestDataSource];
+    }
+    else {
+        UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                       message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                      delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        return [alert promise];
+    }
+    
     
 }
 
 -(AnyPromise*)handleFooterRefresh
 {
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    return [alert promise];
+    self.listQueryRequest = [self makeListQueryRequest];
+
+    if (self.listQueryRequest) {
+        return [self requestDataSource];
+    }
+    else {
+        UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                       message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                      delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        return [alert promise];
+    }
 
 }
 
@@ -178,19 +274,17 @@
 
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-}
+    self.listQueryRequest = [self makeListQueryRequest];
 
-#pragma -- mark BEMCheckBox Delegate
--(void)didTapCheckBox:(BEMCheckBox *)checkBox
-{
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    if (self.listQueryRequest) {
+        [self resetDataSource];
+    }
+    else {
+        UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                       message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                      delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert promise];
+    }
 }
 
 #pragma -- mark UIScroll view delegate
@@ -294,18 +388,25 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger num = self.dataSource.count;
+    // add a last useless cell, or the last cell will be overlaped by CommonBottomView
     return num*2 + 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row == self.dataSource.count*2){
         return [CommonBottomView cellHeight];
     }
     else if(indexPath.row %2 ==0){
         return 12.f;
     }
-    return 0;
+    
+    if (self.usingDefaultCell) {
+
+        return [CommonListCell cellHeight];
+    }
+    return 0.f;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -326,8 +427,83 @@
             cell.backgroundColor = [UIColor clearColor];
         }
     }
-    
+    else {
+        if (self.usingDefaultCell) {
+            CommonListCell* listCell = [tableView dequeueReusableCellWithIdentifier:@"CommonListCell"];
+            listCell.dto = self.dataSource[indexPath.row/2];
+            listCell.delegate = self;
+            cell = listCell;
+
+        }
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+-(UITableViewCell*)configCellByTableView:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath
+{
+    NSAssert(NO, @"You should override this method %s", __FUNCTION__);
+    return nil;
+}
+
+
+#pragma mark Common list cell delegate
+-(void)didSelectedListCell:(CommonListCell *)cell
+{
+    
+    NSArray* onArray = self.selectedData;
+    if (onArray.count == self.dataSource.count) {
+        self.bottomView.selectAllCheckBox.on = YES;
+    }
+    else {
+        self.bottomView.selectAllCheckBox.on = NO;
+    }
+}
+
+-(void)leftButtonClicked:(CommonListCell *)cell
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+
+}
+
+-(void)rightButtonClicked:(CommonListCell *)cell
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+
+}
+
+#pragma -- mark BEMCheckBox Delegate
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox
+{
+    if (checkBox.on) {
+        for(BaseListDTO* dto in self.unSelectedData){
+            dto.selected = YES;
+        }
+    }
+    else {
+        for(BaseListDTO* dto in self.selectedData){
+            dto.selected = NO;
+        }
+    }
+    
+}
+
+
+-(void)operationSuccessBack:(NSArray<BaseListDTO*>*)operatedDto
+{
+    [self resetDataSource];
+}
+
+
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", self.class);
 }
 
 @end

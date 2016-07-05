@@ -25,6 +25,7 @@
 #import "BuyProductViewController.h"
 #import "HttpAddIntention.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "HttpSearchKeyword.h"
 
 
 #define kSegmentCellHeight 40.f
@@ -54,11 +55,62 @@
 
 @property (nonatomic) CGPoint ptLastOffset;
 
+
+@property (nonatomic, strong) UIView* maskView;
+@property (nonatomic, strong) TTModalView *modalView;
+@property (nonatomic, strong) FilterViewController *filterVC;
+@property (nonatomic, strong) UINavigationController *modalNav;
+@property (nonatomic, copy) NSDictionary* searchCondtions;
 @end
 
 
 
 @implementation SearchListViewController
+
+-(UIView*)maskView
+{
+    if (!_maskView) {
+        _maskView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _maskView.backgroundColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.6];
+
+    }
+    return _maskView;
+}
+
+-(TTModalView*)modalView
+{
+    if (!_modalView) {
+        _modalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
+        _modalView.modalWindowLevel = UIWindowLevelNormal;
+        _modalView.isCancelAble = NO;
+        
+        _modalView.contentView = self.modalNav.view;
+        
+        _modalView.presentAnimationStyle = SlideInRight;
+        _modalView.dismissAnimationStyle = SlideOutRight ;
+
+    }
+    
+    return _modalView;
+}
+
+-(UINavigationController*)modalNav
+{
+    if (!_modalNav) {
+        _modalNav = [[UINavigationController alloc] initWithRootViewController:self.filterVC];
+    }
+    return _modalNav;
+}
+
+-(FilterViewController*)filterVC
+{
+    if (!_filterVC) {
+        _filterVC = [[FilterViewController alloc] init];
+        _filterVC.delegate = self;
+
+    }
+    return _filterVC;
+}
 
 -(UIView*)emptyView
 {
@@ -113,6 +165,7 @@
     for (NSMutableArray* array in [self dataSourceArray]) {
         [array removeAllObjects];
     }
+    self.currentPage = 0;
     [self.cellHeight removeAllObjects];
     
     // we should reload data here
@@ -126,15 +179,15 @@
     self.totalPage = 1;
 }
 
--(FilterViewController*)fitlerVC
-{
-    if(!_fitlerVC){
-        _fitlerVC = [[FilterViewController alloc] init];
-        _fitlerVC.filterKeywords = @[@"AAAAA", @"BBBB", @"CCCCC", @"DDDDDDD"];
-        //[self addChildViewController:_fitlerVC];
-    }
-    return _fitlerVC;
-}
+//-(FilterViewController*)fitlerVC
+//{
+//    if(!_fitlerVC){
+//        _fitlerVC = [[FilterViewController alloc] init];
+//        _fitlerVC.filterKeywords = @[@"AAAAA", @"BBBB", @"CCCCC", @"DDDDDDD"];
+//        //[self addChildViewController:_fitlerVC];
+//    }
+//    return _fitlerVC;
+//}
 
 -(SegmentedCell*)segmentCell
 {
@@ -142,7 +195,7 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(kSegmentCellHeight);
-        [_segmentCell setTitles:@[@"人气", @"价格", @"供货量"] andIcons:@[@"", @"arrow_up", @"arrow_up"]];
+        [_segmentCell setTitles:@[@"综合", @"价格", @"供货量"] andIcons:@[@"", @"arrow_up", @"arrow_up"]];
 //        ((UIButton*)(_segmentCell.segment.buttons[1])).imageView.hidden = ((UIButton*)(_segmentCell.segment.buttons[2])).imageView.hidden = YES;
         
         _segmentCell.segment.delegate = self;
@@ -158,18 +211,18 @@
 
     switch (selectedIndex) {
         case 0:
-            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"人气" andIcon:icon],
+            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"综合" andIcon:icon],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"价格" andIcon:nil],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"供货量" andIcon:nil]];
             break;
         case 1:
-            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"人气" andIcon:nil],
+            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"综合" andIcon:nil],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"价格" andIcon:icon],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"供货量" andIcon:nil]];
             break;
 
         case 2:
-            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"人气" andIcon:nil],
+            items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"综合" andIcon:nil],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"价格" andIcon:nil],
                       [[PPiFlatSegmentItem alloc] initWithTitle:@"供货量" andIcon:icon]];
             break;
@@ -211,15 +264,17 @@
         [self.tableView setTableFooterView:view];
     [self.view addSubview:self.segmentCell];
     
-    self.navigationItem.title = [NSString stringWithFormat:@"%@(%@)", @"搜索结果", self.searchKeyword];
     if (self.tabBarController.selectedIndex == 0) {
         self.searchCategory = kSupplySearch;
         self.searchCategoryString = @"供货";
+        self.navigationItem.title = [NSString stringWithFormat:@"%@", @"供货列表"];
+        self.filterVC.filterType = @"supply";
     }
     else {
         self.searchCategory = kBuySearch;
         self.searchCategoryString = @"求购";
-
+        self.navigationItem.title = [NSString stringWithFormat:@"%@", @"求购列表"];
+        self.filterVC.filterType = @"buy";
 
     }
     
@@ -260,21 +315,10 @@
     
     self.filterButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
         @strongify(self);
-        self.fitlerVC.view.frame = CGRectMake(0, 0, 200, self.fitlerVC.height);
-        self.fitlerVC.view.backgroundColor = RGBCOLOR(150, 150, 150);
-        self.popover                    = [[ZZPopoverWindow alloc] init];
-        self.popover.showShadow = YES;
-        self.popover.popoverPosition = ZZPopoverPositionUp;
-        self.popover.contentView        = self.fitlerVC.view;
-        self.popover.backgroundColor = RGBCOLOR(150, 150, 150);
-        self.popover.didShowHandler = ^() {
-            //self.popover.layer.cornerRadius = 0;
-        };
-        self.popover.didDismissHandler = ^() {
-            //NSLog(@"Did dismiss");
-        };
-        
-        [self.popover showAtView:self.filterButton];
+        [self.view addSubview:self.maskView];
+        [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
+            contentView.frame = CGRectMake(50, 0, [UIScreen mainScreen].bounds.size.width-50, [UIScreen mainScreen].bounds.size.height);
+        }];
         return [RACSignal empty];
     }];
     
@@ -305,10 +349,35 @@
     if (needHud) {
         [self showProgressIndicatorWithTitle:@"正在努力加载..."];
     }
+//    HttpSearchRequest* searchRequest = [[HttpSearchRequest alloc] initWithPageNumber:self.currentPage+1
+//                                                                         andKeywords:self.searchKeyword.length>0?@[self.searchKeyword]:@[]
+//                                                                            andSorts:self.sortTypes
+//                                                                         andCategory:self.searchCategory];
+    
+    float maxPrice = -1, minPrice = -1;
+    if (self.searchCondtions) {
+        if ([self.searchCondtions objectForKey:@"minPrice"]) {
+            minPrice = [self.searchCondtions[@"minPrice"] floatValue];
+        }
+        
+        if ([self.searchCondtions objectForKey:@"maxPrice"]) {
+            maxPrice = [self.searchCondtions[@"maxPrice"] floatValue];
+        }
+    }
+    
     HttpSearchRequest* searchRequest = [[HttpSearchRequest alloc] initWithPageNumber:self.currentPage+1
                                                                          andKeywords:self.searchKeyword.length>0?@[self.searchKeyword]:@[]
                                                                             andSorts:self.sortTypes
-                                                                         andCategory:self.searchCategory];
+                                                                         andCategory:self.searchCategory
+                                                                         andMinPrice:minPrice
+                                                                         andMaxPrice:maxPrice
+                                                                           andBrands:self.searchCondtions[@"brands"]
+                                                                           andColors:self.searchCondtions[@"colors"]
+                                                                         andNetworks:self.searchCondtions[@"networks"]
+                                                                          andVolumes:self.searchCondtions[@"volumes"]];
+    
+    
+
     searchRequest.caller = self;
     
     return [searchRequest request]
@@ -327,15 +396,6 @@
             self.currentPage = response.pageNumber;
             self.totalPage = response.totalPage;
             [self.dataSource addObjectsFromArray:response.productDTOs];
-//            @weakify(self);
-//            dispatch_async(dispatch_get_global_queue(0, 0), ^(){
-//                @strongify(self);
-//                for(SearchResultDTO* dto in response.productDTOs) {
-//                    [self.cellHeight addObject:@([SearchListCell cellHeightWithDTO:dto])];
-//                }
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                });
-//            });
             [self.tableView reloadData];
             self.emptyView.hidden = YES;
 
@@ -418,28 +478,23 @@
     return 1;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-//    return cell.height;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-//    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-//    return cell.height;
-    return [tableView fd_heightForCellWithIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString] cacheByIndexPath:indexPath configuration:^(SearchListCell* cell) {
-        // configurations
-        if (cell.searchResultDTO.id != ((SearchResultDTO*)[self.dataSource objectAtIndex:indexPath.row]).id){
+    SearchResultDTO* dto = [self.dataSource objectAtIndex:indexPath.row];
 
-            cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
+    return [tableView fd_heightForCellWithIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString] cacheByKey:@(dto.id) configuration:^(SearchListCell* cell) {
+        // configurations
+        if (cell.searchResultDTO.id != dto.id){
+            [cell setSearchResultDTO:[self.dataSource objectAtIndex:indexPath.row] andTypeName:self.searchCategoryString];
+
+//            cell.typeName = self.searchCategoryString;
+//            cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
         }
 
     }];
-//    return ceil([self.cellHeight[indexPath.row] floatValue]);
-////    return [SearchListCell cellHeight];
-    
+//    UITableViewCell* cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    return cell.height;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -451,9 +506,10 @@
                                      reuseIdentifier:[NSString stringWithFormat:@"SearchListCell-%@", self.searchCategoryString]
                                              andType:self.searchCategoryString];
     }
-    cell.typeName = self.searchCategoryString;
+    //cell.typeName = self.searchCategoryString;
     if (cell.searchResultDTO.id != ((SearchResultDTO*)[self.dataSource objectAtIndex:indexPath.row]).id){
-        cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
+        [cell setSearchResultDTO:[self.dataSource objectAtIndex:indexPath.row] andTypeName:self.searchCategoryString];
+        //cell.searchResultDTO = [self.dataSource objectAtIndex:indexPath.row];
     }
     return cell;
 }
@@ -591,6 +647,42 @@
     }];
     
     
+}
+
+#pragma mark Filter view controller delegate
+-(void)dismiss
+{
+    [self.modalView dismiss];
+    [self.maskView removeFromSuperview];
+}
+
+-(void)didSetSerachConditions:(NSDictionary *)conditions
+{
+    self.searchCondtions = conditions;
+    
+    float maxPrice = -1, minPrice = -1;
+    if (self.searchCondtions) {
+        if ([self.searchCondtions objectForKey:@"minPrice"]) {
+            minPrice = [self.searchCondtions[@"minPrice"] floatValue];
+        }
+        
+        if ([self.searchCondtions objectForKey:@"maxPrice"]) {
+            maxPrice = [self.searchCondtions[@"maxPrice"] floatValue];
+        }
+    }
+
+    HttpSearchAddKeywordsRequest* addKeywordsRequest = [[HttpSearchAddKeywordsRequest alloc] initWithKeywords:self.searchKeyword.length>0?@[self.searchKeyword]:@[]
+                                                                                                      andType:self.searchCategory==kSupplySearch?1:2
+                                                                                                  andMinPrice:minPrice
+                                                                                                  andMaxPrice:maxPrice
+                                                                                                    andBrands:self.searchCondtions[@"brands"]
+                                                                                                    andColors:self.searchCondtions[@"colors"]
+                                                                                                  andNetworks:self.searchCondtions[@"networks"]
+                                                                                                   andVolumes:self.searchCondtions[@"volumes"]];
+    [addKeywordsRequest request];
+    
+    [self clearDataSources];
+    [self getSearchList:YES];
 }
 
 

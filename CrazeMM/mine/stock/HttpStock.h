@@ -8,18 +8,8 @@
 
 #import "BaseHttpRequest.h"
 #import "DepotDTO.h"
-#import "MineStockDTO.h"
+#import "GoodCreateInfo.h"
 #import "StockDetailDTO.h"
-
-@interface StockSellInfo : NSObject
-
-@property (nonatomic) NSInteger price;
-@property (nonatomic) NSInteger sale;
-@property (nonatomic) NSInteger num;
-@property (nonatomic) NSInteger version;
-@property (nonatomic) NSInteger sellId;
-
-@end
 
 @interface HttpDepotQueryRequest : BaseHttpRequest
 
@@ -28,6 +18,23 @@
 @interface HttpDepotQueryResponse : BaseHttpResponse
 
 @property (nonatomic, strong) NSMutableArray<DepotDTO*>* depotDtos;
+
+@end
+
+
+@interface HttpSaveStockInfoRequest : BaseHttpRequest
+
+-(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo;
+
+@end
+
+@interface StockSellInfo : NSObject
+
+@property (nonatomic) NSInteger price;
+@property (nonatomic) NSInteger sale;
+@property (nonatomic) NSInteger num;
+@property (nonatomic) NSInteger version;
+@property (nonatomic) NSInteger sellId;
 
 @end
 
@@ -49,4 +56,9 @@
 
 @property (nonatomic, strong) StockDetailDTO* stockDto;
 
+@end
+
+@interface HttpDepotOutRequest : BaseHttpRequest
+
+-(instancetype)initWithStockIds:(NSArray*)stockIds andMethod:(NSInteger)method andXId:(NSInteger)xid;
 @end

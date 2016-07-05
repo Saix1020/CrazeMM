@@ -10,7 +10,7 @@
 #import "OrderDefine.h"
 #import "HttpOrder.h"
 #import "OrderStatusDTO.h"
-
+#import "DepotDTO.h"
 //"isAnoy":false, //是否匿名供货，匿名进不显示供货人/求购人信息
 //"quantity":10, //供货数量
 //"userImage":"http:\/\/www.189mm.com:8080\/upload\/user\/1_cut.jpg", //供货人/求购人图片
@@ -34,6 +34,16 @@
 @property (nonatomic, copy) NSString* updateTime;
 @property (nonatomic) MMOrderState state;
 @property (nonatomic, copy) NSString* userName;
+
+@property (nonatomic) BOOL isBrushMachine;
+@property (nonatomic) BOOL isOriginal;
+@property (nonatomic) BOOL isOriginalBox;
+@property (nonatomic) BOOL isSerial;
+
+@property (nonatomic, copy) NSString* stateLabel;
+
+@property (nonatomic, copy) NSDictionary* stock;
+@property (nonatomic, strong) DepotDTO* depotDto;
 
 @property (nonatomic) BOOL selected;
 

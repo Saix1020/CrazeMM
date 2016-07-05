@@ -7,6 +7,7 @@
 //
 
 #import "HttpMineSupply.h"
+#import "MineStockDTO.h"
 
 @implementation HttpMineSupplyRequest
 
@@ -208,6 +209,7 @@
 
 @end
 
+
 @implementation HttpMineStockRequest
 
 -(instancetype)initWithPageNumber:(NSInteger)pageNumber
@@ -221,6 +223,16 @@
     
     return self;
 }
+
+-(instancetype)initWithPageNumber:(NSInteger)pageNumber andStatus:(NSString*)status
+{
+    self = [self initWithPageNumber:pageNumber];
+    if (self) {
+        self.params[@"state"] = status;
+    }
+    return self;
+}
+
 
 -(NSString*)url
 {
@@ -297,5 +309,52 @@
     return @[];
 }
 
+
+@end
+
+
+@implementation HttpMineStockDetailRequest
+
+-(instancetype)initWithId:(NSInteger)sid
+{
+    self = [super init];
+    if (self) {
+        self.sid = sid;
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/supply/detail/%ld", self.sid];
+    return COMB_URL(absUrl);
+}
+
+-(NSString*)method{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpMineStockDetailResponse class];
+}
+
+@end
+
+@implementation HttpMineStockDetailResponse
+
+-(NSDictionary*)supply
+{
+    return  self.all?self.all[@"supply"]:@{};
+}
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    
+    self.supplyDtailDto = [[MineSupplyDetailDTO alloc] initWith:self.supply];
+}
 
 @end

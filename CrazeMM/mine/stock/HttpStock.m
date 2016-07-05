@@ -8,10 +8,6 @@
 
 #import "HttpStock.h"
 
-@implementation StockSellInfo
-
-@end
-
 @implementation HttpDepotQueryRequest
 
 
@@ -48,6 +44,75 @@
 
 @end
 
+
+@implementation HttpSaveStockInfoRequest
+
+//save_stock_token	-6920059044539543718
+//stock.depotId	2
+//gbrand	14
+//stock.gid	1666
+//stock.gcolor	粉
+//stock.gvolume	16G
+//stock.gnetwork	全网通
+//stock.isSerial	true
+//stock.isOriginal	true
+//stock.isOriginalBox	true
+//stock.isBrushMachine	true
+//stock.presale	1000
+//stock.inprice	2599
+
+-(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"stock.depotId" : @(goodCreateInfo.depotId),
+                         @"gbrand" : @(goodCreateInfo.brand),
+                         @"stock.gid" : @(goodCreateInfo.id),
+                         @"stock.gcolor" : goodCreateInfo.color,
+                         @"stock.gvolume": goodCreateInfo.volume,
+                         @"stock.gnetwork": goodCreateInfo.network,
+                         @"stock.isSerial" : @(goodCreateInfo.isSerial),
+                         @"stock.isOriginal" : @(goodCreateInfo.isOriginal),
+                         @"stock.isOriginalBox" : @(goodCreateInfo.isOriginalBox),
+                         @"stock.isBrushMachine" : @(goodCreateInfo.isBrushMachine),
+                         @"stock.inprice" : @(goodCreateInfo.price),
+                         @"stock.presale":@(goodCreateInfo.quantity),
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+-(BOOL)needToken
+{
+    return YES;
+}
+
+-(NSString*)tokenName
+{
+    return @"save_stock_token";
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/stock");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+
+@end
+
+@implementation StockSellInfo
+
+
+
+@end
+
 @implementation HttpStockSellRequest
 
 -(instancetype)initWithStocks:(StockSellInfo*)stocks
@@ -79,6 +144,7 @@
 @end
 
 
+
 @implementation HttpStockDetailRequest
 
 -(instancetype) initWithId:(NSInteger)stockId
@@ -86,7 +152,7 @@
     self = [super init];
     if (self) {
         self.stockId = stockId;
-        }
+    }
     return self;
 }
 
@@ -114,10 +180,43 @@
 {
     
     NSDictionary* stock = self.all[@"stock"];
-        NSLog(@"%@", stock);
-        self.stockDto = [[StockDetailDTO alloc] initWith:stock];
+    NSLog(@"%@", stock);
+    self.stockDto = [[StockDetailDTO alloc] initWith:stock];
     
 }
 
 @end
 
+@implementation HttpDepotOutRequest
+
+-(instancetype)initWithStockIds:(NSArray*)stockIds andMethod:(NSInteger)method andXId:(NSInteger)xid
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"stockIds": [stockIds componentsJoinedByString:@","],
+                         } mutableCopy];
+        if (method == 1) { //自提
+            self.params[@"method"] = @(1);
+            self.params[@"ucId"] = @(xid);
+        }
+        else{
+            self.params[@"method"] = @(2);
+            self.params[@"addrId"] = @(xid);
+
+        }
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/depotOut");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+@end

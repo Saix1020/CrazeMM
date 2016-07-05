@@ -11,6 +11,10 @@
 @interface HttpSearchAddKeywordsRequest : BaseHttpRequest
 
 -(instancetype)initWithKeywords:(NSArray*)keywords;
+-(instancetype)initWithKeywords:(NSArray *)keywords andType:(NSInteger)type; //1 supply, 2 buy
+
+-(instancetype)initWithKeywords:(NSArray*)keywords andType:(NSInteger)type andMinPrice:(float)minPrice andMaxPrice:(float)maxPrice andBrands:(NSArray*)brands andColors:(NSArray*)colors andNetworks:(NSArray*)networks andVolumes:(NSArray*)volume;
+
 
 @end
 

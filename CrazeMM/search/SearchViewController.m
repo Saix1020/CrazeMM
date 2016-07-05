@@ -15,6 +15,7 @@
 #import "SearchListViewController.h"
 #import "SearchHistory.h"
 #import "HttpSearchKeyWord.h"
+#import "SearchViewForNav.h"
 
 typedef NS_ENUM(NSInteger, SearchTableViewSection){
     kSectionKeywords = 0,
@@ -27,7 +28,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 
 @property (nonatomic) SearchType searchType;
 @property (nonatomic, strong) UISearchBar* searchBar;
-@property (nonatomic, strong) UIView* searchView;
+@property (nonatomic, strong) SearchViewForNav* searchView;
 @property (nonatomic, strong) UIBarButtonItem* backButtonItem;
 @property (nonatomic, strong) UIBarButtonItem* searchButtonItem;
 @property (nonatomic, strong) UITableView* tableView;
@@ -91,6 +92,15 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
                     [SearchHistory createIfNotExist:self.searchBar.text andManagedObjectContext:self.managedObjectcontent];
                 });
+                HttpSearchAddKeywordsRequest* request = [[HttpSearchAddKeywordsRequest alloc] initWithKeywords:@[self.searchBar.text] andType:self.searchType==kSearchTypeBuy?2:1];
+
+                [request request]
+                .then(^(id responseObj){
+                    NSLog(@"%@", responseObj);
+                })
+                .catch(^(NSError* error){
+                    
+                });
             }
             SearchListViewController* searchListVC = [[SearchListViewController alloc] initWithKeyword:self.searchBar.text];
             [self.navigationController pushViewController:searchListVC animated:YES];
@@ -103,12 +113,13 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
     return _searchButtonItem;
 }
 
--(UIView*)searchView
+-(SearchViewForNav*)searchView
 {
     if (!_searchView) {
-        _searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 768, 44)];
+        _searchView = [[SearchViewForNav alloc]initWithFrame:CGRectMake(0, 0, 768, 44)];
         _searchView.backgroundColor = [UIColor clearColor];
         [_searchView addSubview:self.searchBar];
+        _searchView.searchBar = self.searchBar;
     }
     
     return _searchView;
@@ -200,21 +211,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
-    HttpSearchQueryKeywordsRequest* request = [[HttpSearchQueryKeywordsRequest alloc] initWithQueryCata:self.searchType];
-    [request request]
-    .then(^(id responseObj){
-        HttpSearchQueryKeywordsResponse* response = (HttpSearchQueryKeywordsResponse*)request.response;
-        if (response.ok) {
-            self.searchHistory = [response.keywords mutableCopy];
-            [self.tableView reloadData];
-        }
-        else {
-            [self showAlertViewWithMessage:response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    });
+    
     
 }
 
@@ -236,6 +233,21 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
 //        });
 //    });
     [super viewWillAppear:animated];
+    HttpSearchQueryKeywordsRequest* request = [[HttpSearchQueryKeywordsRequest alloc] initWithQueryCata:self.searchType];
+    [request request]
+    .then(^(id responseObj){
+        HttpSearchQueryKeywordsResponse* response = (HttpSearchQueryKeywordsResponse*)request.response;
+        if (response.ok) {
+            self.searchHistory = [response.keywords mutableCopy];
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
     
 }
 
@@ -432,7 +444,7 @@ typedef NS_ENUM(NSInteger, SearchTableViewSection){
         dispatch_async(dispatch_get_global_queue(0, 0), ^{
             [SearchHistory createIfNotExist:self.searchBar.text andManagedObjectContext:self.managedObjectcontent];
         });
-        HttpSearchAddKeywordsRequest* request = [[HttpSearchAddKeywordsRequest alloc] initWithKeywords:@[self.searchBar.text]];
+        HttpSearchAddKeywordsRequest* request = [[HttpSearchAddKeywordsRequest alloc] initWithKeywords:@[self.searchBar.text] andType:self.searchType==kSearchTypeBuy?2:1];
         [request request]
         .then(^(id responseObj){
             NSLog(@"%@", responseObj);

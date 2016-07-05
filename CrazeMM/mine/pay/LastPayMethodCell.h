@@ -10,7 +10,8 @@
 
 @interface LastPayMethodCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *accessoryButton;
-
+@property (weak, nonatomic) IBOutlet UILabel *payWayLabel;
+@property (nonatomic) NSString* payWay;
 
 +(CGFloat)cellHeight;
 @end

@@ -54,15 +54,43 @@
         @weakify(self)
         viewController.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
-            [self popViewControllerAnimated:YES];
+            if (self.confirmString.length>0) {
+                [self showAlertViewWithMessage:self.confirmString
+                                withOKCallback:^(id x) {
+                                    [self popViewControllerAnimated:YES];
+                                }
+                             andCancelCallback:nil];
+            }
+            else {
+                [self popViewControllerAnimated:YES];
+            }
             return [RACSignal empty];
         }];
     }
     
 }
 
+- (nullable UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    self.confirmString = nil;
+    [self.view endEditing:YES];
+    return [super popViewControllerAnimated:animated];
+}
+
+- (nullable NSArray<__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    self.confirmString = nil;
+    [self.view endEditing:YES];
+
+    return [super popToViewController:viewController animated:animated];
+}
+
+
 - (nullable NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
 {
+    self.confirmString = nil;
+    [self.view endEditing:YES];
+
     NSArray* vcs = [super popToRootViewControllerAnimated:animated];
     if (self.nextViewController) {
         [self pushViewController:self.nextViewController animated:YES];

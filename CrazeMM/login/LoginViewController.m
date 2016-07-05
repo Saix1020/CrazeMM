@@ -16,7 +16,7 @@
 #import "HttpLoginRequest.h"
 #import "HttpRandomCodeRequest.h"
 #import "SignWithPicCapViewController.h"
-
+#import "HttpUserInfo.h"
 
 #define kLeadingPad 16.f
 #define kTailingPad 16.f
@@ -135,13 +135,14 @@
     self.wechartIcon.hidden = YES;
     self.line3.hidden = YES;
     
+    self.userNameField.placeholder = @"请输入用户名/手机/邮箱";
     self.userNameRightView = [[UIButton alloc] init];
     [self.userNameRightView setImage:[UIImage imageNamed:@"icon_pulldown"] forState:UIControlStateNormal];
     self.userNameField.rightView = self.userNameRightView;
     [self.userNameRightView sizeToFit];
     self.userNameField.rightViewMode = UITextFieldViewModeAlways;
 
-    
+    self.passwordField.placeholder = @"请输入密码";
     self.passwordRightView = [[UIButton alloc] init];
     [self.passwordRightView setTitle:@"忘记密码?" forState:UIControlStateNormal];
     [self.passwordRightView setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
@@ -237,19 +238,37 @@
                                                                andPassword:self.passwordField.text
                                                                andRemember:self.rememberMeCheckBox.on];
         [self showProgressIndicatorWithTitle:@"正在登陆..."];
-        [request request2].then(^(id responseObject){
+        [request login].then(^(id responseObject){
 //            [self dismissProgressIndicator];
 
             if (request.response.ok) {
-                [UserCenter defaultCenter].userName = self.userNameField.text;
-                [[UserCenter defaultCenter] setLogined];
-                [self.navigationController popViewControllerAnimated:YES];
                 
-                if (self.rememberMeCheckBox.on) {
-                    [[UserCenter defaultCenter] saveToKeychainWithUserName:self.userNameField.text andPassword:self.passwordField.text];
-                }
-//                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
 
+//                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+                HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
+                [userInfoRequest request]
+                .then(^(id responseObj){
+                    NSLog(@"%@", responseObj);
+                    if (userInfoRequest.response.ok) {
+                        HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)userInfoRequest.response;
+                        [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
+                        [[UserCenter defaultCenter] setLogined];
+                        if (self.rememberMeCheckBox.on) {
+                            NSString* userName = [UserCenter defaultCenter].displayName;
+                            if ([userName containsString:@"******"]) {
+                                userName = self.userNameField.text;
+                            }
+                            [[UserCenter defaultCenter] saveToKeychainWithUserName:userName andPassword:self.passwordField.text];
+                        }
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    else {
+                        [self showAlertViewWithMessage:userInfoRequest.response.errorMsg];
+                    }
+                }).catch(^(NSError *error){
+                    [self showAlertViewWithMessage:error.localizedDescription];
+                })
+                ;
 
             }
             else {

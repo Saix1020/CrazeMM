@@ -141,6 +141,9 @@
 
 -(void)tryQueryPayResult
 {
+    //
+    return;
+    
     if (!self.stopQuery) {
         @weakify(self);
         HttpPayResultRequest* request = [[HttpPayResultRequest alloc] initWithPayNo:self.payInfoDto.ORDERID];
@@ -207,6 +210,37 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    
+    if ([request.URL.absoluteString hasPrefix:[NSString stringWithFormat:@"%@", HTTP_HEADER_REFERER_URL]]) {
+        @weakify(self);
+        [self showAlertViewWithMessage:@"支付成功!" withCallback:^(id x){
+            @strongify(self);
+            UIViewController* popToVC = nil;
+            for (UIViewController* vc in self.navigationController.viewControllers) {
+                if ([vc isKindOfClass:[OrderListViewController class]]) {
+                    [(OrderListViewController*)vc operatorDoneForOrder:self.orderDetailDtos];
+                    popToVC = vc;
+                    break;
+                }
+                else if([vc isKindOfClass:NSClassFromString(@"ProductViewController")]){
+                    popToVC = vc;
+                    break;
+                }
+                else if([vc isKindOfClass:NSClassFromString(@"AccountViewController")]){
+                    popToVC = vc;
+                    break;
+                }
+            }
+            if (!popToVC) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+            else {
+                [self.navigationController popToViewController:popToVC animated:YES];
+            }
+        }];
+        return NO;
+    }
+    
     return YES;
 }
 

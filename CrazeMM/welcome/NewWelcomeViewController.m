@@ -8,6 +8,7 @@
 
 #import "NewWelcomeViewController.h"
 #import "HttpLoginRequest.h"
+#import "HttpUserInfo.h"
 
 @interface NewWelcomeViewController ()
 
@@ -32,6 +33,15 @@
             
             if (request.response.ok) {
                 [[UserCenter defaultCenter] setLogined];
+//                HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
+//                [userInfoRequest request]
+//                .then(^(id responseObj){
+//                    NSLog(@"%@", responseObj);
+//                    if (request.response.ok) {
+//                        HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)request.response;
+//                        [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
+//                    }
+//                });
             }
             
             [self presentTabBarController];

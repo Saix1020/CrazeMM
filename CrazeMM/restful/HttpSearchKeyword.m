@@ -24,6 +24,63 @@
     return self;
 }
 
+-(instancetype)initWithKeywords:(NSArray *)keywords andType:(NSInteger)type
+{
+    self = [super init];
+    if (self) {
+        
+        self.params = [@{
+                         @"keywords" : [keywords componentsJoinedByString:@","],
+                         @"type" : @(type)
+                         } mutableCopy];
+        
+    }
+    return self;
+}
+
+-(instancetype)initWithKeywords:(NSArray*)keywords andType:(NSInteger)type andMinPrice:(float)minPrice andMaxPrice:(float)maxPrice andBrands:(NSArray*)brands andColors:(NSArray*)colors andNetworks:(NSArray*)networks andVolumes:(NSArray*)volumes
+{
+    self = [super init];
+    if (self) {
+        
+        self.params = [@{
+                         @"keywords" : [keywords componentsJoinedByString:@","],
+                         @"type" : @(type)
+                         } mutableCopy];
+        
+    }
+    
+    if (minPrice>=0) {
+        [self.params setValue:@(minPrice)
+                       forKey:@"minprice"];
+        
+    }
+    
+    if (maxPrice>=0) {
+        [self.params setValue:@(maxPrice)
+                       forKey:@"maxprice"];
+        
+    }
+    
+    if (brands && brands.count>0) {
+        [self.params setValue:[brands componentsJoinedByString:@","] forKey: @"brands"];
+        
+    }
+    if (colors && colors.count>0) {
+        [self.params setValue:[colors componentsJoinedByString:@","] forKey: @"colors"];
+        
+    }
+    if (networks && networks.count>0) {
+        [self.params setValue:[networks componentsJoinedByString:@","] forKey: @"network"];
+        
+    }
+    if (volumes && volumes.count>0) {
+        [self.params setValue:[volumes componentsJoinedByString:@","] forKey: @"volume"];
+        
+    }
+    return self;
+}
+
 -(NSString*)url
 {
     return COMB_URL(@"/rest/search/addSearch");
@@ -58,7 +115,7 @@
     self = [super init];
     if (self) {
         self.params = [@{
-                         @"type" : cata==0?@"supply":@"buy"
+                         @"type" : cata==1?@"supply":@"buy"
                          } mutableCopy];
     }
     

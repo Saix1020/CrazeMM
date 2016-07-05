@@ -59,13 +59,13 @@
     
     for (OrderLogDTO* logDto in _logs) {
         [timesPlacehoderArray addObject:@""];
-        [commentsArray addObject:[NSString stringWithFormat:@"%@\n%@", logDto.comment, logDto.createTime]];
+        [commentsArray addObject:[NSString stringWithFormat:@"【%@】%@ %@\n %@", logDto.stateLabelNew, logDto.userName, logDto.comment, logDto.createTime]];
     }
     
     self.timeline = [[TimeLineViewControl alloc] initWithTimeArray:timesPlacehoderArray
                                            andTimeDescriptionArray:commentsArray
                                                   andCurrentStatus:1
-                                                          andFrame:CGRectMake(0, 0, 280, 0)];
+                                                          andFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 0)];
     [self.contentView addSubview:self.timeline];
     [self.timeline sizeToFit];
 
@@ -76,18 +76,18 @@
     CGFloat timelineHeight = MAX(self.timeline.timeLabelsHeight, self.timeline.descLabelsHeight);
     
     if (timelineHeight < 90.f) {
-        return 90.f;
+        return 90.f+60.f;
     }
-    return timelineHeight + 16.f;
+    return timelineHeight + 16.f + 60.f;
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
     self.timeline.x = -48.f;
-    self.timeline.y = 8.f;
+    self.timeline.y = 8.f+20.f;
     self.timeline.height = self.height - 16.f;
-    self.timeline.width = self.contentView.width;
+    self.timeline.width = self.contentView.width + 48.f;
 }
 
 @end

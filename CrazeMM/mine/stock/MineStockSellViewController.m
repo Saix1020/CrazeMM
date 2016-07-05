@@ -15,12 +15,11 @@
 #import "MineStockDTO.h"
 #import "HttpStock.h"
 
-
 @interface MineStockSellViewController ()
 
 @property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
 @property (nonatomic, strong) CommonBottomView* payBottomView;
-@property (nonatomic, copy) NSArray* stocks;
+@property (nonatomic, strong) NSMutableArray* stocks;
 
 //@property (nonatomic) BOOL keyboardShowing;
 
@@ -47,25 +46,28 @@
 
 -(void)handleButtomButtonClicked:(UIButton*)send
 {
+    [self.view endEditing:YES];
     @weakify(self);
     [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要转手这%ld条库存吗?", [self.stocks count]]
                     withOKCallback:^(id x){
                         @strongify(self);
                         
-                        NSInteger count = [self.stocks count];
+//                        NSInteger count = [self.stocks count];
+//                        
+//                        [self sendStockSellReq:count];
+                        [self sendStockSellRequest];
                         
-                        [self sendStockSellReq:count];
-
                     }
                  andCancelCallback:nil];
 }
+
 
 -(instancetype)initWith:(NSArray*)stocks
 {
     self = [super init];
     if (self)
     {
-        self.stocks = stocks;
+        self.stocks = [stocks mutableCopy];
     }
     return self;
 }
@@ -95,7 +97,7 @@
     self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
         @strongify(self);
         
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
         return [RACSignal empty];
     }];
     
@@ -137,7 +139,6 @@
     return YES;
 }
 
-
 #pragma mark - StockSellCellDelegate
 -(void)refreshTotalPriceLabel
 {
@@ -150,102 +151,6 @@
 
 }
 
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-       return [self.stocks count]*2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell* cell;
-    
-    if (indexPath.row%2==1) {
-        cell = [[UITableViewCell alloc] init];
-        cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        return cell;
-    }
-    else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"StockSellCell"];
-        
-        MineStockDTO* dto = self.stocks[indexPath.row/2];
-        dto.earning = 0;
-
-        ((StockSellCell*)cell).stockDto = dto;
-        ((StockSellCell*)cell).selectCheckBox.tag = 10000 + indexPath.row/2;
-        ((StockSellCell*)cell).selectCheckBox.hidden = YES;
-        ((StockSellCell*)cell).delegate = self;
-        }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
-}
-
-
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if (indexPath.row%2 == 1) {
-        return 14.f;
-    }
-    else
-    {
-        return [StockSellCell cellHeight];
-    }
-
-}
-
-- (void) sendStockSellReq: (NSInteger)count
-{
-        if (count <= 0)
-        {
-            NSLog(@"I am done!");
-            if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
-                [self showAlertViewWithMessage:@"库存转手成功"];
-                [self.delegate sendStockSellSuccess];
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-            return;
-        }
-        StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
-        MineStockDTO* dto = self.stocks[count-1];
-        stockSellInfo.price = dto.currentPrice;
-        stockSellInfo.sale = dto.currentSale;
-        stockSellInfo.num = dto.currentNum;
-        stockSellInfo.version = dto.version;
-        stockSellInfo.sellId = dto.id;
-        HttpStockSellRequest* request = [[HttpStockSellRequest alloc]initWithStocks:stockSellInfo];
-        [request request]
-        .then(^(id responseObj){
-            NSLog(@"%@", responseObj);
-            if (request.response.ok) {
-                
-                [self sendStockSellReq:(count-1)];
-            }
-            else {
-                
-                [self showAlertViewWithMessage:request.response.errorMsg];
-                return ;
-            }
-        })
-        .catch(^(NSError* error){
-            [self showAlertViewWithMessage:error.localizedDescription];
-            return ;
-        })
-        .finally(^(){
-        });
-
-}
-
-/*
 #pragma -- mark BEMCheckBox Delegate
 -(void)didTapCheckBox:(BEMCheckBox *)checkBox
 {
@@ -253,7 +158,7 @@
         NSInteger index = checkBox.tag - 10000;
         MineStockDTO* dto = self.stocks[index];
         dto.selected = checkBox.on;
- 
+        
         NSArray* onArray = [self.stocks filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
         if (onArray.count == self.stocks.count) {
             self.payBottomView.selectAllCheckBox.on = YES;
@@ -271,16 +176,157 @@
     }
     
 }
- */
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+       return [self.stocks count]*2 + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell* cell;
+    
+    if (indexPath.row%2==0) {
+        cell = [[UITableViewCell alloc] init];
+        cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        return cell;
+    }
+    else if(indexPath.row == [self.stocks count]*2){
+        cell = [[UITableViewCell alloc] init];
+        cell.backgroundColor = [UIColor clearColor];
+        return cell;
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"StockSellCell"];
+        
+        MineStockDTO* dto = self.stocks[indexPath.row/2];
+        dto.earning = 0;
+
+        ((StockSellCell*)cell).stockDto = dto;
+        ((StockSellCell*)cell).checkBox.tag = 10000 + indexPath.row/2;
+        ((StockSellCell*)cell).checkBox.hidden = YES;
+        ((StockSellCell*)cell).delegate = self;
+        }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.row%2 == 0) {
+        return 14.f;
+    }
+    else if(indexPath.row == [self.stocks count]*2){
+        return self.payBottomView.height;
+    }
+    else
+    {
+        return [StockSellCell cellHeight];
+    }
+
+}
+
+#pragma mark send request
+
+-(void)sendStockSellRequest
+{
+    if (self.stocks.count == 0) {
+        if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
+            [self showAlertViewWithMessage:@"库存转手成功"];
+            [self.delegate sendStockSellSuccess];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        return;
+    }
+    
+    MineStockDTO* dto = self.stocks.lastObject;
+    [self.stocks removeObjectAtIndex:self.stocks.count-1];
+    [self.tableView reloadData];
+    StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
+    stockSellInfo.price = dto.currentPrice;
+    stockSellInfo.sale = dto.currentSale;
+    stockSellInfo.num = dto.currentNum;
+    stockSellInfo.version = dto.version;
+    stockSellInfo.sellId = dto.id;
+    
+    HttpStockSellRequest* request = [[HttpStockSellRequest alloc]initWithStocks:stockSellInfo];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            
+            [self sendStockSellRequest];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+            return ;
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+        return ;
+    })
+    .finally(^(){
+    });
+
+    
+}
+
+
+// TODO!!! remove the success dto...
+- (void) sendStockSellReq: (NSInteger)count
+{
+    
+    // TODO
+    // we should refresh the selected stock dtos.
+    if (count <= 0)
+    {
+        if ([self.delegate respondsToSelector:@selector(sendStockSellSuccess)]) {
+            [self showAlertViewWithMessage:@"库存转手成功"];
+            [self.delegate sendStockSellSuccess];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        return;
+    }
+    StockSellInfo* stockSellInfo = [[StockSellInfo alloc] init];
+    MineStockDTO* dto = self.stocks[count-1];
+    stockSellInfo.price = dto.currentPrice;
+    stockSellInfo.sale = dto.currentSale;
+    stockSellInfo.num = dto.currentNum;
+    stockSellInfo.version = dto.version;
+    stockSellInfo.sellId = dto.id;
+    HttpStockSellRequest* request = [[HttpStockSellRequest alloc]initWithStocks:stockSellInfo];
+    [request request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        if (request.response.ok) {
+            
+            [self sendStockSellReq:(count-1)];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+            return ;
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+        return ;
+    })
+    .finally(^(){
+    });
+    
+}
 
 @end

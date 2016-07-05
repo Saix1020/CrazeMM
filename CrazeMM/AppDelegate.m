@@ -16,6 +16,8 @@
 @property (nonatomic, assign) CFAbsoluteTime resignTime;  //记录进入后台的时间
 @property (nonatomic, assign) CFAbsoluteTime currentTime;  //记录进入后台的时间
 //@property (nonatomic, strong) Reachability* hostReach;
+@property (strong, nonatomic) RealReachability* reachability;
+@property (nonatomic) NSUInteger reachabilityCount;
 
 @end
 
@@ -24,6 +26,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    GLobalRealReachability.hostForPing = FULL_HOSTNAME;
+    [GLobalRealReachability startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkChanged:)
+                                                 name:kRealReachabilityChangedNotification
+                                               object:nil];
+
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor redColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -48,6 +57,8 @@
     
     [self.window makeKeyAndVisible];
 
+    
+    
     
     return YES;
 }
@@ -171,5 +182,36 @@
         }
     }
 }
+
+#pragma mark RealReachability
+
+- (void)networkChanged:(NSNotification *)notification
+{
+    self.reachability = (RealReachability *)notification.object;
+    ReachabilityStatus status = [self.reachability currentReachabilityStatus];
+    NSLog(@"currentStatus:%@",@(status));
+//    self.reachabilityCount++;
+//    if (self.reachabilityCount == 1) {
+//        return;
+//    }
+    
+//    if(status == RealStatusNotReachable){
+////        if (self.welcomeVC.presentedViewController) {
+////            [self.welcomeVC.presentingViewController showAlertViewWithMessage:@"网络连接错误, 请检查你的网络"];
+////        }
+//        if (self.welcomeVC.presentedViewController){
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示"
+//                                                            message:@"网络不可用!"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
+//
+//        }
+//        
+//    }
+}
+
+
 
 @end

@@ -29,3 +29,10 @@
 }
 
 @end
+
+
+@implementation BaseListDTO
+
+
+
+@end
