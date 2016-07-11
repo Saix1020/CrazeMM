@@ -87,6 +87,13 @@
 
 @end
 
+#pragma mark - MortgageDelete
+@interface HttpMortgageDeleteRequest : BaseHttpRequest
+
+-(instancetype)initWithIds:(NSArray*)ids StockIds:(NSArray*)stockIds;
+
+@end
+
 
 
 

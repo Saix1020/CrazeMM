@@ -323,7 +323,7 @@
                             else {
                                 if ([self.delegate respondsToSelector:@selector(editMortgageSuccess)]) {
                                     [self showAlertViewWithMessage:@"抵押信息发布成功"];
-                                    [self.delegate editMortgageSuccess];
+                                    //[self.delegate editMortgageSuccess];
                                     [self.navigationController popViewControllerAnimated:YES];
                                 }
                             }

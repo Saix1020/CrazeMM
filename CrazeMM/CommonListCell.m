@@ -81,15 +81,48 @@
             @strongify(self);
             self.checkBox.on = dto.selected;
         }];
+        NSString* className = NSStringFromClass(dto.class);
+        NSString* selectorName = [NSString stringWithFormat:@"set%@%@:", [[className substringToIndex:1] uppercaseString], [className substringFromIndex:1]];
+        SEL selector = NSSelectorFromString(selectorName);
+        if ([self respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:selector withObject:dto];
+#pragma clang diagnostic pop
+        }
     }
     
-    [self renderAllSubviews];
+//    [self renderAllSubviews];
 }
 
--(void)renderAllSubviews
+//-(void)renderAllSubviews
+//{
+//    
+//}
+
+-(void)formatOrderLabel:(NSInteger)orderId
 {
-    
+    self.orderLabel.text = [NSString stringWithFormat:@"编号: %ld", orderId];
 }
+
+-(void)formatStatusLabel:(NSString*)status
+{
+    if (status.length>0) {
+        self.statusLabel.text = [NSString stringWithFormat:@" %@ ", status];
+    }
+}
+
+-(void)formatTimeLabel:(NSString*)timeString
+{
+    self.timeLabel.text = timeString;
+}
+
+-(void)formatGoodNameLabel:(NSString*)goodName
+{
+    self.titleLabel.text = goodName;
+}
+
+
 
 -(void)didTapCheckBox:(BEMCheckBox *)checkBox
 {

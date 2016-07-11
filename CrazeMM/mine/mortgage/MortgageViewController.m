@@ -52,6 +52,7 @@
     return _moreActionSheet;
 }
 
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,44 +61,82 @@
     self.autoRefresh = YES;
     
     self.navigationItem.title = @"我的抵押";
+    self.bottomViewButtonTitle = @"批量删除";
     
-    //two buttons are needed, "add" and "more"
-    UIView *rightBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 70, 31)];
     
-    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    addButton.frame = CGRectMake(10, 5, 25, 25);
-    [addButton setImage:[UIImage imageNamed:@"addr_add_icon"] forState:UIControlStateNormal];
-    addButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x) {
-        MortgageEditViewController* editVC = [[MortgageEditViewController alloc] init];
-        editVC.delegate = self;
-        [self.navigationController pushViewController:editVC animated:YES];
-        return [RACSignal empty];
-    }];
-    [rightBarView addSubview:addButton];
-    
-    UIButton *moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    moreButton.frame = CGRectMake(50, 5, 25, 25);
-    [moreButton setImage:[UIImage imageNamed:@"icon_more"] forState:UIControlStateNormal];
-    moreButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x) {
-        [self.moreActionSheet showInView:self.view];
-        return [RACSignal empty];
-    }];
-    [rightBarView addSubview:moreButton];
+    UIBarButtonItem* addMortgageButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addMortgage:)];
+    UIBarButtonItem* moreButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"icon_more" image] style:UIBarButtonItemStylePlain target:self action:@selector(moreActions:)];
+    self.navigationItem.rightBarButtonItems = @[moreButtonItem, addMortgageButtonItem];}
 
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithCustomView:rightBarView];
+-(void)bottomViewButtonClicked:(UIButton*)button
+{
     
+    NSMutableArray* ids = [[NSMutableArray alloc]init];
+    NSMutableArray* stockIds = [[NSMutableArray alloc]init];
+    NSArray* onArray = self.selectedData;
+    if ( 0 == onArray.count)
+    {
+        [self showAlertViewWithMessage:@"请选择需要删除的抵押申请"];
+        return;
+    }
     
-    self.navigationItem.rightBarButtonItem = rightBtn;
+    for (MortgageDTO* mortgageDto in onArray) {
+        [ids addObject: [NSString stringWithFormat:@"%ld", mortgageDto.id]];
+        [stockIds addObject:[NSString stringWithFormat:@"%ld", mortgageDto.stockId]];
+    }
+    
+    @weakify(self);
+    
+    [self showAlertViewWithMessage:[NSString stringWithFormat:@"您确认删除该抵押申请%@",[ids componentsJoinedByString:@","]]
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        
+                        HttpMortgageDeleteRequest* request = [[HttpMortgageDeleteRequest alloc] initWithIds:ids StockIds:stockIds];
+                        [request request]
+                        .then(^(id responseObj){
+                            if (!request.response.ok) {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                            else {
+                                    [self showAlertViewWithMessage:@"撤销成功"];
+                                    [self resetDataSource];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                        
+                    }
+                 andCancelCallback:^(id x){
+                     
+                 }];
+
 }
 
+-(void)addMortgage:(id)sender
+{
+    MortgageEditViewController* editVC = [[MortgageEditViewController alloc] init];
+    editVC.delegate = self;
+    [self.navigationController pushViewController:editVC animated:YES];
+}
+
+-(void)moreActions:(id)sender
+{
+    [self.moreActionSheet showInView:self.view];
+}
+
+-(void)updateBottomView
+{
+    [super updateBottomView];
+}
 
 #pragma -- mark MortgageEditViewControllerDelegate Delegate
 -(void)editMortgageSuccess
 {
-    [self.dataSource removeAllObjects];
-    [self.tableView reloadData];
+    //[self.dataSource removeAllObjects];
+    //[self.tableView reloadData];
     
-    self.pageNumber = 0;
+    //self.pageNumber = 0;
     [self requestDataSource];
     
 }

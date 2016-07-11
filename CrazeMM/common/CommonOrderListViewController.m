@@ -61,7 +61,7 @@
         [self.view addSubview:_bottomView];
 
         [_bottomView.confirmButton addTarget:self action:@selector(bottomViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [_bottomView.addtionalButton addTarget:self action:@selector(bottomViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView.addtionalButton addTarget:self action:@selector(bottomViewAddtionalButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
         
         _bottomView.selectAllCheckBox.delegate = self;
@@ -77,6 +77,35 @@
                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
+
+-(void)bottomViewAddtionalButtonClicked:(UIButton*)button
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+-(void)setBottomViewButtonTitle:(NSString *)bottomViewButtonTitle
+{
+    [self.bottomView.confirmButton setTitle:bottomViewButtonTitle forState:UIControlStateNormal];
+}
+
+-(void)setBottomViewAddtionalButtonTitle:(NSString *)bottomViewAddtionalButtonTitle
+{
+    [self.bottomView.addtionalButton setTitle:bottomViewAddtionalButtonTitle forState:UIControlStateNormal];
+}
+
+//-(void)setActionForBottomViewButtonWithTarget:(id)target andAction:(SEL)action
+//{
+//    [self.bottomView.confirmButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+//}
+//
+//-(void)setActionForBottomViewAddtonalButtonWithTarget:(id)target andAction:(SEL)action
+//{
+//    [self.bottomView.addtionalButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+//
+//}
 
 -(NSArray*)selectedData
 {
@@ -377,7 +406,7 @@
     
 }
 
-#pragma -- UITableViewCell delegate
+#pragma mark UITableView delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -458,6 +487,19 @@
     else {
         self.bottomView.selectAllCheckBox.on = NO;
     }
+    
+    [self updateBottomView];
+}
+
+-(void)updateBottomView
+{
+    __block float totalPrice = 0.f;
+    [self.selectedData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        BaseListDTO* dto = (BaseListDTO*)obj;
+        totalPrice += dto.totalPrice;
+    }];
+    
+    [self.bottomView setTotalPrice:totalPrice];
 }
 
 -(void)leftButtonClicked:(CommonListCell *)cell
@@ -492,6 +534,7 @@
         }
     }
     
+    [self updateBottomView];
 }
 
 

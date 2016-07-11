@@ -33,6 +33,9 @@
 
 @implementation BaseListDTO
 
-
+-(float)totalPrice
+{
+    return 0.f;
+}
 
 @end

@@ -40,6 +40,11 @@
 
 @property (weak, nonatomic) id<CommonListCellDelegate> delegate;
 
+-(void)formatOrderLabel:(NSInteger)orderId;
+-(void)formatTimeLabel:(NSString*)timeString;
+-(void)formatStatusLabel:(NSString*)status;
+-(void)formatGoodNameLabel:(NSString*)goodName;
+
 +(CGFloat)cellHeight;
 
 @end

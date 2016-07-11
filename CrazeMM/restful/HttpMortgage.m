@@ -231,6 +231,34 @@
 
 @end
 
+#pragma mark - MortgageDelete
+
+@implementation HttpMortgageDeleteRequest
+
+-(instancetype)initWithIds:(NSArray*)ids StockIds:(NSArray*)stockIds
+{
+    self = [super init];
+    self.params = [@{
+                     @"mortgageIds" : [ids componentsJoinedByString:@","],
+                     @"stockIds" : [stockIds componentsJoinedByString:@","],
+                     } mutableCopy];
+
+    return self;
+}
+
+
+-(NSString*)url
+{
+    return COMB_URL( @"/rest/mortgage/delete");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+@end
+
 
 
 

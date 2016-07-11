@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CrazeMM/mine/supply/GoodDTO.m"
-            timestampString = "489239452.530427"
+            filePath = "CrazeMM/common/CommonOrderListViewController.m"
+            timestampString = "489939512.498835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "-initWith:"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "-requestDataSource"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
