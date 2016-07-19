@@ -10,7 +10,7 @@
 #define HttpRequestURL_h
 
 #define SCHEME @"http://"
-#define HOSTNAME @"b.189mm.com"
+#define HOSTNAME @"189mm.net"//"b.189mm.com"
 #define FULL_HOSTNAME [NSString stringWithFormat:@"%@%@",SCHEME, HOSTNAME]
 #define COMB_URL_ALL(path, params)     [NSString stringWithFormat:@"%@%@%@%@%@", SCHEME, HOSTNAME, (path), (params).length>0?@"?" : @"", (params)]
 #define COMB_URL(path) COMB_URL_ALL(path, @"")
@@ -28,7 +28,7 @@
 
 
 #define IBSB_PAY_URL @"https://ibsbjstar.ccb.com.cn/app/ccbMain"
-#define HTTP_HEADER_REFERER_URL @"http://b.189mm.com/"
+#define HTTP_HEADER_REFERER_URL @"http://189mm.net/"
 
 
 #endif /* HttpRequestURL_h */
