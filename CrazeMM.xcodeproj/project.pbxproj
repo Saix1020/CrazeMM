@@ -11,6 +11,10 @@
 		2E1451FA1D329FA40065EA89 /* MortgageGoodDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F61D329FA40065EA89 /* MortgageGoodDTO.m */; };
 		2E1451FB1D329FA40065EA89 /* MortgageInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F81D329FA40065EA89 /* MortgageInfoDTO.m */; };
 		2E1451FE1D329FC90065EA89 /* MortgageEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451FD1D329FC90065EA89 /* MortgageEditViewController.m */; };
+		2E1935651D3D22EB00EF9BA1 /* MortgageBrandDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F41D329FA40065EA89 /* MortgageBrandDTO.m */; };
+		2E1935661D3D22EF00EF9BA1 /* MortgageGoodDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F61D329FA40065EA89 /* MortgageGoodDTO.m */; };
+		2E1935671D3D22F200EF9BA1 /* MortgageInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F81D329FA40065EA89 /* MortgageInfoDTO.m */; };
+		2E1935681D3D230E00EF9BA1 /* MortgageEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451FD1D329FC90065EA89 /* MortgageEditViewController.m */; };
 		31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B902B6DD1D026C88005B6F5C /* DepotDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B902B6D51D026C88005B6F5C /* DepotDTO.m */; };
 		B902B6DE1D026C88005B6F5C /* HttpStock.m in Sources */ = {isa = PBXBuildFile; fileRef = B902B6D71D026C88005B6F5C /* HttpStock.m */; };
@@ -4350,6 +4354,7 @@
 				B9EFAE181CED514100F81157 /* TabBarController.m in Sources */,
 				B9EFAE191CED514100F81157 /* NSNull+Utils.m in Sources */,
 				B9EFAE1A1CED514100F81157 /* BounceOutAnimation.m in Sources */,
+				2E1935671D3D22F200EF9BA1 /* MortgageInfoDTO.m in Sources */,
 				B9D1C5921D0A64340099BA95 /* WithDrawAlertView.m in Sources */,
 				B9EFAE1B1CED514100F81157 /* MineSupplyEditViewController.m in Sources */,
 				B9EFAE1C1CED514100F81157 /* RotateOutUpLeftAnimation.m in Sources */,
@@ -4455,6 +4460,7 @@
 				B9EFAE731CED514100F81157 /* ProductDetailCell.m in Sources */,
 				B9EFAE741CED514100F81157 /* RotateOutDownRightAnimation.m in Sources */,
 				B9EFAE751CED514100F81157 /* main.m in Sources */,
+				2E1935681D3D230E00EF9BA1 /* MortgageEditViewController.m in Sources */,
 				B9EFAE761CED514100F81157 /* OrderDetailDTO.m in Sources */,
 				B9EFAE771CED514100F81157 /* FadeInLeftBigAnimation.m in Sources */,
 				B9D1C58A1D0A414E0099BA95 /* RechargeViewController.m in Sources */,
@@ -4524,6 +4530,7 @@
 				B9EFAEAD1CED514100F81157 /* CrazeMM.xcdatamodeld in Sources */,
 				B9EFAEAE1CED514100F81157 /* UIViewController+TTModalView.m in Sources */,
 				B9C395401CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m in Sources */,
+				2E1935651D3D22EB00EF9BA1 /* MortgageBrandDTO.m in Sources */,
 				B9D1C5391D05B0440099BA95 /* StockDetailDTO.m in Sources */,
 				B942E78E1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */,
 				B9EFAEAF1CED514100F81157 /* ContactCell.m in Sources */,
@@ -4641,6 +4648,7 @@
 				B9EFAF081CED514100F81157 /* BuyProductDTO.m in Sources */,
 				B9EFAF091CED514100F81157 /* HttpRandomCodeRequest.m in Sources */,
 				B9EFAF0A1CED514100F81157 /* CommonBottomView.m in Sources */,
+				2E1935661D3D22EF00EF9BA1 /* MortgageGoodDTO.m in Sources */,
 				B9EFAF0B1CED514100F81157 /* BuyProductView.m in Sources */,
 				B9EFAF0C1CED514100F81157 /* M80AttributedLabel.m in Sources */,
 				B9EFAF0D1CED514100F81157 /* LoginViewController.m in Sources */,
