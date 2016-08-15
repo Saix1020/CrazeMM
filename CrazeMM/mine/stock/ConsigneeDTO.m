@@ -27,7 +27,7 @@
         self.createTime = dict[@"createTime"];
         self.identity = dict[@"identity"];
         self.name = dict[@"name"];
-        self.mobile = dict[@"mobile"];
+        self.mobile = [NSString stringWithFormat:@"%@", dict[@"mobile"]];
     }
     
     return self;
