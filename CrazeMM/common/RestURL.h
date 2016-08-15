@@ -10,7 +10,7 @@
 #define HttpRequestURL_h
 
 #define SCHEME @"http://"
-#define HOSTNAME @"189mm.net"//"b.189mm.com"
+#define HOSTNAME @"b.189mm.net"//"b.189mm.com"
 #define FULL_HOSTNAME [NSString stringWithFormat:@"%@%@",SCHEME, HOSTNAME]
 #define COMB_URL_ALL(path, params)     [NSString stringWithFormat:@"%@%@%@%@%@", SCHEME, HOSTNAME, (path), (params).length>0?@"?" : @"", (params)]
 #define COMB_URL(path) COMB_URL_ALL(path, @"")
