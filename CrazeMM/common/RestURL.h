@@ -2,14 +2,14 @@
 //  HttpRequestURL.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/27.
+//  Created by Mao Mao on 16/4/27.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #ifndef HttpRequestURL_h
 #define HttpRequestURL_h
 
-#define SCHEME @"http://"
+#define SCHEME @"https://"
 #define HOSTNAME @"189mm.net"//"b.189mm.com"
 #define FULL_HOSTNAME [NSString stringWithFormat:@"%@%@",SCHEME, HOSTNAME]
 #define COMB_URL_ALL(path, params)     [NSString stringWithFormat:@"%@%@%@%@%@", SCHEME, HOSTNAME, (path), (params).length>0?@"?" : @"", (params)]

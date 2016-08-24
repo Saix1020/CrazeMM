@@ -2,7 +2,7 @@
 //  ConsigneeDTO.m
 //  CrazeMM
 //
-//  Created by saix on 16/6/28.
+//  Created by Mao Mao on 16/6/28.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -27,7 +27,7 @@
         self.createTime = dict[@"createTime"];
         self.identity = dict[@"identity"];
         self.name = dict[@"name"];
-        self.mobile = dict[@"mobile"];
+        self.mobile = [NSString stringWithFormat:@"%@", dict[@"mobile"]];
     }
     
     return self;

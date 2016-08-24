@@ -2,7 +2,7 @@
 //  UISearchBar+RACSignalSupport.h
 //  Pods
 //
-//  Created by saix on 16/4/19.
+//  Created by Mao Mao on 16/4/19.
 //
 //
 

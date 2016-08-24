@@ -2,7 +2,7 @@
 //  CommonListCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/6/28.
+//  Created by Mao Mao on 16/6/28.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -35,6 +35,7 @@
     
     self.leftButton.tintColor = [UIColor UIColorFromRGB:0x444444];
     self.rightButton.tintColor = [UIColor UIColorFromRGB:0x444444];
+
     [self.leftButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.rightButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -49,6 +50,10 @@
     self.statusLabel2.layer.cornerRadius = 4.f;
     self.statusLabel2.clipsToBounds = YES;
     self.statusLabel2.textColor = [UIColor UIColorFromRGB:0x3972a2];
+    
+    [self.topButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    //Top button 默认隐藏
+    self.topButton.hidden =YES;
 
     @weakify(self);
     [RACObserve(self.checkBox, hidden) subscribeNext:^(id x){
@@ -143,7 +148,15 @@
         if ([self.delegate respondsToSelector:@selector(rightButtonClicked:)]) {
             [self.delegate rightButtonClicked:self];
         }
+        
     }
+    else if (button == self.topButton) {
+        if ([self.delegate respondsToSelector:@selector(topButtonClicked:)]) {
+            [self.delegate topButtonClicked:self];
+        }
+        
+    }
+
 }
 
 +(CGFloat)cellHeight

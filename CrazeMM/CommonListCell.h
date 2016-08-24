@@ -2,7 +2,7 @@
 //  CommonListCell.h
 //  CrazeMM
 //
-//  Created by saix on 16/6/28.
+//  Created by Mao Mao on 16/6/28.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 -(void)didSelectedListCell:(CommonListCell*)cell;
 -(void)leftButtonClicked:(CommonListCell*)cell;
 -(void)rightButtonClicked:(CommonListCell*)cell;
+-(void)topButtonClicked:(CommonListCell *)cell;
 
 @end
 
@@ -34,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel2;
+@property (weak, nonatomic) IBOutlet UIButton *topButton;
 
 @property (strong, nonatomic) BaseListDTO* dto;
 @property (nonatomic) BOOL on;

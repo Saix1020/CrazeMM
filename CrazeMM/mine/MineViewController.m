@@ -2,7 +2,7 @@
 //  MineViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/18.
+//  Created by Mao Mao on 16/4/18.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -29,6 +29,7 @@
 #import "AllOrderListViewController.h"
 #import "HttpUserInfo.h"
 #import "MortgageViewController.h"
+#import "PayInfoViewController.h"
 
 @interface MineViewController()
 
@@ -55,6 +56,7 @@
                  @"我的供货",
                  @"我的求购",
                  @"我的抵押",
+                 @"我的支付记录",
                  //                 @"我的站内信息",
                  @"我的收货地址",
                  //                 @"我的自提人"
@@ -67,6 +69,7 @@
                  @"我的供货",
                  @"我的求购",
                  @"我的抵押",
+                 @"我的支付记录",
                  ];
     }
     
@@ -81,6 +84,7 @@
                  @"ico_buy",
                  @"diya",
                  //@"icon_mortgage",
+                 @"mine_card",
 //                 @"info",
                  @"addr",
                  @"ziti"
@@ -93,6 +97,7 @@
                  @"ico_supply",
                  @"ico_buy",
                  @"diya",
+                 @"mine_card"
                  ];
     }
     
@@ -628,7 +633,13 @@
                 return;
                 
             }
-            else if(indexPath.row== 5){
+            else if(indexPath.row== 5){       //payinfo
+                PayInfoViewController* payInfoVC = [[PayInfoViewController alloc] init];
+                [self.navigationController pushViewController:payInfoVC animated:YES];
+                return;
+                
+            }
+            else if(indexPath.row== 6){
                 AddressesViewController* addrVC = [[AddressesViewController alloc] init];
                 [self.navigationController pushViewController:addrVC animated:YES];
                 return;
