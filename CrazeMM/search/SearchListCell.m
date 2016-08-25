@@ -132,7 +132,12 @@
         self.stockLabel.text = [NSString stringWithFormat:@"所在仓库: %@", self.searchResultDTO.depotDto.name ];
     }
     else {
-        self.arrivalTime.text = [NSString stringWithFormat:@"卖家发货: %@", searchResultDTO.deadlineStr]; 
+        if(![self.typeName isEqualToString:@"供货"]){
+            self.arrivalTime.text = [NSString stringWithFormat:@"到货周期: %@", searchResultDTO.deadlineStr];
+        }
+        else {
+            self.arrivalTime.text = [NSString stringWithFormat:@"卖家发货: %@", searchResultDTO.deadlineStr];
+        }
     }
     
     if ([self.typeName isEqualToString:@"供货"]) {

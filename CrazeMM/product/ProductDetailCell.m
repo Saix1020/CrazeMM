@@ -216,7 +216,13 @@
         self.stockLabel.text = [NSString stringWithFormat:@"所在仓库: %@", self.productDetailDto.depotDto.name];
     }
     else {
-        self.stockLabel.text = [NSString stringWithFormat:@"卖家发货: %@", self.productDetailDto.deadlineStr];
+        if([productDetailDto isMemberOfClass:NSClassFromString(@"SupplyProductDetailDTO")]){
+            self.stockLabel.text = [NSString stringWithFormat:@"卖家发货: %@", self.productDetailDto.deadlineStr];
+  
+        }
+        else {
+            self.stockLabel.text = [NSString stringWithFormat:@"到货周期: %@", self.productDetailDto.deadlineStr];
+        }
     }
 
     
