@@ -12,7 +12,7 @@
 
 -(void)awakeFromNib
 {
-//    self.expandButton.tintColor = [UIColor light_Gray_Color];
+    self.expandButton.tintColor = [UIColor grayColor];
     [self.expandButton exchangeImageAndText];
 }
 
