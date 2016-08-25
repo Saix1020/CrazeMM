@@ -38,8 +38,11 @@
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(40.0f);
         [_segmentCell setTitles:@[@"待入库", @"已入库", @"待出库", @"历史"]];
-        _segmentCell.segment.delegate = self;
+        // we should set current index before setting delegate
+        // or - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index
+        // will be invoked
         _segmentCell.segment.currentIndex = 1;
+        _segmentCell.segment.delegate = self;
         [self.view addSubview:_segmentCell];
     }
     return _segmentCell;

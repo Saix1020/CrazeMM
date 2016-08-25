@@ -10,6 +10,16 @@
 
 @implementation HttpLoginRequest
 
+-(AFHTTPSessionManager*)manager
+{
+    AFHTTPSessionManager* mgr = [super manager];
+    
+    mgr.requestSerializer.timeoutInterval = 10.0f; // set timeout 10s
+    
+    return mgr;
+}
+
+
 -(instancetype)init
 {
     self = [super init];

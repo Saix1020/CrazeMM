@@ -70,6 +70,7 @@
         
         self.params =  [@{
                           @"pn" : @(self.pageNumber),
+                          @"kind" : @"fromMobile"
                           } mutableCopy];
         if (self.keywords && self.keywords.count>0) {
             [self.params setValue:[self.keywords componentsJoinedByString:@","] forKey: @"keywords"];

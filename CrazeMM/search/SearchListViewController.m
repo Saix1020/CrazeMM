@@ -669,6 +669,13 @@
         if ([self.searchCondtions objectForKey:@"maxPrice"]) {
             maxPrice = [self.searchCondtions[@"maxPrice"] floatValue];
         }
+        
+        if (self.searchCondtions[@"keywords"]){
+            self.searchKeyword = self.searchCondtions[@"keywords"];
+        }
+        else {
+            self.searchKeyword = @"";
+        }
     }
 
     HttpSearchAddKeywordsRequest* addKeywordsRequest = [[HttpSearchAddKeywordsRequest alloc] initWithKeywords:self.searchKeyword.length>0?@[self.searchKeyword]:@[]

@@ -127,7 +127,7 @@
         @weakify(self);
         [self showAlertViewWithMessage:error.localizedDescription withCallback:^(id x){
             @strongify(self);
-            [self.navigationController popViewControllerAnimated:YES];
+            //[self.navigationController popViewControllerAnimated:YES];
         }];
     });
 }
