@@ -93,6 +93,24 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     return self;
 }
 
+-(instancetype)initWithOrderStatusDTOs:(NSMutableArray *)orderStatusDtos
+{
+    self = [super init];
+    if (self) {
+        NSMutableArray* muableOrderDetailDtos = [[NSMutableArray alloc]init];
+        
+        for (OrderStatusDTO* orderStatusDto in orderStatusDtos) {
+            
+            [muableOrderDetailDtos addObject:[[OrderDetailDTO alloc] initWithOrderStatusDTO:orderStatusDto]];
+        }
+        
+        self.orderDetailDtos = [muableOrderDetailDtos copy];
+        
+    }
+    return self;
+}
+
+
 -(instancetype)initWithOrderDetailDTOs:(NSArray<OrderDetailDTO*>*)orderStatusDtos
 {
     self = [super init];

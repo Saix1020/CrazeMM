@@ -19,6 +19,7 @@
 @interface PayViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, AddressesViewControllerDelegate, SuggestVCDelegate, AddressesViewControllerDelegate, WithDrawAlertViewDelegate>
 
 -(instancetype)initWithOrderStatusDTO:(OrderStatusDTO*)orderStatusDto;
+-(instancetype)initWithOrderStatusDTOs:(NSMutableArray *)orderStatusDtos;
 -(instancetype)initWithOrderDetailDTOs:(NSArray<OrderDetailDTO*>*)orderStatusDtos;
 
 -(instancetype)initWithProductDto:(BaseProductDetailDTO*)productDto andProductAmount:(NSInteger)amount;

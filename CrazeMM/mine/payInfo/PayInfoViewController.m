@@ -8,6 +8,7 @@
 
 #import "PayInfoViewController.h"
 #import "CommonListCell+PayRecord.h"
+#import "PayViewController.h"
 
 @interface PayInfoViewController ()
 
@@ -94,8 +95,9 @@
                                 [self showAlertViewWithMessage:request.response.errorMsg];
                             }
                             else {
-                                [self showAlertViewWithMessage:@"订单取消成功！"];
-                                //是否要刷新页面？
+                                [self showAlertViewWithMessage:@"操作成功！"];
+                                [self resetDataSource];
+                                
                             }
                             
                         })
@@ -123,8 +125,17 @@
                                 [self showAlertViewWithMessage:request.response.errorMsg];
                             }
                             else {
-                                [self showAlertViewWithMessage:@"订单重新支付成功！"];
-                                //是否要跳转到支付页面？
+                                //[self showAlertViewWithMessage:@"订单重新支付成功！"];
+                                //跳转到支付页面
+                                //NSMutableArray* orderIds = [[NSMutableArray alloc]init];
+                                NSString* orderList = ((PayRecordDTO*)cell.dto).orderIds;
+                                NSArray* orderIds = [orderList componentsSeparatedByString:@","];
+                                NSMutableArray* statusDtos = [[NSMutableArray alloc]init];
+                                //获取所有的statusDto
+                                
+                                //PayViewController* payVC = [[PayViewController alloc] initWithOrderStatusDTOs:statusDtos];
+                                //[self.navigationController pushViewController:payVC animated:YES];
+                                
                             }
                             
                         })
