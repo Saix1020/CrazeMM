@@ -29,6 +29,7 @@
 #import "AllOrderListViewController.h"
 #import "HttpUserInfo.h"
 #import "MortgageViewController.h"
+#import "PersonalInfoViewController.h"
 
 @interface MineViewController()
 
@@ -596,6 +597,14 @@
     
     
     switch (indexPath.section) {
+        case kSectionOverview:
+        {
+            PersonalInfoViewController* infoVC = [[PersonalInfoViewController alloc] init];
+            [self.navigationController pushViewController:infoVC animated:YES];
+            
+            return;
+
+        }
         case kSectionInfo:
         {
             if (indexPath.row == 1) {

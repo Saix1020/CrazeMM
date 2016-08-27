@@ -83,4 +83,12 @@
 +(UIColor*)blueButtonColor;
 +(UIColor*)redButtonColor;
 
+
++(UIColor*)buttonEnableBackgroundColor;
++(UIColor*)buttonDisableBackgroundColor;
++(UIColor*)buttonEnableTextColor;
++(UIColor*)buttonDisableTextColor;
+
++(UIColor*)tableViewBackgroundColor;
+
 @end
