@@ -30,6 +30,7 @@
 #import "HttpUserInfo.h"
 #import "MortgageViewController.h"
 #import "PersonalInfoViewController.h"
+#import "PayInfoViewController.h"
 
 @interface MineViewController()
 
