@@ -1,6 +1,0 @@
-framework module NHArrowView {
-  umbrella header "NHArrowView-umbrella.h"
-
-  export *
-  module * { export * }
-}

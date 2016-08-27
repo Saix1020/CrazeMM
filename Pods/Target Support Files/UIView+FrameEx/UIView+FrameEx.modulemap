@@ -1,6 +1,0 @@
-framework module UIView_FrameEx {
-  umbrella header "UIView+FrameEx-umbrella.h"
-
-  export *
-  module * { export * }
-}
