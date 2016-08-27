@@ -15,6 +15,14 @@
 		2E1935661D3D22EF00EF9BA1 /* MortgageGoodDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F61D329FA40065EA89 /* MortgageGoodDTO.m */; };
 		2E1935671D3D22F200EF9BA1 /* MortgageInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F81D329FA40065EA89 /* MortgageInfoDTO.m */; };
 		2E1935681D3D230E00EF9BA1 /* MortgageEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451FD1D329FC90065EA89 /* MortgageEditViewController.m */; };
+		2E7FC98C1D6B3F08004F3E02 /* PayRecordDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7FC98B1D6B3F08004F3E02 /* PayRecordDTO.m */; };
+		2E7FC98D1D6B3F08004F3E02 /* PayRecordDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7FC98B1D6B3F08004F3E02 /* PayRecordDTO.m */; };
+		2E9C08941D6A06A2009A510D /* HttpPayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C08931D6A06A2009A510D /* HttpPayRecord.m */; };
+		2E9C08951D6A06A2009A510D /* HttpPayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C08931D6A06A2009A510D /* HttpPayRecord.m */; };
+		2EAF58471D68B6B000ACEE60 /* PayInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF58461D68B6B000ACEE60 /* PayInfoViewController.m */; };
+		2EAF58481D68B6B000ACEE60 /* PayInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF58461D68B6B000ACEE60 /* PayInfoViewController.m */; };
+		2EAF584B1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF584A1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m */; };
+		2EAF584C1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF584A1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m */; };
 		31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B902B6DD1D026C88005B6F5C /* DepotDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B902B6D51D026C88005B6F5C /* DepotDTO.m */; };
 		B902B6DE1D026C88005B6F5C /* HttpStock.m in Sources */ = {isa = PBXBuildFile; fileRef = B902B6D71D026C88005B6F5C /* HttpStock.m */; };
@@ -454,7 +462,6 @@
 		B9AD45F71CD4D43B00012B31 /* KeychainItemWrapper.h in Sources */ = {isa = PBXBuildFile; fileRef = B9AD44181CD39FB900012B31 /* KeychainItemWrapper.h */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B9AD45F81CD4D43B00012B31 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD44191CD39FB900012B31 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B9AD45F91CD4D44700012B31 /* CrazeMMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B964F9171CC39671003E0D44 /* CrazeMMTests.m */; };
-		B9AD45FA1CD4D44700012B31 /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = B964F9191CC39671003E0D44 /* Info.plist */; };
 		B9AD45FB1CD4D44700012B31 /* HTTPRequestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD44351CD49B1500012B31 /* HTTPRequestTest.m */; };
 		B9AD45FC1CD4D44700012B31 /* ut_prefix.pch in Sources */ = {isa = PBXBuildFile; fileRef = B9AD443D1CD4D31900012B31 /* ut_prefix.pch */; };
 		B9AD45FF1CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD45FE1CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.m */; };
@@ -970,6 +977,14 @@
 		2E1451F81D329FA40065EA89 /* MortgageInfoDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MortgageInfoDTO.m; path = mine/mortgage/MortgageInfoDTO.m; sourceTree = "<group>"; };
 		2E1451FC1D329FC90065EA89 /* MortgageEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MortgageEditViewController.h; path = mine/mortgage/MortgageEditViewController.h; sourceTree = "<group>"; };
 		2E1451FD1D329FC90065EA89 /* MortgageEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MortgageEditViewController.m; path = mine/mortgage/MortgageEditViewController.m; sourceTree = "<group>"; };
+		2E7FC98A1D6B3F08004F3E02 /* PayRecordDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayRecordDTO.h; path = mine/payInfo/PayRecordDTO.h; sourceTree = "<group>"; };
+		2E7FC98B1D6B3F08004F3E02 /* PayRecordDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayRecordDTO.m; path = mine/payInfo/PayRecordDTO.m; sourceTree = "<group>"; };
+		2E9C08921D6A06A2009A510D /* HttpPayRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpPayRecord.h; path = mine/payInfo/HttpPayRecord.h; sourceTree = "<group>"; };
+		2E9C08931D6A06A2009A510D /* HttpPayRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpPayRecord.m; path = mine/payInfo/HttpPayRecord.m; sourceTree = "<group>"; };
+		2EAF58451D68B6B000ACEE60 /* PayInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayInfoViewController.h; path = mine/payInfo/PayInfoViewController.h; sourceTree = "<group>"; };
+		2EAF58461D68B6B000ACEE60 /* PayInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayInfoViewController.m; path = mine/payInfo/PayInfoViewController.m; sourceTree = "<group>"; };
+		2EAF58491D68C4ED00ACEE60 /* CommonListCell+PayRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CommonListCell+PayRecord.h"; path = "mine/payInfo/CommonListCell+PayRecord.h"; sourceTree = "<group>"; };
+		2EAF584A1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CommonListCell+PayRecord.m"; path = "mine/payInfo/CommonListCell+PayRecord.m"; sourceTree = "<group>"; };
 		4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.debug.xcconfig"; sourceTree = "<group>"; };
 		B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.release.xcconfig"; sourceTree = "<group>"; };
 		B902B6D41D026C88005B6F5C /* DepotDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepotDTO.h; sourceTree = "<group>"; };
@@ -1835,6 +1850,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EAF58431D68B55B00ACEE60 /* modal */ = {
+			isa = PBXGroup;
+			children = (
+				2E7FC98A1D6B3F08004F3E02 /* PayRecordDTO.h */,
+				2E7FC98B1D6B3F08004F3E02 /* PayRecordDTO.m */,
+			);
+			name = modal;
+			sourceTree = "<group>";
+		};
+		2EAF58441D68B56400ACEE60 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				2EAF58491D68C4ED00ACEE60 /* CommonListCell+PayRecord.h */,
+				2EAF584A1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		2ED9A1E01D660C4100AFAF01 /* pay */ = {
+			isa = PBXGroup;
+			children = (
+				2E9C08921D6A06A2009A510D /* HttpPayRecord.h */,
+				2E9C08931D6A06A2009A510D /* HttpPayRecord.m */,
+			);
+			name = pay;
+			sourceTree = "<group>";
+		};
+		2ED9A1E11D660C5B00AFAF01 /* pay */ = {
+			isa = PBXGroup;
+			children = (
+				2EAF58431D68B55B00ACEE60 /* modal */,
+				2EAF58441D68B56400ACEE60 /* view */,
+				2EAF58451D68B6B000ACEE60 /* PayInfoViewController.h */,
+				2EAF58461D68B6B000ACEE60 /* PayInfoViewController.m */,
+			);
+			name = pay;
+			sourceTree = "<group>";
+		};
 		8B36CB4D54E72C4D41168BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1969,6 +2022,7 @@
 		B9156F3D1CDBA3D80041E535 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				2ED9A1E01D660C4100AFAF01 /* pay */,
 				B99578D71D241B9F00F3D30B /* mortgage */,
 				B9D1C5791D0700AC0099BA95 /* uitils */,
 				B902B6E31D026CA3005B6F5C /* stock */,
@@ -3550,7 +3604,7 @@
 		B964F8EF1CC39670003E0D44 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = 189;
 				TargetAttributes = {
 					B964F8F61CC39670003E0D44 = {
@@ -4084,6 +4138,7 @@
 				B9EFAFA11CEE10A200F81157 /* HttpSaveSupplyInfo.m in Sources */,
 				B91896991CCE53AB0061D0B6 /* SecondProductDetailCell.m in Sources */,
 				B91732531CD1F05500C29698 /* SlideOutLeftAnimation.m in Sources */,
+				2E7FC98C1D6B3F08004F3E02 /* PayRecordDTO.m in Sources */,
 				B965B74A1D1E54860021C809 /* HttpGenMobileVcodeForUser.m in Sources */,
 				B91732421CD1F05400C29698 /* RotateInAnimation.m in Sources */,
 				B9C395461CF5DB1100AB44B6 /* AddressesViewController.m in Sources */,
@@ -4133,6 +4188,7 @@
 				B9AD46291CD6523100012B31 /* M80AttributedLabelAttachment.m in Sources */,
 				B95A94BD1CE1D68600A5D9BA /* BaseProductDTO.m in Sources */,
 				B942E7891D1967DF0067931B /* SupplyDetailDTO.m in Sources */,
+				2E9C08941D6A06A2009A510D /* HttpPayRecord.m in Sources */,
 				B91732321CD1F05400C29698 /* FadeOutAnimation.m in Sources */,
 				B917323A1CD1F05400C29698 /* FadeOutUpBigAnimation.m in Sources */,
 				B9D1C5801D0701000099BA95 /* BalanceDTO.m in Sources */,
@@ -4163,6 +4219,7 @@
 				B99D130B1CC73FDA000DFF95 /* SearchListCell.m in Sources */,
 				B902B6F01D026DAA005B6F5C /* MineStockEditViewController.m in Sources */,
 				B967E7481CE602C300621F28 /* HttpOrderRemove.m in Sources */,
+				2EAF584B1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m in Sources */,
 				B9AD441A1CD39FB900012B31 /* KeychainItemWrapper.m in Sources */,
 				B9156F331CDA43190041E535 /* HttpSearchRequest.m in Sources */,
 				B917324F1CD1F05400C29698 /* SlideInRightAnimation.m in Sources */,
@@ -4212,6 +4269,7 @@
 				B917326B1CD1F09400C29698 /* TTModalView.m in Sources */,
 				B917325A1CD1F05500C29698 /* ZoomInDownAnimation.m in Sources */,
 				B967E7391CE57EBD00621F28 /* MASViewConstraint.m in Sources */,
+				2EAF58471D68B6B000ACEE60 /* PayInfoViewController.m in Sources */,
 				B91732161CD1F05400C29698 /* JelloAnimation.m in Sources */,
 				B98218F71CE84CEB00B279E6 /* HttpAddress.m in Sources */,
 				B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */,
@@ -4315,7 +4373,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9AD45F91CD4D44700012B31 /* CrazeMMTests.m in Sources */,
-				B9AD45FA1CD4D44700012B31 /* Info.plist in Sources */,
 				B9AD45FB1CD4D44700012B31 /* HTTPRequestTest.m in Sources */,
 				B9AD45FC1CD4D44700012B31 /* ut_prefix.pch in Sources */,
 				B9AD45F71CD4D43B00012B31 /* KeychainItemWrapper.h in Sources */,
@@ -4576,6 +4633,7 @@
 				B9EFAEA11CED514100F81157 /* HttpOrderRemove.m in Sources */,
 				B9EFAEA21CED514100F81157 /* KeychainItemWrapper.m in Sources */,
 				B9EFAEA31CED514100F81157 /* HttpSearchRequest.m in Sources */,
+				2E7FC98D1D6B3F08004F3E02 /* PayRecordDTO.m in Sources */,
 				B965B71F1D1D71790021C809 /* HttpListQuery.m in Sources */,
 				B9EFAEA41CED514100F81157 /* SlideInRightAnimation.m in Sources */,
 				B9D1C5851D0719DB0099BA95 /* AllOrderListViewController.m in Sources */,
@@ -4644,6 +4702,7 @@
 				B9EFAED51CED514100F81157 /* RollOutAnimation.m in Sources */,
 				B9EFAED61CED514100F81157 /* BuyItemCell.m in Sources */,
 				B9EFAED71CED514100F81157 /* OrderListViewController.m in Sources */,
+				2EAF584C1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m in Sources */,
 				B9EFAED91CED514100F81157 /* FadeOutDownBigAnimation.m in Sources */,
 				B9EFAEDA1CED514100F81157 /* CommonOrderListViewController.m in Sources */,
 				B965B7501D1E569B0021C809 /* GenMobileVcodeCell.m in Sources */,
@@ -4688,6 +4747,7 @@
 				B9EFAEF51CED514100F81157 /* RotateInDownLeftAnimation.m in Sources */,
 				B9EFAEF61CED514100F81157 /* LastPayMethodCell.m in Sources */,
 				B9EFAEF71CED514100F81157 /* UIImageView+Utils.m in Sources */,
+				2EAF58481D68B6B000ACEE60 /* PayInfoViewController.m in Sources */,
 				B9EFAEF81CED514100F81157 /* SelectdAddrCell.m in Sources */,
 				B9C4BCBA1D21736400C719CE /* OutStockViewController.m in Sources */,
 				B9EFAEF91CED514100F81157 /* FadeOutRightAnimation.m in Sources */,

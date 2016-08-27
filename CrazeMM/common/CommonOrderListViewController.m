@@ -2,7 +2,7 @@
 //  CommonOrderListView.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/8.
+//  Created by Mao Mao on 16/5/8.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -519,6 +519,17 @@
     [alert show];
 
 }
+
+
+-(void)topButtonClicked:(CommonListCell *)cell
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    
+}
+
 
 #pragma -- mark BEMCheckBox Delegate
 -(void)didTapCheckBox:(BEMCheckBox *)checkBox

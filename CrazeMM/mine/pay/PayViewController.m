@@ -2,7 +2,7 @@
 //  MinePayViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/25.
+//  Created by Mao Mao on 16/4/25.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -92,6 +92,24 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     }
     return self;
 }
+
+-(instancetype)initWithOrderStatusDTOs:(NSMutableArray *)orderStatusDtos
+{
+    self = [super init];
+    if (self) {
+        NSMutableArray* muableOrderDetailDtos = [[NSMutableArray alloc]init];
+        
+        for (OrderStatusDTO* orderStatusDto in orderStatusDtos) {
+            
+            [muableOrderDetailDtos addObject:[[OrderDetailDTO alloc] initWithOrderStatusDTO:orderStatusDto]];
+        }
+        
+        self.orderDetailDtos = [muableOrderDetailDtos copy];
+        
+    }
+    return self;
+}
+
 
 -(instancetype)initWithOrderDetailDTOs:(NSArray<OrderDetailDTO*>*)orderStatusDtos
 {

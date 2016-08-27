@@ -2,7 +2,7 @@
 //  MortgageViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/6/28.
+//  Created by Mao Mao on 16/6/28.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -66,7 +66,8 @@
     
     UIBarButtonItem* addMortgageButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addMortgage:)];
     UIBarButtonItem* moreButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"icon_more" image] style:UIBarButtonItemStylePlain target:self action:@selector(moreActions:)];
-    self.navigationItem.rightBarButtonItems = @[moreButtonItem, addMortgageButtonItem];}
+    self.navigationItem.rightBarButtonItems = @[moreButtonItem, addMortgageButtonItem];
+}
 
 -(void)bottomViewButtonClicked:(UIButton*)button
 {
