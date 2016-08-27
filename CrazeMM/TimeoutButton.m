@@ -53,6 +53,11 @@
             
         }else{
             int seconds = timeout;
+            
+            if(seconds == self.timeoutSeconds){
+                [self.orignalTarget performSelector:self.orignalAction withObject:self];
+            }
+            
             NSString *strTime = [NSString stringWithFormat:@"%d", seconds];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -69,10 +74,6 @@
     });
     
     dispatch_resume(_timer);
-    [self.orignalTarget performSelector:self.orignalAction withObject:self afterDelay:0.5];
-//    [self.orignalTarget performSelector:self.orignalAction withObject:self];
-    
-
 }
 
 
