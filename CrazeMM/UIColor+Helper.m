@@ -203,5 +203,9 @@
 {
     return RGBCOLOR(240, 240, 240);
 }
++(UIColor*)tableViewSeperatorLineBackgroundColor
+{
+    return [UIColor UIColorFromRGB:0xC8C7CC];
+}
 
 @end

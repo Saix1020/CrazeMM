@@ -88,5 +88,26 @@
     [self.popover dismiss];
 }
 
+-(void)setTitleLeadingMarginWithSpace:(CGFloat)space
+{
+    self.titleLeadingMargin.constant = space;
+    [self.contentView updateConstraints];
+}
+
+-(void)setRegionLabelLeadingWithSpace:(CGFloat)space
+{
+    self.regionLabelLeading.constant = space;
+    [self.contentView updateConstraints];
+
+}
+
+-(void)formartSeperatorLineConstraintsWithlLeading:(CGFloat)leading andHeigt:(CGFloat)height andTrailing:(CGFloat)trailing
+{
+    self.seperatorLineLeading.constant = leading;
+    self.seperatorLineTrailing.constant = trailing;
+    self.seperatorLineHeightConstraint.constant = height;
+    [self.contentView updateConstraints];
+
+}
 
 @end

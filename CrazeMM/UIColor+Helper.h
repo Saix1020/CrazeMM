@@ -90,5 +90,5 @@
 +(UIColor*)buttonDisableTextColor;
 
 +(UIColor*)tableViewBackgroundColor;
-
++(UIColor*)tableViewSeperatorLineBackgroundColor;
 @end

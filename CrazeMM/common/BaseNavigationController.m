@@ -54,6 +54,7 @@
         @weakify(self)
         viewController.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
+            [self.view endEditing:YES];
             if (self.confirmString.length>0) {
                 [self showAlertViewWithMessage:self.confirmString
                                 withOKCallback:^(id x) {

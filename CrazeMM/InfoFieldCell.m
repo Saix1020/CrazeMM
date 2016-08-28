@@ -86,7 +86,7 @@
     self.titleLabel.frame = CGRectMake(16.f, (self.contentView.height-self.titleLabel.height)/2, self.titleLabel.width, self.titleLabel.height);
     
     if(!self.needButton){
-        self.infoField.frame = CGRectMake(self.titleLabel.right+16.f, (self.contentView.height-self.titleLabel.height)/2, self.contentView.width-self.infoField.right-16.f-8.f, self.titleLabel.height);
+        self.infoField.frame = CGRectMake(self.titleLabel.right+16.f, (self.contentView.height-self.titleLabel.height)/2, self.contentView.width-self.titleLabel.right-16.f-8.f, self.titleLabel.height);
     }
     else {
         [self.button sizeToFit];

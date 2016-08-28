@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SuggestViewController.h"
 
-@interface PersonalOtherModifyViewContoller : UITableViewController
+@interface PersonalOtherModifyViewContoller : UIViewController<UITableViewDelegate, UITableViewDataSource, SuggestVCDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @end

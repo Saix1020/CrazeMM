@@ -17,12 +17,19 @@
 
 @property (nonatomic, strong) NSString* value;
 @property (nonatomic, strong) NSString* title;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLeadingMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *seperatorLineLeading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *seperatorLineHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *seperatorLineTrailing;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *regionLabelLeading;
 
 -(void)hideChooseButton;
 
 -(void)popSelection:(NSArray*)options andDelegate:(id<SuggestVCDelegate>)delegate;
 -(void)dismissSelection;
-
+-(void)setTitleLeadingMarginWithSpace:(CGFloat)space;
+-(void)setRegionLabelLeadingWithSpace:(CGFloat)space;
+-(void)formartSeperatorLineConstraintsWithlLeading:(CGFloat)leading andHeigt:(CGFloat)height andTrailing:(CGFloat)trailing;
 @end
 
 

@@ -219,6 +219,8 @@
 		B94E6CD11D72B9AE005B3DB2 /* HttpGenEmailVcode.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CCF1D72B9AE005B3DB2 /* HttpGenEmailVcode.m */; };
 		B94E6CD41D72BE3D005B3DB2 /* HttpRegisterNewEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CD31D72BE3D005B3DB2 /* HttpRegisterNewEmail.m */; };
 		B94E6CD51D72BE3D005B3DB2 /* HttpRegisterNewEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CD31D72BE3D005B3DB2 /* HttpRegisterNewEmail.m */; };
+		B94E6CD81D73262C005B3DB2 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CD71D73262C005B3DB2 /* UIPlaceHolderTextView.m */; };
+		B94E6CD91D73262C005B3DB2 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CD71D73262C005B3DB2 /* UIPlaceHolderTextView.m */; };
 		B95924061CDEB26300533E77 /* CommonOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95924051CDEB26300533E77 /* CommonOrderListViewController.m */; };
 		B959248F1CDF90A900533E77 /* NSNull+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B959248E1CDF90A900533E77 /* NSNull+Utils.m */; };
 		B95924991CE0394C00533E77 /* lauch-screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B95924981CE0394C00533E77 /* lauch-screen.jpg */; };
@@ -1321,6 +1323,8 @@
 		B94E6CCF1D72B9AE005B3DB2 /* HttpGenEmailVcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpGenEmailVcode.m; path = restful/HttpGenEmailVcode.m; sourceTree = "<group>"; };
 		B94E6CD21D72BE3D005B3DB2 /* HttpRegisterNewEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRegisterNewEmail.h; path = restful/HttpRegisterNewEmail.h; sourceTree = "<group>"; };
 		B94E6CD31D72BE3D005B3DB2 /* HttpRegisterNewEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpRegisterNewEmail.m; path = restful/HttpRegisterNewEmail.m; sourceTree = "<group>"; };
+		B94E6CD61D73262C005B3DB2 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIPlaceHolderTextView.h; path = common/UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		B94E6CD71D73262C005B3DB2 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIPlaceHolderTextView.m; path = common/UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		B95924041CDEB26300533E77 /* CommonOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonOrderListViewController.h; path = common/CommonOrderListViewController.h; sourceTree = "<group>"; };
 		B95924051CDEB26300533E77 /* CommonOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonOrderListViewController.m; path = common/CommonOrderListViewController.m; sourceTree = "<group>"; };
 		B959248D1CDF90A900533E77 /* NSNull+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNull+Utils.h"; path = "common/NSNull+Utils.h"; sourceTree = "<group>"; };
@@ -3220,6 +3224,8 @@
 				B9076F571D22C8EA001FFDE4 /* CommonListCell.h */,
 				B9076F581D22C8EA001FFDE4 /* CommonListCell.m */,
 				B9076F591D22C8EA001FFDE4 /* CommonListCell.xib */,
+				B94E6CD61D73262C005B3DB2 /* UIPlaceHolderTextView.h */,
+				B94E6CD71D73262C005B3DB2 /* UIPlaceHolderTextView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -4046,6 +4052,7 @@
 				B9156F2F1CDA3C5C0041E535 /* SearchResultDTO.m in Sources */,
 				B917324A1CD1F05400C29698 /* RotateOutUpRightAnimation.m in Sources */,
 				B91896821CCDDB790061D0B6 /* ProductCompanyCell.m in Sources */,
+				B94E6CD81D73262C005B3DB2 /* UIPlaceHolderTextView.m in Sources */,
 				B901404F1D712A82000960F9 /* InfoFieldCell.m in Sources */,
 				B967E73C1CE57EBD00621F28 /* View+MASAdditions.m in Sources */,
 				B91732551CD1F05500C29698 /* SlideOutUpAnimation.m in Sources */,
@@ -4460,6 +4467,7 @@
 				B9EFAF831CEDA25400F81157 /* RestURL.h in Sources */,
 				B9EFAF841CEDA25400F81157 /* BaseHttpRequest.h in Sources */,
 				B9EFADF71CED514100F81157 /* FadeOutUpAnimation.m in Sources */,
+				B94E6CD91D73262C005B3DB2 /* UIPlaceHolderTextView.m in Sources */,
 				B9EFADF81CED514100F81157 /* ZoomOutUpAnimation.m in Sources */,
 				B9EFADF91CED514100F81157 /* OnlinePayViewController.m in Sources */,
 				B9EFADFA1CED514100F81157 /* TadaAnimation.m in Sources */,
