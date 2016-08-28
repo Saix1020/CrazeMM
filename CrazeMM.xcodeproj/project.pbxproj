@@ -208,6 +208,17 @@
 		B942E78A1D1967DF0067931B /* SupplyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E7881D1967DF0067931B /* SupplyDetailDTO.m */; };
 		B942E78D1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */; };
 		B942E78E1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */; };
+		B94E6CC51D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
+		B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
+		B94E6CC71D72B6CA005B3DB2 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140401D712A6E000960F9 /* PersonalInfoViewController.m */; };
+		B94E6CC81D72B6D2005B3DB2 /* PersonalOtherModifyViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140421D712A6E000960F9 /* PersonalOtherModifyViewContoller.m */; };
+		B94E6CC91D72B6D5005B3DB2 /* PersonalPhoneViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140441D712A6E000960F9 /* PersonalPhoneViewContoller.m */; };
+		B94E6CCC1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CCB1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m */; };
+		B94E6CCD1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CCB1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m */; };
+		B94E6CD01D72B9AE005B3DB2 /* HttpGenEmailVcode.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CCF1D72B9AE005B3DB2 /* HttpGenEmailVcode.m */; };
+		B94E6CD11D72B9AE005B3DB2 /* HttpGenEmailVcode.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CCF1D72B9AE005B3DB2 /* HttpGenEmailVcode.m */; };
+		B94E6CD41D72BE3D005B3DB2 /* HttpRegisterNewEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CD31D72BE3D005B3DB2 /* HttpRegisterNewEmail.m */; };
+		B94E6CD51D72BE3D005B3DB2 /* HttpRegisterNewEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CD31D72BE3D005B3DB2 /* HttpRegisterNewEmail.m */; };
 		B95924061CDEB26300533E77 /* CommonOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95924051CDEB26300533E77 /* CommonOrderListViewController.m */; };
 		B959248F1CDF90A900533E77 /* NSNull+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B959248E1CDF90A900533E77 /* NSNull+Utils.m */; };
 		B95924991CE0394C00533E77 /* lauch-screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B95924981CE0394C00533E77 /* lauch-screen.jpg */; };
@@ -1302,6 +1313,14 @@
 		B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineSupplyInfoViewController.m; path = mine/supply/MineSupplyInfoViewController.m; sourceTree = "<group>"; };
 		B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewSearchListCell.h; path = search/NewSearchListCell.h; sourceTree = "<group>"; };
 		B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewSearchListCell.m; path = search/NewSearchListCell.m; sourceTree = "<group>"; };
+		B94E6CC31D72AF84005B3DB2 /* HttpRegisterNewMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRegisterNewMobile.h; path = restful/HttpRegisterNewMobile.h; sourceTree = "<group>"; };
+		B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpRegisterNewMobile.m; path = restful/HttpRegisterNewMobile.m; sourceTree = "<group>"; };
+		B94E6CCA1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpGenEmailVcodeForUser.h; path = restful/HttpGenEmailVcodeForUser.h; sourceTree = "<group>"; };
+		B94E6CCB1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpGenEmailVcodeForUser.m; path = restful/HttpGenEmailVcodeForUser.m; sourceTree = "<group>"; };
+		B94E6CCE1D72B9AE005B3DB2 /* HttpGenEmailVcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpGenEmailVcode.h; path = restful/HttpGenEmailVcode.h; sourceTree = "<group>"; };
+		B94E6CCF1D72B9AE005B3DB2 /* HttpGenEmailVcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpGenEmailVcode.m; path = restful/HttpGenEmailVcode.m; sourceTree = "<group>"; };
+		B94E6CD21D72BE3D005B3DB2 /* HttpRegisterNewEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRegisterNewEmail.h; path = restful/HttpRegisterNewEmail.h; sourceTree = "<group>"; };
+		B94E6CD31D72BE3D005B3DB2 /* HttpRegisterNewEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpRegisterNewEmail.m; path = restful/HttpRegisterNewEmail.m; sourceTree = "<group>"; };
 		B95924041CDEB26300533E77 /* CommonOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonOrderListViewController.h; path = common/CommonOrderListViewController.h; sourceTree = "<group>"; };
 		B95924051CDEB26300533E77 /* CommonOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonOrderListViewController.m; path = common/CommonOrderListViewController.m; sourceTree = "<group>"; };
 		B959248D1CDF90A900533E77 /* NSNull+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNull+Utils.h"; path = "common/NSNull+Utils.h"; sourceTree = "<group>"; };
@@ -2030,6 +2049,7 @@
 		B9156F3D1CDBA3D80041E535 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B94E6CC21D72AF4E005B3DB2 /* user */,
 				2ED9A1E01D660C4100AFAF01 /* pay */,
 				B99578D71D241B9F00F3D30B /* mortgage */,
 				B9D1C5791D0700AC0099BA95 /* uitils */,
@@ -2620,6 +2640,21 @@
 				B965B74E1D1E569B0021C809 /* GenMobileVcodeCell.xib */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		B94E6CC21D72AF4E005B3DB2 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				B94E6CC31D72AF84005B3DB2 /* HttpRegisterNewMobile.h */,
+				B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */,
+				B94E6CCA1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.h */,
+				B94E6CCB1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m */,
+				B94E6CCE1D72B9AE005B3DB2 /* HttpGenEmailVcode.h */,
+				B94E6CCF1D72B9AE005B3DB2 /* HttpGenEmailVcode.m */,
+				B94E6CD21D72BE3D005B3DB2 /* HttpRegisterNewEmail.h */,
+				B94E6CD31D72BE3D005B3DB2 /* HttpRegisterNewEmail.m */,
+			);
+			name = user;
 			sourceTree = "<group>";
 		};
 		B95A94971CE0C17C00A5D9BA /* SKChinaCitySelector */ = {
@@ -4019,6 +4054,7 @@
 				B9AD44291CD497C000012B31 /* HttpCheckPictureCaptchaRequest.m in Sources */,
 				B95A94A81CE0C19900A5D9BA /* CityListViewController.m in Sources */,
 				B917324C1CD1F05400C29698 /* ScaleSmallOutAnimation.m in Sources */,
+				B94E6CD41D72BE3D005B3DB2 /* HttpRegisterNewEmail.m in Sources */,
 				B917324D1CD1F05400C29698 /* SlideInDownAnimation.m in Sources */,
 				B9C395171CF1E50300AB44B6 /* OrderSendViewController.m in Sources */,
 				B917321F1CD1F05400C29698 /* BounceInDownAnimation.m in Sources */,
@@ -4037,6 +4073,7 @@
 				B99194731CCC56F90032A393 /* UserCenter.m in Sources */,
 				B964F9601CC4A800003E0D44 /* SupplyListViewController.m in Sources */,
 				B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */,
+				B94E6CCC1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m in Sources */,
 				B9FE71EA1CD6E70400F5EC9F /* UserInfo.m in Sources */,
 				B964F9571CC4A70E003E0D44 /* TabBarController.m in Sources */,
 				B959248F1CDF90A900533E77 /* NSNull+Utils.m in Sources */,
@@ -4117,6 +4154,7 @@
 				B9FE71EC1CD6E70400F5EC9F /* _UserHistory.m in Sources */,
 				B91896F81CD0EF260061D0B6 /* AccountSummaryCell.m in Sources */,
 				B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */,
+				B94E6CD01D72B9AE005B3DB2 /* HttpGenEmailVcode.m in Sources */,
 				B91732241CD1F05400C29698 /* BounceOutDownAnimation.m in Sources */,
 				B9C4BCB11D20FDB800C719CE /* SearchViewForNav.m in Sources */,
 				B9C4BCB91D21736400C719CE /* OutStockViewController.m in Sources */,
@@ -4353,6 +4391,7 @@
 				B999552C1CE36FC7007F26D2 /* BuyProductDTO.m in Sources */,
 				B9AD44261CD48DAD00012B31 /* HttpRandomCodeRequest.m in Sources */,
 				B991947F1CCCA26C0032A393 /* CommonBottomView.m in Sources */,
+				B94E6CC51D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */,
 				B991945D1CCBB4ED0032A393 /* BuyProductView.m in Sources */,
 				B9AD46271CD6523100012B31 /* M80AttributedLabel.m in Sources */,
 				B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */,
@@ -4414,6 +4453,7 @@
 				B9EFAFAB1CEEF81200F81157 /* MineBuyViewController.m in Sources */,
 				B9EFAF9E1CEDF39D00F81157 /* SelectionViewController.m in Sources */,
 				B9EFAF9C1CEDF37E00F81157 /* HttpGoodInfoQuery.h in Sources */,
+				B94E6CC71D72B6CA005B3DB2 /* PersonalInfoViewController.m in Sources */,
 				B9EFAF9D1CEDF37E00F81157 /* HttpGoodInfoQuery.m in Sources */,
 				B9EFAF851CEDA27800F81157 /* GoodDTO.h in Sources */,
 				B9EFAF861CEDA27800F81157 /* GoodDTO.m in Sources */,
@@ -4428,6 +4468,7 @@
 				B9076F531D22C7DF001FFDE4 /* MortgageViewController.m in Sources */,
 				B9EFADFC1CED514100F81157 /* FlipOutYAnimation.m in Sources */,
 				B9EFADFD1CED514100F81157 /* RotateOutDownLeftAnimation.m in Sources */,
+				B94E6CD51D72BE3D005B3DB2 /* HttpRegisterNewEmail.m in Sources */,
 				B9EFADFE1CED514100F81157 /* SupplyProductViewController.m in Sources */,
 				B9EFADFF1CED514100F81157 /* SearchResultDTO.m in Sources */,
 				B9EFAE001CED514100F81157 /* RotateOutUpRightAnimation.m in Sources */,
@@ -4446,6 +4487,7 @@
 				B9C4BCCB1D22623B00C719CE /* ConsigneeCell.m in Sources */,
 				B9EFAE0C1CED514100F81157 /* MineWrapViewController.m in Sources */,
 				B9EFAE0D1CED514100F81157 /* OrderDetailAddrCell.m in Sources */,
+				B94E6CCD1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m in Sources */,
 				B9D1C5961D0C575E0099BA95 /* StockSellCell.m in Sources */,
 				B9C395181CF1E50300AB44B6 /* OrderSendViewController.m in Sources */,
 				B9EFAE0E1CED514100F81157 /* SupplyProductDTO.m in Sources */,
@@ -4512,6 +4554,7 @@
 				B9EFAE431CED514100F81157 /* ScaleLargeInAnimation.m in Sources */,
 				B9C3951C1CF1EE7400AB44B6 /* HttpLogis.m in Sources */,
 				B9EFAE441CED514100F81157 /* TTModalWindow.m in Sources */,
+				B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */,
 				B9EFAE461CED514100F81157 /* OrderListNoCheckBoxCell.m in Sources */,
 				B9EFAE471CED514100F81157 /* ProductLadderCell.m in Sources */,
 				B9EFAE481CED514100F81157 /* HttpOrderSummary.m in Sources */,
@@ -4525,6 +4568,7 @@
 				B9E84BD61CF0ABD8003FEAF5 /* HttpMineAccount.m in Sources */,
 				B9EFAE4F1CED514100F81157 /* BounceAnimation.m in Sources */,
 				B9EFAE501CED514100F81157 /* BounceOutUpAnimation.m in Sources */,
+				B94E6CD11D72B9AE005B3DB2 /* HttpGenEmailVcode.m in Sources */,
 				B9EFAE511CED514100F81157 /* _UserInfo.m in Sources */,
 				B9EFAE521CED514100F81157 /* NSDictionary+HttpHelp.m in Sources */,
 				B9EFAE531CED514100F81157 /* PayResultCell.m in Sources */,
@@ -4562,11 +4606,13 @@
 				B9EFAE6D1CED514100F81157 /* BaseNavigationController.m in Sources */,
 				B9EFAE6E1CED514100F81157 /* UIColor+Helper.m in Sources */,
 				B9EFAE6F1CED514100F81157 /* MineViewController.m in Sources */,
+				B94E6CC91D72B6D5005B3DB2 /* PersonalPhoneViewContoller.m in Sources */,
 				B9EFAE701CED514100F81157 /* WobbleAnimation.m in Sources */,
 				B9EFAE711CED514100F81157 /* TimeLineViewControl.m in Sources */,
 				B9EFAE721CED514100F81157 /* ProductViewController.m in Sources */,
 				B9EFAE731CED514100F81157 /* ProductDetailCell.m in Sources */,
 				B9EFAE741CED514100F81157 /* RotateOutDownRightAnimation.m in Sources */,
+				B94E6CC81D72B6D2005B3DB2 /* PersonalOtherModifyViewContoller.m in Sources */,
 				B9EFAE751CED514100F81157 /* main.m in Sources */,
 				2E1935681D3D230E00EF9BA1 /* MortgageEditViewController.m in Sources */,
 				B9EFAE761CED514100F81157 /* OrderDetailDTO.m in Sources */,

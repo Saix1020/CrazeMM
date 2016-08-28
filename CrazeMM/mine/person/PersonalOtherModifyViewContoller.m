@@ -8,6 +8,14 @@
 
 #import "PersonalOtherModifyViewContoller.h"
 
+@interface PersonalOtherModifyViewContoller()
+
+@end
+
+
 @implementation PersonalOtherModifyViewContoller
+
+
+
 
 @end

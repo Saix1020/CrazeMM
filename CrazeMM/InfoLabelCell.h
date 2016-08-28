@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface InfoLabelCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel* titleLabel;

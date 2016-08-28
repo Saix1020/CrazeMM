@@ -20,4 +20,8 @@
 +(NSArray*)formatePrice:(CGFloat)price;
 
 -(NSDate*) convertToDate;
+
+
+-(BOOL)isValidEmail;
+
 @end

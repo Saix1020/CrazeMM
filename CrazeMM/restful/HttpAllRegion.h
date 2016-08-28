@@ -11,10 +11,11 @@
 
 @interface HttpAllRegionRequest : BaseHttpRequest
 
++(AFPromise*)getAllRegions;
+
 @end
 
 @interface HttpAllRegionResponse : BaseHttpResponse
-
 @property (nonatomic, strong) NSMutableArray* regionDtos;
 
 @end

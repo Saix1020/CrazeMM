@@ -48,6 +48,16 @@ static UserCenter *defaultUserCenter = nil;
     }
 }
 
+-(NSString*)mobile
+{
+    return self.userInfoDto.mobile;
+}
+
+-(NSString*)email
+{
+    return self.userInfoDto.email;
+}
+
 -(void)setUserInfoDto:(MineUserInfoDTO *)userInfoDto
 {
     _userInfoDto = userInfoDto;

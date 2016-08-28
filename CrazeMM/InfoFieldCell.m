@@ -48,8 +48,9 @@
         _button.timeoutSeconds = 120;
         _button.enableTitle = @"获取";
         _button.disableTitle = @"秒后重新获取";
+        _button.delegate = self;
         
-        [_button addTarget:self action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
+//        [_button addTarget:self action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _button;
@@ -106,6 +107,28 @@
 }
 
 -(void)clicked:(id)button
+{
+    [self setNeedsLayout];
+}
+
+-(NSString*) value
+{
+    return self.infoField.text;
+}
+
+
+-(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
+{
+    if(!self.needButton){
+        return;
+    }
+    
+    [self.button addTarget:target action:action forControlEvents:controlEvents];
+}
+
+
+
+-(void)timeLapse:(id)sender
 {
     [self setNeedsLayout];
 }

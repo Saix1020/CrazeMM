@@ -237,41 +237,26 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         return [RACSignal empty];
     }];
     
-    HttpAllRegionRequest* request = [[HttpAllRegionRequest alloc] init];
     self.regionCell.textFieldCell.enabled = NO;
-    [request request]
-    .then(^(id responseObj){
-        if (request.response.ok) {
-            HttpAllRegionResponse* response = (HttpAllRegionResponse*)request.response;
-            self.regionDto = response.regionDtos;
+    [HttpAllRegionRequest getAllRegions].then(^(NSArray* allRegions){
+        self.regionDto = allRegions;
+        [self setupCityPicker];
+        self.regionCell.textFieldCell.enabled = YES;
+        if (self.address){
+            self.selectedRegionDto = [self findRegion];
+            self.selectedCityDto = [self findCity];
+            self.selectedAreaDto = [self findArea];
+            self.provinceIndex = [self.regionDto indexOfObject:self.selectedRegionDto];
+            self.cityIndex = [self.selectedRegionDto.cities indexOfObject:self.selectedCityDto];
+            self.areaIndex = [self.selectedCityDto.areas indexOfObject:self.selectedAreaDto];
             
-            [self setupCityPicker];
-            self.regionCell.textFieldCell.enabled = YES;
-            if (self.address){
-                self.selectedRegionDto = [self findRegion];
-                self.selectedCityDto = [self findCity];
-                self.selectedAreaDto = [self findArea];
-                self.provinceIndex = [self.regionDto indexOfObject:self.selectedRegionDto];
-                self.cityIndex = [self.selectedRegionDto.cities indexOfObject:self.selectedCityDto];
-                self.areaIndex = [self.selectedCityDto.areas indexOfObject:self.selectedAreaDto];
-                
-                [self.cityPicker selectRow:self.provinceIndex inComponent:0 animated:NO];
-                [self.cityPicker selectRow:self.cityIndex inComponent:1 animated:NO];
-                [self.cityPicker selectRow:self.areaIndex inComponent:2 animated:NO];
-                
-                self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
-            }
+            [self.cityPicker selectRow:self.provinceIndex inComponent:0 animated:NO];
+            [self.cityPicker selectRow:self.cityIndex inComponent:1 animated:NO];
+            [self.cityPicker selectRow:self.areaIndex inComponent:2 animated:NO];
             
-
+            self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
         }
-        else {
-            //[self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        //[self showAlertViewWithMessage:error.localizedDescription];
     });
-
     
     self.tableView = [[TPKeyboardAvoidingTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
@@ -284,7 +269,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.frame = self.view.frame;
-//    @weakify(self);
+    
+    self.navigationController.confirmString = @"确定放弃修改吗?";
 }
 
 -(RegionDTO*)findRegion

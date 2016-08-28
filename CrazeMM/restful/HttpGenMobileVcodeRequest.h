@@ -15,5 +15,7 @@
 @end
 
 @interface HttpGenMobileVcodeResponse : BaseHttpResponse
+@property (nonatomic, readonly) NSInteger lessTimes;
+@property (nonatomic, readonly) NSInteger seq;
 
 @end

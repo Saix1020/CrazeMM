@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TimeoutButton.h"
 
-@interface InfoFieldCell : UITableViewCell
+@interface InfoFieldCell : UITableViewCell<TimeoutButtonDelegate>
 
 @property (nonatomic, strong) UILabel* titleLabel;
 @property (nonatomic, strong) UITextField* infoField;
@@ -19,5 +19,9 @@
 @property (nonatomic) CGFloat titleWidth;
 @property (nonatomic) BOOL needButton;
 
+@property (nonatomic, readonly) NSString* value;
+
+
+-(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
 @end

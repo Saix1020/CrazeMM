@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TimeoutButtonDelegate <NSObject>
+
+-(void)timeLapse:(id)sender;
+
+@end
+
 @interface TimeoutButton : UIButton
 
 @property (nonatomic) int timeoutSeconds;
 @property (nonatomic, copy) NSString* enableTitle;
 @property (nonatomic, copy) NSString* disableTitle;
-
-
+@property (nonatomic, weak) id<TimeoutButtonDelegate> delegate;
+@property (nonatomic) BOOL startTimer;
 @end

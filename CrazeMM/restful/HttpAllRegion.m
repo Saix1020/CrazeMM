@@ -8,7 +8,39 @@
 
 #import "HttpAllRegion.h"
 
+static NSArray *sharedAllRegions = nil;
+
+
 @implementation HttpAllRegionRequest
+
++(AFPromise*)getAllRegions
+{
+    return [AFPromise promiseWithResolverBlock:^(PMKResolver resolver){
+        
+        if(sharedAllRegions && sharedAllRegions.count>0){
+            resolver(sharedAllRegions);
+        }
+        else {
+            HttpAllRegionRequest* request = [[HttpAllRegionRequest alloc] init];
+            [request request].then(^(id responseObj){
+                
+                HttpAllRegionResponse* response = (HttpAllRegionResponse*)request.response;
+                if (response.ok) {
+                    sharedAllRegions = [response.regionDtos copy];
+                    resolver(sharedAllRegions);
+                }
+                else {
+                    resolver(nil);
+                }
+                
+            })
+            .catch(^(NSError* error){
+                resolver(nil);
+            });
+        }
+    }];
+
+}
 
 -(NSString*)url
 {
@@ -39,5 +71,4 @@
         
     }
 }
-
 @end

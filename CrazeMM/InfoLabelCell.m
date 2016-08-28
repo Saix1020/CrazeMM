@@ -67,4 +67,5 @@
     self.seperatorLine.frame = CGRectMake(16.f, self.height-1, self.width-16.f, 0.5);
 }
 
+
 @end

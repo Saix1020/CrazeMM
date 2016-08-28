@@ -34,6 +34,9 @@ typedef enum {
 
 @property (nonatomic, strong) MineUserInfoDTO* userInfoDto;
 @property (nonatomic, readonly) NSString* displayName;
+
+@property (nonatomic, readonly) NSString* mobile;
+@property (nonatomic, readonly) NSString* email;
 + (UserCenter *)defaultCenter;
 //
 -(void)setLogined;

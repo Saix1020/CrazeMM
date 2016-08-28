@@ -33,6 +33,14 @@
 
 - (void)clicked:(id)sender
 {
+    
+    if(!self.startTimer){
+        if([self.orignalTarget respondsToSelector:self.orignalAction]){
+            [self.orignalTarget performSelector:self.orignalAction withObject:self];
+        }
+        return;
+    }
+    
     @weakify(self);
     __block int timeout = self.timeoutSeconds;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -49,14 +57,13 @@
                 self.backgroundColor = [UIColor buttonEnableBackgroundColor];
                 self.userInteractionEnabled = YES;
                 
+                if([self.delegate respondsToSelector:@selector(timeLapse:)]){
+                    [self.delegate timeLapse:self];
+                }
             });
-            
+            self.startTimer = NO;
         }else{
             int seconds = timeout;
-            
-            if(seconds == self.timeoutSeconds){
-                [self.orignalTarget performSelector:self.orignalAction withObject:self];
-            }
             
             NSString *strTime = [NSString stringWithFormat:@"%d", seconds];
             
@@ -67,6 +74,16 @@
                 self.backgroundColor = [UIColor buttonDisableBackgroundColor];
                 
                 self.userInteractionEnabled = NO;
+                
+                if(seconds == self.timeoutSeconds){
+                    if([self.orignalTarget respondsToSelector:self.orignalAction]){
+                        [self.orignalTarget performSelector:self.orignalAction withObject:self];
+                    }
+                }
+                
+                if([self.delegate respondsToSelector:@selector(timeLapse:)]){
+                    [self.delegate timeLapse:self];
+                }
             });
             timeout--;
         }

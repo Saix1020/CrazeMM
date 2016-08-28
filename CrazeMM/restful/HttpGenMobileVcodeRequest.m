@@ -123,6 +123,23 @@
     }
 }
 
+-(NSInteger)lessTimes
+{
+    return [self.data[@"lessTimes"] integerValue];
+}
+
+-(NSInteger)seq
+{
+    return [self.data[@"seq"] integerValue];
+}
+
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"手机验证码已经成功发送，请注意查收，您还有%ld次获取机会", self.lessTimes];
+}
+
+
 -(NSString*)errorDetail
 {
     if (!self.all) {
@@ -145,6 +162,7 @@
         }
     }
 }
+
 
 
 @end

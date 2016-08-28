@@ -10,6 +10,11 @@
 #import "InfoLabelCell.h"
 #import "InfoFieldCell.h"
 #import "NSString+Utils.h"
+#import "HttpGenMobileVcodeForUser.h"
+#import "HttpMobileExistCheckRequest.h"
+#import "HttpGenMobileVcodeRequest.h"
+#import "HttpRegisterNewMobile.h"
+
 
 @interface PersonalPhoneViewContoller ()
 
@@ -23,6 +28,7 @@
 
 @property (nonatomic, strong) NSArray* cellArray;
 
+@property (nonatomic, readonly) NSString* orignalMobile;
 @end
 
 
@@ -33,6 +39,11 @@
     return [@"原手机号" boundingWidthWithFont:[UIFont systemFontOfSize:16.f]].width;
 }
 
+-(NSString*)orignalMobile
+{
+    return [UserCenter defaultCenter].mobile;
+}
+
 -(InfoLabelCell*)orignalPhoneCell
 {
     if (!_orignalPhoneCell) {
@@ -40,6 +51,8 @@
         
         _orignalPhoneCell.titleLabel.text = @"原手机号";
         _orignalPhoneCell.titleWidth = [PersonalPhoneViewContoller titleWidth];
+        _orignalPhoneCell.infoLabel.text = self.orignalMobile;
+        
     }
     
     return _orignalPhoneCell;
@@ -53,11 +66,14 @@
         _originalCodeCell.needButton = YES;
         _originalCodeCell.infoField.keyboardType = UIKeyboardTypeNumberPad;
         _originalCodeCell.titleWidth = [PersonalPhoneViewContoller titleWidth];
-
+        
+        [_originalCodeCell addTarget:self action:@selector(genMobileVcode:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _originalCodeCell;
 }
+
+
 
 -(InfoFieldCell*)newxCodeCell
 {
@@ -67,6 +83,7 @@
         _newxCodeCell.needButton = YES;
         _newxCodeCell.infoField.keyboardType = UIKeyboardTypeNumberPad;
         _newxCodeCell.titleWidth = [PersonalPhoneViewContoller titleWidth];
+        [_newxCodeCell addTarget:self action:@selector(genMobileVcode:) forControlEvents:UIControlEventTouchUpInside];
 
     }
     
@@ -110,16 +127,95 @@
     return _confirmCell;
 }
 
+-(void)genMobileVcode:(TimeoutButton*)button
+{
+    if(button == self.originalCodeCell.button){
+        button.startTimer = YES;
+        HttpGenMobileVcodeForUserRequest* request = [[HttpGenMobileVcodeForUserRequest alloc] init];
+        [request request].then(^(id responseObj){
+            
+            HttpGenMobileVcodeForUserResponse* response = (HttpGenMobileVcodeForUserResponse*)request.response;
+            if(response.ok){
+                [self showAlertViewWithMessage:response.description];
+            }
+            else {
+                [self showAlertViewWithMessage:response.errorMsg];
+            }
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
+    }
+    else {
+        if(self.orignalMobile.length!=0){
+            if(self.originalCodeCell.value.length!=6){
+                [self showAlertViewWithMessage:@"请输入原手机号6位数字验证码"];
+                return;
+            }
+        }
+        
+        if(self.newxPhoneCell.value.length!=11){
+            [self showAlertViewWithMessage:@"请输入新的正确格式11位手机号"];
+            return;
+
+        }
+        
+        NSString* mobile = self.newxPhoneCell.value;
+        HttpMobileExistCheckRequest* existCheckRequest = [[HttpMobileExistCheckRequest alloc] initWithMobile:mobile];
+        [existCheckRequest request].then(^(id responseObj){
+            HttpMobileExistCheckResponse* existCheckResponse = (HttpMobileExistCheckResponse*)existCheckRequest.response;
+            if(existCheckResponse.ok){
+                button.startTimer = YES;
+                HttpGenMobileVcodeRequest* genRequest = [[HttpGenMobileVcodeRequest alloc] initWithMobile:mobile];
+                [genRequest request].then(^(id responseObj2){
+                    HttpGenMobileVcodeResponse* genResponse = (HttpGenMobileVcodeResponse*)genRequest.response;
+                    if(genResponse.ok){
+                        [self showAlertViewWithMessage:genResponse.description];
+                    }
+                    else {
+                        [self showAlertViewWithMessage:genResponse.errorMsg];
+                    }
+                })
+                .catch(^(NSError* error){
+                    [self showAlertViewWithMessage:error.localizedDescription];
+                });
+            }
+            else {
+                [self showAlertViewWithMessage:existCheckResponse.errorMsg];
+            }
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
+        
+    }
+}
+
 -(void)saveChanges:(UIButton*)button
 {
-    
+    HttpRegisterNewMobileRequest* request = [[HttpRegisterNewMobileRequest alloc] initWithNewMobile:self.newxPhoneCell.value andCaptchaMobileNew:self.newxCodeCell.value andCaptchaMobileOrignal:self.originalCodeCell.value];
+    [request request].then(^(id responseObj){
+        if (request.response.ok) {
+            @weakify(self);
+            [self showAlertViewWithMessage:@"手机号码修改成功" withCallback:^(id x){
+                @strongify(self);
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
 }
 
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"个人信息修改";
+    self.navigationItem.title = @"绑定手机号修改";
     self.tableView.backgroundColor = [UIColor tableViewBackgroundColor];
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
@@ -127,20 +223,41 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    self.cellArray = @[self.orignalPhoneCell, self.originalCodeCell,
-                  self.newxPhoneCell, self.newxCodeCell, self.confirmCell];
+    if(self.orignalMobile.length == 0){
+        self.cellArray = @[self.newxPhoneCell, self.newxCodeCell, self.confirmCell];
+    }
+    else {
+        self.cellArray = @[self.orignalPhoneCell, self.originalCodeCell,
+                           self.newxPhoneCell, self.newxCodeCell, self.confirmCell];
+    }
+    
+    self.navigationController.confirmString = @"确定放弃修改吗?";
 }
 
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     @weakify(self);
-    RACSignal* enableSaveButtonSignal = [RACSignal combineLatest:@[self.originalCodeCell.infoField.rac_textSignal, self.newxCodeCell.infoField.rac_textSignal, self.newxPhoneCell.infoField.rac_textSignal
-                                                                   ]
-                                                          reduce:^id(NSString* originalCode, NSString* newCode, NSString* newPhone){
-                                                              return @(originalCode.length>0 && newCode.length>0
-                                                              && newPhone.length>0);
-                                                          }];
+    NSArray* allTextSignals;
+    RACSignal* enableSaveButtonSignal;
+    if(self.orignalMobile.length == 0){
+        allTextSignals = @[self.newxCodeCell.infoField.rac_textSignal, self.newxPhoneCell.infoField.rac_textSignal];
+        enableSaveButtonSignal = [RACSignal combineLatest:allTextSignals
+                                                   reduce:^id(NSString* newCode, NSString* newPhone){
+                                                       return @(newCode.length==6
+                                                       && newPhone.length==11);
+                                                   }];
+
+    }
+    else {
+        allTextSignals = @[self.originalCodeCell.infoField.rac_textSignal, self.newxCodeCell.infoField.rac_textSignal, self.newxPhoneCell.infoField.rac_textSignal];
+        enableSaveButtonSignal = [RACSignal combineLatest:allTextSignals
+                                                              reduce:^id(NSString* originalCode, NSString* newCode, NSString* newPhone){
+                                                                  return @(originalCode.length==6 && newCode.length==6
+                                                                  && newPhone.length==11);
+                                                              }];
+
+    }
     
     [enableSaveButtonSignal subscribeNext:^(NSNumber* enable){
         @strongify(self);
@@ -182,7 +299,7 @@
     if (indexPath.row == self.cellArray.count-1) {
         return 80.f;
     }
-
+    
     return 44.f;
 }
 
