@@ -9,10 +9,6 @@
 #import "OrderDetailViewController.h"
 #import "OrderDefine.h"
 #import "OrderListNoCheckBoxCell.h"
-#import "OrderDetailHeadCell.h"
-#import "OrderDetailAddrCell.h"
-#import "OrderDetailStatusCell.h"
-#import "OrderLogsCell.h"
 #import "OrderStatusDTO.h"
 #import "HttpOrderStatus.h"
 #import "PayViewController.h"
@@ -21,7 +17,7 @@
 #import "HttpOrderOperation.h"
 #import "OrderSendViewController.h"
 #import "OrderListViewController.h"
-
+#import "ToBePaidViewController.h"
 
 typedef NS_ENUM(NSInteger, OrderDetailRow){
     kOrderDetailHeadRow = 1,
@@ -33,19 +29,19 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 @interface OrderDetailViewController()
 
-@property (nonatomic, strong) UITableView* tableView;
-@property (nonatomic, strong) UIView* bottomView;
-@property (nonatomic, strong) UIButton* confirmButton;
-@property (nonatomic) MMOrderListStyle style;
-@property (nonatomic, strong) OrderDetailDTO* orderDto;
-@property (nonatomic, strong) OrderStatusDTO* orderStatusDto;
-
-
-@property (nonatomic, strong) OrderDetailHeadCell* headCell;
-@property (nonatomic, strong) OrderDetailAddrCell* addrCell;
-@property (nonatomic, strong) OrderListNoCheckBoxCell* contentCell;
-@property (nonatomic, strong) OrderDetailStatusCell* statusCell;
-@property (nonatomic, strong) OrderLogsCell* logsCell;
+//@property (nonatomic, strong) UITableView* tableView;
+//@property (nonatomic, strong) UIView* bottomView;
+//@property (nonatomic, strong) UIButton* confirmButton;
+//@property (nonatomic) MMOrderListStyle style;
+//@property (nonatomic, strong) OrderDetailDTO* orderDto;
+//@property (nonatomic, strong) OrderStatusDTO* orderStatusDto;
+//
+//
+//@property (nonatomic, strong) OrderDetailHeadCell* headCell;
+//@property (nonatomic, strong) OrderDetailAddrCell* addrCell;
+//@property (nonatomic, strong) OrderListNoCheckBoxCell* contentCell;
+//@property (nonatomic, strong) OrderDetailStatusCell* statusCell;
+//@property (nonatomic, strong) OrderLogsCell* logsCell;
 
 @end
 
@@ -60,7 +56,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _bottomView.backgroundColor = [UIColor whiteColor];
         
         // we hide it now
-        _bottomView.hidden = YES;
+        _bottomView.hidden = NO;
     }
     
     return _bottomView;
@@ -152,6 +148,56 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     return _logsCell;
 }
 
++(OrderDetailViewController*)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto
+{
+    NSDictionary* classesMap = @{
+                                 @(kOrderTypeBuy) : @{
+                                         @(kOrderSubTypePay) : @{
+                                                 @(TOBEPAID) : [ToBePaidViewController class],
+                                                 @(PAYTIMEOUT) : [NSNull null],
+                                                 @(PAYCOMPLETE) : [NSNull null]
+                                                 },
+                                         @(kOrderSubTypeReceived) : @{
+                                             @(TOBERECEIVED) : [NSNull null],
+                                             @(RECEIVECOMPLETE) : [NSNull null]
+//                                             @(PAYTIMEOUT) : [NSNull null],
+
+                                         }
+                                         },
+                                 @(kOrderTypeSupply) : @{
+                                     @(kOrderSubTypeSend) : @{
+                                             @(WAITFORPAY) : [NSNull null],
+                                             @(TOBESENT) : [NSNull null],
+                                             @(SENTCOMPLETE) : [NSNull null],
+                                     },
+                                     @(kOrderSubTypeConfirmed) : @{
+                                             @(TOBESETTLED) : [NSNull null],
+                                             @(TOBECONFIRMED) : [NSNull null],
+                                             @(CONFIRMEDCOMPLETE) : [NSNull null]
+                                     },
+                                 },
+                                 @(kOrderSubTypeAll) : [NSNull null]
+                                 
+                            
+                                 };
+    if(NotNilAndNull(classesMap[@(style.orderType)])){
+        NSDictionary* d1 = classesMap[@(style.orderType)];
+        if(NotNilAndNull(d1[@(style.orderSubType)])) {
+            NSDictionary* d2 = d1[@(style.orderSubType)];
+            if(NotNilAndNull(d2[@(style.orderState)])){
+                Class class = (Class)d2[@(style.orderState)];
+                if([(NSObject*)class respondsToSelector:@selector(initWithOrderStyle:andOrder:)]){
+                
+                    return [[class alloc] initWithOrderStyle:style andOrder:orderDto];
+                }
+            }
+        }
+    }
+    
+    
+    return [[OrderDetailViewController alloc] initWithOrderStyle:style andOrder:orderDto];
+}
+
 -(instancetype)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto
 {
     self = [super init];
@@ -187,9 +233,6 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 -(void)initBottomView
 {
-    // no need call it now
-    return;
-    
     if (self.style.orderType == kOrderTypeBuy) {
         if (self.style.orderSubType == kOrderSubTypePay) {
             switch (self.style.orderState) {
@@ -355,19 +398,31 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     });
 }
 
--(NSDictionary*)promptString
+-(NSInteger)leftSeconds
 {
-    NSString* string = @"";
-    NSString* subString = @"";
-    NSString* bottomButtonTitle = @"";
     NSDate* updateTime = [self.orderDto.updateTime convertToDate];
     NSInteger leftSeconds = floor(updateTime.timeIntervalSinceReferenceDate + 1*60*60 -  [NSDate date].timeIntervalSinceReferenceDate);
     if (leftSeconds < 0) {
         NSLog(@"invalid left seconds %ld", leftSeconds);
     }
+
+    return leftSeconds;
+}
+
+-(NSInteger)elapseSeconds
+{
     NSDate* createTime = [self.orderStatusDto.logs[0].createTime convertToDate];
     NSInteger elapseSeconds = floor([NSDate date].timeIntervalSinceReferenceDate - createTime.timeIntervalSinceReferenceDate);
+    return elapseSeconds;
+}
 
+-(NSDictionary*)promptString
+{
+    NSString* string = @"";
+    NSString* subString = @"";
+    NSString* bottomButtonTitle = @"";
+    NSInteger leftSeconds = self.leftSeconds;
+    NSInteger elapseSeconds = self.elapseSeconds;
     
     if (self.style.orderType == kOrderTypeBuy) {
         switch (self.orderStatusDto.state) {
@@ -404,6 +459,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 string = @"订单状态: 600";
                 subString = [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
 
+                break;
+            case COMPLETED:
+                string = @"已完成";
+                subString = [NSString stringWithFormat:@"已完成 %@", [NSString leftTimeString2:elapseSeconds*1000]];
+                
                 break;
             default:
                 break;
@@ -454,8 +514,32 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
              @"bottomButtonTitle" : bottomButtonTitle};
 }
 
--(void)handleButtomButtonClicked:(UIButton*)send
+
+-(NSString*)titleString
 {
+    return [self promptString][@"string"];
+
+}
+
+-(NSString*)bottomButtonString
+{
+    return @"付款";
+}
+
+
+-(NSString*)titleDetailString
+{
+    return [self promptString][@"subString"];
+}
+
+-(void)handleButtomButtonClicked:(UIButton*)sender
+{
+    // do the click action in subclass.
+    if([self respondsToSelector:@selector(handleClickEvent:)]){
+        [self handleClickEvent:sender];
+        return;
+    }
+    
     @weakify(self);
     NSArray* operatorDtoIds = @[@(self.orderStatusDto.id)];
     
@@ -650,8 +734,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 {
                     self.headCell.titleLabel.textColor = [UIColor redColor];
                 }
-                self.headCell.titleLabel.text = [self promptString][@"string"];
-                self.headCell.promptLabel.text = [self promptString][@"subString"];
+                self.headCell.titleLabel.text = [self titleString];
+                self.headCell.promptLabel.text = [self titleDetailString];
                 break;
             case kOrderDetailAddrRow:
                 cell = self.addrCell;

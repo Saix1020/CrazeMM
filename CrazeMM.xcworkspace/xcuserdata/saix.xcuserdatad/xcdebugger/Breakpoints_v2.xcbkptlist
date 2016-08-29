@@ -2922,11 +2922,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/ProductSummaryCell.m"
-            timestampString = "488465624.049137"
+            timestampString = "494174914.50479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "-layoutAllSubviews"
             landmarkType = "5">
          </BreakpointContent>
@@ -2938,11 +2938,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/ProductSummaryCell.m"
-            timestampString = "488465624.049137"
+            timestampString = "494174914.50479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "-layoutAllSubviews"
             landmarkType = "5">
          </BreakpointContent>
@@ -3658,11 +3658,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/order/OrderDetailViewController.m"
-            timestampString = "488450317.061976"
+            timestampString = "494172821.53996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "692"
-            endingLineNumber = "692"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
             landmarkName = "-tableView:heightForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3898,11 +3898,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/order/OrderDetailViewController.m"
-            timestampString = "488449539.277472"
+            timestampString = "494170884.882633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-contentCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -3914,11 +3914,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/ProductSummaryCell.m"
-            timestampString = "488465624.049137"
+            timestampString = "494174914.50479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "-setProductDto:"
             landmarkType = "5">
          </BreakpointContent>
@@ -4362,11 +4362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/order/OrderDetailViewController.m"
-            timestampString = "488449539.277472"
+            timestampString = "494172513.903825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -4570,7 +4570,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "494085856.772276"
+                  timestampString = "494174953.756447"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4585,7 +4585,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "494085856.772515"
+                  timestampString = "494174953.756624"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -5082,11 +5082,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/ProductSummaryCell.m"
-            timestampString = "488465624.049137"
+            timestampString = "494174914.50479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "-fomartPriceLabel"
             landmarkType = "5">
          </BreakpointContent>
@@ -5162,11 +5162,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/OrderListViewController.m"
-            timestampString = "488813416.808526"
+            timestampString = "494172118.388368"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "947"
-            endingLineNumber = "947"
+            startingLineNumber = "948"
+            endingLineNumber = "948"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -5272,11 +5272,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/order/OrderDetailViewController.m"
-            timestampString = "488450317.061976"
+            timestampString = "494172821.53996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "640"
-            endingLineNumber = "640"
+            startingLineNumber = "724"
+            endingLineNumber = "724"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -5288,11 +5288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/order/OrderDetailViewController.m"
-            timestampString = "488450317.061976"
+            timestampString = "494172821.53996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "-promptString"
             landmarkType = "5">
          </BreakpointContent>
@@ -6280,11 +6280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/order/OrderDetailViewController.m"
-            timestampString = "488450317.061976"
+            timestampString = "494172821.53996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "-promptString"
             landmarkType = "5">
          </BreakpointContent>
@@ -6296,11 +6296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/order/OrderDetailViewController.m"
-            timestampString = "488450317.061976"
+            timestampString = "494172513.903825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
             landmarkName = "-getOrderStatusDto"
             landmarkType = "5">
          </BreakpointContent>
@@ -7056,11 +7056,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/ProductSummaryCell.m"
-            timestampString = "488465624.049137"
+            timestampString = "494174914.50479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-fomartPriceLabel"
             landmarkType = "5">
          </BreakpointContent>
@@ -7072,11 +7072,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/ProductSummaryCell.m"
-            timestampString = "488465624.049137"
+            timestampString = "494174914.50479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "-fomartTimeLabel"
             landmarkType = "5">
          </BreakpointContent>
@@ -7088,11 +7088,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/ProductSummaryCell.m"
-            timestampString = "488465624.049137"
+            timestampString = "494174914.50479"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "-fomartTimeLabel"
             landmarkType = "5">
          </BreakpointContent>
@@ -8977,6 +8977,38 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "192"
             endingLineNumber = "192"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/person/PersonalOtherModifyViewContoller.m"
+            timestampString = "494142619.554344"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/order/ToBePaidViewController.m"
+            timestampString = "494172150.745682"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>

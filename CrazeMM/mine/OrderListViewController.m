@@ -711,7 +711,8 @@
         return;
     }
     
-    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]];
+    OrderDetailViewController* orderDetailVC = [OrderDetailViewController initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]];
+    /*[[OrderDetailViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]]*/;
     orderDetailVC.delegate = self;
     [self.navigationController pushViewController:orderDetailVC animated:YES];
 }

@@ -59,6 +59,7 @@
         _triangleImageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"triangle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         _triangleImageView.frame = CGRectMake(0, 0, 4, 4);
         [self.contentView addSubview:_triangleImageView];
+        _triangleImageView.hidden = YES;
     }
     
     return _triangleImageView;
@@ -117,6 +118,8 @@
         _statusLabel.font = [UIFont systemFontOfSize:14];
         _statusLabel.text = @"正常";
         _statusLabel.textAlignment = NSTextAlignmentCenter;
+        // no need, hide it
+        _statusLabel.hidden = YES;
     }
     
     return _statusLabel;

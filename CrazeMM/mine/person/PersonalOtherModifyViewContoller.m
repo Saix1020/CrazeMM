@@ -230,11 +230,13 @@
 //            
 //            self.entAreaCell.value = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
 //        }
-        self.selectedRegionDto = self.regionDto[0];
-        self.selectedCityDto = self.selectedRegionDto.cities[0];
-        self.selectedAreaDto = self.selectedCityDto.areas[0];
-        
-        self.entAreaCell.infoField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+        if(!self.selectedRegionDto) {
+            self.selectedRegionDto = self.regionDto.firstObject;
+            self.selectedCityDto = self.selectedRegionDto.cities.firstObject;
+            self.selectedAreaDto = self.selectedCityDto.areas.firstObject;
+            self.entAreaCell.infoField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+            
+        }
     });
 
     
@@ -427,6 +429,10 @@
 {
     if (indexPath.row == 3) { // sex row
         [self.entSexCell popSelection:@[@"男", @"女"] andDelegate:self];
+    }
+    
+    if(indexPath.row == [self.cellArray indexOfObject:self.entAreaCell]){
+        
     }
 }
 
