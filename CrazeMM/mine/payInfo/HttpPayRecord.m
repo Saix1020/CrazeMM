@@ -129,4 +129,21 @@
     return @"GET";
 }
 
+-(Class) responseClass
+{
+    return [HttpPayDataResponse class];
+}
+
+
+@end
+
+@implementation HttpPayDataResponse
+
+-(void)parserResponse
+{
+    if (self.all && self.all[@"b2cData"]) {
+        self.payInfoDto = [[PayInfoDTO alloc] initWith:self.all[@"b2cData"]];
+    }
+}
+
 @end

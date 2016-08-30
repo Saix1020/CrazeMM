@@ -9,8 +9,11 @@
 #import "PayInfoViewController.h"
 #import "CommonListCell+PayRecord.h"
 #import "PayViewController.h"
+#import "OnlinePayViewController.h"
 
 @interface PayInfoViewController ()
+
+//@property (nonatomic, strong) PayInfoDTO* payInfoDto;
 
 @end
 
@@ -121,20 +124,18 @@
                         @strongify(self);
                         HttpPayDataRequest* request = [[HttpPayDataRequest alloc] initWithPayNo:((PayRecordDTO*)cell.dto).payNo];
                         [request request].then(^(id responseObj){
+                            NSLog(@"%@",responseObj);
                             if (!request.response.ok) {
                                 [self showAlertViewWithMessage:request.response.errorMsg];
                             }
                             else {
-                                //[self showAlertViewWithMessage:@"订单重新支付成功！"];
-                                //跳转到支付页面
-                                //NSMutableArray* orderIds = [[NSMutableArray alloc]init];
-                                NSString* orderList = ((PayRecordDTO*)cell.dto).orderIds;
-                                NSArray* orderIds = [orderList componentsSeparatedByString:@","];
-                                NSMutableArray* statusDtos = [[NSMutableArray alloc]init];
-                                //获取所有的statusDto
                                 
-                                //PayViewController* payVC = [[PayViewController alloc] initWithOrderStatusDTOs:statusDtos];
-                                //[self.navigationController pushViewController:payVC animated:YES];
+                                //跳转到支付页面
+                                HttpPayDataResponse* response = (HttpPayDataResponse*)request.response;
+                                //self.payInfoDto = response.payInfoDto;
+                                
+                                OnlinePayViewController* vc = [[OnlinePayViewController alloc] initWithPayInfoDto:response.payInfoDto];
+                                [self.navigationController pushViewController:vc animated:YES];
                                 
                             }
                             

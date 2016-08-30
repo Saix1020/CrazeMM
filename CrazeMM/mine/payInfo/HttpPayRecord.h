@@ -7,6 +7,7 @@
 //
 
 #import "HttpListQuery.h"
+#import "PayInfoDTO.h"
 
 
 #pragma mark - HttpPayRecord
@@ -50,6 +51,12 @@
 @property (nonatomic) NSInteger payNo;
 
 -(instancetype)initWithPayNo:(NSInteger)payNo;
+
+@end
+
+@interface HttpPayDataResponse : BaseHttpResponse
+
+@property (nonatomic, strong) PayInfoDTO* payInfoDto;
 
 @end
 
