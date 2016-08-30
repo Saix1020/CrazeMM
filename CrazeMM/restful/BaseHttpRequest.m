@@ -10,7 +10,6 @@
 #import "LoginViewController.h"
 #import "UIAlertView+AnyPromise.h"
 
-#define CustomErrorDomain @"com.189mm"
 typedef enum {
     k189MMHttpRequestFailed = -1000,
 //    XRegisterFailed,

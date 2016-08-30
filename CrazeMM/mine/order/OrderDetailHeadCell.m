@@ -13,6 +13,20 @@
 - (void)awakeFromNib {
     // Initialization code
     self.backgroundColor = [UIColor UIColorFromRGB:0xeefffc];
+    
+    [RACObserve(self.promptLabel, text) subscribeNext:^(id x){
+        if (self.promptLabel.text.length == 0) {
+            self.promptLabel.hidden = YES;
+            self.titleLabelTopConstraint.constant = 14.f;
+            [self.contentView setNeedsUpdateConstraints];
+        }
+        else {
+            self.promptLabel.hidden = NO;
+            self.titleLabelTopConstraint.constant = 6.f;
+            [self.contentView setNeedsUpdateConstraints];
+
+        }
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,5 +39,6 @@
 {
     return 70.f;
 }
+
 
 @end

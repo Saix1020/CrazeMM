@@ -81,76 +81,85 @@
     }
     return self;
 }
-
--(void)parserResponse
+-(BaseListDTO*)makeDtoWith:(NSDictionary*)dict
 {
-    if (!self.all) {
-        return;
-    }
-    self.orderDetailDTOs = [[NSMutableArray alloc] init];
-    
-    if (!self.orderLists) {
-        return;
-    }
-    for (NSDictionary* dict in self.orderLists) {
-        OrderDetailDTO* dto = [[OrderDetailDTO alloc] initWithOrderDetail:dict];
-        NSLog(@"%@", dto);
-        [self.orderDetailDTOs  addObject:dto];
-    }
+    return [[OrderDetailDTO alloc] initWithOrderDetail:dict];
 }
 
--(NSDictionary*)page
+-(NSArray*)orderDetailDTOs
 {
-    if (self.all) {
-        id page = self.all[@"page"];
-        if ([page isKindOfClass:[NSNull class]]) {
-            return nil;
-        }
-        return self.all[@"page"];
-    }
-    return nil;
+    return self.dtos;
 }
 
--(NSUInteger)pageNumber
-{
-    if (self.all && self.page) {
-        NSNumber* number = self.all[@"page"][@"pageNumber"];
-        return [number integerValue];
-    }
-    
-    return 0;
-}
+//-(void)parserResponse
+//{
+//    if (!self.all) {
+//        return;
+//    }
+//    self.orderDetailDTOs = [[NSMutableArray alloc] init];
+//    
+//    if (!self.orderLists) {
+//        return;
+//    }
+//    for (NSDictionary* dict in self.orderLists) {
+//        OrderDetailDTO* dto = [[OrderDetailDTO alloc] initWithOrderDetail:dict];
+//        NSLog(@"%@", dto);
+//        [self.orderDetailDTOs  addObject:dto];
+//    }
+//}
 
--(NSUInteger)totalPage
-{
-    
-    if (self.all && self.page) {
-        NSNumber* number = self.all[@"page"][@"totalPage"];
-        return [number integerValue];
-    }
-    
-    return 0;
-}
-
--(NSUInteger)totalRow
-{
-    if (self.all && self.page) {
-        NSNumber* number = self.all[@"page"][@"totalRow"];
-        return [number integerValue];
-    }
-    
-    return 0;
-}
-
--(NSArray*)orderLists
-{
-    if (self.all && self.page) {
-        NSArray* orderLists = self.all[@"page"][@"list"];
-        return orderLists;
-    }
-    
-    return @[];
-}
+//-(NSDictionary*)page
+//{
+//    if (self.all) {
+//        id page = self.all[@"page"];
+//        if ([page isKindOfClass:[NSNull class]]) {
+//            return nil;
+//        }
+//        return self.all[@"page"];
+//    }
+//    return nil;
+//}
+//
+//-(NSUInteger)pageNumber
+//{
+//    if (self.all && self.page) {
+//        NSNumber* number = self.all[@"page"][@"pageNumber"];
+//        return [number integerValue];
+//    }
+//    
+//    return 0;
+//}
+//
+//-(NSUInteger)totalPage
+//{
+//    
+//    if (self.all && self.page) {
+//        NSNumber* number = self.all[@"page"][@"totalPage"];
+//        return [number integerValue];
+//    }
+//    
+//    return 0;
+//}
+//
+//-(NSUInteger)totalRow
+//{
+//    if (self.all && self.page) {
+//        NSNumber* number = self.all[@"page"][@"totalRow"];
+//        return [number integerValue];
+//    }
+//    
+//    return 0;
+//}
+//
+//-(NSArray*)orderLists
+//{
+//    if (self.all && self.page) {
+//        NSArray* orderLists = self.all[@"page"][@"list"];
+//        return orderLists;
+//    }
+//    
+//    return @[];
+//}
 
 
 @end

@@ -83,5 +83,9 @@
     return self;
 }
 
+-(float)totalPrice
+{
+    return self.price * self.quantity;
+}
 
 @end

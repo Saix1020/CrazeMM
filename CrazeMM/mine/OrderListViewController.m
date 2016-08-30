@@ -829,6 +829,8 @@
     if (segment.prevIndex == index) {
         return;
     }
+    self.searchConditions = nil;
+    [self.filterVC resetSearchCond];
     [self setOrderStyleWithSegmentIndex:index];
     [self clearOrderList];
     [self getOrderList];
@@ -1065,7 +1067,5 @@
 {
     NSLog(@"dealloc %@", [self class]);
 }
-
-
 
 @end

@@ -192,7 +192,6 @@ static BOOL isAlertViewShowing;
     }];
 }
 
-
 +(void)showAlertViewWithViewController:(UIViewController*)vc
 {
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;

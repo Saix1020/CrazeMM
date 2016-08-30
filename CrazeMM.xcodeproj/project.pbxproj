@@ -218,6 +218,23 @@
 		B94573031D7525C8002F75AE /* THDateDay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B94572FA1D7525C8002F75AE /* THDateDay.xib */; };
 		B94573041D7525C8002F75AE /* THDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572FC1D7525C8002F75AE /* THDatePickerViewController.m */; };
 		B94573051D7525C8002F75AE /* THDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B94572FD1D7525C8002F75AE /* THDatePickerViewController.xib */; };
+		B945730E1D7581F8002F75AE /* BuyToBePaidListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945730D1D7581F8002F75AE /* BuyToBePaidListViewController.m */; };
+		B945730F1D7581F8002F75AE /* BuyToBePaidListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945730D1D7581F8002F75AE /* BuyToBePaidListViewController.m */; };
+		B94573121D758272002F75AE /* NewOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573111D758272002F75AE /* NewOrderListViewController.m */; };
+		B94573131D758272002F75AE /* NewOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573111D758272002F75AE /* NewOrderListViewController.m */; };
+		B94573181D75BD65002F75AE /* CommonListCell+OrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573171D75BD65002F75AE /* CommonListCell+OrderDetail.m */; };
+		B94573191D75BD65002F75AE /* CommonListCell+OrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573171D75BD65002F75AE /* CommonListCell+OrderDetail.m */; };
+		B945731A1D75E91D002F75AE /* THDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572FC1D7525C8002F75AE /* THDatePickerViewController.m */; };
+		B945731B1D75E923002F75AE /* THDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B94572FD1D7525C8002F75AE /* THDatePickerViewController.xib */; };
+		B945731C1D75E92A002F75AE /* THDateDay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B94572FA1D7525C8002F75AE /* THDateDay.xib */; };
+		B945731D1D75E92D002F75AE /* THDateDay.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572F91D7525C8002F75AE /* THDateDay.m */; };
+		B945731E1D75E930002F75AE /* NSDate+Difference.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572F71D7525C8002F75AE /* NSDate+Difference.m */; };
+		B945731F1D75E934002F75AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B94572F51D7525C8002F75AE /* Images.xcassets */; };
+		B94573201D75E93A002F75AE /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572EE1D7525B6002F75AE /* UIViewController+KNSemiModal.m */; };
+		B94573211D75E95A002F75AE /* InfoFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B901404A1D712A82000960F9 /* InfoFieldCell.m */; };
+		B94573221D75E95E002F75AE /* InfoLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B901404C1D712A82000960F9 /* InfoLabelCell.m */; };
+		B94573231D75E960002F75AE /* TimeoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B901404E1D712A82000960F9 /* TimeoutButton.m */; };
+		B94573241D75E97D002F75AE /* PersonalEmailModifyViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = B901403E1D712A6E000960F9 /* PersonalEmailModifyViewContoller.m */; };
 		B94E6CC51D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC71D72B6CA005B3DB2 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140401D712A6E000960F9 /* PersonalInfoViewController.m */; };
@@ -1347,6 +1364,12 @@
 		B94572FB1D7525C8002F75AE /* THDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickerViewController.h; sourceTree = "<group>"; };
 		B94572FC1D7525C8002F75AE /* THDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickerViewController.m; sourceTree = "<group>"; };
 		B94572FD1D7525C8002F75AE /* THDatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THDatePickerViewController.xib; sourceTree = "<group>"; };
+		B945730C1D7581F8002F75AE /* BuyToBePaidListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyToBePaidListViewController.h; path = mine/order/BuyToBePaidListViewController.h; sourceTree = "<group>"; };
+		B945730D1D7581F8002F75AE /* BuyToBePaidListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyToBePaidListViewController.m; path = mine/order/BuyToBePaidListViewController.m; sourceTree = "<group>"; };
+		B94573101D758272002F75AE /* NewOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewOrderListViewController.h; path = mine/order/NewOrderListViewController.h; sourceTree = "<group>"; };
+		B94573111D758272002F75AE /* NewOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewOrderListViewController.m; path = mine/order/NewOrderListViewController.m; sourceTree = "<group>"; };
+		B94573161D75BD65002F75AE /* CommonListCell+OrderDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CommonListCell+OrderDetail.h"; path = "mine/order/CommonListCell+OrderDetail.h"; sourceTree = "<group>"; };
+		B94573171D75BD65002F75AE /* CommonListCell+OrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CommonListCell+OrderDetail.m"; path = "mine/order/CommonListCell+OrderDetail.m"; sourceTree = "<group>"; };
 		B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewSearchListCell.h; path = search/NewSearchListCell.h; sourceTree = "<group>"; };
 		B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewSearchListCell.m; path = search/NewSearchListCell.m; sourceTree = "<group>"; };
 		B94E6CC31D72AF84005B3DB2 /* HttpRegisterNewMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRegisterNewMobile.h; path = restful/HttpRegisterNewMobile.h; sourceTree = "<group>"; };
@@ -2759,6 +2782,22 @@
 			name = overview;
 			sourceTree = "<group>";
 		};
+		B94573141D758280002F75AE /* buy */ = {
+			isa = PBXGroup;
+			children = (
+				B945730C1D7581F8002F75AE /* BuyToBePaidListViewController.h */,
+				B945730D1D7581F8002F75AE /* BuyToBePaidListViewController.m */,
+			);
+			name = buy;
+			sourceTree = "<group>";
+		};
+		B94573151D75828D002F75AE /* supply */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = supply;
+			sourceTree = "<group>";
+		};
 		B94E6CC21D72AF4E005B3DB2 /* user */ = {
 			isa = PBXGroup;
 			children = (
@@ -2777,12 +2816,18 @@
 		B94E6CDF1D746DDF005B3DB2 /* list */ = {
 			isa = PBXGroup;
 			children = (
+				B94573161D75BD65002F75AE /* CommonListCell+OrderDetail.h */,
+				B94573171D75BD65002F75AE /* CommonListCell+OrderDetail.m */,
+				B99194791CCC76E60032A393 /* OrderListViewController.h */,
+				B991947A1CCC76E60032A393 /* OrderListViewController.m */,
+				B94573101D758272002F75AE /* NewOrderListViewController.h */,
+				B94573111D758272002F75AE /* NewOrderListViewController.m */,
 				B9D1C5821D0719DB0099BA95 /* AllOrderListViewController.h */,
 				B9D1C5831D0719DB0099BA95 /* AllOrderListViewController.m */,
 				B94E6CF01D74850B005B3DB2 /* OrderListFilterViewController.h */,
 				B94E6CF11D74850B005B3DB2 /* OrderListFilterViewController.m */,
-				B99194791CCC76E60032A393 /* OrderListViewController.h */,
-				B991947A1CCC76E60032A393 /* OrderListViewController.m */,
+				B94573151D75828D002F75AE /* supply */,
+				B94573141D758280002F75AE /* buy */,
 			);
 			name = list;
 			sourceTree = "<group>";
@@ -4005,11 +4050,14 @@
 				B9EFAF261CED514100F81157 /* provincedictionary.plist in Resources */,
 				B9EFAF271CED514100F81157 /* ProductCompanyCell.xib in Resources */,
 				B9EFAF281CED514100F81157 /* Assets.xcassets in Resources */,
+				B945731F1D75E934002F75AE /* Images.xcassets in Resources */,
+				B945731C1D75E92A002F75AE /* THDateDay.xib in Resources */,
 				B9EFAF291CED514100F81157 /* avata.png in Resources */,
 				B9EFAF2A1CED514100F81157 /* SearchEmpty.xib in Resources */,
 				B9EFAF2B1CED514100F81157 /* citydict1.plist in Resources */,
 				B9EFAF2C1CED514100F81157 /* CityListViewController.xib in Resources */,
 				B902B6FF1D027ACD005B6F5C /* StockListCell.xib in Resources */,
+				B945731B1D75E923002F75AE /* THDatePickerViewController.xib in Resources */,
 				B9EFAF2D1CED514100F81157 /* SearchHistoryCell.xib in Resources */,
 				B9EFAF2E1CED514100F81157 /* HotCityTableViewCell.xib in Resources */,
 				B9A149371D1FA277005080D1 /* BrandHeadView.xib in Resources */,
@@ -4219,6 +4267,7 @@
 			files = (
 				B91732391CD1F05400C29698 /* FadeOutUpAnimation.m in Sources */,
 				B91732621CD1F05500C29698 /* ZoomOutUpAnimation.m in Sources */,
+				B94573121D758272002F75AE /* NewOrderListViewController.m in Sources */,
 				B94572FF1D7525C8002F75AE /* README.md in Sources */,
 				B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */,
 				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
@@ -4343,6 +4392,7 @@
 				B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */,
 				B94E6CD01D72B9AE005B3DB2 /* HttpGenEmailVcode.m in Sources */,
 				B91732241CD1F05400C29698 /* BounceOutDownAnimation.m in Sources */,
+				B945730E1D7581F8002F75AE /* BuyToBePaidListViewController.m in Sources */,
 				B9C4BCB11D20FDB800C719CE /* SearchViewForNav.m in Sources */,
 				B9C4BCB91D21736400C719CE /* OutStockViewController.m in Sources */,
 				B902B6DF1D026C88005B6F5C /* MineStockSellViewController.m in Sources */,
@@ -4539,6 +4589,7 @@
 				B98878B21CC992FA00990AA4 /* UIView+Utils.m in Sources */,
 				B9C395131CF1D56100AB44B6 /* HttpOrderOperation.m in Sources */,
 				B967E7341CE57EBD00621F28 /* MASCompositeConstraint.m in Sources */,
+				B94573181D75BD65002F75AE /* CommonListCell+OrderDetail.m in Sources */,
 				B967E74B1CE60C8100621F28 /* HttpOrderCancel.m in Sources */,
 				B98878BF1CC9BB1F00990AA4 /* CustomSegment.m in Sources */,
 				B9C4BCCA1D22623B00C719CE /* ConsigneeCell.m in Sources */,
@@ -4643,6 +4694,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B94573221D75E95E002F75AE /* InfoLabelCell.m in Sources */,
 				B9C395501CF5DB9200AB44B6 /* AddressesViewController.m in Sources */,
 				B9C3954D1CF5DB7100AB44B6 /* AddrDetailCell.m in Sources */,
 				B9EFAFAB1CEEF81200F81157 /* MineBuyViewController.m in Sources */,
@@ -4668,6 +4720,7 @@
 				B9EFADFE1CED514100F81157 /* SupplyProductViewController.m in Sources */,
 				B9EFADFF1CED514100F81157 /* SearchResultDTO.m in Sources */,
 				B9EFAE001CED514100F81157 /* RotateOutUpRightAnimation.m in Sources */,
+				B94573211D75E95A002F75AE /* InfoFieldCell.m in Sources */,
 				B9EFAE011CED514100F81157 /* ProductCompanyCell.m in Sources */,
 				B9EFAE021CED514100F81157 /* View+MASAdditions.m in Sources */,
 				B9EFAE031CED514100F81157 /* SlideOutUpAnimation.m in Sources */,
@@ -4690,6 +4743,7 @@
 				B965B7231D1D7DF70021C809 /* ListQueryViewController.m in Sources */,
 				B9EFAE0F1CED514100F81157 /* RubberBandAnimation.m in Sources */,
 				B9EFAE101CED514100F81157 /* HttpLogout.m in Sources */,
+				B945730F1D7581F8002F75AE /* BuyToBePaidListViewController.m in Sources */,
 				B9EFAE111CED514100F81157 /* ShakeAnimation.m in Sources */,
 				B9EFAE121CED514100F81157 /* TTOverlayView.m in Sources */,
 				B9C4BCB21D20FDB800C719CE /* SearchViewForNav.m in Sources */,
@@ -4703,6 +4757,7 @@
 				2E1935671D3D22F200EF9BA1 /* MortgageInfoDTO.m in Sources */,
 				B9D1C5921D0A64340099BA95 /* WithDrawAlertView.m in Sources */,
 				B9EFAE1B1CED514100F81157 /* MineSupplyEditViewController.m in Sources */,
+				B94573201D75E93A002F75AE /* UIViewController+KNSemiModal.m in Sources */,
 				B9EFAE1C1CED514100F81157 /* RotateOutUpLeftAnimation.m in Sources */,
 				B9EFAE1D1CED514100F81157 /* HttpBuyRequest.m in Sources */,
 				B9EFAE1E1CED514100F81157 /* BounceInLeftAnimation.m in Sources */,
@@ -4716,6 +4771,7 @@
 				B9EFAE271CED514100F81157 /* HttpSignupRequest.m in Sources */,
 				B9EFAE281CED514100F81157 /* FirstAddrCell.m in Sources */,
 				B9EFAE291CED514100F81157 /* MMTextField.m in Sources */,
+				B94573231D75E960002F75AE /* TimeoutButton.m in Sources */,
 				B9EFAE2A1CED514100F81157 /* FadeInUpBigAnimation.m in Sources */,
 				B9EFAE2B1CED514100F81157 /* ArrowView.m in Sources */,
 				B9EFAE2C1CED514100F81157 /* MineNoLoginViewController.m in Sources */,
@@ -4750,6 +4806,7 @@
 				B9EFAE431CED514100F81157 /* ScaleLargeInAnimation.m in Sources */,
 				B9C3951C1CF1EE7400AB44B6 /* HttpLogis.m in Sources */,
 				B9EFAE441CED514100F81157 /* TTModalWindow.m in Sources */,
+				B945731A1D75E91D002F75AE /* THDatePickerViewController.m in Sources */,
 				B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */,
 				B9EFAE461CED514100F81157 /* OrderListNoCheckBoxCell.m in Sources */,
 				B9EFAE471CED514100F81157 /* ProductLadderCell.m in Sources */,
@@ -4777,6 +4834,7 @@
 				B9EFAE581CED514100F81157 /* SearchViewController.m in Sources */,
 				B9EFAE591CED514100F81157 /* BuyProductDetailDTO.m in Sources */,
 				B9EFAE5A1CED514100F81157 /* FlipOutXAnimation.m in Sources */,
+				B94573131D758272002F75AE /* NewOrderListViewController.m in Sources */,
 				B9E84BF11CF1422D003FEAF5 /* BEMAnimationManager.m in Sources */,
 				B9B3E4C31D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */,
 				B965B74B1D1E54860021C809 /* HttpGenMobileVcodeForUser.m in Sources */,
@@ -4798,6 +4856,7 @@
 				B9EFAE691CED514100F81157 /* SignWithPicCapViewController.m in Sources */,
 				B965B73C1D1E184E0021C809 /* PayPasswordChangeViewController.m in Sources */,
 				B9EFAE6A1CED514100F81157 /* CDFInitialsAvatar.m in Sources */,
+				B94573241D75E97D002F75AE /* PersonalEmailModifyViewContoller.m in Sources */,
 				B9EFAE6B1CED514100F81157 /* ZoomInRightAnimation.m in Sources */,
 				B9EFAE6D1CED514100F81157 /* BaseNavigationController.m in Sources */,
 				B9EFAE6E1CED514100F81157 /* UIColor+Helper.m in Sources */,
@@ -4841,12 +4900,14 @@
 				B9E84BC61CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */,
 				B9E84BFE1CF15069003FEAF5 /* BankCardEditingViewController.m in Sources */,
 				B9EFAE8F1CED514100F81157 /* M80AttributedLabelURL.m in Sources */,
+				B945731E1D75E930002F75AE /* NSDate+Difference.m in Sources */,
 				B9EFAE901CED514100F81157 /* WelcomeViewController.m in Sources */,
 				B9EFAE911CED514100F81157 /* ZoomInUpAnimation.m in Sources */,
 				B9E84BD11CF0A54D003FEAF5 /* BankCardListViewController.m in Sources */,
 				B902B6F21D026DB0005B6F5C /* MineStockEditViewController.m in Sources */,
 				B965B7131D1D6B680021C809 /* RechargeLogCell.m in Sources */,
 				B9EFAE921CED514100F81157 /* BounceOutRightAnimation.m in Sources */,
+				B94573191D75BD65002F75AE /* CommonListCell+OrderDetail.m in Sources */,
 				B9EFAE931CED514100F81157 /* BuySlideDetailViewController.m in Sources */,
 				B9C3952A1CF2EE0D00AB44B6 /* RegionDTO.m in Sources */,
 				B9EFAE941CED514100F81157 /* UISearchBar+RACSignalSupport.m in Sources */,
@@ -4893,6 +4954,7 @@
 				B9EFAEB41CED514100F81157 /* BuyListViewController.m in Sources */,
 				B9EFAEB51CED514100F81157 /* HttpPay.m in Sources */,
 				B9076F521D22C7D9001FFDE4 /* MortgageListCell.m in Sources */,
+				B945731D1D75E92D002F75AE /* THDateDay.m in Sources */,
 				B9EFAEB61CED514100F81157 /* OrderLogsCell.m in Sources */,
 				B9EFAEB71CED514100F81157 /* ZoomOutLeftAnimation.m in Sources */,
 				B9EFAEB81CED514100F81157 /* CATransform3DExtend.m in Sources */,
@@ -5258,7 +5320,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -5297,7 +5360,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

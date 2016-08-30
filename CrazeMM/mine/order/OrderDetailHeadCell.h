@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderDetailHeadCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelTopConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promptLabel;
 +(CGFloat)cellHeight;

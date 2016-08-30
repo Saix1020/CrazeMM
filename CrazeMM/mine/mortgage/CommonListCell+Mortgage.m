@@ -23,6 +23,7 @@
     [self formatTimeLabel:dto.createTime];
     [self formatStatusLabel:dto.stateLabel];
     [self formatGoodNameLabel:dto.goodName];
+    //[self fo
     [self formatQuantityLabel];
     [self formatPriceLabel];
     [self formatTotalPriceLabel];
@@ -47,12 +48,12 @@
         [attributedText appendAttributedString:[[NSAttributedString alloc] initWithString:secondComopent attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.f]}]];
     }
     
-    self.firstLabel.attributedText = attributedText;
+    self.secondLabel.attributedText = attributedText;
 }
 
 -(void)formatPriceLabel
 {
-    NSString* firstComponent = [NSString stringWithFormat:@"抵押单价: "];
+    NSString* firstComponent = [NSString stringWithFormat:@"单台定价: "];
     NSMutableAttributedString *attributedText =
     [[NSMutableAttributedString alloc] initWithString: firstComponent
                                            attributes:@{
@@ -67,12 +68,12 @@
                                                                                        NSFontAttributeName: [UIFont systemFontOfSize:13.f],
                                                                                        NSForegroundColorAttributeName: [UIColor redColor]                                             }]];
     
-    self.secondLabel.attributedText = attributedText;
+    self.thirdLabel.attributedText = attributedText;
 }
 
 -(void)formatTotalPriceLabel
 {
-    NSString* firstComponent = [NSString stringWithFormat:@"总金额: "];
+    NSString* firstComponent = [NSString stringWithFormat:@"总价: "];
     NSMutableAttributedString *attributedText =
     [[NSMutableAttributedString alloc] initWithString: firstComponent
                                            attributes:@{

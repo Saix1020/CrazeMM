@@ -31,6 +31,7 @@
 #import "MortgageViewController.h"
 #import "PersonalInfoViewController.h"
 #import "PayInfoViewController.h"
+#import "BuyToBePaidListViewController.h"
 
 @interface MineViewController()
 
@@ -730,7 +731,12 @@
         }
         
     }
-    if (orderSubType!=kOrderSubTypeAll) {
+    if(orderSubType == kOrderSubTypePay && orderType == kOrderTypeBuy){
+        BuyToBePaidListViewController* vc = [[BuyToBePaidListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    else if (orderSubType!=kOrderSubTypeAll) {
         OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
         [self.navigationController pushViewController:orderListVC animated:YES];
     }

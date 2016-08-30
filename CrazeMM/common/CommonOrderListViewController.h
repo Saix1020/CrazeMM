@@ -30,6 +30,8 @@
 @property (nonatomic, strong) SegmentedCell* segmentCell;
 @property (nonatomic, copy) NSArray* segmentTitles;
 @property (nonatomic, readonly) NSInteger selectedSegmentIndex;
+@property (nonatomic) BOOL hiddenSegment;
+
 @property (nonatomic, strong) CommonBottomView* bottomView;
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic) CGFloat contentHeightOffset;
@@ -45,6 +47,8 @@
 @property (nonatomic) BOOL usingDefaultCell;
 @property (nonatomic) BOOL autoRefresh;
 
+-(instancetype)initWithSegmentIndex:(NSInteger)index;
+
 -(UITableViewCell*)configCellByTableView:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath;
 -(HttpListQueryRequest*)makeListQueryRequest;
 -(AnyPromise*)requestDataSource;
@@ -53,6 +57,11 @@
 // method for bottomView
 @property (nonatomic) NSString* bottomViewButtonTitle;
 @property (nonatomic) NSString* bottomViewAddtionalButtonTitle;
+@property (nonatomic) BOOL hiddenBottomView; // hide bottom view if needed
+
+// hidden cell's check box if needed
+@property (nonatomic, readonly) BOOL hiddenCheckBox;
+
 
 //-(void)setActionForBottomViewButtonWithTarget:(id)target andAction:(SEL)action;
 //-(void)setActionForBottomViewAddtonalButtonWithTarget:(id)target andAction:(SEL)action;

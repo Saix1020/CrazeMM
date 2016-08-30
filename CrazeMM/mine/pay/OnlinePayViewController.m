@@ -34,7 +34,7 @@
         [self.request setHTTPMethod:@"POST"];
         NSString *contentType = [NSString stringWithFormat:@"application/x-www-form-urlencoded"];
         [self.request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-        [self.request addValue:HTTP_HEADER_REFERER_URL forHTTPHeaderField: @"Origin"];
+        [self.request addValue:HTTP_HEADER_ORIGIN_URL forHTTPHeaderField: @"Origin"];
         [self.request addValue:HTTP_HEADER_REFERER_URL forHTTPHeaderField: @"Referer"];
         [self.request addValue:@"zh-CN,zh;q=0.8,en;q=0.6" forHTTPHeaderField: @"Content-Type"];
         NSMutableData *postBody = [NSMutableData data];
@@ -211,7 +211,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     
-    if ([request.URL.absoluteString hasPrefix:[NSString stringWithFormat:@"%@", HTTP_HEADER_REFERER_URL]]) {
+    if ([request.URL.absoluteString hasPrefix:[NSString stringWithFormat:@"%@", HTTP_HEADER_ORIGIN_URL]]) {
         @weakify(self);
         [self showAlertViewWithMessage:@"支付成功!" withCallback:^(id x){
             @strongify(self);

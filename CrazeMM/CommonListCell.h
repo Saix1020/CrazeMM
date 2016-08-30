@@ -36,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *topButton;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 
 @property (strong, nonatomic) BaseListDTO* dto;
 @property (nonatomic) BOOL on;

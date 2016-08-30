@@ -47,7 +47,7 @@
     self.usingDefaultCell = YES;
     self.autoRefresh = YES;
     self.navigationItem.title = @"我的支付记录";
-    self.bottomView.hidden = YES;
+    self.hiddenBottomView = YES;
 
 }
 

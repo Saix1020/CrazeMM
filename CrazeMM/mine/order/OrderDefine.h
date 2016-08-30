@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, MMOrderState){
     PAYTIMEOUT = 700, //支付超时
     TOBECONFIRMED = 401, //待确认
     TOBEPAID = 100, //待付款
+    PAYING = 101,
     TOBERECEIVED = 300,//待签收
     TOBESENT = 200,// 待发货
     TOBESETTLED = 400, //待结款

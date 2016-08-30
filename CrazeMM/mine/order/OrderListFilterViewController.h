@@ -23,5 +23,5 @@
 @property (nonatomic, strong) NSString* filterType;
 
 -(instancetype)initWithSearchConditions:(NSDictionary*)conditons;
-
+-(void)resetSearchCond;
 @end

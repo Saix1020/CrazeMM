@@ -17,6 +17,21 @@
 
 @implementation CommonListCell
 
+//-(instancetype)initWithNibName:(NSString*)nibNameOrNil
+//{
+//    self = (CommonListCell*)[UINib viewFromNib:@"CommonListCell"];
+//    
+//    return self;
+//}
+//
+//-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//{
+//    self = [self initWithNibName:@"CommonListCell"];
+//    self.reuseIdentifier = reuseIdentifier;
+//    
+//}
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -54,6 +69,13 @@
     [self.topButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     //Top button 默认隐藏
     self.topButton.hidden =YES;
+    
+    // image default hidden
+    self.image.hidden = YES;
+    
+    // bottom label default hidden
+    self.bottomLabel.textAlignment = NSTextAlignmentRight;
+    self.bottomLabel.hidden = YES;
 
     @weakify(self);
     [RACObserve(self.checkBox, hidden) subscribeNext:^(id x){

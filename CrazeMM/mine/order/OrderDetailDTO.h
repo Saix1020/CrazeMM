@@ -23,7 +23,7 @@
 
 @class WaitForPayCell;
 
-@interface OrderDetailDTO : BaseDTO
+@interface OrderDetailDTO : BaseListDTO
 
 @property (nonatomic) BOOL isAony;
 @property (nonatomic) NSInteger quantity;
@@ -45,7 +45,7 @@
 @property (nonatomic, copy) NSDictionary* stock;
 @property (nonatomic, strong) DepotDTO* depotDto;
 
-@property (nonatomic) BOOL selected;
+//@property (nonatomic) BOOL selected;
 
 -(instancetype)initWithOrderDetail:(NSDictionary*)dict;
 -(instancetype)initWithOrderStatusDTO:(OrderStatusDTO*)statusDto;

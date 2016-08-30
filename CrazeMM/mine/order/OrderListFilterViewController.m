@@ -164,7 +164,7 @@
         [_bottomView addSubview:_cancelButton];
         
         [_confirmButton addTarget:self action:@selector(setSearchCond:) forControlEvents:UIControlEventTouchUpInside];
-        [_cancelButton addTarget:self action:@selector(resetSearchCond:) forControlEvents:UIControlEventTouchUpInside];
+        [_cancelButton addTarget:self action:@selector(resetSearchCond) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _bottomView;
@@ -203,7 +203,7 @@
     }
 }
 
--(void)resetSearchCond:(UIButton*)button
+-(void)resetSearchCond
 {
     [self.createDateCell reset];
     [self.updateDateCell reset];
@@ -231,6 +231,15 @@
     [button addTarget:self action:@selector(cancelFilter) forControlEvents:UIControlEventTouchUpInside];
     [button sizeToFit];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+
+    
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+}
+
+-(void)tap:(UITapGestureRecognizer*)guesture
+{
+    [self.view endEditing:YES];
 }
 
 -(void)cancelFilter
@@ -294,6 +303,8 @@
 #pragma  - mark DateRangePickerCellDelegate 
 -(void)startDatePicking:(THDatePickerViewController*)datePicker
 {
+    [self.view endEditing:YES];
+    
     [self presentSemiViewController:datePicker withOptions:@{
                                                              KNSemiModalOptionKeys.pushParentBack    : @(NO),
                                                              KNSemiModalOptionKeys.animationDuration : @(.5),

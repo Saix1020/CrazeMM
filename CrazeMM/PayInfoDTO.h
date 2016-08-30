@@ -25,6 +25,8 @@
 @property (nonatomic, copy) NSString* BRANCHID;
 @property (nonatomic) NSInteger TYPE;
 @property (nonatomic, copy) NSString* TXCODE;
+@property (nonatomic, copy) NSString* TIMEOUT;
+
 
 -(instancetype)initWith:(NSDictionary *)dict;
 -(NSString*)formUrlencodedString;

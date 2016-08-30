@@ -28,7 +28,11 @@
 
 
 #define IBSB_PAY_URL @"https://ibsbjstar.ccb.com.cn/app/ccbMain"
-#define HTTP_HEADER_REFERER_URL @"http://189mm.net/"
+#define HTTP_HEADER_ORIGIN_URL @"http://b.189mm.net"
+#define HTTP_HEADER_REFERER_URL HTTP_HEADER_ORIGIN_URL"/ui/"
+
+#define CustomErrorDomain @"com.189mm"
+
 
 
 #endif /* HttpRequestURL_h */

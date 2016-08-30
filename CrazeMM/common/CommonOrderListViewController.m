@@ -19,6 +19,7 @@
 
 @property (nonatomic) CGPoint ptLastOffset;
 @property (nonatomic) BOOL isRefreshing;
+@property (nonatomic) NSInteger initSegmentIndex;
 
 @end
 
@@ -27,6 +28,16 @@
 @synthesize segmentCell = _segmentCell;
 @synthesize bottomView = _bottomView;
 
+-(instancetype)initWithSegmentIndex:(NSInteger)index
+{
+    self = [super init];
+    if (self) {
+        self.initSegmentIndex = index;
+    }
+    return self;
+}
+
+
 -(SegmentedCell*)segmentCell
 {
     if (!_segmentCell) {
@@ -34,13 +45,24 @@
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(40.0f);
 //        [_segmentCell setTitles:self.segmentTitles];
+        _segmentCell.segment.currentIndex = self.initSegmentIndex;
         _segmentCell.segment.delegate = self;
         
         [self.view addSubview:_segmentCell];
         
+        if (self.hiddenSegment) {
+            _segmentCell.hidden = YES;
+        }
+        
     }
     
     return _segmentCell;
+}
+
+-(void)setHiddenSegment:(BOOL)hiddenSegment
+{
+    _hiddenSegment = hiddenSegment;
+    self.segmentCell.hidden = hiddenSegment;
 }
 
 -(void)setSegmentTitles:(NSArray *)segmentTitles
@@ -65,9 +87,20 @@
 
         
         _bottomView.selectAllCheckBox.delegate = self;
+        
+        if (self.hiddenBottomView) {
+            _bottomView.hidden = YES;
+        }
     }
     
     return _bottomView;
+}
+
+-(void)setHiddenBottomView:(BOOL)hiddenBottomView
+{
+    _hiddenBottomView = hiddenBottomView;
+    self.bottomView.hidden = hiddenBottomView;
+    [self.tableView reloadData];
 }
 
 -(void)bottomViewButtonClicked:(UIButton*)button
@@ -150,9 +183,10 @@
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    if (!self.hiddenSegment) {
+        self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    }
     [self.tableView registerNib:[UINib nibWithNibName:@"CommonListCell" bundle:nil] forCellReuseIdentifier:@"CommonListCell"];
     
     
@@ -217,6 +251,9 @@
 {
     [super viewWillLayoutSubviews];
     self.bottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
+    if (self.hiddenBottomView) {
+        self.bottomView.hidden = YES;
+    }
 }
 
 
@@ -418,7 +455,7 @@
 {
     NSInteger num = self.dataSource.count;
     // add a last useless cell, or the last cell will be overlaped by CommonBottomView
-    return num*2 + 1;
+    return num*2 + (self.hiddenBottomView? 0 : 1);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -436,6 +473,12 @@
         return [CommonListCell cellHeight];
     }
     return 0.f;
+}
+
+
+-(BOOL)hiddenCheckBox
+{
+    return NO;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -461,6 +504,7 @@
             CommonListCell* listCell = [tableView dequeueReusableCellWithIdentifier:@"CommonListCell"];
             listCell.dto = self.dataSource[indexPath.row/2];
             listCell.delegate = self;
+            listCell.checkBox.hidden = self.hiddenCheckBox;
             cell = listCell;
 
         }
