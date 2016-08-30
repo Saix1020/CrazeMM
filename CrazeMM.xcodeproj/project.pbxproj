@@ -225,6 +225,12 @@
 		B94E6CDE1D74695D005B3DB2 /* UIFont+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CDC1D74695D005B3DB2 /* UIFont+Utils.m */; };
 		B94E6CEE1D746F9B005B3DB2 /* ToBePaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CED1D746F9B005B3DB2 /* ToBePaidViewController.m */; };
 		B94E6CEF1D746F9B005B3DB2 /* ToBePaidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CED1D746F9B005B3DB2 /* ToBePaidViewController.m */; };
+		B94E6CF21D74850B005B3DB2 /* OrderListFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CF11D74850B005B3DB2 /* OrderListFilterViewController.m */; };
+		B94E6CF31D74850B005B3DB2 /* OrderListFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CF11D74850B005B3DB2 /* OrderListFilterViewController.m */; };
+		B94E6CF61D7496C8005B3DB2 /* DateRangePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CF51D7496C8005B3DB2 /* DateRangePickerCell.m */; };
+		B94E6CF71D7496C8005B3DB2 /* DateRangePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CF51D7496C8005B3DB2 /* DateRangePickerCell.m */; };
+		B94E6CF91D7496E7005B3DB2 /* DateRangePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B94E6CF81D7496E7005B3DB2 /* DateRangePickerCell.xib */; };
+		B94E6CFA1D7496E7005B3DB2 /* DateRangePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B94E6CF81D7496E7005B3DB2 /* DateRangePickerCell.xib */; };
 		B95924061CDEB26300533E77 /* CommonOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95924051CDEB26300533E77 /* CommonOrderListViewController.m */; };
 		B959248F1CDF90A900533E77 /* NSNull+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B959248E1CDF90A900533E77 /* NSNull+Utils.m */; };
 		B95924991CE0394C00533E77 /* lauch-screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B95924981CE0394C00533E77 /* lauch-screen.jpg */; };
@@ -1334,6 +1340,11 @@
 		B94E6CDC1D74695D005B3DB2 /* UIFont+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Utils.m"; path = "common/UIFont+Utils.m"; sourceTree = "<group>"; };
 		B94E6CEC1D746F9B005B3DB2 /* ToBePaidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToBePaidViewController.h; path = mine/order/ToBePaidViewController.h; sourceTree = "<group>"; };
 		B94E6CED1D746F9B005B3DB2 /* ToBePaidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToBePaidViewController.m; path = mine/order/ToBePaidViewController.m; sourceTree = "<group>"; };
+		B94E6CF01D74850B005B3DB2 /* OrderListFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderListFilterViewController.h; path = mine/order/OrderListFilterViewController.h; sourceTree = "<group>"; };
+		B94E6CF11D74850B005B3DB2 /* OrderListFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderListFilterViewController.m; path = mine/order/OrderListFilterViewController.m; sourceTree = "<group>"; };
+		B94E6CF41D7496C8005B3DB2 /* DateRangePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateRangePickerCell.h; path = mine/order/DateRangePickerCell.h; sourceTree = "<group>"; };
+		B94E6CF51D7496C8005B3DB2 /* DateRangePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateRangePickerCell.m; path = mine/order/DateRangePickerCell.m; sourceTree = "<group>"; };
+		B94E6CF81D7496E7005B3DB2 /* DateRangePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DateRangePickerCell.xib; path = mine/order/DateRangePickerCell.xib; sourceTree = "<group>"; };
 		B95924041CDEB26300533E77 /* CommonOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonOrderListViewController.h; path = common/CommonOrderListViewController.h; sourceTree = "<group>"; };
 		B95924051CDEB26300533E77 /* CommonOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonOrderListViewController.m; path = common/CommonOrderListViewController.m; sourceTree = "<group>"; };
 		B959248D1CDF90A900533E77 /* NSNull+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNull+Utils.h"; path = "common/NSNull+Utils.h"; sourceTree = "<group>"; };
@@ -2449,14 +2460,12 @@
 		B91896881CCE18C00061D0B6 /* order */ = {
 			isa = PBXGroup;
 			children = (
-				B94E6CDF1D746DDF005B3DB2 /* OrderDetail */,
+				B94E6CDF1D746DDF005B3DB2 /* list */,
 				B91896961CCE51B00061D0B6 /* view */,
 				B9B5BCEB1CDDC0C90085E132 /* OrderDefine.h */,
 				B967E6F01CE4CDC500621F28 /* OrderDefine.m */,
-				B99194791CCC76E60032A393 /* OrderListViewController.h */,
-				B991947A1CCC76E60032A393 /* OrderListViewController.m */,
-				B9D1C5821D0719DB0099BA95 /* AllOrderListViewController.h */,
-				B9D1C5831D0719DB0099BA95 /* AllOrderListViewController.m */,
+				B99955301CE37372007F26D2 /* OrderDetailViewController.h */,
+				B99955311CE37372007F26D2 /* OrderDetailViewController.m */,
 				B9C395151CF1E50300AB44B6 /* OrderSendViewController.h */,
 				B9C395161CF1E50300AB44B6 /* OrderSendViewController.m */,
 			);
@@ -2484,6 +2493,9 @@
 				B967E73F1CE589B600621F28 /* OrderLogsCell.h */,
 				B967E7401CE589B600621F28 /* OrderLogsCell.m */,
 				B967E7411CE589B600621F28 /* OrderLogsCell.xib */,
+				B94E6CF41D7496C8005B3DB2 /* DateRangePickerCell.h */,
+				B94E6CF51D7496C8005B3DB2 /* DateRangePickerCell.m */,
+				B94E6CF81D7496E7005B3DB2 /* DateRangePickerCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2669,15 +2681,19 @@
 			name = user;
 			sourceTree = "<group>";
 		};
-		B94E6CDF1D746DDF005B3DB2 /* OrderDetail */ = {
+		B94E6CDF1D746DDF005B3DB2 /* list */ = {
 			isa = PBXGroup;
 			children = (
-				B99955301CE37372007F26D2 /* OrderDetailViewController.h */,
-				B99955311CE37372007F26D2 /* OrderDetailViewController.m */,
+				B9D1C5821D0719DB0099BA95 /* AllOrderListViewController.h */,
+				B9D1C5831D0719DB0099BA95 /* AllOrderListViewController.m */,
+				B94E6CF01D74850B005B3DB2 /* OrderListFilterViewController.h */,
+				B94E6CF11D74850B005B3DB2 /* OrderListFilterViewController.m */,
+				B99194791CCC76E60032A393 /* OrderListViewController.h */,
+				B991947A1CCC76E60032A393 /* OrderListViewController.m */,
 				B94E6CE11D746DFB005B3DB2 /* supply */,
 				B94E6CE01D746DF2005B3DB2 /* buy */,
 			);
-			name = OrderDetail;
+			name = list;
 			sourceTree = "<group>";
 		};
 		B94E6CE01D746DF2005B3DB2 /* buy */ = {
@@ -3829,6 +3845,7 @@
 				B9AD46111CD4FF0200012B31 /* OrderListNoCheckBoxCell.xib in Resources */,
 				B9EFADE91CECBBF800F81157 /* SwitchCell.xib in Resources */,
 				B9BBEEC61CEB4C5900275416 /* AddrCommonCell.xib in Resources */,
+				B94E6CF91D7496E7005B3DB2 /* DateRangePickerCell.xib in Resources */,
 				B91896AA1CCF09D50061D0B6 /* PayAlertView.xib in Resources */,
 				B902B6FE1D027ACD005B6F5C /* StockListCell.xib in Resources */,
 				B964F9881CC50339003E0D44 /* slide-1.jpg in Resources */,
@@ -3978,6 +3995,7 @@
 				B9EFAF5B1CED514100F81157 /* SupplyListCell.xib in Resources */,
 				B9EFAF5C1CED514100F81157 /* PaySuccessProductCell.xib in Resources */,
 				B9EFAF5D1CED514100F81157 /* NewWelcomeViewController.xib in Resources */,
+				B94E6CFA1D7496E7005B3DB2 /* DateRangePickerCell.xib in Resources */,
 				B9EFAF5E1CED514100F81157 /* TransferAlertView.xib in Resources */,
 				B9EFAF5F1CED514100F81157 /* WelcomeViewController.xib in Resources */,
 			);
@@ -4389,6 +4407,7 @@
 				B9AD440B1CD3427E00012B31 /* MMAlertView.m in Sources */,
 				B91732441CD1F05400C29698 /* RotateInDownRightAnimation.m in Sources */,
 				B9A780451CD9E34D00A89047 /* ProductRecommendView.m in Sources */,
+				B94E6CF21D74850B005B3DB2 /* OrderListFilterViewController.m in Sources */,
 				B965B7371D1E16AF0021C809 /* PayManageViewController.m in Sources */,
 				B91896D61CCFA0140061D0B6 /* PayResultViewController.m in Sources */,
 				B917325F1CD1F05500C29698 /* ZoomOutDownAnimation.m in Sources */,
@@ -4400,6 +4419,7 @@
 				B967E7391CE57EBD00621F28 /* MASViewConstraint.m in Sources */,
 				2EAF58471D68B6B000ACEE60 /* PayInfoViewController.m in Sources */,
 				B91732161CD1F05400C29698 /* JelloAnimation.m in Sources */,
+				B94E6CF61D7496C8005B3DB2 /* DateRangePickerCell.m in Sources */,
 				B98218F71CE84CEB00B279E6 /* HttpAddress.m in Sources */,
 				B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */,
 				B9B3E4C21D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */,
@@ -4806,6 +4826,7 @@
 				B9EFAEBD1CED514100F81157 /* SupplyBottomOffView.m in Sources */,
 				B9C4BCBE1D22559F00C719CE /* HttpConsignee.m in Sources */,
 				B9EFAEBE1CED514100F81157 /* SupplyListCell.m in Sources */,
+				B94E6CF31D74850B005B3DB2 /* OrderListFilterViewController.m in Sources */,
 				B9EFAEBF1CED514100F81157 /* FadeInAnimation.m in Sources */,
 				B965B6F51D1D31200021C809 /* MineUserInfoDTO.m in Sources */,
 				B9EFAEC01CED514100F81157 /* _SearchHistory.m in Sources */,
@@ -4817,6 +4838,7 @@
 				B9EFAEC51CED514100F81157 /* ZoomOutDownAnimation.m in Sources */,
 				B9EFAEC61CED514100F81157 /* MMTimer.m in Sources */,
 				B9EFAEC71CED514100F81157 /* BounceOutLeftAnimation.m in Sources */,
+				B94E6CF71D7496C8005B3DB2 /* DateRangePickerCell.m in Sources */,
 				B9EFAEC81CED514100F81157 /* TTModalView.m in Sources */,
 				B9EFAEC91CED514100F81157 /* ZoomInDownAnimation.m in Sources */,
 				B9EFAECA1CED514100F81157 /* MASViewConstraint.m in Sources */,

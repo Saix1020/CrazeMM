@@ -19,6 +19,8 @@
 #import "HttpOrderOperation.h"
 #import "OrderSendViewController.h"
 #import "HttpOrderCancel.h"
+#import "OrderListFilterViewController.h"
+#import "TTModalView.h"
 
 
 #define kSegmentCellHeight 40.f
@@ -49,18 +51,76 @@
 
 @property (nonatomic) BOOL isRefreshing;
 
+@property (nonatomic, strong) UIView* maskView;
+@property (nonatomic, strong) TTModalView *modalView;
+@property (nonatomic, strong) OrderListFilterViewController *filterVC;
+@property (nonatomic, strong) UINavigationController *modalNav;
+@property (nonatomic, copy) NSDictionary* searchCondtions;
+
+@property (nonatomic, strong) UIButton* filterButton;
+@property (nonatomic) UIView* emptyView;
+
 @end
 
 @implementation OrderListViewController
 
-//-(UITableViewCell*)emptyCell
-//{
-//    if (!_emptyCell) {
-//        _emptyCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 0, [UIScreen mainScreen].bounds.size.height)];
-//        
-//        _emptyCell
-//    }
-//}
+-(UIView*)maskView
+{
+    if (!_maskView) {
+        _maskView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _maskView.backgroundColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.6];
+        
+    }
+    return _maskView;
+}
+
+-(TTModalView*)modalView
+{
+    if (!_modalView) {
+        _modalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
+        _modalView.modalWindowLevel = UIWindowLevelNormal;
+        _modalView.isCancelAble = NO;
+        
+        _modalView.contentView = self.modalNav.view;
+        
+        _modalView.presentAnimationStyle = SlideInRight;
+        _modalView.dismissAnimationStyle = SlideOutRight ;
+        
+    }
+    
+    return _modalView;
+}
+
+-(UINavigationController*)modalNav
+{
+    if (!_modalNav) {
+        _modalNav = [[UINavigationController alloc] initWithRootViewController:self.filterVC];
+    }
+    return _modalNav;
+}
+
+-(OrderListFilterViewController*)filterVC
+{
+    if (!_filterVC) {
+        _filterVC = [[OrderListFilterViewController alloc] init];
+        _filterVC.delegate = self;
+        
+    }
+    return _filterVC;
+}
+
+-(UIView*)emptyView
+{
+    if (!_emptyView){
+        _emptyView = [UINib viewFromNib:@"SearchEmpty"];
+        _emptyView.frame = CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [self.view addSubview:_emptyView];
+        _emptyView.backgroundColor = [UIColor clearColor];
+        _emptyView.hidden = YES;
+    }
+    
+    return _emptyView;
+}
 
 -(MMOrderListStyle)orderListStyle
 {
@@ -476,6 +536,24 @@
     [self setOrderStyleWithSegmentIndex:0];
     [self.segmentCell setTitles:[self getSegmentTitels]];
     [self getOrderList];
+    
+    
+    self.filterButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.filterButton setImage:[@"filter" image] forState:UIControlStateNormal];
+    self.filterButton.frame = CGRectMake(0, 0, 24, 24);
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.filterButton];
+    
+    
+    
+    self.filterButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
+        @strongify(self);
+        [self.view addSubview:self.maskView];
+        [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
+            contentView.frame = CGRectMake(50, 0, [UIScreen mainScreen].bounds.size.width-50, [UIScreen mainScreen].bounds.size.height);
+        }];
+        return [RACSignal empty];
+    }];
+
 
 }
 
@@ -941,7 +1019,12 @@
     [self.dataSource removeObjectsInArray:orderDetailDtos];
 }
 
-
+#pragma - mark OrderListFilterViewController Delegate
+-(void)dismiss
+{
+    [self.modalView dismiss];
+    [self.maskView removeFromSuperview];
+}
 
 -(void)dealloc
 {

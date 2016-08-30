@@ -72,7 +72,7 @@
         _cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _cancelButton.backgroundColor = [UIColor light_Gray_Color];
         _cancelButton.tintColor = [UIColor blackColor];
-        [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelButton setTitle:@"重置" forState:UIControlStateNormal];
         
         [_bottomView addSubview:_confirmButton];
         [_bottomView addSubview:_cancelButton];

@@ -16,6 +16,7 @@
 @property (nonatomic, weak) id<FilterTagLabelDelegate> delegate;
 
 @property (nonatomic, readonly) NSArray* selectedTags;
+@property (nonatomic) NSInteger maxWidth;
 
 -(void)reset;
 
