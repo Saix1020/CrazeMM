@@ -8,7 +8,7 @@
 
 #import "OrderListFilterViewController.h"
 #import "TPKeyboardAvoidingTableView.h"
-#import "UIViewController+KNSemiModal.h"
+//#import "UIViewController+KNSemiModal.h"
 
 @interface OrderListFilterViewController ()
 
@@ -68,7 +68,7 @@
 -(UILabel*)nameLabel
 {
     if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 100, 26.f)];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 180, 26.f)];
         _nameLabel.font = [UIFont smallFont];
         _nameLabel.text = @"订单号/商品名称";
     }
@@ -90,7 +90,7 @@
 {
     if (!_createLabelCell) {
         _createLabelCell = [[UITableViewCell alloc] init];
-        UILabel* createLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 100, 26.f)];
+        UILabel* createLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 180, 26.f)];
         createLabel.font = [UIFont smallFont];
         createLabel.text = @"下单时间";
         [_createLabelCell.contentView addSubview:createLabel];
@@ -103,7 +103,7 @@
 {
     if (!_updateLabelCell) {
         _updateLabelCell = [[UITableViewCell alloc] init];
-        UILabel* updateLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 100, 26.f)];
+        UILabel* updateLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 180, 26.f)];
         updateLabel.font = [UIFont smallFont];
         updateLabel.text = @"更新时间";
         [_updateLabelCell.contentView addSubview:updateLabel];
@@ -128,7 +128,7 @@
     if(!_updateDateCell){
         _updateDateCell = (DateRangePickerCell*)[UINib viewFromNib:@"DateRangePickerCell"];
         _updateDateCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        _createDateCell.delegate = self;
+        _updateDateCell.delegate = self;
 
     }
     
@@ -163,11 +163,51 @@
         [_bottomView addSubview:_confirmButton];
         [_bottomView addSubview:_cancelButton];
         
-        [_confirmButton addTarget:self action:@selector(addSearchCond:) forControlEvents:UIControlEventTouchUpInside];
+        [_confirmButton addTarget:self action:@selector(setSearchCond:) forControlEvents:UIControlEventTouchUpInside];
         [_cancelButton addTarget:self action:@selector(resetSearchCond:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _bottomView;
+}
+
+-(void)setSearchCond:(UIButton*)button
+{
+    
+    NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+    [inputFormatter setDateFormat:@"yyyy-MM-dd"];
+
+    NSString* name = self.nameField.text;
+    if (!name) {
+        name = @"";
+    }
+    //http://b.189mm.net/rest/order?pn=1&state=100&t=b&complex=111&cbegin=2016-08-10&cend=2016-08-31&ubegin=2016-08-09&uend=
+    NSString* createFromDateString = self.createDateCell.fromDate?[inputFormatter stringFromDate:self.createDateCell.fromDate]:@"";
+    NSString* createToDateString = self.createDateCell.toDate?[inputFormatter stringFromDate:self.createDateCell.toDate]:@"";
+    NSString* updateFromDateString = self.updateDateCell.fromDate?[inputFormatter stringFromDate:self.createDateCell.fromDate]:@"";
+    NSString* updateToDateString = self.updateDateCell.toDate?[inputFormatter stringFromDate:self.createDateCell.toDate]:@"";
+    
+    NSDictionary* conditions = @{
+                                 @"complex" : name,
+                                 @"cbegin" : createFromDateString,
+                                 @"cend" : createToDateString,
+                                 @"ubegin" : updateFromDateString,
+                                 @"uend" : updateToDateString
+                                 };
+    
+    if ([self.delegate respondsToSelector:@selector(didSetSerachConditions:)]){
+        [self.delegate didSetSerachConditions:conditions];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(dismiss)]){
+        [self.delegate dismiss];
+    }
+}
+
+-(void)resetSearchCond:(UIButton*)button
+{
+    [self.createDateCell reset];
+    [self.updateDateCell reset];
+    self.nameField.text = nil;
 }
 
 - (void)viewDidLoad {
@@ -191,10 +231,6 @@
     [button addTarget:self action:@selector(cancelFilter) forControlEvents:UIControlEventTouchUpInside];
     [button sizeToFit];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
-    
-    
-    
 }
 
 -(void)cancelFilter
@@ -265,4 +301,15 @@
                                                              }];
 
 }
+
+-(void)endDatePicking:(THDatePickerViewController *)datePicker
+{
+    [datePicker dismissSemiModalView];
+}
+
+-(void)alertWithMessage:(NSString *)message
+{
+    [self showAlertViewWithMessage:message];
+}
+
 @end

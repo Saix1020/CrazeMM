@@ -208,6 +208,16 @@
 		B942E78A1D1967DF0067931B /* SupplyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E7881D1967DF0067931B /* SupplyDetailDTO.m */; };
 		B942E78D1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */; };
 		B942E78E1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */; };
+		B94572EF1D7525B6002F75AE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B94572EB1D7525B6002F75AE /* README.md */; };
+		B94572F01D7525B6002F75AE /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572EE1D7525B6002F75AE /* UIViewController+KNSemiModal.m */; };
+		B94572FE1D7525C8002F75AE /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = B94572F21D7525C8002F75AE /* LICENSE.md */; };
+		B94572FF1D7525C8002F75AE /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B94572F31D7525C8002F75AE /* README.md */; };
+		B94573001D7525C8002F75AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B94572F51D7525C8002F75AE /* Images.xcassets */; };
+		B94573011D7525C8002F75AE /* NSDate+Difference.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572F71D7525C8002F75AE /* NSDate+Difference.m */; };
+		B94573021D7525C8002F75AE /* THDateDay.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572F91D7525C8002F75AE /* THDateDay.m */; };
+		B94573031D7525C8002F75AE /* THDateDay.xib in Resources */ = {isa = PBXBuildFile; fileRef = B94572FA1D7525C8002F75AE /* THDateDay.xib */; };
+		B94573041D7525C8002F75AE /* THDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94572FC1D7525C8002F75AE /* THDatePickerViewController.m */; };
+		B94573051D7525C8002F75AE /* THDatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B94572FD1D7525C8002F75AE /* THDatePickerViewController.xib */; };
 		B94E6CC51D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC71D72B6CA005B3DB2 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140401D712A6E000960F9 /* PersonalInfoViewController.m */; };
@@ -1323,6 +1333,20 @@
 		B942E7881D1967DF0067931B /* SupplyDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyDetailDTO.m; path = mine/SupplyDetailDTO.m; sourceTree = "<group>"; };
 		B942E78B1D19732C0067931B /* MineSupplyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineSupplyInfoViewController.h; path = mine/supply/MineSupplyInfoViewController.h; sourceTree = "<group>"; };
 		B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineSupplyInfoViewController.m; path = mine/supply/MineSupplyInfoViewController.m; sourceTree = "<group>"; };
+		B94572EB1D7525B6002F75AE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B94572ED1D7525B6002F75AE /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
+		B94572EE1D7525B6002F75AE /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		B94572F21D7525C8002F75AE /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		B94572F31D7525C8002F75AE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B94572F51D7525C8002F75AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B94572F61D7525C8002F75AE /* NSDate+Difference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Difference.h"; sourceTree = "<group>"; };
+		B94572F71D7525C8002F75AE /* NSDate+Difference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Difference.m"; sourceTree = "<group>"; };
+		B94572F81D7525C8002F75AE /* THDateDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDateDay.h; sourceTree = "<group>"; };
+		B94572F91D7525C8002F75AE /* THDateDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDateDay.m; sourceTree = "<group>"; };
+		B94572FA1D7525C8002F75AE /* THDateDay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THDateDay.xib; sourceTree = "<group>"; };
+		B94572FB1D7525C8002F75AE /* THDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDatePickerViewController.h; sourceTree = "<group>"; };
+		B94572FC1D7525C8002F75AE /* THDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDatePickerViewController.m; sourceTree = "<group>"; };
+		B94572FD1D7525C8002F75AE /* THDatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THDatePickerViewController.xib; sourceTree = "<group>"; };
 		B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewSearchListCell.h; path = search/NewSearchListCell.h; sourceTree = "<group>"; };
 		B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewSearchListCell.m; path = search/NewSearchListCell.m; sourceTree = "<group>"; };
 		B94E6CC31D72AF84005B3DB2 /* HttpRegisterNewMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRegisterNewMobile.h; path = restful/HttpRegisterNewMobile.h; sourceTree = "<group>"; };
@@ -2099,6 +2123,8 @@
 		B917315A1CD1EF9400C29698 /* third party */ = {
 			isa = PBXGroup;
 			children = (
+				B94572F11D7525C8002F75AE /* THCalendarDatePicker */,
+				B94572EA1D7525B6002F75AE /* KNSemiModalViewController */,
 				B9E84BE91CF1422D003FEAF5 /* BEMCheckBox */,
 				B967E7191CE57EAC00621F28 /* TimeLine */,
 				B95A94971CE0C17C00A5D9BA /* SKChinaCitySelector */,
@@ -2666,6 +2692,50 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		B94572EA1D7525B6002F75AE /* KNSemiModalViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B94572EB1D7525B6002F75AE /* README.md */,
+				B94572EC1D7525B6002F75AE /* Source */,
+			);
+			path = KNSemiModalViewController;
+			sourceTree = "<group>";
+		};
+		B94572EC1D7525B6002F75AE /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B94572ED1D7525B6002F75AE /* UIViewController+KNSemiModal.h */,
+				B94572EE1D7525B6002F75AE /* UIViewController+KNSemiModal.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B94572F11D7525C8002F75AE /* THCalendarDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				B94572F21D7525C8002F75AE /* LICENSE.md */,
+				B94572F31D7525C8002F75AE /* README.md */,
+				B94572F41D7525C8002F75AE /* THCalendarDatePicker */,
+			);
+			path = THCalendarDatePicker;
+			sourceTree = "<group>";
+		};
+		B94572F41D7525C8002F75AE /* THCalendarDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				B94572F51D7525C8002F75AE /* Images.xcassets */,
+				B94572F61D7525C8002F75AE /* NSDate+Difference.h */,
+				B94572F71D7525C8002F75AE /* NSDate+Difference.m */,
+				B94572F81D7525C8002F75AE /* THDateDay.h */,
+				B94572F91D7525C8002F75AE /* THDateDay.m */,
+				B94572FA1D7525C8002F75AE /* THDateDay.xib */,
+				B94572FB1D7525C8002F75AE /* THDatePickerViewController.h */,
+				B94572FC1D7525C8002F75AE /* THDatePickerViewController.m */,
+				B94572FD1D7525C8002F75AE /* THDatePickerViewController.xib */,
+			);
+			path = THCalendarDatePicker;
+			sourceTree = "<group>";
+		};
 		B94E6CC21D72AF4E005B3DB2 /* user */ = {
 			isa = PBXGroup;
 			children = (
@@ -2699,7 +2769,6 @@
 		B94E6CE01D746DF2005B3DB2 /* buy */ = {
 			isa = PBXGroup;
 			children = (
-				B94E6CE41D746E8D005B3DB2 /* all */,
 				B94E6CE31D746E68005B3DB2 /* tobereceived */,
 				B94E6CE21D746E4E005B3DB2 /* tobepaid */,
 			);
@@ -2709,7 +2778,6 @@
 		B94E6CE11D746DFB005B3DB2 /* supply */ = {
 			isa = PBXGroup;
 			children = (
-				B94E6CE71D746EB1005B3DB2 /* all */,
 				B94E6CE61D746EA6005B3DB2 /* tobecomfirmed */,
 				B94E6CE51D746E92005B3DB2 /* tobesend */,
 			);
@@ -2732,13 +2800,6 @@
 			name = tobereceived;
 			sourceTree = "<group>";
 		};
-		B94E6CE41D746E8D005B3DB2 /* all */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = all;
-			sourceTree = "<group>";
-		};
 		B94E6CE51D746E92005B3DB2 /* tobesend */ = {
 			isa = PBXGroup;
 			children = (
@@ -2751,13 +2812,6 @@
 			children = (
 			);
 			name = tobecomfirmed;
-			sourceTree = "<group>";
-		};
-		B94E6CE71D746EB1005B3DB2 /* all */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = all;
 			sourceTree = "<group>";
 		};
 		B95A94971CE0C17C00A5D9BA /* SKChinaCitySelector */ = {
@@ -3812,6 +3866,7 @@
 				B9A149331D1F6F8B005080D1 /* FilterPriceCell.xib in Resources */,
 				B964F9841CC5030C003E0D44 /* slide-0.jpg in Resources */,
 				B964F98C1CC50344003E0D44 /* slide-4.jpg in Resources */,
+				B94573031D7525C8002F75AE /* THDateDay.xib in Resources */,
 				B99955421CE3835A007F26D2 /* OrderDetailStatusCell.xib in Resources */,
 				B95A94AE1CE0C19900A5D9BA /* provincedictionary.plist in Resources */,
 				B918967F1CCDD8DC0061D0B6 /* ProductCompanyCell.xib in Resources */,
@@ -3828,6 +3883,7 @@
 				B91896FE1CD0EF460061D0B6 /* AccountDetailCell.xib in Resources */,
 				B9FE72031CD7877D00F5EC9F /* SignWithPicCapViewController.xib in Resources */,
 				B918968D1CCE1D8E0061D0B6 /* FirstAddrCell.xib in Resources */,
+				B94573001D7525C8002F75AE /* Images.xcassets in Resources */,
 				B98878A11CC90CCA00990AA4 /* SignViewController.xib in Resources */,
 				B95A94AB1CE0C19900A5D9BA /* CitySelectTableViewController.xib in Resources */,
 				B99D12CB1CC522FC000DFF95 /* logo_channel.png in Resources */,
@@ -3872,6 +3928,7 @@
 				B99194781CCC690E0032A393 /* OrderListCell.xib in Resources */,
 				B9076F551D22C7FB001FFDE4 /* MortgageListCell.xib in Resources */,
 				B95A94A51CE0C19900A5D9BA /* citydict.plist in Resources */,
+				B94573051D7525C8002F75AE /* THDatePickerViewController.xib in Resources */,
 				B99D12F91CC66EB9000DFF95 /* KeyWordsCell.xib in Resources */,
 				B991945A1CCBAEFD0032A393 /* BuyProductView.xib in Resources */,
 				B9A149361D1FA277005080D1 /* BrandHeadView.xib in Resources */,
@@ -4146,8 +4203,10 @@
 			files = (
 				B91732391CD1F05400C29698 /* FadeOutUpAnimation.m in Sources */,
 				B91732621CD1F05500C29698 /* ZoomOutUpAnimation.m in Sources */,
+				B94572FF1D7525C8002F75AE /* README.md in Sources */,
 				B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */,
 				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
+				B94572FE1D7525C8002F75AE /* LICENSE.md in Sources */,
 				B98218FB1CE84D3400B279E6 /* AddressDTO.m in Sources */,
 				B9D1C5911D0A64340099BA95 /* WithDrawAlertView.m in Sources */,
 				B917323F1CD1F05400C29698 /* FlipOutYAnimation.m in Sources */,
@@ -4184,6 +4243,7 @@
 				B99194731CCC56F90032A393 /* UserCenter.m in Sources */,
 				B964F9601CC4A800003E0D44 /* SupplyListViewController.m in Sources */,
 				B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */,
+				B94572F01D7525B6002F75AE /* UIViewController+KNSemiModal.m in Sources */,
 				B94E6CCC1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m in Sources */,
 				B9FE71EA1CD6E70400F5EC9F /* UserInfo.m in Sources */,
 				B964F9571CC4A70E003E0D44 /* TabBarController.m in Sources */,
@@ -4273,6 +4333,7 @@
 				B99D12EB1CC66045000DFF95 /* SearchViewController.m in Sources */,
 				B999552F1CE36FF7007F26D2 /* BuyProductDetailDTO.m in Sources */,
 				B917323E1CD1F05400C29698 /* FlipOutXAnimation.m in Sources */,
+				B94573021D7525C8002F75AE /* THDateDay.m in Sources */,
 				B965B71A1D1D70840021C809 /* HttpRechargeLog.m in Sources */,
 				B95A94C01CE1DDBC00A5D9BA /* SupplyProductDetailDTO.m in Sources */,
 				B965B7331D1D83E50021C809 /* WithdrawListViewController.m in Sources */,
@@ -4280,6 +4341,7 @@
 				B99D130F1CC743A4000DFF95 /* SearchListViewController.m in Sources */,
 				B98218FE1CE855D500B279E6 /* HttpSearchKeyword.m in Sources */,
 				B9AD45FF1CD4DEEB00012B31 /* HttpGenMobileVcodeRequest.m in Sources */,
+				B94573011D7525C8002F75AE /* NSDate+Difference.m in Sources */,
 				B9E84BF01CF1422D003FEAF5 /* BEMAnimationManager.m in Sources */,
 				B9EFAFA11CEE10A200F81157 /* HttpSaveSupplyInfo.m in Sources */,
 				B91896991CCE53AB0061D0B6 /* SecondProductDetailCell.m in Sources */,
@@ -4441,6 +4503,7 @@
 				B964F9901CC50E1E003E0D44 /* BuyItemCell.m in Sources */,
 				B991947B1CCC76E60032A393 /* OrderListViewController.m in Sources */,
 				B91732341CD1F05400C29698 /* FadeOutDownBigAnimation.m in Sources */,
+				B94573041D7525C8002F75AE /* THDatePickerViewController.m in Sources */,
 				B95924061CDEB26300533E77 /* CommonOrderListViewController.m in Sources */,
 				B967E7371CE57EBD00621F28 /* MASLayoutConstraint.m in Sources */,
 				B9C4BCC51D2260F500C719CE /* ConsigneeListViewController.m in Sources */,
@@ -4506,6 +4569,7 @@
 				B999552C1CE36FC7007F26D2 /* BuyProductDTO.m in Sources */,
 				B9AD44261CD48DAD00012B31 /* HttpRandomCodeRequest.m in Sources */,
 				B991947F1CCCA26C0032A393 /* CommonBottomView.m in Sources */,
+				B94572EF1D7525B6002F75AE /* README.md in Sources */,
 				B94E6CC51D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */,
 				B991945D1CCBB4ED0032A393 /* BuyProductView.m in Sources */,
 				B9AD46271CD6523100012B31 /* M80AttributedLabel.m in Sources */,

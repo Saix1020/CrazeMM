@@ -33,6 +33,17 @@
     return self;
 }
 
+-(instancetype)initWithOrderListType:(MMOrderListStyle)type andPage:(NSUInteger)pn andConditions:(NSDictionary*)conditions
+{
+    self = [self initWithOrderListType:type andPage:pn];
+    if (self) {
+        [self.params addEntriesFromDictionary:conditions];
+    }
+    
+    return self;
+}
+
+
 -(NSString*)url
 {
     return COMB_URL(@"/rest/order");
@@ -160,6 +171,13 @@
     return self;
 }
 
+-(instancetype)initWithPage:(NSInteger)pn andConditions:(NSDictionary *)conditions
+{
+    self = [self initWithPage:pn];
+    [self.params addEntriesFromDictionary:conditions];
+    return self;
+}
+
 @end
 
 @implementation HttpAllSupplyOrderRequest
@@ -177,5 +195,13 @@
     
     return self;
 }
+
+-(instancetype)initWithPage:(NSInteger)pn andConditions:(NSDictionary *)conditions
+{
+    self = [self initWithPage:pn];
+    [self.params addEntriesFromDictionary:conditions];
+    return self;
+}
+
 
 @end

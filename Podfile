@@ -29,5 +29,5 @@ target "CrazeMM" do
 #pod 'PromiseKit-AFNetworking', '~> 0.6.0'
 #pod 'KeychainItemWrapper', '~> 1.2'
 	pod 'RealReachability', '~> 1.1.7'
-	pod 'THCalendarDatePicker', '~> 1.2.6'
+#pod 'THCalendarDatePicker', '~> 1.2.6'
 end

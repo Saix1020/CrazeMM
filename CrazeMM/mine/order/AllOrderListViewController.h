@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderDefine.h"
+#import "OrderListViewController.h"
 
-@interface AllOrderListViewController : UITableViewController
+@interface AllOrderListViewController : OrderListViewController
 
 -(instancetype)initWithOrderType:(MMOrderType)orderType;
 

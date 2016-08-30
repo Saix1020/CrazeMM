@@ -17,7 +17,7 @@
 @end
 
 
-@interface OrderListFilterViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, OrderListFilterViewControllerDelegate, DateRangePickerCellDelegate>
+@interface OrderListFilterViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, DateRangePickerCellDelegate>
 
 @property (nonatomic, weak) id<OrderListFilterViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSString* filterType;

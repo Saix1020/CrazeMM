@@ -39,68 +39,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = self.orderType==kOrderTypeBuy? @"我的所有买货" : @"我的所有卖货";
-    
-    self.tableView.backgroundColor = RGBCOLOR(240, 240, 240);
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:view];
-    
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListCell" bundle:nil] forCellReuseIdentifier:@"OrderListCell"];
-    self.dataSource = [[NSMutableArray alloc] init];
-    self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.showsVerticalScrollIndicator = NO;
-    
-    @weakify(self);
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        @strongify(self);
-        if (self.isRefreshing) {
-            [self.tableView.mj_header endRefreshing];
-            return;
-        }
-        self.isRefreshing = YES;
-        [self getOrderList]
-        .finally(^(){
-            self.isRefreshing = NO;
-            [self.tableView.mj_header endRefreshing];
-        });
-        
-    }];
-    
-    self.tableView.mj_header.automaticallyChangeAlpha = YES;
-    
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        @strongify(self);
-        if (self.isRefreshing) {
-            [self.tableView.mj_footer endRefreshing];
-            return;
-        }
-        self.isRefreshing = YES;
-        [self getOrderList].finally(^(){
-            self.isRefreshing = NO;
-            [self.tableView.mj_footer endRefreshing];
-        });
-        
-    }];
-    self.tableView.mj_footer.automaticallyChangeAlpha = YES;
-    
-    self.isRefreshing = NO;
-    
-    [self getOrderList];
+}
+
+-(BOOL)needSegmentCell
+{
+    return NO;
+}
+
+-(BOOL)needCommonBottomView
+{
+    return NO;
 }
 
 -(AnyPromise*)getOrderList
 {
     HttpOrderRequest* orderRequest;
     if (self.orderType == kOrderTypeBuy) {
-        orderRequest = [[HttpAllBuyOrderRequest alloc] initWithPage:self.orderListPageNumber+1];
+        
+        orderRequest = [[HttpAllBuyOrderRequest alloc] initWithPage:self.orderListPageNumber+1 andConditions:self.searchConditions];
     }
     else {
-        orderRequest = [[HttpAllSupplyOrderRequest alloc] initWithPage:self.orderListPageNumber+1];
+        orderRequest = [[HttpAllSupplyOrderRequest alloc] initWithPage:self.orderListPageNumber+1 andConditions:self.searchConditions];
     }
     
     
@@ -124,11 +84,11 @@
     });
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.tabBarController setTabBarHidden:YES animated:YES];
-}
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    [self.tabBarController setTabBarHidden:YES animated:YES];
+//}
 
 
 #pragma mark - Table view data source

@@ -29,7 +29,6 @@
 
 @interface OrderListViewController ()
 
-@property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) SegmentedCell* segmentCell;
 @property (nonatomic, strong) CommonBottomView* commonBottomView;
 @property (nonatomic) NSInteger currentSegmentIndex;
@@ -55,7 +54,6 @@
 @property (nonatomic, strong) TTModalView *modalView;
 @property (nonatomic, strong) OrderListFilterViewController *filterVC;
 @property (nonatomic, strong) UINavigationController *modalNav;
-@property (nonatomic, copy) NSDictionary* searchCondtions;
 
 @property (nonatomic, strong) UIButton* filterButton;
 @property (nonatomic) UIView* emptyView;
@@ -181,9 +179,18 @@
         [self.view addSubview:_commonBottomView];
         [_commonBottomView.confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         _commonBottomView.selectAllCheckBox.delegate = self;
+        
+        if (![self needCommonBottomView]) {
+            _commonBottomView.hidden = YES;
+        }
     }
     
     return _commonBottomView;
+}
+
+-(BOOL)needCommonBottomView
+{
+    return YES;
 }
 
 -(SegmentedCell*)segmentCell
@@ -194,9 +201,19 @@
         _segmentCell.height = @(44.0f);
         _segmentCell.segment.delegate = self;
         [self.view addSubview:_segmentCell];
+        
+        if (![self needSegmentCell]) {
+            _segmentCell.hidden = YES;
+            _segmentCell.height = @(0);
+        }
     }
     
     return _segmentCell;
+}
+
+-(BOOL)needSegmentCell
+{
+    return YES;
 }
 
 -(instancetype)initWithOrderType:(MMOrderType)orderType andSubType:(MMOrderSubType)subType
@@ -493,11 +510,10 @@
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
-
-    
+    if([self needSegmentCell]){
+        self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    }
     
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -561,7 +577,10 @@
 {
     [super viewWillLayoutSubviews];
 //    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    self.commonBottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
+    self.commonBottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [self needCommonBottomView]?[CommonBottomView cellHeight]:0);
+    if (![self needCommonBottomView]) {
+        self.commonBottomView.hidden = YES;
+    }
 }
 
 -(void)viewDidLayoutSubviews
@@ -625,7 +644,15 @@
 
 -(AnyPromise*)getOrderList
 {
-    HttpOrderRequest* orderRequest = [[HttpOrderRequest alloc] initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
+    HttpOrderRequest* orderRequest;
+    
+    if (self.searchConditions) {
+        orderRequest = [[HttpOrderRequest alloc] initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1 andConditions:self.searchConditions];
+    }
+    else {
+        orderRequest = [[HttpOrderRequest alloc] initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
+    }
+    
     return [orderRequest request]
     .then(^(id responseObject){
         NSLog(@"%@", responseObject);
@@ -776,7 +803,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == self.dataSource.count) {
-        return self.commonBottomView.height;
+        return [self needCommonBottomView] ? self.commonBottomView.height : 0;
     }
     
     return [OrderListCell cellHeight]; //WaitForDeliverCell has the same height with WaitForPayCell
@@ -1026,9 +1053,19 @@
     [self.maskView removeFromSuperview];
 }
 
+-(void)didSetSerachConditions:(NSDictionary *)conditions
+{
+    self.searchConditions = conditions;
+    [self clearOrderList];
+    [self getOrderList];
+}
+
+
 -(void)dealloc
 {
     NSLog(@"dealloc %@", [self class]);
 }
+
+
 
 @end

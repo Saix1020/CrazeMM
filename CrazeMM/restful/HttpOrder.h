@@ -12,6 +12,7 @@
 @interface HttpOrderRequest : BaseHttpRequest
 
 -(instancetype)initWithOrderListType:(MMOrderListStyle)type andPage:(NSUInteger)pn;
+-(instancetype)initWithOrderListType:(MMOrderListStyle)type andPage:(NSUInteger)pn andConditions:(NSDictionary*)conditions;
 
 @end
 
@@ -30,9 +31,11 @@
 
 @interface HttpAllBuyOrderRequest : HttpOrderRequest
 -(instancetype)initWithPage:(NSInteger)pn;
+-(instancetype)initWithPage:(NSInteger)pn andConditions:(NSDictionary*)conditions;
 @end
 
 @interface HttpAllSupplyOrderRequest : HttpOrderRequest
 -(instancetype)initWithPage:(NSInteger)pn;
+-(instancetype)initWithPage:(NSInteger)pn andConditions:(NSDictionary*)conditions;
 
 @end
