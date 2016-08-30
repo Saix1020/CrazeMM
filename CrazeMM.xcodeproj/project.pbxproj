@@ -2486,14 +2486,13 @@
 		B91896881CCE18C00061D0B6 /* order */ = {
 			isa = PBXGroup;
 			children = (
-				B94E6CDF1D746DDF005B3DB2 /* list */,
-				B91896961CCE51B00061D0B6 /* view */,
 				B9B5BCEB1CDDC0C90085E132 /* OrderDefine.h */,
 				B967E6F01CE4CDC500621F28 /* OrderDefine.m */,
-				B99955301CE37372007F26D2 /* OrderDetailViewController.h */,
-				B99955311CE37372007F26D2 /* OrderDetailViewController.m */,
 				B9C395151CF1E50300AB44B6 /* OrderSendViewController.h */,
 				B9C395161CF1E50300AB44B6 /* OrderSendViewController.m */,
+				B945730A1D7554AD002F75AE /* detail */,
+				B94E6CDF1D746DDF005B3DB2 /* list */,
+				B91896961CCE51B00061D0B6 /* view */,
 			);
 			name = order;
 			sourceTree = "<group>";
@@ -2736,6 +2735,30 @@
 			path = THCalendarDatePicker;
 			sourceTree = "<group>";
 		};
+		B945730A1D7554AD002F75AE /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				B99955301CE37372007F26D2 /* OrderDetailViewController.h */,
+				B99955311CE37372007F26D2 /* OrderDetailViewController.m */,
+				B94E6CE11D746DFB005B3DB2 /* supply */,
+				B94E6CE01D746DF2005B3DB2 /* buy */,
+			);
+			name = detail;
+			sourceTree = "<group>";
+		};
+		B945730B1D7554F0002F75AE /* overview */ = {
+			isa = PBXGroup;
+			children = (
+				B992C57F1CCA6D5300DC49E8 /* MineNoLoginViewController.h */,
+				B992C5801CCA6D5300DC49E8 /* MineNoLoginViewController.m */,
+				B964F9721CC4B073003E0D44 /* MineViewController.h */,
+				B964F9731CC4B073003E0D44 /* MineViewController.m */,
+				B9AD441B1CD3AD2600012B31 /* MineWrapViewController.h */,
+				B9AD441C1CD3AD2600012B31 /* MineWrapViewController.m */,
+			);
+			name = overview;
+			sourceTree = "<group>";
+		};
 		B94E6CC21D72AF4E005B3DB2 /* user */ = {
 			isa = PBXGroup;
 			children = (
@@ -2760,8 +2783,6 @@
 				B94E6CF11D74850B005B3DB2 /* OrderListFilterViewController.m */,
 				B99194791CCC76E60032A393 /* OrderListViewController.h */,
 				B991947A1CCC76E60032A393 /* OrderListViewController.m */,
-				B94E6CE11D746DFB005B3DB2 /* supply */,
-				B94E6CE01D746DF2005B3DB2 /* buy */,
 			);
 			name = list;
 			sourceTree = "<group>";
@@ -2923,8 +2944,9 @@
 			children = (
 				B964F9091CC39670003E0D44 /* Assets.xcassets */,
 				B917315A1CD1EF9400C29698 /* third party */,
-				B91732761CD2032600C29698 /* restful */,
+				B964F9541CC4A657003E0D44 /* tabbar */,
 				B99194701CCC56BD0032A393 /* base modal */,
+				B91732761CD2032600C29698 /* restful */,
 				B988789C1CC90CAD00990AA4 /* sign */,
 				B98878871CC89FE600990AA4 /* login */,
 				B99D13141CC7A6E5000DFF95 /* product */,
@@ -2934,7 +2956,6 @@
 				B964F9591CC4A757003E0D44 /* supply */,
 				B95A94AF1CE0D42E00A5D9BA /* pay */,
 				B964F9581CC4A747003E0D44 /* mine */,
-				B964F9541CC4A657003E0D44 /* tabbar */,
 				B964F9411CC48D06003E0D44 /* welcome */,
 				B964F9311CC39712003E0D44 /* coredata */,
 				B964F8FA1CC39670003E0D44 /* Supporting Files */,
@@ -3012,6 +3033,7 @@
 		B964F9581CC4A747003E0D44 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B945730B1D7554F0002F75AE /* overview */,
 				B901403C1D712A49000960F9 /* personal */,
 				2ED9A1E11D660C5B00AFAF01 /* pay */,
 				B9076F4A1D22C5F3001FFDE4 /* mortgage */,
@@ -3023,12 +3045,6 @@
 				B91896C91CCF97440061D0B6 /* supply */,
 				B91896AE1CCF1FCB0061D0B6 /* address */,
 				B91896881CCE18C00061D0B6 /* order */,
-				B992C57F1CCA6D5300DC49E8 /* MineNoLoginViewController.h */,
-				B992C5801CCA6D5300DC49E8 /* MineNoLoginViewController.m */,
-				B964F9721CC4B073003E0D44 /* MineViewController.h */,
-				B964F9731CC4B073003E0D44 /* MineViewController.m */,
-				B9AD441B1CD3AD2600012B31 /* MineWrapViewController.h */,
-				B9AD441C1CD3AD2600012B31 /* MineWrapViewController.m */,
 			);
 			name = mine;
 			sourceTree = "<group>";

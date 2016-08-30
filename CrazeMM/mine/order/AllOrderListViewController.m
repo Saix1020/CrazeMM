@@ -110,6 +110,7 @@
     OrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderListCell"];
     cell.hiddenCheckbox = YES;
     cell.orderDetailDTO = dto;
+    cell.reactiveButton.hidden = YES;
     return cell;
 }
 
