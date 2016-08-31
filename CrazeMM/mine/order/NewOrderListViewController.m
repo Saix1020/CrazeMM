@@ -121,6 +121,12 @@
     [self resetDataSource];
 }
 
+-(HttpListQueryRequest*)makeListQueryRequest
+{
+    return [[HttpOrderRequest alloc]  initWithOrderListType:self.orderListStyle andPage:self.pageNumber+1 andConditions:self.searchConditions];
+}
+
+
 #pragma - mark OrderListFilterViewController Delegate
 -(void)dismiss
 {
@@ -199,6 +205,31 @@
                         });
                     }
                  andCancelCallback:nil];
+}
+
+
+#pragma  - mark tableview delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row%2 == 0) {
+        
+    }
+    else if(indexPath.row == self.dataSource.count*2) {
+        
+    }
+    else {
+        [self tableViewCellSelected:tableView andIndexPath:indexPath];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)tableViewCellSelected:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    
 }
 
 @end

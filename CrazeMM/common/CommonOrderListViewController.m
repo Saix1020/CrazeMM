@@ -19,7 +19,6 @@
 
 @property (nonatomic) CGPoint ptLastOffset;
 @property (nonatomic) BOOL isRefreshing;
-@property (nonatomic) NSInteger initSegmentIndex;
 
 @end
 
@@ -44,7 +43,7 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(40.0f);
-//        [_segmentCell setTitles:self.segmentTitles];
+        [_segmentCell setTitles:self.segmentTitles];
         _segmentCell.segment.currentIndex = self.initSegmentIndex;
         _segmentCell.segment.delegate = self;
         
@@ -255,6 +254,7 @@
         self.bottomView.hidden = YES;
     }
 }
+
 
 
 -(void)resetDataSource
@@ -523,29 +523,6 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row%2 == 0) {
-        
-    }
-    else if(indexPath.row == self.dataSource.count*2) {
-        
-    }
-    else {
-        [self tableViewCellSelected:tableView andIndexPath:indexPath];
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
--(void)tableViewCellSelected:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath
-{
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-
 }
 
 -(UITableViewCell*)configCellByTableView:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath

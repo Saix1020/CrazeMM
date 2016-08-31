@@ -10,7 +10,6 @@
 
 @implementation HttpOrderRequest
 
-
 -(instancetype)initWithOrderListType:(MMOrderListStyle)type andPage:(NSUInteger)pn
 {
     self = [super init];
@@ -37,7 +36,27 @@
 {
     self = [self initWithOrderListType:type andPage:pn];
     if (self) {
+        
+        //complex=&cbegin=&cend=&ubegin=&uend=
+        
         [self.params addEntriesFromDictionary:conditions];
+//        NSMutableDictionary* cd = [conditions mutableCopy];
+//        if (!cd[@"complex"]) {
+//            cd[@"complex"] = @" ";
+//        }
+//        if (!cd[@"cbegin"]) {
+//            cd[@"cbegin"] = @" ";
+//        }
+//        if (!cd[@"cend"]) {
+//            cd[@"cend"] = @" ";
+//        }
+//        if (!cd[@"ubegin"]) {
+//            cd[@"ubegin"] = @" ";
+//        }
+//        if (!cd[@"uend"]) {
+//            cd[@"uend"] = @" ";
+//        }
+//        [self.params addEntriesFromDictionary:cd];
     }
     
     return self;
