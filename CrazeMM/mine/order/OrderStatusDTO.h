@@ -109,6 +109,8 @@
 @property (nonatomic, copy) NSDictionary* stock;
 @property (nonatomic, strong) DepotDTO* depot;
 
+@property (nonatomic, strong) NSString* lastPayNo;
+
 @end
 
 

@@ -16,6 +16,7 @@
 //    self.message.adjustsFontSizeToFitWidth = YES;
 //    self.detail.adjustsFontSizeToFitWidth = YES;
     self.AlertMsgLabel.adjustsFontSizeToFitWidth = YES;
+    self.AlertMsgLabel.numberOfLines = 0;
 }
 
 @end

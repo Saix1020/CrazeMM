@@ -44,6 +44,8 @@
             self.depot = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
         }
         
+        self.lastPayNo = dict[@"lastPayNo"];
+        
 
     }
     return self;

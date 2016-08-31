@@ -12,6 +12,7 @@
 #import "HttpOrderRemove.h"
 #import "ToBePaidViewController.h"
 #import "PayTimeoutViewController.h"
+#import "PayingViewController.h"
 
 @interface BuyToBePaidListViewController ()
 
@@ -187,6 +188,7 @@
             vc = [[ToBePaidViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
             break;
         case 1:
+            vc = [[PayingViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
             break;
         case 2:
             vc = [[PayTimeoutViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];

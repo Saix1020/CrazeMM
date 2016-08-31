@@ -237,6 +237,8 @@
 		B94573241D75E97D002F75AE /* PersonalEmailModifyViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = B901403E1D712A6E000960F9 /* PersonalEmailModifyViewContoller.m */; };
 		B94573271D766932002F75AE /* PayTimeoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573261D766932002F75AE /* PayTimeoutViewController.m */; };
 		B94573281D766932002F75AE /* PayTimeoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573261D766932002F75AE /* PayTimeoutViewController.m */; };
+		B945732B1D767F15002F75AE /* PayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945732A1D767F15002F75AE /* PayingViewController.m */; };
+		B945732C1D767F15002F75AE /* PayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945732A1D767F15002F75AE /* PayingViewController.m */; };
 		B94E6CC51D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC71D72B6CA005B3DB2 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140401D712A6E000960F9 /* PersonalInfoViewController.m */; };
@@ -1374,6 +1376,8 @@
 		B94573171D75BD65002F75AE /* CommonListCell+OrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CommonListCell+OrderDetail.m"; path = "mine/order/CommonListCell+OrderDetail.m"; sourceTree = "<group>"; };
 		B94573251D766932002F75AE /* PayTimeoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayTimeoutViewController.h; path = mine/order/PayTimeoutViewController.h; sourceTree = "<group>"; };
 		B94573261D766932002F75AE /* PayTimeoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayTimeoutViewController.m; path = mine/order/PayTimeoutViewController.m; sourceTree = "<group>"; };
+		B94573291D767F15002F75AE /* PayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayingViewController.h; path = mine/order/PayingViewController.h; sourceTree = "<group>"; };
+		B945732A1D767F15002F75AE /* PayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayingViewController.m; path = mine/order/PayingViewController.m; sourceTree = "<group>"; };
 		B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewSearchListCell.h; path = search/NewSearchListCell.h; sourceTree = "<group>"; };
 		B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewSearchListCell.m; path = search/NewSearchListCell.m; sourceTree = "<group>"; };
 		B94E6CC31D72AF84005B3DB2 /* HttpRegisterNewMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRegisterNewMobile.h; path = restful/HttpRegisterNewMobile.h; sourceTree = "<group>"; };
@@ -2861,6 +2865,8 @@
 				B94E6CED1D746F9B005B3DB2 /* ToBePaidViewController.m */,
 				B94573251D766932002F75AE /* PayTimeoutViewController.h */,
 				B94573261D766932002F75AE /* PayTimeoutViewController.m */,
+				B94573291D767F15002F75AE /* PayingViewController.h */,
+				B945732A1D767F15002F75AE /* PayingViewController.m */,
 			);
 			name = tobepaid;
 			sourceTree = "<group>";
@@ -4539,6 +4545,7 @@
 				B94573271D766932002F75AE /* PayTimeoutViewController.m in Sources */,
 				B91732291CD1F05400C29698 /* FadeInAnimation.m in Sources */,
 				B9FE71EB1CD6E70400F5EC9F /* _SearchHistory.m in Sources */,
+				B945732B1D767F15002F75AE /* PayingViewController.m in Sources */,
 				B9AD440B1CD3427E00012B31 /* MMAlertView.m in Sources */,
 				B91732441CD1F05400C29698 /* RotateInDownRightAnimation.m in Sources */,
 				B9A780451CD9E34D00A89047 /* ProductRecommendView.m in Sources */,
@@ -4881,6 +4888,7 @@
 				B9EFAE771CED514100F81157 /* FadeInLeftBigAnimation.m in Sources */,
 				B9D1C58A1D0A414E0099BA95 /* RechargeViewController.m in Sources */,
 				B9D1C5811D0701000099BA95 /* BalanceDTO.m in Sources */,
+				B945732C1D767F15002F75AE /* PayingViewController.m in Sources */,
 				B9EFAE781CED514100F81157 /* AddressEditViewController.m in Sources */,
 				B9EFAE791CED514100F81157 /* PayInfoDTO.m in Sources */,
 				B9EFAE7A1CED514100F81157 /* FadeOutLeftAnimation.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "PayTimeoutViewController.h"
 #import "HttpOrderRemove.h"
+#import "HttpOrderOperation.h"
 
 @implementation PayTimeoutViewController
 
@@ -44,10 +45,16 @@
 
 -(void)handleClickEvent:(UIButton*)button
 {
+    
     if([self.bottomButtons indexOfObject:button] == 0){
-        HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:@[@(self.orderDto.id)]];
-        NSString* message = [NSString stringWithFormat:@"确定要删除%ld吗?", self.orderDto.id];
-        [self invokeHttpRequest:request andConfirmTitle:message andSuccessTitle:@"删除成功"];
+        [self invokeHttpRequest:[[HttpOrderRemoveRequest alloc] initWithOrderIds:@[@(self.orderDto.id)]]
+                andConfirmTitle:[NSString stringWithFormat:@"确定要删除%ld吗?", self.orderDto.id]
+                andSuccessTitle:@"删除成功"];
+    }
+    else {
+        [self invokeHttpRequest:[[HttpOrderReactiveRequest alloc] initWithOids:@[@(self.orderDto.id)]]
+                andConfirmTitle:[NSString stringWithFormat:@"确定要激活%ld吗?", self.orderDto.id]
+                andSuccessTitle:@"删除成功"];
     }
 }
 

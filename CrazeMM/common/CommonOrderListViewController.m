@@ -306,6 +306,10 @@
 
 -(BaseListDTO*)dtoAtIndexPath:(NSIndexPath*)indexPath
 {
+    if (self.dataSource.count == 0) {
+        return nil;
+    }
+    
     if (indexPath.row/2 < self.dataSource.count) {
         return self.dataSource[indexPath.row/2];
     }
@@ -523,7 +527,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self tableViewCellSelected:tableView andIndexPath:indexPath];
+    if (indexPath.row%2 == 0) {
+        
+    }
+    else if(indexPath.row == self.dataSource.count*2) {
+        
+    }
+    else {
+        [self tableViewCellSelected:tableView andIndexPath:indexPath];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

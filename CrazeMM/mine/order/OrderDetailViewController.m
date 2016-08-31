@@ -346,18 +346,14 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     [super viewWillLayoutSubviews];
     //    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     self.bottomView.frame = CGRectMake(0, self.view.height-44.f, self.view.bounds.size.width, 44.f);
-    CGFloat rightY = self.view.bounds.size.width;
+    CGFloat rightX = self.view.bounds.size.width;
     for(UIButton* button in self.bottomButtons){
-        [button sizeToFit];
         button.height = 44.f;
-        button.width += 32.f;
-        if(button.width<80){
-            button.width = 80.f;
-        }
-        button.right = rightY;
+        button.width = 80;
+        button.right = rightX;
         button.y = 0;
         
-        rightY -= button.width+1.f;
+        rightX -= button.width+1.f;
         
     }
 }
@@ -869,7 +865,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     [self showAlertViewWithMessage:confirmTitle
                     withOKCallback:^(id x){
                         @strongify(self);
-                        [self showProgressIndicatorWithTitle:confirmTitle];
+                        [self showProgressIndicatorWithTitle:@"正在处理..."];
                         
                         [httpRequest request]
                         .then(^(id responseObj){
