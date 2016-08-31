@@ -33,6 +33,7 @@
 #import "PayInfoViewController.h"
 #import "BuyToBePaidListViewController.h"
 #import "BuyToBeReceiveListViewController.h"
+#import "BuyAllListViewController.h"
 
 @interface MineViewController()
 
@@ -739,6 +740,9 @@
         }
         else if(orderSubType == kOrderSubTypeReceived){
             vc = [[BuyToBeReceiveListViewController alloc] init];
+        }
+        else {
+            vc = [[BuyAllListViewController alloc] init];
         }
         
         if (vc) {

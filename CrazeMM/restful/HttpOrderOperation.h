@@ -32,3 +32,7 @@
 @interface HttpOrderConfirmRequest : HttpBaseOrderOperationRequest
 
 @end
+
+@interface HttpOrderLogicDelete : HttpBaseOrderOperationRequest
+
+@end

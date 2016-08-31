@@ -16,7 +16,8 @@
     if (self) {
         NSString* orderStatus;
         if (type.orderState == TOBESETTLED) {
-            orderStatus = [NSString stringWithFormat:@"%ld,%u,%u", TOBESETTLED, 401u, 500u];
+//            orderStatus = [NSString stringWithFormat:@"%ld,%u,%u", TOBESETTLED, 401u, 500u];
+            orderStatus = [NSString stringWithFormat:@"%ld", TOBESETTLED];
         }
         else {
             orderStatus = [NSString stringWithFormat:@"%ld", type.orderState];
@@ -40,23 +41,6 @@
         //complex=&cbegin=&cend=&ubegin=&uend=
         
         [self.params addEntriesFromDictionary:conditions];
-//        NSMutableDictionary* cd = [conditions mutableCopy];
-//        if (!cd[@"complex"]) {
-//            cd[@"complex"] = @" ";
-//        }
-//        if (!cd[@"cbegin"]) {
-//            cd[@"cbegin"] = @" ";
-//        }
-//        if (!cd[@"cend"]) {
-//            cd[@"cend"] = @" ";
-//        }
-//        if (!cd[@"ubegin"]) {
-//            cd[@"ubegin"] = @" ";
-//        }
-//        if (!cd[@"uend"]) {
-//            cd[@"uend"] = @" ";
-//        }
-//        [self.params addEntriesFromDictionary:cd];
     }
     
     return self;

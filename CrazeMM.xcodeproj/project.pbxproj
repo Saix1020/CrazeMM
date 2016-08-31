@@ -241,6 +241,16 @@
 		B945732C1D767F15002F75AE /* PayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945732A1D767F15002F75AE /* PayingViewController.m */; };
 		B945732F1D771334002F75AE /* BuyToBeReceiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945732E1D771334002F75AE /* BuyToBeReceiveListViewController.m */; };
 		B94573301D771334002F75AE /* BuyToBeReceiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945732E1D771334002F75AE /* BuyToBeReceiveListViewController.m */; };
+		B94573331D772758002F75AE /* ToBeSentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573321D772758002F75AE /* ToBeSentViewController.m */; };
+		B94573341D772758002F75AE /* ToBeSentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573321D772758002F75AE /* ToBeSentViewController.m */; };
+		B94573371D772783002F75AE /* ToBeReceivedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573361D772783002F75AE /* ToBeReceivedViewController.m */; };
+		B94573381D772783002F75AE /* ToBeReceivedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573361D772783002F75AE /* ToBeReceivedViewController.m */; };
+		B945733B1D7727D6002F75AE /* ToBeSettledViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945733A1D7727D6002F75AE /* ToBeSettledViewController.m */; };
+		B945733C1D7727D6002F75AE /* ToBeSettledViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945733A1D7727D6002F75AE /* ToBeSettledViewController.m */; };
+		B945733F1D772F34002F75AE /* BuyAllListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945733E1D772F34002F75AE /* BuyAllListViewController.m */; };
+		B94573401D772F34002F75AE /* BuyAllListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B945733E1D772F34002F75AE /* BuyAllListViewController.m */; };
+		B94573431D7732CD002F75AE /* CompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573421D7732CD002F75AE /* CompleteViewController.m */; };
+		B94573441D7732CD002F75AE /* CompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573421D7732CD002F75AE /* CompleteViewController.m */; };
 		B94E6CC51D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC71D72B6CA005B3DB2 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140401D712A6E000960F9 /* PersonalInfoViewController.m */; };
@@ -1382,6 +1392,16 @@
 		B945732A1D767F15002F75AE /* PayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayingViewController.m; path = mine/order/PayingViewController.m; sourceTree = "<group>"; };
 		B945732D1D771334002F75AE /* BuyToBeReceiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyToBeReceiveListViewController.h; path = mine/order/BuyToBeReceiveListViewController.h; sourceTree = "<group>"; };
 		B945732E1D771334002F75AE /* BuyToBeReceiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyToBeReceiveListViewController.m; path = mine/order/BuyToBeReceiveListViewController.m; sourceTree = "<group>"; };
+		B94573311D772758002F75AE /* ToBeSentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToBeSentViewController.h; path = mine/order/ToBeSentViewController.h; sourceTree = "<group>"; };
+		B94573321D772758002F75AE /* ToBeSentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToBeSentViewController.m; path = mine/order/ToBeSentViewController.m; sourceTree = "<group>"; };
+		B94573351D772783002F75AE /* ToBeReceivedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToBeReceivedViewController.h; path = mine/order/ToBeReceivedViewController.h; sourceTree = "<group>"; };
+		B94573361D772783002F75AE /* ToBeReceivedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToBeReceivedViewController.m; path = mine/order/ToBeReceivedViewController.m; sourceTree = "<group>"; };
+		B94573391D7727D6002F75AE /* ToBeSettledViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToBeSettledViewController.h; path = mine/order/ToBeSettledViewController.h; sourceTree = "<group>"; };
+		B945733A1D7727D6002F75AE /* ToBeSettledViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToBeSettledViewController.m; path = mine/order/ToBeSettledViewController.m; sourceTree = "<group>"; };
+		B945733D1D772F34002F75AE /* BuyAllListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuyAllListViewController.h; path = mine/order/BuyAllListViewController.h; sourceTree = "<group>"; };
+		B945733E1D772F34002F75AE /* BuyAllListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuyAllListViewController.m; path = mine/order/BuyAllListViewController.m; sourceTree = "<group>"; };
+		B94573411D7732CD002F75AE /* CompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompleteViewController.h; path = mine/order/CompleteViewController.h; sourceTree = "<group>"; };
+		B94573421D7732CD002F75AE /* CompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompleteViewController.m; path = mine/order/CompleteViewController.m; sourceTree = "<group>"; };
 		B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewSearchListCell.h; path = search/NewSearchListCell.h; sourceTree = "<group>"; };
 		B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewSearchListCell.m; path = search/NewSearchListCell.m; sourceTree = "<group>"; };
 		B94E6CC31D72AF84005B3DB2 /* HttpRegisterNewMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRegisterNewMobile.h; path = restful/HttpRegisterNewMobile.h; sourceTree = "<group>"; };
@@ -2775,6 +2795,8 @@
 			children = (
 				B99955301CE37372007F26D2 /* OrderDetailViewController.h */,
 				B99955311CE37372007F26D2 /* OrderDetailViewController.m */,
+				B94573411D7732CD002F75AE /* CompleteViewController.h */,
+				B94573421D7732CD002F75AE /* CompleteViewController.m */,
 				B94E6CE11D746DFB005B3DB2 /* supply */,
 				B94E6CE01D746DF2005B3DB2 /* buy */,
 			);
@@ -2801,6 +2823,8 @@
 				B945730D1D7581F8002F75AE /* BuyToBePaidListViewController.m */,
 				B945732D1D771334002F75AE /* BuyToBeReceiveListViewController.h */,
 				B945732E1D771334002F75AE /* BuyToBeReceiveListViewController.m */,
+				B945733D1D772F34002F75AE /* BuyAllListViewController.h */,
+				B945733E1D772F34002F75AE /* BuyAllListViewController.m */,
 			);
 			name = buy;
 			sourceTree = "<group>";
@@ -2880,6 +2904,12 @@
 		B94E6CE31D746E68005B3DB2 /* tobereceived */ = {
 			isa = PBXGroup;
 			children = (
+				B94573311D772758002F75AE /* ToBeSentViewController.h */,
+				B94573321D772758002F75AE /* ToBeSentViewController.m */,
+				B94573351D772783002F75AE /* ToBeReceivedViewController.h */,
+				B94573361D772783002F75AE /* ToBeReceivedViewController.m */,
+				B94573391D7727D6002F75AE /* ToBeSettledViewController.h */,
+				B945733A1D7727D6002F75AE /* ToBeSettledViewController.m */,
 			);
 			name = tobereceived;
 			sourceTree = "<group>";
@@ -4290,6 +4320,7 @@
 				B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */,
 				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
 				B94572FE1D7525C8002F75AE /* LICENSE.md in Sources */,
+				B94573371D772783002F75AE /* ToBeReceivedViewController.m in Sources */,
 				B98218FB1CE84D3400B279E6 /* AddressDTO.m in Sources */,
 				B9D1C5911D0A64340099BA95 /* WithDrawAlertView.m in Sources */,
 				B917323F1CD1F05400C29698 /* FlipOutYAnimation.m in Sources */,
@@ -4329,6 +4360,7 @@
 				B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */,
 				B94572F01D7525B6002F75AE /* UIViewController+KNSemiModal.m in Sources */,
 				B94E6CCC1D72B8FE005B3DB2 /* HttpGenEmailVcodeForUser.m in Sources */,
+				B94573331D772758002F75AE /* ToBeSentViewController.m in Sources */,
 				B9FE71EA1CD6E70400F5EC9F /* UserInfo.m in Sources */,
 				B964F9571CC4A70E003E0D44 /* TabBarController.m in Sources */,
 				B959248F1CDF90A900533E77 /* NSNull+Utils.m in Sources */,
@@ -4346,6 +4378,7 @@
 				B9FE71E81CD6E70400F5EC9F /* SearchHistory.m in Sources */,
 				B91732561CD1F05500C29698 /* HingeAnimation.m in Sources */,
 				B91896FD1CD0EF460061D0B6 /* AccountDetailCell.m in Sources */,
+				B945733F1D772F34002F75AE /* BuyAllListViewController.m in Sources */,
 				B9AD46031CD4E5DA00012B31 /* HttpMobileExistCheckRequest.m in Sources */,
 				B9AD44231CD48C7C00012B31 /* HttpSignupRequest.m in Sources */,
 				B918968C1CCE1D8E0061D0B6 /* FirstAddrCell.m in Sources */,
@@ -4477,6 +4510,7 @@
 				B967E73B1CE57EBD00621F28 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				B94E6CDD1D74695D005B3DB2 /* UIFont+Utils.m in Sources */,
 				B965B73F1D1E18A30021C809 /* PayPasswordForgetViewController.m in Sources */,
+				B94573431D7732CD002F75AE /* CompleteViewController.m in Sources */,
 				B967E6E81CE4B4EB00621F28 /* HttpOrderStatus.m in Sources */,
 				B9A780491CD9FC2900A89047 /* HttpSupplyRequest.m in Sources */,
 				B9AD46291CD6523100012B31 /* M80AttributedLabelAttachment.m in Sources */,
@@ -4650,6 +4684,7 @@
 				B9EFAF8F1CEDA91200F81157 /* SelectionViewController.m in Sources */,
 				B965B7221D1D7DF70021C809 /* ListQueryViewController.m in Sources */,
 				B95A94CB1CE1EBF800A5D9BA /* BaseProductDetailDTO.m in Sources */,
+				B945733B1D7727D6002F75AE /* ToBeSettledViewController.m in Sources */,
 				B99D12DA1CC5DD7E000DFF95 /* UITabBarController+HideTabBar.m in Sources */,
 				B91896861CCE05AF0061D0B6 /* ProductOtherCompanyCell.m in Sources */,
 				B91732611CD1F05500C29698 /* ZoomOutRightAnimation.m in Sources */,
@@ -4817,6 +4852,7 @@
 				B9A149201D1EC870005080D1 /* HttpGoodCatagory.m in Sources */,
 				B9EFAE3C1CED514100F81157 /* HttpMineSupplyShelve.m in Sources */,
 				B9EFAE3D1CED514100F81157 /* SlideInLeftAnimation.m in Sources */,
+				B94573341D772758002F75AE /* ToBeSentViewController.m in Sources */,
 				B9076F5B1D22C8EA001FFDE4 /* CommonListCell.m in Sources */,
 				B9C4BCD11D22689700C719CE /* ConsigneeAddViewController.m in Sources */,
 				B965B7171D1D6F2C0021C809 /* RechargeLogDTO.m in Sources */,
@@ -4873,6 +4909,7 @@
 				B9EFAE651CED514100F81157 /* SwitchCell.m in Sources */,
 				B9EFAE661CED514100F81157 /* HttpAddIntention.m in Sources */,
 				B9EFAE671CED514100F81157 /* AppDelegate.m in Sources */,
+				B94573381D772783002F75AE /* ToBeReceivedViewController.m in Sources */,
 				B9EFAE681CED514100F81157 /* FadeInDownBigAnimation.m in Sources */,
 				B9EFAE691CED514100F81157 /* SignWithPicCapViewController.m in Sources */,
 				B965B73C1D1E184E0021C809 /* PayPasswordChangeViewController.m in Sources */,
@@ -4894,9 +4931,11 @@
 				B9EFAE761CED514100F81157 /* OrderDetailDTO.m in Sources */,
 				B94573301D771334002F75AE /* BuyToBeReceiveListViewController.m in Sources */,
 				B9EFAE771CED514100F81157 /* FadeInLeftBigAnimation.m in Sources */,
+				B94573401D772F34002F75AE /* BuyAllListViewController.m in Sources */,
 				B9D1C58A1D0A414E0099BA95 /* RechargeViewController.m in Sources */,
 				B9D1C5811D0701000099BA95 /* BalanceDTO.m in Sources */,
 				B945732C1D767F15002F75AE /* PayingViewController.m in Sources */,
+				B945733C1D7727D6002F75AE /* ToBeSettledViewController.m in Sources */,
 				B9EFAE781CED514100F81157 /* AddressEditViewController.m in Sources */,
 				B9EFAE791CED514100F81157 /* PayInfoDTO.m in Sources */,
 				B9EFAE7A1CED514100F81157 /* FadeOutLeftAnimation.m in Sources */,
@@ -4910,6 +4949,7 @@
 				B9EFAE811CED514100F81157 /* MASViewAttribute.m in Sources */,
 				B99578E01D241D5C00F3D30B /* MortgageDTO.m in Sources */,
 				B94E6CDE1D74695D005B3DB2 /* UIFont+Utils.m in Sources */,
+				B94573441D7732CD002F75AE /* CompleteViewController.m in Sources */,
 				B9EFAE821CED514100F81157 /* RotateInUpLeftAnimation.m in Sources */,
 				B9EFAE831CED514100F81157 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				B9EFAE841CED514100F81157 /* HttpOrderStatus.m in Sources */,

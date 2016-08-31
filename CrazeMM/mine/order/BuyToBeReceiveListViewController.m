@@ -7,6 +7,11 @@
 //
 
 #import "BuyToBeReceiveListViewController.h"
+#import "ToBeSentViewController.h"
+#import "ToBeReceivedViewController.h"
+#import "ToBeSettledViewController.h"
+
+
 
 @implementation BuyToBeReceiveListViewController
 
@@ -125,6 +130,17 @@
     OrderDetailViewController* vc;
     OrderDetailDTO* dto = (OrderDetailDTO*)[self dtoAtIndexPath:indexPath];
     switch (self.selectedSegmentIndex) {
+        case 0:
+            vc = [[ToBeSentViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
+            break;
+        case 1:
+            vc = [[ToBeReceivedViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
+            break;
+        case 2:
+            vc = [[ToBeSettledViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
+            break;
+        default:
+            break;
     }
     
     if (vc) {
