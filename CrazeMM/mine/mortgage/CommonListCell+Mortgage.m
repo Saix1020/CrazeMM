@@ -48,12 +48,12 @@
         [attributedText appendAttributedString:[[NSAttributedString alloc] initWithString:secondComopent attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.f]}]];
     }
     
-    self.secondLabel.attributedText = attributedText;
+    self.firstLabel.attributedText = attributedText;
 }
 
 -(void)formatPriceLabel
 {
-    NSString* firstComponent = [NSString stringWithFormat:@"单台定价: "];
+    NSString* firstComponent = [NSString stringWithFormat:@"抵押单价: "];
     NSMutableAttributedString *attributedText =
     [[NSMutableAttributedString alloc] initWithString: firstComponent
                                            attributes:@{
@@ -68,12 +68,12 @@
                                                                                        NSFontAttributeName: [UIFont systemFontOfSize:13.f],
                                                                                        NSForegroundColorAttributeName: [UIColor redColor]                                             }]];
     
-    self.thirdLabel.attributedText = attributedText;
+    self.secondLabel.attributedText = attributedText;
 }
 
 -(void)formatTotalPriceLabel
 {
-    NSString* firstComponent = [NSString stringWithFormat:@"总价: "];
+    NSString* firstComponent = [NSString stringWithFormat:@"总金额: "];
     NSMutableAttributedString *attributedText =
     [[NSMutableAttributedString alloc] initWithString: firstComponent
                                            attributes:@{
