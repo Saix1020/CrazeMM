@@ -8,6 +8,7 @@
 
 #import "ToBePaidViewController.h"
 #import "PayViewController.h"
+#import "HttpOrderCancel.h"
 
 @implementation ToBePaidViewController
 
@@ -31,14 +32,22 @@
     return [NSString stringWithFormat:@"距离超时还剩: %@", [NSString leftTimeString2:self.leftSeconds*1000]];
 }
 
--(NSString*)bottomButtonString
+-(NSArray*)bottomButtonsTitle
 {
-    return @"付款";
+    return @[@"付款", @"撤销"];
 }
 
 -(void)handleClickEvent:(UIButton*)button
 {
-    [self.navigationController pushViewController:[[PayViewController alloc] initWithOrderStatusDTO:self.orderStatusDto] animated:YES];
+    if ([self.bottomButtons indexOfObject:button] == 0) { //@"付款"
+        [self.navigationController pushViewController:[[PayViewController alloc] initWithOrderStatusDTO:self.orderStatusDto] animated:YES];
+
+    }
+    else { //@"撤销"
+        NSString* message = [NSString stringWithFormat:@"确认撤销订单%ld吗?", self.orderDto.id];
+        HttpOrderCancelRequest* request = [[HttpOrderCancelRequest alloc] initWithOderId:self.orderStatusDto.id];
+        [self invokeHttpRequest:request andConfirmTitle:message andSuccessTitle:@"撤销成功"];
+    }
 
 }
 

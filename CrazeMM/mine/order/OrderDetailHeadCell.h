@@ -12,5 +12,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelTopConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *promptLabel;
+
+-(void)setTitleLabelColor:(UIColor*)color;
+
 +(CGFloat)cellHeight;
 @end

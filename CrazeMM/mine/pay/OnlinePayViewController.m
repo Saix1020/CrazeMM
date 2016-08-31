@@ -10,6 +10,7 @@
 #import "HttpPay.h"
 #import "PayResultViewController.h"
 #import "OrderListViewController.h"
+#import "CommonOrderListViewController.h"
 
 @interface OnlinePayViewController ()
 
@@ -80,8 +81,29 @@
     [self showAlertViewWithMessage:@"您确认要离开支付页面吗?"
                     withOKCallback:^(id x){
                         @strongify(self);
-                        [self.navigationController popViewControllerAnimated:YES];
-                        
+                        // TODO
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+//                        NSArray* vcs = self.navigationController.viewControllers;
+//                        if (vcs.count<=2) {
+//                            [self.navigationController popToRootViewControllerAnimated:YES];
+//                        }
+//                        else {
+//                            UIViewController* vc = vcs[vcs.count-2];
+//                            // we should not back to the pay view controller
+//                            // for the order is on paying status.
+//                            // also we should refresh the list view.
+//                            if ([vc isKindOfClass:NSClassFromString(@"PayViewController")]) {
+//                                UIViewController* popVC = vcs[vcs.count-3];
+//                                if([popVC isKindOfClass:NSClassFromString(@"OrderDetailViewController")]){
+////                                    CommonOrderListViewController* cvc = (CommonOrderListViewController*)popVC;
+////                                    [cvc resetDataSource];
+//                                }
+//                                [self.navigationController popToViewController:popVC animated:YES];
+//                            }
+//                            else {
+//                                [self.navigationController popViewControllerAnimated:YES];
+//                            }
+//                        }
                     }
                  andCancelCallback:^(id x){
                  }];

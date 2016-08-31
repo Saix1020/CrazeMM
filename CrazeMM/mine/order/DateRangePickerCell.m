@@ -145,6 +145,14 @@
 -(void)datePickerDidHide:(THDatePickerViewController *)datePicker
 {
     self.editingTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    if (self.editingTextField == self.dateFromField) {
+        self.fromDate = self.curDate;
+    }
+    else {
+        self.toDate = self.curDate;
+    }
+
 }
 
 

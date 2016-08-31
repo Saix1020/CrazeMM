@@ -24,6 +24,12 @@
     [self fomartTotalPriceLabel];
 }
 
+-(void)setSelectedAll:(BOOL)selectedAll
+{
+    _selectedAll = selectedAll;
+    self.selectAllCheckBox.on = selectedAll;
+}
+
 -(void)setTotalPrice:(CGFloat)totalPrice
 {
     _totalPrice = totalPrice;
@@ -191,5 +197,12 @@
     }
 }
 
+
+
+-(void)reset
+{
+    self.selectedAll = NO;
+    self.totalPrice = 0;
+}
 
 @end

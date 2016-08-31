@@ -47,16 +47,45 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 @implementation OrderDetailViewController
 
+-(NSArray*)bottomButtonsTitle
+{
+    return @[[self promptString][@"bottomButtonTitle"]];
+}
+
+-(NSArray*)bottomButtons
+{
+    if(!_bottomButtons) {
+        NSMutableArray* buttons = [[NSMutableArray alloc] init];
+        
+        for(NSString* title in self.bottomButtonsTitle){
+            UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
+            [button setTitle:title forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            button.titleLabel.font = [UIFont middleFont];
+            button.backgroundColor = [UIColor redColor];
+            [button addTarget:self action:@selector(handleClickEvent:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [buttons addObject:button];
+            [self.bottomView addSubview:button];
+            [button sizeToFit];
+
+        }
+        _bottomButtons = buttons;
+    }
+    
+    return _bottomButtons;
+}
+
 -(UIView*)bottomView
 {
     if (!_bottomView) {
         _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44.f)];
         [self.view addSubview:_bottomView];
-        [_bottomView addSubview:self.confirmButton];
+//        [_bottomView addSubview:self.confirmButton];
         _bottomView.backgroundColor = [UIColor whiteColor];
         
         // we hide it now
-        _bottomView.hidden = NO;
+        // _bottomView.hidden = NO;
     }
     
     return _bottomView;
@@ -117,6 +146,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.priceLabel.textColor = textColor;
         
         _contentCell.layer.borderWidth = 0.f;
+        
+        // move the button into the bottom view
+        _contentCell.canelButton.hidden = YES;
 
     }
     return _contentCell;
@@ -314,6 +346,20 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     [super viewWillLayoutSubviews];
     //    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     self.bottomView.frame = CGRectMake(0, self.view.height-44.f, self.view.bounds.size.width, 44.f);
+    CGFloat rightY = self.view.bounds.size.width;
+    for(UIButton* button in self.bottomButtons){
+        [button sizeToFit];
+        button.height = 44.f;
+        button.width += 32.f;
+        if(button.width<80){
+            button.width = 80.f;
+        }
+        button.right = rightY;
+        button.y = 0;
+        
+        rightY -= button.width+1.f;
+        
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -338,13 +384,13 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     self.contentCell.orderDetailDTO = [[OrderDetailDTO alloc]initWithOrderStatusDTO:orderStatusDto];
     self.logsCell.logs = orderStatusDto.logs;
     
-    [self.confirmButton setTitle:[self promptString][@"bottomButtonTitle"]
-                    forState:UIControlStateNormal];
+//    [self.confirmButton setTitle:[self promptString][@"bottomButtonTitle"]
+//                    forState:UIControlStateNormal];
     
     if (self.style.orderType == kOrderTypeBuy
         && self.style.orderSubType == kOrderSubTypePay
         && self.orderStatusDto.state == TOBEPAID) {
-        self.contentCell.canelButton.hidden = NO;
+//        self.contentCell.canelButton.hidden = NO;
         @weakify(self);
         self.contentCell.canelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
             @strongify(self);
@@ -425,7 +471,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     NSInteger elapseSeconds = self.elapseSeconds;
     
     if (self.style.orderType == kOrderTypeBuy) {
-        switch (self.orderStatusDto.state) {
+        switch (self.style.orderState) {
             case TOBEPAID:
             {
                 string =  @"请您尽快付款";
@@ -532,14 +578,17 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     return [self promptString][@"subString"];
 }
 
+-(void)handleClickEvent:(UIButton *)button
+{
+    //[self showProgressIndicatorWithTitle:@"请稍等..."];
+
+    [self handleButtomButtonClicked:button];
+    
+    //[self dismissProgressIndicator];
+}
+
 -(void)handleButtomButtonClicked:(UIButton*)sender
 {
-    // do the click action in subclass.
-    if([self respondsToSelector:@selector(handleClickEvent:)]){
-        [self handleClickEvent:sender];
-        return;
-    }
-    
     @weakify(self);
     NSArray* operatorDtoIds = @[@(self.orderStatusDto.id)];
     
@@ -580,7 +629,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                         }
                                      andCancelCallback:nil];
                         
-                        }
+                    }
                         break;
                     case PAYCOMPLETE:
                         NSLog(@"我买的货->待付款->已支付");
@@ -619,7 +668,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                             });;
                                         }
                                      andCancelCallback:nil];
-
+                        
                     }
                         break;
                     case RECEIVECOMPLETE:
@@ -651,7 +700,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                         }
                         sendVC.delegate = orderListVC;
                         [self.navigationController pushViewController:sendVC animated:YES];
-
+                        
                     }
                         break;
                     case SENTCOMPLETE:
@@ -705,6 +754,20 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     }
 }
 
+-(AFPromise*)asyncRequest:(BaseHttpRequest*)request
+{
+    [self showProgressIndicatorWithTitle:@"请稍等..."];
+    return [AFPromise promiseWithResolverBlock:^(PMKResolver resolver){
+        [request request].then(^(id x){
+            resolver(x);
+        });
+    }].finally(^(){
+        [self dismissProgressIndicator];
+    });
+}
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -741,6 +804,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 cell = self.addrCell;
                 break;
             case kOrderDetailContentRow:
+                self.contentCell.canelButton.hidden = YES;
                 cell = self.contentCell;
                 break;
             case kOrderDetailStatusRow:
@@ -797,6 +861,43 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     
     return 0;
 }
+
+#pragma - mark Async http request handle
+-(void)invokeHttpRequest:(BaseHttpRequest*)httpRequest andConfirmTitle:(NSString*)confirmTitle andSuccessTitle:(NSString*)successTitle
+{
+    @weakify(self);
+    [self showAlertViewWithMessage:confirmTitle
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        [self showProgressIndicatorWithTitle:confirmTitle];
+                        
+                        [httpRequest request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (httpRequest.response.ok) {
+                                if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
+                                    [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                }
+                                
+                                [self showAlertViewWithMessage:successTitle withCallback:^(id x){
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                }];
+                                
+                            }
+                            else {
+                                [self showAlertViewWithMessage:httpRequest.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        })
+                        .finally(^(){
+                            [self dismissProgressIndicator];
+                        });
+                    }
+                 andCancelCallback:nil];
+}
+
 
 -(void)dealloc
 {

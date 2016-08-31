@@ -267,6 +267,8 @@
     [self.dataSource removeAllObjects];
     [self.tableView reloadData];
     
+    [self.bottomView reset];
+    
     self.listQueryRequest = [self makeListQueryRequest];
     [self requestDataSource];
 }
@@ -302,7 +304,13 @@
     });
 }
 
-
+-(BaseListDTO*)dtoAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.row/2 < self.dataSource.count) {
+        return self.dataSource[indexPath.row/2];
+    }
+    return nil;
+}
 
 -(AnyPromise*)handleHeaderRefresh
 {
@@ -511,6 +519,21 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self tableViewCellSelected:tableView andIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)tableViewCellSelected:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+
 }
 
 -(UITableViewCell*)configCellByTableView:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath

@@ -24,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *addtionalButton;
 
 @property (nonatomic) CGFloat totalPrice;
+@property (nonatomic) BOOL selectedAll;
+
+-(void)reset;
 
 //-(void)setOrderStyle:(MMOrderListStyle)style;
 

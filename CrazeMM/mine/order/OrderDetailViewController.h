@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UIView* bottomView;
+@property (nonatomic, readonly) NSArray* bottomButtonsTitle;
+@property (nonatomic, strong) NSArray* bottomButtons;
 @property (nonatomic, strong) UIButton* confirmButton;
 @property (nonatomic) MMOrderListStyle style;
 @property (nonatomic, strong) OrderDetailDTO* orderDto;
@@ -51,4 +53,7 @@
 -(instancetype)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto;
 +(OrderDetailViewController*)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto;
 -(void)handleClickEvent:(UIButton*)button;
+
+-(void)invokeHttpRequest:(BaseHttpRequest*)httpRequest andConfirmTitle:(NSString*)confirmTitle andSuccessTitle:(NSString*)successTitle;
+
 @end

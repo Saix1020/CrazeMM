@@ -35,6 +35,11 @@
     // Configure the view for the selected state
 }
 
+-(void)setTitleLabelColor:(UIColor*)color
+{
+    self.titleLabel.textColor = color;
+}
+
 +(CGFloat)cellHeight
 {
     return 70.f;

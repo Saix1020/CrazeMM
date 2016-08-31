@@ -36,6 +36,25 @@
     }
 }
 
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated andDiscardVC:(NSArray*)discardVCs
+{
+    if ([BaseNavigationController checkIfNeedAuthedViewController:viewController] && ![[UserCenter defaultCenter] isLogined]) {
+        LoginViewController* loginVC = [[LoginViewController alloc] init];
+        loginVC.nextVC = viewController;
+        
+        [super pushViewController:loginVC animated:animated];
+    }
+    
+    else {
+        [super pushViewController:viewController animated:animated];
+        NSMutableArray* vcs = [self.viewControllers mutableCopy];
+        [vcs removeObjectsInArray:discardVCs];
+        self.viewControllers = vcs;
+    }
+    
+    [self setupBackButtonIfNeeded:viewController];
+}
+
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if ([BaseNavigationController checkIfNeedAuthedViewController:viewController] && ![[UserCenter defaultCenter] isLogined]) {
@@ -49,6 +68,12 @@
         [super pushViewController:viewController animated:animated];
     }
     
+    [self setupBackButtonIfNeeded:viewController];
+    
+}
+
+-(void)setupBackButtonIfNeeded:(UIViewController*)viewController
+{
     if (self.viewControllers.count>1) {
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:nil action:nil];
         @weakify(self)
@@ -68,7 +93,6 @@
             return [RACSignal empty];
         }];
     }
-    
 }
 
 - (nullable UIViewController *)popViewControllerAnimated:(BOOL)animated

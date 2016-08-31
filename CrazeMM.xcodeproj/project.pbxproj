@@ -235,6 +235,8 @@
 		B94573221D75E95E002F75AE /* InfoLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B901404C1D712A82000960F9 /* InfoLabelCell.m */; };
 		B94573231D75E960002F75AE /* TimeoutButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B901404E1D712A82000960F9 /* TimeoutButton.m */; };
 		B94573241D75E97D002F75AE /* PersonalEmailModifyViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = B901403E1D712A6E000960F9 /* PersonalEmailModifyViewContoller.m */; };
+		B94573271D766932002F75AE /* PayTimeoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573261D766932002F75AE /* PayTimeoutViewController.m */; };
+		B94573281D766932002F75AE /* PayTimeoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B94573261D766932002F75AE /* PayTimeoutViewController.m */; };
 		B94E6CC51D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */ = {isa = PBXBuildFile; fileRef = B94E6CC41D72AF84005B3DB2 /* HttpRegisterNewMobile.m */; };
 		B94E6CC71D72B6CA005B3DB2 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140401D712A6E000960F9 /* PersonalInfoViewController.m */; };
@@ -1370,6 +1372,8 @@
 		B94573111D758272002F75AE /* NewOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewOrderListViewController.m; path = mine/order/NewOrderListViewController.m; sourceTree = "<group>"; };
 		B94573161D75BD65002F75AE /* CommonListCell+OrderDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CommonListCell+OrderDetail.h"; path = "mine/order/CommonListCell+OrderDetail.h"; sourceTree = "<group>"; };
 		B94573171D75BD65002F75AE /* CommonListCell+OrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CommonListCell+OrderDetail.m"; path = "mine/order/CommonListCell+OrderDetail.m"; sourceTree = "<group>"; };
+		B94573251D766932002F75AE /* PayTimeoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayTimeoutViewController.h; path = mine/order/PayTimeoutViewController.h; sourceTree = "<group>"; };
+		B94573261D766932002F75AE /* PayTimeoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayTimeoutViewController.m; path = mine/order/PayTimeoutViewController.m; sourceTree = "<group>"; };
 		B94B7B8C1CF94C2500C8B033 /* NewSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewSearchListCell.h; path = search/NewSearchListCell.h; sourceTree = "<group>"; };
 		B94B7B8D1CF94C2500C8B033 /* NewSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewSearchListCell.m; path = search/NewSearchListCell.m; sourceTree = "<group>"; };
 		B94E6CC31D72AF84005B3DB2 /* HttpRegisterNewMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpRegisterNewMobile.h; path = restful/HttpRegisterNewMobile.h; sourceTree = "<group>"; };
@@ -2513,8 +2517,8 @@
 				B967E6F01CE4CDC500621F28 /* OrderDefine.m */,
 				B9C395151CF1E50300AB44B6 /* OrderSendViewController.h */,
 				B9C395161CF1E50300AB44B6 /* OrderSendViewController.m */,
-				B945730A1D7554AD002F75AE /* detail */,
 				B94E6CDF1D746DDF005B3DB2 /* list */,
+				B945730A1D7554AD002F75AE /* detail */,
 				B91896961CCE51B00061D0B6 /* view */,
 			);
 			name = order;
@@ -2855,6 +2859,8 @@
 			children = (
 				B94E6CEC1D746F9B005B3DB2 /* ToBePaidViewController.h */,
 				B94E6CED1D746F9B005B3DB2 /* ToBePaidViewController.m */,
+				B94573251D766932002F75AE /* PayTimeoutViewController.h */,
+				B94573261D766932002F75AE /* PayTimeoutViewController.m */,
 			);
 			name = tobepaid;
 			sourceTree = "<group>";
@@ -4530,6 +4536,7 @@
 				B902B6E71D026CF5005B6F5C /* MineStockDTO.m in Sources */,
 				B91896EB1CD07AD50061D0B6 /* SupplyListCell.m in Sources */,
 				B9076F4D1D22C716001FFDE4 /* MortgageViewController.m in Sources */,
+				B94573271D766932002F75AE /* PayTimeoutViewController.m in Sources */,
 				B91732291CD1F05400C29698 /* FadeInAnimation.m in Sources */,
 				B9FE71EB1CD6E70400F5EC9F /* _SearchHistory.m in Sources */,
 				B9AD440B1CD3427E00012B31 /* MMAlertView.m in Sources */,
@@ -4951,6 +4958,7 @@
 				B9EFAEB01CED514100F81157 /* AddrRegionCell.m in Sources */,
 				B9EFAEB11CED514100F81157 /* ProductDescriptionDTO.m in Sources */,
 				B9EFAEB21CED514100F81157 /* UIButton+Utils.m in Sources */,
+				B94573281D766932002F75AE /* PayTimeoutViewController.m in Sources */,
 				B9EFAEB41CED514100F81157 /* BuyListViewController.m in Sources */,
 				B9EFAEB51CED514100F81157 /* HttpPay.m in Sources */,
 				B9076F521D22C7D9001FFDE4 /* MortgageListCell.m in Sources */,

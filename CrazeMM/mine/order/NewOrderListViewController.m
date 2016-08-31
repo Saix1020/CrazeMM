@@ -151,6 +151,7 @@
     if(self.dataSource){
         [self.dataSource removeObject:orderDto];
         [self.tableView reloadData];
+        [self updateBottomView];
     }
 }
 
@@ -159,6 +160,7 @@
     if(self.dataSource){
         [self.dataSource removeObject:orderDto];
         [self.tableView reloadData];
+        [self updateBottomView];
     }
 }
 
@@ -167,7 +169,36 @@
     if(self.dataSource){
         [self.dataSource removeObjectsInArray:orderDtos];
         [self.tableView reloadData];
+        [self updateBottomView];
     }
+}
+
+#pragma - mark Async http request
+-(void)invokeHttpRequest:(BaseHttpRequest*)httpRequest andConfirmTitle:(NSString *)confirmTitle andSuccessTitle:(NSString *)successTitle
+{
+    @weakify(self);
+    [self showAlertViewWithMessage:confirmTitle
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        [httpRequest request]
+                        .then(^(id responseObj){
+                            NSLog(@"%@", responseObj);
+                            if (httpRequest.response.ok) {
+                                for (OrderDetailDTO* dto in self.selectedData){
+                                    [self.dataSource removeObject:dto];
+                                }
+                                [self.tableView reloadData];
+                                [self showAlertViewWithMessage:successTitle];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:httpRequest.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        });
+                    }
+                 andCancelCallback:nil];
 }
 
 @end

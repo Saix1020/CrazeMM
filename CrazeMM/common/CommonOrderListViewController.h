@@ -53,6 +53,7 @@
 -(HttpListQueryRequest*)makeListQueryRequest;
 -(AnyPromise*)requestDataSource;
 -(void)resetDataSource;
+-(BaseListDTO*)dtoAtIndexPath:(NSIndexPath*)indexPath;
 
 // method for bottomView
 @property (nonatomic) NSString* bottomViewButtonTitle;
@@ -70,5 +71,6 @@
 -(void)bottomViewAddtionalButtonClicked:(UIButton*)button;
 -(void)updateBottomView;
 
+-(void)tableViewCellSelected:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath;
 
 @end

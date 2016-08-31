@@ -10,6 +10,8 @@
 #import "HttpOrder.h"
 #import "PayViewController.h"
 #import "HttpOrderRemove.h"
+#import "ToBePaidViewController.h"
+#import "PayTimeoutViewController.h"
 
 @interface BuyToBePaidListViewController ()
 
@@ -73,28 +75,9 @@
         [self showAlertViewWithMessage:@"请选择需要删除的订单"];
         return;
     }
-    
-    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确定要删除选中的%ld条订单吗?", self.operatorDtoIds.count]
-                    withOKCallback:^(id x){
-                        HttpOrderRemoveRequest* request = [[HttpOrderRemoveRequest alloc] initWithOrderIds:self.operatorDtoIds];
-                        [request request]
-                        .then(^(id responseObj){
-                            NSLog(@"%@", responseObj);
-                            if (request.response.ok) {
-                                for (OrderDetailDTO* dto in operatorDtos){
-                                    [self.dataSource removeObject:dto];
-                                }
-                                [self.tableView reloadData];
-                            }
-                            else {
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        });
-                    }
-                    andCancelCallback:nil];
+    [self invokeHttpRequest:[[HttpOrderRemoveRequest alloc] initWithOrderIds:self.operatorDtoIds]
+            andConfirmTitle:[NSString stringWithFormat:@"确定要删除选中的%ld条订单吗?", self.operatorDtoIds.count]
+            andSuccessTitle:@"删除成功"];
 }
 
 
@@ -194,5 +177,30 @@
             break;
     }
 }
+
+-(void)tableViewCellSelected:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath
+{
+    OrderDetailViewController* vc;
+    OrderDetailDTO* dto = (OrderDetailDTO*)[self dtoAtIndexPath:indexPath];
+    switch (self.selectedSegmentIndex) {
+        case 0:
+            vc = [[ToBePaidViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
+            break;
+        case 1:
+            break;
+        case 2:
+            vc = [[PayTimeoutViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
+            break;
+        default:
+            break;
+    }
+    
+    if (vc) {
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+
 
 @end

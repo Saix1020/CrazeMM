@@ -19,4 +19,7 @@
 
 @property (nonatomic, readonly) NSArray* operatorDtoIds;
 
+
+-(void)invokeHttpRequest:(BaseHttpRequest*)httpRequest andConfirmTitle:(NSString *)confirmTitle andSuccessTitle:(NSString *)successTitle;
+
 @end
