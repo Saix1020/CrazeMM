@@ -31,6 +31,8 @@
 @property (nonatomic, copy) NSArray* segmentTitles;
 @property (nonatomic, readonly) NSInteger selectedSegmentIndex;
 @property (nonatomic) BOOL hiddenSegment;
+@property (nonatomic) NSInteger initSegmentIndex;
+
 
 @property (nonatomic, strong) CommonBottomView* bottomView;
 @property (nonatomic, strong) UITableView* tableView;

@@ -32,6 +32,7 @@
 #import "PersonalInfoViewController.h"
 #import "PayInfoViewController.h"
 #import "BuyToBePaidListViewController.h"
+#import "BuyToBeReceiveListViewController.h"
 
 @interface MineViewController()
 
@@ -731,11 +732,21 @@
         }
         
     }
-    if(orderSubType == kOrderSubTypePay && orderType == kOrderTypeBuy){
-        BuyToBePaidListViewController* vc = [[BuyToBePaidListViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+    if(orderType == kOrderTypeBuy){
+        NewOrderListViewController* vc;
+        if(orderSubType == kOrderSubTypePay){
+            vc = [[BuyToBePaidListViewController alloc] init];
+        }
+        else if(orderSubType == kOrderSubTypeReceived){
+            vc = [[BuyToBeReceiveListViewController alloc] init];
+        }
         
+        if (vc) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+
     }
+    
     else if (orderSubType!=kOrderSubTypeAll) {
         OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
         [self.navigationController pushViewController:orderListVC animated:YES];

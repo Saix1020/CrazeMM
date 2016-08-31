@@ -146,11 +146,6 @@
 
 }
 
--(HttpListQueryRequest*)makeListQueryRequest
-{
-    return [[HttpOrderRequest alloc]  initWithOrderListType:self.orderListStyle andPage:self.pageNumber+1 andConditions:self.searchConditions];
-}
-
 #pragma -- mark custom segment delegate
 
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index

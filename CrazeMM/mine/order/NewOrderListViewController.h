@@ -10,6 +10,8 @@
 #import "OrderListFilterViewController.h"
 #import "OrderDefine.h"
 #import "OrderDetailViewController.h"
+#import "HttpOrderOperation.h"
+
 
 @interface NewOrderListViewController : CommonOrderListViewController<OrderListFilterViewControllerDelegate, OrderDetailViewControllerDelegate>
 
