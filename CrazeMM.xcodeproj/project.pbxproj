@@ -620,6 +620,9 @@
 		B9D1C5941D0A64440099BA95 /* WithDrawAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9D1C5931D0A64440099BA95 /* WithDrawAlertView.xib */; };
 		B9D1C5951D0A64440099BA95 /* WithDrawAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9D1C5931D0A64440099BA95 /* WithDrawAlertView.xib */; };
 		B9D1C5961D0C575E0099BA95 /* StockSellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B902B6DB1D026C88005B6F5C /* StockSellCell.m */; };
+		B9E660F71D7819D00072113A /* SupplyToBePaidListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E660F61D7819D00072113A /* SupplyToBePaidListViewController.m */; };
+		B9E660FB1D7821760072113A /* SupplyToBeSentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E660FA1D7821760072113A /* SupplyToBeSentListViewController.m */; };
+		B9E660FC1D7821760072113A /* SupplyToBeSentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E660FA1D7821760072113A /* SupplyToBeSentListViewController.m */; };
 		B9E84BC11CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC21CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */; };
@@ -1869,6 +1872,10 @@
 		B9D1C58F1D0A64340099BA95 /* WithDrawAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithDrawAlertView.h; path = mine/account/WithDrawAlertView.h; sourceTree = "<group>"; };
 		B9D1C5901D0A64340099BA95 /* WithDrawAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithDrawAlertView.m; path = mine/account/WithDrawAlertView.m; sourceTree = "<group>"; };
 		B9D1C5931D0A64440099BA95 /* WithDrawAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WithDrawAlertView.xib; sourceTree = "<group>"; };
+		B9E660F51D7819D00072113A /* SupplyToBePaidListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyToBePaidListViewController.h; path = mine/order/SupplyToBePaidListViewController.h; sourceTree = "<group>"; };
+		B9E660F61D7819D00072113A /* SupplyToBePaidListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyToBePaidListViewController.m; path = mine/order/SupplyToBePaidListViewController.m; sourceTree = "<group>"; };
+		B9E660F91D7821760072113A /* SupplyToBeSentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyToBeSentListViewController.h; path = mine/order/SupplyToBeSentListViewController.h; sourceTree = "<group>"; };
+		B9E660FA1D7821760072113A /* SupplyToBeSentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyToBeSentListViewController.m; path = mine/order/SupplyToBeSentListViewController.m; sourceTree = "<group>"; };
 		B9E84BBF1CEF496B003FEAF5 /* MineBuyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyEditViewController.h; path = mine/buy/MineBuyEditViewController.h; sourceTree = "<group>"; };
 		B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyEditViewController.m; path = mine/buy/MineBuyEditViewController.m; sourceTree = "<group>"; };
 		B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBuyOrder.h; path = restful/HttpBuyOrder.h; sourceTree = "<group>"; };
@@ -2797,8 +2804,18 @@
 				B99955311CE37372007F26D2 /* OrderDetailViewController.m */,
 				B94573411D7732CD002F75AE /* CompleteViewController.h */,
 				B94573421D7732CD002F75AE /* CompleteViewController.m */,
-				B94E6CE11D746DFB005B3DB2 /* supply */,
-				B94E6CE01D746DF2005B3DB2 /* buy */,
+				B94E6CEC1D746F9B005B3DB2 /* ToBePaidViewController.h */,
+				B94E6CED1D746F9B005B3DB2 /* ToBePaidViewController.m */,
+				B94573251D766932002F75AE /* PayTimeoutViewController.h */,
+				B94573261D766932002F75AE /* PayTimeoutViewController.m */,
+				B94573291D767F15002F75AE /* PayingViewController.h */,
+				B945732A1D767F15002F75AE /* PayingViewController.m */,
+				B94573311D772758002F75AE /* ToBeSentViewController.h */,
+				B94573321D772758002F75AE /* ToBeSentViewController.m */,
+				B94573351D772783002F75AE /* ToBeReceivedViewController.h */,
+				B94573361D772783002F75AE /* ToBeReceivedViewController.m */,
+				B94573391D7727D6002F75AE /* ToBeSettledViewController.h */,
+				B945733A1D7727D6002F75AE /* ToBeSettledViewController.m */,
 			);
 			name = detail;
 			sourceTree = "<group>";
@@ -2832,6 +2849,10 @@
 		B94573151D75828D002F75AE /* supply */ = {
 			isa = PBXGroup;
 			children = (
+				B9E660F51D7819D00072113A /* SupplyToBePaidListViewController.h */,
+				B9E660F61D7819D00072113A /* SupplyToBePaidListViewController.m */,
+				B9E660F91D7821760072113A /* SupplyToBeSentListViewController.h */,
+				B9E660FA1D7821760072113A /* SupplyToBeSentListViewController.m */,
 			);
 			name = supply;
 			sourceTree = "<group>";
@@ -2868,64 +2889,6 @@
 				B94573141D758280002F75AE /* buy */,
 			);
 			name = list;
-			sourceTree = "<group>";
-		};
-		B94E6CE01D746DF2005B3DB2 /* buy */ = {
-			isa = PBXGroup;
-			children = (
-				B94E6CE31D746E68005B3DB2 /* tobereceived */,
-				B94E6CE21D746E4E005B3DB2 /* tobepaid */,
-			);
-			name = buy;
-			sourceTree = "<group>";
-		};
-		B94E6CE11D746DFB005B3DB2 /* supply */ = {
-			isa = PBXGroup;
-			children = (
-				B94E6CE61D746EA6005B3DB2 /* tobecomfirmed */,
-				B94E6CE51D746E92005B3DB2 /* tobesend */,
-			);
-			name = supply;
-			sourceTree = "<group>";
-		};
-		B94E6CE21D746E4E005B3DB2 /* tobepaid */ = {
-			isa = PBXGroup;
-			children = (
-				B94E6CEC1D746F9B005B3DB2 /* ToBePaidViewController.h */,
-				B94E6CED1D746F9B005B3DB2 /* ToBePaidViewController.m */,
-				B94573251D766932002F75AE /* PayTimeoutViewController.h */,
-				B94573261D766932002F75AE /* PayTimeoutViewController.m */,
-				B94573291D767F15002F75AE /* PayingViewController.h */,
-				B945732A1D767F15002F75AE /* PayingViewController.m */,
-			);
-			name = tobepaid;
-			sourceTree = "<group>";
-		};
-		B94E6CE31D746E68005B3DB2 /* tobereceived */ = {
-			isa = PBXGroup;
-			children = (
-				B94573311D772758002F75AE /* ToBeSentViewController.h */,
-				B94573321D772758002F75AE /* ToBeSentViewController.m */,
-				B94573351D772783002F75AE /* ToBeReceivedViewController.h */,
-				B94573361D772783002F75AE /* ToBeReceivedViewController.m */,
-				B94573391D7727D6002F75AE /* ToBeSettledViewController.h */,
-				B945733A1D7727D6002F75AE /* ToBeSettledViewController.m */,
-			);
-			name = tobereceived;
-			sourceTree = "<group>";
-		};
-		B94E6CE51D746E92005B3DB2 /* tobesend */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = tobesend;
-			sourceTree = "<group>";
-		};
-		B94E6CE61D746EA6005B3DB2 /* tobecomfirmed */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = tobecomfirmed;
 			sourceTree = "<group>";
 		};
 		B95A94971CE0C17C00A5D9BA /* SKChinaCitySelector */ = {
@@ -4421,6 +4384,7 @@
 				B917324B1CD1F05400C29698 /* ScaleLargeInAnimation.m in Sources */,
 				B917326D1CD1F09400C29698 /* TTModalWindow.m in Sources */,
 				B9C3953F1CF49F3D00AB44B6 /* AFNetworking+PromiseKit.m in Sources */,
+				B9E660FB1D7821760072113A /* SupplyToBeSentListViewController.m in Sources */,
 				B9AD460F1CD4FF0200012B31 /* OrderListNoCheckBoxCell.m in Sources */,
 				B991948D1CCCF32F0032A393 /* ProductLadderCell.m in Sources */,
 				B9156F411CDBA41D0041E535 /* HttpOrderSummary.m in Sources */,
@@ -4450,6 +4414,7 @@
 				B902B6DF1D026C88005B6F5C /* MineStockSellViewController.m in Sources */,
 				B99D12EB1CC66045000DFF95 /* SearchViewController.m in Sources */,
 				B999552F1CE36FF7007F26D2 /* BuyProductDetailDTO.m in Sources */,
+				B9E660F71D7819D00072113A /* SupplyToBePaidListViewController.m in Sources */,
 				B917323E1CD1F05400C29698 /* FlipOutXAnimation.m in Sources */,
 				B94573021D7525C8002F75AE /* THDateDay.m in Sources */,
 				B965B71A1D1D70840021C809 /* HttpRechargeLog.m in Sources */,
@@ -4858,6 +4823,7 @@
 				B965B7171D1D6F2C0021C809 /* RechargeLogDTO.m in Sources */,
 				B9EFAE3E1CED514100F81157 /* BrowserDealView.m in Sources */,
 				B9EFAE3F1CED514100F81157 /* RotateOutAnimation.m in Sources */,
+				B9E660FC1D7821760072113A /* SupplyToBeSentListViewController.m in Sources */,
 				B9EFAE401CED514100F81157 /* NSError+Utils.m in Sources */,
 				B9EFAE411CED514100F81157 /* SlideOutRightAnimation.m in Sources */,
 				B9EFAE431CED514100F81157 /* ScaleLargeInAnimation.m in Sources */,

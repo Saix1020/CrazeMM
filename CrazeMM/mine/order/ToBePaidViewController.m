@@ -19,7 +19,13 @@
 
 -(void)initBottomView
 {
-    self.bottomView.hidden = NO;
+    if(self.style.orderType == kOrderTypeSupply){
+        self.bottomView.hidden = YES;
+
+    }
+    else {
+        self.bottomView.hidden = NO;
+    }
 }
 
 -(NSString*)titleString

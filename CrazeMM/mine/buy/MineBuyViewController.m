@@ -311,13 +311,14 @@
     }
     
     else {
-        if (self.segmentCell.segment.currentIndex != 2) {
-            return [SupplyListCell cellHeight];
-            
-        }
-        else {
-            return [SupplyListCell cellHeight] - 30;
-        }
+//        if (self.segmentCell.segment.currentIndex != 2) {
+//            return [SupplyListCell cellHeight] - 10;
+//            
+//        }
+//        else {
+//            return [SupplyListCell cellHeight] ;
+//        }
+        return [SupplyListCell cellHeight] - 16.f;
         
     }
 }

@@ -211,6 +211,10 @@
                                         popToVC = vc;
                                         break;
                                     }
+                                    else if([vc isKindOfClass:NSClassFromString(@"NewOrderListViewController")]) {
+                                        popToVC = vc;
+                                        break;
+                                    }
                                 }
                                 if (popToVC) {
                                     [self.navigationController popToViewController:popToVC animated:YES];

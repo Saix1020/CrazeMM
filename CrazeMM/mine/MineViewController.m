@@ -34,6 +34,8 @@
 #import "BuyToBePaidListViewController.h"
 #import "BuyToBeReceiveListViewController.h"
 #import "BuyAllListViewController.h"
+#import "SupplyToBePaidListViewController.h"
+#import "SupplyToBeSentListViewController.h"
 
 @interface MineViewController()
 
@@ -360,12 +362,12 @@
         else {
             return @[
                      @{
-                         @"name" : @"待发货",
-                         @"number" : @(self.orderSummary.tobesent)
+                         @"name" : @"待付款",
+                         @"number" : @(self.orderSummary.tobepaid) // TODO, need new data
                          },
                      @{
-                         @"name" : @"待确认",
-                         @"number" : @(self.orderSummary.tobeconfirmed)
+                         @"name" : @"待发货",
+                         @"number" : @(self.orderSummary.tobesent)
                          },
                      @{
                          @"name" : @"所有卖货",
@@ -722,10 +724,10 @@
         orderType = kOrderTypeSupply;
         switch (index) {
             case 1:
-                orderSubType = kOrderSubTypeSend;
+                orderSubType = kOrderSubTypePay;
                 break;
             case 2:
-                orderSubType = kOrderSubTypeConfirmed;
+                orderSubType = kOrderSubTypeSend;
                 break;
             default:
                 orderSubType = kOrderSubTypeAll;
@@ -733,8 +735,8 @@
         }
         
     }
+    NewOrderListViewController* vc;
     if(orderType == kOrderTypeBuy){
-        NewOrderListViewController* vc;
         if(orderSubType == kOrderSubTypePay){
             vc = [[BuyToBePaidListViewController alloc] init];
         }
@@ -749,6 +751,21 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
 
+    }
+    else if(orderType == kOrderTypeSupply){
+        if(orderSubType == kOrderSubTypePay){
+            vc = [[SupplyToBePaidListViewController alloc] init];
+        }
+        else if(orderSubType == kOrderSubTypeSend){
+            vc = [[SupplyToBeSentListViewController alloc] init];
+        }
+        else {
+            vc = [[BuyAllListViewController alloc] init];
+        }
+        
+        if (vc) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     
     else if (orderSubType!=kOrderSubTypeAll) {

@@ -22,7 +22,7 @@
 
 -(NSArray*)segmentTitles
 {
-    return @[@"待发货", @"待签收", @"待结款"];
+    return @[@"待发货", @"待签收"/*, @"待结款"*/];
 }
 
 - (void)viewDidLoad

@@ -20,13 +20,15 @@
 
 @implementation BuyToBePaidListViewController
 
-
+-(NSArray*)segmentTitles
+{
+    return @[@"待支付", @"支付中", @"支付超时"];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.segmentTitles = @[@"待支付", @"支付中", @"支付超时"];
     self.navigationItem.title = @"我买的货";
     self.bottomViewButtonTitle = @"付款";
 }

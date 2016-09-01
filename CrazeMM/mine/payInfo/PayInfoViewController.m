@@ -40,6 +40,11 @@
     return [[HttpPayRecordRequest alloc] initWithPageNum:self.pageNumber+1 andStatus:status];
 }
 
+-(BOOL)hiddenCheckBox
+{
+    // add by saix to hide check box in cell
+    return YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
