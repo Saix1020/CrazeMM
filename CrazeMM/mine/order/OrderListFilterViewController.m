@@ -31,7 +31,6 @@
 
 @property (nonatomic, strong) UILabel* nameLabel;
 
-@property (nonatomic, readonly) NSArray* cellArray;
 @end
 
 
@@ -170,12 +169,11 @@
     return _bottomView;
 }
 
--(void)setSearchCond:(UIButton*)button
+-(NSDictionary*)conditions
 {
-    
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     [inputFormatter setDateFormat:@"yyyy-MM-dd"];
-
+    
     NSString* name = self.nameField.text;
     if (!name) {
         name = @"";
@@ -193,9 +191,14 @@
                                  @"ubegin" : updateFromDateString,
                                  @"uend" : updateToDateString
                                  };
+    return conditions;
+}
+
+-(void)setSearchCond:(UIButton*)button
+{
     
     if ([self.delegate respondsToSelector:@selector(didSetSerachConditions:)]){
-        [self.delegate didSetSerachConditions:conditions];
+        [self.delegate didSetSerachConditions:self.conditions];
     }
     
     if ([self.delegate respondsToSelector:@selector(dismiss)]){

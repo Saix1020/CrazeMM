@@ -37,11 +37,11 @@
     }
     
     
-    CGRect contentFrame = [UIScreen mainScreen].bounds;
+    CGRect contentFrame = [UIScreen mainScreen].bounds; // TODO make sure the max width is contentFrame.size.width - 50
     NSInteger index;
     CGFloat y = 0;
     CGFloat x = 8.f;
-    CGFloat width = ceil((contentFrame.size.width-4*2-8.f*2-50.f)/3);
+    CGFloat width = ceil((contentFrame.size.width-4*2-8.f*2 - 50.f- self.x*2)/3);
     CGFloat height = 28.f;
     for (index=0; index<self.filterTags.count; index+=3) {
         x = 8.f;

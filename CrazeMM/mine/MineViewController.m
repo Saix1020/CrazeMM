@@ -346,11 +346,11 @@
             return @[
                      @{
                          @"name" : @"待付款",
-                         @"number" : @(self.orderSummary.tobepaid)
+                         @"number" : @(self.orderSummary.buy_tobepaid)
                          },
                      @{
                          @"name" : @"待签收",
-                         @"number" : @(self.orderSummary.tobereceived)
+                         @"number" : @(self.orderSummary.buy_tobereceived)
                          },
                      @{
                          @"name" : @"所有买货",
@@ -363,11 +363,11 @@
             return @[
                      @{
                          @"name" : @"待付款",
-                         @"number" : @(self.orderSummary.tobepaid) // TODO, need new data
+                         @"number" : @(self.orderSummary.supply_tobepaid) // TODO, need new data
                          },
                      @{
                          @"name" : @"待发货",
-                         @"number" : @(self.orderSummary.tobesent)
+                         @"number" : @(self.orderSummary.supply_tobesent)
                          },
                      @{
                          @"name" : @"所有卖货",

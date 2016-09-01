@@ -31,7 +31,12 @@ typedef NS_ENUM(NSInteger, MMOrderState){
     TOBERECEIVED = 300,//待签收
     TOBESENT = 200,// 待发货
     TOBESETTLED = 400, //待结款
-    ORDERCLOSE = 600,
+    ORDERCLOSE = 600, //
+    CANCELED = 103, // 取消
+    DELETED = 501, // 删除
+    PAYBACK = 102, //
+    RETURNING = 800, //
+    ARBITRATING = 900, //
     
     // TOBEPAID -> TOBESENT(PAYCOMPLETE) -> TOBERECEIVED(SENTCOMPLETE) -> TOBESETTLED(RECEIVECOMPLETE) -> TOBECONFIRMED -> COMPLETED(CONFIRMEDCOMPLETE)
     WAITFORPAY = TOBEPAID,
@@ -39,6 +44,7 @@ typedef NS_ENUM(NSInteger, MMOrderState){
     RECEIVECOMPLETE = TOBESETTLED,
     SENTCOMPLETE = TOBERECEIVED,
     CONFIRMEDCOMPLETE = COMPLETED,
+    
 };
 
 
@@ -49,7 +55,8 @@ typedef struct {
 }MMOrderListStyle;
 
 @interface  OrderDefine: NSObject
-
++(NSDictionary*)allOrderState;
++(NSDictionary*)allOrderStateCodeToName;
 +(NSString*)orderStateToStringWithType:(MMOrderType)type andState:(MMOrderState)state;
 @end
 

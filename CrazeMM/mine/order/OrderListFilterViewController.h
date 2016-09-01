@@ -21,7 +21,10 @@
 
 @property (nonatomic, weak) id<OrderListFilterViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSString* filterType;
+@property (nonatomic, readonly) NSArray* cellArray;
+@property (nonatomic, readonly) NSDictionary* conditions;
 
 -(instancetype)initWithSearchConditions:(NSDictionary*)conditons;
+-(void)setSearchCond:(UIButton*)button;
 -(void)resetSearchCond;
 @end

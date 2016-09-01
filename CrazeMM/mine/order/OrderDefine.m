@@ -58,4 +58,25 @@
     return string;
 }
 
++(NSDictionary*)allOrderState
+{
+    return @{
+             @"代付款" : @(TOBEPAID), //
+             @"支付中" : @(PAYING), //
+             @"已撤销" : @(CANCELED), // 
+             @"待发货" : @(TOBESENT), //
+             @"待签收" : @(TOBERECEIVED), //
+             @"待结款" : @(TOBESETTLED),  //
+             @"结款待确认" : @(TOBECONFIRMED), 
+             @"已完成" : @(COMPLETED), //
+             @"已关闭" : @(ORDERCLOSE), //
+             @"支付超时" : @(PAYTIMEOUT), //
+             @"待退货" : @(RETURNING), //
+             @"待仲裁" : @(ARBITRATING), //
+             @"待退款" : @(PAYBACK)
+             
+             };
+}
+
+
 @end

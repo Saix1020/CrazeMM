@@ -106,4 +106,43 @@
     return [self.supply[@"tobeconfirmed"] integerValue];
 }
 
+//@property (nonatomic, readonly) NSInteger buy_tobepaid;
+//@property (nonatomic, readonly) NSInteger buy_inpaying;
+//@property (nonatomic, readonly) NSInteger buy_tobereceived;
+//
+//@property (nonatomic, readonly) NSInteger supply_tobepaid;
+//@property (nonatomic, readonly) NSInteger supply_inpaying;
+//@property (nonatomic, readonly) NSInteger supply_tobesent;
+//@property (nonatomic, readonly) NSInteger supply_tobeconfirmed;
+
+-(NSInteger)buy_tobepaid
+{
+    return [self.buy[@"tobepaid"] integerValue];;
+}
+-(NSInteger)buy_inpaying
+{
+    return [self.buy[@"inpaying"] integerValue];;
+}
+-(NSInteger)buy_tobereceived
+{
+    return [self.buy[@"tobereceived"] integerValue];;
+}
+
+-(NSInteger)supply_tobepaid
+{
+    return [self.supply[@"tobepaid"] integerValue];
+}
+-(NSInteger)supply_inpaying
+{
+    return [self.supply[@"inpaying"] integerValue];
+}
+-(NSInteger)supply_tobesent
+{
+    return [self.supply[@"tobesent"] integerValue];
+}
+-(NSInteger)supply_tobeconfirmed
+{
+    return [self.supply[@"tobeconfirmed"] integerValue];
+}
+
 @end

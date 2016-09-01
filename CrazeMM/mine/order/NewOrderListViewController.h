@@ -14,12 +14,17 @@
 
 
 @interface NewOrderListViewController : CommonOrderListViewController<OrderListFilterViewControllerDelegate, OrderDetailViewControllerDelegate>
+{
+    @protected
+    OrderListFilterViewController* _filterVC;
+}
 
 //@property (nonatomic, copy) NSDictionary* searchConditions;
 @property (nonatomic, readonly) MMOrderListStyle orderListStyle;
 @property (nonatomic, readonly) NSDictionary* searchConditions;
 
 @property (nonatomic, readonly) NSArray* operatorDtoIds;
+@property (nonatomic, strong) OrderListFilterViewController *filterVC;
 
 
 -(void)invokeHttpRequest:(BaseHttpRequest*)httpRequest andConfirmTitle:(NSString *)confirmTitle andSuccessTitle:(NSString *)successTitle;

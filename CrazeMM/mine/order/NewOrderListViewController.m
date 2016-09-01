@@ -8,13 +8,13 @@
 
 #import "NewOrderListViewController.h"
 #import "OrderListFilterViewController.h"
+#import "AllOrderListFilterViewController.h"
 #import "TTModalView.h"
 
 @interface NewOrderListViewController ()
 
 @property (nonatomic, strong) UIView* maskView;
 @property (nonatomic, strong) TTModalView *modalView;
-@property (nonatomic, strong) OrderListFilterViewController *filterVC;
 @property (nonatomic, strong) UINavigationController *modalNav;
 
 @property (nonatomic, strong) UIButton* filterButton;
@@ -24,6 +24,8 @@
 @end
 
 @implementation NewOrderListViewController
+
+@synthesize filterVC = _filterVC;
 
 -(UIView*)maskView
 {

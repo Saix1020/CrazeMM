@@ -15,6 +15,7 @@
 #import "PayingViewController.h"
 #import "PayTimeoutViewController.h"
 #import "CompleteViewController.h"
+#import "AllOrderListFilterViewController.h"
 
 @implementation BuyAllListViewController
 
@@ -31,6 +32,27 @@
 -(BOOL)hiddenCheckBox
 {
     return YES;
+}
+
+-(MMOrderListStyle)orderListStyle
+{
+    MMOrderListStyle style = {
+        .orderType = kOrderTypeBuy,
+        .orderSubType = kOrderSubTypeAll,
+        .orderState = TOBEPAID
+    };
+    
+    return style;
+}
+
+-(OrderListFilterViewController *)filterVC
+{
+    if (!_filterVC) {
+        _filterVC = [[AllOrderListFilterViewController alloc] init];
+        _filterVC.delegate = self;
+    }
+    
+    return _filterVC;
 }
 
 - (void)viewDidLoad
