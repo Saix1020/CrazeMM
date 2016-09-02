@@ -497,6 +497,8 @@
 		B9A780421CD9E32E00A89047 /* ProductRecommendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A780411CD9E32E00A89047 /* ProductRecommendView.xib */; };
 		B9A780451CD9E34D00A89047 /* ProductRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A780441CD9E34D00A89047 /* ProductRecommendView.m */; };
 		B9A780491CD9FC2900A89047 /* HttpSupplyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A780481CD9FC2900A89047 /* HttpSupplyRequest.m */; };
+		B9A92DF91D7957D100DCB52A /* NSJSONSerialization+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A92DF81D7957D100DCB52A /* NSJSONSerialization+Utils.m */; };
+		B9A92DFA1D7957D100DCB52A /* NSJSONSerialization+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A92DF81D7957D100DCB52A /* NSJSONSerialization+Utils.m */; };
 		B9AD440B1CD3427E00012B31 /* MMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD440A1CD3427E00012B31 /* MMAlertView.m */; };
 		B9AD440D1CD3428F00012B31 /* MMAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD440C1CD3428F00012B31 /* MMAlertView.xib */; };
 		B9AD44111CD3966900012B31 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9AD44101CD3966900012B31 /* Launch Screen.storyboard */; };
@@ -1769,6 +1771,8 @@
 		B9A780441CD9E34D00A89047 /* ProductRecommendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductRecommendView.m; path = buy/ProductRecommendView.m; sourceTree = "<group>"; };
 		B9A780471CD9FC2900A89047 /* HttpSupplyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpSupplyRequest.h; path = restful/HttpSupplyRequest.h; sourceTree = "<group>"; };
 		B9A780481CD9FC2900A89047 /* HttpSupplyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSupplyRequest.m; path = restful/HttpSupplyRequest.m; sourceTree = "<group>"; };
+		B9A92DF71D7957D100DCB52A /* NSJSONSerialization+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSJSONSerialization+Utils.h"; path = "common/NSJSONSerialization+Utils.h"; sourceTree = "<group>"; };
+		B9A92DF81D7957D100DCB52A /* NSJSONSerialization+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSJSONSerialization+Utils.m"; path = "common/NSJSONSerialization+Utils.m"; sourceTree = "<group>"; };
 		B9AD44091CD3427E00012B31 /* MMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAlertView.h; path = common/MMAlertView.h; sourceTree = "<group>"; };
 		B9AD440A1CD3427E00012B31 /* MMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAlertView.m; path = common/MMAlertView.m; sourceTree = "<group>"; };
 		B9AD440C1CD3428F00012B31 /* MMAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MMAlertView.xib; path = common/MMAlertView.xib; sourceTree = "<group>"; };
@@ -3237,6 +3241,8 @@
 				B959248E1CDF90A900533E77 /* NSNull+Utils.m */,
 				B94E6CDB1D74695D005B3DB2 /* UIFont+Utils.h */,
 				B94E6CDC1D74695D005B3DB2 /* UIFont+Utils.m */,
+				B9A92DF71D7957D100DCB52A /* NSJSONSerialization+Utils.h */,
+				B9A92DF81D7957D100DCB52A /* NSJSONSerialization+Utils.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -4351,6 +4357,7 @@
 				B917324C1CD1F05400C29698 /* ScaleSmallOutAnimation.m in Sources */,
 				B94E6CD41D72BE3D005B3DB2 /* HttpRegisterNewEmail.m in Sources */,
 				B917324D1CD1F05400C29698 /* SlideInDownAnimation.m in Sources */,
+				B9A92DF91D7957D100DCB52A /* NSJSONSerialization+Utils.m in Sources */,
 				B9C395171CF1E50300AB44B6 /* OrderSendViewController.m in Sources */,
 				B917321F1CD1F05400C29698 /* BounceInDownAnimation.m in Sources */,
 				B95A94AC1CE0C19900A5D9BA /* HotCityTableViewCell.m in Sources */,
@@ -4798,6 +4805,7 @@
 				B9EFADFF1CED514100F81157 /* SearchResultDTO.m in Sources */,
 				B9EFAE001CED514100F81157 /* RotateOutUpRightAnimation.m in Sources */,
 				B94573211D75E95A002F75AE /* InfoFieldCell.m in Sources */,
+				B9A92DFA1D7957D100DCB52A /* NSJSONSerialization+Utils.m in Sources */,
 				B9EFAE011CED514100F81157 /* ProductCompanyCell.m in Sources */,
 				B9EFAE021CED514100F81157 /* View+MASAdditions.m in Sources */,
 				B9EFAE031CED514100F81157 /* SlideOutUpAnimation.m in Sources */,

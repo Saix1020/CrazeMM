@@ -115,7 +115,10 @@
 {
     return self.infoField.text;
 }
-
+-(void)setValue:(NSString *)value
+{
+    self.infoField.text = value;
+}
 
 -(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
 {

@@ -19,3 +19,10 @@
 @property (nonatomic ,strong) MineUserInfoDTO* mineUserInfoDto;
 
 @end
+
+///rest/user/updateValidated
+@interface HttpUserUpdateValidatedRequest : BaseHttpRequest
+
+-(instancetype)initWithUserInfo:(MineUserInfoDTO*)userInfo;
+
+@end

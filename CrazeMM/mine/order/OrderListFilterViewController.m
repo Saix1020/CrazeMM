@@ -7,7 +7,6 @@
 //
 
 #import "OrderListFilterViewController.h"
-#import "TPKeyboardAvoidingTableView.h"
 //#import "UIViewController+KNSemiModal.h"
 
 @interface OrderListFilterViewController ()
@@ -307,13 +306,31 @@
 -(void)startDatePicking:(THDatePickerViewController*)datePicker
 {
     [self.view endEditing:YES];
-    
+    @weakify(self);
     [self presentSemiViewController:datePicker withOptions:@{
                                                              KNSemiModalOptionKeys.pushParentBack    : @(NO),
                                                              KNSemiModalOptionKeys.animationDuration : @(.5),
                                                              KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
-                                                             }];
+                                                             }
+                         completion:^(){
+                             @strongify(self);
+                             [self datePickingViewDidAppeared];
+                         }
+                       dismissBlock:^(){
+                           @strongify(self);
+                           [self datePickingViewDidDisappeared];
+                       }];
 
+}
+
+-(void)datePickingViewDidAppeared
+{
+    
+}
+
+-(void)datePickingViewDidDisappeared
+{
+    
 }
 
 -(void)endDatePicking:(THDatePickerViewController *)datePicker

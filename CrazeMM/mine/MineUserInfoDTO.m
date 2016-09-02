@@ -35,6 +35,26 @@
         self.classification = [dict[@"classification"] integerValue];
         self.invoiceNumber = [dict[@"invoiceNumber"] integerValue];
         self.wx_id = [dict[@"wx_id"] integerValue];
+        
+        self.companyName = dict[@"companyName"];
+        self.head = dict[@"head"];
+        self.sex = dict[@"sex"];
+        self.identity = dict[@"identity"];
+        
+        self.addrPid = [dict[@"addrPid"] integerValue];
+        self.addrCid = [dict[@"addrCid"] integerValue];
+        self.addrDid = [dict[@"addrDid"] integerValue];
+
+        
+        self.addrPname = dict[@"addrPname"];
+        self.addrCname = dict[@"addrCname"];
+        self.addrDname = dict[@"addrDname"];
+        self.addrStreet = dict[@"addrStreet"];
+        
+        self.realName = dict[@"realName"];
+        self.qq = dict[@"qq"];
+        self.weixin = dict[@"weixin"];
+
 
     }
     

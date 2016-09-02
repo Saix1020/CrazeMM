@@ -10,10 +10,25 @@
 
 @implementation BaseDTO
 
+//+(NSDictionary*)validateDict:(NSDictionary*)dict
+//{
+//    NSMutableDictionary* d = [dict mutableCopy];
+//    
+//    for(NSString* key in d.allKeys){
+//        id value = d[key];
+//        if ([value isKindOfClass:[NSNull class]]) {
+//            [d removeObjectForKey:key];
+//        }
+//    }
+//    
+//    return d;
+//}
+
 -(instancetype)initWith:(NSDictionary*)dict;
 {
     self = [super init];
     if (self) {
+//        dict = [BaseDTO validateDict:dict];
         self.id = [dict[@"id"] integerValue];
     }
     return self;

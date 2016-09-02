@@ -19,7 +19,7 @@
 @property (nonatomic) CGFloat titleWidth;
 @property (nonatomic) BOOL needButton;
 
-@property (nonatomic, readonly) NSString* value;
+@property (nonatomic) NSString* value;
 
 
 -(void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;

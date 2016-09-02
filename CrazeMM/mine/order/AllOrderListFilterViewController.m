@@ -51,7 +51,7 @@
         _statesLabelCell = [[UITableViewCell alloc] init];
         UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 2.f, 180, 26.f)];
         nameLabel.font = [UIFont smallFont];
-        nameLabel.text = @"订单号/商品名称";
+        nameLabel.text = @"订单状态";
         [_statesLabelCell.contentView addSubview:nameLabel];
         _statesLabelCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -67,8 +67,8 @@
 {
     [super loadView];
     self.myCellArray = [[super cellArray] mutableCopy];
-    [self.myCellArray insertObject:self.statesLabelCell atIndex:2];
-    [self.myCellArray insertObject:self.wrappedStatesCell atIndex:3];
+    [self.myCellArray addObject:self.statesLabelCell];
+    [self.myCellArray addObject:self.wrappedStatesCell];
 
 }
 
@@ -101,10 +101,22 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3) {
+    if (indexPath.row == self.cellArray.count-1) {
         return self.statesCell.height;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+-(void)datePickingViewDidAppeared
+{
+//    self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+100);
+//    [self.tableView setContentOffset:CGPointMake(0, 100) animated:YES];
+
+}
+
+-(void)datePickingViewDidDisappeared
+{
+//    self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-100);
 }
 
 

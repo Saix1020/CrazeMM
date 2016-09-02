@@ -42,6 +42,7 @@ static AFHTTPSessionManager* g_manager = nil;
     NSDictionary* requestHeaderFieldsWithCookies = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
     [_manager.requestSerializer setValue:requestHeaderFieldsWithCookies[@"Cookie"] forHTTPHeaderField:@"Cookie"];
     [_manager.requestSerializer setValue:nil forHTTPHeaderField:@"User-Agent"];
+    ((AFJSONResponseSerializer *)_manager.responseSerializer).removesKeysWithNullValues = YES;
     return _manager;
 }
 

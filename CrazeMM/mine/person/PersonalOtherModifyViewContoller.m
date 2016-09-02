@@ -14,6 +14,7 @@
 #import "RegionDTO.h"
 #import "HttpAllRegion.h"
 #import "UIPlaceHolderTextView.h"
+#import "HttpUserInfo.h"
 
 
 @interface PersonalOtherModifyViewContoller()
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UIButton* confirmButton;
 
 @property (nonatomic, strong) InfoFieldCell* userNameCell;
+
 @property (nonatomic, strong) InfoFieldCell* entNameCell;
 @property (nonatomic, strong) InfoFieldCell* entHeadCell;
 @property (nonatomic, strong) AddrRegionCell* entSexCell;
@@ -29,6 +31,14 @@
 @property (nonatomic, strong) InfoFieldCell* entAreaCell;
 @property (nonatomic, strong) UITableViewCell* entStreetCell;
 @property (nonatomic, strong) UIPlaceHolderTextView* entStreetTextView;
+
+@property (nonatomic, strong) InfoFieldCell* personRealNameCell;
+@property (nonatomic, strong) AddrRegionCell* personSexCell;
+@property (nonatomic, strong) InfoFieldCell* personIdCell;
+@property (nonatomic, strong) InfoFieldCell* personQQCell;
+@property (nonatomic, strong) InfoFieldCell* personWechartCell;
+
+
 
 @property (nonatomic, strong) TPKeyboardAvoidingTableView* tableView;
 @property (nonatomic, strong) NSArray* cellArray;
@@ -42,6 +52,7 @@
 @property (nonatomic, strong) CityDTO* selectedCityDto;
 @property (nonatomic, strong) AreaDTO* selectedAreaDto;
 
+@property (nonatomic, strong) MineUserInfoDTO* mineUserInfoDto;
 
 @end
 
@@ -156,6 +167,52 @@
     return _entStreetCell;
 }
 
+//@property (nonatomic, strong) InfoFieldCell* personRealNameCell;
+//@property (nonatomic, strong) AddrRegionCell* personSexCell;
+//@property (nonatomic, strong) InfoFieldCell* personIdCell;
+//@property (nonatomic, strong) InfoFieldCell* personQQCell;
+//@property (nonatomic, strong) InfoFieldCell* personWechartCell;
+-(InfoFieldCell*)personRealNameCell
+{
+    InfoFieldCell* cell = self.entNameCell;
+    cell.titleLabel.text = @"真实姓名";
+    return cell;
+}
+
+-(AddrRegionCell*)personSexCell
+{
+    return self.entSexCell;
+}
+
+-(InfoFieldCell*)personIdCell
+{
+    return self.entIdCell;
+}
+
+-(InfoFieldCell*)personQQCell
+{
+    if (!_personQQCell) {
+        _personQQCell = [[InfoFieldCell alloc] init];
+        _personQQCell.titleLabel.text = @"QQ号";
+        _personQQCell.titleWidth = [self titleWidth];
+
+        _personQQCell.infoField.placeholder = @"请输入QQ号";
+    }
+    return _personQQCell;
+}
+
+
+-(InfoFieldCell*)personWechartCell
+{
+    if (!_personWechartCell) {
+        _personWechartCell = [[InfoFieldCell alloc] init];
+        _personWechartCell.titleLabel.text = @"微信号";
+        _personWechartCell.titleWidth = [self titleWidth];
+        _personWechartCell.infoField.placeholder = @"请输入微信号";
+    }
+    return _personWechartCell;
+}
+
 
 -(UITableViewCell*)confirmCell
 {
@@ -182,6 +239,55 @@
 
 -(void)saveChanges:(id)sender
 {
+    [self.view endEditing:YES];
+
+    self.mineUserInfoDto.username = self.userNameCell.value;
+
+    if(self.mineUserInfoDto.type == 0){
+        self.mineUserInfoDto.realName = self.personRealNameCell.value;
+        self.mineUserInfoDto.identity = self.personIdCell.value;
+        self.mineUserInfoDto.weixin = self.personWechartCell.value;
+        self.mineUserInfoDto.qq = self.personQQCell.value;
+        self.mineUserInfoDto.sex = self.personSexCell.value;
+    }
+    else {
+        self.mineUserInfoDto.companyName = self.entNameCell.value;
+        self.mineUserInfoDto.head = self.entHeadCell.value;
+        self.mineUserInfoDto.sex = self.entSexCell.value;
+        self.mineUserInfoDto.identity = self.entIdCell.value;
+        self.mineUserInfoDto.addrPid = self.selectedRegionDto.id;
+        self.mineUserInfoDto.addrCid = self.selectedCityDto.id;
+        self.mineUserInfoDto.addrDid = self.selectedAreaDto.id;
+        self.mineUserInfoDto.addrStreet = self.entStreetTextView.text;
+    }
+    
+    @weakify(self);
+    [self showAlertViewWithMessage:@"确定要修改吗?"
+                    withOKCallback:^(id x){
+                        @strongify(self);
+                        [self showProgressIndicatorWithTitle:@"正在处理..."];
+                        HttpUserUpdateValidatedRequest* request = [[HttpUserUpdateValidatedRequest alloc] initWithUserInfo:self.mineUserInfoDto];
+                        
+                        [request request].then(^(id responseObj){
+                            if (request.response.ok) {
+                                //[self dismissProgressIndicator];
+                                [self showAlertViewWithMessage:@"修改成功" withCallback:^(id x){
+                                    [self.navigationController popViewControllerAnimated:YES];
+                                }];
+                            }
+                            else {
+                                [self showAlertViewWithMessage:request.response.errorMsg];
+                            }
+                        })
+                        .catch(^(NSError* error){
+                            [self showAlertViewWithMessage:error.localizedDescription];
+                        })
+                        .finally(^(){
+                            [self dismissProgressIndicator];
+                        });
+                    }
+                 andCancelCallback:nil];
+    
     
 }
 
@@ -207,8 +313,100 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    HttpUserInfoRequest* request = [[HttpUserInfoRequest alloc] init];
+    [request request].then(^(id responseObj){
+        if (request.response.ok) {
+            @weakify(self);
+            NSArray* allTextSignals;
+            RACSignal* enableSaveButtonSignal;
 
-    self.cellArray = @[self.userNameCell, self.entNameCell, self.entHeadCell, self.entSexCell, self.entIdCell, self.entAreaCell, self.entStreetCell, self.confirmCell];
+            HttpUserInfoResponse* response = (HttpUserInfoResponse*)request.response;
+            self.mineUserInfoDto = response.mineUserInfoDto;
+            if (self.mineUserInfoDto.type == 0) { //个人
+                self.cellArray = @[self.userNameCell, self.personRealNameCell, self.personIdCell,
+                                   self.personWechartCell, self.personQQCell, self.personSexCell, self.confirmCell];
+                self.userNameCell.value = self.mineUserInfoDto.username;
+                self.personRealNameCell.value = self.mineUserInfoDto.realName;
+                self.personIdCell.value = self.mineUserInfoDto.identity;
+                self.personWechartCell.value = self.mineUserInfoDto.weixin;
+                self.personQQCell.value = self.mineUserInfoDto.qq;
+                self.personSexCell.value = self.mineUserInfoDto.sex;
+                
+                allTextSignals = @[self.userNameCell.infoField.rac_textSignal,
+                                   self.personRealNameCell.infoField.rac_textSignal,
+                                   self.personIdCell.infoField.rac_textSignal,
+//                                   self.personWechartCell.infoField.rac_textSignal,
+//                                   self.personQQCell.infoField.rac_textSignal
+                                   ];
+                enableSaveButtonSignal = [RACSignal combineLatest:allTextSignals
+                                                           reduce:^id(NSString* userName, NSString* realName , NSString* identity){
+                                                               return @(userName.length>0
+                                                               && realName.length>0
+                                                               && identity.length>0
+                                                               && self.entSexCell.regionLabel.text.length>0);
+                                                           }];
+
+                
+            }
+            else {
+                self.cellArray = @[self.userNameCell, self.entNameCell, self.entHeadCell, self.entSexCell, self.entIdCell, self.entAreaCell, self.entStreetCell, self.confirmCell];
+                
+                self.userNameCell.value = self.mineUserInfoDto.username;
+                self.entNameCell.value = self.mineUserInfoDto.companyName;
+                self.entHeadCell.value = self.mineUserInfoDto.head;
+                self.entSexCell.value = self.mineUserInfoDto.sex;
+                self.entIdCell.value = self.mineUserInfoDto.identity;
+                self.entAreaCell.value = [NSString stringWithFormat:@"%@ %@ %@", self.mineUserInfoDto.addrPname, self.mineUserInfoDto.addrCname, self.mineUserInfoDto.addrDname];
+                self.entStreetTextView.text = self.mineUserInfoDto.addrStreet;
+                
+                allTextSignals = @[self.userNameCell.infoField.rac_textSignal,
+                                   self.entNameCell.infoField.rac_textSignal,
+                                   self.entHeadCell.infoField.rac_textSignal,
+                                   self.entIdCell.infoField.rac_textSignal,
+                                   ];
+                enableSaveButtonSignal = [RACSignal combineLatest:allTextSignals
+                                                           reduce:^id(NSString* userName, NSString* entName, NSString* entHead, NSString* entId){
+                                                               return @(userName.length>0
+                                                               && entName.length>0
+                                                               && entHead.length>0
+                                                               && entId.length>0
+                                                               && self.entAreaCell.infoField.text.length>0
+                                                               && self.entSexCell.regionLabel.text.length>0);
+                                                           }];
+
+            }
+            
+            
+            
+            [enableSaveButtonSignal subscribeNext:^(NSNumber* enable){
+                @strongify(self);
+                self.confirmButton.enabled = [enable boolValue];
+                if(![enable boolValue]){
+                    self.confirmButton.backgroundColor = [UIColor buttonDisableBackgroundColor];
+                    [self.confirmButton setTitleColor: [UIColor buttonDisableTextColor]  forState:UIControlStateDisabled];
+                    
+                }
+                else {
+                    self.confirmButton.backgroundColor = [UIColor buttonEnableBackgroundColor];
+                    [self.confirmButton setTitleColor: [UIColor buttonEnableTextColor]  forState:UIControlStateNormal];
+                    
+                }
+            }];
+
+            
+            
+            [self.tableView reloadData];
+        }
+        else {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    });
+
     
     
     self.entAreaCell.infoField.enabled = NO;
@@ -230,13 +428,13 @@
 //            
 //            self.entAreaCell.value = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
 //        }
-        if(!self.selectedRegionDto) {
-            self.selectedRegionDto = self.regionDto.firstObject;
-            self.selectedCityDto = self.selectedRegionDto.cities.firstObject;
-            self.selectedAreaDto = self.selectedCityDto.areas.firstObject;
-            self.entAreaCell.infoField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
-            
-        }
+//        if(!self.selectedRegionDto) {
+//            self.selectedRegionDto = self.regionDto.firstObject;
+//            self.selectedCityDto = self.selectedRegionDto.cities.firstObject;
+//            self.selectedAreaDto = self.selectedCityDto.areas.firstObject;
+//            self.entAreaCell.infoField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+//            
+//        }
     });
 
     
@@ -245,40 +443,6 @@
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    @weakify(self);
-    NSArray* allTextSignals;
-    RACSignal* enableSaveButtonSignal;
-        allTextSignals = @[self.userNameCell.infoField.rac_textSignal,
-                           self.entNameCell.infoField.rac_textSignal,
-                           self.entHeadCell.infoField.rac_textSignal,
-                           self.entIdCell.infoField.rac_textSignal,
-                           ];
-        enableSaveButtonSignal = [RACSignal combineLatest:allTextSignals
-                                                   reduce:^id(NSString* userName, NSString* entName, NSString* entHead, NSString* entId){
-                                                       return @(userName.length>0
-                                                       && entName.length>0
-                                                       && entHead.length>0
-                                                       && entId.length>0
-                                                       && self.entAreaCell.infoField.text.length>0
-                                                       && self.entSexCell.regionLabel.text.length>0);
-                                                   }];
-        
-    
-    [enableSaveButtonSignal subscribeNext:^(NSNumber* enable){
-        @strongify(self);
-        self.confirmButton.enabled = [enable boolValue];
-        if(![enable boolValue]){
-            self.confirmButton.backgroundColor = [UIColor buttonDisableBackgroundColor];
-            [self.confirmButton setTitleColor: [UIColor buttonDisableTextColor]  forState:UIControlStateDisabled];
-            
-        }
-        else {
-            self.confirmButton.backgroundColor = [UIColor buttonEnableBackgroundColor];
-            [self.confirmButton setTitleColor: [UIColor buttonEnableTextColor]  forState:UIControlStateNormal];
-            
-        }
-    }];
-    
 }
 
 
@@ -427,7 +591,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3) { // sex row
+    if (self.cellArray[indexPath.row] == self.entSexCell) { // sex row
         [self.entSexCell popSelection:@[@"男", @"女"] andDelegate:self];
     }
     

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "DateRangePickerCell.h"
+#import "TPKeyboardAvoidingTableView.h"
 
 @protocol OrderListFilterViewControllerDelegate <NSObject>
 
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) NSString* filterType;
 @property (nonatomic, readonly) NSArray* cellArray;
 @property (nonatomic, readonly) NSDictionary* conditions;
+@property (nonatomic, readonly) TPKeyboardAvoidingTableView* tableView;
 
 -(instancetype)initWithSearchConditions:(NSDictionary*)conditons;
 -(void)setSearchCond:(UIButton*)button;

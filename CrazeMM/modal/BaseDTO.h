@@ -17,6 +17,8 @@
 -(instancetype)initWith:(NSDictionary*)dict;
 -(void)parserResponse;
 -(NSDictionary *)encode;
+//+(NSDictionary*)validateDict:(NSDictionary*)dict;
+
 
 @end
 
@@ -25,4 +27,6 @@
 
 @property (nonatomic) BOOL selected;
 @property (nonatomic, readonly) float totalPrice;
+
+
 @end

@@ -73,6 +73,7 @@
         _dateFromPicker = [THDatePickerViewController datePicker];
         _dateFromPicker.date = [NSDate date];
         _dateFromPicker.delegate = self;
+        [_dateFromPicker setAllowSelectionOfSelectedDate:YES];
         [_dateFromPicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
         [_dateFromPicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
         
@@ -88,6 +89,7 @@
         _dateToPicker = [THDatePickerViewController datePicker];
         _dateToPicker.date = [NSDate date];
         _dateToPicker.delegate = self;
+        [_dateToPicker setAllowSelectionOfSelectedDate:YES];
         [_dateToPicker setSelectedBackgroundColor:[UIColor colorWithRed:125/255.0 green:208/255.0 blue:0/255.0 alpha:1.0]];
         [_dateToPicker setCurrentDateColor:[UIColor colorWithRed:242/255.0 green:121/255.0 blue:53/255.0 alpha:1.0]];
         
@@ -152,6 +154,10 @@
     else {
         self.toDate = self.curDate;
     }
+    
+//    if ([self.delegate respondsToSelector:@selector(endDatePicking:)]) {
+//        [self.delegate endDatePicking:datePicker];
+//    }
 
 }
 
@@ -193,11 +199,14 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
     self.editingTextField = textField;
-    textField.layer.borderColor = [UIColor orangeColor].CGColor;
+    textField.layer.borderColor = [UIColor redColor].CGColor;
     if (textField == self.dateFromField) {
         self.dateFromPicker.date = self.fromDate?self.fromDate:[NSDate date];
         if ([self.delegate respondsToSelector:@selector(startDatePicking:)]) {
             [self.delegate startDatePicking:self.dateFromPicker];
+        }
+        if (textField.text.length == 0) {
+            textField.text = [DateRangePickerCell dateToString:self.dateFromPicker.date];
         }
 
     }
@@ -206,7 +215,9 @@
         if ([self.delegate respondsToSelector:@selector(startDatePicking:)]) {
             [self.delegate startDatePicking:self.dateToPicker];
         }
-
+        if (textField.text.length == 0) {
+            textField.text = [DateRangePickerCell dateToString:self.dateToPicker.date];
+        }
     }
     
 

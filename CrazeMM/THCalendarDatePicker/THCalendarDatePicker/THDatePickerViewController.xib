@@ -114,10 +114,6 @@
                                     <rect key="frame" x="0.0" y="89" width="320" height="18"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </view>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49">
-                                    <rect key="frame" x="2" y="113" width="316" height="207"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7">
                                     <rect key="frame" x="101" y="3" width="120" height="36"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -162,6 +158,10 @@ Month</string>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49">
+                                    <rect key="frame" x="2" y="113" width="316" height="207"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="wv9-lp-lWG" firstAttribute="top" secondItem="s0u-MY-tL4" secondAttribute="top" constant="11" id="BsT-EG-lC5"/>
