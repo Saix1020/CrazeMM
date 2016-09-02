@@ -17,7 +17,12 @@
 
 -(NSString*)titleString
 {
-    return @"请您尽快结款";
+    return @"待结款";
+}
+
+-(NSString*)titleDetailString
+{
+    return [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
 }
 
 @end

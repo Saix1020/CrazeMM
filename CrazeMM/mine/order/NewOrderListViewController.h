@@ -11,9 +11,10 @@
 #import "OrderDefine.h"
 #import "OrderDetailViewController.h"
 #import "HttpOrderOperation.h"
+#import "OrderSendViewController.h"
 
 
-@interface NewOrderListViewController : CommonOrderListViewController<OrderListFilterViewControllerDelegate, OrderDetailViewControllerDelegate>
+@interface NewOrderListViewController : CommonOrderListViewController<OrderListFilterViewControllerDelegate, OrderDetailViewControllerDelegate, OrderSendViewControllerDelegate>
 {
     @protected
     OrderListFilterViewController* _filterVC;

@@ -10,4 +10,19 @@
 
 @implementation ODArbitratingViewController
 
+-(void)initBottomView
+{
+    self.bottomView.hidden = YES;
+}
+
+-(NSString*)titleString
+{
+    return @"待仲裁";
+}
+
+-(NSString*)titleDetailString
+{
+    return [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
+}
+
 @end

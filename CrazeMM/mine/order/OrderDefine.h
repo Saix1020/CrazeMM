@@ -55,8 +55,8 @@ typedef struct {
 }MMOrderListStyle;
 
 @interface  OrderDefine: NSObject
-+(NSDictionary*)allOrderState;
-+(NSDictionary*)allOrderStateCodeToName;
++(NSDictionary*)allOrderStateMap;
++(NSArray*)allOrderState;
 +(NSString*)orderStateToStringWithType:(MMOrderType)type andState:(MMOrderState)state;
 @end
 

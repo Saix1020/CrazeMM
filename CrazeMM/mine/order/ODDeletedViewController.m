@@ -10,4 +10,20 @@
 
 @implementation ODDeletedViewController
 
+-(void)initBottomView
+{
+    self.bottomView.hidden = YES;
+}
+
+-(NSString*)titleString
+{
+    return @"已删除";
+}
+
+-(NSString*)titleDetailString
+{
+    return [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
+}
+
+
 @end

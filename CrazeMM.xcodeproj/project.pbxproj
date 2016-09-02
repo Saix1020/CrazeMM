@@ -499,6 +499,8 @@
 		B9A780491CD9FC2900A89047 /* HttpSupplyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A780481CD9FC2900A89047 /* HttpSupplyRequest.m */; };
 		B9A92DF91D7957D100DCB52A /* NSJSONSerialization+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A92DF81D7957D100DCB52A /* NSJSONSerialization+Utils.m */; };
 		B9A92DFA1D7957D100DCB52A /* NSJSONSerialization+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A92DF81D7957D100DCB52A /* NSJSONSerialization+Utils.m */; };
+		B9A92DFD1D79763600DCB52A /* ODClosedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A92DFC1D79763600DCB52A /* ODClosedViewController.m */; };
+		B9A92DFE1D79763600DCB52A /* ODClosedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A92DFC1D79763600DCB52A /* ODClosedViewController.m */; };
 		B9AD440B1CD3427E00012B31 /* MMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD440A1CD3427E00012B31 /* MMAlertView.m */; };
 		B9AD440D1CD3428F00012B31 /* MMAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9AD440C1CD3428F00012B31 /* MMAlertView.xib */; };
 		B9AD44111CD3966900012B31 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9AD44101CD3966900012B31 /* Launch Screen.storyboard */; };
@@ -1773,6 +1775,8 @@
 		B9A780481CD9FC2900A89047 /* HttpSupplyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpSupplyRequest.m; path = restful/HttpSupplyRequest.m; sourceTree = "<group>"; };
 		B9A92DF71D7957D100DCB52A /* NSJSONSerialization+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSJSONSerialization+Utils.h"; path = "common/NSJSONSerialization+Utils.h"; sourceTree = "<group>"; };
 		B9A92DF81D7957D100DCB52A /* NSJSONSerialization+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSJSONSerialization+Utils.m"; path = "common/NSJSONSerialization+Utils.m"; sourceTree = "<group>"; };
+		B9A92DFB1D79763600DCB52A /* ODClosedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODClosedViewController.h; path = mine/order/ODClosedViewController.h; sourceTree = "<group>"; };
+		B9A92DFC1D79763600DCB52A /* ODClosedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ODClosedViewController.m; path = mine/order/ODClosedViewController.m; sourceTree = "<group>"; };
 		B9AD44091CD3427E00012B31 /* MMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAlertView.h; path = common/MMAlertView.h; sourceTree = "<group>"; };
 		B9AD440A1CD3427E00012B31 /* MMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAlertView.m; path = common/MMAlertView.m; sourceTree = "<group>"; };
 		B9AD440C1CD3428F00012B31 /* MMAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MMAlertView.xib; path = common/MMAlertView.xib; sourceTree = "<group>"; };
@@ -2864,6 +2868,8 @@
 				B9E661111D78600C0072113A /* ODReturningViewController.m */,
 				B9E661141D78602F0072113A /* ODPayBackViewController.h */,
 				B9E661151D78602F0072113A /* ODPayBackViewController.m */,
+				B9A92DFB1D79763600DCB52A /* ODClosedViewController.h */,
+				B9A92DFC1D79763600DCB52A /* ODClosedViewController.m */,
 			);
 			name = detail;
 			sourceTree = "<group>";
@@ -4515,6 +4521,7 @@
 				B99D13171CC7A813000DFF95 /* ProductViewController.m in Sources */,
 				B965B7071D1D6AD10021C809 /* RechargeLogViewController.m in Sources */,
 				B91896781CCDB9050061D0B6 /* ProductDetailCell.m in Sources */,
+				B9A92DFD1D79763600DCB52A /* ODClosedViewController.m in Sources */,
 				B91732491CD1F05400C29698 /* RotateOutDownRightAnimation.m in Sources */,
 				B9E6611E1D791BCA0072113A /* SupplyAllListViewController.m in Sources */,
 				B964F8FC1CC39670003E0D44 /* main.m in Sources */,
@@ -4963,6 +4970,7 @@
 				B94E6CC81D72B6D2005B3DB2 /* PersonalOtherModifyViewContoller.m in Sources */,
 				B9EFAE751CED514100F81157 /* main.m in Sources */,
 				2E1935681D3D230E00EF9BA1 /* MortgageEditViewController.m in Sources */,
+				B9A92DFE1D79763600DCB52A /* ODClosedViewController.m in Sources */,
 				B9EFAE761CED514100F81157 /* OrderDetailDTO.m in Sources */,
 				B9E6611F1D791BCA0072113A /* SupplyAllListViewController.m in Sources */,
 				B94573301D771334002F75AE /* BuyToBeReceiveListViewController.m in Sources */,

@@ -1,14 +1,18 @@
 //
-//  DECanceledViewController.m
+//  ODClosedViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/9/1.
+//  Created by saix on 16/9/2.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
-#import "ODCanceledViewController.h"
+#import "ODClosedViewController.h"
 
-@implementation ODCanceledViewController
+@interface ODClosedViewController ()
+
+@end
+
+@implementation ODClosedViewController
 
 -(void)initBottomView
 {
@@ -17,7 +21,7 @@
 
 -(NSString*)titleString
 {
-    return @"已撤销";
+    return @"已关闭";
 }
 
 -(NSString*)titleDetailString

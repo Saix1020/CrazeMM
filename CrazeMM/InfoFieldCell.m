@@ -90,7 +90,7 @@
     }
     else {
         [self.button sizeToFit];
-        self.button.width = self.button.width+8.f;
+        self.button.width = self.button.width+16.f;
         self.button.height = self.titleLabel.height + 8.f;
         self.button.x = self.contentView.width - 8.f - self.button.width;
         self.button.y = (self.contentView.height-self.button.height)/2;

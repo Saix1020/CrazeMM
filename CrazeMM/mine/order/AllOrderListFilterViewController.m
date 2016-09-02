@@ -36,7 +36,7 @@
         _wrappedStatesCell = [[UITableViewCell alloc] init];
         [_wrappedStatesCell addSubview:self.statesCell];
         self.statesCell.x = 0.f;
-        self.statesCell.filterTags = [OrderDefine allOrderState].allKeys;
+        self.statesCell.filterTags = [OrderDefine allOrderState];
         //self.statesCell.frame = CGRectMake(8.f, 0, self.statesCell.height, )
         _wrappedStatesCell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -82,7 +82,7 @@
     NSMutableDictionary *conditions = [[super conditions] mutableCopy];
     NSMutableArray* status = [[NSMutableArray alloc] init];
     [self.statesCell.selectedTags enumerateObjectsUsingBlock:^(NSString* stateString, NSUInteger idx, BOOL *stop){
-        [status addObject:[OrderDefine allOrderState][stateString]];
+        [status addObject:[OrderDefine allOrderStateMap][stateString]];
     }];
     if (status.count == 0){
         status[0] = @"all";

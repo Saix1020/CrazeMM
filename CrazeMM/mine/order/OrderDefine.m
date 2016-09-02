@@ -16,7 +16,7 @@
     if (type == kOrderTypeBuy) {
         switch (state) {
             case TOBEPAID:
-                string =  @"代付款";
+                string =  @"待付款";
                 break;
             case PAYCOMPLETE:
                 string = @"支付完成";
@@ -58,10 +58,10 @@
     return string;
 }
 
-+(NSDictionary*)allOrderState
++(NSDictionary*)allOrderStateMap
 {
     return @{
-             @"代付款" : @(TOBEPAID), //
+             @"待付款" : @(TOBEPAID), //
              @"支付中" : @(PAYING), //
              @"已撤销" : @(CANCELED), // 
              @"待发货" : @(TOBESENT), //
@@ -76,6 +76,17 @@
              @"待退款" : @(PAYBACK)
              
              };
+}
+
++(NSArray*)allOrderState
+{
+    return @[
+             @"待付款", @"支付中", @"已撤销",
+             @"待发货", @"待签收", @"待结款",
+             @"结款待确认", @"已完成", @"已关闭",
+             @"支付超时", @"待退货", @"待仲裁",
+             @"待退款"
+             ];
 }
 
 
