@@ -14,12 +14,22 @@
 
 -(void)initBottomView
 {
-    self.bottomView.hidden = NO;
+    if (self.style.orderType == kOrderTypeSupply) {
+        self.bottomView.hidden = YES;
+    }
+    else {
+        self.bottomView.hidden = NO;
+    }
 }
 
 -(NSString*)titleString
 {
-    return @"请您尽快签收";
+    if (self.style.orderType == kOrderTypeSupply) {
+        return @"请您等待买家签收";
+    }
+    else {
+        return @"请您尽快签收";
+    }
 }
 
 -(NSString*)titleDetailString

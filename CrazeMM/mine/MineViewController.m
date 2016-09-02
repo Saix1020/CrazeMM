@@ -36,6 +36,7 @@
 #import "BuyAllListViewController.h"
 #import "SupplyToBePaidListViewController.h"
 #import "SupplyToBeSentListViewController.h"
+#import "SupplyAllListViewController.h"
 
 @interface MineViewController()
 
@@ -760,7 +761,7 @@
             vc = [[SupplyToBeSentListViewController alloc] init];
         }
         else {
-            vc = [[BuyAllListViewController alloc] init];
+            vc = [[SupplyAllListViewController alloc] init];
         }
         
         if (vc) {

@@ -458,6 +458,11 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     return elapseSeconds;
 }
 
+-(BOOL)isStyleBuy
+{
+    return self.style.orderType == kOrderTypeBuy;
+}
+
 -(NSDictionary*)promptString
 {
     NSString* string = @"";

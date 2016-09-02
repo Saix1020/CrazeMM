@@ -30,7 +30,12 @@
 
 -(NSString*)titleString
 {
-    return @"请您尽快付款";
+    if(self.style.orderType == kOrderTypeSupply){
+        return @"请您等待买家付款";
+    }
+    else {
+        return @"请您尽快付款";
+    }
 }
 
 -(NSString*)titleDetailString

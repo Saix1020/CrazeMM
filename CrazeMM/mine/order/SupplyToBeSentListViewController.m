@@ -7,6 +7,9 @@
 //
 
 #import "SupplyToBeSentListViewController.h"
+#import "ToBeSentViewController.h"
+#import "ToBeReceivedViewController.h"
+
 
 @implementation SupplyToBeSentListViewController
 
@@ -28,7 +31,7 @@
             style.orderState = TOBESENT; 
             break;
         case 1:
-            style.orderState = TOBESETTLED;
+            style.orderState = TOBERECEIVED;
             break;
             
         default:
@@ -115,5 +118,28 @@
 {
     [self.dataSource removeObjectsInArray:orderDetailDtos];
 }
+
+#pragma - mark select table view cell
+-(void)tableViewCellSelected:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath
+{
+    OrderDetailViewController* vc;
+    OrderDetailDTO* dto = (OrderDetailDTO*)[self dtoAtIndexPath:indexPath];
+    switch (self.selectedSegmentIndex) {
+        case 0:
+            vc = [[ToBeSentViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
+            break;
+        case 1:
+            vc = [[ToBeReceivedViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:dto];
+            break;
+        default:
+            break;
+    }
+    
+    if (vc) {
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 
 @end

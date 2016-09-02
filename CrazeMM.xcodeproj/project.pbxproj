@@ -637,6 +637,8 @@
 		B9E661171D78602F0072113A /* ODPayBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E661151D78602F0072113A /* ODPayBackViewController.m */; };
 		B9E6611A1D7861600072113A /* AllOrderListFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E661191D7861600072113A /* AllOrderListFilterViewController.m */; };
 		B9E6611B1D7861600072113A /* AllOrderListFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E661191D7861600072113A /* AllOrderListFilterViewController.m */; };
+		B9E6611E1D791BCA0072113A /* SupplyAllListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E6611D1D791BCA0072113A /* SupplyAllListViewController.m */; };
+		B9E6611F1D791BCA0072113A /* SupplyAllListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E6611D1D791BCA0072113A /* SupplyAllListViewController.m */; };
 		B9E84BC11CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC21CEF496B003FEAF5 /* MineBuyEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */; };
 		B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */; };
@@ -1904,6 +1906,8 @@
 		B9E661151D78602F0072113A /* ODPayBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ODPayBackViewController.m; path = mine/order/ODPayBackViewController.m; sourceTree = "<group>"; };
 		B9E661181D7861600072113A /* AllOrderListFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AllOrderListFilterViewController.h; path = mine/order/AllOrderListFilterViewController.h; sourceTree = "<group>"; };
 		B9E661191D7861600072113A /* AllOrderListFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AllOrderListFilterViewController.m; path = mine/order/AllOrderListFilterViewController.m; sourceTree = "<group>"; };
+		B9E6611C1D791BCA0072113A /* SupplyAllListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyAllListViewController.h; path = mine/order/SupplyAllListViewController.h; sourceTree = "<group>"; };
+		B9E6611D1D791BCA0072113A /* SupplyAllListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyAllListViewController.m; path = mine/order/SupplyAllListViewController.m; sourceTree = "<group>"; };
 		B9E84BBF1CEF496B003FEAF5 /* MineBuyEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyEditViewController.h; path = mine/buy/MineBuyEditViewController.h; sourceTree = "<group>"; };
 		B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyEditViewController.m; path = mine/buy/MineBuyEditViewController.m; sourceTree = "<group>"; };
 		B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpBuyOrder.h; path = restful/HttpBuyOrder.h; sourceTree = "<group>"; };
@@ -2893,6 +2897,8 @@
 				B9E660F61D7819D00072113A /* SupplyToBePaidListViewController.m */,
 				B9E660F91D7821760072113A /* SupplyToBeSentListViewController.h */,
 				B9E660FA1D7821760072113A /* SupplyToBeSentListViewController.m */,
+				B9E6611C1D791BCA0072113A /* SupplyAllListViewController.h */,
+				B9E6611D1D791BCA0072113A /* SupplyAllListViewController.m */,
 			);
 			name = supply;
 			sourceTree = "<group>";
@@ -4503,6 +4509,7 @@
 				B965B7071D1D6AD10021C809 /* RechargeLogViewController.m in Sources */,
 				B91896781CCDB9050061D0B6 /* ProductDetailCell.m in Sources */,
 				B91732491CD1F05400C29698 /* RotateOutDownRightAnimation.m in Sources */,
+				B9E6611E1D791BCA0072113A /* SupplyAllListViewController.m in Sources */,
 				B964F8FC1CC39670003E0D44 /* main.m in Sources */,
 				B9B5BCEF1CDE00C40085E132 /* OrderDetailDTO.m in Sources */,
 				B917322D1CD1F05400C29698 /* FadeInLeftBigAnimation.m in Sources */,
@@ -4949,6 +4956,7 @@
 				B9EFAE751CED514100F81157 /* main.m in Sources */,
 				2E1935681D3D230E00EF9BA1 /* MortgageEditViewController.m in Sources */,
 				B9EFAE761CED514100F81157 /* OrderDetailDTO.m in Sources */,
+				B9E6611F1D791BCA0072113A /* SupplyAllListViewController.m in Sources */,
 				B94573301D771334002F75AE /* BuyToBeReceiveListViewController.m in Sources */,
 				B9EFAE771CED514100F81157 /* FadeInLeftBigAnimation.m in Sources */,
 				B94573401D772F34002F75AE /* BuyAllListViewController.m in Sources */,

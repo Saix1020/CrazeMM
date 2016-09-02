@@ -35,8 +35,7 @@
     if (!_wrappedStatesCell) {
         _wrappedStatesCell = [[UITableViewCell alloc] init];
         [_wrappedStatesCell addSubview:self.statesCell];
-        self.statesCell.x = 8.f;
-        self.statesCell.width = self.view.width - 16.f;
+        self.statesCell.x = 0.f;
         self.statesCell.filterTags = [OrderDefine allOrderState].allKeys;
         //self.statesCell.frame = CGRectMake(8.f, 0, self.statesCell.height, )
         _wrappedStatesCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -50,7 +49,7 @@
 {
     if (!_statesLabelCell) {
         _statesLabelCell = [[UITableViewCell alloc] init];
-        UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 180, 26.f)];
+        UILabel* nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 2.f, 180, 26.f)];
         nameLabel.font = [UIFont smallFont];
         nameLabel.text = @"订单号/商品名称";
         [_statesLabelCell.contentView addSubview:nameLabel];

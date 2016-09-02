@@ -8,6 +8,10 @@
 
 #import "FilterTagsCell.h"
 
+#define kHPadding 16.f
+#define kHSpace 4.f
+#define kVSpace 8.f
+
 @interface FilterTagsCell ()
 
 @property (nonatomic, strong) NSMutableArray* filterTagLabels;
@@ -40,11 +44,11 @@
     CGRect contentFrame = [UIScreen mainScreen].bounds; // TODO make sure the max width is contentFrame.size.width - 50
     NSInteger index;
     CGFloat y = 0;
-    CGFloat x = 8.f;
-    CGFloat width = ceil((contentFrame.size.width-4*2-8.f*2 - 50.f- self.x*2)/3);
+    CGFloat x = kHPadding;
+    CGFloat width = ceil((contentFrame.size.width-kHSpace*2-kHPadding*2 - kFilterTagsCellDeltaWidth - self.x*2)/3);
     CGFloat height = 28.f;
     for (index=0; index<self.filterTags.count; index+=3) {
-        x = 8.f;
+        x = kHPadding;
         for (NSInteger step=0; step<3; step++) {
             
             if (index+step>=self.filterTags.count) {
@@ -52,9 +56,9 @@
             }
             FilterTagLabel* label = self.filterTagLabels[index+step];
             label.frame = CGRectMake(x, y, width, height);
-            x += width+4.f;
+            x += width+kHSpace;
         }
-        y += height+8.f;
+        y += height+kVSpace;
     }
     
     self.height = y;

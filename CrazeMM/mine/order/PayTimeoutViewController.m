@@ -19,7 +19,8 @@
 
 -(void)initBottomView
 {
-    self.bottomView.hidden = NO;
+
+    self.bottomView.hidden = !self.isStyleBuy;
 }
 
 -(void)viewDidLayoutSubviews

@@ -47,6 +47,7 @@
 @property (nonatomic, readonly) NSString* bottomButtonString;
 @property (nonatomic, readonly) NSInteger leftSeconds;
 @property (nonatomic, readonly) NSInteger elapseSeconds;
+@property (nonatomic) BOOL isStyleBuy;
 
 @property (nonatomic, weak) id<OrderDetailViewControllerDelegate> delegate;
 

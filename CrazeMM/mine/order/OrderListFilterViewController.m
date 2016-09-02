@@ -67,7 +67,7 @@
 -(UILabel*)nameLabel
 {
     if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 180, 26.f)];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 2.f, 180, 26.f)];
         _nameLabel.font = [UIFont smallFont];
         _nameLabel.text = @"订单号/商品名称";
     }
@@ -89,7 +89,7 @@
 {
     if (!_createLabelCell) {
         _createLabelCell = [[UITableViewCell alloc] init];
-        UILabel* createLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 180, 26.f)];
+        UILabel* createLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 2.f, 180, 26.f)];
         createLabel.font = [UIFont smallFont];
         createLabel.text = @"下单时间";
         [_createLabelCell.contentView addSubview:createLabel];
@@ -102,7 +102,7 @@
 {
     if (!_updateLabelCell) {
         _updateLabelCell = [[UITableViewCell alloc] init];
-        UILabel* updateLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, 2.f, 180, 26.f)];
+        UILabel* updateLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 2.f, 180, 26.f)];
         updateLabel.font = [UIFont smallFont];
         updateLabel.text = @"更新时间";
         [_updateLabelCell.contentView addSubview:updateLabel];

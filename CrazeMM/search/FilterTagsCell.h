@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FilterTagLabel.h"
 
+#define kFilterTagsCellDeltaWidth 50.f
+
 @interface FilterTagsCell : UITableViewCell
 
 @property (nonatomic, copy) NSArray* filterTags;
