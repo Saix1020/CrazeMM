@@ -11,6 +11,7 @@
 
 @protocol OrderSendViewControllerDelegate <NSObject>
 
+@optional
 -(void)sendSuccessWithOrderDetailDtos:(NSArray*)orderDetailDtos;
 
 @end

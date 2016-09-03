@@ -37,7 +37,7 @@
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(40.0f);
-        [_segmentCell setTitles:@[@"待入库", @"已入库", @"待出库", @"历史"]];
+        [_segmentCell setTitles:@[@"待入库", @"库存", @"待出库", @"历史"]];
         // we should set current index before setting delegate
         // or - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index
         // will be invoked
@@ -291,8 +291,8 @@
     }
     
     else {
-        if (self.segmentCell.segment.currentIndex != 2) {
-            return [StockListCell cellHeight];
+        if (self.segmentCell.segment.currentIndex == 0) {
+            return [StockListCell cellHeight]-12;
             
         }
         else {
