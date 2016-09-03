@@ -17,12 +17,23 @@
 
 -(NSString*)titleString
 {
-    return @"待结款";
+    if (self.isStyleBuy) {
+        return @"已完成";
+    }
+    else {
+        return @"请您等待网站结款";
+    }
 }
 
 -(NSString*)titleDetailString
 {
-    return [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
+    if (self.isStyleBuy) {
+        return [NSString stringWithFormat:@"已完成%ld", self.elapseSeconds*1000];
+
+    }
+    else {
+        return  [NSString stringWithFormat:@"已签收%ld", self.elapseSeconds*1000];
+    }
 }
 
 @end

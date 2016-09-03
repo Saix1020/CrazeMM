@@ -21,7 +21,7 @@
 
 -(NSString*)titleString
 {
-    return @"已关闭";
+    return @"订单状态: 已关闭";
 }
 
 -(NSString*)titleDetailString

@@ -480,7 +480,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 bottomButtonTitle = @"付款";
             }
                 break;
-            case PAYCOMPLETE:
+            case PAYCOMPLETE: //TOBESENT
             {
                 string = @"请您等待卖家发货";
                 subString = [NSString stringWithFormat:@"已支付%@", [NSString leftTimeString2:elapseSeconds*1000]];
@@ -498,7 +498,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 bottomButtonTitle = @"签收";
             }
                 break;
-            case RECEIVECOMPLETE:
+            case RECEIVECOMPLETE: //TOBESETTLED
                 string = @"已完成";
                 subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
@@ -518,7 +518,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     }
     else{
         switch (self.orderStatusDto.state) {
-            case WAITFORPAY:
+            case WAITFORPAY: //TOBEPAID
                 string =  @"请您等待买家付款";
                 subString = [NSString stringWithFormat:@"距离超时还剩: %@", [NSString leftTimeString2:leftSeconds*1000]];
                 break;
@@ -528,7 +528,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 subString = [NSString stringWithFormat:@"已支付%@", [NSString leftTimeString2:elapseSeconds*1000]];
 
                 break;
-            case SENTCOMPLETE:
+            case SENTCOMPLETE: //TOBERECEIVED
                 string =  @"请您等待买家签收";
                 subString = [NSString stringWithFormat:@"已发货%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
@@ -542,7 +542,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 subString = [NSString stringWithFormat:@"已结款%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 bottomButtonTitle = @"确认";
                 break;
-            case CONFIRMEDCOMPLETE:
+            case CONFIRMEDCOMPLETE: //COMPLETED
                 string =  @"已完成";
                 subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
@@ -632,7 +632,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                         
                     }
                         break;
-                    case PAYCOMPLETE:
+                    case PAYCOMPLETE: //
                         NSLog(@"我买的货->待付款->已支付");
                         break;
                     default:

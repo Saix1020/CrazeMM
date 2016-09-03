@@ -7,6 +7,7 @@
 //
 
 #import "ODToBeConfirmedViewController.h"
+#import "HttpOrderOperation.h"
 
 @implementation ODToBeConfirmedViewController
 
@@ -17,12 +18,23 @@
 
 -(NSString*)titleString
 {
-    return @"结款待确认";
+    return @"请您尽快确认";
 }
 
 -(NSString*)titleDetailString
 {
-    return [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
+    return [NSString stringWithFormat:@"已结款%ld", self.elapseSeconds*1000];
+}
+
+-(NSArray*)bottomButtonsTitle
+{
+    return @[@"确认订单"];
+}
+
+-(void)handleClickEvent:(UIButton *)button
+{
+    HttpOrderConfirmRequest* request = [[HttpOrderConfirmRequest alloc] initWithOids:@[@(self.orderDto.id)]];
+    [self invokeHttpRequest:request andConfirmTitle:@"确定要确认该订单吗?" andSuccessTitle:@"操作成功"];
 }
 
 @end
