@@ -7,6 +7,7 @@
 //
 
 #import "NewOrderListViewController.h"
+#import "BaseNavigationController.h"
 #import "OrderListFilterViewController.h"
 #import "AllOrderListFilterViewController.h"
 #import "TTModalView.h"
@@ -220,6 +221,10 @@
         
     }
     else {
+        if ([self.navigationController isKindOfClass:NSClassFromString(@"BaseNavigationController")]) {
+            BaseNavigationController* baseNavVC = (BaseNavigationController*)self.navigationController;
+            baseNavVC.markedVC = self;
+        }
         [self tableViewCellSelected:tableView andIndexPath:indexPath];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

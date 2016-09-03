@@ -47,6 +47,7 @@
 #import "LoginViewController.h"
 #import "UINavigationController+BackConfirmSupport.h"
 #import "UIFont+Utils.h"
+#import "BaseNavigationController.h"
 
 
 #define sharedApplicationDelegate() \

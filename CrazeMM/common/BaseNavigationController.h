@@ -12,5 +12,8 @@
 
 @property (nonatomic, strong) UIViewController* nextViewController;
 @property (nonatomic, copy) NSString* confirmString;
+@property (nonatomic, weak) UIViewController* markedVC;
+
+- (nullable NSArray<__kindof UIViewController *> *)popToMarkedViewControllerAnimated:(BOOL)animated;
 
 @end

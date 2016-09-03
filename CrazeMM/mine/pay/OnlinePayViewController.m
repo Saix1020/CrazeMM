@@ -81,8 +81,24 @@
     [self showAlertViewWithMessage:@"您确认要离开支付页面吗?"
                     withOKCallback:^(id x){
                         @strongify(self);
+                        
+                        if ([self.navigationController isKindOfClass:[BaseNavigationController class]]) {
+                            UIViewController* vc = ((BaseNavigationController*)self.navigationController).markedVC;;
+                            
+                            if ([vc isKindOfClass:[CommonOrderListViewController class]]) {
+                                CommonOrderListViewController* cvc = (CommonOrderListViewController*)vc;
+                                if([cvc respondsToSelector:@selector(resetDataSource)]){
+                                    [cvc resetDataSource];
+                                }
+                            }
+
+                            [(BaseNavigationController*)self.navigationController popToMarkedViewControllerAnimated:YES];
+                        }
+                        else {
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
                         // TODO
-                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        //[self.navigationController popToRootViewControllerAnimated:YES];
 //                        NSArray* vcs = self.navigationController.viewControllers;
 //                        if (vcs.count<=2) {
 //                            [self.navigationController popToRootViewControllerAnimated:YES];
@@ -237,28 +253,46 @@
         @weakify(self);
         [self showAlertViewWithMessage:@"支付成功!" withCallback:^(id x){
             @strongify(self);
-            UIViewController* popToVC = nil;
-            for (UIViewController* vc in self.navigationController.viewControllers) {
-                if ([vc isKindOfClass:[OrderListViewController class]]) {
-                    [(OrderListViewController*)vc operatorDoneForOrder:self.orderDetailDtos];
-                    popToVC = vc;
-                    break;
+//            UIViewController* popToVC = nil;
+//            for (UIViewController* vc in self.navigationController.viewControllers) {
+//                if ([vc isKindOfClass:[OrderListViewController class]]) {
+//                    [(OrderListViewController*)vc operatorDoneForOrder:self.orderDetailDtos];
+//                    popToVC = vc;
+//                    break;
+//                }
+//                else if([vc isKindOfClass:NSClassFromString(@"ProductViewController")]){
+//                    popToVC = vc;
+//                    break;
+//                }
+//                else if([vc isKindOfClass:NSClassFromString(@"AccountViewController")]){
+//                    popToVC = vc;
+//                    break;
+//                }
+//            }
+            
+            if ([self.navigationController isKindOfClass:[BaseNavigationController class]]) {
+                UIViewController* vc = ((BaseNavigationController*)self.navigationController).markedVC;;
+                
+                if ([vc isKindOfClass:[CommonOrderListViewController class]]) {
+                    CommonOrderListViewController* cvc = (CommonOrderListViewController*)vc;
+                    if([cvc respondsToSelector:@selector(resetDataSource)]){
+                        [cvc resetDataSource];
+                    }
                 }
-                else if([vc isKindOfClass:NSClassFromString(@"ProductViewController")]){
-                    popToVC = vc;
-                    break;
-                }
-                else if([vc isKindOfClass:NSClassFromString(@"AccountViewController")]){
-                    popToVC = vc;
-                    break;
-                }
-            }
-            if (!popToVC) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+                [(BaseNavigationController*)self.navigationController popToMarkedViewControllerAnimated:YES];
             }
             else {
-                [self.navigationController popToViewController:popToVC animated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
             }
+
+            
+//            if (!popToVC) {
+//                [self.navigationController popToRootViewControllerAnimated:YES];
+//            }
+//            else {
+//                [self.navigationController popToViewController:popToVC animated:YES];
+//            }
         }];
         return NO;
     }

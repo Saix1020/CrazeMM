@@ -290,6 +290,9 @@
                 if (orderStatusRequest.response.ok) {
                     HttpOrderStatusResponse* orderStatusResponse = (HttpOrderStatusResponse*)orderStatusRequest.response;
                     PayViewController* payVC = [[PayViewController alloc] initWithOrderStatusDTO:orderStatusResponse.orderStatusDto];
+                    if([self.navigationController isKindOfClass:[BaseNavigationController class]]){
+                        ((BaseNavigationController*)self.navigationController).markedVC = self;
+                    }
                     [self.navigationController pushViewController:payVC animated:YES];
                 }
             });

@@ -125,4 +125,17 @@
     return vcs;
 }
 
+- (nullable NSArray<__kindof UIViewController *> *)popToMarkedViewControllerAnimated:(BOOL)animated
+{
+    NSArray<__kindof UIViewController *> * vc;
+    if (self.markedVC) {
+        vc = [self popToViewController:self.markedVC animated:animated];
+        self.markedVC = nil;
+    }
+    else {
+        vc = [self popToRootViewControllerAnimated:animated];
+    }
+    return vc;
+}
+
 @end

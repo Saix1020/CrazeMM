@@ -186,6 +186,9 @@
 {
     if (type == 0) { //recharge
         RechargeViewController* rechargeVC = [[RechargeViewController alloc] init];
+        if ([self.navigationController isKindOfClass:[BaseNavigationController class]]) {
+            ((BaseNavigationController*)self.navigationController).markedVC = self;
+        }
         [self.navigationController pushViewController:rechargeVC animated:YES];
 
     }
