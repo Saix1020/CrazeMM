@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CommonOrderListViewController.h"
 @interface MineSupplyInfoViewController : UIViewController
 @property (nonatomic, readonly) NSInteger sid;
+@property (nonatomic, readonly) NSInteger state;
+@property (nonatomic, readonly) BOOL needHideBottomView;
+@property (nonatomic, weak) id<ListViewControllerDelegate> delegate;
 
--(instancetype)initWithId:(NSUInteger)sid;
+-(instancetype)initWithId:(NSUInteger)sid andState:(NSInteger)state;
 -(void)deplayTimeLine: (NSArray*)logs;
+
+
+-(void)handleClickEvent:(id)sender;
 
 @end

@@ -15,6 +15,8 @@
 #import "AddrDefaultCheckboxCell.h"
 #import "HttpMineSupply.h"
 #import "GoodDTO.h"
+#import "SupplyDetailDTO.h"
+
 
 typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     kRowBrand = 0,
@@ -43,6 +45,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 @end
 
 @interface MineSupplyEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, BEMCheckBoxDelegate, SelectionViewControllerDelegate>
+
+-(instancetype)initWithId:(NSInteger)sid;
 
 @property (nonatomic, weak) id<MineEditViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSArray* cellArray;

@@ -309,7 +309,8 @@
     }
     else {
         MineBuyProductDTO* dto = self.dataSource[indexPath.row/2];
-        MineBuyInfoViewController* vc = [[MineBuyInfoViewController alloc] initWithId:dto.id];
+        MineBuyInfoViewController* vc = [[MineBuyInfoViewController alloc] initWithId:dto.id andState:dto.state];
+        vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -463,6 +464,19 @@
     [self getMineBuy];
     
 }
+
+#pragma - mark ListViewController Delegate
+-(void)didOperatorSuccessWithIds:(NSArray *)ids
+{
+    //[self.dataSource removeObjectsInArray:i]
+    for(NSNumber* id in ids){
+        [self.dataSource filterUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.id != %@", id]];
+    }
+    
+    [self.tableView reloadData];
+
+}
+
 
 @end
 

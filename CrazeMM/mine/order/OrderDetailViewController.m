@@ -864,40 +864,55 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 }
 
 #pragma - mark Async http request handle
--(void)invokeHttpRequest:(BaseHttpRequest*)httpRequest andConfirmTitle:(NSString*)confirmTitle andSuccessTitle:(NSString*)successTitle
+//-(void)invokeHttpRequest:(BaseHttpRequest*)httpRequest andConfirmTitle:(NSString*)confirmTitle andSuccessTitle:(NSString*)successTitle
+//{
+//    @weakify(self);
+//    [self showAlertViewWithMessage:confirmTitle
+//                    withOKCallback:^(id x){
+//                        @strongify(self);
+//                        [self showProgressIndicatorWithTitle:@"正在处理..."];
+//                        
+//                        [httpRequest request]
+//                        .then(^(id responseObj){
+//                            NSLog(@"%@", responseObj);
+//                            if (httpRequest.response.ok) {
+//                                if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
+//                                    [self.delegate operatorDoneForOrder:@[self.orderDto]];
+//                                }
+//                                
+//                                [self showAlertViewWithMessage:successTitle withCallback:^(id x){
+//                                    [self.navigationController popViewControllerAnimated:YES];
+//                                }];
+//                                
+//                            }
+//                            else {
+//                                [self showAlertViewWithMessage:httpRequest.response.errorMsg];
+//                            }
+//                        })
+//                        .catch(^(NSError* error){
+//                            [self showAlertViewWithMessage:error.localizedDescription];
+//                        })
+//                        .finally(^(){
+//                            [self dismissProgressIndicator];
+//                        });
+//                    }
+//                 andCancelCallback:nil];
+//}
+-(void)httpRequestSuccess:(BaseHttpRequest*)request andSuccessMsg:(NSString*)msg
 {
-    @weakify(self);
-    [self showAlertViewWithMessage:confirmTitle
-                    withOKCallback:^(id x){
-                        @strongify(self);
-                        [self showProgressIndicatorWithTitle:@"正在处理..."];
-                        
-                        [httpRequest request]
-                        .then(^(id responseObj){
-                            NSLog(@"%@", responseObj);
-                            if (httpRequest.response.ok) {
-                                if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
-                                    [self.delegate operatorDoneForOrder:@[self.orderDto]];
-                                }
-                                
-                                [self showAlertViewWithMessage:successTitle withCallback:^(id x){
-                                    [self.navigationController popViewControllerAnimated:YES];
-                                }];
-                                
-                            }
-                            else {
-                                [self showAlertViewWithMessage:httpRequest.response.errorMsg];
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        })
-                        .finally(^(){
-                            [self dismissProgressIndicator];
-                        });
-                    }
-                 andCancelCallback:nil];
+    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
+        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+    }
+    
+    [super httpRequestSuccess:request andSuccessMsg:msg];
+    
 }
+-(void)httpRequestFailed:(BaseHttpRequest*)request andFailedMsg:(NSString*)msg
+{
+    [super httpRequestFailed:request andFailedMsg:msg];
+}
+
+
 
 
 -(void)dealloc

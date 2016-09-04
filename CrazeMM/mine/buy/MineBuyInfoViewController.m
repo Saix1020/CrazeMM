@@ -8,6 +8,7 @@
 
 #import "MineBuyInfoViewController.h"
 #import "HttpMineSupply.h"
+#import "HttpMineSupplyShelve.h"
 
 @interface MineBuyInfoViewController ()
 
@@ -25,6 +26,53 @@
     return self.sid;
 }
 
+-(NSArray*)bottomButtonsTitle
+{
+    NSArray* titles;
+    switch (self.state) {
+        case 100: //正常
+            titles = @[@"下架"];
+            break;
+        case 400:
+        case 500: //下架
+            titles = @[@"上架"];
+            break;
+        case 150:
+        case 200: //成交
+            break;
+        default:
+            break;
+    }
+    
+    return titles;
+}
+
+-(void)handleClickEvent:(id)sender
+{
+    switch (self.state) {
+        case 100: //正常
+        {
+            HttpMineBuyUnshelveRequest* request = [[HttpMineBuyUnshelveRequest alloc] initWithIds:@[@(self.bid)]];
+            [self invokeHttpRequest:request
+                    andConfirmTitle: [NSString stringWithFormat:@"确认要下架%ld吗?", self.sid]
+                    andSuccessTitle:@"下架成功"];
+        }
+        
+            break;
+        case 400:
+        case 500: //
+        {
+            HttpMineBuyReshelveRequest* request = [[HttpMineBuyReshelveRequest alloc] initWithIds:@[@(self.bid)]];
+            [self invokeHttpRequest:request
+                    andConfirmTitle: [NSString stringWithFormat:@"确认要上架%ld吗?", self.sid]
+                    andSuccessTitle:@"上架成功"];
+        }
+            
+            break;
+        default:
+            break;
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

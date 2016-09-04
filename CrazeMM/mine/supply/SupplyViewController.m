@@ -367,7 +367,8 @@
     }
     else {
         MineSupplyProductDTO* dto = self.dataSource[indexPath.row/2];
-        MineSupplyInfoViewController* vc = [[MineSupplyInfoViewController alloc] initWithId:dto.id];
+        MineSupplyInfoViewController* vc = [[MineSupplyInfoViewController alloc] initWithId:dto.id andState:dto.state];
+        vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -498,6 +499,17 @@
     self.pageNumber = 0;
     [self getMineSupply];
 
+}
+
+#pragma - mark ListViewController Delegate
+-(void)didOperatorSuccessWithIds:(NSArray *)ids
+{
+    //[self.dataSource removeObjectsInArray:i]
+    for(NSNumber* id in ids){
+        [self.dataSource filterUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.id != %@", id]];
+    }
+    [self.tableView reloadData];
+    
 }
 
 @end

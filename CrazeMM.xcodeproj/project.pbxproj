@@ -562,6 +562,8 @@
 		B9B7473A1D7B9BF8004D6042 /* MineBuyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747381D7B9BF8004D6042 /* MineBuyDetailDTO.m */; };
 		B9B7473D1D7C25CC004D6042 /* HttpMineBuy.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7473C1D7C25CC004D6042 /* HttpMineBuy.m */; };
 		B9B7473E1D7C25CC004D6042 /* HttpMineBuy.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7473C1D7C25CC004D6042 /* HttpMineBuy.m */; };
+		B9B747411D7C33A0004D6042 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747401D7C33A0004D6042 /* UIViewController+Utils.m */; };
+		B9B747421D7C33A0004D6042 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747401D7C33A0004D6042 /* UIViewController+Utils.m */; };
 		B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B9BBEEC51CEB4C5900275416 /* AddrCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */; };
 		B9BBEEC61CEB4C5900275416 /* AddrCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */; };
@@ -1843,6 +1845,8 @@
 		B9B747381D7B9BF8004D6042 /* MineBuyDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyDetailDTO.m; path = mine/buy/MineBuyDetailDTO.m; sourceTree = "<group>"; };
 		B9B7473B1D7C25CC004D6042 /* HttpMineBuy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpMineBuy.h; path = restful/HttpMineBuy.h; sourceTree = "<group>"; };
 		B9B7473C1D7C25CC004D6042 /* HttpMineBuy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMineBuy.m; path = restful/HttpMineBuy.m; sourceTree = "<group>"; };
+		B9B7473F1D7C33A0004D6042 /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Utils.h"; path = "common/UIViewController+Utils.h"; sourceTree = "<group>"; };
+		B9B747401D7C33A0004D6042 /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Utils.m"; path = "common/UIViewController+Utils.m"; sourceTree = "<group>"; };
 		B9BBEEC21CEB4C5900275416 /* AddrCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddrCommonCell.h; path = mine/address/AddrCommonCell.h; sourceTree = "<group>"; };
 		B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddrCommonCell.m; path = mine/address/AddrCommonCell.m; sourceTree = "<group>"; };
 		B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrCommonCell.xib; path = mine/address/AddrCommonCell.xib; sourceTree = "<group>"; };
@@ -3261,6 +3265,8 @@
 				B94E6CDC1D74695D005B3DB2 /* UIFont+Utils.m */,
 				B9A92DF71D7957D100DCB52A /* NSJSONSerialization+Utils.h */,
 				B9A92DF81D7957D100DCB52A /* NSJSONSerialization+Utils.m */,
+				B9B7473F1D7C33A0004D6042 /* UIViewController+Utils.h */,
+				B9B747401D7C33A0004D6042 /* UIViewController+Utils.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -4715,6 +4721,7 @@
 				B9C4BCC11D2255EC00C719CE /* ConsigneeDTO.m in Sources */,
 				B9E661091D785F640072113A /* ODToBeConfirmedViewController.m in Sources */,
 				B917321D1CD1F05400C29698 /* BasicAnimation.m in Sources */,
+				B9B747411D7C33A0004D6042 /* UIViewController+Utils.m in Sources */,
 				B91896931CCE518F0061D0B6 /* ProductNumberLabel.m in Sources */,
 				B99955321CE37372007F26D2 /* OrderDetailViewController.m in Sources */,
 				B9EFAF821CED9BED00F81157 /* GoodDTO.m in Sources */,
@@ -5167,6 +5174,7 @@
 				B9EFAEE91CED514100F81157 /* ProductNumberLabel.m in Sources */,
 				B9E6610A1D785F640072113A /* ODToBeConfirmedViewController.m in Sources */,
 				B9EFAEEA1CED514100F81157 /* OrderDetailViewController.m in Sources */,
+				B9B747421D7C33A0004D6042 /* UIViewController+Utils.m in Sources */,
 				B9EFAEEB1CED514100F81157 /* ProductSumLabel.m in Sources */,
 				B9EFAEEC1CED514100F81157 /* SlideInUpAnimation.m in Sources */,
 				B9E84BF51CF1422D003FEAF5 /* BEMPathManager.m in Sources */,

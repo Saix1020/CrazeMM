@@ -12,6 +12,6 @@
 
 // we also use SupplyListCell here.
 
-@interface MineBuyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineEditViewControllerDelegate>
+@interface MineBuyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineEditViewControllerDelegate, ListViewControllerDelegate>
 
 @end

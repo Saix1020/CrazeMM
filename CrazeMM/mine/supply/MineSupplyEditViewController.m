@@ -276,6 +276,16 @@
     return _selectionTableView;
 }
 
+-(instancetype)initWithId:(NSInteger)sid
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -384,9 +394,13 @@
                             }
                             else {
                                 if ([self.delegate respondsToSelector:@selector(editSupplyGoodSuccess)]) {
-                                    [self showAlertViewWithMessage:@"供货信息发布成功"];
                                     [self.delegate editSupplyGoodSuccess];
-                                    [self.navigationController popViewControllerAnimated:YES];
+
+                                    @weakify(self);
+                                    [self showAlertViewWithMessage:@"供货信息发布成功" withCallback:^(id x){
+                                        @strongify(self);
+                                        [self.navigationController popViewControllerAnimated:YES];
+                                    }];
                                 }
                             }
                         })

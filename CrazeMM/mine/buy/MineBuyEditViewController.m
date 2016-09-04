@@ -148,9 +148,12 @@
                             }
                             else {
                                 if ([self.delegate respondsToSelector:@selector(editSupplyGoodSuccess)]) {
-                                    [self showAlertViewWithMessage:@"求购信息发布成功"];
                                     [self.delegate editSupplyGoodSuccess];
-                                    [self.navigationController popViewControllerAnimated:YES];
+                                    @weakify(self);
+                                    [self showAlertViewWithMessage:@"求购信息发布成功" withCallback:^(id x){
+                                        @strongify(self);
+                                        [self.navigationController popViewControllerAnimated:YES];
+                                    }];
                                 }
                             }
                         })

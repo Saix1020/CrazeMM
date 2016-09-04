@@ -13,10 +13,12 @@
 #import "BEMCheckBox.h"
 #import "CommonListCell.h"
 #import "HttpListQuery.h"
-//@protocol CommonOrderListViewControllerProtocol <NSObject>
-//
-//
-//@end
+
+@protocol ListViewControllerDelegate <NSObject>
+
+-(void)didOperatorSuccessWithIds:(NSArray*)ids;
+
+@end
 
 
 

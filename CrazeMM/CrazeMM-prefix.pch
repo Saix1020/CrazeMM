@@ -48,6 +48,7 @@
 #import "UINavigationController+BackConfirmSupport.h"
 #import "UIFont+Utils.h"
 #import "BaseNavigationController.h"
+#import "UIViewController+Utils.h"
 
 
 #define sharedApplicationDelegate() \
