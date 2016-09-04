@@ -564,6 +564,7 @@
 		B9B7473E1D7C25CC004D6042 /* HttpMineBuy.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7473C1D7C25CC004D6042 /* HttpMineBuy.m */; };
 		B9B747411D7C33A0004D6042 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747401D7C33A0004D6042 /* UIViewController+Utils.m */; };
 		B9B747421D7C33A0004D6042 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747401D7C33A0004D6042 /* UIViewController+Utils.m */; };
+		B9B747431D7C4FA2004D6042 /* SupplyToBePaidListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E660F61D7819D00072113A /* SupplyToBePaidListViewController.m */; };
 		B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B9BBEEC51CEB4C5900275416 /* AddrCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */; };
 		B9BBEEC61CEB4C5900275416 /* AddrCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */; };
@@ -4970,6 +4971,7 @@
 				B9EFAE591CED514100F81157 /* BuyProductDetailDTO.m in Sources */,
 				B9EFAE5A1CED514100F81157 /* FlipOutXAnimation.m in Sources */,
 				B94573131D758272002F75AE /* NewOrderListViewController.m in Sources */,
+				B9B747431D7C4FA2004D6042 /* SupplyToBePaidListViewController.m in Sources */,
 				B9E84BF11CF1422D003FEAF5 /* BEMAnimationManager.m in Sources */,
 				B9B3E4C31D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */,
 				B965B74B1D1E54860021C809 /* HttpGenMobileVcodeForUser.m in Sources */,
