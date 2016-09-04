@@ -14,6 +14,7 @@
 #import "MineSupplyProductDTO.h"
 #import "HttpMineSupplyShelve.h"
 #import "MineBuyEditViewController.h"
+#import "MineBuyInfoViewController.h"
 
 
 @interface MineBuyViewController()
@@ -300,6 +301,17 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row%2==0) {
+        return;
+    }
+    else {
+        MineBuyProductDTO* dto = self.dataSource[indexPath.row/2];
+        MineBuyInfoViewController* vc = [[MineBuyInfoViewController alloc] initWithId:dto.id];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

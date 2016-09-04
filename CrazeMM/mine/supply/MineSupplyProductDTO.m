@@ -15,6 +15,7 @@
     self = [super initWith:dict];
     if (self) {
         self.state = [dict[@"state"] integerValue];
+        self.mortgageId = [dict[@"mortgageId"] integerValue];
     }
     return self;
 }

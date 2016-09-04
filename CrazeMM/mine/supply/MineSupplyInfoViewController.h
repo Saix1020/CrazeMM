@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MineSupplyInfoViewController : UIViewController
+@property (nonatomic, readonly) NSInteger sid;
 
 -(instancetype)initWithId:(NSUInteger)sid;
-
+-(void)deplayTimeLine: (NSArray*)logs;
 
 @end

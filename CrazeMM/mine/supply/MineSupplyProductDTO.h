@@ -10,6 +10,7 @@
 
 @interface MineSupplyProductDTO : BaseProductDTO
 @property (nonatomic) NSInteger state;
+@property (nonatomic) NSInteger mortgageId;
 @end
 
 @interface MineBuyProductDTO : MineSupplyProductDTO

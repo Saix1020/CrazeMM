@@ -313,7 +313,7 @@
 @end
 
 
-@implementation HttpMineStockDetailRequest
+@implementation HttpMineSupplyDetailRequest
 
 -(instancetype)initWithId:(NSInteger)sid
 {
@@ -336,12 +336,12 @@
 
 -(Class)responseClass
 {
-    return [HttpMineStockDetailResponse class];
+    return [HttpMineSupplyDetailResponse class];
 }
 
 @end
 
-@implementation HttpMineStockDetailResponse
+@implementation HttpMineSupplyDetailResponse
 
 -(NSDictionary*)supply
 {
@@ -355,6 +355,53 @@
     }
     
     self.supplyDtailDto = [[MineSupplyDetailDTO alloc] initWith:self.supply];
+}
+
+@end
+
+
+@implementation HttpMineBuyDetailRequest
+
+-(instancetype)initWithId:(NSInteger)sid
+{
+    self = [super init];
+    if (self) {
+        self.bid = sid;
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/buy/detail/%ld", self.bid];
+    return COMB_URL(absUrl);
+}
+
+-(NSString*)method{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpMineBuyDetailResponse class];
+}
+
+@end
+
+@implementation HttpMineBuyDetailResponse
+
+-(NSDictionary*)buy
+{
+    return  self.all?self.all[@"buy"]:@{};
+}
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    
+    self.buyDetailDto = [[MineBuyDetailDTO alloc] initWith:self.buy];
 }
 
 @end

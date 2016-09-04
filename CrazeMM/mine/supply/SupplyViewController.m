@@ -348,7 +348,14 @@
         return [super tableView:tableView heightForRowAtIndexPath:indexPath];
     }
     else {
-        return [SupplyListCell cellHeight];
+        MineSupplyProductDTO* dto = self.dataSource[indexPath.row/2];
+        if (dto.mortgageId!=0) {
+            return [SupplyListCell cellHeight] + 24.f;
+
+        }
+        else{
+            return [SupplyListCell cellHeight];
+        }
 
     }
 }

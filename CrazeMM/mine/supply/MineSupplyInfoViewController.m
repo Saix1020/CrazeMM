@@ -76,8 +76,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getSupplyDetailInfo];
     
+    [self getDtoDetailInfo];
+}
+
+-(void)getDtoDetailInfo
+{
+    [self getSupplyDetailInfo];
 }
 
 -(void)deplayTimeLine: (NSArray*)logs
@@ -109,12 +114,12 @@
 
 - (AnyPromise*)getSupplyDetailInfo
 {
-    HttpMineStockDetailRequest* request = [[HttpMineStockDetailRequest alloc]initWithId:self.sid];
+    HttpMineSupplyDetailRequest* request = [[HttpMineSupplyDetailRequest alloc]initWithId:self.sid];
     
     return [request request]
     .then(^(id responseObj){
         NSLog(@"%@", responseObj);
-        HttpMineStockDetailResponse * response = (HttpMineStockDetailResponse*)request.response;
+        HttpMineSupplyDetailResponse * response = (HttpMineSupplyDetailResponse*)request.response;
         if (response.ok) {
             self.supplyDetailDto = response.supplyDtailDto;
             [self deplayTimeLine:self.supplyDetailDto.logs];

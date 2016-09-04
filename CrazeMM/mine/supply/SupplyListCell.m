@@ -131,6 +131,7 @@
 
 -(void)setMineSupplyProductDto:(MineSupplyProductDTO *)mineSupplyProductDto
 {
+    
     _mineSupplyProductDto = mineSupplyProductDto;
     
     self.titleLabel.text = [NSString stringWithFormat:@"供货单号: %ld", mineSupplyProductDto.id];
@@ -141,6 +142,10 @@
     if (![mineSupplyProductDto isKindOfClass:[MineBuyProductDTO class]]) {
         if(mineSupplyProductDto.stock){
             [numberLabelText appendString:[NSString stringWithFormat:@" (%@)", mineSupplyProductDto.depotDto.name]];
+            if(mineSupplyProductDto.mortgageId!=0){
+                [numberLabelText appendString:[NSString stringWithFormat:@"(%@)", @"抵押"]];
+                self.additionalLabel.text = [NSString stringWithFormat:@"抵押编号: %ld", mineSupplyProductDto.mortgageId];
+            }
         }
         else {
             [numberLabelText appendString:@" (卖家发货)"];

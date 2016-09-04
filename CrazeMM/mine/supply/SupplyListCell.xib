@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -64,7 +64,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-04-30 10:20:20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exd-Ba-xmg">
-                        <rect key="frame" x="188.5" y="8" width="123.5" height="17"/>
+                        <rect key="frame" x="188" y="8" width="123.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -83,6 +83,15 @@
                             <constraint firstAttribute="height" constant="21" id="L6U-Iz-2gx"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OM6-SD-eCe">
+                        <rect key="frame" x="8" y="132" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Lhp-40-x1m"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -138,7 +147,9 @@
                     <constraint firstItem="LYK-7g-pjH" firstAttribute="top" secondItem="zxG-I9-pRt" secondAttribute="bottom" constant="8" symbolic="YES" id="7p4-gC-ppL"/>
                     <constraint firstItem="VMc-Yf-yz2" firstAttribute="top" secondItem="mL9-6a-XSY" secondAttribute="topMargin" id="8TM-WH-Gif"/>
                     <constraint firstItem="JTr-uP-wVQ" firstAttribute="centerX" secondItem="T9Z-MR-8bg" secondAttribute="centerX" id="8ge-WW-03g"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="OM6-SD-eCe" secondAttribute="trailing" id="9pL-Xb-pDm"/>
                     <constraint firstItem="H7E-ec-eIb" firstAttribute="trailing" secondItem="T9Z-MR-8bg" secondAttribute="trailing" id="ACd-IN-lel"/>
+                    <constraint firstItem="OM6-SD-eCe" firstAttribute="top" secondItem="T9Z-MR-8bg" secondAttribute="bottom" constant="3" id="ArQ-2J-lhH"/>
                     <constraint firstItem="Exd-Ba-xmg" firstAttribute="trailing" secondItem="LYK-7g-pjH" secondAttribute="trailing" id="Btp-H9-VWj"/>
                     <constraint firstItem="LYK-7g-pjH" firstAttribute="top" secondItem="VMc-Yf-yz2" secondAttribute="bottom" constant="8" id="DZQ-d8-XpE"/>
                     <constraint firstItem="byl-b6-YCF" firstAttribute="leading" secondItem="H7E-ec-eIb" secondAttribute="leading" id="GB9-YL-EEN"/>
@@ -153,6 +164,7 @@
                     <constraint firstItem="zxG-I9-pRt" firstAttribute="top" secondItem="phd-iT-fgd" secondAttribute="top" id="a78-fq-jqu"/>
                     <constraint firstItem="zxG-I9-pRt" firstAttribute="leading" secondItem="mL9-6a-XSY" secondAttribute="leadingMargin" id="aVV-Cy-OLp"/>
                     <constraint firstItem="JTr-uP-wVQ" firstAttribute="top" secondItem="T9Z-MR-8bg" secondAttribute="bottom" constant="3" id="eRS-tl-xze"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="OM6-SD-eCe" secondAttribute="leading" id="eog-8Y-ASp"/>
                     <constraint firstAttribute="bottomMargin" secondItem="JTr-uP-wVQ" secondAttribute="bottom" constant="-8.5" id="hsD-4Z-oHR"/>
                     <constraint firstItem="phd-iT-fgd" firstAttribute="leading" secondItem="zxG-I9-pRt" secondAttribute="trailing" constant="8" symbolic="YES" id="iDn-BS-HxY"/>
                     <constraint firstAttribute="trailingMargin" secondItem="LYK-7g-pjH" secondAttribute="trailing" id="idX-mb-wXt"/>
@@ -174,6 +186,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="additionalLabel" destination="OM6-SD-eCe" id="xWV-TC-O0T"/>
                 <outlet property="dateLabel" destination="Exd-Ba-xmg" id="SBm-EP-z5A"/>
                 <outlet property="flagLabel" destination="VMc-Yf-yz2" id="uht-BZ-eYs"/>
                 <outlet property="numberLabel" destination="H7E-ec-eIb" id="8BT-5f-far"/>

@@ -9,6 +9,7 @@
 #import "BaseHttpRequest.h"
 #import "MineSupplyProductDTO.h"
 #import "SupplyDetailDTO.h"
+#import "MineBuyDetailDTO.h"
 
 typedef NS_ENUM(NSInteger, MMMineSupplyState){
     kStateNomal = 100,
@@ -118,7 +119,7 @@ typedef NS_ENUM(NSInteger, MMMineSupplyState){
 
 @end
 
-@interface HttpMineStockDetailRequest : BaseHttpRequest
+@interface HttpMineSupplyDetailRequest : BaseHttpRequest
 
 @property (nonatomic) NSInteger sid;
 -(instancetype)initWithId:(NSInteger)sid;
@@ -126,8 +127,21 @@ typedef NS_ENUM(NSInteger, MMMineSupplyState){
 @end
 
 //{"ok":true,"supply":{"deadlineStr":"72小时以上","millisecond":-1,"isSerial":true,"duration":0,"goodName":"步步高-5263 白 4GB 电信版","price":1600.00,"isOriginalBox":true,"id":1935,"state":400,"isBrushMachine":true,"logs":[{"afterState":400,"createTime":"2016-06-21 20:05:59","beforeState":100,"id":579,"message":"用户下架供货","newStateLabel":"已下架","sid":1935},{"afterState":100,"createTime":"2016-06-06 22:24:44","beforeState":0,"id":352,"message":"库存76转手供货保存","newStateLabel":"在售","sid":1935}],"views":5,"isSplit":false,"quantity":10,"active":false,"intentions":3,"message":null,"version":0,"isOriginal":true,"left":10,"createTime":"2016-06-06 22:24:44","isTop":true,"stateLabel":"已下架","region":"不限","user":{"typeName":"个人","id":4,"validateState":300,"username":"xuanxuan"},"isStep":false}}
-@interface HttpMineStockDetailResponse : BaseHttpResponse
+@interface HttpMineSupplyDetailResponse : BaseHttpResponse
 
 @property (nonatomic, readonly) NSDictionary* supply;
 @property (nonatomic, strong) MineSupplyDetailDTO* supplyDtailDto;
+@end
+
+@interface HttpMineBuyDetailRequest : BaseHttpRequest
+
+@property (nonatomic) NSInteger bid;
+-(instancetype)initWithId:(NSInteger)bid;
+
+@end
+
+@interface HttpMineBuyDetailResponse : BaseHttpResponse
+
+@property (nonatomic, readonly) NSDictionary* buy;
+@property (nonatomic, strong) MineBuyDetailDTO* buyDetailDto;
 @end

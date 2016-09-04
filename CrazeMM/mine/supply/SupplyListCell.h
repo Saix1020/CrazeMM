@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, SupplyListCellStyle){
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @property (nonatomic, strong) MineSupplyProductDTO* mineSupplyProductDto;
+@property (weak, nonatomic) IBOutlet UILabel *additionalLabel;
 
 // used for stock
 @property (nonatomic, strong) MineStockDTO* mineStockDto;

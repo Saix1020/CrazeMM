@@ -556,6 +556,12 @@
 		B9B5BCE31CDCDF690085E132 /* NSError+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE21CDCDF690085E132 /* NSError+Utils.m */; };
 		B9B5BCEA1CDDBE670085E132 /* HttpOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCE91CDDBE670085E132 /* HttpOrder.m */; };
 		B9B5BCEF1CDE00C40085E132 /* OrderDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B5BCEE1CDE00C40085E132 /* OrderDetailDTO.m */; };
+		B9B747341D7B9850004D6042 /* MineBuyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747331D7B9850004D6042 /* MineBuyInfoViewController.m */; };
+		B9B747351D7B9850004D6042 /* MineBuyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747331D7B9850004D6042 /* MineBuyInfoViewController.m */; };
+		B9B747391D7B9BF8004D6042 /* MineBuyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747381D7B9BF8004D6042 /* MineBuyDetailDTO.m */; };
+		B9B7473A1D7B9BF8004D6042 /* MineBuyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B747381D7B9BF8004D6042 /* MineBuyDetailDTO.m */; };
+		B9B7473D1D7C25CC004D6042 /* HttpMineBuy.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7473C1D7C25CC004D6042 /* HttpMineBuy.m */; };
+		B9B7473E1D7C25CC004D6042 /* HttpMineBuy.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7473C1D7C25CC004D6042 /* HttpMineBuy.m */; };
 		B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B9BBEEC51CEB4C5900275416 /* AddrCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */; };
 		B9BBEEC61CEB4C5900275416 /* AddrCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */; };
@@ -1831,6 +1837,12 @@
 		B9B5BCEB1CDDC0C90085E132 /* OrderDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OrderDefine.h; path = mine/order/OrderDefine.h; sourceTree = "<group>"; };
 		B9B5BCED1CDE00C40085E132 /* OrderDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderDetailDTO.h; path = mine/order/OrderDetailDTO.h; sourceTree = "<group>"; };
 		B9B5BCEE1CDE00C40085E132 /* OrderDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderDetailDTO.m; path = mine/order/OrderDetailDTO.m; sourceTree = "<group>"; };
+		B9B747321D7B9850004D6042 /* MineBuyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyInfoViewController.h; path = mine/buy/MineBuyInfoViewController.h; sourceTree = "<group>"; };
+		B9B747331D7B9850004D6042 /* MineBuyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyInfoViewController.m; path = mine/buy/MineBuyInfoViewController.m; sourceTree = "<group>"; };
+		B9B747371D7B9BF8004D6042 /* MineBuyDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineBuyDetailDTO.h; path = mine/buy/MineBuyDetailDTO.h; sourceTree = "<group>"; };
+		B9B747381D7B9BF8004D6042 /* MineBuyDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MineBuyDetailDTO.m; path = mine/buy/MineBuyDetailDTO.m; sourceTree = "<group>"; };
+		B9B7473B1D7C25CC004D6042 /* HttpMineBuy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpMineBuy.h; path = restful/HttpMineBuy.h; sourceTree = "<group>"; };
+		B9B7473C1D7C25CC004D6042 /* HttpMineBuy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMineBuy.m; path = restful/HttpMineBuy.m; sourceTree = "<group>"; };
 		B9BBEEC21CEB4C5900275416 /* AddrCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddrCommonCell.h; path = mine/address/AddrCommonCell.h; sourceTree = "<group>"; };
 		B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddrCommonCell.m; path = mine/address/AddrCommonCell.m; sourceTree = "<group>"; };
 		B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddrCommonCell.xib; path = mine/address/AddrCommonCell.xib; sourceTree = "<group>"; };
@@ -2208,7 +2220,7 @@
 				B9E84BD21CF0AB9B003FEAF5 /* account */,
 				B9EFAF7C1CED9A3B00F81157 /* good */,
 				B9B5BCE71CDDBE460085E132 /* order */,
-				B98219141CE9A43200B279E6 /* supply */,
+				B98219141CE9A43200B279E6 /* supply+buy */,
 			);
 			name = mine;
 			sourceTree = "<group>";
@@ -3354,7 +3366,7 @@
 			name = common;
 			sourceTree = "<group>";
 		};
-		B98219141CE9A43200B279E6 /* supply */ = {
+		B98219141CE9A43200B279E6 /* supply+buy */ = {
 			isa = PBXGroup;
 			children = (
 				B98219151CE9A48C00B279E6 /* HttpMineSupply.h */,
@@ -3363,8 +3375,10 @@
 				B982191F1CEA0C0400B279E6 /* HttpMineSupplyShelve.m */,
 				B9EFAF9F1CEE10A200F81157 /* HttpSaveSupplyInfo.h */,
 				B9EFAFA01CEE10A200F81157 /* HttpSaveSupplyInfo.m */,
+				B9B7473B1D7C25CC004D6042 /* HttpMineBuy.h */,
+				B9B7473C1D7C25CC004D6042 /* HttpMineBuy.m */,
 			);
-			name = supply;
+			name = "supply+buy";
 			sourceTree = "<group>";
 		};
 		B98219181CE9A61600B279E6 /* modal */ = {
@@ -3723,6 +3737,15 @@
 			name = modal;
 			sourceTree = "<group>";
 		};
+		B9B747361D7B9BC5004D6042 /* modal */ = {
+			isa = PBXGroup;
+			children = (
+				B9B747371D7B9BF8004D6042 /* MineBuyDetailDTO.h */,
+				B9B747381D7B9BF8004D6042 /* MineBuyDetailDTO.m */,
+			);
+			name = modal;
+			sourceTree = "<group>";
+		};
 		B9C395221CF2ED8800AB44B6 /* address */ = {
 			isa = PBXGroup;
 			children = (
@@ -3796,10 +3819,13 @@
 		B9EFAFA61CEEF7B000F81157 /* buy */ = {
 			isa = PBXGroup;
 			children = (
+				B9B747361D7B9BC5004D6042 /* modal */,
 				B9EFAFA81CEEF7FC00F81157 /* MineBuyViewController.h */,
 				B9EFAFA91CEEF7FC00F81157 /* MineBuyViewController.m */,
 				B9E84BBF1CEF496B003FEAF5 /* MineBuyEditViewController.h */,
 				B9E84BC01CEF496B003FEAF5 /* MineBuyEditViewController.m */,
+				B9B747321D7B9850004D6042 /* MineBuyInfoViewController.h */,
+				B9B747331D7B9850004D6042 /* MineBuyInfoViewController.m */,
 			);
 			name = buy;
 			sourceTree = "<group>";
@@ -4458,6 +4484,7 @@
 				B91896D91CCFAFC90061D0B6 /* TransferAlertView.m in Sources */,
 				B967E6EF1CE4B68A00621F28 /* AddrDTO.m in Sources */,
 				B9E84BC51CF0894D003FEAF5 /* HttpBuyOrder.m in Sources */,
+				B9B747341D7B9850004D6042 /* MineBuyInfoViewController.m in Sources */,
 				B91732521CD1F05400C29698 /* SlideOutDownAnimation.m in Sources */,
 				B91732121CD1F05400C29698 /* AnimationHelper.m in Sources */,
 				B992C5711CCA1DD400DC49E8 /* MyInfoCell.m in Sources */,
@@ -4467,6 +4494,7 @@
 				B9D1C5891D0A414E0099BA95 /* RechargeViewController.m in Sources */,
 				B91732831CD25F3200C29698 /* NSDictionary+HttpHelp.m in Sources */,
 				B91896D21CCF9E8B0061D0B6 /* PayResultCell.m in Sources */,
+				B9B747391D7B9BF8004D6042 /* MineBuyDetailDTO.m in Sources */,
 				B9FE71EC1CD6E70400F5EC9F /* _UserHistory.m in Sources */,
 				B91896F81CD0EF260061D0B6 /* AccountSummaryCell.m in Sources */,
 				B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */,
@@ -4525,6 +4553,7 @@
 				B91732491CD1F05400C29698 /* RotateOutDownRightAnimation.m in Sources */,
 				B9E6611E1D791BCA0072113A /* SupplyAllListViewController.m in Sources */,
 				B964F8FC1CC39670003E0D44 /* main.m in Sources */,
+				B9B7473D1D7C25CC004D6042 /* HttpMineBuy.m in Sources */,
 				B9B5BCEF1CDE00C40085E132 /* OrderDetailDTO.m in Sources */,
 				B917322D1CD1F05400C29698 /* FadeInLeftBigAnimation.m in Sources */,
 				B91896C51CCF38C10061D0B6 /* AddressEditViewController.m in Sources */,
@@ -4907,6 +4936,7 @@
 				B94E6CC61D72AF84005B3DB2 /* HttpRegisterNewMobile.m in Sources */,
 				B9EFAE461CED514100F81157 /* OrderListNoCheckBoxCell.m in Sources */,
 				B9EFAE471CED514100F81157 /* ProductLadderCell.m in Sources */,
+				B9B747351D7B9850004D6042 /* MineBuyInfoViewController.m in Sources */,
 				B9EFAE481CED514100F81157 /* HttpOrderSummary.m in Sources */,
 				B9EFAE491CED514100F81157 /* ZoomInLeftAnimation.m in Sources */,
 				B9EFAE4A1CED514100F81157 /* TransferAlertView.m in Sources */,
@@ -4916,6 +4946,7 @@
 				B9C395341CF4183400AB44B6 /* NewAddressListCell.m in Sources */,
 				B9EFAE4E1CED514100F81157 /* MyInfoCell.m in Sources */,
 				B9E84BD61CF0ABD8003FEAF5 /* HttpMineAccount.m in Sources */,
+				B9B7473A1D7B9BF8004D6042 /* MineBuyDetailDTO.m in Sources */,
 				B9EFAE4F1CED514100F81157 /* BounceAnimation.m in Sources */,
 				B9EFAE501CED514100F81157 /* BounceOutUpAnimation.m in Sources */,
 				B94E6CD11D72B9AE005B3DB2 /* HttpGenEmailVcode.m in Sources */,
@@ -4974,6 +5005,7 @@
 				B9EFAE761CED514100F81157 /* OrderDetailDTO.m in Sources */,
 				B9E6611F1D791BCA0072113A /* SupplyAllListViewController.m in Sources */,
 				B94573301D771334002F75AE /* BuyToBeReceiveListViewController.m in Sources */,
+				B9B7473E1D7C25CC004D6042 /* HttpMineBuy.m in Sources */,
 				B9EFAE771CED514100F81157 /* FadeInLeftBigAnimation.m in Sources */,
 				B94573401D772F34002F75AE /* BuyAllListViewController.m in Sources */,
 				B9D1C58A1D0A414E0099BA95 /* RechargeViewController.m in Sources */,
