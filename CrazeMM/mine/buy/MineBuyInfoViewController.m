@@ -35,7 +35,7 @@
             break;
         case 400:
         case 500: //下架
-            titles = @[@"上架"];
+            titles = @[@"上架", @"修改"];
             break;
         case 150:
         case 200: //成交
