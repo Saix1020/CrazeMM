@@ -236,7 +236,7 @@
     
     for (MineSupplyLogDTO* logDto in logs) {
         [timesPlacehoderArray addObject:@""];
-        [commentsArray addObject:[NSString stringWithFormat:@"%@\n%@", logDto.message, logDto.createTime]];
+        [commentsArray addObject:[NSString stringWithFormat:@"【%@】 %@\n%@", logDto.stateLabel, logDto.message, logDto.createTime]];
     }
     
     self.timeline = [[TimeLineViewControl alloc] initWithTimeArray:timesPlacehoderArray
