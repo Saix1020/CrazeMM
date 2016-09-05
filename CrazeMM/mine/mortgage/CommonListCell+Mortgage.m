@@ -28,8 +28,9 @@
     [self formatPriceLabel];
     [self formatTotalPriceLabel];
     
-    self.rightButton.hidden = YES;
+    self.rightButton.hidden = NO;
     self.leftButton.hidden = YES;
+    [self formatRightButton:dto.state];
 }
 
 -(void)formatQuantityLabel
@@ -89,5 +90,34 @@
     self.thirdLabel.attributedText = attributedText;
 }
 
+-(void)formatRightButton:(NSInteger)state
+{
+    
+    switch (state) {
+        case 100:
+            [self.rightButton setTitle:@"删除" forState:UIControlStateNormal ];
+            [self.rightButton setImage:[UIImage imageNamed:@"up"] forState:UIControlStateNormal ];
+           break;
+            
+        case 200:
+            [self.rightButton setTitle:@"撤销" forState:UIControlStateNormal ];
+            [self.rightButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal ];
+            break;
+            
+        case 300:
+            [self.rightButton setTitle:@"还款" forState:UIControlStateNormal ];
+            [self.rightButton setImage:[UIImage imageNamed:@"up"] forState:UIControlStateNormal ];
+            break;
+            
+        default:
+
+            break;
+    }
+    
+    CGSize fontSize = [self.rightButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.rightButton.titleLabel.font}];
+    [self.rightButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.rightButton.imageView.frame.size.width-4.f, 0, self.rightButton.imageView.frame.size.width+4.f)];
+    [self.rightButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
+
+}
 
 @end

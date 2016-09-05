@@ -94,6 +94,14 @@
 
 @end
 
+#pragma mark - MortgageCancel
+@interface HttpMortgageCancelRequest : BaseHttpRequest
+
+-(instancetype)initWithIds:(NSArray*)ids;
+
+@end
+
+
 
 
 

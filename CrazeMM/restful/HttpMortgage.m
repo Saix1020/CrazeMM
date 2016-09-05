@@ -259,6 +259,34 @@
 
 @end
 
+#pragma mark - MortgageCancel
+
+@implementation HttpMortgageCancelRequest
+
+-(instancetype)initWithIds:(NSArray*)ids
+{
+    self = [super init];
+    self.params = [@{
+                     @"mortgageIds" : [ids componentsJoinedByString:@","],
+                     } mutableCopy];
+    
+    return self;
+}
+
+
+-(NSString*)url
+{
+    return COMB_URL( @"/rest/mortgage/cancel");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+@end
+
+
 
 
 

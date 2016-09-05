@@ -66,6 +66,7 @@
 
 -(void)leftButtonClicked:(CommonListCell *)cell
 {
+    
     @weakify(self);
     [self showAlertViewWithMessage:[NSString stringWithFormat:@"您确认要刷新订单P%ld吗?", ((PayRecordDTO*)cell.dto).payNo]
                     withOKCallback:^(id x){

@@ -23,12 +23,15 @@
     switch (self.selectedSegmentIndex) {
         case 0:
             status = 100;
+            self.bottomViewButtonTitle = @"批量删除";
             break;
         case 1:
             status = 200;
+            self.bottomViewButtonTitle = @"批量撤销";
             break;
         case 2:
             status = 300;
+            self.bottomViewButtonTitle = @"合并付款";
             break;
 
         default:
@@ -61,7 +64,6 @@
     self.autoRefresh = YES;
     
     self.navigationItem.title = @"我的抵押";
-    self.bottomViewButtonTitle = @"批量删除";
     
     
     UIBarButtonItem* addMortgageButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addMortgage:)];
@@ -75,9 +77,10 @@
     NSMutableArray* ids = [[NSMutableArray alloc]init];
     NSMutableArray* stockIds = [[NSMutableArray alloc]init];
     NSArray* onArray = self.selectedData;
+    NSInteger state = ((MortgageDTO*)(onArray.firstObject)).state;
     if ( 0 == onArray.count)
     {
-        [self showAlertViewWithMessage:@"请选择需要删除的抵押申请"];
+        [self showAlertViewWithMessage:@"请选择"]; //需要删除的抵押申请
         return;
     }
     
@@ -87,30 +90,98 @@
     }
     
     @weakify(self);
+    switch (state) {
+        case 100:
+        {
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"您确认删除该抵押申请%@",[ids componentsJoinedByString:@","]]
+                            withOKCallback:^(id x){
+                                @strongify(self);
+                                
+                                HttpMortgageDeleteRequest* request = [[HttpMortgageDeleteRequest alloc] initWithIds:ids StockIds:stockIds];
+                                [request request]
+                                .then(^(id responseObj){
+                                    if (!request.response.ok) {
+                                        [self showAlertViewWithMessage:request.response.errorMsg];
+                                    }
+                                    else {
+                                        [self showAlertViewWithMessage:@"删除成功"];
+                                        [self resetDataSource];
+                                    }
+                                })
+                                .catch(^(NSError* error){
+                                    [self showAlertViewWithMessage:error.localizedDescription];
+                                });
+                                
+                            }
+                         andCancelCallback:^(id x){
+                             
+                         }];
+            break;
+        }
+        case 200:
+        {
+            
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"撤销抵押%@？撤销抵押后货品库存将会变成正常库存", [ids componentsJoinedByString:@","] ]
+                            withOKCallback:^(id x){
+                                @strongify(self);
+                                HttpMortgageCancelRequest* request = [[HttpMortgageCancelRequest alloc] initWithIds:ids];
+                                [request request]
+                                .then(^(id responseObj){
+                                    if (!request.response.ok) {
+                                        [self showAlertViewWithMessage:request.response.errorMsg];
+                                    }
+                                    else {
+                                        [self showAlertViewWithMessage:@"撤销成功"];
+                                        [self resetDataSource];
+                                    }
+                                    
+                                })
+                                .catch(^(NSError* error){
+                                    [self showAlertViewWithMessage:error.localizedDescription];
+                                });
+                                
+                                
+                            }
+                         andCancelCallback:^(id x){
+                             
+                         }];
+
+            break;
+        }
+        case 300:
+        {
+            //need modify
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"撤销抵押%@？撤销抵押后货品库存将会变成正常库存", [ids componentsJoinedByString:@","] ]
+                            withOKCallback:^(id x){
+                                @strongify(self);
+                                HttpMortgageCancelRequest* request = [[HttpMortgageCancelRequest alloc] initWithIds:ids];
+                                [request request]
+                                .then(^(id responseObj){
+                                    if (!request.response.ok) {
+                                        [self showAlertViewWithMessage:request.response.errorMsg];
+                                    }
+                                    else {
+                                        [self showAlertViewWithMessage:@"撤销成功"];
+                                        [self resetDataSource];
+                                    }
+                                    
+                                })
+                                .catch(^(NSError* error){
+                                    [self showAlertViewWithMessage:error.localizedDescription];
+                                });
+                                
+                                
+                            }
+                         andCancelCallback:^(id x){
+                             
+                         }];
+            break;
+        }
+            
+        default:
+            break;
+    }
     
-    [self showAlertViewWithMessage:[NSString stringWithFormat:@"您确认删除该抵押申请%@",[ids componentsJoinedByString:@","]]
-                    withOKCallback:^(id x){
-                        @strongify(self);
-                        
-                        HttpMortgageDeleteRequest* request = [[HttpMortgageDeleteRequest alloc] initWithIds:ids StockIds:stockIds];
-                        [request request]
-                        .then(^(id responseObj){
-                            if (!request.response.ok) {
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                            else {
-                                    [self showAlertViewWithMessage:@"撤销成功"];
-                                    [self resetDataSource];
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        });
-                        
-                    }
-                 andCancelCallback:^(id x){
-                     
-                 }];
 
 }
 
@@ -148,6 +219,7 @@
     
     switch (buttonIndex) {
         case 0:
+            //need modify
             break;
             
         default:
@@ -155,6 +227,115 @@
             
     }
 }
+
+#pragma mark - button Belegate
+-(void)rightButtonClicked:(CommonListCell *)cell
+{
+    NSMutableArray* ids = [[NSMutableArray alloc]init];
+    NSMutableArray* stockIds = [[NSMutableArray alloc]init];
+    
+    [ids addObject: [NSString stringWithFormat:@"%ld", ((MortgageDTO*)cell.dto).id]];
+    [stockIds addObject:[NSString stringWithFormat:@"%ld", ((MortgageDTO*)cell.dto).stockId]];
+
+    @weakify(self);
+    switch (((MortgageDTO*)cell.dto).state) {
+        case 100:
+        {
+           [self showAlertViewWithMessage:[NSString stringWithFormat:@"确定删除抵押吗？"]
+                            withOKCallback:^(id x){
+                                @strongify(self);
+                                HttpMortgageDeleteRequest* request = [[HttpMortgageDeleteRequest alloc] initWithIds:ids StockIds:stockIds];
+                                [request request]
+                                .then(^(id responseObj){
+                                    if (!request.response.ok) {
+                                        [self showAlertViewWithMessage:request.response.errorMsg];
+                                    }
+                                    else {
+                                        [self showAlertViewWithMessage:@"删除成功"];
+                                        [self resetDataSource];
+                                    }
+                                    
+                                })
+                                .catch(^(NSError* error){
+                                    [self showAlertViewWithMessage:error.localizedDescription];
+                                });
+                                
+                                
+                            }
+                         andCancelCallback:^(id x){
+                             
+                         }];
+            break;
+        }
+            
+        case 200:
+        {
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"撤销抵押%ld？撤销抵押后货品库存将会变成正常库存", ((MortgageDTO*)cell.dto).id ]
+                            withOKCallback:^(id x){
+                                @strongify(self);
+                                HttpMortgageCancelRequest* request = [[HttpMortgageCancelRequest alloc] initWithIds:ids];
+                                [request request]
+                                .then(^(id responseObj){
+                                    if (!request.response.ok) {
+                                        [self showAlertViewWithMessage:request.response.errorMsg];
+                                    }
+                                    else {
+                                        [self showAlertViewWithMessage:@"撤销成功"];
+                                        [self resetDataSource];
+                                    }
+                                    
+                                })
+                                .catch(^(NSError* error){
+                                    [self showAlertViewWithMessage:error.localizedDescription];
+                                });
+                                
+                                
+                            }
+                         andCancelCallback:^(id x){
+                             
+                         }];
+            break;
+        }
+
+            break;
+            
+        case 300:
+        {
+            //need modify
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"撤销抵押%ld？撤销抵押后货品库存将会变成正常库存", ((MortgageDTO*)cell.dto).id ]
+                            withOKCallback:^(id x){
+                                @strongify(self);
+                                HttpMortgageCancelRequest* request = [[HttpMortgageCancelRequest alloc] initWithIds:ids];
+                                [request request]
+                                .then(^(id responseObj){
+                                    if (!request.response.ok) {
+                                        [self showAlertViewWithMessage:request.response.errorMsg];
+                                    }
+                                    else {
+                                        [self showAlertViewWithMessage:@"撤销成功"];
+                                        [self resetDataSource];
+                                    }
+                                    
+                                })
+                                .catch(^(NSError* error){
+                                    [self showAlertViewWithMessage:error.localizedDescription];
+                                });
+                                
+                                
+                            }
+                         andCancelCallback:^(id x){
+                             
+                         }];
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+
+}
+
 
 
 @end

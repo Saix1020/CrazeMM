@@ -95,21 +95,16 @@
 {
     switch (state) {
         case 100:
-            self.timeLabel.hidden = YES;
-            self.rightButton.hidden = NO;
-            self.leftButton.hidden = NO;
-            self.topButton.hidden = NO;
-            [self.leftButton setTitle:@"刷新订单" forState:UIControlStateNormal];
-            [self.rightButton setTitle:@"设置失败" forState:UIControlStateNormal];
-            [self.topButton setTitle:@"重新支付" forState:UIControlStateNormal];
+            [self.rightButton setTitle:@"删除" forState:UIControlStateNormal];
+            break;
+        case 200:
+            [self.rightButton setTitle:@"撤销" forState:UIControlStateNormal];
+            break;
+        case 300:
+            [self.rightButton setTitle:@"还款" forState:UIControlStateNormal];
             break;
             
         default:
-            //disable buttons
-            self.timeLabel.hidden = YES;
-            self.topButton.hidden = YES;
-            self.rightButton.hidden = YES;
-            self.leftButton.hidden = YES;
             break;
     }
 }
