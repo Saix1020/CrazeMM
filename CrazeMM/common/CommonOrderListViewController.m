@@ -62,6 +62,14 @@
 {
     _hiddenSegment = hiddenSegment;
     self.segmentCell.hidden = hiddenSegment;
+    if(!hiddenSegment){
+        self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    }
+    else {
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    }
 }
 
 -(void)setSegmentTitles:(NSArray *)segmentTitles
@@ -188,8 +196,8 @@
     }
     else
     {
-        self.tableView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.f, 0, 0, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     }
     [self.tableView registerNib:[UINib nibWithNibName:@"CommonListCell" bundle:nil] forCellReuseIdentifier:@"CommonListCell"];
     
@@ -528,6 +536,11 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 -(UITableViewCell*)configCellByTableView:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath

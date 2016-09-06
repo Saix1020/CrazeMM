@@ -18,6 +18,9 @@
 
 -(void) setPayRecordDTO:(PayRecordDTO *)dto
 {
+    self.leftButton.hidden = YES;
+    self.timeLabel.hidden = YES;
+    
     [self formatPayOrderLabel:dto.payNo];
     [self formatPayStatusLabel:dto.state];
     [self formatPaySubmitTime:dto.createTime];

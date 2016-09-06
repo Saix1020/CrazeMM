@@ -22,10 +22,18 @@
    return [[HttpMortgageRequest alloc] initWithPageNum:self.pageNumber+1 andStatus:status];
 }
 
+-(BOOL)hiddenCheckBox
+{
+    return YES;
+}
+
+-(BOOL)hiddenSegment
+{
+    return YES;
+}
 
 - (void)viewDidLoad {
     
-    self.hiddenSegment =YES;
     [super viewDidLoad];
     
     self.usingDefaultCell = YES;
