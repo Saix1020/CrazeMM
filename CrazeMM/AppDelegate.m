@@ -10,6 +10,7 @@
 #import "WelcomeViewController.h"
 #import "NewWelcomeViewController.h"
 #import "TabBarController.h"
+#import "HttpAllRegion.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NewWelcomeViewController* welcomeVC;
@@ -32,6 +33,8 @@
                                              selector:@selector(networkChanged:)
                                                  name:kRealReachabilityChangedNotification
                                                object:nil];
+    [self getGlobSharedInstances];
+
 
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor redColor]];
@@ -57,7 +60,6 @@
     
     [self.window makeKeyAndVisible];
 
-    
     
     
     return YES;
@@ -212,6 +214,18 @@
 //    }
 }
 
+
+#pragma - mark get globshared instance
+-(void)getGlobSharedInstances
+{
+    // all regions
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
+        [HttpAllRegionRequest getAllRegions];
+    });
+    
+    // add more const big data from server here!
+    
+}
 
 
 @end
