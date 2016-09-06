@@ -74,7 +74,7 @@ const struct KNSemiModalOption KNSemiModalOptionKeys = {
      KNSemiModalOptionKeys.parentScale : @(0.8),     
      KNSemiModalOptionKeys.shadowOpacity : @(0.8),
      KNSemiModalOptionKeys.transitionStyle : @(KNSemiModalTransitionStyleSlideUp),
-     KNSemiModalOptionKeys.disableCancel : @(NO),
+     KNSemiModalOptionKeys.disableCancel : @(YES),
 	 }];
 }
 
