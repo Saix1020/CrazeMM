@@ -286,6 +286,39 @@
 
 @end
 
+#pragma mark - Now
+
+@implementation HttpNowRequest
+
+-(NSString*)url
+{
+    return COMB_URL( @"/rest/now");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+-(Class) responseClass
+{
+    return [HttpNowResponse class];
+}
+
+@end
+
+@implementation HttpNowResponse
+
+-(void)parserResponse
+{
+    if (self.all[@"now"])
+    {
+        self.now = [self.all[@"now"] integerValue];
+    }
+}
+
+@end
+
 
 
 

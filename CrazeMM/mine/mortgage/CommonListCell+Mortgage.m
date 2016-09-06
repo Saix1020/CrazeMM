@@ -28,9 +28,17 @@
     [self formatPriceLabel];
     [self formatTotalPriceLabel];
     
-    self.rightButton.hidden = NO;
     self.leftButton.hidden = YES;
-    [self formatRightButton:dto.state];
+  
+    if (500 == dto.state)
+    {
+        self.rightButton.hidden = YES;
+    }
+    else
+    {
+        self.rightButton.hidden = NO;
+        [self formatRightButton:dto.state];
+    }
 }
 
 -(void)formatQuantityLabel
@@ -114,9 +122,10 @@
             break;
     }
     
-    CGSize fontSize = [self.rightButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.rightButton.titleLabel.font}];
-    [self.rightButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.rightButton.imageView.frame.size.width-4.f, 0, self.rightButton.imageView.frame.size.width+4.f)];
-    [self.rightButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
+    [self.rightButton exchangeImageAndText];
+    //CGSize fontSize = [self.rightButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.rightButton.titleLabel.font}];
+    //[self.rightButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.rightButton.imageView.frame.size.width-4.f, 0, self.rightButton.imageView.frame.size.width+4.f)];
+    //[self.rightButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
 
 }
 
