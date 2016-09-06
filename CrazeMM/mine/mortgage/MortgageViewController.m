@@ -7,6 +7,8 @@
 //
 
 #import "MortgageViewController.h"
+#import "MortgageHistoryViewController.h"
+#import "MortgageRefundViewController.h"
 
 @interface MortgageViewController()
 
@@ -150,31 +152,8 @@
         }
         case 300:
         {
-            //need modify
-            [self showAlertViewWithMessage:[NSString stringWithFormat:@"撤销抵押%@？撤销抵押后货品库存将会变成正常库存", [ids componentsJoinedByString:@","] ]
-                            withOKCallback:^(id x){
-                                @strongify(self);
-                                HttpMortgageCancelRequest* request = [[HttpMortgageCancelRequest alloc] initWithIds:ids];
-                                [request request]
-                                .then(^(id responseObj){
-                                    if (!request.response.ok) {
-                                        [self showAlertViewWithMessage:request.response.errorMsg];
-                                    }
-                                    else {
-                                        [self showAlertViewWithMessage:@"撤销成功"];
-                                        [self resetDataSource];
-                                    }
-                                    
-                                })
-                                .catch(^(NSError* error){
-                                    [self showAlertViewWithMessage:error.localizedDescription];
-                                });
-                                
-                                
-                            }
-                         andCancelCallback:^(id x){
-                             
-                         }];
+            MortgageRefundViewController* refundVC = [[MortgageRefundViewController alloc] initWithDtos:onArray];
+            [self.navigationController pushViewController:refundVC animated:YES];
             break;
         }
             
@@ -219,8 +198,11 @@
     
     switch (buttonIndex) {
         case 0:
-            //need modify
+        {
+            MortgageHistoryViewController* mortgageHistoryVC = [[MortgageHistoryViewController alloc] init];
+            [self.navigationController pushViewController:mortgageHistoryVC animated:YES];
             break;
+        }
             
         default:
             break;
@@ -301,31 +283,10 @@
             
         case 300:
         {
-            //need modify
-            [self showAlertViewWithMessage:[NSString stringWithFormat:@"撤销抵押%ld？撤销抵押后货品库存将会变成正常库存", ((MortgageDTO*)cell.dto).id ]
-                            withOKCallback:^(id x){
-                                @strongify(self);
-                                HttpMortgageCancelRequest* request = [[HttpMortgageCancelRequest alloc] initWithIds:ids];
-                                [request request]
-                                .then(^(id responseObj){
-                                    if (!request.response.ok) {
-                                        [self showAlertViewWithMessage:request.response.errorMsg];
-                                    }
-                                    else {
-                                        [self showAlertViewWithMessage:@"撤销成功"];
-                                        [self resetDataSource];
-                                    }
-                                    
-                                })
-                                .catch(^(NSError* error){
-                                    [self showAlertViewWithMessage:error.localizedDescription];
-                                });
-                                
-                                
-                            }
-                         andCancelCallback:^(id x){
-                             
-                         }];
+            NSArray* selectedDtos = [NSArray arrayWithObject:((MortgageDTO*)cell.dto)];
+            MortgageRefundViewController* refundVC = [[MortgageRefundViewController alloc] initWithDtos:selectedDtos];
+            [self.navigationController pushViewController:refundVC animated:YES];
+            
             break;
         }
             

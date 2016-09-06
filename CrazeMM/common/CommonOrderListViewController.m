@@ -186,6 +186,11 @@
         self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
     }
+    else
+    {
+        self.tableView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.f, 0, 0, 0);
+    }
     [self.tableView registerNib:[UINib nibWithNibName:@"CommonListCell" bundle:nil] forCellReuseIdentifier:@"CommonListCell"];
     
     

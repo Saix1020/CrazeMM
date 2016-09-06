@@ -101,7 +101,16 @@
 
 @end
 
+#pragma mark - Now
+@interface HttpNowRequest : BaseHttpRequest
 
+@end
+
+@interface HttpNowResponse : BaseHttpResponse
+
+@property (nonatomic) NSInteger now;
+
+@end
 
 
 
