@@ -101,7 +101,7 @@
 
 -(void)datePickerDonePressed:(THDatePickerViewController *)datePicker
 {
-    //self.curDate = datePicker.date;
+    self.curDate = datePicker.date;
     
     if (self.editingTextField == self.dateFromField) {
         

@@ -180,8 +180,8 @@
     //http://b.189mm.net/rest/order?pn=1&state=100&t=b&complex=111&cbegin=2016-08-10&cend=2016-08-31&ubegin=2016-08-09&uend=
     NSString* createFromDateString = self.createDateCell.fromDate?[inputFormatter stringFromDate:self.createDateCell.fromDate]:@"";
     NSString* createToDateString = self.createDateCell.toDate?[inputFormatter stringFromDate:self.createDateCell.toDate]:@"";
-    NSString* updateFromDateString = self.updateDateCell.fromDate?[inputFormatter stringFromDate:self.createDateCell.fromDate]:@"";
-    NSString* updateToDateString = self.updateDateCell.toDate?[inputFormatter stringFromDate:self.createDateCell.toDate]:@"";
+    NSString* updateFromDateString = self.updateDateCell.fromDate?[inputFormatter stringFromDate:self.updateDateCell.fromDate]:@"";
+    NSString* updateToDateString = self.updateDateCell.toDate?[inputFormatter stringFromDate:self.updateDateCell.toDate]:@"";
     
     NSDictionary* conditions = @{
                                  @"complex" : name,
