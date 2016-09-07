@@ -38,24 +38,40 @@
     return _addrCell;
 }
 
+-(void) setModifyGoodInfo:(GoodCreateInfo *)modifyGoodInfo
+{
+    
+    [super setModifyGoodInfo:modifyGoodInfo];
+    
+}
+
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     
-    HttpAddressRequest* request = [[HttpAddressRequest alloc] init];
-    [request request]
-    .then(^(id responseObj){
-        HttpAddressResponse* response = (HttpAddressResponse*)request.response;
-        if (response.ok) {
-            self.addresses = response.addresses;
-            if (self.addresses.count>0) {
-                self.addrCell.value = ((AddressDTO *)self.addresses.firstObject).address;
+    if (!self.modifyGoodInfo) {
+        HttpAddressRequest* request = [[HttpAddressRequest alloc] init];
+        [request request]
+        .then(^(id responseObj){
+            HttpAddressResponse* response = (HttpAddressResponse*)request.response;
+            if (response.ok) {
+                self.addresses = response.addresses;
+                if (self.addresses.count>0) {
+                    self.addrCell.value = ((AddressDTO *)self.addresses.firstObject).address;
+                }
             }
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    });
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
+
+    }
+    else {
+        
+        self.addresses = self.modifyGoodInfo.addrList;
+        self.addrCell.value = self.modifyGoodInfo.addr.address;
+    }
     
     NSMutableArray* tempArray = [self.cellArray mutableCopy];
 //    tempArray[kRowStock] = self.amountCell;
@@ -89,85 +105,151 @@
 //buy.duration:24
 //buy.addrId:178
 //buy.isAnoy:true
+
+-(BaseHttpRequest*)createGood
+{
+    GoodCreateInfo* goodCreateInfo = [[GoodCreateInfo alloc] init];
+    for (GoodBrandDTO* brandDto in self.goodBrands) {
+        if ([brandDto.name isEqualToString:self.brandCell.regionLabel.text]) {
+            goodCreateInfo.brand = brandDto.id;
+        }
+    }
+    
+    goodCreateInfo.id = self.currentGoodDetail.id;
+    goodCreateInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
+    NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
+    switch (cycleStringIndex) {
+        case 0:
+            goodCreateInfo.deadline = 24;
+            break;
+        case 1:
+            goodCreateInfo.deadline = 48;
+            break;
+        case 2:
+            goodCreateInfo.deadline = 72;
+            break;
+        default:
+            goodCreateInfo.deadline = -1;
+            break;
+    }
+    
+    goodCreateInfo.duration = self.timeCell.textFieldCell.text.integerValue;
+    goodCreateInfo.price = self.priceCell.textFieldCell.text.integerValue;
+    goodCreateInfo.color = self.colorCell.regionLabel.text;
+    goodCreateInfo.volume = self.capacityCell.regionLabel.text;
+    goodCreateInfo.network = self.standardCell.regionLabel.text;
+    goodCreateInfo.isSerial = self.hasIMEICell.swith.on;
+    goodCreateInfo.isOriginal = self.isIntactCell.swith.on;
+    goodCreateInfo.isOriginalBox = self.hasBoxCell.swith.on;
+    goodCreateInfo.isBrushMachine = self.isBrushedCell.swith.on;
+    goodCreateInfo.isAnoy = self.otherCell.checkBox.on;
+    
+    for (AddressDTO* addr in self.addresses) {
+        if([self.addrCell.value isEqualToString:addr.address]){
+            goodCreateInfo.addrId = addr.id;
+            break;
+        }
+    }
+    
+    
+    HttpSaveBuyInfoRequest* request = [[HttpSaveBuyInfoRequest alloc] initWithGoodInfo:goodCreateInfo];
+    
+    return request;
+}
+
+-(BaseHttpRequest*)updateGood
+{
+    self.modifyGoodInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
+    NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
+    switch (cycleStringIndex) {
+        case 0:
+            self.modifyGoodInfo.deadline = 24;
+            break;
+        case 1:
+            self.modifyGoodInfo.deadline = 48;
+            break;
+        case 2:
+            self.modifyGoodInfo.deadline = 72;
+            break;
+        default:
+            self.modifyGoodInfo.deadline = -1;
+            break;
+    }
+    
+    self.modifyGoodInfo.duration = self.timeCell.textFieldCell.text.integerValue;
+    self.modifyGoodInfo.price = self.priceCell.textFieldCell.text.integerValue;
+    self.modifyGoodInfo.color = self.colorCell.regionLabel.text;
+    self.modifyGoodInfo.volume = self.capacityCell.regionLabel.text;
+    self.modifyGoodInfo.network = self.standardCell.regionLabel.text;
+    self.modifyGoodInfo.isSerial = self.hasIMEICell.swith.on;
+    self.modifyGoodInfo.isOriginal = self.isIntactCell.swith.on;
+    self.modifyGoodInfo.isOriginalBox = self.hasBoxCell.swith.on;
+    self.modifyGoodInfo.isBrushMachine = self.isBrushedCell.swith.on;
+    self.modifyGoodInfo.isAnoy = self.otherCell.checkBox2.on;
+    
+    for (AddressDTO* addr in self.addresses) {
+        if([self.addrCell.value isEqualToString:addr.address]){
+            self.modifyGoodInfo.addrId = addr.id;
+            break;
+        }
+    }
+    
+    HttpModifyBuyInfoRequest* request = [[HttpModifyBuyInfoRequest alloc] initWithGoodInfo:self.modifyGoodInfo];
+    
+    return  request;
+}
+
+
 -(void)saveNewGood:(UIButton*)sender
 {
     [self.view endEditing:YES];
     @weakify(self);
-    [self showAlertViewWithMessage:@"您确认发布该求购信息吗?"
-                    withOKCallback:^(id x){
-                        @strongify(self);
-                        GoodCreateInfo* goodCreateInfo = [[GoodCreateInfo alloc] init];
-                        for (GoodBrandDTO* brandDto in self.goodBrands) {
-                            if ([brandDto.name isEqualToString:self.brandCell.regionLabel.text]) {
-                                goodCreateInfo.brand = brandDto.id;
-                            }
-                        }
-                        
-                        goodCreateInfo.id = self.currentGoodDetail.id;
-                        goodCreateInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
-                        NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
-                        switch (cycleStringIndex) {
-                            case 0:
-                                goodCreateInfo.deadline = 24;
-                                break;
-                            case 1:
-                                goodCreateInfo.deadline = 48;
-                                break;
-                            case 2:
-                                goodCreateInfo.deadline = 72;
-                                break;
-                            default:
-                                goodCreateInfo.deadline = -1;
-                                break;
-                        }
-                        
-                        goodCreateInfo.duration = self.timeCell.textFieldCell.text.integerValue;
-                        goodCreateInfo.price = self.priceCell.textFieldCell.text.integerValue;
-                        goodCreateInfo.color = self.colorCell.regionLabel.text;
-                        goodCreateInfo.volume = self.capacityCell.regionLabel.text;
-                        goodCreateInfo.network = self.standardCell.regionLabel.text;
-                        goodCreateInfo.isSerial = self.hasIMEICell.swith.on;
-                        goodCreateInfo.isOriginal = self.isIntactCell.swith.on;
-                        goodCreateInfo.isOriginalBox = self.hasBoxCell.swith.on;
-                        goodCreateInfo.isBrushMachine = self.isBrushedCell.swith.on;
-                        goodCreateInfo.isAnoy = self.otherCell.checkBox.on;
-                        
-                        for (AddressDTO* addr in self.addresses) {
-                            if([self.addrCell.value isEqualToString:addr.address]){
-                                goodCreateInfo.addrId = addr.id;
-                                break;
-                            }
-                        }
-                        
-                        
-                        HttpSaveBuyInfoRequest* request = [[HttpSaveBuyInfoRequest alloc] initWithGoodInfo:goodCreateInfo];
-                        [request request]
-                        .then(^(id responseObj){
-                            if (!request.response.ok) {
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                            else {
-                                if ([self.delegate respondsToSelector:@selector(editSupplyGoodSuccess)]) {
-                                    [self.delegate editSupplyGoodSuccess];
-                                    @weakify(self);
-                                    [self showAlertViewWithMessage:@"求购信息发布成功" withCallback:^(id x){
-                                        @strongify(self);
-                                        [self.navigationController popViewControllerAnimated:YES];
-                                    }];
-                                }
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        });
-                        
-                    }
-                 andCancelCallback:^(id x){
-                     
+    if(self.modifyGoodInfo){
+        [self invokeHttpRequest:[self updateGood]
+                andConfirmTitle:@"您确认修改该求购信息吗?"
+                andSuccessTitle:nil
+             andSuccessCallback:^(BaseHttpRequest* request, NSString* string){
+                 @strongify(self);
+                 
+                 
+                 [self showAlertViewWithMessage:@"求购信息修改成功" withCallback:^(id x){
+                     if([self.navigationController isKindOfClass:[BaseNavigationController class]]){
+                         UIViewController* markedVC = ((BaseNavigationController*)self.navigationController).markedVC;
+                         if ([markedVC respondsToSelector:@selector(editSupplyGoodSuccess)]) {
+                             [markedVC performSelector:@selector(editSupplyGoodSuccess)];
+                         }
+                         [(BaseNavigationController*)self.navigationController popToMarkedViewControllerAnimated:YES];
+                         
+                         
+                     }
+                     else {
+                         [self.navigationController popViewControllerAnimated:YES];
+                     }
                  }];
-
-    
+             }
+              andFailedCallback:nil
+         ];
+        
     }
+    else {
+        [self invokeHttpRequest:[self createGood]
+                andConfirmTitle:@"您确认发布该求购信息吗?"
+                andSuccessTitle:@"求购信息发布成功"
+             andSuccessCallback:^(BaseHttpRequest* request, NSString* string){
+                 @strongify(self);
+                 if ([self.delegate respondsToSelector:@selector(editSupplyGoodSuccess)]) {
+                     [self.delegate editSupplyGoodSuccess];
+                 }
+                 
+                 [self showAlertViewWithMessage:@"求购信息发布成功" withCallback:^(id x){
+                     [self.navigationController popViewControllerAnimated:YES];
+                 }];
+             }
+              andFailedCallback:nil
+         ];
+    }
+    
+}
 
 #pragma -- mark tableview delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

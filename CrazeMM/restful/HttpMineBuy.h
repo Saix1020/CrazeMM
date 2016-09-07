@@ -7,7 +7,19 @@
 //
 
 #import "BaseHttpRequest.h"
+#import "HttpMineSupply.h"
 
 @interface HttpMineBuy : BaseHttpRequest
+
+@end
+
+
+
+@interface HttpBuyForMidifyRequest : HttpSupplyForMidifyRequest
+
+@end
+
+
+@interface HttpBuyForMidifyResponse : HttpSupplyForMidifyResponse
 
 @end

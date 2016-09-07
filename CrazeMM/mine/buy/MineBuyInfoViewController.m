@@ -7,8 +7,9 @@
 //
 
 #import "MineBuyInfoViewController.h"
-#import "HttpMineSupply.h"
+#import "HttpMineBuy.h"
 #import "HttpMineSupplyShelve.h"
+#import "MineBuyEditViewController.h"
 
 @interface MineBuyInfoViewController ()
 
@@ -62,10 +63,40 @@
         case 400:
         case 500: //
         {
-            HttpMineBuyReshelveRequest* request = [[HttpMineBuyReshelveRequest alloc] initWithIds:@[@(self.bid)]];
-            [self invokeHttpRequest:request
-                    andConfirmTitle: [NSString stringWithFormat:@"确认要上架%ld吗?", self.sid]
-                    andSuccessTitle:@"上架成功"];
+            if([self.bottomButtons indexOfObject:sender] == 0){
+                HttpMineBuyReshelveRequest* request = [[HttpMineBuyReshelveRequest alloc] initWithIds:@[@(self.bid)]];
+                [self invokeHttpRequest:request
+                        andConfirmTitle: [NSString stringWithFormat:@"确认要上架%ld吗?", self.bid]
+                        andSuccessTitle:@"上架成功"];
+
+            }
+            else { //修改
+                HttpBuyForMidifyRequest* request = [[HttpBuyForMidifyRequest alloc] initWithId:self.bid];
+                
+                [self showProgressIndicator];
+                
+                [request request]
+                .then(^(id responseObj){
+                    if(request.response.ok){
+                        HttpBuyForMidifyResponse* response = (HttpBuyForMidifyResponse*)request.response;
+                        response.goodCreateInfo.lid = self.bid;
+                        
+                        MineBuyEditViewController* vc = [[MineBuyEditViewController alloc] initWithModifyGoodInfo:response.goodCreateInfo];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                    else {
+                        [self showAlertViewWithMessage:request.response.errorMsg];
+                    }
+                })
+                .catch(^(NSError* error){
+                    [self showAlertViewWithMessage:error.localizedDescription];
+                })
+                .finally(^(){
+                    [self dismissProgressIndicator];
+                });
+                
+            }
+            
         }
             
             break;

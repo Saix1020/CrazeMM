@@ -109,7 +109,6 @@
         NSLog(@"%@", dto);
         [self.productDTOs  addObject:dto];
     }
-    
 }
 
 -(NSUInteger)pageNumber
@@ -402,6 +401,49 @@
     }
     
     self.buyDetailDto = [[MineBuyDetailDTO alloc] initWith:self.buy];
+}
+
+@end
+
+@implementation HttpSupplyForMidifyRequest
+
+-(instancetype)initWithId:(NSInteger)id
+{
+    self = [super init];
+    if(self){
+        self.id = id;
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* path = [NSString stringWithFormat:@"/rest/supply/supplyForModify/%ld", self.id];
+    return COMB_URL(path);
+}
+
+-(Class)responseClass
+{
+    return [HttpSupplyForMidifyResponse class];
+}
+
+@end
+
+@implementation HttpSupplyForMidifyResponse
+
+-(NSDictionary*)data
+{
+    if (self.all) {
+        return self.all[@"supply"];
+    }
+    
+    return nil;
+}
+
+-(void)parserResponse
+{
+    self.goodCreateInfo = [[GoodCreateInfo alloc] initWith:self.data];
 }
 
 @end

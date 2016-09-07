@@ -23,6 +23,9 @@
 @property (nonatomic, copy) NSArray* network;
 @property (nonatomic, copy) NSString* model;
 
+@property (nonatomic, copy) NSString* brandName;
+@property (nonatomic) NSInteger brandId;
+
 
 
 @end

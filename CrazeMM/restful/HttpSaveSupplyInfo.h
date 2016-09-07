@@ -38,3 +38,17 @@
 -(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo;
 
 @end
+
+@interface HttpModifySupplyInfoRequest : BaseHttpRequest
+
+-(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo;
+
+@end
+
+@interface HttpModifyBuyInfoRequest : BaseHttpRequest
+
+-(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo;
+
+@end
+
+

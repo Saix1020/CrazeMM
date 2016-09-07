@@ -10,6 +10,7 @@
 #import "MineSupplyProductDTO.h"
 #import "SupplyDetailDTO.h"
 #import "MineBuyDetailDTO.h"
+#import "GoodCreateInfo.h"
 
 typedef NS_ENUM(NSInteger, MMMineSupplyState){
     kStateNomal = 100,
@@ -144,4 +145,82 @@ typedef NS_ENUM(NSInteger, MMMineSupplyState){
 
 @property (nonatomic, readonly) NSDictionary* buy;
 @property (nonatomic, strong) MineBuyDetailDTO* buyDetailDto;
+@end
+
+@interface HttpSupplyForMidifyRequest : BaseHttpRequest
+
+-(instancetype)initWithId:(NSInteger)id;
+
+@property (nonatomic) NSInteger id;
+
+@end
+
+
+//{
+//    ok = 1;
+//    supply =     {
+//        active = 0;
+//        createTime = "2016-09-04 20:12:23";
+//        deadline = "-1";
+//        deadlineStr = "72\U5c0f\U65f6\U4ee5\U4e0a";
+//        duration = 24;
+//        gcolor = "\U9ed1";
+//        gnetwork = "\U7535\U4fe1\U7248";
+//        good =         {
+//            brand =             {
+//                id = 28;
+//                name = "\U534e\U7855";
+//            };
+//            colorList =             (
+//                                     "\U9ed1",
+//                                     "\U767d"
+//                                     );
+//            id = 1670;
+//            model = "\U98de\U9a6cX003";
+//            networkList =             (
+//                                       "\U7535\U4fe1\U7248"
+//                                       );
+//            volumeList =             (
+//                                      16G
+//                                      );
+//        };
+//        goodImage = "https://static.189mm.net/good/1670.jpg";
+//        goodName = "\U534e\U7855-\U98de\U9a6cX003 \U9ed1 16G \U7535\U4fe1\U7248";
+//        gvolume = 16G;
+//        id = 2954;
+//        intentions = 0;
+//        isAnoy = 0;
+//        isBrushMachine = 0;
+//        isMortgage = 0;
+//        isOriginal = 1;
+//        isOriginalBox = 1;
+//        isSerial = 1;
+//        isSplit = 0;
+//        isStep = 0;
+//        isStock = 0;
+//        isTop = 1;
+//        left = 122;
+//        millisecond = "-159288443";
+//        price = 12;
+//        quantity = 122;
+//        region = "\U4e0d\U9650";
+//        state = 500;
+//        stateLabel = "\U5df2\U8fc7\U671f";
+//        stockId = 0;
+//        user =         {
+//            id = 56;
+//            successOrderCount = 11;
+//            typeName = "\U4f01\U4e1a";
+//            username = "\U4e0a\U6d77\U5353\U74e6\U5b9e\U4e1a\U6709\U9650\U516c\U53f8";
+//            validateState = 300;
+//        };
+//        version = 0;
+//        views = 0;
+//    };
+//}
+
+
+@interface HttpSupplyForMidifyResponse : BaseHttpResponse
+@property (nonatomic, strong) GoodCreateInfo* goodCreateInfo;
+@property (nonatomic, readonly) NSDictionary* data;
 @end

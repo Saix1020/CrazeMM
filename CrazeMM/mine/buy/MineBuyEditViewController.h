@@ -10,4 +10,5 @@
 
 @interface MineBuyEditViewController : MineSupplyEditViewController
 
+
 @end

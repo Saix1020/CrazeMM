@@ -29,15 +29,3 @@
 @end
 
 
-@interface HttpSupplyForMidifyRequest : BaseHttpRequest
-
--(instancetype)initWithId:(NSInteger)id;
-
-@property (nonatomic) NSInteger id;
-
-@end
-
-
-@interface HttpSupplyForMidifyResponse : BaseHttpResponse
-
-@end

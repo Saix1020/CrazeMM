@@ -142,8 +142,32 @@
                         andSuccessTitle:@"上架成功"];
             }
             else { //修改
-                MineSupplyEditViewController* vc = [[MineSupplyEditViewController alloc] initWithId:self.sid];
-                [self showAlertViewWithMessage:@"暂不支持"];
+                
+                HttpSupplyForMidifyRequest* request = [[HttpSupplyForMidifyRequest alloc] initWithId:self.sid];
+                
+                [self showProgressIndicator];
+                
+                [request request]
+                .then(^(id responseObj){
+                    if(request.response.ok){
+                        HttpSupplyForMidifyResponse* response = (HttpSupplyForMidifyResponse*)request.response;
+                        // set sid for modify event
+                        response.goodCreateInfo.lid = self.sid;
+                        
+                        MineSupplyEditViewController* vc = [[MineSupplyEditViewController alloc] initWithModifyGoodInfo:response.goodCreateInfo];
+                        
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                    else {
+                        [self showAlertViewWithMessage:request.response.errorMsg];
+                    }
+                })
+                .catch(^(NSError* error){
+                    [self showAlertViewWithMessage:error.localizedDescription];
+                })
+                .finally(^(){
+                    [self dismissProgressIndicator];
+                });
             }
             break;
         default:
