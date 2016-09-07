@@ -30,3 +30,9 @@
 
 
 @end
+
+//@interface BaseProductDTO : BaseDTO
+//
+//
+//
+//@end

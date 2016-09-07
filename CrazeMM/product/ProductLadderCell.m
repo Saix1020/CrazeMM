@@ -301,7 +301,7 @@
     //    self.messageLabel.text = ![self.productDetailDto.message isKindOfClass:[NSNull class]]?[NSString stringWithFormat:@"备注: %@", self.productDetailDto.message]:@"";
     
     if (![self.productDetailDto.message isKindOfClass:[NSNull class]]) {
-        self.messageLabel.text = [NSString stringWithFormat:@"备注: %@", self.productDetailDto.message];
+        self.messageLabel.text = [NSString stringWithFormat:@"备注: %@", self.productDetailDto.message?self.productDetailDto.message: @"无"];
     }
     else {
         self.messageLabel.text = @"";

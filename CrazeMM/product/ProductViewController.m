@@ -195,12 +195,13 @@
     
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.navigationItem.title = @"商品详情";
-    
+    self.timeLabel.hidden = YES;
     // disable sharing
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"switch"] style:UIBarButtonItemStylePlain target:nil action:nil];
     

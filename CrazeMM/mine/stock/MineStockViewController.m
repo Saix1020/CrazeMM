@@ -134,10 +134,14 @@
             [self shippingProducts];
 
     }
-    else if(button == self.bottomView.addtionalButton){
+    
+}
+
+-(void)bottomViewAddtionalButtonClicked:(UIButton*)button
+{
+    if(button == self.bottomView.addtionalButton){
         [self pickupProducts];
     }
-    
 }
 
 +(NSString*)alertStringWithArray:(NSArray*)cannotDtos
@@ -164,14 +168,26 @@
 
 -(void)pickupProducts
 {
-    NSArray* canShippingDtos = [self.selectedData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.insale == 0"]];
+    NSArray* canShippingDtos = [self.selectedData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.insale == 0 && SELF.inmortgage==0"]];
     NSArray* cannotShippingDtos = [self.selectedData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.insale > 0"]];
+    NSArray* cannotMortgageDtos = [self.selectedData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.inmortgage > 0"]];
     
     NSMutableArray* selectedDtos = [canShippingDtos mutableCopy];
     if (cannotShippingDtos.count>0) {
         @weakify(self);
         NSString* alertString = [MineStockViewController alertStringWithArray:cannotShippingDtos];
         [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%@有货品在售, 暂不能提货", alertString] withCallback:^(id x){
+            @strongify(self);
+            if (canShippingDtos.count>0) {
+                OutStockViewController* outStockVC = [[OutStockViewController alloc] initWithStockDtos:selectedDtos];
+                [self.navigationController pushViewController:outStockVC animated:YES];
+            }
+        }];
+    }
+    else if(cannotMortgageDtos.count>0){
+        @weakify(self);
+        NSString* alertString = [MineStockViewController alertStringWithArray:cannotMortgageDtos];
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%@有货品正在抵押, 暂不能提货", alertString] withCallback:^(id x){
             @strongify(self);
             if (canShippingDtos.count>0) {
                 OutStockViewController* outStockVC = [[OutStockViewController alloc] initWithStockDtos:selectedDtos];
@@ -416,6 +432,10 @@
 {
     if (stockDto.insale>0) {
         [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品在售，暂不能提货", stockDto.id] ];
+        return;
+    }
+    else if(stockDto.inmortgage>0){
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存%ld有货品正在抵押，暂不能提货", stockDto.id] ];
         return;
     }
     

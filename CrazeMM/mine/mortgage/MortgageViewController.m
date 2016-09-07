@@ -181,6 +181,13 @@
     [super updateBottomView];
 }
 
+#pragma - mark tableview delegate
+-(void)tableViewCellSelected:(UITableView *)tableView andIndexPath:(NSIndexPath *)indexPath
+{
+    CommonProductDetailViewController* vc = [[CommonProductDetailViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma -- mark MortgageEditViewControllerDelegate Delegate
 -(void)editMortgageSuccess
 {

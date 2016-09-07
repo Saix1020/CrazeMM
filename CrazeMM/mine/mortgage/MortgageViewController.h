@@ -9,6 +9,7 @@
 #import "CommonOrderListViewController.h"
 #import "HttpMortgage.h"
 #import "MortgageEditViewController.h"
+#import "CommonProductDetailViewController.h"
 
 @interface MortgageViewController : CommonOrderListViewController<MortgageEditViewControllerDelegate, UIActionSheetDelegate>
 

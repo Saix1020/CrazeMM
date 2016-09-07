@@ -7,6 +7,7 @@
 //
 
 #import "HttpSearchRequest.h"
+#import "HttpSupplyRequest.h"
 
 @interface HttpBuyRequest : HttpSearchRequest
 
@@ -32,3 +33,16 @@
 
 //@property (nonatomic, strong) 
 @end
+
+
+
+@interface HttpBuyForMidifyRequest : HttpSupplyForMidifyRequest
+
+@end
+
+
+@interface HttpBuyForMidifyResponse : HttpSupplyForMidifyResponse
+
+@end
+
+

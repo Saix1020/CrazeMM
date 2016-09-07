@@ -230,7 +230,7 @@
     self.expressLabel.text = [NSString stringWithFormat:@"%@: %@", scopeString, self.productDetailDto.region];
     
     if (![self.productDetailDto.message isKindOfClass:[NSNull class]]) {
-        self.messageLabel.text = [NSString stringWithFormat:@"备注: %@", self.productDetailDto.message];
+        self.messageLabel.text = [NSString stringWithFormat:@"备注: %@", self.productDetailDto.message?self.productDetailDto.message: @"无"];
     }
     else {
         self.messageLabel.text = @"";

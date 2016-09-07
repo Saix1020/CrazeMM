@@ -540,7 +540,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row%2 == 0) {
+        
+    }
+
+    else {
+        [self tableViewCellSelected:tableView andIndexPath:indexPath];
+    }
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(UITableViewCell*)configCellByTableView:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath
@@ -549,6 +557,10 @@
     return nil;
 }
 
+-(void)tableViewCellSelected:(UITableView *)tableView andIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 #pragma mark Common list cell delegate
 -(void)didSelectedListCell:(CommonListCell *)cell

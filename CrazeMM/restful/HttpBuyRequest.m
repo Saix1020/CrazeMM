@@ -63,3 +63,26 @@
 
 
 @end
+
+
+@implementation HttpBuyForMidifyRequest
+
+-(NSString*)url
+{
+    NSString* path = [NSString stringWithFormat:@"/rest/buyForModify/%ld", self.id];
+    return COMB_URL(path);
+}
+
+-(Class)responseClass
+{
+    return [HttpBuyForMidifyResponse class];
+}
+
+@end
+
+@implementation HttpBuyForMidifyResponse
+
+
+
+@end
+
