@@ -10,15 +10,9 @@
 #import "AddrDTO.h"
 #import "DepotDTO.h"
 
-@interface OrderLogDTO : BaseDTO
+@interface OrderLogDTO : BaseLogDTO
 
-@property (nonatomic) NSInteger uid;
-@property (nonatomic) NSInteger oldState;
-@property (nonatomic) NSInteger oid;
-@property (nonatomic) NSInteger newState;
-//@property (nonatomic, copy) NSString* newStateLabel;
-@property (nonatomic, copy) NSString* stateLabelNew;
-@property (nonatomic, copy) NSString* createTime;
+
 @property (nonatomic, copy) NSString* comment;
 @property (nonatomic, copy) NSString* userName;
 //@property (nonatomic, copy) NSString* newStateLabel;

@@ -320,7 +320,42 @@
 @end
 
 
+#pragma - mark MortgageDetail
 
+@implementation HttpMortgageDetailRequest
+
+-(instancetype)initWithMortgageId:(NSInteger)mid
+{
+    self = [super init];
+    if (self) {
+        self.mid = mid;
+    }
+    
+    return self;
+    
+}
+
+-(NSString*)url
+{
+    NSString* path = [NSString stringWithFormat:@"/rest/mortgage/%ld", self.mid];
+    return COMB_URL(path);
+}
+
+-(Class)responseClass
+{
+    return [HttpMortgageDetailResponse class];
+}
+
+@end
+
+@implementation HttpMortgageDetailResponse
+
+-(void)parserResponse
+{
+    self.detailDto = [[MortgageDetailDTO alloc] initWith:self.all[@"mortgage"]];
+}
+
+@end
 
 
 

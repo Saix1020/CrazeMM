@@ -27,3 +27,20 @@
 @property (nonatomic, copy) NSString* createTime;
 
 @end
+
+
+@interface MortgageDetailDTO : BaseDTO<BaseDetailDTO>
+
+@property (nonatomic, strong) MortgageDTO* infoDto;
+@property (nonatomic, strong) NSMutableArray* logDtos;
+
+
+@end
+
+@interface MortgageLogDTO : BaseLogDTO
+
+@property(nonatomic, copy) NSString* content;
+
+
+
+@end

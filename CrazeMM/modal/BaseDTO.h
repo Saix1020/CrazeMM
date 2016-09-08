@@ -31,8 +31,20 @@
 
 @end
 
-//@interface BaseProductDTO : BaseDTO
-//
-//
-//
-//@end
+@interface BaseLogDTO : BaseDTO
+
+@property (nonatomic) NSInteger uid;
+@property (nonatomic) NSInteger oldState;
+@property (nonatomic) NSInteger oid;
+@property (nonatomic) NSInteger newState;
+@property (nonatomic, copy) NSString* stateLabelNew;
+@property (nonatomic, copy) NSString* createTime;
+
+@end
+
+@protocol BaseDetailDTO <NSObject>
+
+@property (nonatomic, strong) BaseListDTO* listDto;
+@property (nonatomic, strong) NSArray* logDtos;
+
+@end

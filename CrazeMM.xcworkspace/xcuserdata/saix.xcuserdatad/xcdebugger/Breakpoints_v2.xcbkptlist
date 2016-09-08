@@ -4519,10 +4519,10 @@
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[ProductLadderCell setProductDetailDto:]"
-                  moduleName = "CrazeMM"
+                  moduleName = "CrazeMM_Phone"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "494954164.296228"
+                  timestampString = "494996612.121425"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4534,10 +4534,10 @@
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[ProductLadderCell setProductDetailDto:]"
-                  moduleName = "CrazeMM"
+                  moduleName = "CrazeMM_Phone"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "494954164.296471"
+                  timestampString = "494996612.121659"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -8390,11 +8390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/mortgage/MortgageViewController.m"
-            timestampString = "488908678.230403"
+            timestampString = "494994763.940221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "moreActionSheet"
             landmarkType = "19">
          </BreakpointContent>
@@ -8619,7 +8619,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "-formatQuantityLabel"
+            landmarkName = "-setMortgageDTO:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -8635,7 +8635,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
             endingLineNumber = "76"
-            landmarkName = "-formatTotalPriceLabel"
+            landmarkName = "-formatPriceLabel"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -9286,11 +9286,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/common/CommonProductDetailViewController.m"
-            timestampString = "494920989.401072"
+            timestampString = "494996433.656828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "-bottomButtons"
             landmarkType = "5">
          </BreakpointContent>
@@ -9302,11 +9302,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/common/CommonProductDetailViewController.m"
-            timestampString = "494921568.554825"
+            timestampString = "494996433.656828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-viewWillLayoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
@@ -9452,6 +9452,22 @@
             startingLineNumber = "80"
             endingLineNumber = "80"
             landmarkName = "-handleClickEvent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/common/CommonProductDetailViewController.m"
+            timestampString = "494996433.656828"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-refreshDetailDto"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
