@@ -174,7 +174,12 @@
                 [genRequest request].then(^(id responseObj2){
                     HttpGenMobileVcodeResponse* genResponse = (HttpGenMobileVcodeResponse*)genRequest.response;
                     if(genResponse.ok){
-                        [self showAlertViewWithMessage:genResponse.description];
+                        [UserCenter defaultCenter].userInfoDto.mobile = mobile;
+
+                        [self showAlertViewWithMessage:genResponse.description withCallback:^(id x){
+                            [self.navigationController popViewControllerAnimated:YES];
+
+                        }];
                     }
                     else {
                         [self showAlertViewWithMessage:genResponse.errorMsg];

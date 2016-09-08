@@ -160,32 +160,45 @@
         
         NSString* email = self.newxEmailCell.value;
         [button startTiming];
-
-        HttpEmailExistCheckRequest* existCheckRequest = [[HttpEmailExistCheckRequest alloc] initWithEmail:email];
-        [existCheckRequest request].then(^(id responseObj){
-            HttpEmailExistCheckResponse* existCheckResponse = (HttpEmailExistCheckResponse*)existCheckRequest.response;
-            if(existCheckResponse.ok){
-                HttpGenEmailVcodeRequest* genRequest = [[HttpGenEmailVcodeRequest alloc] initWithEmail:email];
-                [genRequest request].then(^(id responseObj2){
-                    HttpGenEmailVcodeResponse* genResponse = (HttpGenEmailVcodeResponse*)genRequest.response;
-                    if(genResponse.ok){
-                        [self showAlertViewWithMessage:genResponse.description];
-                    }
-                    else {
-                        [self showAlertViewWithMessage:genResponse.errorMsg];
-                    }
-                })
-                .catch(^(NSError* error){
-                    [self showAlertViewWithMessage:error.localizedDescription];
-                });
-            }
-            else {
-                [self showAlertViewWithMessage:existCheckResponse.errorMsg];
-            }
-        })
-        .catch(^(NSError* error){
-            [self showAlertViewWithMessage:error.localizedDescription];
-        });
+        
+        
+        @weakify(self);
+        [self showAlertViewWithMessage:@"确定要修改吗?"
+                        withOKCallback:^(id x){
+                            
+                            @strongify(self);
+                            HttpEmailExistCheckRequest* existCheckRequest = [[HttpEmailExistCheckRequest alloc] initWithEmail:email];
+                            [existCheckRequest request].then(^(id responseObj){
+                                HttpEmailExistCheckResponse* existCheckResponse = (HttpEmailExistCheckResponse*)existCheckRequest.response;
+                                if(existCheckResponse.ok){
+                                    HttpGenEmailVcodeRequest* genRequest = [[HttpGenEmailVcodeRequest alloc] initWithEmail:email];
+                                    [genRequest request].then(^(id responseObj2){
+                                        HttpGenEmailVcodeResponse* genResponse = (HttpGenEmailVcodeResponse*)genRequest.response;
+                                        if(genResponse.ok){
+                                            [UserCenter defaultCenter].userInfoDto.email = email;
+                                            [self showAlertViewWithMessage:genResponse.description withCallback:^(id x){
+                                                [self.navigationController popViewControllerAnimated:YES];
+                                            }];
+                                        }
+                                        else {
+                                            [self showAlertViewWithMessage:genResponse.errorMsg];
+                                        }
+                                    })
+                                    .catch(^(NSError* error){
+                                        [self showAlertViewWithMessage:error.localizedDescription];
+                                    });
+                                }
+                                else {
+                                    [self showAlertViewWithMessage:existCheckResponse.errorMsg];
+                                }
+                            })
+                            .catch(^(NSError* error){
+                                [self showAlertViewWithMessage:error.localizedDescription];
+                            });
+                            
+                        }
+                     andCancelCallback:nil];
+        
         
     }
 }

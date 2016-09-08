@@ -271,7 +271,9 @@
                         [request request].then(^(id responseObj){
                             if (request.response.ok) {
                                 //[self dismissProgressIndicator];
+                                [[UserCenter defaultCenter] saveToKeychainWithUserName:self.mineUserInfoDto.username andPassword:[UserCenter defaultCenter].passwordInKeychain];
                                 [self showAlertViewWithMessage:@"修改成功" withCallback:^(id x){
+                                    
                                     [self.navigationController popViewControllerAnimated:YES];
                                 }];
                             }

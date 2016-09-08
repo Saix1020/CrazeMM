@@ -61,4 +61,18 @@
     return self;
 }
 
+-(NSString*)username
+{
+    if(_username.length == 0){
+        if(self.mobile.length>0){
+            return self.mobile;
+        }
+        else if(self.email.length){
+            return self.email;
+        }
+    }
+    
+    return _username;
+}
+
 @end
