@@ -95,7 +95,7 @@
     switch (state) {
         case 100:
         {
-            [self showAlertViewWithMessage:[NSString stringWithFormat:@"您确认删除该抵押申请%@",[ids componentsJoinedByString:@","]]
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"您确认删除该抵押申请%@？",[ids componentsJoinedByString:@","]]
                             withOKCallback:^(id x){
                                 @strongify(self);
                                 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MortgageRefundViewController : UIViewController
+@interface MortgageRefundViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 -(instancetype)initWithDtos:(NSArray *)selectedDtos;
 

@@ -25,5 +25,6 @@
 @property (nonatomic, copy) NSString* updateTime;
 @property (nonatomic, copy) NSString* goodName;
 @property (nonatomic, copy) NSString* createTime;
+@property (nonatomic, copy) NSString* checkTime;
 
 @end

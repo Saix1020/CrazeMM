@@ -19,6 +19,10 @@
 		2E1935661D3D22EF00EF9BA1 /* MortgageGoodDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F61D329FA40065EA89 /* MortgageGoodDTO.m */; };
 		2E1935671D3D22F200EF9BA1 /* MortgageInfoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451F81D329FA40065EA89 /* MortgageInfoDTO.m */; };
 		2E1935681D3D230E00EF9BA1 /* MortgageEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1451FD1D329FC90065EA89 /* MortgageEditViewController.m */; };
+		2E324C541D8056E400FFFEE8 /* MortgageRefundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E324C531D8056E400FFFEE8 /* MortgageRefundCell.m */; };
+		2E324C551D8056E400FFFEE8 /* MortgageRefundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E324C531D8056E400FFFEE8 /* MortgageRefundCell.m */; };
+		2E324C571D80573600FFFEE8 /* MortgageRefundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E324C561D80573600FFFEE8 /* MortgageRefundCell.xib */; };
+		2E324C581D80573600FFFEE8 /* MortgageRefundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E324C561D80573600FFFEE8 /* MortgageRefundCell.xib */; };
 		2E7FC98C1D6B3F08004F3E02 /* PayRecordDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7FC98B1D6B3F08004F3E02 /* PayRecordDTO.m */; };
 		2E7FC98D1D6B3F08004F3E02 /* PayRecordDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7FC98B1D6B3F08004F3E02 /* PayRecordDTO.m */; };
 		2E9C08941D6A06A2009A510D /* HttpPayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C08931D6A06A2009A510D /* HttpPayRecord.m */; };
@@ -1078,6 +1082,9 @@
 		2E153BB81D7EDF4900CC5C99 /* MortgageHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MortgageHistoryViewController.m; path = mine/mortgage/MortgageHistoryViewController.m; sourceTree = "<group>"; };
 		2E153BBB1D7F0D6C00CC5C99 /* MortgageRefundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MortgageRefundViewController.h; path = mine/mortgage/MortgageRefundViewController.h; sourceTree = "<group>"; };
 		2E153BBC1D7F0D6C00CC5C99 /* MortgageRefundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MortgageRefundViewController.m; path = mine/mortgage/MortgageRefundViewController.m; sourceTree = "<group>"; };
+		2E324C521D8056E400FFFEE8 /* MortgageRefundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MortgageRefundCell.h; path = mine/mortgage/MortgageRefundCell.h; sourceTree = "<group>"; };
+		2E324C531D8056E400FFFEE8 /* MortgageRefundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MortgageRefundCell.m; path = mine/mortgage/MortgageRefundCell.m; sourceTree = "<group>"; };
+		2E324C561D80573600FFFEE8 /* MortgageRefundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MortgageRefundCell.xib; path = mine/mortgage/MortgageRefundCell.xib; sourceTree = "<group>"; };
 		2E7FC98A1D6B3F08004F3E02 /* PayRecordDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayRecordDTO.h; path = mine/payInfo/PayRecordDTO.h; sourceTree = "<group>"; };
 		2E7FC98B1D6B3F08004F3E02 /* PayRecordDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayRecordDTO.m; path = mine/payInfo/PayRecordDTO.m; sourceTree = "<group>"; };
 		2E9C08921D6A06A2009A510D /* HttpPayRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpPayRecord.h; path = mine/payInfo/HttpPayRecord.h; sourceTree = "<group>"; };
@@ -2196,6 +2203,9 @@
 				B9076F541D22C7FB001FFDE4 /* MortgageListCell.xib */,
 				B99578F91D29319000F3D30B /* CommonListCell+Mortgage.h */,
 				B99578FA1D29319000F3D30B /* CommonListCell+Mortgage.m */,
+				2E324C521D8056E400FFFEE8 /* MortgageRefundCell.h */,
+				2E324C531D8056E400FFFEE8 /* MortgageRefundCell.m */,
+				2E324C561D80573600FFFEE8 /* MortgageRefundCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -4038,6 +4048,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9076F5C1D22C8EA001FFDE4 /* CommonListCell.xib in Resources */,
+				2E324C571D80573600FFFEE8 /* MortgageRefundCell.xib in Resources */,
 				B964F93E1CC3A7FF003E0D44 /* javascript-bridge.html in Resources */,
 				B964F9861CC50316003E0D44 /* slide-2.jpg in Resources */,
 				B9BBEED01CEB51BF00275416 /* AddrDefaultCheckboxCell.xib in Resources */,
@@ -4200,6 +4211,7 @@
 				B965B7471D1E1A3F0021C809 /* PasswordInputView.xib in Resources */,
 				B9EFAF351CED514100F81157 /* logo_channel.png in Resources */,
 				B9EFAF361CED514100F81157 /* ProductFlageView.xib in Resources */,
+				2E324C581D80573600FFFEE8 /* MortgageRefundCell.xib in Resources */,
 				B9EFAF371CED514100F81157 /* OrderStatusCell.xib in Resources */,
 				B9E84BCD1CF0A25F003FEAF5 /* BankCardCell.xib in Resources */,
 				B9EFAF381CED514100F81157 /* AddrRegionCell.xib in Resources */,
@@ -4797,6 +4809,7 @@
 				2E153BB91D7EDF4900CC5C99 /* MortgageHistoryViewController.m in Sources */,
 				B991945D1CCBB4ED0032A393 /* BuyProductView.m in Sources */,
 				B9AD46271CD6523100012B31 /* M80AttributedLabel.m in Sources */,
+				2E324C541D8056E400FFFEE8 /* MortgageRefundCell.m in Sources */,
 				B98878911CC8AD3800990AA4 /* LoginViewController.m in Sources */,
 				B917326C1CD1F09400C29698 /* TTModalViewController.m in Sources */,
 				B98878A01CC90CCA00990AA4 /* SignViewController.m in Sources */,
@@ -4980,6 +4993,7 @@
 				B9EFAE4A1CED514100F81157 /* TransferAlertView.m in Sources */,
 				B9EFAE4B1CED514100F81157 /* AddrDTO.m in Sources */,
 				B9EFAE4C1CED514100F81157 /* SlideOutDownAnimation.m in Sources */,
+				2E324C551D8056E400FFFEE8 /* MortgageRefundCell.m in Sources */,
 				B9EFAE4D1CED514100F81157 /* AnimationHelper.m in Sources */,
 				B9C395341CF4183400AB44B6 /* NewAddressListCell.m in Sources */,
 				B9EFAE4E1CED514100F81157 /* MyInfoCell.m in Sources */,
