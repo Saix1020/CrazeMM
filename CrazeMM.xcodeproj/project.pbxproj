@@ -2927,6 +2927,8 @@
 		B945730B1D7554F0002F75AE /* overview */ = {
 			isa = PBXGroup;
 			children = (
+				B98878A71CC98E5D00990AA4 /* view */,
+				B9B5BCEC1CDE00710085E132 /* modal */,
 				B992C57F1CCA6D5300DC49E8 /* MineNoLoginViewController.h */,
 				B992C5801CCA6D5300DC49E8 /* MineNoLoginViewController.m */,
 				B964F9721CC4B073003E0D44 /* MineViewController.h */,
@@ -3002,15 +3004,6 @@
 		B95A2A9C1D7FF0790087B8E3 /* sub items */ = {
 			isa = PBXGroup;
 			children = (
-				B901403C1D712A49000960F9 /* personal */,
-				2ED9A1E11D660C5B00AFAF01 /* pay */,
-				B9076F4A1D22C5F3001FFDE4 /* mortgage */,
-				B902B6D31D026C88005B6F5C /* stock */,
-				B9EFAFA61CEEF7B000F81157 /* buy */,
-				B91896F01CD0EE890061D0B6 /* account */,
-				B91896C91CCF97440061D0B6 /* supply */,
-				B91896AE1CCF1FCB0061D0B6 /* address */,
-				B91896881CCE18C00061D0B6 /* order */,
 			);
 			name = "sub items";
 			sourceTree = "<group>";
@@ -3213,9 +3206,16 @@
 		B964F9581CC4A747003E0D44 /* mine */ = {
 			isa = PBXGroup;
 			children = (
+				B901403C1D712A49000960F9 /* personal */,
+				2ED9A1E11D660C5B00AFAF01 /* pay */,
+				B9076F4A1D22C5F3001FFDE4 /* mortgage */,
+				B902B6D31D026C88005B6F5C /* stock */,
+				B9EFAFA61CEEF7B000F81157 /* buy */,
+				B91896F01CD0EE890061D0B6 /* account */,
+				B91896C91CCF97440061D0B6 /* supply */,
+				B91896AE1CCF1FCB0061D0B6 /* address */,
+				B91896881CCE18C00061D0B6 /* order */,
 				B945730B1D7554F0002F75AE /* overview */,
-				B98878A71CC98E5D00990AA4 /* view */,
-				B9B5BCEC1CDE00710085E132 /* modal */,
 				B95A2A9C1D7FF0790087B8E3 /* sub items */,
 			);
 			name = mine;
@@ -3486,9 +3486,6 @@
 				B992C57A1CCA6BC300DC49E8 /* NoLoginHeadCell.h */,
 				B992C57B1CCA6BC300DC49E8 /* NoLoginHeadCell.m */,
 				B992C57C1CCA6BC300DC49E8 /* NoLoginHeadCell.xib */,
-				B991947C1CCCA26C0032A393 /* CommonBottomView.h */,
-				B991947D1CCCA26C0032A393 /* CommonBottomView.m */,
-				B991947E1CCCA26C0032A393 /* CommonBottomView.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3542,6 +3539,9 @@
 		B99D12DE1CC61AAB000DFF95 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B991947C1CCCA26C0032A393 /* CommonBottomView.h */,
+				B991947D1CCCA26C0032A393 /* CommonBottomView.m */,
+				B991947E1CCCA26C0032A393 /* CommonBottomView.xib */,
 				B90140491D712A82000960F9 /* InfoFieldCell.h */,
 				B901404A1D712A82000960F9 /* InfoFieldCell.m */,
 				B901404B1D712A82000960F9 /* InfoLabelCell.h */,
