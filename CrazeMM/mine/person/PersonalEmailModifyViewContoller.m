@@ -65,7 +65,7 @@
         _originalCodeCell.infoField.keyboardType = UIKeyboardTypeNumberPad;
         _originalCodeCell.titleWidth = [self titleWidth];
         
-        [_originalCodeCell addTarget:self action:@selector(genMobileVcode:) forControlEvents:UIControlEventTouchUpInside];
+        [_originalCodeCell addTarget:self action:@selector(genEmailVcode:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _originalCodeCell;
@@ -81,7 +81,7 @@
         _newxCodeCell.needButton = YES;
         _newxCodeCell.infoField.keyboardType = UIKeyboardTypeNumberPad;
         _newxCodeCell.titleWidth = [self titleWidth];
-        [_newxCodeCell addTarget:self action:@selector(genMobileVcode:) forControlEvents:UIControlEventTouchUpInside];
+        [_newxCodeCell addTarget:self action:@selector(genEmailVcode:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     
@@ -124,10 +124,12 @@
     return _confirmCell;
 }
 
--(void)genMobileVcode:(TimeoutButton*)button
+-(void)genEmailVcode:(TimeoutButton*)button
 {
+
     if(button == self.originalCodeCell.button){
-        button.startTimer = YES;
+        [button startTiming];
+
         HttpGenEmailVcodeForUserRequest* request = [[HttpGenEmailVcodeForUserRequest alloc] init];
         [request request].then(^(id responseObj){
             
@@ -157,12 +159,12 @@
         }
         
         NSString* email = self.newxEmailCell.value;
-        
+        [button startTiming];
+
         HttpEmailExistCheckRequest* existCheckRequest = [[HttpEmailExistCheckRequest alloc] initWithEmail:email];
         [existCheckRequest request].then(^(id responseObj){
             HttpEmailExistCheckResponse* existCheckResponse = (HttpEmailExistCheckResponse*)existCheckRequest.response;
             if(existCheckResponse.ok){
-                button.startTimer = YES;
                 HttpGenEmailVcodeRequest* genRequest = [[HttpGenEmailVcodeRequest alloc] initWithEmail:email];
                 [genRequest request].then(^(id responseObj2){
                     HttpGenEmailVcodeResponse* genResponse = (HttpGenEmailVcodeResponse*)genRequest.response;

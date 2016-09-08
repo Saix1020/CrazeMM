@@ -129,8 +129,11 @@
 
 -(void)genMobileVcode:(TimeoutButton*)button
 {
+    
+
     if(button == self.originalCodeCell.button){
-        button.startTimer = YES;
+        [button startTiming];
+
         HttpGenMobileVcodeForUserRequest* request = [[HttpGenMobileVcodeForUserRequest alloc] init];
         [request request].then(^(id responseObj){
             
@@ -160,12 +163,13 @@
 
         }
         
+        [button startTiming];
+
         NSString* mobile = self.newxPhoneCell.value;
         HttpMobileExistCheckRequest* existCheckRequest = [[HttpMobileExistCheckRequest alloc] initWithMobile:mobile];
         [existCheckRequest request].then(^(id responseObj){
             HttpMobileExistCheckResponse* existCheckResponse = (HttpMobileExistCheckResponse*)existCheckRequest.response;
             if(existCheckResponse.ok){
-                button.startTimer = YES;
                 HttpGenMobileVcodeRequest* genRequest = [[HttpGenMobileVcodeRequest alloc] initWithMobile:mobile];
                 [genRequest request].then(^(id responseObj2){
                     HttpGenMobileVcodeResponse* genResponse = (HttpGenMobileVcodeResponse*)genRequest.response;

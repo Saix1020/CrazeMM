@@ -63,4 +63,9 @@
     return [NSString stringWithFormat:@"手机验证码已经成功发送，请注意查收，您还有%ld次获取机会", self.lessTimes];
 }
 
+-(NSString*)errorMsg
+{
+    return self.all[@"errMsg"];
+}
+
 @end
