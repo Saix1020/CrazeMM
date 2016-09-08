@@ -7,6 +7,7 @@
 //
 
 #import "MortgageHistoryViewController.h"
+#import "MortgageDetailViewController.h"
 
 @interface MortgageHistoryViewController ()
 
@@ -47,6 +48,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma - mark tableview delegate
+-(void)tableViewCellSelected:(UITableView *)tableView andIndexPath:(NSIndexPath *)indexPath
+{
+    
+    MortgageDTO* dto = self.dataSource[indexPath.row/2];
+    
+    MortgageDetailViewController* vc = [[MortgageDetailViewController alloc] initWithMid:dto.id];;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
