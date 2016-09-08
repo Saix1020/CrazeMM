@@ -4522,7 +4522,7 @@
                   moduleName = "CrazeMM_Phone"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "495008314.503344"
+                  timestampString = "495010197.4776"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4537,7 +4537,7 @@
                   moduleName = "CrazeMM_Phone"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "495008314.503583"
+                  timestampString = "495010197.47779"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -5824,22 +5824,6 @@
             startingLineNumber = "169"
             endingLineNumber = "169"
             landmarkName = "-networkRequestDidFinish:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CrazeMM/welcome/NewWelcomeViewController.m"
-            timestampString = "488454471.585011"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -8726,11 +8710,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/person/PersonalOtherModifyViewContoller.m"
-            timestampString = "494489950.054226"
+            timestampString = "495010039.750207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -8742,11 +8726,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/person/PersonalOtherModifyViewContoller.m"
-            timestampString = "495001827.911822"
+            timestampString = "495010039.750207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "604"
-            endingLineNumber = "604"
+            startingLineNumber = "606"
+            endingLineNumber = "606"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>

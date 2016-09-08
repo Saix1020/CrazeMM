@@ -160,7 +160,7 @@
     {
         self.totalAmount += dto.total;
         
-        UIView* view = [self createProductViewWithImage:dto.goodImage andNumber:dto.total andTag:tag];
+        UIView* view = [self createProductViewWithImage:dto.goodImage andNumber:dto.presale andTag:tag];
         [self.imageViews addObject:view];
     }
     

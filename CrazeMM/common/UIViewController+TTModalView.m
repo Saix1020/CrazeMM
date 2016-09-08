@@ -192,6 +192,25 @@ static BOOL isAlertViewShowing;
     }];
 }
 
+-(AFPromise*)promiseAlertViewWithMessage:(NSString*)message
+{
+    return [AFPromise promiseWithResolverBlock:^(PMKResolver resolver){
+        [self showAlertViewWithMessage:message
+                        withOKCallback:^(id x){
+                            resolver(x);
+                        }
+                     andCancelCallback:^(id x){
+                         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"alert cancle"                                                                     forKey:NSLocalizedDescriptionKey];
+                         NSError* error = [[NSError alloc] initWithDomain:CustomErrorDomain code:-11111 userInfo:userInfo];
+                         resolver(error);
+
+                     }];
+        
+    }];
+
+}
+
+
 +(void)showAlertViewWithViewController:(UIViewController*)vc
 {
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
