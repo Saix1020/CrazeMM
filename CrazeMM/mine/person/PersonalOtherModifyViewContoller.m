@@ -83,7 +83,6 @@
         _entNameCell = [[InfoFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"_entNameCell"];
         _entNameCell.titleLabel.text = @"企业名称";
         _entNameCell.titleWidth = [self titleWidth];
-        
         _entNameCell.infoField.placeholder = @"请输入企业名称";
     }
     
@@ -175,6 +174,7 @@
 -(InfoFieldCell*)personRealNameCell
 {
     InfoFieldCell* cell = self.entNameCell;
+    cell.infoField.placeholder = @"请输入真实姓名";
     cell.titleLabel.text = @"真实姓名";
     return cell;
 }
@@ -314,8 +314,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [self showProgressIndicatorWithTitle:@"正在加载..."];
     HttpUserInfoRequest* request = [[HttpUserInfoRequest alloc] init];
-    [request request].then(^(id responseObj){
+    [request request]
+    .then(^(id responseObj){
         if (request.response.ok) {
             @weakify(self);
             NSArray* allTextSignals;
@@ -405,6 +407,9 @@
     })
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        [self dismissProgressIndicator];
     });
 
     

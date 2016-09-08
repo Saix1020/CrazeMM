@@ -168,9 +168,19 @@
 //            }
             break;
         default:
-//            if(self.mineStockDto.aftersale>0){
-                secondComopent = [NSString stringWithFormat:@"已售: %ld ", self.mineStockDto.aftersale];
-//            }
+            //            if(self.mineStockDto.aftersale>0){
+        {
+            NSMutableString* string = [[NSMutableString alloc] init];
+            if(self.mineStockDto.aftersale > 0){
+                [string appendString: [NSString stringWithFormat:@"已售: %ld ", self.mineStockDto.aftersale]];
+            }
+            if(self.mineStockDto.outstock > 0){
+                [string appendString:[NSString stringWithFormat:@"已出库: %ld ", self.mineStockDto.outstock]];
+            }
+            secondComopent = string;
+            
+        }
+            //            }
             break;
     }
     

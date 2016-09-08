@@ -64,33 +64,4 @@
 
 @end
 
-@implementation HttpSupplyForMidifyRequest
 
--(instancetype)initWithId:(NSInteger)id
-{
-    self = [super init];
-    if(self){
-        self.id = id;
-    }
-    
-    return self;
-}
-
--(NSString*)url
-{
-    NSString* path = [NSString stringWithFormat:@"/rest/supplyForModify/%ld", self.id];
-    return COMB_URL(path);
-}
-
--(Class)responseClass
-{
-    return [HttpSupplyForMidifyResponse class];
-}
-
-@end
-
-@implementation HttpSupplyForMidifyResponse
-
-
-
-@end

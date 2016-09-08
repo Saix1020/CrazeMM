@@ -285,6 +285,8 @@
 		B95924061CDEB26300533E77 /* CommonOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95924051CDEB26300533E77 /* CommonOrderListViewController.m */; };
 		B959248F1CDF90A900533E77 /* NSNull+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B959248E1CDF90A900533E77 /* NSNull+Utils.m */; };
 		B95924991CE0394C00533E77 /* lauch-screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B95924981CE0394C00533E77 /* lauch-screen.jpg */; };
+		B95A2A9F1D80F84C0087B8E3 /* MortgageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95A2A9E1D80F84C0087B8E3 /* MortgageDetailViewController.m */; };
+		B95A2AA01D80F84C0087B8E3 /* MortgageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95A2A9E1D80F84C0087B8E3 /* MortgageDetailViewController.m */; };
 		B95A94A51CE0C19900A5D9BA /* citydict.plist in Resources */ = {isa = PBXBuildFile; fileRef = B95A94981CE0C19900A5D9BA /* citydict.plist */; };
 		B95A94A61CE0C19900A5D9BA /* citydict1.plist in Resources */ = {isa = PBXBuildFile; fileRef = B95A94991CE0C19900A5D9BA /* citydict1.plist */; };
 		B95A94A71CE0C19900A5D9BA /* citydictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = B95A949A1CE0C19900A5D9BA /* citydictionary.plist */; };
@@ -556,6 +558,7 @@
 		B9AD462C1CD6523100012B31 /* M80AttributedLabelURL.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46241CD6523100012B31 /* M80AttributedLabelURL.m */; };
 		B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
 		B9AD462E1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
+		B9B3DCDC1D8139E800CBC643 /* StockSellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B902B6DC1D026C88005B6F5C /* StockSellCell.xib */; };
 		B9B3E4BE1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */; };
 		B9B3E4BF1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */; };
 		B9B3E4C21D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4C11D0DA5DF005E9B4B /* BalanceLogViewController.m */; };
@@ -1478,6 +1481,8 @@
 		B959248D1CDF90A900533E77 /* NSNull+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSNull+Utils.h"; path = "common/NSNull+Utils.h"; sourceTree = "<group>"; };
 		B959248E1CDF90A900533E77 /* NSNull+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSNull+Utils.m"; path = "common/NSNull+Utils.m"; sourceTree = "<group>"; };
 		B95924981CE0394C00533E77 /* lauch-screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "lauch-screen.jpg"; sourceTree = "<group>"; };
+		B95A2A9D1D80F84C0087B8E3 /* MortgageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MortgageDetailViewController.h; path = mine/mortgage/MortgageDetailViewController.h; sourceTree = "<group>"; };
+		B95A2A9E1D80F84C0087B8E3 /* MortgageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MortgageDetailViewController.m; path = mine/mortgage/MortgageDetailViewController.m; sourceTree = "<group>"; };
 		B95A94981CE0C19900A5D9BA /* citydict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = citydict.plist; sourceTree = "<group>"; };
 		B95A94991CE0C19900A5D9BA /* citydict1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = citydict1.plist; sourceTree = "<group>"; };
 		B95A949A1CE0C19900A5D9BA /* citydictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = citydictionary.plist; sourceTree = "<group>"; };
@@ -2191,6 +2196,8 @@
 				2E1451FD1D329FC90065EA89 /* MortgageEditViewController.m */,
 				2E153BBB1D7F0D6C00CC5C99 /* MortgageRefundViewController.h */,
 				2E153BBC1D7F0D6C00CC5C99 /* MortgageRefundViewController.m */,
+				B95A2A9D1D80F84C0087B8E3 /* MortgageDetailViewController.h */,
+				B95A2A9E1D80F84C0087B8E3 /* MortgageDetailViewController.m */,
 			);
 			name = mortgage;
 			sourceTree = "<group>";
@@ -4194,6 +4201,7 @@
 				B945731F1D75E934002F75AE /* Images.xcassets in Resources */,
 				B945731C1D75E92A002F75AE /* THDateDay.xib in Resources */,
 				B9EFAF291CED514100F81157 /* avata.jpg in Resources */,
+				B9B3DCDC1D8139E800CBC643 /* StockSellCell.xib in Resources */,
 				B9EFAF2A1CED514100F81157 /* SearchEmpty.xib in Resources */,
 				B9EFAF2B1CED514100F81157 /* citydict1.plist in Resources */,
 				B9EFAF2C1CED514100F81157 /* CityListViewController.xib in Resources */,
@@ -4540,6 +4548,7 @@
 				B9FE71ED1CD6E70400F5EC9F /* _UserInfo.m in Sources */,
 				B9D1C5891D0A414E0099BA95 /* RechargeViewController.m in Sources */,
 				B91732831CD25F3200C29698 /* NSDictionary+HttpHelp.m in Sources */,
+				B95A2A9F1D80F84C0087B8E3 /* MortgageDetailViewController.m in Sources */,
 				B91896D21CCF9E8B0061D0B6 /* PayResultCell.m in Sources */,
 				B9B747391D7B9BF8004D6042 /* MineBuyDetailDTO.m in Sources */,
 				B9FE71EC1CD6E70400F5EC9F /* _UserHistory.m in Sources */,
@@ -5154,6 +5163,7 @@
 				B9EFAEB61CED514100F81157 /* OrderLogsCell.m in Sources */,
 				B9EFAEB71CED514100F81157 /* ZoomOutLeftAnimation.m in Sources */,
 				B9EFAEB81CED514100F81157 /* CATransform3DExtend.m in Sources */,
+				B95A2AA01D80F84C0087B8E3 /* MortgageDetailViewController.m in Sources */,
 				B965B6F11D1D30A40021C809 /* HttpUserInfo.m in Sources */,
 				B902B6FC1D027AAC005B6F5C /* StockListCell.m in Sources */,
 				B902B6E81D026CFB005B6F5C /* MineStockDTO.m in Sources */,

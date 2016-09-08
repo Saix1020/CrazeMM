@@ -369,6 +369,9 @@
         MineSupplyProductDTO* dto = self.dataSource[indexPath.row/2];
         MineSupplyInfoViewController* vc = [[MineSupplyInfoViewController alloc] initWithId:dto.id andState:dto.state];
         vc.delegate = self;
+        if([self.navigationController isKindOfClass:[BaseNavigationController class]]){
+            ((BaseNavigationController*)self.navigationController).markedVC = self;
+        }
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

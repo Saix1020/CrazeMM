@@ -16,6 +16,8 @@
 #import "HttpMineSupply.h"
 #import "GoodDTO.h"
 #import "SupplyDetailDTO.h"
+#import "GoodCreateInfo.h"
+
 
 
 typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
@@ -47,6 +49,9 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 @interface MineSupplyEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, BEMCheckBoxDelegate, SelectionViewControllerDelegate>
 
 -(instancetype)initWithId:(NSInteger)sid;
+-(instancetype)initWithModifyGoodInfo:(GoodCreateInfo*)modifyGoodInfo;
+
+@property (nonatomic, strong) GoodCreateInfo* modifyGoodInfo;
 
 @property (nonatomic, weak) id<MineEditViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSArray* cellArray;

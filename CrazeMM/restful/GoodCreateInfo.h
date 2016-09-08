@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GoodDTO.h"
+#import "AddressDTO.h"
 
-@interface GoodCreateInfo : NSObject
+// TODO !!
 
+@interface GoodCreateInfo : BaseDTO
 
-@property (nonatomic) NSInteger id;
 @property (nonatomic) NSInteger depotId;
-
 @property (nonatomic) NSInteger brand;
+@property (nonatomic) NSString* brandName;
 @property (nonatomic) NSInteger quantity;
 @property (nonatomic) NSInteger deadline;
 @property (nonatomic) NSInteger duration;
@@ -29,7 +31,35 @@
 @property (nonatomic) BOOL isBrushMachine; //
 @property (nonatomic) BOOL isSplit;
 @property (nonatomic) BOOL isAnoy;
+
+
+@property (nonatomic) NSDictionary* addtionalInfo;
+//-(instancetype)initWithDict
+
+
+@property (nonatomic, strong) GoodInfoDTO* brandInfo;
 @property (nonatomic) NSInteger addrId;
+
+// for modify
+@property (nonatomic) NSInteger lid;
+@property (nonatomic) NSInteger version;
+
+// for buy good create
+@property (nonatomic, strong) AddressDTO* addr;
+@property (nonatomic, strong) NSMutableArray* addrList;
+@property (nonatomic, strong) NSDictionary* userDto;
+
+
+@end
+
+@interface SupplyGoodCreateDto : GoodCreateInfo
+
+@end
+
+@interface BuyGoodCreateDto : GoodCreateInfo
+
+//@property (nonatomic) NSInteger addrId;
+
 
 
 @end

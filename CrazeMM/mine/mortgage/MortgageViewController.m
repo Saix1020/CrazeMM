@@ -9,6 +9,7 @@
 #import "MortgageViewController.h"
 #import "MortgageHistoryViewController.h"
 #import "MortgageRefundViewController.h"
+#import "MortgageDetailViewController.h"
 
 @interface MortgageViewController()
 
@@ -184,7 +185,10 @@
 #pragma - mark tableview delegate
 -(void)tableViewCellSelected:(UITableView *)tableView andIndexPath:(NSIndexPath *)indexPath
 {
-    CommonProductDetailViewController* vc = [[CommonProductDetailViewController alloc] init];
+    
+    MortgageDTO* dto = self.dataSource[indexPath.row/2];
+    
+    MortgageDetailViewController* vc = [[MortgageDetailViewController alloc] initWithMid:dto.id];;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

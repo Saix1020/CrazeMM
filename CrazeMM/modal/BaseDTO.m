@@ -54,3 +54,24 @@
 }
 
 @end
+
+
+@implementation BaseLogDTO
+
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [super initWith:dict];
+    if (self) {
+        self.uid = [dict[@"uid"] integerValue];
+        self.oldState = [dict[@"oldState"] integerValue];
+        self.oid = [dict[@"oid"] integerValue];
+        self.newState = [dict[@"newState"] integerValue];
+        
+        self.stateLabelNew = dict[@"newStateLabel"];
+        self.createTime = dict[@"createTime"];
+    }
+    
+    return self;
+}
+
+@end

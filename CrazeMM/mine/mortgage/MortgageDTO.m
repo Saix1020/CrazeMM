@@ -7,7 +7,6 @@
 //
 
 #import "MortgageDTO.h"
-
 @implementation MortgageDTO
 
 -(instancetype)initWith:(NSDictionary *)dict
@@ -55,8 +54,80 @@
     return self;
 }
 
+-(NSString*)stateLabel
+{
+    if (_stateLabel.length == 0) {
+        switch (self.state) {
+            case 100:
+                _stateLabel = @"待入库";
+                break;
+            case 200:
+                _stateLabel = @"待放款";
+                break;
+            case 300:
+                _stateLabel = @"在抵押";
+
+                break;
+            default:
+                self.stateLabel = @"未知状态";
+                break;
+        }
+    }
+    
+    return _stateLabel;
+}
+
 -(float)totalPrice
 {
     return self.price * self.quantity;
 }
 @end
+
+@implementation MortgageLogDTO
+
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [super initWith:dict];
+    if (self) {
+        self.content = dict[@"content"];
+    }
+    
+    return self;
+}
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"【%@】%@\n %@", self.stateLabelNew, self.content, self.createTime];
+
+}
+
+@end
+
+
+@implementation MortgageDetailDTO
+
+@synthesize listDto = _listDto;
+@synthesize logDtos = _logDtos ;
+
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [super initWith:dict];
+    if (self) {
+        self.listDto = [[MortgageDTO alloc] initWith:dict];
+        NSArray* logDtos = dict[@"logs"];
+        
+        NSMutableArray* logArray = [[NSMutableArray alloc] init];
+        for (NSDictionary* log in logDtos) {
+            MortgageLogDTO* logDto = [[MortgageLogDTO alloc] initWith:log];
+            [logArray addObject:logDto];
+        }
+        
+        self.logDtos = logArray;
+    }
+    
+    return self;
+}
+
+@end
+             
+             

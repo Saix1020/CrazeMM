@@ -36,13 +36,4 @@
 
 
 
-@interface HttpBuyForMidifyRequest : HttpSupplyForMidifyRequest
-
-@end
-
-
-@interface HttpBuyForMidifyResponse : HttpSupplyForMidifyResponse
-
-@end
-
 

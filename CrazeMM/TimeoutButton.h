@@ -20,5 +20,7 @@
 @property (nonatomic, copy) NSString* enableTitle;
 @property (nonatomic, copy) NSString* disableTitle;
 @property (nonatomic, weak) id<TimeoutButtonDelegate> delegate;
-@property (nonatomic) BOOL startTimer;
+
+-(void)startTiming;
+
 @end

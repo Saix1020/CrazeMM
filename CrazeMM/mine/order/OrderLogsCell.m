@@ -59,7 +59,7 @@
     
     for (OrderLogDTO* logDto in _logs) {
         [timesPlacehoderArray addObject:@""];
-        [commentsArray addObject:[NSString stringWithFormat:@"【%@】%@ %@\n %@", logDto.stateLabelNew, logDto.userName, logDto.comment, logDto.createTime]];
+        [commentsArray addObject:logDto.description];
     }
     
     self.timeline = [[TimeLineViewControl alloc] initWithTimeArray:timesPlacehoderArray

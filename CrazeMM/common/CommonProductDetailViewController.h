@@ -11,9 +11,12 @@
 #import "BaseHttpRequest.h"
 
 @interface CommonProductDetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+{
+    @protected
+    BaseHttpRequest* _detailHttpRequest;
+}
 
-
-@property (nonatomic, readonly) BaseHttpRequest* detailHttpRequest;
+@property (nonatomic, strong) BaseHttpRequest* detailHttpRequest;
 @property (nonatomic, readonly) NSArray* bottomButtonsTitle;
 @property (nonatomic, readonly) UITableView* tableView;
 

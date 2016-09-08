@@ -60,18 +60,16 @@
 {
     self = [super initWith:dict];
     if (self) {
-        self.uid = [dict[@"uid"] integerValue];
-        self.oldState = [dict[@"oldState"] integerValue];
-        self.oid = [dict[@"oid"] integerValue];
-        self.newState = [dict[@"newState"] integerValue];
-        
-        self.stateLabelNew = dict[@"newStateLabel"];
-        self.createTime = dict[@"createTime"];
         self.comment = dict[@"comment"];
         self.userName = dict[@"userName"];
         
     }
     return self;
+}
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"【%@】%@ %@\n %@", self.stateLabelNew, self.userName, self.comment, self.createTime];
 }
 
 @end

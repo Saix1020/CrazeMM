@@ -23,4 +23,6 @@
 @property (nonatomic, copy) NSString* mobile;
 @property (nonatomic, copy) NSString* region;
 
+@property (nonatomic, readonly) NSString* address;
+
 @end

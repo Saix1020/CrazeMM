@@ -13,6 +13,8 @@
 @property (nonatomic, readonly) NSInteger state;
 @property (nonatomic, readonly) BOOL needHideBottomView;
 @property (nonatomic, weak) id<ListViewControllerDelegate> delegate;
+@property (nonatomic, readonly) NSArray* bottomButtons;
+
 
 -(instancetype)initWithId:(NSUInteger)sid andState:(NSInteger)state;
 -(void)deplayTimeLine: (NSArray*)logs;

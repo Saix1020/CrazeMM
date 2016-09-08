@@ -113,5 +113,21 @@
 @end
 
 
+#pragma mark - Mortgage Detail
+@interface HttpMortgageDetailRequest : BaseHttpRequest
+
+@property (nonatomic) NSInteger mid;
+
+-(instancetype)initWithMortgageId:(NSInteger)mid;
+
+@end
+
+@interface HttpMortgageDetailResponse : BaseHttpResponse
+
+@property (nonatomic, strong) MortgageDetailDTO* detailDto;
+
+
+@end
+
 
 

@@ -27,14 +27,22 @@
 //@property (nonatomic, strong) BaseProductDetailDTO* productDetailDto;
 
 @property (nonatomic, readonly) NSArray* cellArray;
+@property (nonatomic) BOOL loading;
 
 @end
 
 @implementation CommonProductDetailViewController
 
+@synthesize detailHttpRequest = _detailHttpRequest;
+
 -(NSArray*)cellArray
 {
-    return @[self.productDetail, self.logsCell];
+    if (self.loading) {
+        return @[];
+    }
+    else {
+        return @[self.productDetail, self.logsCell];
+    }
 }
 
 -(NSArray*)bottomButtonsTitle
@@ -104,11 +112,28 @@
 
 -(void)handleClickEvent:(UIButton*)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];}
 
 
 -(BaseHttpRequest*)detailHttpRequest
+{
+    
+    if(!_detailHttpRequest){
+        UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                       message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                      delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        
+    }
+    
+    
+    return _detailHttpRequest;
+}
+
+-(id<BaseDetailDTO>)getDetailDtoFromResponse:(BaseHttpResponse*)response
 {
     UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
                                                    message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
@@ -118,6 +143,16 @@
     return nil;
 }
 
+//-(NSArray*)getLogsFromResponse:(BaseHttpResponse*)response
+//{
+//    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+//                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+//                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alert show];
+//    
+//    return nil;
+//}
+
 -(void)refreshDetailDto
 {
     if(self.detailHttpRequest){
@@ -125,7 +160,13 @@
         [self.detailHttpRequest request]
         .then(^(id responseObj){
             if (self.detailHttpRequest.response.ok) {
-                [self updateDataWithResponse:self.detailHttpRequest.response];
+                id<BaseDetailDTO> detailDto = [self getDetailDtoFromResponse:self.detailHttpRequest.response];
+                self.productDetail.dto = detailDto.listDto;
+                self.logsCell.logs = detailDto.logDtos;
+                self.loading = NO;
+                self.productDetail.rightButton.hidden = YES;
+                self.productDetail.leftButton.hidden = YES;
+
                 [self.tableView reloadData];
             }
             else {
@@ -172,6 +213,7 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     
     //self.navigationItem.title = @""
+    self.loading = YES;
     [self refreshDetailDto];
 }
 

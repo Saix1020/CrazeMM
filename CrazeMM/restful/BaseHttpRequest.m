@@ -191,8 +191,14 @@ static AFHTTPSessionManager* g_manager = nil;
     .then(^(id responseObject, NSURLSessionTask *operation){
         NSHTTPURLResponse* response = (NSHTTPURLResponse*)operation.response;
         NSLog(@"response status: %ld,  header : %@", response.statusCode, response.allHeaderFields);
+        
         if (![responseObject[@"ok"] boolValue]) {
-            return [BaseHttpRequest httpRequestError:[NSString stringWithFormat:@"Get %@ Failed!", [self getTokenParams][@"name"]]];
+//            return [BaseHttpRequest httpRequestError:[NSString stringWithFormat:@"Get %@ Failed!", [self getTokenParams][@"name"]]];
+            NSString* errorString = responseObject[@"msg"];
+            if (errorString.length == 0) {
+                errorString = @"请求Token出错";
+            }
+            return [BaseHttpRequest httpRequestError:errorString];
         }
         
         [self.params setObject:responseObject[self.tokenName] forKey:self.tokenName];
