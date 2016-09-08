@@ -7,7 +7,10 @@
 //
 
 #import "CommonProductDetailViewController.h"
+#import "MortgageDTO.h"
 
 @interface MortgageDetailViewController : CommonProductDetailViewController
 -(instancetype)initWithMid:(NSInteger)mid;
+
+-(instancetype)initWithMortgageDTO:(MortgageDTO*)mortgageDto;
 @end

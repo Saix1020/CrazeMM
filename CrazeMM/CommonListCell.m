@@ -66,6 +66,9 @@
     self.statusLabel2.clipsToBounds = YES;
     self.statusLabel2.textColor = [UIColor UIColorFromRGB:0x3972a2];
     
+    self.additionalLabelOne.hidden = YES;
+    self.additionalLabelTwo.hidden = YES;
+    
     [self.topButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     //Top button 默认隐藏
     self.topButton.hidden =YES;

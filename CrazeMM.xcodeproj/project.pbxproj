@@ -3001,13 +3001,6 @@
 			name = list;
 			sourceTree = "<group>";
 		};
-		B95A2A9C1D7FF0790087B8E3 /* sub items */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "sub items";
-			sourceTree = "<group>";
-		};
 		B95A94971CE0C17C00A5D9BA /* SKChinaCitySelector */ = {
 			isa = PBXGroup;
 			children = (
@@ -3216,7 +3209,6 @@
 				B91896AE1CCF1FCB0061D0B6 /* address */,
 				B91896881CCE18C00061D0B6 /* order */,
 				B945730B1D7554F0002F75AE /* overview */,
-				B95A2A9C1D7FF0790087B8E3 /* sub items */,
 			);
 			name = mine;
 			sourceTree = "<group>";

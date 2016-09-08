@@ -23,10 +23,13 @@
 @property (nonatomic, readonly) UITableView* tableView;
 @property (nonatomic, strong) CommonListCell* productDetail;
 @property (nonatomic, strong) OrderLogsCell* logsCell;
+@property (nonatomic, readonly) NSArray* cellArray;
 
 
 @property (nonatomic, readonly) NSArray* logDtos;
+@property (nonatomic) BOOL loading;
+
 //@property (nonatomic, readonly) 
 
-
+-(void)setMoreDtosWithResponse:(BaseHttpResponse*)response;
 @end

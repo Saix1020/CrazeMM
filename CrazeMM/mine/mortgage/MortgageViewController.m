@@ -70,7 +70,10 @@
     
     
     UIBarButtonItem* addMortgageButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"addr_add_icon" image] style:UIBarButtonItemStylePlain target:self action:@selector(addMortgage:)];
-    UIBarButtonItem* moreButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"icon_more" image] style:UIBarButtonItemStylePlain target:self action:@selector(moreActions:)];
+    UIBarButtonItem* moreButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"更多"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(moreActions:)];
     self.navigationItem.rightBarButtonItems = @[moreButtonItem, addMortgageButtonItem];
 }
 
@@ -183,12 +186,33 @@
 }
 
 #pragma - mark tableview delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    
+    
+
+    if (indexPath.row %2 == 1) {
+        if(self.dataSource.count>0){
+            MortgageDTO* dto = self.dataSource[indexPath.row/2];
+            if (dto.state == 300) {
+                return height + 44.f;
+            }
+
+        }
+    }
+    
+    return height;
+}
+
+
 -(void)tableViewCellSelected:(UITableView *)tableView andIndexPath:(NSIndexPath *)indexPath
 {
     
     MortgageDTO* dto = self.dataSource[indexPath.row/2];
     
-    MortgageDetailViewController* vc = [[MortgageDetailViewController alloc] initWithMid:dto.id];;
+    MortgageDetailViewController* vc = [[MortgageDetailViewController alloc] initWithMortgageDTO:dto];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

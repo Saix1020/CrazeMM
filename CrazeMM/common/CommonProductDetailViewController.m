@@ -22,8 +22,6 @@
 
 //@property (nonatomic, strong) BaseProductDetailDTO* productDetailDto;
 
-@property (nonatomic, readonly) NSArray* cellArray;
-@property (nonatomic) BOOL loading;
 
 @end
 
@@ -149,6 +147,11 @@
 //    return nil;
 //}
 
+-(void)setMoreDtosWithResponse:(BaseHttpResponse*)response
+{
+    // add more dto set 
+}
+
 -(void)refreshDetailDto
 {
     if(self.detailHttpRequest){
@@ -162,7 +165,7 @@
                 self.loading = NO;
                 self.productDetail.rightButton.hidden = YES;
                 self.productDetail.leftButton.hidden = YES;
-
+                [self setMoreDtosWithResponse:self.detailHttpRequest.response];
                 [self.tableView reloadData];
             }
             else {

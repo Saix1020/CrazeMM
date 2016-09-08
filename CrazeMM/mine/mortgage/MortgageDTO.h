@@ -17,7 +17,10 @@
 @property (nonatomic) float outPrice;
 @property (nonatomic) float price;
 @property (nonatomic) NSInteger stockId;
+@property (nonatomic) NSInteger supplyId;
+
 @property (nonatomic) NSInteger state;
+@property (nonatomic) NSInteger debtMoney;
 
 @property (nonatomic, copy) NSString* stateLabel;
 @property (nonatomic, copy) NSString* depotName;
@@ -34,6 +37,7 @@
 
 @property (nonatomic, strong) MortgageDTO* infoDto;
 @property (nonatomic, strong) NSMutableArray* logDtos;
+@property (nonatomic, strong) NSMutableArray* repays;
 
 
 @end
@@ -43,5 +47,15 @@
 @property(nonatomic, copy) NSString* content;
 
 
+
+@end
+
+@interface MortgageRepayDTO : BaseLogDTO
+
+@property(nonatomic, copy) NSString* content;
+@property(nonatomic) NSInteger debt;
+@property(nonatomic) CGFloat interest;
+@property(nonatomic) NSInteger mId;
+@property(nonatomic) NSInteger principal;
 
 @end

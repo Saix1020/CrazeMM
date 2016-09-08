@@ -39,6 +39,57 @@
         self.rightButton.hidden = NO;
         [self formatRightButton:dto.state];
     }
+    
+    if(300 == dto.state){
+        [self formartDebtLabel];
+        [self formatsupplyIdLabel];
+
+    }
+}
+
+-(void)formartDebtLabel
+{
+    self.additionalLabelOne.hidden = NO;
+    
+    NSString* firstComponent = [NSString stringWithFormat:@"剩余欠款: "];
+    NSMutableAttributedString *attributedText =
+    [[NSMutableAttributedString alloc] initWithString: firstComponent
+                                           attributes:@{
+                                                        NSFontAttributeName: [UIFont systemFontOfSize:14.f]
+                                                        }];
+    
+    
+    
+    NSString* secondComopent = [NSString stringWithFormat:@"￥%ld.00", self.mortgageDto.debtMoney];
+    [attributedText appendAttributedString:[[NSAttributedString alloc]
+                                            initWithString:secondComopent attributes:@{
+                                                                                       NSFontAttributeName: [UIFont systemFontOfSize:13.f],
+                                                                                       NSForegroundColorAttributeName: [UIColor blueColor]                                             }]];
+    
+    self.additionalLabelOne.attributedText = attributedText;
+
+}
+
+-(void)formatsupplyIdLabel
+{
+    self.additionalLabelTwo.hidden = NO;
+        
+    NSString* firstComponent = [NSString stringWithFormat:@"货物编号: "];
+    NSMutableAttributedString *attributedText =
+    [[NSMutableAttributedString alloc] initWithString: firstComponent
+                                           attributes:@{
+                                                        NSFontAttributeName: [UIFont systemFontOfSize:14.f]
+                                                        }];
+    
+    
+    
+    NSString* secondComopent = [NSString stringWithFormat:@"%ld", self.mortgageDto.supplyId];
+    [attributedText appendAttributedString:[[NSAttributedString alloc]
+                                            initWithString:secondComopent attributes:@{
+                                                                                       NSFontAttributeName: [UIFont systemFontOfSize:13.f],
+                                                                                       NSForegroundColorAttributeName: [UIColor blueColor]                                             }]];
+    
+    self.additionalLabelTwo.attributedText = attributedText;
 }
 
 -(void)formatQuantityLabel

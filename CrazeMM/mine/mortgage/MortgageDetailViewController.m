@@ -12,14 +12,54 @@
 @interface MortgageDetailViewController ()
 
 @property (nonatomic) NSInteger mid;
+@property (nonatomic, strong) OrderLogsCell* repayCell;
+@property (nonatomic, readonly) NSArray* repayDtos;
+
+@property (nonatomic, strong) MortgageDTO* mortgageDto;
+@property (nonatomic) NSInteger supplyId;
 
 @end
 
 @implementation MortgageDetailViewController
 
+-(OrderLogsCell*)repayCell
+{
+    if (!_repayCell) {
+        _repayCell = (OrderLogsCell*)[UINib viewFromNib:@"OrderLogsCell"];
+        _repayCell.backgroundColor = [UIColor clearColor];
+    }
+    
+    return _repayCell;
+}
+
+-(NSArray*)cellArray
+{
+    if (self.loading) {
+        return @[];
+    }
+    else {
+        if (self.mortgageDto.state!=500) { //历史
+            return @[self.productDetail, self.logsCell];
+            
+        }
+        else{
+            return @[self.productDetail, self.repayCell, self.logsCell];
+            
+        }
+    }
+    
+}
+
 -(NSArray*)bottomButtonsTitle
 {
     return @[];
+}
+
+-(void)setMoreDtosWithResponse:(BaseHttpResponse *)response
+{
+    HttpMortgageDetailResponse* detailResponse = (HttpMortgageDetailResponse*)response;
+    
+    self.repayCell.logs = detailResponse.detailDto.repays;
 }
 
 -(BaseHttpRequest*)detailHttpRequest
@@ -34,6 +74,9 @@
 {
     if ([response isKindOfClass:[HttpMortgageDetailResponse class]]) {
         HttpMortgageDetailResponse* detailResponse = (HttpMortgageDetailResponse*)response;
+        if([detailResponse.detailDto.listDto isKindOfClass:[MortgageDTO class]]){
+            ((MortgageDTO*)detailResponse.detailDto.listDto).supplyId = self.supplyId; //reset supplyId
+        }
         return detailResponse.detailDto;
     }
     return nil;
@@ -45,6 +88,18 @@
     self = [super init];
     if (self) {
         self.mid = mid;
+    }
+    
+    return self;
+}
+
+-(instancetype)initWithMortgageDTO:(MortgageDTO*)mortgageDto
+{
+    self = [super init];
+    if (self) {
+        self.mid = mortgageDto.id;
+        self.mortgageDto = mortgageDto;
+        self.supplyId = mortgageDto.supplyId; //save the supplyId
     }
     
     return self;
@@ -62,9 +117,16 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     CGFloat height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    if (indexPath.row == 4) {
-        return height + 24.f;
+    if (indexPath.row == 2 || indexPath.row == 4) {
+        return 32;
+    }
+    
+    if (indexPath.row==1) { //list detail cell
+        if (self.mortgageDto.state == 300) {
+            return height + 24.f;
+        }
     }
     
     return height;
@@ -74,24 +136,25 @@
 {
     UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
-    if (cell == self.logsCell) {
-        UITableViewCell* wrappedCell = [[UITableViewCell alloc] init];
-        UILabel* label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor clearColor];
-        label.text = @"抵押状态日志";
+    if (indexPath.row == 2) {
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(14.f, 14.f, 320, 14.f)];
         label.font = [UIFont smallFont];
         label.textColor = [UIColor grayColor];
-        [label sizeToFit];
-        label.x = 20.f;
-//        label.width = self.tableView.width;
-        //label.
-        cell.y = label.bottom + 4.f;
-        cell.x = 8.f;
-        
-        [wrappedCell addSubview:label];
-        [wrappedCell addSubview:cell];
-        wrappedCell.backgroundColor = [UIColor clearColor];
-        return wrappedCell;
+        label.text = @"抵押还款明细";
+        [cell addSubview:label];
+        cell.clipsToBounds = NO;
+    }
+    else if(indexPath.row == 4){
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(14.f, 14.f, 320, 14.f)];
+        label.font = [UIFont smallFont];
+        label.textColor = [UIColor grayColor];
+        label.text = @"抵押状态日志";
+
+        cell.textLabel.font = [UIFont smallFont];
+        cell.textLabel.textColor = [UIColor grayColor];
+        [cell addSubview:label];
+        cell.clipsToBounds = NO;
+
 
     }
     

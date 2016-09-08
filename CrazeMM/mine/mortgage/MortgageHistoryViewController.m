@@ -56,7 +56,7 @@
     
     MortgageDTO* dto = self.dataSource[indexPath.row/2];
     
-    MortgageDetailViewController* vc = [[MortgageDetailViewController alloc] initWithMid:dto.id];;
+    MortgageDetailViewController* vc = [[MortgageDetailViewController alloc] initWithMortgageDTO:dto];;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

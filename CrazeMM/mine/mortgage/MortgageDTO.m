@@ -38,8 +38,10 @@
         self.gid = [dict[@"gid"] integerValue];
         self.duration = [dict[@"duration"] integerValue];
         self.stockId = [dict[@"stockId"] integerValue];
+        self.supplyId = [dict[@"supplyId"] integerValue];
+
         self.state = [dict[@"state"] integerValue];
-        
+        self.debtMoney = [dict[@"debtMoney"] integerValue];
         
         self.stateLabel = dict[@"stateLabel"];
         self.depotName = dict[@"depotName"];
@@ -69,7 +71,7 @@
 
                 break;
             default:
-                self.stateLabel = @"未知状态";
+                self.stateLabel = @"已还款";
                 break;
         }
     }
@@ -123,6 +125,12 @@
         }
         
         self.logDtos = logArray;
+        
+        self.repays = [[NSMutableArray alloc] init];
+        for (NSDictionary* d in dict[@"repays"]) {
+            [self.repays addObject:[[MortgageRepayDTO alloc] initWith:d]];
+        }
+
     }
     
     return self;
@@ -130,4 +138,27 @@
 
 @end
              
-             
+@implementation MortgageRepayDTO
+
+-(instancetype)initWith:(NSDictionary *)dict
+{
+    self = [super initWith:dict];
+    if (self) {
+        self.content = dict[@"content"];
+        self.debt = [dict[@"debt"] integerValue];
+        self.interest = [dict[@"interest"] floatValue];
+        self.mId = [dict[@"mId"] integerValue];
+        self.principal = [dict[@"principal"] integerValue];
+        
+    }
+    
+    return self;
+}
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"【本金：%ld，利息：%f】%@\n %@", self.debt, self.interest, self.content, self.createTime];
+    
+}
+
+@end

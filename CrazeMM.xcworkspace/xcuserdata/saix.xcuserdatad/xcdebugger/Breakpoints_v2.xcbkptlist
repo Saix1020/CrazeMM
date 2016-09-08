@@ -1370,11 +1370,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/BaseHttpRequest.m"
-            timestampString = "495031047.048531"
+            timestampString = "495033207.527342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "402"
-            endingLineNumber = "402"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
             landmarkName = "@implementation BaseHttpRequest"
             landmarkType = "3">
          </BreakpointContent>
@@ -1386,11 +1386,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/BaseHttpRequest.m"
-            timestampString = "495031047.048531"
+            timestampString = "495033207.527342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
             landmarkName = "-initWith:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1450,11 +1450,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/BaseHttpRequest.m"
-            timestampString = "495031047.048531"
+            timestampString = "495033207.527342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-getTokenFaield:"
             landmarkType = "5">
             <Locations>
@@ -2682,11 +2682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/BaseHttpRequest.m"
-            timestampString = "495031047.048531"
+            timestampString = "495033207.527342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "-doPostRequest"
             landmarkType = "5">
          </BreakpointContent>
@@ -4522,7 +4522,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "495031048.460146"
+                  timestampString = "495038904.681614"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4537,7 +4537,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "495031048.460306"
+                  timestampString = "495038904.681919"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -5706,11 +5706,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/BaseHttpRequest.m"
-            timestampString = "495031047.048531"
+            timestampString = "495033207.527342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -5722,11 +5722,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/BaseHttpRequest.m"
-            timestampString = "495031047.048531"
+            timestampString = "495033207.527342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "-dealloc"
             landmarkType = "5">
          </BreakpointContent>
@@ -6794,11 +6794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/BaseHttpRequest.m"
-            timestampString = "495031047.048531"
+            timestampString = "495033207.527342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-getTokenThenDoRequest"
             landmarkType = "5">
          </BreakpointContent>
@@ -8390,11 +8390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/CommonListCell.m"
-            timestampString = "494257067.885942"
+            timestampString = "495037640.943706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-buttonClicked:"
             landmarkType = "5">
          </BreakpointContent>
@@ -8422,11 +8422,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/CommonListCell.m"
-            timestampString = "494257067.885942"
+            timestampString = "495037640.943706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "@implementation CommonListCell"
             landmarkType = "3">
          </BreakpointContent>
@@ -8614,11 +8614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/mortgage/CommonListCell+Mortgage.m"
-            timestampString = "494257067.885942"
+            timestampString = "495037640.943706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "-formatPriceLabel"
             landmarkType = "5">
          </BreakpointContent>
@@ -9078,11 +9078,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/CommonListCell.m"
-            timestampString = "494414295.356026"
+            timestampString = "495037640.943706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-awakeFromNib"
             landmarkType = "5">
          </BreakpointContent>
@@ -9094,11 +9094,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/CommonListCell.m"
-            timestampString = "494414308.419238"
+            timestampString = "495037640.943706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-awakeFromNib"
             landmarkType = "5">
          </BreakpointContent>
@@ -9270,11 +9270,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/common/CommonProductDetailViewController.m"
-            timestampString = "495014205.586763"
+            timestampString = "495034247.163889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-bottomButtons"
             landmarkType = "5">
          </BreakpointContent>
@@ -9286,11 +9286,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/common/CommonProductDetailViewController.m"
-            timestampString = "495014205.586763"
+            timestampString = "495034247.163889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-viewWillLayoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
@@ -9446,11 +9446,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/common/CommonProductDetailViewController.m"
-            timestampString = "495014205.586763"
+            timestampString = "495034247.163889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "-refreshDetailDto"
             landmarkType = "5">
          </BreakpointContent>
@@ -9676,6 +9676,70 @@
             startingLineNumber = "647"
             endingLineNumber = "647"
             landmarkName = "-didOperatorSuccessWithIds:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/mortgage/MortgageDetailViewController.m"
+            timestampString = "495038904.326267"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "-initWithMortgageDTO:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/mortgage/MortgageViewController.m"
+            timestampString = "495038324.823917"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "-tableViewCellSelected:andIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/mortgage/CommonListCell+Mortgage.m"
+            timestampString = "495038416.343066"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "-setMortgageDTO:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/mortgage/MortgageDetailViewController.m"
+            timestampString = "495038904.326267"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "-initWithMortgageDTO:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

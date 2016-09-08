@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -91,7 +91,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6c2-pI-6Ue">
                                 <rect key="frame" x="8" y="2" width="304" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -174,6 +174,26 @@
                             <constraint firstAttribute="width" constant="20" id="y5y-2M-Vef"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9l-1U-q7l">
+                        <rect key="frame" x="8" y="133" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="304" id="aJ2-1R-3BV"/>
+                            <constraint firstAttribute="height" constant="21" id="xtf-5n-1wg"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73e-IC-Acn">
+                        <rect key="frame" x="8" y="156" width="303.5" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="3io-2R-Hte"/>
+                            <constraint firstAttribute="width" constant="303.5" id="aph-zp-gh1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="Aq8-KS-VP0" secondAttribute="trailing" id="0rT-fq-9j9"/>
@@ -187,10 +207,12 @@
                     <constraint firstItem="d34-zX-qT6" firstAttribute="leading" secondItem="WFO-GJ-rcZ" secondAttribute="leadingMargin" constant="-8" id="ABU-NS-vxV"/>
                     <constraint firstItem="UpJ-Lu-ZrU" firstAttribute="leading" secondItem="DbJ-X5-UwI" secondAttribute="trailing" constant="2" id="Ecb-is-8Io"/>
                     <constraint firstItem="mmU-uL-SLs" firstAttribute="leading" secondItem="Aq8-KS-VP0" secondAttribute="trailing" constant="-304" id="Fw3-CV-Td7"/>
+                    <constraint firstItem="73e-IC-Acn" firstAttribute="top" secondItem="WFO-GJ-rcZ" secondAttribute="topMargin" constant="148" id="Gmd-MH-VUG"/>
                     <constraint firstItem="xcS-1g-flN" firstAttribute="leading" secondItem="WFO-GJ-rcZ" secondAttribute="leadingMargin" constant="24" id="Hd9-Xw-rWb"/>
                     <constraint firstItem="Aq8-KS-VP0" firstAttribute="top" secondItem="WFO-GJ-rcZ" secondAttribute="topMargin" constant="24" id="LxI-Ec-IPb"/>
                     <constraint firstItem="g28-8o-IWI" firstAttribute="top" secondItem="WFO-GJ-rcZ" secondAttribute="topMargin" constant="-3" id="M2o-my-wGV"/>
                     <constraint firstAttribute="leadingMargin" secondItem="mmU-uL-SLs" secondAttribute="leading" id="Mfh-mn-LQb"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="G9l-1U-q7l" secondAttribute="leading" id="N68-YN-4ht"/>
                     <constraint firstItem="UpJ-Lu-ZrU" firstAttribute="top" secondItem="WFO-GJ-rcZ" secondAttribute="topMargin" constant="-3" id="NIw-BG-x01"/>
                     <constraint firstAttribute="trailingMargin" secondItem="avb-xf-hIa" secondAttribute="trailing" id="NmE-CM-Ppb"/>
                     <constraint firstAttribute="topMargin" secondItem="xcS-1g-flN" secondAttribute="top" id="Pt0-jg-aZm"/>
@@ -199,11 +221,13 @@
                     <constraint firstAttribute="leadingMargin" secondItem="TnY-ZY-f44" secondAttribute="leading" id="WBW-PG-A6s"/>
                     <constraint firstAttribute="leadingMargin" secondItem="Aq8-KS-VP0" secondAttribute="leading" id="Y3L-i0-dXZ"/>
                     <constraint firstItem="iSa-l1-8TB" firstAttribute="top" secondItem="mmU-uL-SLs" secondAttribute="bottom" constant="-1" id="cKp-Wy-4Lb"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="73e-IC-Acn" secondAttribute="leading" id="fmX-d2-0jB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="g28-8o-IWI" secondAttribute="trailing" id="fy5-FV-AnF"/>
                     <constraint firstItem="UpJ-Lu-ZrU" firstAttribute="leading" secondItem="Fcb-uc-Y3d" secondAttribute="trailing" constant="8" id="fzX-M5-oMa"/>
                     <constraint firstItem="Psw-wy-1J6" firstAttribute="leading" secondItem="Fcb-uc-Y3d" secondAttribute="trailing" constant="4" id="hNR-Zo-07D"/>
                     <constraint firstAttribute="topMargin" secondItem="5lV-QB-oAi" secondAttribute="top" id="hkG-Ce-Z4y"/>
                     <constraint firstAttribute="trailingMargin" secondItem="d34-zX-qT6" secondAttribute="trailing" constant="-8" id="m3o-x0-JwD"/>
+                    <constraint firstItem="G9l-1U-q7l" firstAttribute="top" secondItem="WFO-GJ-rcZ" secondAttribute="topMargin" constant="125" id="nm3-1r-ZlK"/>
                     <constraint firstItem="DbJ-X5-UwI" firstAttribute="centerY" secondItem="UpJ-Lu-ZrU" secondAttribute="centerY" id="nwF-ez-2aj"/>
                     <constraint firstAttribute="leadingMargin" secondItem="iSa-l1-8TB" secondAttribute="leading" id="p5C-Yc-TMt"/>
                     <constraint firstAttribute="trailingMargin" secondItem="mmU-uL-SLs" secondAttribute="trailing" id="tuT-BB-xyf"/>
@@ -222,6 +246,8 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="additionalLabelOne" destination="G9l-1U-q7l" id="1o4-E6-Zdb"/>
+                <outlet property="additionalLabelTwo" destination="73e-IC-Acn" id="ncs-lh-4Pw"/>
                 <outlet property="bottomLabel" destination="6c2-pI-6Ue" id="6CG-y5-dyk"/>
                 <outlet property="bottomView" destination="d34-zX-qT6" id="C4a-B2-Wxn"/>
                 <outlet property="checkBox" destination="5lV-QB-oAi" id="KPa-Et-Fj2"/>
