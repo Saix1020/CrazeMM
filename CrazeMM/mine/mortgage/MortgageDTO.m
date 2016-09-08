@@ -28,6 +28,7 @@
 //        @property (nonatomic, copy) NSString* updateTime;
 //        @property (nonatomic, copy) NSString* goodName;
 //        @property (nonatomic, copy) NSString* createTime;
+//        @property (nonatomic, copy) NSString* checkTime;
         
         self.interestRate = [dict[@"interestRate"] floatValue];
         self.outPrice = [dict[@"outPrice"] floatValue];
@@ -47,6 +48,7 @@
 
         self.updateTime = dict[@"updateTime"];
         self.createTime = dict[@"createTime"];
+        self.checkTime = dict[@"checkTime"];
 
     }
     return self;
