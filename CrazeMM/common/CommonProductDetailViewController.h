@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BaseDTO.h"
 #import "BaseHttpRequest.h"
+#import "CommonListCell.h"
+#import "OrderLogsCell.h"
 
 @interface CommonProductDetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 {
@@ -19,6 +21,9 @@
 @property (nonatomic, strong) BaseHttpRequest* detailHttpRequest;
 @property (nonatomic, readonly) NSArray* bottomButtonsTitle;
 @property (nonatomic, readonly) UITableView* tableView;
+@property (nonatomic, strong) CommonListCell* productDetail;
+@property (nonatomic, strong) OrderLogsCell* logsCell;
+
 
 @property (nonatomic, readonly) NSArray* logDtos;
 //@property (nonatomic, readonly) 

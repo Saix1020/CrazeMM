@@ -76,9 +76,7 @@
                             
                             
                         }
-                     andCancelCallback:^(id x){
-                         
-                     }];
+                     andCancelCallback:nil];
 
     }
     else if([self.bottomButtons indexOfObject:button] == 0){

@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+Utils.h"
+#import "BaseNavigationController.h"
 
 
 @implementation UIViewController (Utils)
@@ -78,5 +79,21 @@
     [self showAlertViewWithMessage:msg];
 }
 
+
+-(void)setMarkedVC:(UIViewController *)markedVC
+{
+    if ([self.navigationController isKindOfClass:[BaseNavigationController class]]) {
+        ((BaseNavigationController*)self.navigationController).markedVC = markedVC;
+    }
+}
+
+-(UIViewController*)markedVC
+{
+    if ([self.navigationController isKindOfClass:[BaseNavigationController class]]) {
+        return ((BaseNavigationController*)self.navigationController).markedVC;
+    }
+    
+    return nil;
+}
 
 @end

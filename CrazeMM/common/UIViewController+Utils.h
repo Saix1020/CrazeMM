@@ -24,4 +24,10 @@ typedef void (^InvokeHttpRequestCallback)(BaseHttpRequest*, NSString*);
 -(void)httpRequestSuccess:(BaseHttpRequest*)request andSuccessMsg:(NSString*)msg;
 -(void)httpRequestFailed:(BaseHttpRequest*)request andFailedMsg:(NSString*)msg;
 
+
+//-(void)setMarkedVCForNavigationVC:(UIViewController*)markedVC;
+@property (nonatomic, strong) UIViewController* markedVC;
+
+
+
 @end

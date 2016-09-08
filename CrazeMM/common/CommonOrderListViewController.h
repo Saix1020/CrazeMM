@@ -22,7 +22,7 @@
 
 
 
-@interface CommonOrderListViewController : UIViewController<CustomSegmentDelegate, UITableViewDataSource, UITableViewDelegate, BEMCheckBoxDelegate, CommonListCellDelegate>
+@interface CommonOrderListViewController : UIViewController<CustomSegmentDelegate, UITableViewDataSource, UITableViewDelegate, BEMCheckBoxDelegate, CommonListCellDelegate, ListViewControllerDelegate>
 {
     @protected
     SegmentedCell* _segmentCell;

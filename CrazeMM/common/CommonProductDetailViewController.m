@@ -8,13 +8,9 @@
 
 #import "CommonProductDetailViewController.h"
 #import "BaseProductDetailDTO.h"
-#import "CommonListCell.h"
-#import "OrderLogsCell.h"
 
 @interface CommonProductDetailViewController ()
 
-@property (nonatomic, strong) CommonListCell* productDetail;
-@property (nonatomic, strong) OrderLogsCell* logsCell;
 
 @property (nonatomic, strong) UIView* bottomView;
 @property (nonatomic, strong) NSArray* bottomButtons;

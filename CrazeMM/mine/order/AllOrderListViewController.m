@@ -126,6 +126,7 @@
         .orderSubType = kOrderSubTypeAll
     };
     OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:style andOrder:self.dataSource[indexPath.row]];
+    orderDetailVC.delegate = self;
     [self.navigationController pushViewController:orderDetailVC animated:YES];
 
 }

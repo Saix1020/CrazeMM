@@ -14,6 +14,7 @@
 #import "OrderDetailStatusCell.h"
 #import "OrderLogsCell.h"
 #import "OrderListNoCheckBoxCell.h"
+#import "CommonOrderListViewController.h"
 
 @protocol OrderDetailViewControllerDelegate <NSObject>
 
@@ -49,7 +50,7 @@
 @property (nonatomic, readonly) NSInteger elapseSeconds;
 @property (nonatomic) BOOL isStyleBuy;
 
-@property (nonatomic, weak) id<OrderDetailViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<ListViewControllerDelegate> delegate;
 
 -(instancetype)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto;
 +(OrderDetailViewController*)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto;

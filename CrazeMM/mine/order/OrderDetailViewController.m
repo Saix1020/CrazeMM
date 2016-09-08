@@ -395,8 +395,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
             .then(^(id responseObj){
                 NSLog(@"%@", responseObj);
                 if (request.response.ok) {
-                    if ([self.delegate respondsToSelector:@selector(removeOrder:)]){
-                        [self.delegate cancelOrder:self.orderDto];
+                    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]){
+                        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
                     }
                 }
                 else {
@@ -613,8 +613,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                             .then(^(id responseObj){
                                                 NSLog(@"%@", responseObj);
                                                 if (request.response.ok) {
-                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
-                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+                                                        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
                                                     }
                                                 }
                                                 else {
@@ -653,8 +653,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                             .then(^(id responseObj){
                                                 NSLog(@"%@", responseObj);
                                                 if (request.response.ok) {
-                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
-                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+                                                        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
                                                     }
                                                 }
                                                 else {
@@ -724,8 +724,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                             .then(^(id responseObj){
                                                 NSLog(@"%@", responseObj);
                                                 if (request.response.ok) {
-                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
-                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+                                                        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
                                                     }
                                                 }
                                                 else {
@@ -900,8 +900,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 //}
 -(void)httpRequestSuccess:(BaseHttpRequest*)request andSuccessMsg:(NSString*)msg
 {
-    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
-        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
     }
     
     [super httpRequestSuccess:request andSuccessMsg:msg];
