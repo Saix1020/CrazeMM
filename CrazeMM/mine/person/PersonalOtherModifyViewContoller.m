@@ -272,6 +272,8 @@
                             if (request.response.ok) {
                                 //[self dismissProgressIndicator];
                                 [[UserCenter defaultCenter] saveToKeychainWithUserName:self.mineUserInfoDto.username andPassword:[UserCenter defaultCenter].passwordInKeychain];
+                                // assign more field to local [UserCenter defaultCenter].userInfo
+                                
                                 [self showAlertViewWithMessage:@"修改成功" withCallback:^(id x){
                                     
                                     [self.navigationController popViewControllerAnimated:YES];
