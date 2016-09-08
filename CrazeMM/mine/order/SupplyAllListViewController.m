@@ -28,4 +28,9 @@
     self.navigationItem.title = @"我的所有卖货";
 }
 
+-(HttpListQueryRequest*)makeListQueryRequest
+{
+    return [[HttpAllSupplyOrderRequest alloc]  initWithPage:self.pageNumber+1 andConditions:self.searchConditions];
+}
+
 @end
