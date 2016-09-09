@@ -288,7 +288,8 @@
     }];
     
     
-                      
+    // TODO
+    // WYPopoverController is better than ZZPopoverWindow
     self.userNameRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         @strongify(self);

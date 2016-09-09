@@ -45,6 +45,10 @@
         [self formatsupplyIdLabel];
 
     }
+    else{
+        self.additionalLabelOne.hidden = YES;
+        self.additionalLabelTwo.hidden = YES;
+    }
 }
 
 -(void)formartDebtLabel
