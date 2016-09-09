@@ -300,7 +300,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"新建供货信息";
+    self.navigationItem.title = self.modifyGoodInfo? @"修改供货信息" : @"新增供货信息";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"cancel_m" image] style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
     
@@ -370,11 +370,10 @@
 
     self.standardCell.regionLabel.text = modifyGoodInfo.network;
     
-    self.stockCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.quantity];
     self.cycleCell.regionLabel.text = [NSString stringWithFormat:@"%ld%@", modifyGoodInfo.deadline>0?modifyGoodInfo.deadline:72, modifyGoodInfo.deadline>0?@"小时":@"小时以上"];
     
     self.timeCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.duration];
-    self.priceCell.textFieldCell.text = [NSString stringWithFormat:@"%.2f", modifyGoodInfo.price];
+    
     self.colorCell.regionLabel.text = modifyGoodInfo.color;
     self.capacityCell.regionLabel.text = modifyGoodInfo.volume;
     self.standardCell.regionLabel.text = modifyGoodInfo.network;
@@ -384,7 +383,38 @@
     self.isBrushedCell.swith.on = modifyGoodInfo.isBrushMachine;
     self.otherCell.checkBox.on = modifyGoodInfo.isSplit;
     self.otherCell.checkBox2.on = modifyGoodInfo.isAnoy;
-    
+    self.priceCell.textFieldCell.text = [NSString stringWithFormat:@"%.2f", modifyGoodInfo.price];
+
+    if(modifyGoodInfo.isStockedGood) {
+        self.stockCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.presale];
+        self.standardCell.userInteractionEnabled = NO;
+        self.cycleCell.userInteractionEnabled = NO;
+        self.timeCell.userInteractionEnabled = NO;
+        self.colorCell.userInteractionEnabled = NO;
+        self.capacityCell.userInteractionEnabled = NO;
+        self.standardCell.userInteractionEnabled = NO;
+        self.hasIMEICell.swith.userInteractionEnabled = NO;
+        self.isIntactCell.swith.userInteractionEnabled = NO;
+        self.hasBoxCell.swith.userInteractionEnabled = NO;
+        self.otherCell.checkBox.userInteractionEnabled = NO;
+        self.otherCell.checkBox2.userInteractionEnabled = NO;
+        self.isBrushedCell.swith.userInteractionEnabled = NO;
+        
+        self.colorCell.regionLabel.textColor = [UIColor lightGrayColor];
+        self.standardCell.regionLabel.textColor = [UIColor lightGrayColor];
+        self.capacityCell.regionLabel.textColor = [UIColor lightGrayColor];
+        self.cycleCell.regionLabel.textColor = [UIColor lightGrayColor];
+        self.timeCell.textFieldCell.textColor = [UIColor lightGrayColor];
+        
+        if(modifyGoodInfo.state == 400){ //抵押
+            
+        }
+    }
+    else {
+        self.stockCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.quantity];
+
+    }
+
     self.enableSubEdit = YES;
 
 }
@@ -521,87 +551,6 @@
               andFailedCallback:nil
          ];
     }
-    
-//    @weakify(self);
-//    [self showAlertViewWithMessage:@"您确认发布该供货信息吗?"
-//                    withOKCallback:^(id x){
-//                        @strongify(self);
-//                        GoodCreateInfo* goodCreateInfo;
-//                        
-//                        
-//                        if(self.modifyGoodInfo){
-////                            //goodCreateInfo.brand = self.modifyGoodInfo.brandInfo.id;
-////                            goodCreateInfo = self.modifyGoodInfo;
-//                        }
-//                        else {
-//                            goodCreateInfo = [[GoodCreateInfo alloc] init];
-//                            for (GoodBrandDTO* brandDto in self.goodBrands) {
-//                                if ([brandDto.name isEqualToString:self.brandCell.regionLabel.text]) {
-//                                    goodCreateInfo.brand = brandDto.id;
-//                                }
-//                            }
-//                            goodCreateInfo.id = self.currentGoodDetail.id;
-//                            
-//                        }
-//                        
-//                        
-//                        goodCreateInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
-//                        NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
-//                        switch (cycleStringIndex) {
-//                            case 0:
-//                                goodCreateInfo.deadline = 24;
-//                                break;
-//                            case 1:
-//                                goodCreateInfo.deadline = 48;
-//                                break;
-//                            case 2:
-//                                goodCreateInfo.deadline = 72;
-//                                break;
-//                            default:
-//                                goodCreateInfo.deadline = -1;
-//                                break;
-//                        }
-//                        
-//                        goodCreateInfo.duration = self.timeCell.textFieldCell.text.integerValue;
-//                        goodCreateInfo.price = self.priceCell.textFieldCell.text.integerValue;
-//                        goodCreateInfo.color = self.colorCell.regionLabel.text;
-//                        goodCreateInfo.volume = self.capacityCell.regionLabel.text;
-//                        goodCreateInfo.network = self.standardCell.regionLabel.text;
-//                        goodCreateInfo.isSerial = self.hasIMEICell.swith.on;
-//                        goodCreateInfo.isOriginal = self.isIntactCell.swith.on;
-//                        goodCreateInfo.isOriginalBox = self.hasBoxCell.swith.on;
-//                        goodCreateInfo.isBrushMachine = self.isBrushedCell.swith.on;
-//                        goodCreateInfo.isSplit = self.otherCell.checkBox.on;
-//                        goodCreateInfo.isAnoy = self.otherCell.checkBox2.on;
-//                        
-//                        
-//                        HttpSaveSupplyInfoRequest* request = [[HttpSaveSupplyInfoRequest alloc] initWithGoodInfo:goodCreateInfo];
-//                        [request request]
-//                        .then(^(id responseObj){
-//                            if (!request.response.ok) {
-//                                [self showAlertViewWithMessage:request.response.errorMsg];
-//                            }
-//                            else {
-//                                if ([self.delegate respondsToSelector:@selector(editSupplyGoodSuccess)]) {
-//                                    [self.delegate editSupplyGoodSuccess];
-//
-//                                    @weakify(self);
-//                                    [self showAlertViewWithMessage:@"供货信息发布成功" withCallback:^(id x){
-//                                        @strongify(self);
-//                                        [self.navigationController popViewControllerAnimated:YES];
-//                                    }];
-//                                }
-//                            }
-//                        })
-//                        .catch(^(NSError* error){
-//                            [self showAlertViewWithMessage:error.localizedDescription];
-//                        });
-//                    }
-//                 andCancelCallback:^(id x){
-//                     
-//                 }];
-    
-    
 }
 
 -(NSArray*)cycleStringArray
@@ -642,11 +591,13 @@
     if(!self.modifyGoodInfo){
         self.modelCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
     }
-    self.colorCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
-    self.capacityCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
-    self.standardCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]: [UIColor lightGrayColor];
-    
-    self.enableSubEditX = @(enableSubEdit);
+    if(!self.modifyGoodInfo.isStockedGood){
+        self.colorCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
+        self.capacityCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
+        self.standardCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]: [UIColor lightGrayColor];
+        
+        self.enableSubEditX = @(enableSubEdit);
+    }
     
 }
 

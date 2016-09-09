@@ -15,6 +15,7 @@
 typedef NS_ENUM(NSInteger, MMMineSupplyState){
     kStateNomal = 100,
     kStateMortgage = 101,
+
     kStateSoldOut = 200,
     kStateCanceled = 400,
     kStateOverdua = 500

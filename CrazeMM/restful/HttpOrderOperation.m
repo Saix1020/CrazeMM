@@ -112,7 +112,8 @@
 
 -(NSString*)url
 {
-    NSString* absUrl = [NSString stringWithFormat:@"/rest/order/logicDelete/%@",  [self.oids componentsJoinedByString:@","]];
+    // change /rest/order/logicDelete/%@ to /rest/order/logicDeleteByIds/%@
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/order/logicDeleteByIds/%@",  [self.oids componentsJoinedByString:@","]];
     return COMB_URL(absUrl);
 }
 

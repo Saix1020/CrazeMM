@@ -32,6 +32,10 @@
 @property (nonatomic) BOOL isSplit;
 @property (nonatomic) BOOL isAnoy;
 
+@property (nonatomic, strong) NSDictionary* stockInfo;
+@property (nonatomic, readonly) BOOL isStockedGood;
+@property (nonatomic, readonly) NSInteger presale;
+@property (nonatomic) NSInteger state;
 
 @property (nonatomic) NSDictionary* addtionalInfo;
 //-(instancetype)initWithDict

@@ -63,10 +63,29 @@
             [self.addrList addObject:[[AddressDTO alloc] initWith:d]];
         }
         self.userDto = dict[@"user"];
+        
+        self.stockInfo = dict[@"onlyStock"];
+        self.state = [dict[@"state"] integerValue];
     }
     
     return self;
 }
+
+-(BOOL)isStockedGood
+{
+    return self.stockInfo && self.stockInfo[@"depot"];
+}
+
+-(NSInteger)presale
+{
+    if (self.isStockedGood) {
+        return [self.stockInfo[@"presale"] integerValue];
+    }
+    
+    return 0;
+}
+
+
 
 @end
 

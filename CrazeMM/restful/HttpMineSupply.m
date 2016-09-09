@@ -43,7 +43,7 @@
     if (self) {
         self.params = [@{
                          @"pn" : @(pageNumber),
-                         @"state" : @(kStateSoldOut),
+                         @"state" : [@[@(kStateSoldOut), @(150)] componentsJoinedByString:@","], //  已认购
                          } mutableCopy];
     }
     

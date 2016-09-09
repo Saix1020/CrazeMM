@@ -87,6 +87,8 @@
     tempArray[kRowMax] = self.confirmCell;
     
     self.cellArray = [tempArray copy];
+    
+    self.navigationItem.title = self.modifyGoodInfo?@"修改求购信息" : @"新增求购信息";
 }
 
 //save_buy_token:4376351719679073752

@@ -157,7 +157,7 @@
 
 -(NSString*)description
 {
-    return [NSString stringWithFormat:@"【本金：%ld，利息：%f】%@\n %@", self.debt, self.interest, self.content, self.createTime];
+    return [NSString stringWithFormat:@"【本金：%ld，利息：%.02f】%@\n %@", self.debt, self.interest, self.content, self.createTime];
     
 }
 
