@@ -194,24 +194,40 @@
                 if (response.paySuccess) {
                     
                     [self showAlertViewWithMessage:@"支付成功!" withCallback:^(id x){
-                        UIViewController* popToVC = nil;
-                        for (UIViewController* vc in self.navigationController.viewControllers) {
-                            if ([vc isKindOfClass:[OrderListViewController class]]) {
-                                [(OrderListViewController*)vc operatorDoneForOrder:self.orderDetailDtos];
-                                popToVC = vc;
-                                break;
+                        UIViewController* popToVC = self.markedVC;
+                        
+                        if (popToVC) {
+                            if ([popToVC isKindOfClass:[CommonOrderListViewController class]]) {
+                                NSMutableArray* ids = [[NSMutableArray alloc] init];
+                                [self.orderDetailDtos enumerateObjectsUsingBlock:^(BaseDTO* dto, NSUInteger idx, BOOL *stop){
+                                    [ids addObject:@(dto.id)];
+                                }];
+                                [(CommonOrderListViewController*)popToVC didOperatorSuccessWithIds:ids];
                             }
-                            else if([vc isKindOfClass:NSClassFromString(@"ProductViewController")]){
-                                popToVC = vc;
-                                break;
-                            }
-                        }
-                        if (!popToVC) {
-                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            
+                            [self.navigationController popToViewController:popToVC animated:YES];
                         }
                         else {
-                           [self.navigationController popToViewController:popToVC animated:YES]; 
+                            [self.navigationController popToRootViewControllerAnimated:YES];
                         }
+                        
+//                        for (UIViewController* vc in self.navigationController.viewControllers) {
+//                            if ([vc isKindOfClass:[OrderListViewController class]]) {
+//                                [(OrderListViewController*)vc operatorDoneForOrder:self.orderDetailDtos];
+//                                popToVC = vc;
+//                                break;
+//                            }
+//                            else if([vc isKindOfClass:NSClassFromString(@"ProductViewController")]){
+//                                popToVC = vc;
+//                                break;
+//                            }
+//                        }
+//                        if (!popToVC) {
+//                            [self.navigationController popToRootViewControllerAnimated:YES];
+//                        }
+//                        else {
+//                           [self.navigationController popToViewController:popToVC animated:YES]; 
+//                        }
                     }];
                     
                 }
@@ -253,46 +269,23 @@
         @weakify(self);
         [self showAlertViewWithMessage:@"支付成功!" withCallback:^(id x){
             @strongify(self);
-//            UIViewController* popToVC = nil;
-//            for (UIViewController* vc in self.navigationController.viewControllers) {
-//                if ([vc isKindOfClass:[OrderListViewController class]]) {
-//                    [(OrderListViewController*)vc operatorDoneForOrder:self.orderDetailDtos];
-//                    popToVC = vc;
-//                    break;
-//                }
-//                else if([vc isKindOfClass:NSClassFromString(@"ProductViewController")]){
-//                    popToVC = vc;
-//                    break;
-//                }
-//                else if([vc isKindOfClass:NSClassFromString(@"AccountViewController")]){
-//                    popToVC = vc;
-//                    break;
-//                }
-//            }
+            UIViewController* popToVC = self.markedVC;
             
-            if ([self.navigationController isKindOfClass:[BaseNavigationController class]]) {
-                UIViewController* vc = ((BaseNavigationController*)self.navigationController).markedVC;;
-                
-                if ([vc isKindOfClass:[CommonOrderListViewController class]]) {
-                    CommonOrderListViewController* cvc = (CommonOrderListViewController*)vc;
-                    if([cvc respondsToSelector:@selector(resetDataSource)]){
-                        [cvc resetDataSource];
-                    }
+            if (popToVC) {
+                if ([popToVC isKindOfClass:[CommonOrderListViewController class]]) {
+                    NSMutableArray* ids = [[NSMutableArray alloc] init];
+                    [self.orderDetailDtos enumerateObjectsUsingBlock:^(BaseDTO* dto, NSUInteger idx, BOOL *stop){
+                        [ids addObject:@(dto.id)];
+                    }];
+                    [(CommonOrderListViewController*)popToVC didOperatorSuccessWithIds:ids];
                 }
                 
-                [(BaseNavigationController*)self.navigationController popToMarkedViewControllerAnimated:YES];
+                [self.navigationController popToViewController:popToVC animated:YES];
             }
             else {
-                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
 
-            
-//            if (!popToVC) {
-//                [self.navigationController popToRootViewControllerAnimated:YES];
-//            }
-//            else {
-//                [self.navigationController popToViewController:popToVC animated:YES];
-//            }
         }];
         return NO;
     }

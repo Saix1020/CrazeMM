@@ -89,7 +89,7 @@
     }
     
     OrderSendViewController* sendVC = [[OrderSendViewController alloc] initWithOrderDetaildtos:operatorDtos];
-    sendVC.delegate = self;
+    self.markedVC = self;
     [self.navigationController pushViewController:sendVC animated:YES];
 
 }
@@ -137,6 +137,7 @@
     
     if (vc) {
         vc.delegate = self;
+        [self setMarkedVC:self]; 
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

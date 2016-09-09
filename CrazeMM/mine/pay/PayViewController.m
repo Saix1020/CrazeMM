@@ -218,6 +218,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
             @strongify(self);
             
             OrderDetailDTO* dto = self.orderDetailDtos.firstObject;
+            
             if (IsNilOrNull(dto.stock)) {
                 // we need set receiver address
                 if (self.selectedAddrDto == nil) {
@@ -696,7 +697,7 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     
     NSMutableArray* orderIds = [[NSMutableArray alloc] init];
     [self.orderDetailDtos enumerateObjectsUsingBlock:^(OrderDetailDTO* dto, NSUInteger idx, BOOL *stop){
-        [orderIds addObject:[NSString stringWithFormat:@"%ld", dto.id]];
+        [orderIds addObject:@(dto.id)];
     }];
     
     HttpBlancePayRequest* request = [[HttpBlancePayRequest  alloc] initWithAmount:self.productDetailCell.totalPrice andOrders:orderIds andPayPassword:inputString andAddrId:self.selectedAddrDto.id];
@@ -704,6 +705,14 @@ typedef NS_ENUM(NSInteger, MinePayRow){
     .then(^(id responseObj){
         HttpBlancePayResponse* response = (HttpBlancePayResponse*)request.response;
         if (response.ok) {
+            
+            // remove those oder from list view controller
+            UIViewController* markedVC = self.markedVC;
+            if ([markedVC respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+                [markedVC performSelector:@selector(didOperatorSuccessWithIds:) withObject:orderIds];
+            }
+
+            
             PayResultViewController* vc = [[PayResultViewController alloc] initWithStockDetailDtos:response.stockDetailDtos];
             [self.navigationController pushViewController:vc animated:YES];
         }

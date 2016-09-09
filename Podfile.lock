@@ -64,7 +64,6 @@ PODS:
   - TPKeyboardAvoiding (1.3)
   - UITableView+FDTemplateLayoutCell (1.4)
   - UIView+FrameEx (0.0.1)
-  - ZZPopoverWindow (1.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -81,7 +80,6 @@ DEPENDENCIES:
   - TPKeyboardAvoiding (~> 1.3)
   - UITableView+FDTemplateLayoutCell (~> 1.4)
   - UIView+FrameEx (~> 0.0.1)
-  - ZZPopoverWindow (~> 1.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -102,6 +100,5 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   UIView+FrameEx: ab0c53e158ef0621d7b0b0a26626e175ac17e471
-  ZZPopoverWindow: 7be86696f95f1f3f5f7ea3aff15409b0acbcebaa
 
 COCOAPODS: 0.39.0

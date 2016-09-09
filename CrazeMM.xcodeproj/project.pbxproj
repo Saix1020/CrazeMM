@@ -559,6 +559,12 @@
 		B9AD462D1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
 		B9AD462E1CD6523100012B31 /* NSMutableAttributedString+M80.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */; };
 		B9B3DCDC1D8139E800CBC643 /* StockSellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B902B6DC1D026C88005B6F5C /* StockSellCell.xib */; };
+		B9B3DCFE1D8273F000CBC643 /* ZZPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3DCF91D8273F000CBC643 /* ZZPopoverView.m */; };
+		B9B3DCFF1D8273F000CBC643 /* ZZPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3DCF91D8273F000CBC643 /* ZZPopoverView.m */; };
+		B9B3DD001D8273F000CBC643 /* ZZPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3DCFB1D8273F000CBC643 /* ZZPopoverWindow.m */; };
+		B9B3DD011D8273F000CBC643 /* ZZPopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3DCFB1D8273F000CBC643 /* ZZPopoverWindow.m */; };
+		B9B3DD021D8273F000CBC643 /* ZZPositionList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3DCFD1D8273F000CBC643 /* ZZPositionList.m */; };
+		B9B3DD031D8273F000CBC643 /* ZZPositionList.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3DCFD1D8273F000CBC643 /* ZZPositionList.m */; };
 		B9B3E4BE1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */; };
 		B9B3E4BF1D0CF24D005E9B4B /* WithDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */; };
 		B9B3E4C21D0DA5DF005E9B4B /* BalanceLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B3E4C11D0DA5DF005E9B4B /* BalanceLogViewController.m */; };
@@ -1849,6 +1855,12 @@
 		B9AD46241CD6523100012B31 /* M80AttributedLabelURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M80AttributedLabelURL.m; sourceTree = "<group>"; };
 		B9AD46251CD6523100012B31 /* NSMutableAttributedString+M80.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+M80.h"; sourceTree = "<group>"; };
 		B9AD46261CD6523100012B31 /* NSMutableAttributedString+M80.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+M80.m"; sourceTree = "<group>"; };
+		B9B3DCF81D8273F000CBC643 /* ZZPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPopoverView.h; sourceTree = "<group>"; };
+		B9B3DCF91D8273F000CBC643 /* ZZPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPopoverView.m; sourceTree = "<group>"; };
+		B9B3DCFA1D8273F000CBC643 /* ZZPopoverWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPopoverWindow.h; sourceTree = "<group>"; };
+		B9B3DCFB1D8273F000CBC643 /* ZZPopoverWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPopoverWindow.m; sourceTree = "<group>"; };
+		B9B3DCFC1D8273F000CBC643 /* ZZPositionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZPositionList.h; sourceTree = "<group>"; };
+		B9B3DCFD1D8273F000CBC643 /* ZZPositionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZPositionList.m; sourceTree = "<group>"; };
 		B9B3E4BC1D0CF24D005E9B4B /* WithDrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WithDrawViewController.h; path = mine/account/WithDrawViewController.h; sourceTree = "<group>"; };
 		B9B3E4BD1D0CF24D005E9B4B /* WithDrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WithDrawViewController.m; path = mine/account/WithDrawViewController.m; sourceTree = "<group>"; };
 		B9B3E4C01D0DA5DF005E9B4B /* BalanceLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BalanceLogViewController.h; path = mine/account/BalanceLogViewController.h; sourceTree = "<group>"; };
@@ -2275,6 +2287,7 @@
 		B917315A1CD1EF9400C29698 /* third party */ = {
 			isa = PBXGroup;
 			children = (
+				B9B3DCF71D8273F000CBC643 /* ZZPopoverWindow */,
 				B94572F11D7525C8002F75AE /* THCalendarDatePicker */,
 				B94572EA1D7525B6002F75AE /* KNSemiModalViewController */,
 				B9E84BE91CF1422D003FEAF5 /* BEMCheckBox */,
@@ -3737,6 +3750,19 @@
 			path = M80AttributedLabel;
 			sourceTree = "<group>";
 		};
+		B9B3DCF71D8273F000CBC643 /* ZZPopoverWindow */ = {
+			isa = PBXGroup;
+			children = (
+				B9B3DCF81D8273F000CBC643 /* ZZPopoverView.h */,
+				B9B3DCF91D8273F000CBC643 /* ZZPopoverView.m */,
+				B9B3DCFA1D8273F000CBC643 /* ZZPopoverWindow.h */,
+				B9B3DCFB1D8273F000CBC643 /* ZZPopoverWindow.m */,
+				B9B3DCFC1D8273F000CBC643 /* ZZPositionList.h */,
+				B9B3DCFD1D8273F000CBC643 /* ZZPositionList.m */,
+			);
+			path = ZZPopoverWindow;
+			sourceTree = "<group>";
+		};
 		B9B5BCE71CDDBE460085E132 /* order */ = {
 			isa = PBXGroup;
 			children = (
@@ -4438,6 +4464,7 @@
 				B9C395171CF1E50300AB44B6 /* OrderSendViewController.m in Sources */,
 				B917321F1CD1F05400C29698 /* BounceInDownAnimation.m in Sources */,
 				B95A94AC1CE0C19900A5D9BA /* HotCityTableViewCell.m in Sources */,
+				B9B3DD001D8273F000CBC643 /* ZZPopoverWindow.m in Sources */,
 				B90140461D712A6E000960F9 /* PersonalInfoViewController.m in Sources */,
 				B91732571CD1F05500C29698 /* RollInAnimation.m in Sources */,
 				B9AD441D1CD3AD2600012B31 /* MineWrapViewController.m in Sources */,
@@ -4449,6 +4476,7 @@
 				B9D1C5381D05AF1B0099BA95 /* MIneStockInfoViewController.m in Sources */,
 				B91732191CD1F05400C29698 /* ShakeAnimation.m in Sources */,
 				B945732F1D771334002F75AE /* BuyToBeReceiveListViewController.m in Sources */,
+				B9B3DCFE1D8273F000CBC643 /* ZZPopoverView.m in Sources */,
 				B917326E1CD1F09400C29698 /* TTOverlayView.m in Sources */,
 				B99194731CCC56F90032A393 /* UserCenter.m in Sources */,
 				B964F9601CC4A800003E0D44 /* SupplyListViewController.m in Sources */,
@@ -4506,6 +4534,7 @@
 				B902B6E01D026C88005B6F5C /* StockSellCell.m in Sources */,
 				B91896F31CD0EEC00061D0B6 /* AccountViewController.m in Sources */,
 				B99955411CE3835A007F26D2 /* OrderDetailStatusCell.m in Sources */,
+				B9B3DD021D8273F000CBC643 /* ZZPositionList.m in Sources */,
 				B98219201CEA0C0400B279E6 /* HttpMineSupplyShelve.m in Sources */,
 				B917324E1CD1F05400C29698 /* SlideInLeftAnimation.m in Sources */,
 				B991949B1CCCF7AA0032A393 /* BrowserDealView.m in Sources */,
@@ -4975,6 +5004,7 @@
 				B9076F5B1D22C8EA001FFDE4 /* CommonListCell.m in Sources */,
 				B9E661171D78602F0072113A /* ODPayBackViewController.m in Sources */,
 				B9C4BCD11D22689700C719CE /* ConsigneeAddViewController.m in Sources */,
+				B9B3DD011D8273F000CBC643 /* ZZPopoverWindow.m in Sources */,
 				B965B7171D1D6F2C0021C809 /* RechargeLogDTO.m in Sources */,
 				B9EFAE3E1CED514100F81157 /* BrowserDealView.m in Sources */,
 				B9EFAE3F1CED514100F81157 /* RotateOutAnimation.m in Sources */,
@@ -5031,6 +5061,7 @@
 				B965B7441D1E1A270021C809 /* PasswordInputView.m in Sources */,
 				B9EFAE621CED514100F81157 /* RotateInAnimation.m in Sources */,
 				B9EFAE631CED514100F81157 /* FadeInRightBigAnimation.m in Sources */,
+				B9B3DCFF1D8273F000CBC643 /* ZZPopoverView.m in Sources */,
 				B9EFAE641CED514100F81157 /* UserHistory.m in Sources */,
 				B9E661061D785F2A0072113A /* ODArbitratingViewController.m in Sources */,
 				B9EFAE651CED514100F81157 /* SwitchCell.m in Sources */,
@@ -5223,6 +5254,7 @@
 				B9A1491C1D1EC46A005080D1 /* FilterTagLabel.m in Sources */,
 				B9EFAEE91CED514100F81157 /* ProductNumberLabel.m in Sources */,
 				B9E6610A1D785F640072113A /* ODToBeConfirmedViewController.m in Sources */,
+				B9B3DD031D8273F000CBC643 /* ZZPositionList.m in Sources */,
 				B9EFAEEA1CED514100F81157 /* OrderDetailViewController.m in Sources */,
 				B9B747421D7C33A0004D6042 /* UIViewController+Utils.m in Sources */,
 				B9EFAEEB1CED514100F81157 /* ProductSumLabel.m in Sources */,

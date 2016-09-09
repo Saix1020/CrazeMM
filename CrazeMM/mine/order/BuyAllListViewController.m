@@ -143,6 +143,7 @@
     
     if (vc) {
         vc.delegate = self;
+        [self setMarkedVC:self];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

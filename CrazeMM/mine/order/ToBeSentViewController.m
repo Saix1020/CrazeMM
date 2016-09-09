@@ -45,15 +45,15 @@
 -(void)handleClickEvent:(UIButton *)button
 {
     OrderSendViewController* sendVC = [[OrderSendViewController alloc] initWithOrderDetaildtos:@[self.orderDto]];
-    NSArray* vcs = self.navigationController.viewControllers;
-    if (vcs.count < 3) {
-        return;
-    }
-    NewOrderListViewController* orderListVC = vcs[vcs.count-2];
-    if (![orderListVC isKindOfClass:[NewOrderListViewController class]]) {
-        return;
-    }
-    sendVC.delegate = orderListVC;
+//    NSArray* vcs = self.navigationController.viewControllers;
+//    if (vcs.count < 3) {
+//        return;
+//    }
+//    NewOrderListViewController* orderListVC = vcs[vcs.count-2];
+//    if (![orderListVC isKindOfClass:[NewOrderListViewController class]]) {
+//        return;
+//    }
+//    sendVC.delegate = orderListVC;
     [self.navigationController pushViewController:sendVC animated:YES];
 
 }

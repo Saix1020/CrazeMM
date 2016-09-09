@@ -505,14 +505,14 @@
 }
 
 #pragma - mark ListViewController Delegate
--(void)didOperatorSuccessWithIds:(NSArray *)ids
-{
-    //[self.dataSource removeObjectsInArray:i]
-    for(NSNumber* id in ids){
-        [self.dataSource filterUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.id != %@", id]];
-    }
-    [self.tableView reloadData];
-    
-}
+//-(void)didOperatorSuccessWithIds:(NSArray *)ids
+//{
+//    //[self.dataSource removeObjectsInArray:i]
+//    for(NSNumber* id in ids){
+//        self.dataSource = [self.dataSource filterUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.id != %@", id]];
+//    }
+//    [self.tableView reloadData];
+//    
+//}
 
 @end

@@ -122,7 +122,15 @@
     self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
         @strongify(self);
         
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        //
+        
+        UIViewController* markedVC = self.markedVC;
+        if (markedVC) {
+            [self.navigationController popToViewController:markedVC animated:YES];
+        }
+        else {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
         return [RACSignal empty];
     }];
     
@@ -347,12 +355,19 @@
 
 - (void) sendStockSellReq: (NSInteger)count
 {
+    @weakify(self);
     if (count <= 0)
     {
         [self showAlertViewWithMessage:@"库存转手成功"
                           withCallback:^(id x){
-                              [self.navigationController popToRootViewControllerAnimated:YES];
-                              
+                              @strongify(self);
+                              UIViewController* markedVC = self.markedVC;
+                              if (markedVC) {
+                                  [self.navigationController popToViewController:markedVC animated:YES];
+                              }
+                              else {
+                                  [self.navigationController popToRootViewControllerAnimated:YES];
+                              }                              
                           }];
         return;
     }

@@ -294,6 +294,10 @@
         @strongify(self);
         self.suggestVC = [[SuggestViewController alloc] init];
         NSArray* accountHistoryArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"AccountHistory"];
+        // show most 5 accounts in history
+        if(accountHistoryArray.count>5){
+            accountHistoryArray = [accountHistoryArray subarrayWithRange:NSMakeRange(0, 5)];
+        }
         if (accountHistoryArray.count != 0) {
             self.suggestVC.suggestedStrings = accountHistoryArray;
             self.suggestVC.delegate = self;

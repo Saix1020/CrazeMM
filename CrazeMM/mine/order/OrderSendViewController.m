@@ -159,7 +159,7 @@
 {
     NSMutableArray* ids = [[NSMutableArray alloc] init];
     for (OrderDetailDTO* dto in self.orderDetailDtos) {
-        [ids addObject:[NSString stringWithFormat:@"%ld", dto.id]];
+        [ids addObject:@(dto.id)];
     }
     
     
@@ -201,22 +201,11 @@
                         .then(^(id responseObj){
                             NSLog(@"%@", responseObj);
                             if (request.response.ok) {
-                                if ([self.delegate respondsToSelector:@selector(sendSuccessWithOrderDetailDtos:)]) {
-                                    [self.delegate sendSuccessWithOrderDetailDtos:self.orderDetailDtos];
-                                }
-                                
-                                UIViewController* popToVC = nil;
-                                for (UIViewController* vc in self.navigationController.viewControllers) {
-                                    if ([vc isKindOfClass:NSClassFromString(@"OrderDetailViewController")]) {
-                                        popToVC = vc;
-                                        break;
-                                    }
-                                    else if([vc isKindOfClass:NSClassFromString(@"NewOrderListViewController")]) {
-                                        popToVC = vc;
-                                        break;
-                                    }
-                                }
+                                UIViewController* popToVC = self.markedVC;
                                 if (popToVC) {
+                                    if([popToVC respondsToSelector:@selector(didOperatorSuccessWithIds:)]){
+                                        [popToVC performSelector:@selector(didOperatorSuccessWithIds:) withObject:ids];
+                                    }
                                     [self.navigationController popToViewController:popToVC animated:YES];
                                 }
                                 else {

@@ -145,7 +145,7 @@
             [formatter setDateStyle:NSDateFormatterMediumStyle];
             [formatter setTimeStyle:NSDateFormatterShortStyle];
             [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-            NSTimeZone* timeZone = [NSTimeZone systemTimeZone];
+            NSTimeZone* timeZone = [NSTimeZone systemTimeZone]; // TODO
             [formatter setTimeZone:timeZone];
             
             for(MortgageDTO* Dto in self.selectedDtos)

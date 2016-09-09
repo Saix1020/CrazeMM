@@ -66,6 +66,7 @@
     }
     
     PayViewController* payVC = [[PayViewController alloc] initWithOrderDetailDTOs:operatorDtos];
+    self.markedVC = self;
     [self.navigationController pushViewController:payVC animated:YES];
 }
 
@@ -196,6 +197,7 @@
     
     if (vc) {
         vc.delegate = self;
+        [self setMarkedVC:self];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

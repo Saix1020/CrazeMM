@@ -645,7 +645,6 @@
 -(void)didOperatorSuccessWithIds:(NSArray*)ids
 {
     if(self.dataSource){
-        
        self.dataSource = [[self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF.id IN %@)", ids]] mutableCopy];
         [self.tableView reloadData];
         [self updateBottomView];
