@@ -119,7 +119,7 @@
 {
     if (!_cVNCell) {
         _cVNCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
-        _cVNCell.titleLabel.text = @"颜色/容量/制式";
+        _cVNCell.titleLabel.text = @"配置";//@"颜色/容量/制式";
         _cVNCell.titleLabel.adjustsFontSizeToFitWidth = YES;
         _cVNCell.regionLabel.text = @"请选择颜色/容量/制式";
         
@@ -366,7 +366,7 @@
 - (void) resetCellLabels
 {
     self.modelCell.regionLabel.text = @"请选择型号";
-    self.cVNCell.regionLabel.text = @"请选择颜色/容量/制式";
+    self.cVNCell.regionLabel.text = @"配置";//@"请选择颜色/容量/制式";
     self.priceCell.regionLabel.text = @"";
     self.durationCell.regionLabel.text = @"";
     self.interestRateCell.regionLabel.text = @"";

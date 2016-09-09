@@ -386,7 +386,7 @@
     self.priceCell.textFieldCell.text = [NSString stringWithFormat:@"%.2f", modifyGoodInfo.price];
 
     if(modifyGoodInfo.isStockedGood) {
-        self.stockCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.presale];
+        self.stockCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.quantity];
         self.standardCell.userInteractionEnabled = NO;
         self.cycleCell.userInteractionEnabled = NO;
         self.timeCell.userInteractionEnabled = NO;
@@ -406,8 +406,9 @@
         self.cycleCell.regionLabel.textColor = [UIColor lightGrayColor];
         self.timeCell.textFieldCell.textColor = [UIColor lightGrayColor];
         
-        if(modifyGoodInfo.state == 400){ //抵押
-            
+        if(modifyGoodInfo.isMortgage){ //抵押
+            self.stockCell.userInteractionEnabled = NO;
+            self.stockCell.textFieldCell.textColor = [UIColor lightGrayColor];
         }
     }
     else {

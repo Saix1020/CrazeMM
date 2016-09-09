@@ -158,7 +158,7 @@
     NSUInteger tag = 0;
     for(MineStockDTO* dto in stockDTOs)
     {
-        self.totalAmount += dto.total;
+        self.totalAmount += dto.presale;//dto.total;
         
         UIView* view = [self createProductViewWithImage:dto.goodImage andNumber:dto.presale andTag:tag];
         [self.imageViews addObject:view];
@@ -175,9 +175,6 @@
     
     self.clipsToBounds = YES;
 
-    
-    NSArray* imges = @[@"iphone", @"android"];
-    
     CGFloat y = 8.f;
     CGFloat x = 16.f;
     self.imageViews = [[NSMutableArray alloc]  init];

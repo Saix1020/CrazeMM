@@ -66,15 +66,17 @@
         
         self.stockInfo = dict[@"onlyStock"];
         self.state = [dict[@"state"] integerValue];
+        self.isStockedGood = [dict[@"isStockedGood"] boolValue];
+        self.isMortgage = [dict[@"isMortgage"] boolValue];
     }
     
     return self;
 }
 
--(BOOL)isStockedGood
-{
-    return self.stockInfo && self.stockInfo[@"depot"];
-}
+//-(BOOL)isStockedGood
+//{
+//    return self.stockInfo && self.stockInfo[@"depot"];
+//}
 
 -(NSInteger)presale
 {
