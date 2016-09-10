@@ -358,5 +358,44 @@
 @end
 
 
+#pragma mark - HttpBalanceRepayRequest
+@implementation HttpBalanceRepayRequest
+
+-(instancetype)initWithAmount:(float)amount mortgages:(NSArray *)mortgages andPayPassword:(NSString *)payPassword
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"amount" : @(amount),
+                         @"mortgages": [mortgages componentsJoinedByString:@","],
+                         @"payPassword": payPassword
+                         } mutableCopy];
+    }
+    return self;
+}
+
+-(BOOL)needToken
+{
+    return YES;
+}
+
+-(NSString*)tokenName
+{
+    return @"balance_pay_token";
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/balance/repay");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+
+@end
+
 
 

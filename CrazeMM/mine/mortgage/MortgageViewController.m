@@ -157,6 +157,7 @@
         case 300:
         {
             MortgageRefundViewController* refundVC = [[MortgageRefundViewController alloc] initWithDtos:onArray];
+            refundVC.delegate = self;
             [self.navigationController pushViewController:refundVC animated:YES];
             break;
         }
@@ -223,6 +224,13 @@
     //[self.tableView reloadData];
     
     //self.pageNumber = 0;
+    [self requestDataSource];
+    
+}
+
+#pragma -- mark MortgageRefundViewControllerDelegate Delegate
+-(void)repaySuccess
+{
     [self requestDataSource];
     
 }
@@ -320,6 +328,7 @@
         {
             NSArray* selectedDtos = [NSArray arrayWithObject:((MortgageDTO*)cell.dto)];
             MortgageRefundViewController* refundVC = [[MortgageRefundViewController alloc] initWithDtos:selectedDtos];
+            refundVC.delegate = self;
             [self.navigationController pushViewController:refundVC animated:YES];
             
             break;

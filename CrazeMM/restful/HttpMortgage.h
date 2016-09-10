@@ -129,5 +129,14 @@
 
 @end
 
+#pragma mark - HttpBalanceRepayRequest
+
+@interface HttpBalanceRepayRequest : BaseHttpRequest
+
+-(instancetype)initWithAmount:(float)amount mortgages:(NSArray *)mortgages andPayPassword:(NSString *)payPassword;
+
+
+@end
+
 
 

@@ -20,7 +20,7 @@
 -(void)setMortgageDTO:(MortgageDTO*)dto
 {
     [self formatOrderLabel:dto.id];
-    [self formatTimeLabel:dto.createTime];
+    
     [self formatStatusLabel:dto.stateLabel];
     [self formatGoodNameLabel:dto.goodName];
     //[self fo
@@ -28,27 +28,41 @@
     [self formatPriceLabel];
     [self formatTotalPriceLabel];
     
-    self.leftButton.hidden = YES;
-  
-    if (500 == dto.state)
+        self.leftButton.hidden = YES;
+    
+    if (100 == dto.state)
     {
-        self.rightButton.hidden = YES;
-    }
-    else
-    {
+        [self formatTimeLabel:dto.createTime];
         self.rightButton.hidden = NO;
         [self formatRightButton:dto.state];
+        self.additionalLabelOne.hidden = YES;
+        self.additionalLabelTwo.hidden = YES;
     }
-    
-    if(300 == dto.state){
+    else if (200 == dto.state)
+    {
+        [self formatTimeLabel:dto.updateTime];
+        self.rightButton.hidden = NO;
+        [self formatRightButton:dto.state];
+        self.additionalLabelOne.hidden = YES;
+        self.additionalLabelTwo.hidden = YES;
+    }
+    else if (300 == dto.state)
+    {
+        [self formatTimeLabel:dto.checkTime];
+        self.rightButton.hidden = NO;
+        [self formatRightButton:dto.state];
         [self formartDebtLabel];
         [self formatsupplyIdLabel];
 
     }
-    else{
+    else  //500
+    {
+        [self formatTimeLabel:dto.updateTime];
+        self.rightButton.hidden = YES;
         self.additionalLabelOne.hidden = YES;
         self.additionalLabelTwo.hidden = YES;
     }
+
 }
 
 -(void)formartDebtLabel
