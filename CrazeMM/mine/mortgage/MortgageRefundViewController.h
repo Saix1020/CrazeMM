@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WithDrawAlertView.h"
 
-@interface MortgageRefundViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@protocol MortgageRefundViewControllerDelegate <NSObject>
+
+-(void)repaySuccess;
+
+@end
+
+@interface MortgageRefundViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WithDrawAlertViewDelegate>
+@property (nonatomic, weak) id<MortgageRefundViewControllerDelegate> delegate;
 
 -(instancetype)initWithDtos:(NSArray *)selectedDtos;
 

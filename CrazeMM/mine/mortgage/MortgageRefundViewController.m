@@ -10,6 +10,9 @@
 #import "HttpMortgage.h"
 #import "HttpBalance.h"
 #import "MortgageRefundCell.h"
+#import "WithDrawViewController.h"
+#import "TTModalView.h"
+#import "WithDrawAlertView.h"
 
 @interface MortgageRefundViewController ()
 
@@ -20,7 +23,8 @@
 @property (nonatomic) CGFloat totalInterest;
 @property (nonatomic) NSInteger totalPrice;
 @property (nonatomic, strong) UITableView* tableView;
-
+@property (nonatomic, strong) TTModalView* confirmModalView;
+@property (nonatomic, strong) WithDrawAlertView* payWithAccountAlertView;
 @end
 
 @implementation MortgageRefundViewController
@@ -48,6 +52,18 @@
     return _buttomView;
 }
 
+-(TTModalView*)confirmModalView
+{
+    if (!_confirmModalView) {
+        _confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
+        _confirmModalView.isCancelAble = YES;
+        _confirmModalView.modalWindowLevel = UIWindowLevelNormal;
+        //        _confirmModalView.contentView = self.payAlertView;
+    }
+    
+    return _confirmModalView;
+}
+
 
 -(UIButton*)payButton
 {
@@ -69,6 +85,22 @@
             
             NSLog(@"need to call pay methods here");
             //余额支付？
+            self.confirmModalView.modalWindowFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+            self.confirmModalView.presentAnimationStyle = fadeIn;
+            self.confirmModalView.dismissAnimationStyle = fadeOut ;
+            self.payWithAccountAlertView = (WithDrawAlertView*)[UINib viewFromNib:@"WithDrawAlertView"];
+            self.payWithAccountAlertView.layer.cornerRadius = 6.f;
+            self.payWithAccountAlertView.titleLabel.text = @"确定支付";
+            self.payWithAccountAlertView.delegate = self;
+            
+            self.confirmModalView.contentView = self.payWithAccountAlertView;
+            
+            self.payWithAccountAlertView.amount = (CGFloat)(self.totalInterest+self.totalPrice);
+            [self.confirmModalView showWithDidAddContentBlock:^(UIView *contentView) {
+                contentView.centerX = self.view.centerX;
+                contentView.centerY = self.view.centerY;
+            }];
+
             return [RACSignal empty];
         }];
         
@@ -212,9 +244,9 @@
         cell.backgroundColor = [UIColor clearColor];
     }
     
-    self.totalInterest = 0.00f;
+    self.totalInterest = 0.0000f;
     self.totalPrice = 0;
-    self.money = 0.00f;
+    self.money = 0.0000f;
     
     HttpBalanceRequest* balanceRequest = [[HttpBalanceRequest alloc] init];
     [balanceRequest request]
@@ -277,7 +309,46 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+#pragma mark WithDrawAlertViewDelegate
+-(void)DidFinishInput:(NSString*)inputString
+{
+    
+    [self.confirmModalView dismiss];
+    [self showProgressIndicatorWithTitle:@"正在支付, 请稍等..."];
+    NSMutableArray* mortgages = [[NSMutableArray alloc] init];
+    [self.selectedDtos enumerateObjectsUsingBlock:^(MortgageDTO* dto, NSUInteger idx, BOOL *stop){
+        [mortgages addObject:@(dto.id)];
+    }];
+    
+    HttpBalanceRepayRequest* request = [[HttpBalanceRepayRequest alloc] initWithAmount:(self.totalInterest+self.totalPrice) mortgages:mortgages andPayPassword:inputString];
+    [request request]
+    .then(^(id responseObj){
+        if (request.response.ok) {
+               if ([self.delegate respondsToSelector:@selector(repaySuccess)])
+             {
+                 [self showAlertViewWithMessage:@"还款成功"];
+                 [self.navigationController popViewControllerAnimated:YES];
+              }
+        }
+        else
+        {
+            [self showAlertViewWithMessage:request.response.errorMsg];
+        }
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        [self dismissProgressIndicator];
+    });
 
+}
+
+-(void)dismiss
+{
+    [self.confirmModalView dismiss];
+    
+}
 
 -(void)dealloc
 {
