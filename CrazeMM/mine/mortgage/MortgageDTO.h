@@ -53,7 +53,7 @@
 @interface MortgageRepayDTO : BaseLogDTO
 
 @property(nonatomic, copy) NSString* content;
-@property(nonatomic) NSInteger debt;
+@property(nonatomic) CGFloat debt;
 @property(nonatomic) CGFloat interest;
 @property(nonatomic) NSInteger mId;
 @property(nonatomic) NSInteger principal;

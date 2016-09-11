@@ -42,7 +42,8 @@
 {
     
     [super setModifyGoodInfo:modifyGoodInfo];
-    
+    self.otherCell.checkBox.on = modifyGoodInfo.isAnoy;
+
 }
 
 
@@ -89,6 +90,8 @@
     self.cellArray = [tempArray copy];
     
     self.navigationItem.title = self.modifyGoodInfo?@"修改求购信息" : @"新增求购信息";
+    
+    self.cycleCell.titleLabel.text = @"到货周期";
 }
 
 //save_buy_token:4376351719679073752
@@ -187,7 +190,7 @@
     self.modifyGoodInfo.isOriginal = self.isIntactCell.swith.on;
     self.modifyGoodInfo.isOriginalBox = self.hasBoxCell.swith.on;
     self.modifyGoodInfo.isBrushMachine = self.isBrushedCell.swith.on;
-    self.modifyGoodInfo.isAnoy = self.otherCell.checkBox2.on;
+    self.modifyGoodInfo.isAnoy = self.otherCell.checkBox.on;
     
     for (AddressDTO* addr in self.addresses) {
         if([self.addrCell.value isEqualToString:addr.address]){
@@ -301,6 +304,7 @@
             break;
     }
 }
+
 
 #pragma -- mark SelectionViewControllerDelegate
 -(void)didSelectItemWithTitle:(NSInteger)selectedIndex

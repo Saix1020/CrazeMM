@@ -776,7 +776,7 @@
         {
             self.selectionDataSource = [self.cycleStringArray mutableCopy];
             selectedIndex = [self.selectionDataSource indexOfObject:self.cycleCell.regionLabel.text];
-            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.selectionDataSource andSelectedIndex:selectedIndex andTitle:@"请选择供货周期"];
+            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.selectionDataSource andSelectedIndex:selectedIndex andTitle:[NSString stringWithFormat:@"请选择%@", self.cycleCell.titleLabel.text]];
             selectionVC.delegate = self;
             
             [self.navigationController pushViewController:selectionVC animated:YES];

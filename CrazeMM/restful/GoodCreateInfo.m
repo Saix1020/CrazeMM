@@ -44,14 +44,13 @@
         self.volume = dict[@"gvolume"];
         self.network = dict[@"gnetwork"];
         
-        self.isAnoy = dict[@"isAnoy"];
-        self.isOriginal = dict[@"isOriginal"];
-        self.isOriginalBox = dict[@"isOriginalBox"];
-        self.isBrushMachine = dict[@"isBrushMachine"];
-        self.isBrushMachine = dict[@"isBrushMachine"];
-        self.isSplit = dict[@"isSplit"];
-        self.isAnoy = dict[@"isAnoy"];
-        
+        self.isAnoy = [dict[@"isAnoy"] boolValue];
+        self.isOriginal = [dict[@"isOriginal"] boolValue];
+        self.isOriginalBox = [dict[@"isOriginalBox"] boolValue];
+        self.isBrushMachine = [dict[@"isBrushMachine"] boolValue];
+        self.isBrushMachine = [dict[@"isBrushMachine"] boolValue];
+        self.isSplit = [dict[@"isSplit"] boolValue];
+        self.isSerial = [dict[@"isSerial"] boolValue];
         
         self.version = [dict[@"version"] integerValue];
         

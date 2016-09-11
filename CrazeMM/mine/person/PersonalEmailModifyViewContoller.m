@@ -49,7 +49,7 @@
         
         _orignalEmailCell.titleLabel.text = @"原邮箱";
         _orignalEmailCell.titleWidth = [self titleWidth];
-        _orignalEmailCell.infoLabel.text = self.orignalEmail;
+        _orignalEmailCell.infoLabel.text = [self.orignalEmail stringByReplacingCharactersInRange:NSMakeRange(1, self.orignalEmail.length-2) withString:@"******"];
         
     }
     

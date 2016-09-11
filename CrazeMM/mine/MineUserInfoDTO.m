@@ -56,6 +56,7 @@
         self.weixin = dict[@"weixin"];
 
 
+        self.isUsernameNull = [dict[@"isUsernameNull"] boolValue];
     }
     
     return self;
@@ -73,6 +74,15 @@
     }
     
     return _username;
+}
+
+-(NSString*)modify_username
+{
+    if (!self.isUsernameNull) {
+        return _username;
+    }
+    
+    return @"";
 }
 
 @end

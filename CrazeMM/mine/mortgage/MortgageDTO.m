@@ -145,7 +145,7 @@
     self = [super initWith:dict];
     if (self) {
         self.content = dict[@"content"];
-        self.debt = [dict[@"debt"] integerValue];
+        self.debt = [dict[@"debt"] floatValue];
         self.interest = [dict[@"interest"] floatValue];
         self.mId = [dict[@"mId"] integerValue];
         self.principal = [dict[@"principal"] integerValue];
@@ -157,7 +157,7 @@
 
 -(NSString*)description
 {
-    return [NSString stringWithFormat:@"【本金：%ld，利息：%.02f】%@\n %@", self.debt, self.interest, self.content, self.createTime];
+    return [NSString stringWithFormat:@"【本金：%.02f，利息：%.02f】%@\n %@", self.debt, self.interest, self.content, self.createTime];
     
 }
 

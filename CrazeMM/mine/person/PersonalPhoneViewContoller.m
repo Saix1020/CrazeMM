@@ -51,7 +51,7 @@
         
         _orignalPhoneCell.titleLabel.text = @"原手机号";
         _orignalPhoneCell.titleWidth = [PersonalPhoneViewContoller titleWidth];
-        _orignalPhoneCell.infoLabel.text = self.orignalMobile;
+        _orignalPhoneCell.infoLabel.text = [self.orignalMobile stringByReplacingCharactersInRange:NSMakeRange(3, 6) withString:@"******"];
         
     }
     

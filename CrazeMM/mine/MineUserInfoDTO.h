@@ -59,6 +59,7 @@
 @property (nonatomic, copy) NSString* createTime;
 @property (nonatomic, copy) NSString* email;
 @property (nonatomic, copy) NSString* username;
+@property (nonatomic, readonly) NSString* modify_username;
 
 @property (nonatomic) BOOL recommend;
 @property (nonatomic) BOOL validated;
@@ -90,5 +91,7 @@
 @property (nonatomic, copy) NSString* qq;
 @property (nonatomic, copy) NSString* weixin;
 
+
+@property (nonatomic) BOOL isUsernameNull;
 
 @end

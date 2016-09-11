@@ -271,7 +271,11 @@
                         [request request].then(^(id responseObj){
                             if (request.response.ok) {
                                 //[self dismissProgressIndicator];
-                                [[UserCenter defaultCenter] saveToKeychainWithUserName:self.mineUserInfoDto.username andPassword:[UserCenter defaultCenter].passwordInKeychain];
+                                
+                                if(self.mineUserInfoDto.username) {
+                                    [[UserCenter defaultCenter] saveToKeychainWithUserName:self.mineUserInfoDto.username andPassword:[UserCenter defaultCenter].passwordInKeychain];
+                                }
+                                
                                 // assign more field to local [UserCenter defaultCenter].userInfo
                                 
                                 [self showAlertViewWithMessage:@"修改成功" withCallback:^(id x){
@@ -332,7 +336,7 @@
             if (self.mineUserInfoDto.type == 0) { //个人
                 self.cellArray = @[self.userNameCell, self.personRealNameCell, self.personIdCell,
                                    self.personWechartCell, self.personQQCell, self.personSexCell, self.confirmCell];
-                self.userNameCell.value = self.mineUserInfoDto.username;
+                self.userNameCell.value = self.mineUserInfoDto.modify_username;
                 self.personRealNameCell.value = self.mineUserInfoDto.realName;
                 self.personIdCell.value = self.mineUserInfoDto.identity;
                 self.personWechartCell.value = self.mineUserInfoDto.weixin;
@@ -347,7 +351,16 @@
                                    ];
                 enableSaveButtonSignal = [RACSignal combineLatest:allTextSignals
                                                            reduce:^id(NSString* userName, NSString* realName , NSString* identity){
-                                                               return @(userName.length>0
+                                                               @strongify(self);
+                                                               BOOL userNameChecking;
+                                                               if(self.mineUserInfoDto.isUsernameNull){
+                                                                   userNameChecking = YES;
+                                                               }
+                                                               else {
+                                                                   userNameChecking = (userName.length!=0);
+                                                               }
+                                                               
+                                                               return @(userNameChecking
                                                                && realName.length>0
                                                                && identity.length>0
                                                                && self.entSexCell.regionLabel.text.length>0);
@@ -373,7 +386,16 @@
                                    ];
                 enableSaveButtonSignal = [RACSignal combineLatest:allTextSignals
                                                            reduce:^id(NSString* userName, NSString* entName, NSString* entHead, NSString* entId){
-                                                               return @(userName.length>0
+                                                               @strongify(self);
+                                                               BOOL userNameChecking;
+                                                               if(self.mineUserInfoDto.isUsernameNull){
+                                                                   userNameChecking = YES;
+                                                               }
+                                                               else {
+                                                                   userNameChecking = (userName.length!=0);
+                                                               }
+
+                                                               return @(userNameChecking
                                                                && entName.length>0
                                                                && entHead.length>0
                                                                && entId.length>0
