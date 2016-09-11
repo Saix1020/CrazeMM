@@ -467,7 +467,15 @@
 
 -(BaseHttpRequest*)updateGood
 {
+    if(self.modifyGoodInfo.isStockedGood){
+        if([self.stockCell.textFieldCell.text integerValue]>self.modifyGoodInfo.presale){
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存不能大于%ld",self.modifyGoodInfo.presale]];
+            return nil;
+        }
+    }
     self.modifyGoodInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
+    
+
     NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
     switch (cycleStringIndex) {
         case 0:
@@ -509,7 +517,12 @@
     
     @weakify(self);
     if(self.modifyGoodInfo){
-        [self invokeHttpRequest:[self updateGood]
+        BaseHttpRequest* request = [self updateGood];
+        if(!request){
+            return;
+        }
+        
+        [self invokeHttpRequest:request
                 andConfirmTitle:@"您确认修改该供货信息吗?"
                 andSuccessTitle:nil
              andSuccessCallback:^(BaseHttpRequest* request, NSString* string){
@@ -597,8 +610,9 @@
         self.capacityCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
         self.standardCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]: [UIColor lightGrayColor];
         
-        self.enableSubEditX = @(enableSubEdit);
+        
     }
+    self.enableSubEditX = @(enableSubEdit);
     
 }
 

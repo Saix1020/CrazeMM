@@ -326,7 +326,7 @@
             if (userInfoRequest.response.ok) {
                 HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)userInfoRequest.response;
                 [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
-                self.avataCell.nameLabel.text = [UserCenter defaultCenter].userName;
+                self.avataCell.nameLabel.text = userInfoResponse.mineUserInfoDto.username;
             }
             else {
                 [self showAlertViewWithMessage:userInfoRequest.response.errorMsg];

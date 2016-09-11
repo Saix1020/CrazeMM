@@ -66,7 +66,7 @@
         
         self.stockInfo = dict[@"onlyStock"];
         self.state = [dict[@"state"] integerValue];
-        self.isStockedGood = [dict[@"isStockedGood"] boolValue];
+        self.isStockedGood = [dict[@"isStock"] boolValue];
         self.isMortgage = [dict[@"isMortgage"] boolValue];
     }
     
