@@ -176,10 +176,7 @@
                     if(genResponse.ok){
                         [UserCenter defaultCenter].userInfoDto.mobile = mobile;
 
-                        [self showAlertViewWithMessage:genResponse.description withCallback:^(id x){
-                            [self.navigationController popViewControllerAnimated:YES];
-
-                        }];
+                        [self showAlertViewWithMessage:genResponse.description];
                     }
                     else {
                         [self showAlertViewWithMessage:genResponse.errorMsg];
