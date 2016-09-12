@@ -120,8 +120,9 @@
     if (!_cVNCell) {
         _cVNCell = (AddrRegionCell*)[UINib viewFromNib:@"AddrRegionCell"];
         _cVNCell.titleLabel.text = @"配置";//@"颜色/容量/制式";
-        _cVNCell.titleLabel.adjustsFontSizeToFitWidth = YES;
+        _cVNCell.titleLabel.adjustsFontSizeToFitWidth = NO;
         _cVNCell.regionLabel.text = @"请选择颜色/容量/制式";
+        _cVNCell.regionLabel.adjustsFontSizeToFitWidth = NO;
         
         //        _standardCell.chooseButton.hidden = YES;
         //        _standardCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -366,7 +367,7 @@
 - (void) resetCellLabels
 {
     self.modelCell.regionLabel.text = @"请选择型号";
-    self.cVNCell.regionLabel.text = @"配置";//@"请选择颜色/容量/制式";
+    self.cVNCell.regionLabel.text = @"请选择颜色/容量/制式";
     self.priceCell.regionLabel.text = @"";
     self.durationCell.regionLabel.text = @"";
     self.interestRateCell.regionLabel.text = @"";
@@ -386,7 +387,6 @@
     _enableCVNEdit = enableCVNEdit;
     self.cVNCell.regionLabel.textColor = enableCVNEdit?[UIColor blackColor]:[UIColor lightGrayColor];
     
-    self.enableSubEditX = @(enableCVNEdit);
     
 }
 
@@ -460,6 +460,11 @@
         cell.textLabel.text = dto.name;
     }
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -557,9 +562,47 @@
 -(void)didSelectItemWithTitle:(NSInteger)selectedIndex
 {
     switch (self.editingRow) {
+        case kRowMDepot:
+        {
+            DepotDTO* dto = self.depots[selectedIndex];
+            if([self.depotCell.regionLabel.text isEqualToString:dto.name]){
+                return;
+            }
+            
+            else {
+                HttpMortgageBrandRequest* brandRequest = [[HttpMortgageBrandRequest alloc] init];
+                [brandRequest request]
+                .then(^(id responseObj){
+                    NSLog(@"%@", responseObj);
+                    HttpMortgageBrandResponse* response = (HttpMortgageBrandResponse*)brandRequest.response;
+                    if (response.ok) {
+                        self.goodBrands = response.brandDtos;
+                    }
+                })
+                .catch(^(NSError* error){
+                    [self showAlertViewWithMessage:error.localizedDescription];
+                });
+                
+                self.enableModelEdit = NO;
+                self.enableCVNEdit = NO;
+                self.enableSubEditX = @(NO);
+                self.brandCell.regionLabel.text = @"请选择品牌";
+                [self resetCellLabels];
+
+            }
+            
+        }
+            
+            
         case kRowMBrand:
         {
             MortgageBrandDTO* dto = self.goodBrands[selectedIndex];
+            if([self.brandCell.regionLabel.text isEqualToString:dto.name]){
+                return;
+            }
+            
+            self.enableSubEditX = @(NO);
+            
             [self resetCellLabels];
             self.brandCell.regionLabel.text = dto.name;
             HttpMortgageGoodRequest* request = [[HttpMortgageGoodRequest alloc] initWithBrandId:dto.id];
@@ -583,9 +626,22 @@
         case kRowMModel:
         {
             MortgageGoodDTO* dto = self.goodModels[selectedIndex];
+            
+            if ([self.modelCell.regionLabel.text isEqualToString:dto.model]) {
+                return;
+            }
+            self.enableSubEditX = @(NO);
+
             self.modelCell.regionLabel.text = dto.model;
             HttpMortgageInfoRequest* request = [[HttpMortgageInfoRequest alloc] initWithGoodId:dto.id];
             self.enableCVNEdit = NO;
+            
+            self.cVNCell.regionLabel.text = @"请选择颜色/容量/制式";
+            self.priceCell.regionLabel.text = @"";
+            self.durationCell.regionLabel.text = @"";
+            self.interestRateCell.regionLabel.text = @"";
+
+            
             [request request]
             .then(^(id responseObj){
                 NSLog(@"%@", responseObj);
@@ -623,6 +679,9 @@
         {
             self.cVNCell.regionLabel.text = self.cVNInfos[selectedIndex];
             self.currentMortgageDetail = self.mortgageInfos[selectedIndex];
+            
+            self.enableSubEditX = @(YES);
+
         }
             break;
         default:

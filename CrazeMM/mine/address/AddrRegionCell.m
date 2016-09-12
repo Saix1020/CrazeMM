@@ -26,6 +26,14 @@
 //    CGSize fontSize = [self.chooseButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.chooseButton.titleLabel.font}];
 //    [self.chooseButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.chooseButton.imageView.frame.size.width-2.f, 0, self.chooseButton.imageView.frame.size.width+2.f)];
 //    [self.chooseButton setImageEdgeInsets:UIEdgeInsetsMake(0, fontSize.width, 0, -fontSize.width)];
+//    self.accessoryView = _chooseButton;
+//    _chooseButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
+//        
+//        
+//        
+//        return [RACSignal empty];
+//    }];
+    
 
 }
 

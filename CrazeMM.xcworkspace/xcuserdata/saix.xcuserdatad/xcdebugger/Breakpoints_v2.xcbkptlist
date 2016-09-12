@@ -4506,7 +4506,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "495250931.763063"
+                  timestampString = "495360910.783796"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4521,7 +4521,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "495250931.763283"
+                  timestampString = "495360910.784044"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -9978,6 +9978,54 @@
             startingLineNumber = "380"
             endingLineNumber = "380"
             landmarkName = "-setModifyGoodInfo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/mortgage/MortgageEditViewController.m"
+            timestampString = "495360466.942656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "628"
+            endingLineNumber = "628"
+            landmarkName = "-didSelectItemWithTitle:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/mortgage/MortgageEditViewController.m"
+            timestampString = "495360826.814059"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
+            landmarkName = "-tableView:accessoryButtonTappedForRowWithIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/mine/mortgage/MortgageEditViewController.m"
+            timestampString = "495360850.262714"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "SuggestViewController.h"
 
+//@protocol ChooseButtonClickedDelegate <NSObject>
+//
+//-(void)didClicked
+//
+//@end
+
+
 @interface AddrRegionCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *regionLabel;

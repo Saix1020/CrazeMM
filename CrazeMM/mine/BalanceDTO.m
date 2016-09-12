@@ -64,7 +64,7 @@
 -(NSString*)description
 {
     return [NSString stringWithFormat:
-            @"【金额：%.0f】 %@\n"
+            @"【金额：%.02f】 %@\n"
             @"可用金额：%.02f, 冻结金额：%.02f\n"
             @"%@",
             self.amountOfMoney, self.createTime,
