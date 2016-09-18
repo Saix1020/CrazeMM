@@ -170,7 +170,7 @@
     }
     
     [self fomartStatusLabel];
-    [self formartFlagLabel];
+    self.flagLabel.text = [NSString stringWithFormat:@" %@ ", self.mineSupplyProductDto.stateLabel];
     
 }
 
@@ -197,14 +197,6 @@
     [self fomartStatusLabel];
 
 }
-
--(void)formartFlagLabel
-{
-    if (self.mineSupplyProductDto) {
-        self.flagLabel.text = [NSString stringWithFormat:@" %@ ", self.mineSupplyProductDto.stateLabel];
-    }
-}
-
 
 -(void)fomartStatusLabel
 {
