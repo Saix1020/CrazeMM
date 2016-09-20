@@ -98,7 +98,7 @@
 
 -(NSString*)url
 {
-    return COMB_URL(@"/rest/user/isEmailNotExist");
+    return COMB_URL(@"/rest/user/isEmailNotExist?json");
 }
 
 -(Class)responseClass
@@ -112,7 +112,7 @@
 
 -(BOOL)ok
 {
-    return YES;
+    return self.all[@"r"];
 }
 
 -(NSString*)errorMsg
