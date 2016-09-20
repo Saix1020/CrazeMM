@@ -79,7 +79,7 @@
         [self showAlertViewWithMessage:@"请选择需要删除的订单"];
         return;
     }
-    [self invokeHttpRequest:[[HttpOrderRemoveRequest alloc] initWithOrderIds:self.operatorDtoIds]
+    [self invokeHttpRequest:[[HttpOrderLogicDelete alloc] initWithOids:self.operatorDtoIds]
             andConfirmTitle:[NSString stringWithFormat:@"确定要删除选中的%ld条订单吗?", self.operatorDtoIds.count]
             andSuccessTitle:@"删除成功"];
 }

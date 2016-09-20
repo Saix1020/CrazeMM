@@ -12,7 +12,7 @@
 
 @interface CommonListCell()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *orderLabelLeadingContraint;
-
+@property (strong, nonatomic) RACDisposable* disposable;
 @end
 
 @implementation CommonListCell
@@ -106,8 +106,11 @@
         
     }
     else {
+        if(self.disposable) {
+            [self.disposable dispose];
+        }
         _dto = dto;
-        [RACObserve(dto, selected) subscribeNext:^(id x){
+        self.disposable = [RACObserve(dto, selected) subscribeNext:^(id x){
             @strongify(self);
             self.checkBox.on = dto.selected;
         }];

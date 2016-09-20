@@ -49,7 +49,7 @@
 {
     
     if([self.bottomButtons indexOfObject:button] == 0){
-        [self invokeHttpRequest:[[HttpOrderRemoveRequest alloc] initWithOrderIds:@[@(self.orderDto.id)]]
+        [self invokeHttpRequest:[[HttpOrderLogicDelete alloc] initWithOids:@[@(self.orderDto.id)]]
                 andConfirmTitle:[NSString stringWithFormat:@"确定要删除%ld吗?", self.orderDto.id]
                 andSuccessTitle:@"删除成功"];
     }
