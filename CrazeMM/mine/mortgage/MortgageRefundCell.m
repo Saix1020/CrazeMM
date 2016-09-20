@@ -39,6 +39,11 @@
     [super awakeFromNib];
     self.garyView.backgroundColor = [UIColor UIColorFromRGB:0xf1f1f1];
     // Initialization code
+    
+    self.totalNumLabel.text = @"";
+    self.totalPrice.text = @"";
+    self.totalInterest.text = @"";
+    self.totalMoney.text = @"";
 }
 
 - (void) formatTotalNum: (NSInteger)totalNum
