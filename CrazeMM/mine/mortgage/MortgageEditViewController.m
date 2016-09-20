@@ -323,9 +323,13 @@
                             }
                             else {
                                 if ([self.delegate respondsToSelector:@selector(editMortgageSuccess)]) {
-                                    [self showAlertViewWithMessage:@"抵押信息发布成功"];
+                                    @weakify(self);
+                                    [self showAlertViewWithMessage:@"抵押信息发布成功" withCallback:^(id x){
+                                        @strongify(self);
+                                        [self.navigationController popViewControllerAnimated:YES];
+
+                                    }];
                                     //[self.delegate editMortgageSuccess];
-                                    [self.navigationController popViewControllerAnimated:YES];
                                 }
                             }
                         })

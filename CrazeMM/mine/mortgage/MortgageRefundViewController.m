@@ -276,17 +276,19 @@
                 {
                     NSString* checkTime = Dto.checkTime;
                     NSDate* date = [formatter dateFromString:checkTime];
-                    NSLog(@"%@", date);
+//                    NSLog(@"%@", date);
                     NSInteger checkTimeInterval = [date timeIntervalSince1970];
-                    NSLog(@"%ld", checkTimeInterval);
+//                    NSLog(@"%ld", checkTimeInterval);
                     NSInteger days = (now - checkTimeInterval*1000)/(1000 * 60 * 60 * 24);
                     self.totalPrice += Dto.price*Dto.quantity;
                     self.totalInterest += Dto.price*Dto.quantity*Dto.interestRate*days;
                 }
+                // 不需要四舍五入
+                self.totalInterest = ((float)((int)(100*self.totalInterest)))/100;
                 
                 ((MortgageRefundCell*) cell).totalNum = [self.selectedDtos count];
                 ((MortgageRefundCell*) cell).price =self.totalPrice;
-                ((MortgageRefundCell*) cell).interest =self.totalInterest;
+                ((MortgageRefundCell*) cell).interest = self.totalInterest;
                 ((MortgageRefundCell*) cell).money = self.money;
 
                 
