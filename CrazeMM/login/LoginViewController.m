@@ -167,7 +167,7 @@
     self.registerButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
 //        [self.registerButton becomeFirstResponder];
-        
+        [self.view endEditing:YES];
         self.signVC = [[SignViewController alloc] init];
         [self.navigationController pushViewController:self.signVC animated:YES];
         
@@ -216,6 +216,8 @@
         
         
         @strongify(self);
+        [self.view endEditing:YES];
+
         // store the user name
         NSMutableArray* accountHistoryArray = [[[NSUserDefaults standardUserDefaults] valueForKey:@"AccountHistory"] mutableCopy];
         if(accountHistoryArray == nil){

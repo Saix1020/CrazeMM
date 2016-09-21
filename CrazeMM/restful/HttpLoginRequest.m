@@ -92,10 +92,7 @@
     self.manager.requestSerializer.timeoutInterval = 30.f;
     [self.manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
 
-    return [super request].then(^(id responseObj){
-        
-        return responseObj;
-    });
+    return [super request];
 }
 
 -(NSDictionary*)getTokenParams
