@@ -13,3 +13,9 @@
 -(instancetype)initWithNewMobile:(NSString*)newMobile andCaptchaMobileNew:(NSString*)captchaMobileNew andCaptchaMobileOrignal:(NSString*)captchaMobileOrignal;
 
 @end
+
+@interface HttpUpdateMobileRequest : BaseHttpRequest
+
+-(instancetype)initWithNewMobile:(NSString*)newMobile andCaptchaMobileNew:(NSString*)captchaMobileNew andCaptchaMobileOrignal:(NSString*)captchaMobileOrignal;
+
+@end

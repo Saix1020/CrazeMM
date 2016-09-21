@@ -199,7 +199,19 @@
 
 -(void)saveChanges:(UIButton*)button
 {
-    HttpRegisterNewMobileRequest* request = [[HttpRegisterNewMobileRequest alloc] initWithNewMobile:self.newxPhoneCell.value andCaptchaMobileNew:self.newxCodeCell.value andCaptchaMobileOrignal:self.originalCodeCell.value];
+    BaseHttpRequest* request;
+    
+    if(self.orignalMobile.length == 0){
+        request = [[HttpRegisterNewMobileRequest alloc] initWithNewMobile:self.newxPhoneCell.value
+                                                      andCaptchaMobileNew:self.newxCodeCell.value
+                                                  andCaptchaMobileOrignal:@""];
+    }
+    else {
+        request = [[HttpRegisterNewMobileRequest alloc] initWithNewMobile:self.newxPhoneCell.value
+                                                      andCaptchaMobileNew:self.newxCodeCell.value
+                                                  andCaptchaMobileOrignal:self.originalCodeCell.value];
+    }
+    
     [request request].then(^(id responseObj){
         if (request.response.ok) {
             @weakify(self);

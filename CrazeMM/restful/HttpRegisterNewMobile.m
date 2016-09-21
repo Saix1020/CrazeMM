@@ -36,3 +36,45 @@
 }
 
 @end
+
+@implementation HttpUpdateMobileRequest
+
+-(instancetype)initWithNewMobile:(NSString*)newMobile andCaptchaMobileNew:(NSString*)captchaMobileNew andCaptchaMobileOrignal:(NSString*)captchaMobileOrignal
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"captchaMobile" : captchaMobileOrignal,
+                         @"newMobile" : newMobile,
+                         @"captchaMobileNew" : captchaMobileNew
+                         
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/user/updateMobile");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+
+-(BOOL)needToken
+{
+    return YES;
+}
+
+-(NSString*)tokenName
+{
+    return @"modify_mobile_token";
+}
+
+@end
+

@@ -30,7 +30,7 @@
 //        @property (nonatomic, copy) NSString* createTime;
 //        @property (nonatomic, copy) NSString* checkTime;
         
-        self.interestRate = [dict[@"interestRate"] floatValue];
+        self.interestRate = [dict[@"interestRate"] doubleValue];
         self.outPrice = [dict[@"outPrice"] floatValue];
         self.price = [dict[@"price"] floatValue];
 

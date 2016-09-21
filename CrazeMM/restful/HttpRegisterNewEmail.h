@@ -14,3 +14,10 @@
 
 
 @end
+
+@interface HttpUpdateEmailRequest : BaseHttpRequest
+
+-(instancetype)initWithNewEmail:(NSString*)newEmail andCaptchaEmailNew:(NSString*)captchaEmailNew andCaptchaEmailOrignal:(NSString*)captchaEmailOrignal;
+
+
+@end

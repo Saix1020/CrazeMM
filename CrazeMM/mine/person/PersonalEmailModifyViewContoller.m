@@ -203,7 +203,24 @@
 
 -(void)saveChanges:(UIButton*)button
 {
-    HttpRegisterNewEmailRequest* request = [[HttpRegisterNewEmailRequest alloc] initWithNewEmail:self.newxEmailCell.value andCaptchaEmailNew:self.newxCodeCell.value andCaptchaEmailOrignal:self.originalCodeCell.value];
+    
+    BaseHttpRequest* request;
+    
+    if(self.orignalEmail.length == 0){
+        
+        request = [[HttpUpdateEmailRequest alloc] initWithNewEmail:self.newxEmailCell.value
+                                                andCaptchaEmailNew:self.newxCodeCell.value
+                                            andCaptchaEmailOrignal:@""];
+        
+        
+    }
+    
+    else {
+        request = [[HttpUpdateEmailRequest alloc] initWithNewEmail:self.newxEmailCell.value
+                                                                        andCaptchaEmailNew:self.newxCodeCell.value
+                                            andCaptchaEmailOrignal:self.originalCodeCell.value];
+    }
+    
     [request request].then(^(id responseObj){
         if (request.response.ok) {
             @weakify(self);
@@ -220,6 +237,8 @@
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
     });
+    
+    
 }
 
 
