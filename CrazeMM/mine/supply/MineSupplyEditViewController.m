@@ -432,6 +432,14 @@
     goodCreateInfo.id = self.currentGoodDetail.id;
     
     goodCreateInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
+    
+    
+    if(!(goodCreateInfo.quantity>0)){
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存必须大于0"]];
+        return nil;
+    }
+
+    
     NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
     switch (cycleStringIndex) {
         case 0:
@@ -467,9 +475,15 @@
 
 -(BaseHttpRequest*)updateGood
 {
-    if(self.modifyGoodInfo.isStockedGood){
+    if(self.modifyGoodInfo.isStockedGood && !self.modifyGoodInfo.isMortgage){
         if([self.stockCell.textFieldCell.text integerValue]>self.modifyGoodInfo.presale){
             [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存不能大于%ld",self.modifyGoodInfo.presale]];
+            return nil;
+        }
+    }
+    else {
+        if(!([self.stockCell.textFieldCell.text integerValue]>0)){
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存必须大于0"]];
             return nil;
         }
     }

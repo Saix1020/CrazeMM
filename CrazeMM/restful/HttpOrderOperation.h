@@ -36,3 +36,6 @@
 @interface HttpOrderLogicDelete : HttpBaseOrderOperationRequest
 
 @end
+@interface HttpSingleOrderLogicDelete : HttpBaseOrderOperationRequest
+
+@end

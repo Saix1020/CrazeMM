@@ -119,3 +119,14 @@
 
 
 @end
+
+@implementation HttpSingleOrderLogicDelete
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/order/logicDelete/%@",  [self.oids componentsJoinedByString:@","]];
+    return COMB_URL(absUrl);
+}
+
+
+@end
