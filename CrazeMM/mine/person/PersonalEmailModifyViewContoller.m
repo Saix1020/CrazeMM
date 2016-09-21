@@ -208,7 +208,7 @@
     
     if(self.orignalEmail.length == 0){
         
-        request = [[HttpUpdateEmailRequest alloc] initWithNewEmail:self.newxEmailCell.value
+        request = [[HttpRegisterNewEmailRequest alloc] initWithNewEmail:self.newxEmailCell.value
                                                 andCaptchaEmailNew:self.newxCodeCell.value
                                             andCaptchaEmailOrignal:@""];
         

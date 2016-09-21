@@ -207,7 +207,7 @@
                                                   andCaptchaMobileOrignal:@""];
     }
     else {
-        request = [[HttpRegisterNewMobileRequest alloc] initWithNewMobile:self.newxPhoneCell.value
+        request = [[HttpUpdateMobileRequest alloc] initWithNewMobile:self.newxPhoneCell.value
                                                       andCaptchaMobileNew:self.newxCodeCell.value
                                                   andCaptchaMobileOrignal:self.originalCodeCell.value];
     }
