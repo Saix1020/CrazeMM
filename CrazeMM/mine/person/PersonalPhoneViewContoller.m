@@ -163,7 +163,6 @@
 
         }
         
-        [button startTiming];
 
         NSString* mobile = self.newxPhoneCell.value;
         HttpMobileExistCheckRequest* existCheckRequest = [[HttpMobileExistCheckRequest alloc] initWithMobile:mobile];
@@ -174,8 +173,7 @@
                 [genRequest request].then(^(id responseObj2){
                     HttpGenMobileVcodeResponse* genResponse = (HttpGenMobileVcodeResponse*)genRequest.response;
                     if(genResponse.ok){
-                        [UserCenter defaultCenter].userInfoDto.mobile = mobile;
-
+                        [button startTiming];
                         [self showAlertViewWithMessage:genResponse.description];
                     }
                     else {
@@ -217,6 +215,7 @@
             @weakify(self);
             [self showAlertViewWithMessage:@"手机号码修改成功" withCallback:^(id x){
                 @strongify(self);
+                [UserCenter defaultCenter].userInfoDto.mobile = self.newxPhoneCell.value;
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         }

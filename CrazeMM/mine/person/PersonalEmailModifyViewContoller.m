@@ -163,7 +163,6 @@
         }
         
         NSString* email = self.newxEmailCell.value;
-        [button startTiming];
         
         [self showProgressIndicatorWithTitle:@"请稍等..."];
         
@@ -175,6 +174,7 @@
                 [genRequest request].then(^(id responseObj2){
                     HttpGenEmailVcodeResponse* genResponse = (HttpGenEmailVcodeResponse*)genRequest.response;
                     if(genResponse.ok){
+                        [button startTiming];
                         [self showAlertViewWithMessage:genResponse.description];
                     }
                     else {
