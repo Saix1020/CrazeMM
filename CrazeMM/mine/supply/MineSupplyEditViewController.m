@@ -56,7 +56,8 @@
                                                           RACObserve(self, enableSubEditX)
                                                           ]
                                         reduce:^(NSString *price, NSString *stock, NSString *time, NSNumber *enableSubEdit) {
-                                                              return @(price.length > 0 && stock.length > 0 && time.length>0 && enableSubEdit.boolValue);
+                                                              return @(price.length > 0 && stock.length > 0 && time.length>0 && enableSubEdit.boolValue &&
+                                            stock.intValue>0);
                                                           }];
         
         [enableLoginSignal subscribeNext:^(NSNumber* enable){
@@ -478,7 +479,7 @@
     if(self.modifyGoodInfo.isStockedGood && !self.modifyGoodInfo.isMortgage){
         
         
-        if(self.modifyGoodInfo.presale == 0 && [self.stockCell.textFieldCell.text integerValue]!=0){
+        if(self.modifyGoodInfo.presale == 0){ //如果presale为0, 永远失败
             [self showAlertViewWithMessage:[NSString stringWithFormat:@"当前供货没有可售商品"]];
             return nil;
         }
