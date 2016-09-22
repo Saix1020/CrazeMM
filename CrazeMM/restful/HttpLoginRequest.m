@@ -124,13 +124,13 @@
         return [NSString stringWithFormat:@"剩余尝试机会: %d", [leftTime intValue]]; ;
     }
     else {
-        return nil;
+        return @"";
     }
 }
 
 -(NSString*)errorMsg
 {
-    return [NSString stringWithFormat:@"%@: %@", [super errorMsg], [self errorDetail]];
+    return [NSString stringWithFormat:@"%@ %@", [super errorMsg], [self errorDetail]];
 }
 
 

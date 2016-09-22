@@ -476,6 +476,13 @@
 -(BaseHttpRequest*)updateGood
 {
     if(self.modifyGoodInfo.isStockedGood && !self.modifyGoodInfo.isMortgage){
+        
+        
+        if(self.modifyGoodInfo.presale == 0 && [self.stockCell.textFieldCell.text integerValue]!=0){
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"当前供货没有可售商品"]];
+            return nil;
+        }
+        
         if([self.stockCell.textFieldCell.text integerValue]>self.modifyGoodInfo.presale){
             [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存不能大于%ld",self.modifyGoodInfo.presale]];
             return nil;
