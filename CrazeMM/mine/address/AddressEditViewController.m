@@ -519,9 +519,9 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.text.length == 0) {
-        self.selectedRegionDto = self.regionDto[0];
-        self.selectedCityDto = self.selectedRegionDto.cities[0];
-        self.selectedAreaDto = self.selectedCityDto.areas[0];
+        self.selectedRegionDto = self.regionDto.firstObject;
+        self.selectedCityDto = self.selectedRegionDto.cities.firstObject;
+        self.selectedAreaDto = self.selectedCityDto.areas.firstObject;
 
         textField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
 
