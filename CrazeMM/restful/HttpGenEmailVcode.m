@@ -51,10 +51,28 @@
 
 -(BOOL)ok
 {
-    if (!self.all || self.all.allKeys.count == 0) {
+    if (!self.all) {
         return NO;
     }
-    return [self.all[@"returnCode"] integerValue] == 0;
+    else {
+        NSNumber* returnCode = self.all[@"returnCode"];
+        if (!returnCode) {
+            return NO;
+        }
+        else {
+            return [returnCode integerValue] == 0;
+        }
+    }
+}
+
+-(NSString*)errorMsg
+{
+    if (!self.all) {
+        return @"";
+    }
+    else {
+        return self.all[@"errMsg"];
+    }
 }
 
 -(NSDictionary*)data

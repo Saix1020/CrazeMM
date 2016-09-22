@@ -4490,7 +4490,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "496134800.777991"
+                  timestampString = "496219109.278015"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4505,7 +4505,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "496134800.778285"
+                  timestampString = "496219109.278193"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -9472,7 +9472,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/restful/HttpGenMobileVcodeRequest.m"
@@ -10203,6 +10203,38 @@
                   offsetFromSymbolStart = "645">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/restful/HttpGenEmailVcode.m"
+            timestampString = "496218956.759235"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-ok"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/restful/HttpGenMobileVcodeRequest.m"
+            timestampString = "496218936.136166"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-errorMsg"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

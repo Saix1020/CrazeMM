@@ -42,6 +42,16 @@
     return [self.all[@"returnCode"] integerValue] == 0;
 }
 
+-(NSString*)errorMsg
+{
+    if (!self.all) {
+        return @"";
+    }
+    else {
+        return self.all[@"errMsg"];
+    }
+}
+
 -(NSDictionary*)data
 {
     return self.all?self.all[@"data"]:@{};
