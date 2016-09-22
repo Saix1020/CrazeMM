@@ -194,14 +194,14 @@
         self.titleLabel.text = @"";
         self.timeLeftLabel.text = @"";
         self.priceLabel.text = @"";
-        [self.phoneImageView setImage:[@"product_placehoder.jpg" image]];
+        [self.phoneImageView setImage:[@"product_placehoder.png" image]];
     }
     else {
         NSString* goodImge = self.productDto.goodImage;
         if (![goodImge hasPrefix:@"http"]) {
             goodImge = COMB_URL(goodImge);
         }
-        [self.phoneImageView setImageWithURL:[NSURL URLWithString:goodImge] placeholderImage:[@"product_placehoder.jpg" image]];
+        [self.phoneImageView setImageWithURL:[NSURL URLWithString:goodImge] placeholderImage:[@"product_placehoder.png" image]];
         self.titleLabel.text = self.productDto.goodName;
 
     }

@@ -143,6 +143,7 @@
         _entAreaCell.titleWidth = [self titleWidth];
         
         _entAreaCell.infoField.placeholder = @"请选择所在地区";
+        _entAreaCell.infoField.delegate = self;
     }
     
     return _entAreaCell;
@@ -635,6 +636,22 @@
 {
     self.entSexCell.value = selectedString;
     [self.entSexCell dismissSelection];
+}
+
+
+#pragma - mark UITextField delegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == self.entAreaCell.infoField) {
+        NSString* area = [self.entAreaCell.infoField.text stringByTrimmingCharactersInSet:
+                          [NSCharacterSet whitespaceCharacterSet]];
+        if (area.length == 0) {
+            self.selectedRegionDto = self.regionDto.firstObject;
+            self.selectedCityDto = self.selectedRegionDto.cities.firstObject;
+            self.selectedAreaDto = self.selectedCityDto.areas.firstObject;
+            self.entAreaCell.infoField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto?self.selectedAreaDto.name:@""];
+        }
+    }
 }
 
 @end

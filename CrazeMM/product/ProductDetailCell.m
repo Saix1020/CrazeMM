@@ -169,7 +169,7 @@
     }
 
     [self.flagLabel sizeToFit];
-    [self.productImageView setImageWithURL:[NSURL URLWithString:_productDetailDto.goodImage] placeholderImage:[@"product_placehoder.jpg" image]];
+    [self.productImageView setImageWithURL:[NSURL URLWithString:_productDetailDto.goodImage] placeholderImage:[@"product_placehoder.png" image]];
     self.browserLabel.text = [NSString stringWithFormat:@"浏览:%ld", productDetailDto.views];
     self.buyLabel.text = [NSString stringWithFormat:@"意向:%ld", productDetailDto.intentions];
     

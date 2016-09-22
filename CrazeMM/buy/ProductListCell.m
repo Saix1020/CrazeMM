@@ -187,7 +187,7 @@
     self.timeLeftLabel.text = [NSDateComponents timeLabelString:361345]; // 4 days 4 hours 22 mins
     [self fomartTimeLeftLabel];
     
-    self.phoneImageView.image = [UIImage imageNamed:@"product_placehoder.jpg"];
+    self.phoneImageView.image = [UIImage imageNamed:@"product_placehoder.png"];
     self.statusLabel.text = @"正常";
 }
 
@@ -215,7 +215,7 @@
     [self fomartTimeLeftLabel];
     
     //    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
-    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[UIImage imageNamed:@"product_placehoder.jpg"]];
+    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[UIImage imageNamed:@"product_placehoder.png"]];
     self.statusLabel.text = productDescDTO.status;
     if([self.statusLabel.text isEqualToString:@"已过期"]){
         self.statusLabel.backgroundColor = [UIColor redColor];

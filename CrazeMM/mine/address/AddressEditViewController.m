@@ -170,14 +170,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 
 -(void)saveAddress:(id)sender
 {
-//    @"address.contact" : addrDto.contact,
-//    @"address.mobile" : addrDto.mobile,
-//    @"address.pid" : @(addrDto.pid),
-//    @"address.cid": @(addrDto.cid),
-//    @"address.did": @(addrDto.did),
-//    @"address.street": addrDto.street,
-//    @"address.zipCode" : addrDto.zipCode,
-//    @"address.isDefault" : @(addrDto.isDefault)
+    [self.view endEditing:YES];
 
     AddrDTO* newAddrDTO = [[AddrDTO alloc] init];
     newAddrDTO.contact = self.receiverCell.value;

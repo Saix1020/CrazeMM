@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SuggestViewController.h"
 
-@interface PersonalOtherModifyViewContoller : UIViewController<UITableViewDelegate, UITableViewDataSource, SuggestVCDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface PersonalOtherModifyViewContoller : UIViewController<UITableViewDelegate, UITableViewDataSource, SuggestVCDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 @end
