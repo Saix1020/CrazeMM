@@ -22,9 +22,15 @@
         self.leftButton.hidden = NO;
         self.topButton.hidden = NO;
     }
+//    if(dto.state == 300){
+//        self.leftButton.hidden = YES;
+//        self.topButton.hidden = YES;
+//        self.rightButton.hidden = YES;
+//    }
     else {
         self.leftButton.hidden = YES;
-        self.topButton.hidden = YES;;
+        self.topButton.hidden = YES;
+        self.rightButton.hidden = YES;
 
     }
     
@@ -112,12 +118,12 @@
             [self.leftButton setTitle:@"刷新订单" forState:UIControlStateNormal];
             [self.topButton setTitle:@"重新支付" forState:UIControlStateNormal];
             break;
-        case 200:
-            [self.rightButton setTitle:@"撤销" forState:UIControlStateNormal];
-            break;
-        case 300:
-            [self.rightButton setTitle:@"还款" forState:UIControlStateNormal];
-            break;
+//        case 200:
+//            [self.rightButton setTitle:@"撤销" forState:UIControlStateNormal];
+//            break;
+//        case 300:
+//            [self.rightButton setTitle:@"还款" forState:UIControlStateNormal];
+//            break;
             
         default:
             break;
