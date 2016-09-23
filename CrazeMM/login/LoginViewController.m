@@ -247,6 +247,7 @@
                 
 
 //                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+                [sharedApplicationDelegate() getGlobSharedInstances];
                 HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
                 [userInfoRequest request]
                 .then(^(id responseObj){

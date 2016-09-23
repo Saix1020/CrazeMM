@@ -32,6 +32,7 @@
             request.response = [[HttpLoginResponse alloc] initWith:response];
             
             if (request.response.ok) {
+                [sharedApplicationDelegate() getGlobSharedInstances];
                 [[UserCenter defaultCenter] setLogined];
 //                HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
 //                [userInfoRequest request]

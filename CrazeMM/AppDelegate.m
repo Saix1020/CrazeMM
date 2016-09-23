@@ -33,7 +33,7 @@
                                              selector:@selector(networkChanged:)
                                                  name:kRealReachabilityChangedNotification
                                                object:nil];
-    [self getGlobSharedInstances];
+    //[self getGlobSharedInstances];
 
 
     
