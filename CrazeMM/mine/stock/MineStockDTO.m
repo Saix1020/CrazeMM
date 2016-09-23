@@ -64,6 +64,115 @@
     return _presale + _insale + _outstock + _afterout + _inmortgage + _aftersale;
 }
 
+-(NSAttributedString*)presaleString
+{
+    UIColor* color = [UIColor grayColor];
+
+    NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"可售 %ld ", self.presale]
+                                                                                        attributes:@{
+                                                                                                     NSForegroundColorAttributeName:color,
+                                                                                                     NSFontAttributeName:[UIFont systemFontOfSize:12.f]                                                      }];
+    
+    
+    return attributeString;
+}
+-(NSAttributedString*)insaleString
+{
+    UIColor* color = [UIColor redColor];
+    
+    NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"在售 %ld ", self.insale]
+                                                                                        attributes:@{
+                                                                                                     NSForegroundColorAttributeName:color,
+                                                                                                     NSFontAttributeName:[UIFont systemFontOfSize:12.f]                                                      }];
+    
+    
+    return attributeString;
+}
+-(NSAttributedString*)aftersaleString
+{
+    UIColor* color = [UIColor blueColor];
+    
+    NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"已售 %ld ", self.aftersale]
+                                                                                        attributes:@{
+                                                                                                     NSForegroundColorAttributeName:color,
+                                                                                                     NSFontAttributeName:[UIFont systemFontOfSize:12.f]                                                      }];
+
+    
+    return attributeString;
+}
+-(NSAttributedString*)outstockString
+{
+    UIColor* color = [UIColor redColor];
+    
+    NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"待出库 %ld ", self.outstock]
+                                                                                        attributes:@{
+                                                                                                     NSForegroundColorAttributeName:color,
+                                                                                                     NSFontAttributeName:[UIFont systemFontOfSize:12.f]                                                      }];
+    
+    
+    return attributeString;
+}
+-(NSAttributedString*)afteroutString
+{
+    UIColor* color = [UIColor blueColor];
+    
+    NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"已出库 %ld ", self.afterout]
+                                                                                        attributes:@{
+                                                                                                     NSForegroundColorAttributeName:color,
+                                                                                                     NSFontAttributeName:[UIFont systemFontOfSize:12.f]                                                      }];
+    
+    
+    return attributeString;
+}
+-(NSAttributedString*)inmortgageString
+{
+    UIColor* color = [UIColor grayColor];
+    
+    NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"已抵押 %ld ", self.inmortgage]
+                                                                                        attributes:@{
+                                                                                                     NSForegroundColorAttributeName:color,
+                                                                                                     NSFontAttributeName:[UIFont systemFontOfSize:12.f]                                                      }];
+    
+    
+    return attributeString;
+}
+
+-(NSAttributedString*)statusDesc
+{
+    NSMutableAttributedString* attributeString = [[NSMutableAttributedString alloc] init];
+    
+    //content += '        <p class="good_info">';
+    //content += (stock['presale']>0?'<span>可售&nbsp;' + stock['presale'] +'</span>':'');
+    //content += (stock['insale']>0?'<span class="red">在售&nbsp;' + stock['insale'] + '</span>':'');
+    //content += (stock['aftersale']>0?'<span class="blue">已售&nbsp;' + stock['aftersale'] +'</span>':'');
+    //content += (stock['outstock']>0?'<span class="red">待出库&nbsp;' + stock['outstock'] + '</span>':'');
+    //content += (stock['afterout']>0?'<span class="blue">已出库&nbsp;' + stock['afterout'] +'</span>':'');
+    //content += (stock['inmortgage']>0?'<span>已抵押&nbsp;：' + stock['inmortgage'] + '</span>':'');
+    
+    if(_presale>0){
+        [attributeString appendAttributedString:[self presaleString]];
+    }
+    if(_insale>0){
+        [attributeString appendAttributedString:[self insaleString]];
+    }
+    if (_aftersale>0) {
+        [attributeString appendAttributedString:[self aftersaleString]];
+    }
+    if(_outstock>0){
+        [attributeString appendAttributedString:[self outstockString]];
+
+    }
+    if(_afterout>0){
+        [attributeString appendAttributedString:[self afteroutString]];
+
+    }
+    if(_inmortgage>0) {
+        [attributeString appendAttributedString:[self inmortgageString]];
+    }
+    
+    return attributeString;
+}
+
 -(instancetype)initWithStockDetailDTO:(StockDetailDTO*)stockDetailDto
 {
     self = [super init];

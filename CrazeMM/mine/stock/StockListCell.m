@@ -135,73 +135,58 @@
 
 -(void)fomartStatusLabel
 {
-//    NSMutableString* string = [[NSMutableString alloc]init];
-//    if (self.mineStockDto.isSerial) {
-//        [string appendString:@"带串码 "];
-//    }
-//    if (self.mineStockDto.isOriginal) {
-//        [string appendString:@"原装 "];
-//    }
-//    if (self.mineStockDto.isOriginalBox) {
-//        [string appendString:@"原封箱 "];
-//    }
-//    if (self.mineStockDto.isBrushMachine) {
-//        [string appendString:@"已刷机"];
-//    }
     self.statusLabel.text = @"";
     NSString* secondComopent;
     
     switch (self.mineStockDto.state) {
-        case 100:
+        case 100: // 待入库
             break;
-        case 200: //已入库
-            if (self.mineStockDto.inmortgage>0) {
-                secondComopent = [NSString stringWithFormat:@"已抵押: %ld ", self.mineStockDto.inmortgage];
-            }
-            else {
-                secondComopent = [NSString stringWithFormat:@"可售: %ld ", self.mineStockDto.presale];
-            }
-            break;
-        case 300:
-//            if(self.mineStockDto.outstock>0){
-                secondComopent = [NSString stringWithFormat:@"待出库: %ld ", self.mineStockDto.outstock];
+//        case 200: //已入库
+//            if (self.mineStockDto.inmortgage>0) {
+//                secondComopent = [NSString stringWithFormat:@"已抵押: %ld ", self.mineStockDto.inmortgage];
 //            }
-            break;
-        default:
-            //            if(self.mineStockDto.aftersale>0){
-        {
-            NSMutableString* string = [[NSMutableString alloc] init];
-            if(self.mineStockDto.aftersale > 0){
-                [string appendString: [NSString stringWithFormat:@"已售: %ld ", self.mineStockDto.aftersale]];
-            }
-            if(self.mineStockDto.outstock > 0){
-                [string appendString:[NSString stringWithFormat:@"已出库: %ld ", self.mineStockDto.outstock]];
-            }
-            secondComopent = string;
-            
-        }
-            //            }
+//            else {
+//                secondComopent = [NSString stringWithFormat:@"可售: %ld ", self.mineStockDto.presale];
+//            }
+//            break;
+//        case 300:
+//                secondComopent = [NSString stringWithFormat:@"待出库: %ld ", self.mineStockDto.outstock];
+//            break;
+//        default:
+//        {
+//            NSMutableString* string = [[NSMutableString alloc] init];
+//            if(self.mineStockDto.aftersale > 0){
+//                [string appendString: [NSString stringWithFormat:@"已售: %ld ", self.mineStockDto.aftersale]];
+//            }
+//            if(self.mineStockDto.outstock > 0){
+//                [string appendString:[NSString stringWithFormat:@"已出库: %ld ", self.mineStockDto.outstock]];
+//            }
+//            secondComopent = string;
+//            
+//        }
+            default:
+            self.statusLabel.attributedText = self.mineStockDto.statusDesc;
             break;
     }
     
-    if (secondComopent.length>0) {
-        
-        UIColor* color;
-        if (self.mineStockDto.state == 500) { //历史
-            color = [UIColor blueColor];
-        }
-        else if(self.mineStockDto.state == 300){ //待入库
-            color = [UIColor redColor];
-        }
-        else {
-            color = [UIColor grayColor];
-        }
-        
-        self.statusLabel.attributedText = [[NSAttributedString alloc] initWithString:secondComopent
-                                                                          attributes:@{
-                                                                                       NSForegroundColorAttributeName: color,
-                                                                                       NSFontAttributeName : [UIFont systemFontOfSize:12.f]                                                      }];
-    }
+//    if (secondComopent.length>0) {
+//        
+//        UIColor* color;
+//        if (self.mineStockDto.state == 500) { //历史
+//            color = [UIColor blueColor];
+//        }
+//        else if(self.mineStockDto.state == 300){ //待入库
+//            color = [UIColor redColor];
+//        }
+//        else {
+//            color = [UIColor grayColor];
+//        }
+//        
+//        self.statusLabel.attributedText = [[NSAttributedString alloc] initWithString:secondComopent
+//                                                                          attributes:@{
+//                                                                                       NSForegroundColorAttributeName: color,
+//                                                                                       NSFontAttributeName : [UIFont systemFontOfSize:12.f]                                                      }];
+//    }
 
     if (self.statusLabel.text.length>0) {
         self.statusLabel.hidden = NO;

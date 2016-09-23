@@ -91,7 +91,7 @@
 @property (nonatomic)NSInteger currentNum;
 @property (nonatomic)NSInteger seperateNum;
 
-
+@property (nonatomic, readonly) NSAttributedString* statusDesc;
 
 
 -(instancetype)initWithStockDetailDTO:(StockDetailDTO*)stockDetailDto;
