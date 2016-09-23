@@ -103,7 +103,7 @@
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.consigneeDto = self.dataSource[indexPath.row];
-    
+    cell.editButton.hidden = YES; //自提人暂时不支持修改
     return cell;
 }
 
