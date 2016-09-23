@@ -108,6 +108,15 @@
 #pragma mark - HttpPayData
 @implementation HttpPayDataRequest
 
+
+-(AFHTTPSessionManager*)manager
+{
+    AFHTTPSessionManager* mgr = [super manager];
+    [mgr.requestSerializer setValue:@"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36" forHTTPHeaderField:@"User-Agent"];
+    return mgr;
+
+}
+
 -(instancetype)initWithPayNo:(NSInteger)payNo
 {
     self = [super init];

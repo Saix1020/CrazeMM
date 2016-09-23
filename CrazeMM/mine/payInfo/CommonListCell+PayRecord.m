@@ -18,7 +18,17 @@
 
 -(void) setPayRecordDTO:(PayRecordDTO *)dto
 {
-    self.leftButton.hidden = YES;
+    if(dto.state == 100){ // 支付中
+        self.leftButton.hidden = NO;
+        self.topButton.hidden = NO;
+    }
+    else {
+        self.leftButton.hidden = YES;
+        self.topButton.hidden = YES;;
+
+    }
+    
+    
     self.timeLabel.hidden = YES;
     
     [self formatPayOrderLabel:dto.payNo];
@@ -98,7 +108,9 @@
 {
     switch (state) {
         case 100:
-            [self.rightButton setTitle:@"删除" forState:UIControlStateNormal];
+            [self.rightButton setTitle:@"设置失败" forState:UIControlStateNormal];
+            [self.leftButton setTitle:@"刷新订单" forState:UIControlStateNormal];
+            [self.topButton setTitle:@"重新支付" forState:UIControlStateNormal];
             break;
         case 200:
             [self.rightButton setTitle:@"撤销" forState:UIControlStateNormal];
