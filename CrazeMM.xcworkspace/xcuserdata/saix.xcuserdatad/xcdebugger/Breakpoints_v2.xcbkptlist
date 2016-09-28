@@ -1392,7 +1392,7 @@
             startingLineNumber = "83"
             endingLineNumber = "83"
             landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1904,7 +1904,7 @@
             startingLineNumber = "309"
             endingLineNumber = "309"
             landmarkName = "-writeToKeychain"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -3978,13 +3978,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "488449149.307399"
+            timestampString = "496742526.083584"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "553"
-            endingLineNumber = "553"
+            startingLineNumber = "603"
+            endingLineNumber = "603"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4426,13 +4426,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "488449149.307399"
+            timestampString = "496742526.083584"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
             landmarkName = "-getProducts:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4442,13 +4442,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "488449149.307399"
+            timestampString = "496742526.083584"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "342"
-            endingLineNumber = "342"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
             landmarkName = "-getProducts:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4489,8 +4489,8 @@
                   symbolName = "-[ProductLadderCell setProductDetailDto:]"
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "496307721.862903"
+                  urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
+                  timestampString = "496742797.014796"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4504,8 +4504,8 @@
                   symbolName = "-[ProductLadderCell setProductDetailDto:]"
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saix/github/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "496307721.863084"
+                  urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
+                  timestampString = "496742797.017147"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -7024,7 +7024,7 @@
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "-displayName"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -10267,6 +10267,102 @@
             endingLineNumber = "880"
             landmarkName = "-dealloc"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/KeychainItemWrapper.m"
+            timestampString = "496734452.762586"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-resetKeychainItem"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/LoopView.m"
+            timestampString = "496740204.558587"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-imagesCount"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/LoopView.m"
+            timestampString = "496740204.558587"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-setupScrollView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/LoopView.m"
+            timestampString = "496740479.646963"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-setupPageControl"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/LoopView.m"
+            timestampString = "496740637.731444"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-handlePageControl:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/LoopView.m"
+            timestampString = "496740807.040227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-scrollViewDidEndDecelerating:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

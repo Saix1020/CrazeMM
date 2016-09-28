@@ -25,6 +25,8 @@
 #import "BuyProductDTO.h"
 #import "HttpAddIntention.h"
 #import "RealReachability.h"
+//#import "LoopView.h"
+#import "ImagePlayerView.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -50,7 +52,8 @@
 @property (nonatomic) BOOL isCarouselAnimating;
 @property (nonatomic) NSUInteger timeElapse;
 
-
+@property (strong, nonatomic) ImagePlayerView* imagePlayView;
+@property (strong, nonatomic) NSMutableArray<NSString*>* imageURLs;
 //@property (nonatomic) BOOL requesting;
 @end
 
@@ -189,6 +192,7 @@
     self.timeElapse = 0;
 
     @weakify(self);
+/*
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
         
@@ -203,7 +207,7 @@
             [self showAlertViewWithMessage:error.localizedDescription];
         });
     }];
-    
+*/ 
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -230,8 +234,22 @@
     self.carousel.dataSource = self;
     self.isCarouselAnimating = NO;
     
-    self.tableView.tableHeaderView = self.carousel;
+    //self.tableView.tableHeaderView = self.carousel;
  
+    self.imageURLs = [[NSMutableArray alloc] init];
+    for(int i=0;i<kTotalSlides;++i){
+        [self.imageURLs addObject:[NSString stringWithFormat:@"slide-%ld.jpg", (long)i]];
+    }
+    
+    //self.loopView = [[LoopView alloc] initWithImages:images];
+    self.imagePlayView = [[ImagePlayerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableViewHeadHeight)];
+    self.imagePlayView.imagePlayerViewDelegate = self;
+    self.imagePlayView.hidePageControl = NO;
+    self.imagePlayView.endlessScroll = YES;
+    self.imagePlayView.pageControlPosition = ICPageControlPosition_BottomCenter;
+    self.imagePlayView.scrollInterval = 4.f;
+    
+    
 //    self.filtedItems = [self.items mutableCopy];
 //    self.updateEventSignal = [[RACSignal interval:4
 //                                       onScheduler:[RACScheduler mainThreadScheduler]
@@ -240,8 +258,9 @@
 //                                  return self.stopTimer;
 //                              }];
 //    @weakify(self);
-
+    self.tableView.tableHeaderView = self.imagePlayView;
     [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
+        /*
         @strongify(self);
 
         self.timeElapse ++;
@@ -268,6 +287,9 @@
                 
             }
         }
+         */
+        @strongify(self);
+        
     }];
     [self clearData];
     [self getProducts:YES];
@@ -276,7 +298,32 @@
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"refresh" image] style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
     
+    [self.imagePlayView reloadData];
+}
 
+
+- (NSInteger)numberOfItems
+{
+    return self.imageURLs.count;
+}
+
+- (void)imagePlayerView:(ImagePlayerView *)imagePlayerView didTapAtIndex:(NSInteger)index;
+{
+    NSLog(@"image %ld tapped", index);
+    
+    BuySlideDetailViewController* slideDetailVC = [[BuySlideDetailViewController alloc] initWithURL:@"http://www.baidu.com"
+                                                                                           andTitle:[NSString stringWithFormat:@"Image %ld", index]];
+    [self.navigationController pushViewController:slideDetailVC animated:YES];
+
+}
+
+- (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
+{
+    // recommend to use SDWebImage lib to load web image
+    //    [imageView setImageWithURL:[self.imageURLs objectAtIndex:index] placeholderImage:nil];
+    
+    //imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.imageURLs objectAtIndex:index]]];
+    imageView.image = [[self.imageURLs objectAtIndex:index] image];
 }
 
 -(void)refreshData
@@ -419,6 +466,7 @@
     [super viewDidAppear:animated];
     [self.tabBarController setTabBarHidden:NO animated:YES];
     [self popRecommendView];
+    [self.imagePlayView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -475,6 +523,8 @@
     
     return view;
 }
+
+
 
 - (CATransform3D)carousel:(iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
 {
@@ -568,6 +618,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kLogoutSuccessBroadCast
                                                   object:nil];
+    
+    [self.imagePlayView stopTimer];
+    self.imagePlayView.imagePlayerViewDelegate = nil;
+    self.imagePlayView = nil;
 }
 
 @end

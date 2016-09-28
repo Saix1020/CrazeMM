@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
+#import "ImagePlayerView.h"
 
 @protocol ProductSummaryViewControllerDelegate <NSObject>
 
@@ -15,7 +16,7 @@
 
 @end
 
-@interface BuyListViewController : UIViewController<iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface BuyListViewController : UIViewController<iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ImagePlayerViewDelegate>
 @property (nonatomic, strong) NSMutableArray* dataSource;
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic) NSInteger pageNumber;

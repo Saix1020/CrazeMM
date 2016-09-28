@@ -31,7 +31,6 @@
 		2EAF58481D68B6B000ACEE60 /* PayInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF58461D68B6B000ACEE60 /* PayInfoViewController.m */; };
 		2EAF584B1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF584A1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m */; };
 		2EAF584C1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF584A1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m */; };
-		31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B90140451D712A6E000960F9 /* PersonalEmailModifyViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = B901403E1D712A6E000960F9 /* PersonalEmailModifyViewContoller.m */; };
 		B90140461D712A6E000960F9 /* PersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140401D712A6E000960F9 /* PersonalInfoViewController.m */; };
 		B90140471D712A6E000960F9 /* PersonalOtherModifyViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = B90140421D712A6E000960F9 /* PersonalOtherModifyViewContoller.m */; };
@@ -212,6 +211,8 @@
 		B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B91897041CD117CB0061D0B6 /* UITableView+Utils.m */; };
 		B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B918970A1CD119D90061D0B6 /* BaseDTO.m */; };
 		B918970E1CD11B5F0061D0B6 /* ProductDescriptionDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */; };
+		B93716191D9B970100001D81 /* LoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B93716181D9B970100001D81 /* LoopView.m */; };
+		B937161A1D9B970100001D81 /* LoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B93716181D9B970100001D81 /* LoopView.m */; };
 		B942E7891D1967DF0067931B /* SupplyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E7881D1967DF0067931B /* SupplyDetailDTO.m */; };
 		B942E78A1D1967DF0067931B /* SupplyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E7881D1967DF0067931B /* SupplyDetailDTO.m */; };
 		B942E78D1D19732C0067931B /* MineSupplyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E78C1D19732C0067931B /* MineSupplyInfoViewController.m */; };
@@ -960,7 +961,6 @@
 		B9EFAF0E1CED514100F81157 /* TTModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B91732661CD1F09400C29698 /* TTModalViewController.m */; };
 		B9EFAF0F1CED514100F81157 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B988789E1CC90CCA00990AA4 /* SignViewController.m */; };
 		B9EFAF111CED514100F81157 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B917326F1CD1F5F700C29698 /* QuartzCore.framework */; };
-		B9EFAF121CED514100F81157 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */; };
 		B9EFAF151CED514100F81157 /* javascript-bridge.html in Resources */ = {isa = PBXBuildFile; fileRef = B964F93D1CC3A7FF003E0D44 /* javascript-bridge.html */; };
 		B9EFAF161CED514100F81157 /* slide-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B964F9851CC50316003E0D44 /* slide-2.jpg */; };
 		B9EFAF171CED514100F81157 /* AddrDefaultCheckboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEECE1CEB51BF00275416 /* AddrDefaultCheckboxCell.xib */; };
@@ -1060,6 +1060,7 @@
 		B9FE71F51CD71D0C00F5EC9F /* ProductListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE71F41CD71D0C00F5EC9F /* ProductListCell.m */; };
 		B9FE72021CD7877D00F5EC9F /* SignWithPicCapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FE72001CD7877D00F5EC9F /* SignWithPicCapViewController.m */; };
 		B9FE72031CD7877D00F5EC9F /* SignWithPicCapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9FE72011CD7877D00F5EC9F /* SignWithPicCapViewController.xib */; };
+		F923E0DD222B787DFD07E7C5 /* Pods_CrazeMM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC986508B35A5F240139A91 /* Pods_CrazeMM.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1104,8 +1105,6 @@
 		2EAF58461D68B6B000ACEE60 /* PayInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayInfoViewController.m; path = mine/payInfo/PayInfoViewController.m; sourceTree = "<group>"; };
 		2EAF58491D68C4ED00ACEE60 /* CommonListCell+PayRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CommonListCell+PayRecord.h"; path = "mine/payInfo/CommonListCell+PayRecord.h"; sourceTree = "<group>"; };
 		2EAF584A1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CommonListCell+PayRecord.m"; path = "mine/payInfo/CommonListCell+PayRecord.m"; sourceTree = "<group>"; };
-		4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.debug.xcconfig"; sourceTree = "<group>"; };
-		B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.release.xcconfig"; sourceTree = "<group>"; };
 		B901403D1D712A6E000960F9 /* PersonalEmailModifyViewContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalEmailModifyViewContoller.h; path = mine/person/PersonalEmailModifyViewContoller.h; sourceTree = "<group>"; };
 		B901403E1D712A6E000960F9 /* PersonalEmailModifyViewContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalEmailModifyViewContoller.m; path = mine/person/PersonalEmailModifyViewContoller.m; sourceTree = "<group>"; };
 		B901403F1D712A6E000960F9 /* PersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalInfoViewController.h; path = mine/person/PersonalInfoViewController.h; sourceTree = "<group>"; };
@@ -1422,6 +1421,9 @@
 		B918970A1CD119D90061D0B6 /* BaseDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseDTO.m; path = modal/BaseDTO.m; sourceTree = "<group>"; };
 		B918970C1CD11B5F0061D0B6 /* ProductDescriptionDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDescriptionDTO.h; path = buy/ProductDescriptionDTO.h; sourceTree = "<group>"; };
 		B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDescriptionDTO.m; path = buy/ProductDescriptionDTO.m; sourceTree = "<group>"; };
+		B93716161D9B918400001D81 /* CrazeMM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CrazeMM.entitlements; sourceTree = "<group>"; };
+		B93716171D9B970100001D81 /* LoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopView.h; sourceTree = "<group>"; };
+		B93716181D9B970100001D81 /* LoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopView.m; sourceTree = "<group>"; };
 		B942E7871D1967DF0067931B /* SupplyDetailDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SupplyDetailDTO.h; path = mine/SupplyDetailDTO.h; sourceTree = "<group>"; };
 		B942E7881D1967DF0067931B /* SupplyDetailDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SupplyDetailDTO.m; path = mine/SupplyDetailDTO.m; sourceTree = "<group>"; };
 		B942E78B1D19732C0067931B /* MineSupplyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MineSupplyInfoViewController.h; path = mine/supply/MineSupplyInfoViewController.h; sourceTree = "<group>"; };
@@ -2028,7 +2030,9 @@
 		B9FE71FF1CD7877D00F5EC9F /* SignWithPicCapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignWithPicCapViewController.h; path = sign/SignWithPicCapViewController.h; sourceTree = "<group>"; };
 		B9FE72001CD7877D00F5EC9F /* SignWithPicCapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignWithPicCapViewController.m; path = sign/SignWithPicCapViewController.m; sourceTree = "<group>"; };
 		B9FE72011CD7877D00F5EC9F /* SignWithPicCapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignWithPicCapViewController.xib; path = sign/SignWithPicCapViewController.xib; sourceTree = "<group>"; };
-		D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrazeMM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCC986508B35A5F240139A91 /* Pods_CrazeMM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CrazeMM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC9411BE43E6C7F54B4244E0 /* Pods-CrazeMM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.release.xcconfig"; sourceTree = "<group>"; };
+		DD1591D35985D4726839DE55 /* Pods-CrazeMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazeMM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2037,8 +2041,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */,
-				31785279364E31BAC4CAA2F9 /* Pods_CrazeMM.framework in Frameworks */,
 				B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */,
+				F923E0DD222B787DFD07E7C5 /* Pods_CrazeMM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2061,7 +2065,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9EFAF111CED514100F81157 /* QuartzCore.framework in Frameworks */,
-				B9EFAF121CED514100F81157 /* Pods_CrazeMM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2106,13 +2109,22 @@
 			name = pay;
 			sourceTree = "<group>";
 		};
+		3B71C2C7D9CC25F258DFF1B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DD1591D35985D4726839DE55 /* Pods-CrazeMM.debug.xcconfig */,
+				DC9411BE43E6C7F54B4244E0 /* Pods-CrazeMM.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8B36CB4D54E72C4D41168BEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				B91732741CD1FC9400C29698 /* Reveal.framework */,
 				B917326F1CD1F5F700C29698 /* QuartzCore.framework */,
 				14ACAF7E869FA5D74648BBDD /* Pods.framework */,
-				D85DA21F6BE55715A5666BFE /* Pods_CrazeMM.framework */,
+				CCC986508B35A5F240139A91 /* Pods_CrazeMM.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3106,7 +3118,7 @@
 				B964F9211CC39671003E0D44 /* CrazeMMUITests */,
 				B964F8F81CC39670003E0D44 /* Products */,
 				8B36CB4D54E72C4D41168BEA /* Frameworks */,
-				D79CC190686B19F01AE035FE /* Pods */,
+				3B71C2C7D9CC25F258DFF1B2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3124,6 +3136,7 @@
 		B964F8F91CC39670003E0D44 /* CrazeMM */ = {
 			isa = PBXGroup;
 			children = (
+				B93716161D9B918400001D81 /* CrazeMM.entitlements */,
 				B964F9091CC39670003E0D44 /* Assets.xcassets */,
 				B917315A1CD1EF9400C29698 /* third party */,
 				B964F9541CC4A657003E0D44 /* tabbar */,
@@ -3548,6 +3561,8 @@
 		B99D12DE1CC61AAB000DFF95 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				B93716171D9B970100001D81 /* LoopView.h */,
+				B93716181D9B970100001D81 /* LoopView.m */,
 				B991947C1CCCA26C0032A393 /* CommonBottomView.h */,
 				B991947D1CCCA26C0032A393 /* CommonBottomView.m */,
 				B991947E1CCCA26C0032A393 /* CommonBottomView.xib */,
@@ -3928,15 +3943,6 @@
 			path = machine;
 			sourceTree = "<group>";
 		};
-		D79CC190686B19F01AE035FE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */,
-				B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3944,13 +3950,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B964F9271CC39671003E0D44 /* Build configuration list for PBXNativeTarget "CrazeMM" */;
 			buildPhases = (
-				AC7000F87D2184656DA33DBC /* 📦 Check Pods Manifest.lock */,
+				F3CDA7B70BCE1989393F8DBB /* [CP] Check Pods Manifest.lock */,
 				B964F8F31CC39670003E0D44 /* Sources */,
 				B964F8F41CC39670003E0D44 /* Frameworks */,
 				B964F8F51CC39670003E0D44 /* Resources */,
-				7A39D187434EC447FD8D0DA9 /* 📦 Embed Pods Frameworks */,
-				7E18EA706C85C178AE5F0B83 /* 📦 Copy Pods Resources */,
-				F6495661465ADC1C6D33D42C /* Embed Pods Frameworks */,
+				CB5B011764EA2A9D7919DC08 /* [CP] Embed Pods Frameworks */,
+				CFD591E01CF8E366557212E5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4001,13 +4006,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9EFAF631CED514100F81157 /* Build configuration list for PBXNativeTarget "CrazeMM_Phone" */;
 			buildPhases = (
-				B9EFADF51CED514100F81157 /* 📦 Check Pods Manifest.lock */,
 				B9EFADF61CED514100F81157 /* Sources */,
 				B9EFAF101CED514100F81157 /* Frameworks */,
 				B9EFAF141CED514100F81157 /* Resources */,
-				B9EFAF601CED514100F81157 /* 📦 Embed Pods Frameworks */,
-				B9EFAF611CED514100F81157 /* 📦 Copy Pods Resources */,
-				B9EFAF621CED514100F81157 /* Embed Pods Frameworks */,
 				B9EFAFAC1CEF02B800F81157 /* ShellScript */,
 			);
 			buildRules = (
@@ -4033,7 +4034,7 @@
 						DevelopmentTeam = 47793U9PJ9;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -4299,111 +4300,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7A39D187434EC447FD8D0DA9 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7E18EA706C85C178AE5F0B83 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC7000F87D2184656DA33DBC /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B9EFADF51CED514100F81157 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B9EFAF601CED514100F81157 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B9EFAF611CED514100F81157 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B9EFAF621CED514100F81157 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B9EFAFAC1CEF02B800F81157 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4417,19 +4313,49 @@
 			shellPath = /bin/sh;
 			shellScript = "";
 		};
-		F6495661465ADC1C6D33D42C /* Embed Pods Frameworks */ = {
+		CB5B011764EA2A9D7919DC08 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFD591E01CF8E366557212E5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrazeMM/Pods-CrazeMM-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3CDA7B70BCE1989393F8DBB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4461,6 +4387,7 @@
 				B91732551CD1F05500C29698 /* SlideOutUpAnimation.m in Sources */,
 				B9BBEECF1CEB51BF00275416 /* AddrDefaultCheckboxCell.m in Sources */,
 				B9D1C5351D05ADC10099BA95 /* StockDetailDTO.m in Sources */,
+				B93716191D9B970100001D81 /* LoopView.m in Sources */,
 				B9AD44291CD497C000012B31 /* HttpCheckPictureCaptchaRequest.m in Sources */,
 				B95A94A81CE0C19900A5D9BA /* CityListViewController.m in Sources */,
 				B917324C1CD1F05400C29698 /* ScaleSmallOutAnimation.m in Sources */,
@@ -5081,6 +5008,7 @@
 				B9EFAE6A1CED514100F81157 /* CDFInitialsAvatar.m in Sources */,
 				B94573241D75E97D002F75AE /* PersonalEmailModifyViewContoller.m in Sources */,
 				B9EFAE6B1CED514100F81157 /* ZoomInRightAnimation.m in Sources */,
+				B937161A1D9B970100001D81 /* LoopView.m in Sources */,
 				B9EFAE6D1CED514100F81157 /* BaseNavigationController.m in Sources */,
 				B9E661021D785EE10072113A /* ODCanceledViewController.m in Sources */,
 				B9EFAE6E1CED514100F81157 /* UIColor+Helper.m in Sources */,
@@ -5417,11 +5345,12 @@
 		};
 		B964F9281CC39671003E0D44 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */;
+			baseConfigurationReference = DD1591D35985D4726839DE55 /* Pods-CrazeMM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = CrazeMM/CrazeMM.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5455,11 +5384,12 @@
 		};
 		B964F9291CC39671003E0D44 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */;
+			baseConfigurationReference = DC9411BE43E6C7F54B4244E0 /* Pods-CrazeMM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = CrazeMM/CrazeMM.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5551,7 +5481,6 @@
 		};
 		B9EFAF641CED514100F81157 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FC9F709B5575C9BCDAAFCFE /* Pods-CrazeMM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -5591,7 +5520,6 @@
 		};
 		B9EFAF651CED514200F81157 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B077DD77168B6123C90BE4F6 /* Pods-CrazeMM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
