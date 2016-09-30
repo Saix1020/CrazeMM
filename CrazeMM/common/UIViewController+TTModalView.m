@@ -11,7 +11,9 @@
 #import "MMAlertView.h"
 #import "MMAlertViewWithOK.h"
 
-static BOOL isAlertViewShowing;
+#define kUseAlertViewController NO
+
+BOOL isAlertViewShowing;
 
 
 @implementation UIViewController (TTModalView)
@@ -73,12 +75,24 @@ static BOOL isAlertViewShowing;
 //    }];
 //}
 
+
+
 -(void)showAlertViewWithMessage:(NSString*)message
 {
-    if (isAlertViewShowing) {
+    if(kUseAlertViewController){
+        [self showAlertViewWithMessageNew:message];
         return;
     }
-    isAlertViewShowing = YES;
+    
+    @synchronized (self) {
+        if (isAlertViewShowing) {
+            return;
+        }
+        isAlertViewShowing = YES;
+    }
+    
+    
+    
     
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
@@ -109,11 +123,19 @@ static BOOL isAlertViewShowing;
 
 -(void)showAlertViewWithMessage:(NSString*)message withCallback:(void(^)(id x))callback
 {
-    
-    if (isAlertViewShowing) {
+    if(kUseAlertViewController){
+        [self showAlertViewWithMessageNew:message withCallback:callback];
         return;
     }
-    isAlertViewShowing = YES;
+    
+    @synchronized (self) {
+        if (isAlertViewShowing) {
+            return;
+        }
+        isAlertViewShowing = YES;
+    }
+    
+
     
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;
@@ -148,11 +170,21 @@ static BOOL isAlertViewShowing;
 
 -(void)showAlertViewWithMessage:(NSString*)message withOKCallback:(void(^)(id x))okCallback andCancelCallback:(void(^)(id x))cancelCallback
 {
-    if (isAlertViewShowing) {
+    if(kUseAlertViewController){
+        [self showAlertViewWithMessageNew:message withOKCallback:okCallback andCancelCallback:cancelCallback];
         return;
     }
-    isAlertViewShowing = YES;
-
+    
+    @synchronized (self) {
+        if (isAlertViewShowing) {
+            return;
+        }
+        isAlertViewShowing = YES;
+    }
+    
+    
+    
+    
     TTModalView *confirmModalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
     confirmModalView.isCancelAble = YES;
     confirmModalView.modalWindowLevel = UIWindowLevelNormal;
@@ -234,5 +266,66 @@ static BOOL isAlertViewShowing;
         
     }];
 }
+
+
+#pragma - mark new alert view
+//-(void)showAlertViewWithMessage:(NSString*)message;
+//+(void)showAlertViewWithViewController:(UIViewController*)vc;
+//-(void)showAlertViewWithMessage:(NSString*)message withCallback:(void(^)(id x))callback;
+//-(void)showAlertViewWithMessage:(NSString*)message withOKCallback:(void(^)(id x))okCallback andCancelCallback:(void(^)(id x))cancelCallback;
+
+-(void)showAlertViewWithMessageNew:(NSString*)message
+{
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        NSLog(@"OK");
+//    }];
+////    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+////        NSLog(@"Cancel");
+////    }];
+////    
+////    UIAlertAction *Destructive = [UIAlertAction actionWithTitle:@"Destructive" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+////        NSLog(@"Destructive");
+////    }];
+//    
+//    [alert addAction:ok];
+//    [self presentViewController:alert animated:YES completion:nil];
+    [self showAlertViewWithMessageNew:message withCallback:nil];
+ 
+}
+
+-(void)showAlertViewWithMessageNew:(NSString*)message withCallback:(void(^)(id x))callback
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        if (callback) {
+            callback(action);
+        }
+    }];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+-(void)showAlertViewWithMessageNew:(NSString*)message withOKCallback:(void(^)(id x))okCallback andCancelCallback:(void(^)(id x))cancelCallback
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        if (okCallback) {
+            okCallback(action);
+        }
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        if (cancelCallback) {
+            cancelCallback(action);
+        }
+    }];
+    
+    [alert addAction:cancel];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
 
 @end

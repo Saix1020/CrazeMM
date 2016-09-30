@@ -432,6 +432,18 @@
 -(void)popRecommendView
 {
     if (![[UserCenter defaultCenter] isLogined]) {
+        
+        @synchronized (self) {
+            if(isAlertViewShowing){
+                return ;
+            }
+            
+            else {
+                isAlertViewShowing = YES;
+            }
+        }
+
+        
         @weakify(self);
         [self.productRecommendAlertView showWithDidAddContentBlock:^(UIView *contentView) {
             
@@ -444,13 +456,13 @@
                 [self.productRecommendAlertView dismiss];
                 
                 [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
-                
+                isAlertViewShowing = NO;
                 return [RACSignal empty];
             }];
             
             transferAlertView.signupButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
                 [self.productRecommendAlertView dismiss];
-                
+                isAlertViewShowing = NO;
                 [self.navigationController pushViewController:[[SignViewController alloc] init] animated:YES];
                 
                 
@@ -459,6 +471,8 @@
         }];
         
     }
+    
+//    [self showAlertViewWithMessage:@"Test"];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -420,7 +420,6 @@
 {
     [super viewDidAppear:animated];
     [self.tabBarController setTabBarHidden:NO animated:YES];
-    
 }
 
 #pragma -- mark tableview Delegate
