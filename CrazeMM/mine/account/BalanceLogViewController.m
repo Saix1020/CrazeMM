@@ -141,7 +141,7 @@
     self.timeline = [[TimeLineViewControl alloc] initWithTimeArray:emptyArray
                                            andTimeDescriptionArray:commentsArray
                                                   andCurrentStatus:1
-                                                          andFrame:CGRectMake(-40, 16+20.f, [UIScreen mainScreen].bounds.size.width  , self.view.bounds.size.height+40.f)];
+                                                          andFrame:CGRectMake(-40, 16+20.f, [UIScreen mainScreen].bounds.size.width+20  , self.view.bounds.size.height+40.f)];
     [self.timeline sizeToFit];
     [self.timeLineCell.contentView addSubview:self.timeline];
     self.tableView.rowHeight = MAX(self.timeline.timeLabelsHeight, self.timeline.descLabelsHeight) + 40.f;

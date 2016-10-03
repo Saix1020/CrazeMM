@@ -21,6 +21,8 @@ const float INITIAL_PROGRESS_CONTAINER_WIDTH = 20.0;
 const float PROGRESS_VIEW_CONTAINER_LEFT = 51.0;
 const float VIEW_WIDTH = 225.0;
 
+#define kLabelContainerPadding 24.f
+
 @interface TimeLineViewControl () {
     BOOL didStopAnimation;
     NSMutableArray *layers;
@@ -96,7 +98,7 @@ const float VIEW_WIDTH = 225.0;
         [self addTimeDescriptionLabels:timeDescriptions andTime:time currentStatus:status];
         [self setNeedsUpdateConstraints];
         [self addProgressBasedOnLabels:self.labelDscriptionsArray currentStatus:status];
-        [self addTimeLabels:time currentStatus:status];
+        //[self addTimeLabels:time currentStatus:status];
         
         
     }
@@ -151,6 +153,17 @@ const float VIEW_WIDTH = 225.0;
     [_progressDescriptionViewContainer addSubview:lastLabel];
     int i = 0;
     for (NSString *timeDescription in timeDescriptions) {
+        
+        ArrowLabel *labelContainView = [[ArrowLabel alloc] init];
+//        labelContainView.layer.cornerRadius = 8.f;
+//        //labelContainView.clipsToBounds = YES;
+//        labelContainView.layer.borderWidth = 1.f;
+//        labelContainView.layer.borderColor = [UIColor whiteColor].CGColor;
+//        labelContainView.backgroundColor = [UIColor whiteColor];
+//        UIView* bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 2)];
+//        bottomLine.backgroundColor = [UIColor grayColor];
+//        [labelContainView addSubview:bottomLine];
+        
         UILabel *label = [[UILabel alloc] init];
         [label setText:timeDescription];
         label.numberOfLines = 0;
@@ -158,27 +171,51 @@ const float VIEW_WIDTH = 225.0;
         label.textAlignment = NSTextAlignmentLeft;
         label.lineBreakMode = NSLineBreakByWordWrapping;
         [label setFont:[UIFont systemFontOfSize:13.f]];
-        [self.progressDescriptionViewContainer addSubview:label];
-        [label makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_progressDescriptionViewContainer).with.offset(7);
-            make.width.equalTo(leftWidth);
-            make.top.equalTo(lastLabel.masx_bottom).with.offset(betweenLabelOffset);
-            make.height.greaterThanOrEqualTo(@(16));
-        }];
-        
-        [label setPreferredMaxLayoutWidth:leftWidth];
+        [self.progressDescriptionViewContainer addSubview:labelContainView];
+        [label setPreferredMaxLayoutWidth:leftWidth-kLabelContainerPadding];
+        label.width = leftWidth-kLabelContainerPadding;
         [label sizeToFit];
         CGSize fittingSizeLabel = [label systemLayoutSizeFittingSize: UILayoutFittingCompressedSize];
+        [labelContainView addSubview:label];
+        labelContainView.height = label.height + kLabelContainerPadding;
+        label.x = kLabelContainerPadding/2;
+        label.y = kLabelContainerPadding/2;
+        
+//        [label makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(labelContainView).with.offset(8);
+//            make.right.equalTo(labelContainView).with.offset(-8);
+//            make.top.equalTo(labelContainView).with.offset(8);
+//            make.bottom.equalTo(labelContainView).with.offset(-8);
+//        }];
+        
+        
+        [labelContainView makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_progressDescriptionViewContainer).with.offset(7);
+            make.width.equalTo(leftWidth);
+            make.top.equalTo(lastLabel.masx_bottom).with.offset(betweenLabelOffset+kLabelContainerPadding/2);
+            make.height.equalTo(label.height + kLabelContainerPadding);
+        }];
+        
+//        [labelContainView set_point:CGPointMake(0, 0)];
+//        [labelContainView set_size:labelContainView.bounds.size];
+//        [labelContainView set_path];
+//        bottomLine.x = 0;
+//        bottomLine.y = label.height + 16.f - 4.f;
+//        bottomLine.width = leftWidth;
+//        bottomLine.height = 4.f;
+        
+
+        
 //        fittingSizeLabel.height += 8.f;
 //        fittingSizeLabel.width += 8.f;
 ////        label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.x, fittingSizeLabel.width, fittingSizeLabel.height);
 //        label.size = fittingSizeLabel;
 
         betweenLabelOffset = BETTWEEN_LABEL_OFFSET;
-        totlaHeight += (fittingSizeLabel.height + betweenLabelOffset);
+        totlaHeight += (fittingSizeLabel.height + betweenLabelOffset + kLabelContainerPadding);
         lastLabel = label;
 
-        [self.labelDscriptionsArray addObject:label];
+        [self.labelDscriptionsArray addObject:labelContainView];
         i++;
     }
     
@@ -208,7 +245,7 @@ const float VIEW_WIDTH = 225.0;
     {
         strokeColor = [UIColor lightGrayColor];
 
-        UIBezierPath *line = [self getLineWithStartPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, -20.f) endPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, totlaHeight-CIRCLE_RADIUS)];
+        UIBezierPath *line = [self getLineWithStartPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, -10.f) endPoint:CGPointMake(self.progressViewContainer.center.x + CIRCLE_RADIUS + INITIAL_PROGRESS_CONTAINER_WIDTH / 2, totlaHeight-CIRCLE_RADIUS+kLabelContainerPadding)];
         CAShapeLayer *lineLayer = [self getLayerWithLine:line andStrokeColor:strokeColor];
         [layers addObject:lineLayer];
         //add static background gray line
@@ -226,7 +263,7 @@ const float VIEW_WIDTH = 225.0;
 //        fittingSize.height += 8.f;
 //        fittingSize.width += 8.f;
 
-        yCenter = (totlaHeight /*+ fittingSize.height/2*/);
+        yCenter = (totlaHeight+kLabelContainerPadding /*+ fittingSize.height/2*/);
         
         UIBezierPath *circle = [UIBezierPath bezierPath];
         [self configureBezierCircle:circle withCenterY:yCenter];
@@ -442,3 +479,144 @@ const float VIEW_WIDTH = 225.0;
 }
 
 @end
+
+
+#define ORC_RADIUS 6
+#define CORNER_RADIUS 4
+
+@implementation ArrowLabel
+-(instancetype)init
+{
+    self = [super init];
+    if (self) {
+        path = [[UIBezierPath alloc] init];
+        path.lineCapStyle = kCGLineCapRound;
+//        label = [[UILabel alloc] init];
+//        label.numberOfLines = 0;
+//        label.textAlignment = NSTextAlignmentCenter;
+//        [label setBackgroundColor: [UIColor clearColor]];
+//        font = [UIFont systemFontOfSize:14.0];
+//        label.font = font;
+        [self setBackgroundColor: [UIColor clearColor]];
+        [self setAlpha:0.8];
+//        [self addSubview: label];
+        return (self);
+
+    }
+    return self;
+}
+
+-(id) init:(CGPoint) p str:(NSString*) str
+{
+    if([super init] == nil)
+        return nil;
+    path = [[UIBezierPath alloc] init];
+    path.lineCapStyle = kCGLineCapRound;
+    label = [[UILabel alloc] init];
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    [label setBackgroundColor: [UIColor clearColor]];
+    font = [UIFont systemFontOfSize:14.0];
+    label.font = font;
+    [self setBackgroundColor: [UIColor clearColor]];
+    [self setAlpha:0.8];
+    [self addSubview: label];
+    [self set_point: p];
+    [self set_title: str];
+    return (self);
+}
+-(void)reloadData
+{
+    [self setNeedsDisplay];
+}
+
+
+
+-(void)set_point:(CGPoint)p
+{
+    point = p;
+}
+
+- (void)drawRect:(CGRect)rect {
+    [[UIColor whiteColor] setFill];
+    [path fill];
+}
+
+-(void)set_size:(CGSize)s
+{
+    size = s;
+}
+
+-(void) set_title:(NSString*) str
+{
+    label.text = str;
+    label.frame = CGRectMake(0, 0, 250, 0);
+    [label sizeToFit];
+    //label.frame = CGRectMake(ORC_RADIUS, 0, size.width, size.height);
+    size = CGSizeMake(label.bounds.size.width+16.f, label.bounds.size.height+16.f);
+    label.frame = CGRectMake(8.f+ORC_RADIUS, 8.f, label.frame.size.width, label.frame.size.height);
+    size.height += 0;
+    size.width += ORC_RADIUS;
+    self.frame = CGRectMake(100, 100, size.width, size.height);
+    [self set_path];
+}
+
+-(void)set_path
+{
+    CGPoint p = CGPointMake(ORC_RADIUS+CORNER_RADIUS, 0);
+    [path moveToPoint:p];
+    
+    p.x = size.width-CORNER_RADIUS;
+    [path addLineToPoint: p];
+    
+    p.x = size.width;
+    p.y = CORNER_RADIUS;
+    
+    [path addQuadCurveToPoint:p controlPoint:CGPointMake(size.width, 0)];
+    
+    p.y = size.height-CORNER_RADIUS;
+    [path addLineToPoint: p];
+    
+    p.y = size.height;
+    p.x = size.width-CORNER_RADIUS;
+    [path addQuadCurveToPoint:p controlPoint:CGPointMake(size.width, size.height)];
+    
+    p.x = ORC_RADIUS+CORNER_RADIUS;
+    [path addLineToPoint: p];
+    
+    p.y = size.height-CORNER_RADIUS;
+    p.x = ORC_RADIUS;
+    [path addQuadCurveToPoint:p controlPoint:CGPointMake(ORC_RADIUS, size.height)];
+    
+    p.y = kLabelContainerPadding+CIRCLE_RADIUS;
+    [path addLineToPoint: p];
+    
+    p.y -= 8;
+    p.x = 0;
+    [path addLineToPoint: p];
+    
+    p.y -= 8;
+    p.x = ORC_RADIUS;
+    
+    [path addLineToPoint: p];
+    
+    p.y = CORNER_RADIUS;
+    [path addLineToPoint: p];
+    
+    p.y = 0;
+    p.x = ORC_RADIUS+CORNER_RADIUS;
+    [path addQuadCurveToPoint:p controlPoint:CGPointMake(ORC_RADIUS, 0)];
+    
+    [path closePath];
+}
+
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self set_size:self.bounds.size];
+    [self set_path];
+}
+
+@end
+
+

@@ -108,7 +108,7 @@
     self.timeline = [[TimeLineViewControl alloc] initWithTimeArray:timesPlacehoderArray
                                            andTimeDescriptionArray:commentsArray
                                                   andCurrentStatus:1
-                                                          andFrame:CGRectMake(-40, 16+20.f, [UIScreen mainScreen].bounds.size.width , self.view.bounds.size.height+40.f)];
+                                                          andFrame:CGRectMake(-40, 16+20.f, [UIScreen mainScreen].bounds.size.width+20 , self.view.bounds.size.height+40.f)];
     [self.scrollView addSubview:self.timeline];
     [self.timeline sizeToFit];
     CGFloat needHeight = MAX(self.timeline.timeLabelsHeight, self.timeline.descLabelsHeight) + 40.f;

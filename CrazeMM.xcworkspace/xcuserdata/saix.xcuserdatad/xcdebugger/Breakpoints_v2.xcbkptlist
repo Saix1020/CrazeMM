@@ -3626,13 +3626,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "494688300.001929"
+            timestampString = "496902189.269913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
             landmarkName = "-updateConstraints"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -3674,13 +3674,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "484808910.673924"
+            timestampString = "496901461.08343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "-addTimeLabels:currentStatus:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3696,7 +3696,7 @@
             startingLineNumber = "78"
             endingLineNumber = "78"
             landmarkName = "-cellHeight"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3712,7 +3712,7 @@
             startingLineNumber = "65"
             endingLineNumber = "65"
             landmarkName = "-setLogs:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3722,13 +3722,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "494688300.001929"
+            timestampString = "496902189.269913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-addTimeDescriptionLabels:andTime:currentStatus:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3738,13 +3738,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "484808910.673924"
+            timestampString = "496901461.08343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "-addTimeLabels:currentStatus:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3754,13 +3754,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "494688300.001929"
+            timestampString = "496902189.269913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "-addProgressBasedOnLabels:currentStatus:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3770,13 +3770,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "494688300.001929"
+            timestampString = "496902189.269913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "-addProgressBasedOnLabels:currentStatus:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3786,13 +3786,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "494688300.001929"
+            timestampString = "496902189.269913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-addTimeDescriptionLabels:andTime:currentStatus:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3808,7 +3808,7 @@
             startingLineNumber = "76"
             endingLineNumber = "76"
             landmarkName = "-cellHeight"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -4490,7 +4490,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "496892060.411915"
+                  timestampString = "497149714.141291"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4505,7 +4505,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "496892060.414559"
+                  timestampString = "497149714.145351"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -6362,13 +6362,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "494688300.001929"
+            timestampString = "496902189.269913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
             landmarkName = "-getLayerWithCircle:andStrokeColor:andFillColor:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6378,13 +6378,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "494688300.001929"
+            timestampString = "496902189.269913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
             landmarkName = "-startAnimatingLayers:forStatus:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6474,13 +6474,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
-            timestampString = "494688300.001929"
+            timestampString = "496902189.269913"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
             landmarkName = "-getLayerWithCircle:andStrokeColor:andFillColor:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -9180,7 +9180,7 @@
             startingLineNumber = "279"
             endingLineNumber = "279"
             landmarkName = "-getSupplyDetailInfo"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -9196,7 +9196,7 @@
             startingLineNumber = "284"
             endingLineNumber = "284"
             landmarkName = "-getSupplyDetailInfo"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -9292,7 +9292,7 @@
             startingLineNumber = "153"
             endingLineNumber = "153"
             landmarkName = "-handleClickEvent:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -10378,6 +10378,70 @@
             startingLineNumber = "279"
             endingLineNumber = "279"
             landmarkName = "-showAlertViewWithMessageNew:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
+            timestampString = "496902189.269913"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "-addProgressBasedOnLabels:currentStatus:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
+            timestampString = "496901461.08343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "-addTimeLabels:currentStatus:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
+            timestampString = "496901461.08343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-addTimeDescriptionLabels:andTime:currentStatus:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/TimeLineControl/TimeLineViewControl.m"
+            timestampString = "496902189.269913"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "566"
+            endingLineNumber = "566"
+            landmarkName = "-set_path"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -65,7 +65,7 @@
     self.timeline = [[TimeLineViewControl alloc] initWithTimeArray:timesPlacehoderArray
                                            andTimeDescriptionArray:commentsArray
                                                   andCurrentStatus:1
-                                                          andFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , 0)];
+                                                          andFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width+20 , 0)];
     [self.contentView addSubview:self.timeline];
     [self.timeline sizeToFit];
 
