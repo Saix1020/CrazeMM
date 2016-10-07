@@ -16,6 +16,7 @@ target "CrazeMM" do
 	pod 'TPKeyboardAvoiding', '~> 1.3'
 	pod 'RealReachability', '~> 1.1.7'
 	pod 'ImagePlayerView'
+	pod 'HKGifLoad', '~> 1.0.0'
 	post_install do |installer|
 		installer.pods_project.targets.each do |target|
 			target.build_configurations.each do |config|

@@ -27,6 +27,8 @@
 #import "RealReachability.h"
 //#import "LoopView.h"
 #import "ImagePlayerView.h"
+#import "HttpMobileBanner.h"
+#import "UIImageView+HKGifLoad.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -54,6 +56,9 @@
 
 @property (strong, nonatomic) ImagePlayerView* imagePlayView;
 @property (strong, nonatomic) NSMutableArray<NSString*>* imageURLs;
+@property (strong, nonatomic) NSArray* banners;
+
+
 //@property (nonatomic) BOOL requesting;
 @end
 
@@ -298,13 +303,25 @@
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"refresh" image] style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
     
-    [self.imagePlayView reloadData];
+    //[self.imagePlayView reloadData];
+    [HttpMobileBannerRequest getAllBanners].then(^(NSArray* banners){
+        if ([banners isKindOfClass:[NSArray class]]) {
+            self.banners = [banners copy];
+            [self.imagePlayView reloadData];
+        }
+    });
 }
 
 
 - (NSInteger)numberOfItems
 {
-    return self.imageURLs.count;
+    if(self.banners.count>0){
+        return self.banners.count;
+
+    }
+    else {
+        return 1;
+    }
 }
 
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView didTapAtIndex:(NSInteger)index;
@@ -319,11 +336,15 @@
 
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
 {
-    // recommend to use SDWebImage lib to load web image
-    //    [imageView setImageWithURL:[self.imageURLs objectAtIndex:index] placeholderImage:nil];
-    
-    //imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.imageURLs objectAtIndex:index]]];
-    imageView.image = [[self.imageURLs objectAtIndex:index] image];
+    if (self.banners.count>0) {
+        BannerDTO* dto = self.banners[index];
+        [imageView setImageWithURL:[NSURL URLWithString:dto.image] placeholderImage:[@"product_placehoder.png" image]];
+    }
+    else {
+        imageView = [[UIImageView alloc] initWithGifImageName:@"loading.gif"];
+        [imageView restoreAnimating];
+
+    }
 }
 
 -(void)refreshData

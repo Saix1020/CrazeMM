@@ -211,6 +211,12 @@
 		B91897051CD117CB0061D0B6 /* UITableView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B91897041CD117CB0061D0B6 /* UITableView+Utils.m */; };
 		B918970B1CD119D90061D0B6 /* BaseDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B918970A1CD119D90061D0B6 /* BaseDTO.m */; };
 		B918970E1CD11B5F0061D0B6 /* ProductDescriptionDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */; };
+		B9351FA01DA72BBD0070EF57 /* HttpMobileBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B9351F9F1DA72BBD0070EF57 /* HttpMobileBanner.m */; };
+		B9351FA11DA72BBD0070EF57 /* HttpMobileBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B9351F9F1DA72BBD0070EF57 /* HttpMobileBanner.m */; };
+		B9351FA41DA72DF80070EF57 /* BannerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9351FA31DA72DF80070EF57 /* BannerDTO.m */; };
+		B9351FA51DA72DF80070EF57 /* BannerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B9351FA31DA72DF80070EF57 /* BannerDTO.m */; };
+		B9351FA71DA73BC40070EF57 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = B9351FA61DA73BC40070EF57 /* loading.gif */; };
+		B9351FA81DA73BC40070EF57 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = B9351FA61DA73BC40070EF57 /* loading.gif */; };
 		B93716191D9B970100001D81 /* LoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B93716181D9B970100001D81 /* LoopView.m */; };
 		B937161A1D9B970100001D81 /* LoopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B93716181D9B970100001D81 /* LoopView.m */; };
 		B942E7891D1967DF0067931B /* SupplyDetailDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = B942E7881D1967DF0067931B /* SupplyDetailDTO.m */; };
@@ -1421,6 +1427,11 @@
 		B918970A1CD119D90061D0B6 /* BaseDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseDTO.m; path = modal/BaseDTO.m; sourceTree = "<group>"; };
 		B918970C1CD11B5F0061D0B6 /* ProductDescriptionDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDescriptionDTO.h; path = buy/ProductDescriptionDTO.h; sourceTree = "<group>"; };
 		B918970D1CD11B5F0061D0B6 /* ProductDescriptionDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDescriptionDTO.m; path = buy/ProductDescriptionDTO.m; sourceTree = "<group>"; };
+		B9351F9E1DA72BBD0070EF57 /* HttpMobileBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpMobileBanner.h; path = restful/HttpMobileBanner.h; sourceTree = "<group>"; };
+		B9351F9F1DA72BBD0070EF57 /* HttpMobileBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpMobileBanner.m; path = restful/HttpMobileBanner.m; sourceTree = "<group>"; };
+		B9351FA21DA72DF80070EF57 /* BannerDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BannerDTO.h; path = buy/BannerDTO.h; sourceTree = "<group>"; };
+		B9351FA31DA72DF80070EF57 /* BannerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BannerDTO.m; path = buy/BannerDTO.m; sourceTree = "<group>"; };
+		B9351FA61DA73BC40070EF57 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		B93716161D9B918400001D81 /* CrazeMM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CrazeMM.entitlements; sourceTree = "<group>"; };
 		B93716171D9B970100001D81 /* LoopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopView.h; sourceTree = "<group>"; };
 		B93716181D9B970100001D81 /* LoopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopView.m; sourceTree = "<group>"; };
@@ -2790,6 +2801,8 @@
 				B999552B1CE36FC7007F26D2 /* BuyProductDTO.m */,
 				B999552D1CE36FF7007F26D2 /* BuyProductDetailDTO.h */,
 				B999552E1CE36FF7007F26D2 /* BuyProductDetailDTO.m */,
+				B9351FA21DA72DF80070EF57 /* BannerDTO.h */,
+				B9351FA31DA72DF80070EF57 /* BannerDTO.m */,
 			);
 			name = modal;
 			sourceTree = "<group>";
@@ -3337,6 +3350,7 @@
 		B964F9791CC4CE84003E0D44 /* resouce */ = {
 			isa = PBXGroup;
 			children = (
+				B9351FA61DA73BC40070EF57 /* loading.gif */,
 				B967481B1D93CA80004298F2 /* product_placehoder.png */,
 				B95A94C71CE1E83700A5D9BA /* prod_placeholder.jpg */,
 				B98878C01CC9BB4100990AA4 /* segment_line_Horizontal_orange.png */,
@@ -3710,6 +3724,8 @@
 				B99955231CE30AD8007F26D2 /* HttpSupplyOrder.m */,
 				B9E84BC31CF0894D003FEAF5 /* HttpBuyOrder.h */,
 				B9E84BC41CF0894D003FEAF5 /* HttpBuyOrder.m */,
+				B9351F9E1DA72BBD0070EF57 /* HttpMobileBanner.h */,
+				B9351F9F1DA72BBD0070EF57 /* HttpMobileBanner.m */,
 			);
 			name = "supply+buy";
 			sourceTree = "<group>";
@@ -4158,6 +4174,7 @@
 				B9D1C5941D0A64440099BA95 /* WithDrawAlertView.xib in Resources */,
 				B965B7031D1D621E0021C809 /* product_placehoder.jpg in Resources */,
 				B9A780401CD9E2D000A89047 /* pop_eg.jpg in Resources */,
+				B9351FA71DA73BC40070EF57 /* loading.gif in Resources */,
 				B99194781CCC690E0032A393 /* OrderListCell.xib in Resources */,
 				B9076F551D22C7FB001FFDE4 /* MortgageListCell.xib in Resources */,
 				B95A94A51CE0C19900A5D9BA /* citydict.plist in Resources */,
@@ -4278,6 +4295,7 @@
 				B9EFAF4F1CED514100F81157 /* CommonBottomView.xib in Resources */,
 				B9EFAF501CED514100F81157 /* MMAlertViewWithOK.xib in Resources */,
 				B9EFAF511CED514100F81157 /* product_debug.jpg in Resources */,
+				B9351FA81DA73BC40070EF57 /* loading.gif in Resources */,
 				B9EFAF521CED514100F81157 /* LastPayMethodCell.xib in Resources */,
 				B9EFAF531CED514100F81157 /* OrderLogsCell.xib in Resources */,
 				B9D1C5951D0A64440099BA95 /* WithDrawAlertView.xib in Resources */,
@@ -4369,6 +4387,7 @@
 				B91732621CD1F05500C29698 /* ZoomOutUpAnimation.m in Sources */,
 				B94573121D758272002F75AE /* NewOrderListViewController.m in Sources */,
 				B94572FF1D7525C8002F75AE /* README.md in Sources */,
+				B9351FA01DA72BBD0070EF57 /* HttpMobileBanner.m in Sources */,
 				B98219091CE8A83000B279E6 /* OnlinePayViewController.m in Sources */,
 				B917321B1CD1F05400C29698 /* TadaAnimation.m in Sources */,
 				B94572FE1D7525C8002F75AE /* LICENSE.md in Sources */,
@@ -4505,6 +4524,7 @@
 				B95A2A9F1D80F84C0087B8E3 /* MortgageDetailViewController.m in Sources */,
 				B91896D21CCF9E8B0061D0B6 /* PayResultCell.m in Sources */,
 				B9B747391D7B9BF8004D6042 /* MineBuyDetailDTO.m in Sources */,
+				B9351FA41DA72DF80070EF57 /* BannerDTO.m in Sources */,
 				B9FE71EC1CD6E70400F5EC9F /* _UserHistory.m in Sources */,
 				B91896F81CD0EF260061D0B6 /* AccountSummaryCell.m in Sources */,
 				B91732401CD1F05400C29698 /* LightSpeedInAnimation.m in Sources */,
@@ -5164,6 +5184,7 @@
 				B9EFAED71CED514100F81157 /* OrderListViewController.m in Sources */,
 				2EAF584C1D68C4ED00ACEE60 /* CommonListCell+PayRecord.m in Sources */,
 				B9EFAED91CED514100F81157 /* FadeOutDownBigAnimation.m in Sources */,
+				B9351FA51DA72DF80070EF57 /* BannerDTO.m in Sources */,
 				B9EFAEDA1CED514100F81157 /* CommonOrderListViewController.m in Sources */,
 				B965B7501D1E569B0021C809 /* GenMobileVcodeCell.m in Sources */,
 				B9EFAEDB1CED514100F81157 /* MASLayoutConstraint.m in Sources */,
@@ -5240,6 +5261,7 @@
 				B9EFAF0D1CED514100F81157 /* LoginViewController.m in Sources */,
 				B9EFAF0E1CED514100F81157 /* TTModalViewController.m in Sources */,
 				B9EFAF0F1CED514100F81157 /* SignViewController.m in Sources */,
+				B9351FA11DA72BBD0070EF57 /* HttpMobileBanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

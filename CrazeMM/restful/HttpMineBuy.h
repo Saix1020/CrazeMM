@@ -11,6 +11,8 @@
 
 @interface HttpMineBuy : BaseHttpRequest
 
+
+
 @end
 
 

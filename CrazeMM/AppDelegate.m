@@ -11,6 +11,7 @@
 #import "NewWelcomeViewController.h"
 #import "TabBarController.h"
 #import "HttpAllRegion.h"
+#import "HttpMobileBanner.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NewWelcomeViewController* welcomeVC;
@@ -221,6 +222,7 @@
     // all regions
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
         [HttpAllRegionRequest getAllRegions];
+        [HttpMobileBannerRequest getAllBanners];
     });
     
     // add more const big data from server here!

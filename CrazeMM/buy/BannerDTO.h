@@ -1,0 +1,20 @@
+//
+//  BannerDTO.h
+//  CrazeMM
+//
+//  Created by saix on 16/10/7.
+//  Copyright © 2016年 189. All rights reserved.
+//
+
+#import "BaseDTO.h"
+
+@interface BannerDTO : BaseDTO
+
+@property (nonatomic, copy) NSString* createTime;
+@property (nonatomic) BOOL disabled;
+@property (nonatomic, copy) NSString* image;
+@property (nonatomic) NSUInteger location;
+@property (nonatomic) NSUInteger orderNum;
+@property (nonatomic, copy) NSString* title;
+
+@end

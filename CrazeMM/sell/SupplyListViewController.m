@@ -11,6 +11,7 @@
 #import "ProductSummaryCell.h"
 #import "SupplyProductViewController.h"
 #import "HttpAddIntention.h"
+#import "HttpMobileBanner.h"
 
 
 @interface SupplyListViewController ()
@@ -27,6 +28,11 @@
     
     self.navigationItem.title = @"189 疯狂买卖王 供货";
     //self.dataSource = [@[] mutableCopy];
+    
+//    HttpMobileBannerRequest* request = [[HttpMobileBannerRequest alloc] init];
+//    [request request].then(^(id responseObj){
+//        
+//    });
 }
 
 -(void)viewWillAppear:(BOOL)animated
