@@ -1,6 +1,6 @@
 platform :ios, '8.0'
 use_frameworks!
-target "CrazeMM" do
+def shared_pods
 	pod 'SDAutoLayout', '~> 2.1.1'
 	pod 'AFNetworking', '~> 3.1.0'
 	pod 'PromiseKit', '~> 3.2.0'
@@ -17,12 +17,20 @@ target "CrazeMM" do
 	pod 'RealReachability', '~> 1.1.7'
 	pod 'ImagePlayerView'
 	pod 'HKGifLoad', '~> 1.0.0'
-	post_install do |installer|
-		installer.pods_project.targets.each do |target|
-			target.build_configurations.each do |config|
-				config.build_settings['SWIFT_VERSION'] = '2.3'
-				end
-			end
-	end
 end
 
+target "CrazeMM" do
+	shared_pods
+end
+
+target "CrazeMM_Phone2" do
+	shared_pods
+end
+
+post_install do |installer|
+	installer.pods_project.targets.each do |target|
+		target.build_configurations.each do |config|
+			config.build_settings['SWIFT_VERSION'] = '2.3'
+			end
+		end
+end
