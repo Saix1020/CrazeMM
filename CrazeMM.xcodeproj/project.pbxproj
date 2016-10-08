@@ -1108,7 +1108,6 @@
 		B9B747431D7C4FA2004D6042 /* SupplyToBePaidListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E660F61D7819D00072113A /* SupplyToBePaidListViewController.m */; };
 		B9B7474D1D7FA0A8004D6042 /* CommonProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7474C1D7FA0A8004D6042 /* CommonProductDetailViewController.m */; };
 		B9B7474E1D7FA0A8004D6042 /* CommonProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7474C1D7FA0A8004D6042 /* CommonProductDetailViewController.m */; };
-		B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91732741CD1FC9400C29698 /* Reveal.framework */; };
 		B9BBEEC51CEB4C5900275416 /* AddrCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEEC31CEB4C5900275416 /* AddrCommonCell.m */; };
 		B9BBEEC61CEB4C5900275416 /* AddrCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9BBEEC41CEB4C5900275416 /* AddrCommonCell.xib */; };
 		B9BBEECA1CEB4DDE00275416 /* AddrRegionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BBEEC81CEB4DDE00275416 /* AddrRegionCell.m */; };
@@ -2579,7 +2578,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B91732701CD1F5F700C29698 /* QuartzCore.framework in Frameworks */,
-				B9BBEEC11CEB194A00275416 /* Reveal.framework in Frameworks */,
 				F923E0DD222B787DFD07E7C5 /* Pods_CrazeMM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
