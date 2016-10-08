@@ -92,12 +92,13 @@
         [_bottomView.confirmButton addTarget:self action:@selector(bottomViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomView.addtionalButton addTarget:self action:@selector(bottomViewAddtionalButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
-        
+        _bottomView.backgroundColor = [UIColor whiteColor];
         _bottomView.selectAllCheckBox.delegate = self;
         
         if (self.hiddenBottomView) {
             _bottomView.hidden = YES;
         }
+        
     }
     
     return _bottomView;
