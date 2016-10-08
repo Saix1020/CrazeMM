@@ -16,5 +16,7 @@
 @property (nonatomic) NSUInteger location;
 @property (nonatomic) NSUInteger orderNum;
 @property (nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString* url;
+@property (nonatomic, copy) NSString* desc;
 
 @end

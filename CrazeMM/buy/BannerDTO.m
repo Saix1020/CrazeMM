@@ -21,6 +21,10 @@
         self.location = [dict[@"location"] integerValue];
         self.orderNum = [dict[@"orderNum"] integerValue];
         self.title = dict[@"title"];
+        
+        self.url = dict[@"url"];
+        self.desc = dict[@"desc"];
+        
     }
     
     return self;
