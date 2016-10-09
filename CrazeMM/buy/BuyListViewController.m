@@ -337,11 +337,20 @@
 
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView didTapAtIndex:(NSInteger)index;
 {
-    NSLog(@"image %ld tapped", index);
     
-    BuySlideDetailViewController* slideDetailVC = [[BuySlideDetailViewController alloc] initWithURL:@"http://www.baidu.com"
-                                                                                           andTitle:[NSString stringWithFormat:@"Image %ld", index]];
-    [self.navigationController pushViewController:slideDetailVC animated:YES];
+    if (self.banners.count>0) {
+        Banner* b = self.banners[index];
+        NSLog(@"image %ld tapped", index);
+        
+        if (b.url.length > 0) {
+            BuySlideDetailViewController* slideDetailVC = [[BuySlideDetailViewController alloc] initWithURL:b.url
+                                                                                                   andTitle:b.desc];
+            [self.navigationController pushViewController:slideDetailVC animated:YES];
+
+        }
+        
+
+    }
 
 }
 
