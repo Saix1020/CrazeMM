@@ -96,6 +96,10 @@
     
     self.pageNumber = 0;
     self.cellStyle = kOffShelfStyle;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"StockListCell" bundle:nil] forCellReuseIdentifier:@"StockListCell"];
+
+    
 //    [self getMineStock];
 }
 

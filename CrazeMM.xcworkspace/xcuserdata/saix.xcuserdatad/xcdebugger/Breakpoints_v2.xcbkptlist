@@ -4490,7 +4490,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "497682855.054269"
+                  timestampString = "497684091.722753"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4505,7 +4505,7 @@
                   moduleName = "CrazeMM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "497682855.056816"
+                  timestampString = "497684091.725444"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -6032,7 +6032,7 @@
             startingLineNumber = "210"
             endingLineNumber = "210"
             landmarkName = "-setMineStockDto:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6048,7 +6048,7 @@
             startingLineNumber = "218"
             endingLineNumber = "218"
             landmarkName = "-fomartTotalPriceLabel"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6064,7 +6064,7 @@
             startingLineNumber = "94"
             endingLineNumber = "94"
             landmarkName = "-awakeFromNib"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6506,13 +6506,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "494924784.834646"
+            timestampString = "497683874.134233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
             landmarkName = "-getMineStock"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6528,7 +6528,7 @@
             startingLineNumber = "225"
             endingLineNumber = "225"
             landmarkName = "-setMineStockDto:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -7514,13 +7514,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "493648203.339963"
+            timestampString = "497683874.134233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "-bottomViewButtonClicked:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -7536,7 +7536,7 @@
             startingLineNumber = "237"
             endingLineNumber = "237"
             landmarkName = "-buttonClicked:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -7610,13 +7610,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "494924784.834646"
+            timestampString = "497683874.134233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -7840,7 +7840,7 @@
             startingLineNumber = "112"
             endingLineNumber = "112"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -7872,7 +7872,7 @@
             startingLineNumber = "73"
             endingLineNumber = "73"
             landmarkName = "-fomartNumberLabel"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -8144,7 +8144,7 @@
             startingLineNumber = "249"
             endingLineNumber = "249"
             landmarkName = "-setStockDto:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -8176,7 +8176,7 @@
             startingLineNumber = "290"
             endingLineNumber = "290"
             landmarkName = "-dealloc"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -8236,7 +8236,7 @@
             startingLineNumber = "271"
             endingLineNumber = "271"
             landmarkName = "-updateDto"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -8246,13 +8246,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "493648203.339963"
+            timestampString = "497683874.134233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "-viewWillAppear:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -8502,13 +8502,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "494924784.834646"
+            timestampString = "497683874.134233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "-shippingProductsWithSid:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -9148,7 +9148,7 @@
             startingLineNumber = "142"
             endingLineNumber = "142"
             landmarkName = "-fomartStatusLabel"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -9164,7 +9164,7 @@
             startingLineNumber = "139"
             endingLineNumber = "139"
             landmarkName = "-fomartStatusLabel"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -9270,13 +9270,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/mine/stock/MineStockViewController.m"
-            timestampString = "494924861.060543"
+            timestampString = "497683874.134233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "-pickupProducts"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -9514,7 +9514,7 @@
             startingLineNumber = "236"
             endingLineNumber = "236"
             landmarkName = "-buttonClicked:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
