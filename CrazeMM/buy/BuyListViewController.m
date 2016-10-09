@@ -29,8 +29,9 @@
 #import "ImagePlayerView.h"
 #import "HttpMobileBanner.h"
 #import "UIImageView+HKGifLoad.h"
+#import "Banner.h"
 
-#define kTableViewHeadHeight 128.f
+#define kTableViewHeadHeight 140.f
 #define kCarouselImageViewWidth 300.f
 #define kNumberOfCellPerPage 3
 #define kTotalSlides 5
@@ -304,14 +305,24 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"refresh" image] style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
     
     //[self.imagePlayView reloadData];
-    [HttpMobileBannerRequest getAllBanners].then(^(NSArray* banners){
-        if ([banners isKindOfClass:[NSArray class]]) {
-            self.banners = [banners copy];
-            [self.imagePlayView reloadData];
-        }
-    });
+//    [HttpMobileBannerRequest getAllBanners].then(^(NSArray* banners){
+//        if ([banners isKindOfClass:[NSArray class]]) {
+//            self.banners = [banners copy];
+//            [self.imagePlayView reloadData];
+//        }
+//    });
+    self.banners = [Banner allBannersWithManagedObjectContext:sharedManagedObjectContext()];
+    [self.imagePlayView reloadData];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bannersLoadFinished:) name:kBannerImagesDownloadSuccessBroadCast object:nil];
 }
 
+-(void)bannersLoadFinished:(NSNotification*)notification
+{
+    self.banners = [Banner allBannersWithManagedObjectContext:sharedManagedObjectContext()];
+    [self.imagePlayView reloadData];
+}
 
 - (NSInteger)numberOfItems
 {
@@ -337,12 +348,11 @@
 - (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
 {
     if (self.banners.count>0) {
-        BannerDTO* dto = self.banners[index];
-        [imageView setImageWithURL:[NSURL URLWithString:dto.image] placeholderImage:[@"product_placehoder.png" image]];
+        Banner* b = self.banners[index];
+        imageView.image = [UIImage imageWithData:b.data];
     }
     else {
-        imageView = [[UIImageView alloc] initWithGifImageName:@"loading.gif"];
-        [imageView restoreAnimating];
+        imageView.image = [@"slide-1.jpg" image];
 
     }
 }
@@ -652,6 +662,10 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kLogoutSuccessBroadCast
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kBannerImagesDownloadSuccessBroadCast
                                                   object:nil];
     
     [self.imagePlayView stopTimer];

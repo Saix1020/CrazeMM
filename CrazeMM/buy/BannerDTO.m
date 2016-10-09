@@ -21,7 +21,7 @@
         self.location = [dict[@"location"] integerValue];
         self.orderNum = [dict[@"orderNum"] integerValue];
         self.title = dict[@"title"];
-        
+        self.bgColor = dict[@"bgColor"];
         self.url = dict[@"url"];
         self.desc = dict[@"desc"];
         
@@ -30,4 +30,20 @@
     return self;
     
 }
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self forKey:@"189MM-Banner"];
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if(self)
+    {
+        self = [aDecoder decodeObjectForKey:@"189MM-Banner"];
+    }
+    return self;
+}
+
 @end

@@ -146,4 +146,15 @@ static UserCenter *defaultUserCenter = nil;
     return [self.keyChainWrapper  objectForKey:(id)kSecAttrAccount];
 }
 
+-(NSArray*)banners
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"189MM-Banner"];
+}
+
+-(void)setBanners:(NSArray *)banners
+{
+    [[NSUserDefaults standardUserDefaults] setObject:banners forKey:@"189MM-Banner"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end

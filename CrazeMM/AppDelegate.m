@@ -12,6 +12,8 @@
 #import "TabBarController.h"
 #import "HttpAllRegion.h"
 #import "HttpMobileBanner.h"
+#import "HttpMobileBanner.h"
+#import "Banner.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NewWelcomeViewController* welcomeVC;
@@ -222,11 +224,53 @@
     // all regions
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
         [HttpAllRegionRequest getAllRegions];
-        [HttpMobileBannerRequest getAllBanners];
+        [AppDelegate downloadBannerImages];
     });
+    
     
     // add more const big data from server here!
     
+}
+
++(void)downloadBannerImages
+{
+    NSMutableArray* promises = [[NSMutableArray alloc] init];
+    NSManagedObjectContext* moc = sharedManagedObjectContext();
+    [HttpMobileBannerRequest getAllBanners]
+    .then(^(NSArray* newBanners){
+        for(BannerDTO* dto in newBanners){
+            [promises addObject:[NSURLConnection GET:dto.image]];
+            
+        }
+        PMKJoin(promises).then(^(NSArray* data){
+            for(NSArray* detail in data){
+                //if (detail.count == 3) {
+                    NSHTTPURLResponse* response = detail[1];
+                    NSData* imageData = detail[2];
+                    for(BannerDTO* dto in newBanners){
+                        if ([dto.image isEqualToString:response.URL.absoluteString]) {
+                            dto.data = imageData;
+                            break;
+                        }
+                    }
+                //}
+            }
+            
+            [Banner removeAllBannersWithManagedObjectContext:moc];
+            for(BannerDTO* dto in newBanners){
+                [Banner createWithBannerDTO:dto andManagedObjectContext:moc];
+                
+            }
+            [moc save:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kBannerImagesDownloadSuccessBroadCast object:nil];
+            
+            //[UserCenter defaultCenter].banners = ;//[nBanners enco];
+            
+            
+            
+        });
+    });
 }
 
 

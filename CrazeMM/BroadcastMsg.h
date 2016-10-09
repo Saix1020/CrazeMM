@@ -13,5 +13,6 @@
 #define kLogoutSuccessBroadCast @"189LogoutSuccessBroadCast"
 #define kIntoBackgroundOver5Min @"189IntoBackgroundOver5MinBroadCast"
 
+#define kBannerImagesDownloadSuccessBroadCast @"189BannerImagesDownloadSuccessBroadCast"
 
 #endif /* BroadcastMsg_h */

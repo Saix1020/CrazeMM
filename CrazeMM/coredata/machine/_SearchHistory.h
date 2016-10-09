@@ -1,24 +1,26 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to SearchHistory.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct SearchHistoryAttributes {
-	__unsafe_unretained NSString *keyword;
-} SearchHistoryAttributes;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchHistoryID : NSManagedObjectID {}
 @end
 
-@interface _SearchHistory : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _SearchHistory : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) SearchHistoryID* objectID;
+@property (nonatomic, readonly, strong) SearchHistoryID *objectID;
 
-@property (nonatomic, strong) NSString* keyword;
-
-//- (BOOL)validateKeyword:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* keyword;
 
 @end
 
@@ -28,3 +30,9 @@ extern const struct SearchHistoryAttributes {
 - (void)setPrimitiveKeyword:(NSString*)value;
 
 @end
+
+@interface SearchHistoryAttributes: NSObject 
++ (NSString *)keyword;
+@end
+
+NS_ASSUME_NONNULL_END

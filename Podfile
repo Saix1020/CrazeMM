@@ -23,7 +23,7 @@ target "CrazeMM" do
 	shared_pods
 end
 
-target "CrazeMM_Phone2" do
+target "CrazeMM_Reveal" do
 	shared_pods
 end
 

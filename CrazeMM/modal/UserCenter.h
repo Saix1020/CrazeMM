@@ -37,6 +37,10 @@ typedef enum {
 
 @property (nonatomic, readonly) NSString* mobile;
 @property (nonatomic, readonly) NSString* email;
+
+@property (nonatomic, readwrite) NSArray* banners;
+
+
 + (UserCenter *)defaultCenter;
 //
 -(void)setLogined;

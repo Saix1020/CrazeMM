@@ -46,6 +46,7 @@ static NSArray *sharedAllBanners = nil;
 
 -(NSString*)url
 {
+    // change /banner/getMobileBanner to /rest/getMobileBanner
     return COMB_URL(@"/banner/getMobileBanner");
 }
 
