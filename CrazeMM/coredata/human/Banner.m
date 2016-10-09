@@ -34,10 +34,14 @@
     
     NSEntityDescription *bannerEntity = [NSEntityDescription entityForName:[Banner entityName] inManagedObjectContext:moc];
     [fetchRequest setEntity:bannerEntity];
+    NSSortDescriptor *sort1 = [NSSortDescriptor sortDescriptorWithKey:[BannerAttributes orderNum] ascending:YES];
+    NSSortDescriptor *sort2 = [NSSortDescriptor sortDescriptorWithKey:[BannerAttributes createTime] ascending:NO];
+
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sort1, sort2, nil]];
+
     
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", teamName];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ != %@", [BannerAttributes disabled], @(NO)];
 //    [fetchRequest setPredicate:predicate];
-//    [fetchRequest setFetchLimit:1];
     
     NSError *error = NULL;
     NSArray *array = [moc executeFetchRequest:fetchRequest error:&error];

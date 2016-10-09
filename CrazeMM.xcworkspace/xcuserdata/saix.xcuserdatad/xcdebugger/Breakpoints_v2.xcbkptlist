@@ -4490,7 +4490,7 @@
                   moduleName = "CrazeMM_Reveal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "497695334.481896"
+                  timestampString = "497696495.94327"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4505,7 +4505,7 @@
                   moduleName = "CrazeMM_Reveal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "497695334.484964"
+                  timestampString = "497696495.945648"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -10483,22 +10483,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "497695333.1173"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
-            landmarkName = "-imagePlayerView:loadImageForImageView:index:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CrazeMM/AppDelegate.m"
             timestampString = "497682311.995245"
             startingColumnNumber = "9223372036854775807"
@@ -10531,29 +10515,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "497682297.222891"
+            filePath = "CrazeMM/coredata/human/Banner.m"
+            timestampString = "497696495.539049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
-            landmarkName = "-bannersLoadFinished:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "497682372.889246"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "-numberOfItems"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "+allBannersWithManagedObjectContext:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

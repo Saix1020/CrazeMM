@@ -344,7 +344,7 @@
         
         if (b.url.length > 0) {
             BuySlideDetailViewController* slideDetailVC = [[BuySlideDetailViewController alloc] initWithURL:b.url
-                                                                                                   andTitle:b.desc];
+                                                                                                   andTitle:b.title];
             [self.navigationController pushViewController:slideDetailVC animated:YES];
 
         }
