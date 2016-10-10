@@ -12,6 +12,7 @@
 #define SCHEME @"http://"
 #define HOSTNAME @"b.189mm.net"//"b.189mm.com"
 #define FULL_HOSTNAME [NSString stringWithFormat:@"%@%@",SCHEME, HOSTNAME]
+#define WEB_HOSTNAME [NSString stringWithFormat:@"%@%@/we",SCHEME, HOSTNAME]
 #define COMB_URL_ALL(path, params)     [NSString stringWithFormat:@"%@%@%@%@%@", SCHEME, HOSTNAME, (path), (params).length>0?@"?" : @"", (params)]
 #define COMB_URL(path) COMB_URL_ALL(path, @"")
 #define LOGIN_METHORD @"POST"

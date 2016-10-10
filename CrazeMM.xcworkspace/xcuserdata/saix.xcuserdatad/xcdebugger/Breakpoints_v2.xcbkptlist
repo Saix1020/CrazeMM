@@ -3978,11 +3978,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "497695333.1173"
+            timestampString = "497758364.0018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "657"
-            endingLineNumber = "657"
+            startingLineNumber = "664"
+            endingLineNumber = "664"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4426,11 +4426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "497695333.1173"
+            timestampString = "497758364.0018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
             landmarkName = "-getProducts:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4442,11 +4442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CrazeMM/buy/BuyListViewController.m"
-            timestampString = "497695333.1173"
+            timestampString = "497758364.0018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
             landmarkName = "-getProducts:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4490,7 +4490,7 @@
                   moduleName = "CrazeMM_Reveal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "497696495.94327"
+                  timestampString = "497759178.782775"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4505,7 +4505,7 @@
                   moduleName = "CrazeMM_Reveal"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/saix/CrazeMM_Xcode8/CrazeMM/CrazeMM/product/ProductLadderCell.m"
-                  timestampString = "497696495.945648"
+                  timestampString = "497759178.785495"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "206"
@@ -4800,7 +4800,7 @@
             startingLineNumber = "187"
             endingLineNumber = "187"
             landmarkName = "-tryQueryPayResult"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4816,7 +4816,7 @@
             startingLineNumber = "191"
             endingLineNumber = "191"
             landmarkName = "-tryQueryPayResult"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4832,7 +4832,7 @@
             startingLineNumber = "248"
             endingLineNumber = "248"
             landmarkName = "-tryQueryPayResult"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4848,7 +4848,7 @@
             startingLineNumber = "257"
             endingLineNumber = "257"
             landmarkName = "-tryQueryPayResult"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4864,7 +4864,7 @@
             startingLineNumber = "195"
             endingLineNumber = "195"
             landmarkName = "-tryQueryPayResult"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4880,7 +4880,7 @@
             startingLineNumber = "293"
             endingLineNumber = "293"
             landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -6240,7 +6240,7 @@
             startingLineNumber = "267"
             endingLineNumber = "267"
             landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -8844,7 +8844,7 @@
             startingLineNumber = "268"
             endingLineNumber = "268"
             landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -10522,6 +10522,38 @@
             startingLineNumber = "49"
             endingLineNumber = "49"
             landmarkName = "+allBannersWithManagedObjectContext:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/buy/BuySlideDetailViewController.m"
+            timestampString = "497759027.386335"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CrazeMM/buy/BuySlideDetailViewController.m"
+            timestampString = "497759027.386335"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

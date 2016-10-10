@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BuySlideDetailViewController : UIViewController
+@interface BuySlideDetailViewController : UIViewController<UIWebViewDelegate>
 
 -(instancetype)initWithURL:(NSString*)url andTitle:(NSString*)title;
 -(instancetype)initWithURLRequest:(NSURLRequest*)request;

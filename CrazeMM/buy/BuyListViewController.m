@@ -343,10 +343,17 @@
         NSLog(@"image %ld tapped", index);
         
         if (b.url.length > 0) {
+            
+            
             BuySlideDetailViewController* slideDetailVC = [[BuySlideDetailViewController alloc] initWithURL:b.url
                                                                                                    andTitle:b.title];
-            [self.navigationController pushViewController:slideDetailVC animated:YES];
-
+            
+            if([b.url hasPrefix:WEB_HOSTNAME]){
+                [self.navigationController presentViewController:slideDetailVC animated:YES completion:nil];
+            }
+            else {
+                [self.navigationController pushViewController:slideDetailVC animated:YES];
+            }
         }
         
 
