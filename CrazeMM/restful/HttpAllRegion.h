@@ -2,7 +2,7 @@
 //  HttpAllRegion.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/23.
+//  Created by Mao Mao on 16/5/23.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -11,10 +11,11 @@
 
 @interface HttpAllRegionRequest : BaseHttpRequest
 
++(AFPromise*)getAllRegions;
+
 @end
 
 @interface HttpAllRegionResponse : BaseHttpResponse
-
 @property (nonatomic, strong) NSMutableArray* regionDtos;
 
 @end

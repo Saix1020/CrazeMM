@@ -2,13 +2,14 @@
 //  SupplyListCell.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/27.
+//  Created by Mao Mao on 16/4/27.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
 #import "MineSupplyProductDTO.h"
+#import "MineStockDTO.h"
 
 typedef NS_ENUM(NSInteger, SupplyListCellStyle){
     kNomalStyle = 0,
@@ -25,6 +26,7 @@ typedef NS_ENUM(NSInteger, SupplyListCellStyle){
 @end
 
 @interface SupplyListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *numberLabelTopConstraint;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *selectCheckBox;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *productLabel;
@@ -34,9 +36,17 @@ typedef NS_ENUM(NSInteger, SupplyListCellStyle){
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet UIButton *offButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelLeadingContraint;
+@property (weak, nonatomic) IBOutlet UILabel *flagLabel;
 @property (nonatomic) SupplyListCellStyle style;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @property (nonatomic, strong) MineSupplyProductDTO* mineSupplyProductDto;
+@property (weak, nonatomic) IBOutlet UILabel *additionalLabel;
+
+// used for stock
+@property (nonatomic, strong) MineStockDTO* mineStockDto;
+
 
 @property (nonatomic, weak) id<SupplyListCellDelegate> delegate;
 

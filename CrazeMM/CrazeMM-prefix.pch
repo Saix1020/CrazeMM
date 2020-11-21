@@ -2,7 +2,7 @@
 //  CrazeMM.pch
 //  CrazeMM
 //
-//  Created by saix on 16/4/17.
+//  Created by Mao Mao on 16/4/17.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -38,7 +38,6 @@
 #import "BaseNavigationController.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
-#import "AFNetworking+PromiseKit.h"
 #import "RestURL.h"
 #import "MMTimer.h"
 #import "BaseHttpRequest.h"
@@ -46,7 +45,10 @@
 #import "UIViewController+TTModalView.h"
 #import "KeychainItemWrapper.h"
 #import "LoginViewController.h"
-
+#import "UINavigationController+BackConfirmSupport.h"
+#import "UIFont+Utils.h"
+#import "BaseNavigationController.h"
+#import "UIViewController+Utils.h"
 
 
 #define sharedApplicationDelegate() \

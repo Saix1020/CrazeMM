@@ -2,7 +2,7 @@
 //  PayBottomView.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/24.
+//  Created by Mao Mao on 16/4/24.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -21,8 +21,12 @@
 @property (nonatomic, readonly) MMOrderSubType orderSubtype;
 @property (nonatomic, readonly) MMOrderState orderState;
 @property (nonatomic) MMOrderListStyle orderStyle;
+@property (weak, nonatomic) IBOutlet UIButton *addtionalButton;
 
 @property (nonatomic) CGFloat totalPrice;
+@property (nonatomic) BOOL selectedAll;
+
+-(void)reset;
 
 //-(void)setOrderStyle:(MMOrderListStyle)style;
 

@@ -2,7 +2,7 @@
 //  AddressListViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/26.
+//  Created by Mao Mao on 16/4/26.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -83,8 +83,6 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
 {
     [super viewWillLayoutSubviews];
     self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -105,6 +103,15 @@ typedef NS_ENUM(NSInteger, MineAddressListSection){
     .catch(^(NSError* error){
         [self showAlertViewWithMessage:error.localizedDescription];
     });
+    
+//    [self.tabBarController setTabBarHidden:YES animated:YES];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tabBarController setTabBarHidden:YES animated:YES];
 }
 
 

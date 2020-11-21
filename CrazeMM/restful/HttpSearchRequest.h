@@ -2,7 +2,7 @@
 //  HttpSearchRequest.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/4.
+//  Created by Mao Mao on 16/5/4.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -28,9 +28,20 @@ typedef NS_ENUM(NSInteger, SearchCategory){
 @property (nonatomic, copy) NSArray* keywords;
 @property (nonatomic) SearchSortType sortType;
 @property (nonatomic) SearchCategory categrory;
+//http://b.189mm.com/rest/supply?pn=1&keywords=&minprice=&maxprice=&brands=&colors=&network=&volume=&sort=
+@property (nonatomic) float minPrice;
+@property (nonatomic) float maxPrice;
+@property (nonatomic, copy) NSArray* brands;
+@property (nonatomic, copy) NSArray* colors;
+@property (nonatomic, copy) NSArray* networks;
+@property (nonatomic, copy) NSArray* volume;
+
 
 
 -(instancetype)initWithPageNumber:(NSUInteger)pageNumber andKeywords:(NSArray*)keywords andSorts:(SearchSortType)sortType andCategory:(SearchCategory)categrory;
+
+-(instancetype)initWithPageNumber:(NSUInteger)pageNumber andKeywords:(NSArray*)keywords andSorts:(SearchSortType)sortType andCategory:(SearchCategory)categrory andMinPrice:(float)minPrice andMaxPrice:(float)maxPrice  andBrands:(NSArray*)brands andColors:(NSArray*)colors andNetworks:(NSArray*)networks andVolumes:(NSArray*)volume;
+
 
 @end
 

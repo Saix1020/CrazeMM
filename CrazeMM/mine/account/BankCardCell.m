@@ -2,7 +2,7 @@
 //  BankCardCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/21.
+//  Created by Mao Mao on 16/5/21.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
     self.defaultCheckBox.onCheckColor = [UIColor whiteColor];
     self.defaultCheckBox.animationDuration = 0.f;
     self.defaultCheckBox.boxType = BEMBoxTypeSquare;
+    
 //    self.defaultCheckBox.userInteractionEnabled = NO;
     
     self.cardView.backgroundColor = [UIColor UIColorFromRGB:0x2391E8];

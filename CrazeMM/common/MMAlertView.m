@@ -2,7 +2,7 @@
 //  MMAlertView.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/29.
+//  Created by Mao Mao on 16/4/29.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -15,6 +15,8 @@
 //    self.title.adjustsFontSizeToFitWidth = YES;
 //    self.message.adjustsFontSizeToFitWidth = YES;
 //    self.detail.adjustsFontSizeToFitWidth = YES;
+    self.AlertMsgLabel.adjustsFontSizeToFitWidth = YES;
+    self.AlertMsgLabel.numberOfLines = 0;
 }
 
 @end

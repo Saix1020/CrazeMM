@@ -2,7 +2,7 @@
 //  LoginViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/21.
+//  Created by Mao Mao on 16/4/21.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 #import "HttpLoginRequest.h"
 #import "HttpRandomCodeRequest.h"
 #import "SignWithPicCapViewController.h"
-
+#import "HttpUserInfo.h"
 
 #define kLeadingPad 16.f
 #define kTailingPad 16.f
@@ -122,7 +122,7 @@
     self.rememberMeCheckBox.boxType = BEMBoxTypeSquare;
     self.rememberMeCheckBox.onFillColor = [UIColor clearColor];
     self.rememberMeCheckBox.onAnimationType = BEMAnimationTypeOneStroke;
-    self.rememberMeCheckBox.animationDuration = 0.f;
+    self.rememberMeCheckBox.animationDuration = 0.f; 
     self.rememberMeCheckBox.lineWidth = 1;
     
     self.rememberMeLabel.text = @"下次自动登录";
@@ -135,13 +135,14 @@
     self.wechartIcon.hidden = YES;
     self.line3.hidden = YES;
     
+    self.userNameField.placeholder = @"请输入用户名/手机/邮箱";
     self.userNameRightView = [[UIButton alloc] init];
     [self.userNameRightView setImage:[UIImage imageNamed:@"icon_pulldown"] forState:UIControlStateNormal];
     self.userNameField.rightView = self.userNameRightView;
     [self.userNameRightView sizeToFit];
     self.userNameField.rightViewMode = UITextFieldViewModeAlways;
 
-    
+    self.passwordField.placeholder = @"请输入密码";
     self.passwordRightView = [[UIButton alloc] init];
     [self.passwordRightView setTitle:@"忘记密码?" forState:UIControlStateNormal];
     [self.passwordRightView setTitleColor:RGBCOLOR(150, 150, 150) forState:UIControlStateNormal];
@@ -166,7 +167,7 @@
     self.registerButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         @strongify(self);
 //        [self.registerButton becomeFirstResponder];
-        
+        [self.view endEditing:YES];
         self.signVC = [[SignViewController alloc] init];
         [self.navigationController pushViewController:self.signVC animated:YES];
         
@@ -215,6 +216,8 @@
         
         
         @strongify(self);
+        [self.view endEditing:YES];
+
         // store the user name
         NSMutableArray* accountHistoryArray = [[[NSUserDefaults standardUserDefaults] valueForKey:@"AccountHistory"] mutableCopy];
         if(accountHistoryArray == nil){
@@ -237,19 +240,38 @@
                                                                andPassword:self.passwordField.text
                                                                andRemember:self.rememberMeCheckBox.on];
         [self showProgressIndicatorWithTitle:@"正在登陆..."];
-        [request request2].then(^(id responseObject, AFHTTPRequestOperation *operation){
+        [request login].then(^(id responseObject){
 //            [self dismissProgressIndicator];
 
             if (request.response.ok) {
-                [UserCenter defaultCenter].userName = self.userNameField.text;
-                [[UserCenter defaultCenter] setLogined];
-                [self.navigationController popViewControllerAnimated:YES];
                 
-                if (self.rememberMeCheckBox.on) {
-                    [[UserCenter defaultCenter] saveToKeychainWithUserName:self.userNameField.text andPassword:self.passwordField.text];
-                }
-//                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
 
+//                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessBroadCast object:nil userInfo:nil];
+                [sharedApplicationDelegate() getGlobSharedInstances];
+                HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
+                [userInfoRequest request]
+                .then(^(id responseObj){
+                    NSLog(@"%@", responseObj);
+                    if (userInfoRequest.response.ok) {
+                        HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)userInfoRequest.response;
+                        [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
+                        [[UserCenter defaultCenter] setLogined];
+                        if (self.rememberMeCheckBox.on) {
+                            NSString* userName = [UserCenter defaultCenter].displayName;
+                            if ([userName containsString:@"******"]) {
+                                userName = self.userNameField.text;
+                            }
+                            [[UserCenter defaultCenter] saveToKeychainWithUserName:userName andPassword:self.passwordField.text];
+                        }
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                    else {
+                        [self showAlertViewWithMessage:userInfoRequest.response.errorMsg];
+                    }
+                }).catch(^(NSError *error){
+                    [self showAlertViewWithMessage:error.localizedDescription];
+                })
+                ;
 
             }
             else {
@@ -269,12 +291,17 @@
     }];
     
     
-                      
+    // TODO
+    // WYPopoverController is better than ZZPopoverWindow
     self.userNameRightView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         @strongify(self);
         self.suggestVC = [[SuggestViewController alloc] init];
         NSArray* accountHistoryArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"AccountHistory"];
+        // show most 5 accounts in history
+        if(accountHistoryArray.count>5){
+            accountHistoryArray = [accountHistoryArray subarrayWithRange:NSMakeRange(0, 5)];
+        }
         if (accountHistoryArray.count != 0) {
             self.suggestVC.suggestedStrings = accountHistoryArray;
             self.suggestVC.delegate = self;

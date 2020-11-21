@@ -2,7 +2,7 @@
 //  PayDetailDTO.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/15.
+//  Created by Mao Mao on 16/5/15.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -25,6 +25,8 @@
 @property (nonatomic, copy) NSString* BRANCHID;
 @property (nonatomic) NSInteger TYPE;
 @property (nonatomic, copy) NSString* TXCODE;
+@property (nonatomic, copy) NSString* TIMEOUT;
+
 
 -(instancetype)initWith:(NSDictionary *)dict;
 -(NSString*)formUrlencodedString;

@@ -2,7 +2,7 @@
 //  MineSupplyEditViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/18.
+//  Created by Mao Mao on 16/5/18.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -27,7 +27,6 @@
 
 @property (nonatomic, strong) RACDisposable* watcher;
 
-@property (nonatomic) BOOL enableSubEdit;
 @property (nonatomic) NSNumber* enableSubEditX;
 
 @end
@@ -57,7 +56,8 @@
                                                           RACObserve(self, enableSubEditX)
                                                           ]
                                         reduce:^(NSString *price, NSString *stock, NSString *time, NSNumber *enableSubEdit) {
-                                                              return @(price.length > 0 && stock.length > 0 && time.length>0 && enableSubEdit.boolValue);
+                                                              return @(price.length > 0 && stock.length > 0 && time.length>0 && enableSubEdit.boolValue &&
+                                            stock.intValue>0);
                                                           }];
         
         [enableLoginSignal subscribeNext:^(NSNumber* enable){
@@ -277,11 +277,31 @@
     return _selectionTableView;
 }
 
+-(instancetype)initWithId:(NSInteger)sid
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
+-(instancetype)initWithModifyGoodInfo:(GoodCreateInfo*)modifyGoodInfo
+{
+    self = [super init];
+    if (self) {
+        self.modifyGoodInfo = modifyGoodInfo;
+    }
+    
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"新建供货信息";
+    self.navigationItem.title = self.modifyGoodInfo? @"修改供货信息" : @"新增供货信息";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"cancel_m" image] style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)];
     
@@ -316,90 +336,257 @@
                        ];
     
     self.selectionDataSource = [[NSMutableArray alloc] init];
-    HttpBrandQueryRequest* brandRequest = [[HttpBrandQueryRequest alloc] init];
-    [brandRequest request]
-    .then(^(id responseObj){
-        NSLog(@"%@", responseObj);
-        HttpBrandQueryResponse* response = (HttpBrandQueryResponse*)brandRequest.response;
-        if (response.ok) {
-            self.goodBrands = response.brandDtos;
-        }
-    })
-    .catch(^(NSError* error){
-        [self showAlertViewWithMessage:error.localizedDescription];
-    });
     
-    self.enableSubEdit = NO;
+    if (!self.modifyGoodInfo) {
+        HttpBrandQueryRequest* brandRequest = [[HttpBrandQueryRequest alloc] init];
+        [brandRequest request]
+        .then(^(id responseObj){
+            NSLog(@"%@", responseObj);
+            HttpBrandQueryResponse* response = (HttpBrandQueryResponse*)brandRequest.response;
+            if (response.ok) {
+                self.goodBrands = response.brandDtos;
+            }
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
+        self.enableSubEdit = NO;
+    }
+    
+    
 }
+
+-(void) setModifyGoodInfo:(GoodCreateInfo *)modifyGoodInfo
+{
+    _modifyGoodInfo = modifyGoodInfo;
+    _currentGoodDetail = modifyGoodInfo.brandInfo;
+    self.goodInfos = [@[_currentGoodDetail] copy];
+    
+    self.brandCell.regionLabel.text = modifyGoodInfo.brandName;
+    self.brandCell.userInteractionEnabled = NO;
+    self.modelCell.regionLabel.text = _currentGoodDetail.model;
+    self.modelCell.userInteractionEnabled = NO;
+    self.modelCell.regionLabel.textColor = [UIColor lightGrayColor];
+    self.brandCell.regionLabel.textColor = [UIColor lightGrayColor];
+
+    self.standardCell.regionLabel.text = modifyGoodInfo.network;
+    
+    self.cycleCell.regionLabel.text = [NSString stringWithFormat:@"%ld%@", modifyGoodInfo.deadline>0?modifyGoodInfo.deadline:72, modifyGoodInfo.deadline>0?@"小时":@"小时以上"];
+    
+    self.timeCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.duration];
+    
+    self.colorCell.regionLabel.text = modifyGoodInfo.color;
+    self.capacityCell.regionLabel.text = modifyGoodInfo.volume;
+    self.standardCell.regionLabel.text = modifyGoodInfo.network;
+    self.hasIMEICell.swith.on = modifyGoodInfo.isSerial;
+    self.isIntactCell.swith.on = modifyGoodInfo.isOriginal;
+    self.hasBoxCell.swith.on = modifyGoodInfo.isOriginalBox;
+    self.isBrushedCell.swith.on = modifyGoodInfo.isBrushMachine;
+    self.otherCell.checkBox.on = modifyGoodInfo.isSplit;
+    self.otherCell.checkBox2.on = modifyGoodInfo.isAnoy;
+    self.priceCell.textFieldCell.text = [NSString stringWithFormat:@"%.2f", modifyGoodInfo.price];
+
+    if(modifyGoodInfo.isStockedGood) {
+        self.stockCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.quantity];
+        self.standardCell.userInteractionEnabled = NO;
+        self.cycleCell.userInteractionEnabled = NO;
+        self.timeCell.userInteractionEnabled = NO;
+        self.colorCell.userInteractionEnabled = NO;
+        self.capacityCell.userInteractionEnabled = NO;
+        self.standardCell.userInteractionEnabled = NO;
+        self.hasIMEICell.swith.userInteractionEnabled = NO;
+        self.isIntactCell.swith.userInteractionEnabled = NO;
+        self.hasBoxCell.swith.userInteractionEnabled = NO;
+        self.otherCell.checkBox.userInteractionEnabled = NO;
+        self.otherCell.checkBox2.userInteractionEnabled = NO;
+        self.isBrushedCell.swith.userInteractionEnabled = NO;
+        
+        self.colorCell.regionLabel.textColor = [UIColor lightGrayColor];
+        self.standardCell.regionLabel.textColor = [UIColor lightGrayColor];
+        self.capacityCell.regionLabel.textColor = [UIColor lightGrayColor];
+        self.cycleCell.regionLabel.textColor = [UIColor lightGrayColor];
+        self.timeCell.textFieldCell.textColor = [UIColor lightGrayColor];
+        
+        if(modifyGoodInfo.isMortgage){ //抵押
+            self.stockCell.userInteractionEnabled = NO;
+            self.stockCell.textFieldCell.textColor = [UIColor lightGrayColor];
+        }
+    }
+    else {
+        self.stockCell.textFieldCell.text = [NSString stringWithFormat:@"%ld", modifyGoodInfo.quantity];
+
+    }
+
+    self.enableSubEdit = YES;
+
+}
+
+
+-(BaseHttpRequest*)createGood
+{
+    GoodCreateInfo* goodCreateInfo = [[GoodCreateInfo alloc] init];
+    for (GoodBrandDTO* brandDto in self.goodBrands) {
+        if ([brandDto.name isEqualToString:self.brandCell.regionLabel.text]) {
+            goodCreateInfo.brand = brandDto.id;
+        }
+    }
+    goodCreateInfo.id = self.currentGoodDetail.id;
+    
+    goodCreateInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
+    
+    
+    if(!(goodCreateInfo.quantity>0)){
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存必须大于0"]];
+        return nil;
+    }
+
+    
+    NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
+    switch (cycleStringIndex) {
+        case 0:
+            goodCreateInfo.deadline = 24;
+            break;
+        case 1:
+            goodCreateInfo.deadline = 48;
+            break;
+        case 2:
+            goodCreateInfo.deadline = 72;
+            break;
+        default:
+            goodCreateInfo.deadline = -1;
+            break;
+    }
+    
+    goodCreateInfo.duration = self.timeCell.textFieldCell.text.integerValue;
+    goodCreateInfo.price = self.priceCell.textFieldCell.text.integerValue;
+    goodCreateInfo.color = self.colorCell.regionLabel.text;
+    goodCreateInfo.volume = self.capacityCell.regionLabel.text;
+    goodCreateInfo.network = self.standardCell.regionLabel.text;
+    goodCreateInfo.isSerial = self.hasIMEICell.swith.on;
+    goodCreateInfo.isOriginal = self.isIntactCell.swith.on;
+    goodCreateInfo.isOriginalBox = self.hasBoxCell.swith.on;
+    goodCreateInfo.isBrushMachine = self.isBrushedCell.swith.on;
+    goodCreateInfo.isSplit = self.otherCell.checkBox.on;
+    goodCreateInfo.isAnoy = self.otherCell.checkBox2.on;
+
+    HttpSaveSupplyInfoRequest* request = [[HttpSaveSupplyInfoRequest alloc] initWithGoodInfo:goodCreateInfo];
+    
+    return request;
+}
+
+-(BaseHttpRequest*)updateGood
+{
+    if(self.modifyGoodInfo.isStockedGood && !self.modifyGoodInfo.isMortgage){
+        
+        
+        if(self.modifyGoodInfo.presale == 0){ //如果presale为0, 永远失败
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"当前供货没有可售商品"]];
+            return nil;
+        }
+        
+        if([self.stockCell.textFieldCell.text integerValue]>self.modifyGoodInfo.presale){
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存不能大于%ld",self.modifyGoodInfo.presale]];
+            return nil;
+        }
+    }
+    else {
+        if(!([self.stockCell.textFieldCell.text integerValue]>0)){
+            [self showAlertViewWithMessage:[NSString stringWithFormat:@"库存必须大于0"]];
+            return nil;
+        }
+    }
+    self.modifyGoodInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
+    
+
+    NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
+    switch (cycleStringIndex) {
+        case 0:
+            self.modifyGoodInfo.deadline = 24;
+            break;
+        case 1:
+            self.modifyGoodInfo.deadline = 48;
+            break;
+        case 2:
+            self.modifyGoodInfo.deadline = 72;
+            break;
+        default:
+            self.modifyGoodInfo.deadline = -1;
+            break;
+    }
+    
+    self.modifyGoodInfo.duration = self.timeCell.textFieldCell.text.integerValue;
+    self.modifyGoodInfo.price = self.priceCell.textFieldCell.text.integerValue;
+    self.modifyGoodInfo.color = self.colorCell.regionLabel.text;
+    self.modifyGoodInfo.volume = self.capacityCell.regionLabel.text;
+    self.modifyGoodInfo.network = self.standardCell.regionLabel.text;
+    self.modifyGoodInfo.isSerial = self.hasIMEICell.swith.on;
+    self.modifyGoodInfo.isOriginal = self.isIntactCell.swith.on;
+    self.modifyGoodInfo.isOriginalBox = self.hasBoxCell.swith.on;
+    self.modifyGoodInfo.isBrushMachine = self.isBrushedCell.swith.on;
+    self.modifyGoodInfo.isSplit = self.otherCell.checkBox.on;
+    self.modifyGoodInfo.isAnoy = self.otherCell.checkBox2.on;
+
+    
+    HttpModifySupplyInfoRequest* request = [[HttpModifySupplyInfoRequest alloc] initWithGoodInfo:self.modifyGoodInfo];
+    
+    return  request;
+}
+
 
 -(void)saveNewGood:(UIButton*)sender
 {
     [self.view endEditing:YES];
+    
     @weakify(self);
-    [self showAlertViewWithMessage:@"您确认发布该供货信息吗?"
-                    withOKCallback:^(id x){
-                        @strongify(self);
-                        GoodCreateInfo* goodCreateInfo = [[GoodCreateInfo alloc] init];
-                        for (GoodBrandDTO* brandDto in self.goodBrands) {
-                            if ([brandDto.name isEqualToString:self.brandCell.regionLabel.text]) {
-                                goodCreateInfo.brand = brandDto.id;
-                            }
-                        }
-                        
-                        goodCreateInfo.id = self.currentGoodDetail.id;
-                        goodCreateInfo.quantity = [self.stockCell.textFieldCell.text integerValue];
-                        NSInteger cycleStringIndex = [self.cycleStringArray indexOfObject:self.cycleCell.regionLabel.text];
-                        switch (cycleStringIndex) {
-                            case 0:
-                                goodCreateInfo.deadline = 24;
-                                break;
-                            case 1:
-                                goodCreateInfo.deadline = 48;
-                                break;
-                            case 2:
-                                goodCreateInfo.deadline = 72;
-                                break;
-                            default:
-                                goodCreateInfo.deadline = -1;
-                                break;
-                        }
-                        
-                        goodCreateInfo.duration = self.timeCell.textFieldCell.text.integerValue;
-                        goodCreateInfo.price = self.priceCell.textFieldCell.text.integerValue;
-                        goodCreateInfo.color = self.colorCell.regionLabel.text;
-                        goodCreateInfo.volume = self.capacityCell.regionLabel.text;
-                        goodCreateInfo.network = self.standardCell.regionLabel.text;
-                        goodCreateInfo.isSerial = self.hasIMEICell.swith.on;
-                        goodCreateInfo.isOriginal = self.isIntactCell.swith.on;
-                        goodCreateInfo.isOriginalBox = self.hasBoxCell.swith.on;
-                        goodCreateInfo.isBrushMachine = self.isBrushedCell.swith.on;
-                        goodCreateInfo.isSplit = self.otherCell.checkBox.on;
-                        goodCreateInfo.isAnoy = self.otherCell.checkBox2.on;
-                        
-                        
-                        HttpSaveSupplyInfoRequest* request = [[HttpSaveSupplyInfoRequest alloc] initWithGoodInfo:goodCreateInfo];
-                        [request request]
-                        .then(^(id responseObj){
-                            if (!request.response.ok) {
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                            else {
-                                if ([self.delegate respondsToSelector:@selector(editSupplyGoodSuccess)]) {
-                                    [self showAlertViewWithMessage:@"供货信息发布成功"];
-                                    [self.delegate editSupplyGoodSuccess];
-                                    [self.navigationController popViewControllerAnimated:YES];
-                                }
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        });
-                    }
-                 andCancelCallback:^(id x){
-                     
+    if(self.modifyGoodInfo){
+        BaseHttpRequest* request = [self updateGood];
+        if(!request){
+            return;
+        }
+        
+        [self invokeHttpRequest:request
+                andConfirmTitle:@"您确认修改该供货信息吗?"
+                andSuccessTitle:nil
+             andSuccessCallback:^(BaseHttpRequest* request, NSString* string){
+                 @strongify(self);
+                 
+                 
+                 [self showAlertViewWithMessage:@"供货信息修改成功" withCallback:^(id x){
+                     if([self.navigationController isKindOfClass:[BaseNavigationController class]]){
+                         UIViewController* markedVC = ((BaseNavigationController*)self.navigationController).markedVC;
+                         if ([markedVC respondsToSelector:@selector(editSupplyGoodSuccess)]) {
+                             [markedVC performSelector:@selector(editSupplyGoodSuccess)];
+                         }
+                         [(BaseNavigationController*)self.navigationController popToMarkedViewControllerAnimated:YES];
+                         
+
+                     }
+                     else {
+                         [self.navigationController popViewControllerAnimated:YES];
+                     }
                  }];
-    
-    
+             }
+              andFailedCallback:nil
+         ];
+
+    }
+    else {
+        [self invokeHttpRequest:[self createGood]
+                andConfirmTitle:@"您确认发布该供货信息吗?"
+                andSuccessTitle:@"供货信息发布成功"
+             andSuccessCallback:^(BaseHttpRequest* request, NSString* string){
+                 @strongify(self);
+                 if ([self.delegate respondsToSelector:@selector(editSupplyGoodSuccess)]) {
+                     [self.delegate editSupplyGoodSuccess];
+                 }
+                 
+                 [self showAlertViewWithMessage:@"供货信息发布成功" withCallback:^(id x){
+                     [self.navigationController popViewControllerAnimated:YES];
+                 }];
+             }
+              andFailedCallback:nil
+         ];
+    }
 }
 
 -(NSArray*)cycleStringArray
@@ -425,21 +612,28 @@
 -(void)setCurrentGoodDetail:(GoodInfoDTO *)currentGoodDetail
 {
     _currentGoodDetail = currentGoodDetail;
-    self.modelCell.regionLabel.text = currentGoodDetail.model;
-    self.colorCell.regionLabel.text = currentGoodDetail.color.firstObject;
-    self.capacityCell.regionLabel.text = currentGoodDetail.volume.firstObject;
-    self.standardCell.regionLabel.text = currentGoodDetail.network.firstObject;
+//    if(!self.modifyGoodInfo) {
+        self.modelCell.regionLabel.text = currentGoodDetail.model;
+        self.colorCell.regionLabel.text = currentGoodDetail.color.firstObject;
+        self.capacityCell.regionLabel.text = currentGoodDetail.volume.firstObject;
+        self.standardCell.regionLabel.text = currentGoodDetail.network.firstObject;
+//    }
 
 }
 
 -(void)setEnableSubEdit:(BOOL)enableSubEdit
 {
     _enableSubEdit = enableSubEdit;
-    self.modelCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
-    self.colorCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
-    self.capacityCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
-    self.standardCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]: [UIColor lightGrayColor];
-    
+    if(!self.modifyGoodInfo){
+        self.modelCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
+    }
+    if(!self.modifyGoodInfo.isStockedGood){
+        self.colorCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
+        self.capacityCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]:[UIColor lightGrayColor];
+        self.standardCell.regionLabel.textColor = enableSubEdit?[UIColor blackColor]: [UIColor lightGrayColor];
+        
+        
+    }
     self.enableSubEditX = @(enableSubEdit);
     
 }
@@ -604,7 +798,7 @@
         {
             self.selectionDataSource = [self.cycleStringArray mutableCopy];
             selectedIndex = [self.selectionDataSource indexOfObject:self.cycleCell.regionLabel.text];
-            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.selectionDataSource andSelectedIndex:selectedIndex andTitle:@"请选择供货周期"];
+            selectionVC = [[SelectionViewController alloc] initWithDataSource:self.selectionDataSource andSelectedIndex:selectedIndex andTitle:[NSString stringWithFormat:@"请选择%@", self.cycleCell.titleLabel.text]];
             selectionVC.delegate = self;
             
             [self.navigationController pushViewController:selectionVC animated:YES];

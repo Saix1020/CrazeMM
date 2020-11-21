@@ -2,7 +2,7 @@
 //  SupplyProductViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/10.
+//  Created by Mao Mao on 16/5/10.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -31,11 +31,7 @@
 {
     self = [super initWithProductDTO:dto];
     if (self) {
-//        self.supplyOrBuyButton.hidden = YES;
-//        self.payButton.hidden = NO;
-//        self.orderButton.hidden = NO;
-        
-        if (!self.productDto.isActive) {
+        if (!self.productDto.isActive || self.productDto.millisecond<0) {
             self.payButton.enabled = NO;
             self.orderButton.enabled = NO;
             self.payButton.backgroundColor = [UIColor clearColor];
@@ -73,9 +69,6 @@
             else {
                 [self showAlertViewWithMessage:@"请输入正确的数量!"];
             }
-            
-            //            PayViewController* payVC = [[PayViewController alloc] init];
-            //            [self.navigationController pushViewController:payVC animated:YES];
             
             return [RACSignal empty];
         }];
@@ -140,14 +133,6 @@
         @weakify(self);
         _payButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
-//            HttpAddIntentionRequest* request = [[HttpAddIntentionRequest alloc] initWithSid:self.productDetailDto.id];
-//            [request request]
-//            .then(^(id responseObject){
-//                
-//            })
-//            .catch(^(NSError* error){
-//                
-//            });
             [HttpAddIntentionRequest addIntention:self.productDetailDto.id andType:kTypeSupply];
             if ([UserCenter defaultCenter].isLogined) {
                 self.modalView.presentAnimationStyle = SlideInUp;
@@ -305,6 +290,9 @@
                 if (orderStatusRequest.response.ok) {
                     HttpOrderStatusResponse* orderStatusResponse = (HttpOrderStatusResponse*)orderStatusRequest.response;
                     PayViewController* payVC = [[PayViewController alloc] initWithOrderStatusDTO:orderStatusResponse.orderStatusDto];
+                    if([self.navigationController isKindOfClass:[BaseNavigationController class]]){
+                        ((BaseNavigationController*)self.navigationController).markedVC = self;
+                    }
                     [self.navigationController pushViewController:payVC animated:YES];
                 }
             });

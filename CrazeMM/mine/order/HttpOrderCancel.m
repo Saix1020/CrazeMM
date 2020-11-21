@@ -2,7 +2,7 @@
 //  HttpOrderCancel.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/13.
+//  Created by Mao Mao on 16/5/13.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -26,7 +26,8 @@
 
 -(NSString*)url
 {
-    NSString* url = [NSString stringWithFormat:@"/rest/order/cancel/%ld", self.orderId];
+    // change /rest/order/cancel/%ld to /rest/order/orderCancel/%ld
+    NSString* url = [NSString stringWithFormat:@"/rest/order/orderCancel/%ld", self.orderId];
     return COMB_URL(url);
 }
 

@@ -2,7 +2,7 @@
 //  MineSellProductViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/24.
+//  Created by Mao Mao on 16/4/24.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -18,6 +18,9 @@
 #import "HttpOrderRemove.h"
 #import "HttpOrderOperation.h"
 #import "OrderSendViewController.h"
+#import "HttpOrderCancel.h"
+#import "OrderListFilterViewController.h"
+#import "TTModalView.h"
 
 
 #define kSegmentCellHeight 40.f
@@ -26,7 +29,6 @@
 
 @interface OrderListViewController ()
 
-@property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) SegmentedCell* segmentCell;
 @property (nonatomic, strong) CommonBottomView* commonBottomView;
 @property (nonatomic) NSInteger currentSegmentIndex;
@@ -48,18 +50,75 @@
 
 @property (nonatomic) BOOL isRefreshing;
 
+@property (nonatomic, strong) UIView* maskView;
+@property (nonatomic, strong) TTModalView *modalView;
+@property (nonatomic, strong) OrderListFilterViewController *filterVC;
+@property (nonatomic, strong) UINavigationController *modalNav;
+
+@property (nonatomic, strong) UIButton* filterButton;
+@property (nonatomic) UIView* emptyView;
+
 @end
 
 @implementation OrderListViewController
 
-//-(UITableViewCell*)emptyCell
-//{
-//    if (!_emptyCell) {
-//        _emptyCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 0, [UIScreen mainScreen].bounds.size.height)];
-//        
-//        _emptyCell
-//    }
-//}
+-(UIView*)maskView
+{
+    if (!_maskView) {
+        _maskView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _maskView.backgroundColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.6];
+        
+    }
+    return _maskView;
+}
+
+-(TTModalView*)modalView
+{
+    if (!_modalView) {
+        _modalView = [[TTModalView alloc] initWithContentView:nil delegate:nil];;
+        _modalView.modalWindowLevel = UIWindowLevelNormal;
+        _modalView.isCancelAble = NO;
+        
+        _modalView.contentView = self.modalNav.view;
+        
+        _modalView.presentAnimationStyle = SlideInRight;
+        _modalView.dismissAnimationStyle = SlideOutRight ;
+        
+    }
+    
+    return _modalView;
+}
+
+-(UINavigationController*)modalNav
+{
+    if (!_modalNav) {
+        _modalNav = [[UINavigationController alloc] initWithRootViewController:self.filterVC];
+    }
+    return _modalNav;
+}
+
+-(OrderListFilterViewController*)filterVC
+{
+    if (!_filterVC) {
+        _filterVC = [[OrderListFilterViewController alloc] init];
+        _filterVC.delegate = self;
+        
+    }
+    return _filterVC;
+}
+
+-(UIView*)emptyView
+{
+    if (!_emptyView){
+        _emptyView = [UINib viewFromNib:@"SearchEmpty"];
+        _emptyView.frame = CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [self.view addSubview:_emptyView];
+        _emptyView.backgroundColor = [UIColor clearColor];
+        _emptyView.hidden = YES;
+    }
+    
+    return _emptyView;
+}
 
 -(MMOrderListStyle)orderListStyle
 {
@@ -120,9 +179,18 @@
         [self.view addSubview:_commonBottomView];
         [_commonBottomView.confirmButton addTarget:self action:@selector(handleButtomButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         _commonBottomView.selectAllCheckBox.delegate = self;
+        
+        if (![self needCommonBottomView]) {
+            _commonBottomView.hidden = YES;
+        }
     }
     
     return _commonBottomView;
+}
+
+-(BOOL)needCommonBottomView
+{
+    return YES;
 }
 
 -(SegmentedCell*)segmentCell
@@ -133,9 +201,19 @@
         _segmentCell.height = @(44.0f);
         _segmentCell.segment.delegate = self;
         [self.view addSubview:_segmentCell];
+        
+        if (![self needSegmentCell]) {
+            _segmentCell.hidden = YES;
+            _segmentCell.height = @(0);
+        }
     }
     
     return _segmentCell;
+}
+
+-(BOOL)needSegmentCell
+{
+    return YES;
 }
 
 -(instancetype)initWithOrderType:(MMOrderType)orderType andSubType:(MMOrderSubType)subType
@@ -167,11 +245,35 @@
     return self;
 }
 
+-(BOOL)isMixed:(NSArray*)selectedDtos
+{
+    if (selectedDtos.count==0) {
+        return NO;
+    }
+    
+    OrderDetailDTO* firstDto = selectedDtos[0];
+    BOOL hasStock = NO;
+    if (firstDto.stock) {
+        hasStock = YES;
+    }
+    
+    for (OrderDetailDTO* dto in selectedDtos){
+        if (dto.stock) {
+            if (!hasStock) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
 -(void)handleButtomButtonClicked:(UIButton*)send
 {
     NSInteger segmentIndex = self.segmentCell.segment.currentIndex;
     NSMutableArray* operatorDtos = [[NSMutableArray alloc] init];
     NSMutableArray* operatorDtoIds = [[NSMutableArray alloc] init];
+    
     for (OrderDetailDTO* dto in self.dataSource) {
         if (dto.selected) {
             [operatorDtos addObject:dto];
@@ -193,6 +295,12 @@
                             [self showAlertViewWithMessage:@"请选择待付款的商品"];
                             break;
                         }
+                        
+                        if ([self isMixed:operatorDtos]) {
+                            [self showAlertViewWithMessage:@"不支持将卖家发货的订单与库存订单合并支付"];
+                            break;
+                        }
+                        
                         PayViewController* payVC = [[PayViewController alloc] initWithOrderDetailDTOs:operatorDtos];
                         [self.navigationController pushViewController:payVC animated:YES];
                     }
@@ -360,6 +468,11 @@
     }
 }
 
+//-(BOOL)isMixed:(NSArray*)selectedOrders
+//{
+//    
+//}
+
 -(void)setIsRefreshing:(BOOL)isRefreshing
 {
     _isRefreshing = isRefreshing;
@@ -397,11 +510,10 @@
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
-
-    
+    if([self needSegmentCell]){
+        self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    }
     
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -440,6 +552,24 @@
     [self setOrderStyleWithSegmentIndex:0];
     [self.segmentCell setTitles:[self getSegmentTitels]];
     [self getOrderList];
+    
+    
+    self.filterButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.filterButton setImage:[@"filter" image] forState:UIControlStateNormal];
+    self.filterButton.frame = CGRectMake(0, 0, 24, 24);
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.filterButton];
+    
+    
+    
+    self.filterButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
+        @strongify(self);
+        [self.view addSubview:self.maskView];
+        [self.modalView showWithDidAddContentBlock:^(UIView *contentView) {
+            contentView.frame = CGRectMake(50, 0, [UIScreen mainScreen].bounds.size.width-50, [UIScreen mainScreen].bounds.size.height);
+        }];
+        return [RACSignal empty];
+    }];
+
 
 }
 
@@ -447,7 +577,10 @@
 {
     [super viewWillLayoutSubviews];
 //    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    self.commonBottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
+    self.commonBottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [self needCommonBottomView]?[CommonBottomView cellHeight]:0);
+    if (![self needCommonBottomView]) {
+        self.commonBottomView.hidden = YES;
+    }
 }
 
 -(void)viewDidLayoutSubviews
@@ -511,7 +644,15 @@
 
 -(AnyPromise*)getOrderList
 {
-    HttpOrderRequest* orderRequest = [[HttpOrderRequest alloc]initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
+    HttpOrderRequest* orderRequest;
+    
+    if (self.searchConditions) {
+        orderRequest = [[HttpOrderRequest alloc] initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1 andConditions:self.searchConditions];
+    }
+    else {
+        orderRequest = [[HttpOrderRequest alloc] initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
+    }
+    
     return [orderRequest request]
     .then(^(id responseObject){
         NSLog(@"%@", responseObject);
@@ -639,6 +780,12 @@
          (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))
         ) {
             cell.reactiveButton.hidden = NO;
+        [cell.reactiveButton setTitle:@"重新激活" forState:UIControlStateNormal];
+
+    }
+    else if((self.currentSegmentIndex==0 && (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))){
+        cell.reactiveButton.hidden = NO;
+        [cell.reactiveButton setTitle:@"撤销" forState:UIControlStateNormal];
     }
     else {
         cell.reactiveButton.hidden = YES;
@@ -656,7 +803,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == self.dataSource.count) {
-        return self.commonBottomView.height;
+        return [self needCommonBottomView] ? self.commonBottomView.height : 0;
     }
     
     return [OrderListCell cellHeight]; //WaitForDeliverCell has the same height with WaitForPayCell
@@ -669,7 +816,8 @@
         return;
     }
     
-    OrderDetailViewController* orderDetailVC = [[OrderDetailViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]];
+    OrderDetailViewController* orderDetailVC = [OrderDetailViewController initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]];
+    /*[[OrderDetailViewController alloc] initWithOrderStyle:self.orderListStyle andOrder:self.dataSource[indexPath.row]]*/;
     orderDetailVC.delegate = self;
     [self.navigationController pushViewController:orderDetailVC animated:YES];
 }
@@ -681,6 +829,8 @@
     if (segment.prevIndex == index) {
         return;
     }
+    self.searchConditions = nil;
+    [self.filterVC resetSearchCond];
     [self setOrderStyleWithSegmentIndex:index];
     [self clearOrderList];
     [self getOrderList];
@@ -832,28 +982,63 @@
 #pragma -- mark order list cell delegate
 -(void)reactiveButtonClicked:(OrderDetailDTO *)orderDetailDTO
 {
-    @weakify(self);
-    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要激活订单: %ld 吗?", orderDetailDTO.id]
-                    withOKCallback:^(id x){
-                        @strongify(self);
-                        HttpOrderReactiveRequest* request = [[HttpOrderReactiveRequest alloc] initWithOid:orderDetailDTO.id];
-                        [request request]
-                        .then(^(id responseObj){
-                            if (request.response.ok) {
-                                [self.dataSource removeObject:orderDetailDTO];
-                                [self.tableView reloadData];
-                            }
-                            else {
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        });
-                    }
-                 andCancelCallback:^(id x){
-                     
-                 }];
+    
+    if ((self.currentSegmentIndex == 1 &&
+         (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))
+        ) {
+        @weakify(self);
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要激活订单: %ld 吗?", orderDetailDTO.id]
+                        withOKCallback:^(id x){
+                            @strongify(self);
+                            HttpOrderReactiveRequest* request = [[HttpOrderReactiveRequest alloc] initWithOid:orderDetailDTO.id];
+                            [request request]
+                            .then(^(id responseObj){
+                                if (request.response.ok) {
+                                    [self.dataSource removeObject:orderDetailDTO];
+                                    [self.tableView reloadData];
+                                    [self showAlertViewWithMessage:@"激活成功"];
+                                }
+                                else {
+                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                }
+                            })
+                            .catch(^(NSError* error){
+                                [self showAlertViewWithMessage:error.localizedDescription];
+                            });
+                        }
+                     andCancelCallback:^(id x){
+                         
+                     }];
+    }
+    else {
+        
+        @weakify(self);
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要撤销订单: %ld 吗?", orderDetailDTO.id]
+                        withOKCallback:^(id x){
+                            @strongify(self);
+                            HttpOrderCancelRequest* request = [[HttpOrderCancelRequest alloc] initWithOderId:orderDetailDTO.id];
+                            [request request]
+                            .then(^(id responseObj){
+                                NSLog(@"%@", responseObj);
+                                if (request.response.ok) {
+                                    [self.dataSource removeObject:orderDetailDTO];
+                                    [self.tableView reloadData];
+                                    [self showAlertViewWithMessage:@"撤销成功"];
+                                }
+                                else {
+                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                }
+                            })
+                            .catch(^(NSError* error){
+                                [self showAlertViewWithMessage:error.localizedDescription];
+                            })
+                            .finally(^(){
+                            });
+                        }
+                     andCancelCallback:nil];
+    }
+    
+    
 }
 
 
@@ -863,6 +1048,19 @@
     [self.dataSource removeObjectsInArray:orderDetailDtos];
 }
 
+#pragma - mark OrderListFilterViewController Delegate
+-(void)dismiss
+{
+    [self.modalView dismiss];
+    [self.maskView removeFromSuperview];
+}
+
+-(void)didSetSerachConditions:(NSDictionary *)conditions
+{
+    self.searchConditions = conditions;
+    [self clearOrderList];
+    [self getOrderList];
+}
 
 
 -(void)dealloc

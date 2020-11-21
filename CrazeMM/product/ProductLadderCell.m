@@ -2,7 +2,7 @@
 //  ProductLadderCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/24.
+//  Created by Mao Mao on 16/4/24.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -113,6 +113,11 @@
     self.messageLabel.textColor = [UIColor grayColorL2];
     self.messageLabel.font = [UIFont systemFontOfSize:12];
     
+    self.stockLabel2.numberOfLines = 1;
+    self.stockLabel2.font = [UIFont systemFontOfSize:12];
+    self.stockLabel2.width = [UIScreen mainScreen].bounds.size.width - self.expressLabel.x -16.f;
+    self.stockLabel2.textColor = [UIColor grayColorL2];
+
     self.triangleView.image = [[UIImage imageNamed:@"triangle"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
     
@@ -211,7 +216,14 @@
         self.triangleView.tintColor = [UIColor UIColorFromRGB:0x097939];
     }
 
-    [self.productImageView setImageWithURL:[NSURL URLWithString:_productDetailDto.goodImage] placeholderImage:[@"ph_phone" image]];
+    NSString* imageURL;
+    if (![_productDetailDto.goodImage hasPrefix:@"http"]){
+        imageURL = COMB_URL(_productDetailDto.goodImage);
+    }
+    else {
+        imageURL = _productDetailDto.goodImage;
+    }
+    [self.productImageView setImageWithURL:[NSURL URLWithString:_productDetailDto.goodImage] placeholderImage:[@"product_placehoder.png" image]];
     self.browseLabel.text = [NSString stringWithFormat:@"浏览:%ld", productDetailDto.views];
     self.sellLabel.text = [NSString stringWithFormat:@"意向:%ld", productDetailDto.intentions];
     
@@ -277,13 +289,19 @@
     if (self.productDetailDto.isStep) {
         [moreInfo appendString:@"阶梯价 "];
     }
-    [moreInfo appendString:[NSString stringWithFormat:@"%@到货", self.productDetailDto.deadlineStr]];
+//    [moreInfo appendString:[NSString stringWithFormat:@"%@到货", self.productDetailDto.deadlineStr]];
     self.addrLabel.text = moreInfo;
+    if (self.productDetailDto.stock) {
+        self.stockLabel2.text = [NSString stringWithFormat:@"所在仓库: %@", self.productDetailDto.depotDto.name];
+    }
+    else {
+        self.stockLabel2.text = [NSString stringWithFormat:@"卖家发货: %@", self.productDetailDto.deadlineStr];
+    }
     self.expressLabel.text = [NSString stringWithFormat:@"供货范围: %@", self.productDetailDto.region];
     //    self.messageLabel.text = ![self.productDetailDto.message isKindOfClass:[NSNull class]]?[NSString stringWithFormat:@"备注: %@", self.productDetailDto.message]:@"";
     
     if (![self.productDetailDto.message isKindOfClass:[NSNull class]]) {
-        self.messageLabel.text = [NSString stringWithFormat:@"备注: %@", self.productDetailDto.message];
+        self.messageLabel.text = [NSString stringWithFormat:@"备注: %@", self.productDetailDto.message?self.productDetailDto.message: @"无"];
     }
     else {
         self.messageLabel.text = @"";
@@ -333,18 +351,22 @@
     //self.line2.x = self.titleLabel.x;
     self.line2.y = self.stepPricesView.bottom;
     
-    self.stockLabel.width = screenWidth - self.stockLabel.x -16.f;
-    self.stockLabel.y = self.line2.bottom + 4.f;
+//    self.stockLabel.width = screenWidth - self.stockLabel.x -16.f;
+//    self.stockLabel.y = self.line2.bottom + 4.f;
     
     self.addrLabel.width = screenWidth - self.addrLabel.x -16.f;
     [self.addrLabel sizeToFit];
     self.addrLabel.x = self.titleLabel.x;
-    self.addrLabel.y = self.stockLabel.bottom;
+    self.addrLabel.y = self.line2.bottom+4.f;
+    
+    [self.stockLabel2 sizeToFit];
+    self.stockLabel2.x = self.titleLabel.x;
+    self.stockLabel2.y = self.addrLabel.bottom + 4.f;
     
     self.expressLabel.width = screenWidth - self.expressLabel.x -16.f;
     [self.expressLabel sizeToFit];
     self.expressLabel.x = self.titleLabel.x;
-    self.expressLabel.y = self.addrLabel.bottom + 4.f;
+    self.expressLabel.y = self.stockLabel2.bottom + 4.f;
     
     self.messageLabel.width = screenWidth - self.messageLabel.x -16.f;
     if (self.messageLabel.text.length == 0) {

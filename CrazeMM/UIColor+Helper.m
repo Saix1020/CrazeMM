@@ -182,5 +182,30 @@
     return [UIColor colorWithRed:217/255.0 green:83/255.0 blue:79/255.0 alpha:1];
 }
 
++(UIColor*)buttonEnableBackgroundColor
+{
+    return [UIColor UIColorFromRGB:0x04be02];
+}
++(UIColor*)buttonDisableBackgroundColor
+{
+    return [UIColor light_Gray_Color];
+}
++(UIColor*)buttonEnableTextColor
+{
+    return [UIColor whiteColor];
+}
++(UIColor*)buttonDisableTextColor
+{
+    return RGBCOLOR(150, 150, 150);
+}
+
++(UIColor*)tableViewBackgroundColor
+{
+    return RGBCOLOR(240, 240, 240);
+}
++(UIColor*)tableViewSeperatorLineBackgroundColor
+{
+    return [UIColor UIColorFromRGB:0xC8C7CC];
+}
 
 @end

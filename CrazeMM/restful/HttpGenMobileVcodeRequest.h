@@ -2,7 +2,7 @@
 //  HttpGenMobileVcodeRequest.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/30.
+//  Created by Mao Mao on 16/4/30.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -15,5 +15,7 @@
 @end
 
 @interface HttpGenMobileVcodeResponse : BaseHttpResponse
+@property (nonatomic, readonly) NSInteger lessTimes;
+@property (nonatomic, readonly) NSInteger seq;
 
 @end

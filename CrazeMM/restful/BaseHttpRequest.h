@@ -2,17 +2,17 @@
 //  BaseHttpRequest.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/28.
+//  Created by Mao Mao on 16/4/28.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import <AFNetWorking/AFNetWorking.h>
+#import "AFNetworking+PromiseKit.h"
 #import "NSDictionary+HttpHelp.h"
-#import <PromiseKit_AFNetworking/AFNetworking+PromiseKit.h>
 #import "RestURL.h"
-typedef void(^httpRequestCallback)(id ,AFHTTPRequestOperation*);
+
+typedef void(^httpRequestCallback)(id ,AFHTTPSessionManager*);
 typedef void (^errorCallback)(NSError *error);
 
 #define kHttpChallenge @"189MM-NeedLogin"
@@ -27,7 +27,7 @@ typedef void (^errorCallback)(NSError *error);
 @property (nonatomic, strong) NSMutableDictionary* params;
 @property (nonatomic, readonly) NSString* tokenName;
 @property (nonatomic, strong) BaseHttpResponse* response;
-@property (nonatomic, readonly) AFHTTPRequestOperationManager* manager;
+@property (nonatomic, strong) AFHTTPSessionManager* manager;
 
 @property (nonatomic, weak) UIViewController* caller;
 -(Class)responseClass;

@@ -2,12 +2,13 @@
 //  BuyViewController.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/18.
+//  Created by Mao Mao on 16/4/18.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
+#import "ImagePlayerView.h"
 
 @protocol ProductSummaryViewControllerDelegate <NSObject>
 
@@ -15,7 +16,7 @@
 
 @end
 
-@interface BuyListViewController : UIViewController<iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface BuyListViewController : UIViewController<iCarouselDataSource, iCarouselDelegate, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, ImagePlayerViewDelegate>
 @property (nonatomic, strong) NSMutableArray* dataSource;
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic) NSInteger pageNumber;

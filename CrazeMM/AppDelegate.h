@@ -2,12 +2,13 @@
 //  AppDelegate.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/17.
+//  Created by Mao Mao on 16/4/17.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "RealReachability.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -16,9 +17,12 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (readonly, strong, nonatomic) RealReachability* reachability;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
+-(void)getGlobSharedInstances;
 
 
 @end

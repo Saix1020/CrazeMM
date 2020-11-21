@@ -2,7 +2,7 @@
 //  OrderStatusCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/22.
+//  Created by Mao Mao on 16/4/22.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -72,7 +72,7 @@
             [button setAttributedTitle:attributedString forState:UIControlStateNormal];
         }
         else{
-            button.enabled = NO;
+//            button.enabled = NO;
             [button setAttributedTitle:nil forState:UIControlStateNormal];
             [button setTitle:name forState:UIControlStateNormal];
             [button setTitleColor:[UIColor dark_Gray_Color] forState:UIControlStateNormal];

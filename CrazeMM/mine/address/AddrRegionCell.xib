@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -72,8 +72,13 @@
             <connections>
                 <outlet property="chooseButton" destination="bsC-2P-eML" id="hhd-U8-Ujg"/>
                 <outlet property="regionLabel" destination="yTT-ys-KTQ" id="oZz-HQ-6jh"/>
+                <outlet property="regionLabelLeading" destination="m4P-wt-yN3" id="Naz-YB-CeK"/>
                 <outlet property="seperatorLine" destination="prz-Ne-F2H" id="IKu-de-Sai"/>
+                <outlet property="seperatorLineHeightConstraint" destination="e9G-qF-Hsr" id="bM4-Ez-y5k"/>
+                <outlet property="seperatorLineLeading" destination="uNU-7Y-dVb" id="BzD-de-PEj"/>
+                <outlet property="seperatorLineTrailing" destination="xgo-a5-EC5" id="fFE-eM-jKD"/>
                 <outlet property="titleLabel" destination="THt-DM-7pa" id="hI6-s0-BvA"/>
+                <outlet property="titleLeadingMargin" destination="nvf-dB-80q" id="xVf-Ds-B06"/>
             </connections>
             <point key="canvasLocation" x="244" y="211"/>
         </tableViewCell>

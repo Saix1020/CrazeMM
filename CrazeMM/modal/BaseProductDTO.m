@@ -2,7 +2,7 @@
 //  BaseProductDTO.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/10.
+//  Created by Mao Mao on 16/5/10.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -24,7 +24,7 @@
         self.userName = dict[@"userName"];
         self.duration = [dict[@"duration"] integerValue];
         self.intentions = [dict[@"intentions"] integerValue];
-        self.isActive = [dict[@"isActive"] boolValue];
+        self.isActive = [dict[@"active"] boolValue];
         self.isAnoy = [dict[@"isAnoy"] boolValue];
         self.millisecond = [dict[@"millisecond"] integerValue];
         self.isStep = [dict[@"isStep"] boolValue];
@@ -34,12 +34,38 @@
         self.createTime = dict[@"createTime"];
         self.goodImage = dict[@"goodImage"];
         self.address = dict[@"address"];
-        self.selected = NO;
+        
+        //isBrushMachine = 1;
+        //isOriginal = 1;
+        //isOriginalBox = 1;
+        //isSerial = 1;
+        self.isBrushMachine = [dict[@"isBrushMachine"] boolValue];
+        self.isOriginal = [dict[@"isOriginal"] boolValue];
+        self.isOriginalBox = [dict[@"isOriginalBox"] boolValue];
+        self.isSerial = [dict[@"isSerial"] boolValue];
 
+
+        
+        self.selected = NO;
+        if ([dict[@"stock"] isKindOfClass:[NSNumber class]]) {
+            self.stock = nil;
+        }
+        else {
+            self.stock = dict[@"stock"];
+        }
+        
+        if(NotNilAndNull(dict[@"depot"])){
+            self.depotDto = [[DepotDTO alloc] initWith:dict[@"depot"]];
+        }
+        else if (NotNilAndNull(self.stock)) {
+            self.depotDto = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
+        }
     }
     
     return self;
 }
+
+
 
 -(void)resetByProductDetailDto:(BaseProductDetailDTO*)detailDto
 {
@@ -54,9 +80,6 @@
     self.price = detailDto.price;
     self.quantity = detailDto.quantity;
     self.views = detailDto.views;
-    
-    
-
 }
 
 

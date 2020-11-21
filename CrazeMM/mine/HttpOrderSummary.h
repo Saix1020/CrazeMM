@@ -2,7 +2,7 @@
 //  HttpOrderSummary.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/5.
+//  Created by Mao Mao on 16/5/5.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -21,9 +21,13 @@
 @property (nonatomic, readonly) NSDictionary* sum;
 @property (nonatomic, readonly) NSDictionary* buy;
 @property (nonatomic, readonly) NSDictionary* supply;
-@property (nonatomic, readonly) NSInteger tobepaid;
-@property (nonatomic, readonly) NSInteger tobereceived;
-@property (nonatomic, readonly) NSInteger tobesent;
-@property (nonatomic, readonly) NSInteger tobeconfirmed;
+@property (nonatomic, readonly) NSInteger buy_tobepaid;
+@property (nonatomic, readonly) NSInteger buy_inpaying;
+@property (nonatomic, readonly) NSInteger buy_tobereceived;
+
+@property (nonatomic, readonly) NSInteger supply_tobepaid;
+@property (nonatomic, readonly) NSInteger supply_inpaying;
+@property (nonatomic, readonly) NSInteger supply_tobesent;
+@property (nonatomic, readonly) NSInteger supply_tobeconfirmed;
 
 @end

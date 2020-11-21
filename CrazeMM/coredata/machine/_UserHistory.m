@@ -3,16 +3,12 @@
 
 #import "_UserHistory.h"
 
-const struct UserHistoryAttributes UserHistoryAttributes = {
-	.name = @"name",
-};
-
 @implementation UserHistoryID
 @end
 
 @implementation _UserHistory
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"UserHistory" inManagedObjectContext:moc_];
 }
@@ -38,5 +34,11 @@ const struct UserHistoryAttributes UserHistoryAttributes = {
 
 @dynamic name;
 
+@end
+
+@implementation UserHistoryAttributes 
++ (NSString *)name {
+	return @"name";
+}
 @end
 

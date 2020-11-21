@@ -2,7 +2,7 @@
 //  BaseNavigationController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/21.
+//  Created by Mao Mao on 16/4/21.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -36,6 +36,25 @@
     }
 }
 
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated andDiscardVC:(NSArray*)discardVCs
+{
+    if ([BaseNavigationController checkIfNeedAuthedViewController:viewController] && ![[UserCenter defaultCenter] isLogined]) {
+        LoginViewController* loginVC = [[LoginViewController alloc] init];
+        loginVC.nextVC = viewController;
+        
+        [super pushViewController:loginVC animated:animated];
+    }
+    
+    else {
+        [super pushViewController:viewController animated:animated];
+        NSMutableArray* vcs = [self.viewControllers mutableCopy];
+        [vcs removeObjectsInArray:discardVCs];
+        self.viewControllers = vcs;
+    }
+    
+    [self setupBackButtonIfNeeded:viewController];
+}
+
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if ([BaseNavigationController checkIfNeedAuthedViewController:viewController] && ![[UserCenter defaultCenter] isLogined]) {
@@ -49,20 +68,54 @@
         [super pushViewController:viewController animated:animated];
     }
     
+    [self setupBackButtonIfNeeded:viewController];
+    
+}
+
+-(void)setupBackButtonIfNeeded:(UIViewController*)viewController
+{
     if (self.viewControllers.count>1) {
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStylePlain target:nil action:nil];
         @weakify(self)
         viewController.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             @strongify(self);
-            [self popViewControllerAnimated:YES];
+            [self.view endEditing:YES];
+            if (self.confirmString.length>0) {
+                [self showAlertViewWithMessage:self.confirmString
+                                withOKCallback:^(id x) {
+                                    [self popViewControllerAnimated:YES];
+                                }
+                             andCancelCallback:nil];
+            }
+            else {
+                [self popViewControllerAnimated:YES];
+            }
             return [RACSignal empty];
         }];
     }
-    
 }
+
+- (nullable UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    self.confirmString = nil;
+    [self.view endEditing:YES];
+    return [super popViewControllerAnimated:animated];
+}
+
+- (nullable NSArray<__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    self.confirmString = nil;
+    [self.view endEditing:YES];
+
+    return [super popToViewController:viewController animated:animated];
+}
+
 
 - (nullable NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
 {
+    self.confirmString = nil;
+    [self.view endEditing:YES];
+
     NSArray* vcs = [super popToRootViewControllerAnimated:animated];
     if (self.nextViewController) {
         [self pushViewController:self.nextViewController animated:YES];
@@ -70,6 +123,19 @@
     }
     
     return vcs;
+}
+
+- (nullable NSArray<__kindof UIViewController *> *)popToMarkedViewControllerAnimated:(BOOL)animated
+{
+    NSArray<__kindof UIViewController *> * vc;
+    if (self.markedVC) {
+        vc = [self popToViewController:self.markedVC animated:animated];
+        self.markedVC = nil;
+    }
+    else {
+        vc = [self popToRootViewControllerAnimated:animated];
+    }
+    return vc;
 }
 
 @end

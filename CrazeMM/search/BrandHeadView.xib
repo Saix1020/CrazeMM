@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BrandHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="品牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxK-NO-8Oe">
+                    <rect key="frame" x="8" y="5" width="76" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="76" id="Ex9-7Z-hTH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfQ-rX-eqs">
+                    <rect key="frame" x="252" y="5" width="60" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="NoH-Kd-ScT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="全部" image="icon_pulldown"/>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JI2-1R-akN">
+                    <rect key="frame" x="252" y="4" width="60" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="VHL-Us-Yag"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="全部" image="icon_pullup"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="zxK-NO-8Oe" firstAttribute="top" secondItem="DfQ-rX-eqs" secondAttribute="top" id="7ki-aN-4BJ"/>
+                <constraint firstItem="zxK-NO-8Oe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="8Sz-RH-zwK"/>
+                <constraint firstItem="DfQ-rX-eqs" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="SAm-Rm-Qyi"/>
+                <constraint firstItem="zxK-NO-8Oe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="e6D-Ce-jwY"/>
+                <constraint firstItem="zxK-NO-8Oe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="v2q-oM-Ras"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="expandButton" destination="DfQ-rX-eqs" id="gJj-ZD-kMq"/>
+                <outlet property="titleLabel" destination="zxK-NO-8Oe" id="6B4-tE-3ZG"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_pulldown" width="24" height="24"/>
+        <image name="icon_pullup" width="24" height="24"/>
+    </resources>
+</document>

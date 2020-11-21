@@ -2,7 +2,7 @@
 //  MineSupplyEditViewController.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/18.
+//  Created by Mao Mao on 16/5/18.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -15,6 +15,10 @@
 #import "AddrDefaultCheckboxCell.h"
 #import "HttpMineSupply.h"
 #import "GoodDTO.h"
+#import "SupplyDetailDTO.h"
+#import "GoodCreateInfo.h"
+
+
 
 typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     kRowBrand = 0,
@@ -44,6 +48,11 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 
 @interface MineSupplyEditViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, BEMCheckBoxDelegate, SelectionViewControllerDelegate>
 
+-(instancetype)initWithId:(NSInteger)sid;
+-(instancetype)initWithModifyGoodInfo:(GoodCreateInfo*)modifyGoodInfo;
+
+@property (nonatomic, strong) GoodCreateInfo* modifyGoodInfo;
+
 @property (nonatomic, weak) id<MineEditViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSArray* cellArray;
 @property (nonatomic, strong) AddrRegionCell* brandCell; //we use AddrRegionCell here for they has the same style
@@ -71,6 +80,7 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 @property (nonatomic, strong) GoodInfoDTO* currentGoodDetail;
 @property (nonatomic, readonly) NSArray* cycleStringArray;
 
+@property (nonatomic) BOOL enableSubEdit;
 
 -(void)saveNewGood:(UIButton*)sender;
 @end

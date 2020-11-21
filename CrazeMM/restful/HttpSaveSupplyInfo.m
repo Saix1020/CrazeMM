@@ -2,16 +2,11 @@
 //  HttpSaveSupplyInfo.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/19.
+//  Created by Mao Mao on 16/5/19.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import "HttpSaveSupplyInfo.h"
-
-@implementation GoodCreateInfo
-
-
-@end
 
 @implementation HttpSaveSupplyInfoRequest
 
@@ -121,6 +116,90 @@
 -(NSString*)url
 {
     return COMB_URL(@"/rest/buy");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+@end
+
+
+@implementation HttpModifySupplyInfoRequest
+
+-(instancetype)initWithGoodInfo:(GoodCreateInfo*)modifyCreateInfo
+{
+    
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"version" : @(modifyCreateInfo.version),
+                         @"supply.id" : @(modifyCreateInfo.lid),
+                         @"supply.gcolor" : modifyCreateInfo.color,
+                         @"supply.gvolume": modifyCreateInfo.volume,
+                         @"supply.quantity":@(modifyCreateInfo.quantity),
+                         @"supply.gnetwork": modifyCreateInfo.network,
+                         @"supply.isSerial" : @(modifyCreateInfo.isSerial),
+                         @"supply.isOriginal" : @(modifyCreateInfo.isOriginal),
+                         @"supply.isOriginalBox" : @(modifyCreateInfo.isOriginalBox),
+                         @"supply.price" : @(modifyCreateInfo.price),
+                         @"supply.deadline" : @(modifyCreateInfo.deadline),
+                         @"supply.duration" : @(modifyCreateInfo.duration),
+                         @"supply.isBrushMachine" : @(modifyCreateInfo.isBrushMachine),
+                         @"supply.isSplit" : @(modifyCreateInfo.isSplit),
+                         @"supply.isAnoy" : @(modifyCreateInfo.isAnoy)
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/uiSupply/updateSave");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+
+@end
+
+@implementation HttpModifyBuyInfoRequest
+
+-(instancetype)initWithGoodInfo:(GoodCreateInfo*)modifyCreateInfo
+{
+    
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"version" : @(modifyCreateInfo.version),
+                         @"buy.id" : @(modifyCreateInfo.lid),
+                         @"buy.gcolor" : modifyCreateInfo.color,
+                         @"buy.gvolume": modifyCreateInfo.volume,
+                         @"buy.quantity":@(modifyCreateInfo.quantity),
+                         @"buy.gnetwork": modifyCreateInfo.network,
+                         @"buy.isSerial" : @(modifyCreateInfo.isSerial),
+                         @"buy.isOriginal" : @(modifyCreateInfo.isOriginal),
+                         @"buy.isOriginalBox" : @(modifyCreateInfo.isOriginalBox),
+                         @"buy.price" : @(modifyCreateInfo.price),
+                         @"buy.deadline" : @(modifyCreateInfo.deadline),
+                         @"buy.duration" : @(modifyCreateInfo.duration),
+                         @"buy.isBrushMachine" : @(modifyCreateInfo.isBrushMachine),
+                         @"buy.isAnoy" : @(modifyCreateInfo.isAnoy),
+                         @"buy.addrId" : @(modifyCreateInfo.addrId)
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/uiBuy/updateSave");
 }
 
 -(NSString*)method

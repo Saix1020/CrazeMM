@@ -2,7 +2,7 @@
 //  BuyViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/18.
+//  Created by Mao Mao on 16/4/18.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -24,8 +24,14 @@
 #import "BuyProductViewController.h"
 #import "BuyProductDTO.h"
 #import "HttpAddIntention.h"
+#import "RealReachability.h"
+//#import "LoopView.h"
+#import "ImagePlayerView.h"
+#import "HttpMobileBanner.h"
+#import "UIImageView+HKGifLoad.h"
+#import "Banner.h"
 
-#define kTableViewHeadHeight 128.f
+#define kTableViewHeadHeight 140.f
 #define kCarouselImageViewWidth 300.f
 #define kNumberOfCellPerPage 3
 #define kTotalSlides 5
@@ -48,6 +54,10 @@
 
 @property (nonatomic) BOOL isCarouselAnimating;
 @property (nonatomic) NSUInteger timeElapse;
+
+@property (strong, nonatomic) ImagePlayerView* imagePlayView;
+@property (strong, nonatomic) NSMutableArray<NSString*>* imageURLs;
+@property (strong, nonatomic) NSArray* banners;
 
 
 //@property (nonatomic) BOOL requesting;
@@ -168,6 +178,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    [self.tableView registerNib:[UINib nibWithNibName:@"BuyItemCell" bundle:nil] forCellReuseIdentifier:@"BuyItemCell"];
     [self.view addSubview:self.tableView];
     
@@ -176,8 +187,6 @@
     [self.tableView setTableFooterView:view];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
-
-
     
     // add some mock data
     for (int i=0; i<10; i++) {
@@ -189,6 +198,7 @@
     self.timeElapse = 0;
 
     @weakify(self);
+/*
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
         
@@ -203,7 +213,7 @@
             [self showAlertViewWithMessage:error.localizedDescription];
         });
     }];
-    
+*/ 
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -230,8 +240,22 @@
     self.carousel.dataSource = self;
     self.isCarouselAnimating = NO;
     
-    self.tableView.tableHeaderView = self.carousel;
+    //self.tableView.tableHeaderView = self.carousel;
  
+    self.imageURLs = [[NSMutableArray alloc] init];
+    for(int i=0;i<kTotalSlides;++i){
+        [self.imageURLs addObject:[NSString stringWithFormat:@"slide-%ld.jpg", (long)i]];
+    }
+    
+    //self.loopView = [[LoopView alloc] initWithImages:images];
+    self.imagePlayView = [[ImagePlayerView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableViewHeadHeight)];
+    self.imagePlayView.imagePlayerViewDelegate = self;
+    self.imagePlayView.hidePageControl = NO;
+    self.imagePlayView.endlessScroll = YES;
+    self.imagePlayView.pageControlPosition = ICPageControlPosition_BottomCenter;
+    self.imagePlayView.scrollInterval = 4.f;
+    
+    
 //    self.filtedItems = [self.items mutableCopy];
 //    self.updateEventSignal = [[RACSignal interval:4
 //                                       onScheduler:[RACScheduler mainThreadScheduler]
@@ -240,8 +264,9 @@
 //                                  return self.stopTimer;
 //                              }];
 //    @weakify(self);
-
+    self.tableView.tableHeaderView = self.imagePlayView;
     [[MMTimer sharedInstance].oneSecondSignal subscribeNext:^(id x){
+        /*
         @strongify(self);
 
         self.timeElapse ++;
@@ -268,6 +293,9 @@
                 
             }
         }
+         */
+        @strongify(self);
+        
     }];
     [self clearData];
     [self getProducts:YES];
@@ -276,7 +304,73 @@
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[@"refresh" image] style:UIBarButtonItemStylePlain target:self action:@selector(refreshData)];
     
+    //[self.imagePlayView reloadData];
+//    [HttpMobileBannerRequest getAllBanners].then(^(NSArray* banners){
+//        if ([banners isKindOfClass:[NSArray class]]) {
+//            self.banners = [banners copy];
+//            [self.imagePlayView reloadData];
+//        }
+//    });
+    self.banners = [Banner allBannersWithManagedObjectContext:sharedManagedObjectContext()];
+    [self.imagePlayView reloadData];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bannersLoadFinished:) name:kBannerImagesDownloadSuccessBroadCast object:nil];
+}
 
+-(void)bannersLoadFinished:(NSNotification*)notification
+{
+    self.banners = [Banner allBannersWithManagedObjectContext:sharedManagedObjectContext()];
+    [self.imagePlayView reloadData];
+}
+
+- (NSInteger)numberOfItems
+{
+    if(self.banners.count>0){
+        return self.banners.count;
+
+    }
+    else {
+        return 1;
+    }
+}
+
+- (void)imagePlayerView:(ImagePlayerView *)imagePlayerView didTapAtIndex:(NSInteger)index;
+{
+    
+    if (self.banners.count>0) {
+        Banner* b = self.banners[index];
+        NSLog(@"image %ld tapped", index);
+        
+        if (b.url.length > 0) {
+            
+            
+            BuySlideDetailViewController* slideDetailVC = [[BuySlideDetailViewController alloc] initWithURL:b.url
+                                                                                                   andTitle:b.title];
+            
+            if([b.url hasPrefix:WEB_HOSTNAME]){
+                [self.navigationController presentViewController:slideDetailVC animated:YES completion:nil];
+            }
+            else {
+                [self.navigationController pushViewController:slideDetailVC animated:YES];
+            }
+        }
+        
+
+    }
+
+}
+
+- (void)imagePlayerView:(ImagePlayerView *)imagePlayerView loadImageForImageView:(UIImageView *)imageView index:(NSInteger)index
+{
+    if (self.banners.count>0) {
+        Banner* b = self.banners[index];
+        imageView.image = [UIImage imageWithData:b.data];
+    }
+    else {
+        imageView.image = [@"slide-1.jpg" image];
+
+    }
 }
 
 -(void)refreshData
@@ -328,6 +422,7 @@
             [self.dataSource addObjectsFromArray:response.productDTOs];
             [self.tableView reloadData];
         }
+        return response;
     })
     .catch(^(NSError* error){
         if ([error needLogin]) {
@@ -381,12 +476,21 @@
     [self.tableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+-(void)popRecommendView
 {
-    [super viewDidAppear:animated];
-    [self.tabBarController setTabBarHidden:NO animated:YES];
-    
     if (![[UserCenter defaultCenter] isLogined]) {
+        
+        @synchronized (self) {
+            if(isAlertViewShowing){
+                return ;
+            }
+            
+            else {
+                isAlertViewShowing = YES;
+            }
+        }
+
+        
         @weakify(self);
         [self.productRecommendAlertView showWithDidAddContentBlock:^(UIView *contentView) {
             
@@ -399,22 +503,31 @@
                 [self.productRecommendAlertView dismiss];
                 
                 [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
-                
+                isAlertViewShowing = NO;
                 return [RACSignal empty];
             }];
             
             transferAlertView.signupButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal* (id x){
                 [self.productRecommendAlertView dismiss];
-                
+                isAlertViewShowing = NO;
                 [self.navigationController pushViewController:[[SignViewController alloc] init] animated:YES];
-
+                
                 
                 return [RACSignal empty];
             }];
         }];
-
+        
     }
     
+//    [self showAlertViewWithMessage:@"Test"];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tabBarController setTabBarHidden:NO animated:YES];
+    [self popRecommendView];
+    [self.imagePlayView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -471,6 +584,8 @@
     
     return view;
 }
+
+
 
 - (CATransform3D)carousel:(iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
 {
@@ -533,6 +648,7 @@
     if (!cell) {
         cell = [[ProductSummaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductSummaryCell"];
         cell.cellType = @"求购";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.productDto = [self.dataSource objectAtIndex:indexPath.row];
     return cell;
@@ -563,6 +679,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kLogoutSuccessBroadCast
                                                   object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kBannerImagesDownloadSuccessBroadCast
+                                                  object:nil];
+    
+    [self.imagePlayView stopTimer];
+    self.imagePlayView.imagePlayerViewDelegate = nil;
+    self.imagePlayView = nil;
 }
 
 @end

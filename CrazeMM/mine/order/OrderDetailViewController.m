@@ -2,17 +2,13 @@
 //  OrderDetailViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/11.
+//  Created by Mao Mao on 16/5/11.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import "OrderDetailViewController.h"
 #import "OrderDefine.h"
 #import "OrderListNoCheckBoxCell.h"
-#import "OrderDetailHeadCell.h"
-#import "OrderDetailAddrCell.h"
-#import "OrderDetailStatusCell.h"
-#import "OrderLogsCell.h"
 #import "OrderStatusDTO.h"
 #import "HttpOrderStatus.h"
 #import "PayViewController.h"
@@ -21,7 +17,7 @@
 #import "HttpOrderOperation.h"
 #import "OrderSendViewController.h"
 #import "OrderListViewController.h"
-
+#import "ToBePaidViewController.h"
 
 typedef NS_ENUM(NSInteger, OrderDetailRow){
     kOrderDetailHeadRow = 1,
@@ -33,31 +29,63 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 
 @interface OrderDetailViewController()
 
-@property (nonatomic, strong) UITableView* tableView;
-@property (nonatomic, strong) UIView* bottomView;
-@property (nonatomic, strong) UIButton* confirmButton;
-@property (nonatomic) MMOrderListStyle style;
-@property (nonatomic, strong) OrderDetailDTO* orderDto;
-@property (nonatomic, strong) OrderStatusDTO* orderStatusDto;
-
-
-@property (nonatomic, strong) OrderDetailHeadCell* headCell;
-@property (nonatomic, strong) OrderDetailAddrCell* addrCell;
-@property (nonatomic, strong) OrderListNoCheckBoxCell* contentCell;
-@property (nonatomic, strong) OrderDetailStatusCell* statusCell;
-@property (nonatomic, strong) OrderLogsCell* logsCell;
+//@property (nonatomic, strong) UITableView* tableView;
+//@property (nonatomic, strong) UIView* bottomView;
+//@property (nonatomic, strong) UIButton* confirmButton;
+//@property (nonatomic) MMOrderListStyle style;
+//@property (nonatomic, strong) OrderDetailDTO* orderDto;
+//@property (nonatomic, strong) OrderStatusDTO* orderStatusDto;
+//
+//
+//@property (nonatomic, strong) OrderDetailHeadCell* headCell;
+//@property (nonatomic, strong) OrderDetailAddrCell* addrCell;
+//@property (nonatomic, strong) OrderListNoCheckBoxCell* contentCell;
+//@property (nonatomic, strong) OrderDetailStatusCell* statusCell;
+//@property (nonatomic, strong) OrderLogsCell* logsCell;
 
 @end
 
 @implementation OrderDetailViewController
+
+-(NSArray*)bottomButtonsTitle
+{
+    return @[[self promptString][@"bottomButtonTitle"]];
+}
+
+-(NSArray*)bottomButtons
+{
+    if(!_bottomButtons) {
+        NSMutableArray* buttons = [[NSMutableArray alloc] init];
+        
+        for(NSString* title in self.bottomButtonsTitle){
+            UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
+            [button setTitle:title forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            button.titleLabel.font = [UIFont middleFont];
+            button.backgroundColor = [UIColor redColor];
+            [button addTarget:self action:@selector(handleClickEvent:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [buttons addObject:button];
+            [self.bottomView addSubview:button];
+            [button sizeToFit];
+
+        }
+        _bottomButtons = buttons;
+    }
+    
+    return _bottomButtons;
+}
 
 -(UIView*)bottomView
 {
     if (!_bottomView) {
         _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44.f)];
         [self.view addSubview:_bottomView];
-        [_bottomView addSubview:self.confirmButton];
+//        [_bottomView addSubview:self.confirmButton];
         _bottomView.backgroundColor = [UIColor whiteColor];
+        
+        // we hide it now
+        // _bottomView.hidden = NO;
     }
     
     return _bottomView;
@@ -109,7 +137,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.backgroundColor = [UIColor whiteColor];
         _contentCell.needHeadView = NO;
         _contentCell.canelButton.hidden = NO;
-        _contentCell.productDescLabel.font = [UIFont systemFontOfSize:15.f];
+        _contentCell.productDescLabel.font = [UIFont boldSystemFontOfSize:15.f];
         UIColor* textColor = [UIColor UIColorFromRGB:0x666666];
         _contentCell.orderLabel.textColor = textColor;
         _contentCell.productDescLabel.textColor = textColor;
@@ -117,7 +145,10 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         _contentCell.amountLabel.textColor = textColor;
         _contentCell.priceLabel.textColor = textColor;
         
-                _contentCell.layer.borderWidth = 0.f;
+        _contentCell.layer.borderWidth = 0.f;
+        
+        // move the button into the bottom view
+        _contentCell.canelButton.hidden = YES;
 
     }
     return _contentCell;
@@ -141,12 +172,62 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
 {
     if (!_logsCell) {
         _logsCell = (OrderLogsCell*)[UINib viewFromNib:@"OrderLogsCell"];
-        _logsCell.backgroundColor = [UIColor whiteColor];
+        _logsCell.backgroundColor = [UIColor clearColor];
 //        _logsCell.layer.borderWidth = .5f;
 //        _logsCell.layer.borderColor = [UIColor light_Gray_Color].CGColor;
 
     }
     return _logsCell;
+}
+
++(OrderDetailViewController*)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto
+{
+    NSDictionary* classesMap = @{
+                                 @(kOrderTypeBuy) : @{
+                                         @(kOrderSubTypePay) : @{
+                                                 @(TOBEPAID) : [ToBePaidViewController class],
+                                                 @(PAYTIMEOUT) : [NSNull null],
+                                                 @(PAYCOMPLETE) : [NSNull null]
+                                                 },
+                                         @(kOrderSubTypeReceived) : @{
+                                             @(TOBERECEIVED) : [NSNull null],
+                                             @(RECEIVECOMPLETE) : [NSNull null]
+//                                             @(PAYTIMEOUT) : [NSNull null],
+
+                                         }
+                                         },
+                                 @(kOrderTypeSupply) : @{
+                                     @(kOrderSubTypeSend) : @{
+                                             @(WAITFORPAY) : [NSNull null],
+                                             @(TOBESENT) : [NSNull null],
+                                             @(SENTCOMPLETE) : [NSNull null],
+                                     },
+                                     @(kOrderSubTypeConfirmed) : @{
+                                             @(TOBESETTLED) : [NSNull null],
+                                             @(TOBECONFIRMED) : [NSNull null],
+                                             @(CONFIRMEDCOMPLETE) : [NSNull null]
+                                     },
+                                 },
+                                 @(kOrderSubTypeAll) : [NSNull null]
+                                 
+                            
+                                 };
+    if(NotNilAndNull(classesMap[@(style.orderType)])){
+        NSDictionary* d1 = classesMap[@(style.orderType)];
+        if(NotNilAndNull(d1[@(style.orderSubType)])) {
+            NSDictionary* d2 = d1[@(style.orderSubType)];
+            if(NotNilAndNull(d2[@(style.orderState)])){
+                Class class = (Class)d2[@(style.orderState)];
+                if([(NSObject*)class respondsToSelector:@selector(initWithOrderStyle:andOrder:)]){
+                
+                    return [[class alloc] initWithOrderStyle:style andOrder:orderDto];
+                }
+            }
+        }
+    }
+    
+    
+    return [[OrderDetailViewController alloc] initWithOrderStyle:style andOrder:orderDto];
 }
 
 -(instancetype)initWithOrderStyle:(MMOrderListStyle)style andOrder:(OrderDetailDTO*)orderDto
@@ -197,6 +278,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
         }
@@ -209,8 +291,12 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
+        }
+        else {
+            self.bottomView.hidden = YES;
         }
     }
     else if (self.style.orderType == kOrderTypeSupply){
@@ -226,6 +312,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
         }
@@ -241,8 +328,12 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                     self.bottomView.hidden = YES;
                     break;
                 default:
+                    self.bottomView.hidden = YES;
                     break;
             }
+        }
+        else {
+            self.bottomView.hidden = YES;
         }
     }
     
@@ -255,6 +346,16 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     [super viewWillLayoutSubviews];
     //    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
     self.bottomView.frame = CGRectMake(0, self.view.height-44.f, self.view.bounds.size.width, 44.f);
+    CGFloat rightX = self.view.bounds.size.width;
+    for(UIButton* button in self.bottomButtons){
+        button.height = 44.f;
+        button.width = 80;
+        button.right = rightX;
+        button.y = 0;
+        
+        rightX -= button.width+1.f;
+        
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -279,13 +380,13 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     self.contentCell.orderDetailDTO = [[OrderDetailDTO alloc]initWithOrderStatusDTO:orderStatusDto];
     self.logsCell.logs = orderStatusDto.logs;
     
-    [self.confirmButton setTitle:[self promptString][@"bottomButtonTitle"]
-                    forState:UIControlStateNormal];
+//    [self.confirmButton setTitle:[self promptString][@"bottomButtonTitle"]
+//                    forState:UIControlStateNormal];
     
     if (self.style.orderType == kOrderTypeBuy
         && self.style.orderSubType == kOrderSubTypePay
         && self.orderStatusDto.state == TOBEPAID) {
-        self.contentCell.canelButton.hidden = NO;
+//        self.contentCell.canelButton.hidden = NO;
         @weakify(self);
         self.contentCell.canelButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal*(id x){
             @strongify(self);
@@ -294,8 +395,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
             .then(^(id responseObj){
                 NSLog(@"%@", responseObj);
                 if (request.response.ok) {
-                    if ([self.delegate respondsToSelector:@selector(removeOrder:)]){
-                        [self.delegate cancelOrder:self.orderDto];
+                    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]){
+                        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
                     }
                 }
                 else {
@@ -339,22 +440,39 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     });
 }
 
--(NSDictionary*)promptString
+-(NSInteger)leftSeconds
 {
-    NSString* string = @"";
-    NSString* subString = @"";
-    NSString* bottomButtonTitle = @"";
     NSDate* updateTime = [self.orderDto.updateTime convertToDate];
     NSInteger leftSeconds = floor(updateTime.timeIntervalSinceReferenceDate + 1*60*60 -  [NSDate date].timeIntervalSinceReferenceDate);
     if (leftSeconds < 0) {
         NSLog(@"invalid left seconds %ld", leftSeconds);
     }
+
+    return leftSeconds;
+}
+
+-(NSInteger)elapseSeconds
+{
     NSDate* createTime = [self.orderStatusDto.logs[0].createTime convertToDate];
     NSInteger elapseSeconds = floor([NSDate date].timeIntervalSinceReferenceDate - createTime.timeIntervalSinceReferenceDate);
+    return elapseSeconds;
+}
 
+-(BOOL)isStyleBuy
+{
+    return self.style.orderType == kOrderTypeBuy;
+}
+
+-(NSDictionary*)promptString
+{
+    NSString* string = @"";
+    NSString* subString = @"";
+    NSString* bottomButtonTitle = @"";
+    NSInteger leftSeconds = self.leftSeconds;
+    NSInteger elapseSeconds = self.elapseSeconds;
     
     if (self.style.orderType == kOrderTypeBuy) {
-        switch (self.orderStatusDto.state) {
+        switch (self.style.orderState) {
             case TOBEPAID:
             {
                 string =  @"请您尽快付款";
@@ -362,7 +480,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 bottomButtonTitle = @"付款";
             }
                 break;
-            case PAYCOMPLETE:
+            case PAYCOMPLETE: //TOBESENT
             {
                 string = @"请您等待卖家发货";
                 subString = [NSString stringWithFormat:@"已支付%@", [NSString leftTimeString2:elapseSeconds*1000]];
@@ -380,9 +498,19 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 bottomButtonTitle = @"签收";
             }
                 break;
-            case RECEIVECOMPLETE:
+            case RECEIVECOMPLETE: //TOBESETTLED
                 string = @"已完成";
                 subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
+                break;
+            case ORDERCLOSE:
+                string = @"订单状态: 600";
+                subString = [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
+
+                break;
+            case COMPLETED:
+                string = @"已完成";
+                subString = [NSString stringWithFormat:@"已完成 %@", [NSString leftTimeString2:elapseSeconds*1000]];
+                
                 break;
             default:
                 break;
@@ -390,7 +518,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     }
     else{
         switch (self.orderStatusDto.state) {
-            case WAITFORPAY:
+            case WAITFORPAY: //TOBEPAID
                 string =  @"请您等待买家付款";
                 subString = [NSString stringWithFormat:@"距离超时还剩: %@", [NSString leftTimeString2:leftSeconds*1000]];
                 break;
@@ -400,7 +528,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 subString = [NSString stringWithFormat:@"已支付%@", [NSString leftTimeString2:elapseSeconds*1000]];
 
                 break;
-            case SENTCOMPLETE:
+            case SENTCOMPLETE: //TOBERECEIVED
                 string =  @"请您等待买家签收";
                 subString = [NSString stringWithFormat:@"已发货%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
@@ -414,11 +542,15 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 subString = [NSString stringWithFormat:@"已结款%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 bottomButtonTitle = @"确认";
                 break;
-            case CONFIRMEDCOMPLETE:
+            case CONFIRMEDCOMPLETE: //COMPLETED
                 string =  @"已完成";
                 subString = [NSString stringWithFormat:@"已完成%@", [NSString leftTimeString2:elapseSeconds*1000]];
                 break;
+            case ORDERCLOSE:
+                string = @"订单状态: 600";
+                subString = [NSString stringWithFormat:@"最后操作时间 %@", self.orderDto.updateTime];
                 
+                break;
             default:
                 break;
         }
@@ -429,7 +561,34 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
              @"bottomButtonTitle" : bottomButtonTitle};
 }
 
--(void)handleButtomButtonClicked:(UIButton*)send
+
+-(NSString*)titleString
+{
+    return [self promptString][@"string"];
+
+}
+
+-(NSString*)bottomButtonString
+{
+    return @"付款";
+}
+
+
+-(NSString*)titleDetailString
+{
+    return [self promptString][@"subString"];
+}
+
+-(void)handleClickEvent:(UIButton *)button
+{
+    //[self showProgressIndicatorWithTitle:@"请稍等..."];
+
+    [self handleButtomButtonClicked:button];
+    
+    //[self dismissProgressIndicator];
+}
+
+-(void)handleButtomButtonClicked:(UIButton*)sender
 {
     @weakify(self);
     NSArray* operatorDtoIds = @[@(self.orderStatusDto.id)];
@@ -454,8 +613,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                             .then(^(id responseObj){
                                                 NSLog(@"%@", responseObj);
                                                 if (request.response.ok) {
-                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
-                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+                                                        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
                                                     }
                                                 }
                                                 else {
@@ -471,9 +630,9 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                         }
                                      andCancelCallback:nil];
                         
-                        }
+                    }
                         break;
-                    case PAYCOMPLETE:
+                    case PAYCOMPLETE: //
                         NSLog(@"我买的货->待付款->已支付");
                         break;
                     default:
@@ -494,8 +653,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                             .then(^(id responseObj){
                                                 NSLog(@"%@", responseObj);
                                                 if (request.response.ok) {
-                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
-                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+                                                        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
                                                     }
                                                 }
                                                 else {
@@ -510,7 +669,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                             });;
                                         }
                                      andCancelCallback:nil];
-
+                        
                     }
                         break;
                     case RECEIVECOMPLETE:
@@ -542,7 +701,7 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                         }
                         sendVC.delegate = orderListVC;
                         [self.navigationController pushViewController:sendVC animated:YES];
-
+                        
                     }
                         break;
                     case SENTCOMPLETE:
@@ -565,8 +724,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                                             .then(^(id responseObj){
                                                 NSLog(@"%@", responseObj);
                                                 if (request.response.ok) {
-                                                    if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
-                                                        [self.delegate operatorDoneForOrder:@[self.orderDto]];
+                                                    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+                                                        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
                                                     }
                                                 }
                                                 else {
@@ -595,6 +754,20 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
         }
     }
 }
+
+-(AFPromise*)asyncRequest:(BaseHttpRequest*)request
+{
+    [self showProgressIndicatorWithTitle:@"请稍等..."];
+    return [AFPromise promiseWithResolverBlock:^(PMKResolver resolver){
+        [request request].then(^(id x){
+            resolver(x);
+        });
+    }].finally(^(){
+        [self dismissProgressIndicator];
+    });
+}
+
+
 
 #pragma mark - Table view data source
 
@@ -625,13 +798,14 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 {
                     self.headCell.titleLabel.textColor = [UIColor redColor];
                 }
-                self.headCell.titleLabel.text = [self promptString][@"string"];
-                self.headCell.promptLabel.text = [self promptString][@"subString"];
+                self.headCell.titleLabel.text = [self titleString];
+                self.headCell.promptLabel.text = [self titleDetailString];
                 break;
             case kOrderDetailAddrRow:
                 cell = self.addrCell;
                 break;
             case kOrderDetailContentRow:
+                self.contentCell.canelButton.hidden = YES;
                 cell = self.contentCell;
                 break;
             case kOrderDetailStatusRow:
@@ -641,6 +815,8 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
                 break;
         }
     }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -686,6 +862,58 @@ typedef NS_ENUM(NSInteger, OrderDetailRow){
     
     return 0;
 }
+
+#pragma - mark Async http request handle
+//-(void)invokeHttpRequest:(BaseHttpRequest*)httpRequest andConfirmTitle:(NSString*)confirmTitle andSuccessTitle:(NSString*)successTitle
+//{
+//    @weakify(self);
+//    [self showAlertViewWithMessage:confirmTitle
+//                    withOKCallback:^(id x){
+//                        @strongify(self);
+//                        [self showProgressIndicatorWithTitle:@"正在处理..."];
+//                        
+//                        [httpRequest request]
+//                        .then(^(id responseObj){
+//                            NSLog(@"%@", responseObj);
+//                            if (httpRequest.response.ok) {
+//                                if ([self.delegate respondsToSelector:@selector(operatorDoneForOrder:)]) {
+//                                    [self.delegate operatorDoneForOrder:@[self.orderDto]];
+//                                }
+//                                
+//                                [self showAlertViewWithMessage:successTitle withCallback:^(id x){
+//                                    [self.navigationController popViewControllerAnimated:YES];
+//                                }];
+//                                
+//                            }
+//                            else {
+//                                [self showAlertViewWithMessage:httpRequest.response.errorMsg];
+//                            }
+//                        })
+//                        .catch(^(NSError* error){
+//                            [self showAlertViewWithMessage:error.localizedDescription];
+//                        })
+//                        .finally(^(){
+//                            [self dismissProgressIndicator];
+//                        });
+//                    }
+//                 andCancelCallback:nil];
+//}
+-(void)httpRequestSuccess:(BaseHttpRequest*)request andSuccessMsg:(NSString*)msg
+{
+    if ([self.delegate respondsToSelector:@selector(didOperatorSuccessWithIds:)]) {
+        [self.delegate didOperatorSuccessWithIds:@[@(self.orderDto.id)]];
+    }
+    
+    [super httpRequestSuccess:request andSuccessMsg:msg];
+    
+}
+-(void)httpRequestFailed:(BaseHttpRequest*)request andFailedMsg:(NSString*)msg
+{
+    [super httpRequestFailed:request andFailedMsg:msg];
+}
+
+
+
 
 -(void)dealloc
 {

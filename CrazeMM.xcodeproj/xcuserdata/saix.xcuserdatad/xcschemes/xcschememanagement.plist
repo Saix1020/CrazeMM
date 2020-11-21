@@ -4,19 +4,29 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CrazeMM copy.xcscheme</key>
+		<key>CrazeMM copy 2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>24</integer>
 		</dict>
 		<key>CrazeMM.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CrazeMM_Reveal.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>24</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>B94EBB0C1DA8D575009CFC8B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B964F8F61CC39670003E0D44</key>
 		<dict>
 			<key>primary</key>

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4BE184A9993D527888B5AD99B53FF5E017862A3F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4BE184A9993D527888B5AD99B53FF5E017862A3F" : 0,
+    "76D94A087732FFD8B84FD7B9F14E6392387528A4" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B8F84A3C-BE3F-4550-A0B6-D38DDF89E41F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4BE184A9993D527888B5AD99B53FF5E017862A3F" : "CrazeMM\/",
+    "76D94A087732FFD8B84FD7B9F14E6392387528A4" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CrazeMM",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CrazeMM.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:basara7\/CrazeMM.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4BE184A9993D527888B5AD99B53FF5E017862A3F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:basara7\/Farm.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "76D94A087732FFD8B84FD7B9F14E6392387528A4"
+    }
+  ]
+}

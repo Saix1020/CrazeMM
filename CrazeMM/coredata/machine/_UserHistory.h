@@ -1,24 +1,26 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to UserHistory.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct UserHistoryAttributes {
-	__unsafe_unretained NSString *name;
-} UserHistoryAttributes;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UserHistoryID : NSManagedObjectID {}
 @end
 
-@interface _UserHistory : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _UserHistory : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) UserHistoryID* objectID;
+@property (nonatomic, readonly, strong) UserHistoryID *objectID;
 
-@property (nonatomic, strong) NSString* name;
-
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* name;
 
 @end
 
@@ -28,3 +30,9 @@ extern const struct UserHistoryAttributes {
 - (void)setPrimitiveName:(NSString*)value;
 
 @end
+
+@interface UserHistoryAttributes: NSObject 
++ (NSString *)name;
+@end
+
+NS_ASSUME_NONNULL_END

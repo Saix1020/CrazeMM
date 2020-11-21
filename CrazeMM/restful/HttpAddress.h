@@ -2,7 +2,7 @@
 //  HttpAddress.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/15.
+//  Created by Mao Mao on 16/5/15.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -36,3 +36,17 @@
 -(instancetype)initWithAddrDto:(AddrDTO*)addrDto;
 
 @end
+
+@interface HttpAddressUpdateRequest : BaseHttpRequest
+
+-(instancetype)initWithAddrDto:(AddrDTO*)addrDto;
+
+@end
+
+
+@interface HttpAddressDeleteRequest : BaseHttpRequest
+
+-(instancetype)initWithAddrId:(NSInteger)addrId;
+
+@end
+

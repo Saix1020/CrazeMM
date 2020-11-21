@@ -2,7 +2,7 @@
 //  PaySuccessProductCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/26.
+//  Created by Mao Mao on 16/4/26.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -56,6 +56,14 @@
     self.selectCheckBox.on = YES  ;
     
     [self fomartTotalPriceLabel];
+}
+
+-(void)setStockDetailDto:(StockDetailDTO *)stockDetailDto
+{
+    _stockDetailDto = stockDetailDto;
+    
+    self.productTitleLabel.text = stockDetailDto.goodName;
+    self.orignalUnitPriceLabel.text = [NSString stringWithFormat:@"%.02f", stockDetailDto.inprice];
 }
 
 -(void)fomartTotalPriceLabel

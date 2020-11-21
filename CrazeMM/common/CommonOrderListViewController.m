@@ -2,7 +2,7 @@
 //  CommonOrderListView.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/8.
+//  Created by Mao Mao on 16/5/8.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -27,20 +27,60 @@
 @synthesize segmentCell = _segmentCell;
 @synthesize bottomView = _bottomView;
 
+-(instancetype)initWithSegmentIndex:(NSInteger)index
+{
+    self = [super init];
+    if (self) {
+        self.initSegmentIndex = index;
+    }
+    return self;
+}
+
+
 -(SegmentedCell*)segmentCell
 {
     if (!_segmentCell) {
         _segmentCell = [[SegmentedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SegmentedCell"];
         _segmentCell.buttonStyle = kButtonStyleB;
         _segmentCell.height = @(40.0f);
-        [_segmentCell setTitles:@[@"Segment1", @"Segment2", @"Segment3"]];
+        [_segmentCell setTitles:self.segmentTitles];
+        _segmentCell.segment.currentIndex = self.initSegmentIndex;
         _segmentCell.segment.delegate = self;
         
         [self.view addSubview:_segmentCell];
         
+        if (self.hiddenSegment) {
+            _segmentCell.hidden = YES;
+        }
+        
     }
     
     return _segmentCell;
+}
+
+-(void)setHiddenSegment:(BOOL)hiddenSegment
+{
+    _hiddenSegment = hiddenSegment;
+    self.segmentCell.hidden = hiddenSegment;
+    if(!hiddenSegment){
+        self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    }
+    else {
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+}
+
+-(void)setSegmentTitles:(NSArray *)segmentTitles
+{
+    _segmentTitles = segmentTitles;
+    [self.segmentCell setTitles:segmentTitles];
+}
+
+-(NSInteger)selectedSegmentIndex
+{
+    return self.segmentCell.segment.currentIndex;
 }
 
 -(CommonBottomView*)bottomView
@@ -50,11 +90,25 @@
         [self.view addSubview:_bottomView];
 
         [_bottomView.confirmButton addTarget:self action:@selector(bottomViewButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
+        [_bottomView.addtionalButton addTarget:self action:@selector(bottomViewAddtionalButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
+        _bottomView.backgroundColor = [UIColor whiteColor];
         _bottomView.selectAllCheckBox.delegate = self;
+        
+        if (self.hiddenBottomView) {
+            _bottomView.hidden = YES;
+        }
+        
     }
     
     return _bottomView;
+}
+
+-(void)setHiddenBottomView:(BOOL)hiddenBottomView
+{
+    _hiddenBottomView = hiddenBottomView;
+    self.bottomView.hidden = hiddenBottomView;
+    [self.tableView reloadData];
 }
 
 -(void)bottomViewButtonClicked:(UIButton*)button
@@ -63,6 +117,51 @@
                                                    message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+}
+
+-(void)bottomViewAddtionalButtonClicked:(UIButton*)button
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+-(void)setBottomViewButtonTitle:(NSString *)bottomViewButtonTitle
+{
+    [self.bottomView.confirmButton setTitle:bottomViewButtonTitle forState:UIControlStateNormal];
+}
+
+-(void)setBottomViewAddtionalButtonTitle:(NSString *)bottomViewAddtionalButtonTitle
+{
+    [self.bottomView.addtionalButton setTitle:bottomViewAddtionalButtonTitle forState:UIControlStateNormal];
+}
+
+//-(void)setActionForBottomViewButtonWithTarget:(id)target andAction:(SEL)action
+//{
+//    [self.bottomView.confirmButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+//}
+//
+//-(void)setActionForBottomViewAddtonalButtonWithTarget:(id)target andAction:(SEL)action
+//{
+//    [self.bottomView.addtionalButton addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
+//
+//}
+
+-(NSArray*)selectedData
+{
+    return  [self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected != NO"]];
+
+}
+-(NSArray*)unSelectedData
+{
+    return  [self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.selected == NO"]];
+    
+}
+
+-(HttpListQueryRequest*)makeListQueryRequest
+{
+    return nil;
 }
 
 - (void)viewDidLoad
@@ -86,16 +185,23 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-    
     self.segmentCell.frame = CGRectMake(0, 64.f, [UIScreen mainScreen].bounds.size.width, kSegmentCellHeight);
     self.tableView.frame = self.view.bounds;
     
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
+    if (!self.hiddenSegment) {
+        self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
+    }
+    else
+    {
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+    [self.tableView registerNib:[UINib nibWithNibName:@"CommonListCell" bundle:nil] forCellReuseIdentifier:@"CommonListCell"];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
-    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(kSegmentCellHeight, 0, 0, 0);
     
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -130,6 +236,7 @@
     }];
     self.tableView.mj_footer.automaticallyChangeAlpha = YES;
     
+    self.dataSource = [[NSMutableArray alloc] init];
     self.isRefreshing = NO;
 }
 
@@ -147,6 +254,9 @@
 {
     [super viewWillAppear:animated];
     [self.tabBarController setTabBarHidden:YES animated:YES];
+    if (self.autoRefresh) {
+        [self resetDataSource];
+    }
     
 }
 
@@ -154,23 +264,101 @@
 {
     [super viewWillLayoutSubviews];
     self.bottomView.frame = CGRectMake(0, self.view.height-[CommonBottomView cellHeight], self.view.bounds.size.width, [CommonBottomView cellHeight]);
+    if (self.hiddenBottomView) {
+        self.bottomView.hidden = YES;
+    }
+}
+
+
+
+-(void)resetDataSource
+{
+    self.totalRow = 0;
+    self.pageNumber = 0;
+    self.totalPage = 0;
+    self.pageSize = 0;
+    
+    [self.dataSource removeAllObjects];
+    [self.tableView reloadData];
+    
+    [self.bottomView reset];
+    
+    self.listQueryRequest = [self makeListQueryRequest];
+    [self requestDataSource];
+}
+
+-(AnyPromise*)requestDataSource
+{
+    //return nil;
+    [self showProgressIndicatorWithTitle:@"正在加载"];
+    return
+    [self.listQueryRequest request]
+    .then(^(id responseObj){
+        NSLog(@"%@", responseObj);
+        HttpListQueryResponse *response = (HttpListQueryResponse*)self.listQueryRequest.response;
+        if (response.ok) {
+            if (response.dtos.count>0) {
+                [self.dataSource addObjectsFromArray:response.dtos];
+                self.totalPage = response.totalPage;
+                self.pageNumber = response.pageNumber>=self.totalPage ? self.totalPage:response.pageNumber;
+                [self.tableView reloadData];
+                self.bottomView.selectAllCheckBox.on = NO;
+            }
+        }
+        else{
+            [self showAlertViewWithMessage:response.errorMsg];
+        }
+
+    })
+    .catch(^(NSError* error){
+        [self showAlertViewWithMessage:error.localizedDescription];
+    })
+    .finally(^(){
+        [self dismissProgressIndicator];
+    });
+}
+
+-(BaseListDTO*)dtoAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (self.dataSource.count == 0) {
+        return nil;
+    }
+    
+    if (indexPath.row/2 < self.dataSource.count) {
+        return self.dataSource[indexPath.row/2];
+    }
+    return nil;
 }
 
 -(AnyPromise*)handleHeaderRefresh
 {
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    return [alert promise];
+    self.listQueryRequest = [self makeListQueryRequest];
+    if (self.listQueryRequest) {
+        return [self requestDataSource];
+    }
+    else {
+        UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                       message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                      delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        return [alert promise];
+    }
+    
     
 }
 
 -(AnyPromise*)handleFooterRefresh
 {
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    return [alert promise];
+    self.listQueryRequest = [self makeListQueryRequest];
+
+    if (self.listQueryRequest) {
+        return [self requestDataSource];
+    }
+    else {
+        UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                       message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                      delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        return [alert promise];
+    }
 
 }
 
@@ -178,19 +366,17 @@
 
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-}
+    self.listQueryRequest = [self makeListQueryRequest];
 
-#pragma -- mark BEMCheckBox Delegate
--(void)didTapCheckBox:(BEMCheckBox *)checkBox
-{
-    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
-                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
-                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    if (self.listQueryRequest) {
+        [self resetDataSource];
+    }
+    else {
+        UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                       message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                      delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert promise];
+    }
 }
 
 #pragma -- mark UIScroll view delegate
@@ -283,7 +469,7 @@
     
 }
 
-#pragma -- UITableViewCell delegate
+#pragma mark UITableView delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -294,18 +480,31 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger num = self.dataSource.count;
-    return num*2 + 1;
+    // add a last useless cell, or the last cell will be overlaped by CommonBottomView
+    return num*2 + (self.hiddenBottomView? 0 : 1);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row == self.dataSource.count*2){
         return [CommonBottomView cellHeight];
     }
     else if(indexPath.row %2 ==0){
         return 12.f;
     }
-    return 0;
+    
+    if (self.usingDefaultCell) {
+
+        return [CommonListCell cellHeight];
+    }
+    return 0.f;
+}
+
+
+-(BOOL)hiddenCheckBox
+{
+    return NO;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -326,8 +525,139 @@
             cell.backgroundColor = [UIColor clearColor];
         }
     }
-    
+    else {
+        if (self.usingDefaultCell) {
+            CommonListCell* listCell = [tableView dequeueReusableCellWithIdentifier:@"CommonListCell"];
+            listCell.dto = self.dataSource[indexPath.row/2];
+            listCell.delegate = self;
+            listCell.checkBox.hidden = self.hiddenCheckBox;
+            cell = listCell;
+
+        }
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row%2 == 0) {
+        
+    }
+
+    else {
+        [self tableViewCellSelected:tableView andIndexPath:indexPath];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(UITableViewCell*)configCellByTableView:(UITableView*)tableView andIndexPath:(NSIndexPath*)indexPath
+{
+    NSAssert(NO, @"You should override this method %s", __FUNCTION__);
+    return nil;
+}
+
+-(void)tableViewCellSelected:(UITableView *)tableView andIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+#pragma mark Common list cell delegate
+-(void)didSelectedListCell:(CommonListCell *)cell
+{
+    
+    NSArray* onArray = self.selectedData;
+    if (onArray.count == self.dataSource.count) {
+        self.bottomView.selectAllCheckBox.on = YES;
+    }
+    else {
+        self.bottomView.selectAllCheckBox.on = NO;
+    }
+    
+    [self updateBottomView];
+}
+
+-(void)updateBottomView
+{
+    __block float totalPrice = 0.f;
+    [self.selectedData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        BaseListDTO* dto = (BaseListDTO*)obj;
+        totalPrice += dto.totalPrice;
+    }];
+    
+    [self.bottomView setTotalPrice:totalPrice];
+}
+
+-(void)leftButtonClicked:(CommonListCell *)cell
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+
+}
+
+-(void)rightButtonClicked:(CommonListCell *)cell
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+
+}
+
+
+-(void)topButtonClicked:(CommonListCell *)cell
+{
+    UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"Alert"
+                                                   message:[NSString stringWithFormat:@"You should overwrite the API %@", [NSString stringWithUTF8String:__FUNCTION__]]
+                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    
+}
+
+
+#pragma -- mark BEMCheckBox Delegate
+-(void)didTapCheckBox:(BEMCheckBox *)checkBox
+{
+    if (checkBox.on) {
+        for(BaseListDTO* dto in self.unSelectedData){
+            dto.selected = YES;
+        }
+    }
+    else {
+        for(BaseListDTO* dto in self.selectedData){
+            dto.selected = NO;
+        }
+    }
+    
+    [self updateBottomView];
+}
+
+
+-(void)operationSuccessBack:(NSArray<BaseListDTO*>*)operatedDto
+{
+    [self resetDataSource];
+}
+
+#pragma - mark ListViewControllerDelegate
+
+-(void)didOperatorSuccessWithIds:(NSArray*)ids
+{
+    if(self.dataSource){
+       self.dataSource = [[self.dataSource filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT (SELF.id IN %@)", ids]] mutableCopy];
+        [self.tableView reloadData];
+        [self updateBottomView];
+    }
+}
+
+
+
+
+-(void)dealloc
+{
+    NSLog(@"dealloc %@", self.class);
 }
 
 @end

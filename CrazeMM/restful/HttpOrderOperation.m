@@ -2,7 +2,7 @@
 //  HttpOrderOperation.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/22.
+//  Created by Mao Mao on 16/5/22.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -105,5 +105,28 @@
     NSString* absUrl = [NSString stringWithFormat:@"/rest/order/confirm/%@",  [self.oids componentsJoinedByString:@","]];
     return COMB_URL(absUrl);
 }
+
+@end
+
+@implementation HttpOrderLogicDelete
+
+-(NSString*)url
+{
+    // change /rest/order/logicDelete/%@ to /rest/order/logicDeleteByIds/%@
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/order/logicDeleteByIds/%@",  [self.oids componentsJoinedByString:@","]];
+    return COMB_URL(absUrl);
+}
+
+
+@end
+
+@implementation HttpSingleOrderLogicDelete
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/order/logicDelete/%@",  [self.oids componentsJoinedByString:@","]];
+    return COMB_URL(absUrl);
+}
+
 
 @end

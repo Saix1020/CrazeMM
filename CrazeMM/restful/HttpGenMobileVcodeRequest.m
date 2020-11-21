@@ -2,7 +2,7 @@
 //  HttpGenMobileVcodeRequest.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/30.
+//  Created by Mao Mao on 16/4/30.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -55,9 +55,9 @@
 }
 
 
--(AFHTTPRequestOperationManager*)manager
+-(AFHTTPSessionManager*)manager
 {
-    AFHTTPRequestOperationManager* mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager* mgr = [super manager];
     
     [mgr.requestSerializer setValue:@"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36" forHTTPHeaderField:@"User-Agent"];
     return mgr;
@@ -123,6 +123,23 @@
     }
 }
 
+-(NSInteger)lessTimes
+{
+    return [self.data[@"lessTimes"] integerValue];
+}
+
+-(NSInteger)seq
+{
+    return [self.data[@"seq"] integerValue];
+}
+
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"手机验证码已经成功发送，请注意查收，您还有%ld次获取机会", self.lessTimes];
+}
+
+
 -(NSString*)errorDetail
 {
     if (!self.all) {
@@ -145,6 +162,7 @@
         }
     }
 }
+
 
 
 @end

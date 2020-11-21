@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/17.
+//  Created by Mao Mao on 16/4/17.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -10,12 +10,18 @@
 #import "WelcomeViewController.h"
 #import "NewWelcomeViewController.h"
 #import "TabBarController.h"
+#import "HttpAllRegion.h"
+#import "HttpMobileBanner.h"
+#import "HttpMobileBanner.h"
+#import "Banner.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) NewWelcomeViewController* welcomeVC;
 @property (nonatomic, assign) CFAbsoluteTime resignTime;  //记录进入后台的时间
 @property (nonatomic, assign) CFAbsoluteTime currentTime;  //记录进入后台的时间
 //@property (nonatomic, strong) Reachability* hostReach;
+@property (strong, nonatomic) RealReachability* reachability;
+@property (nonatomic) NSUInteger reachabilityCount;
 
 @end
 
@@ -24,6 +30,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    GLobalRealReachability.hostForPing = FULL_HOSTNAME;
+    [GLobalRealReachability startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(networkChanged:)
+                                                 name:kRealReachabilityChangedNotification
+                                               object:nil];
+    //[self getGlobSharedInstances];
+
+
     
     [[UINavigationBar appearance] setBarTintColor:[UIColor redColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -48,6 +63,7 @@
     
     [self.window makeKeyAndVisible];
 
+    
     
     return YES;
 }
@@ -171,5 +187,91 @@
         }
     }
 }
+
+#pragma mark RealReachability
+
+- (void)networkChanged:(NSNotification *)notification
+{
+    self.reachability = (RealReachability *)notification.object;
+    ReachabilityStatus status = [self.reachability currentReachabilityStatus];
+    NSLog(@"currentStatus:%@",@(status));
+//    self.reachabilityCount++;
+//    if (self.reachabilityCount == 1) {
+//        return;
+//    }
+    
+//    if(status == RealStatusNotReachable){
+////        if (self.welcomeVC.presentedViewController) {
+////            [self.welcomeVC.presentingViewController showAlertViewWithMessage:@"网络连接错误, 请检查你的网络"];
+////        }
+//        if (self.welcomeVC.presentedViewController){
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"系统提示"
+//                                                            message:@"网络不可用!"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
+//
+//        }
+//        
+//    }
+}
+
+
+#pragma - mark get globshared instance
+-(void)getGlobSharedInstances
+{
+    // all regions
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(){
+        [HttpAllRegionRequest getAllRegions];
+        [AppDelegate downloadBannerImages];
+    });
+    
+    
+    // add more const big data from server here!
+    
+}
+
++(void)downloadBannerImages
+{
+    NSMutableArray* promises = [[NSMutableArray alloc] init];
+    NSManagedObjectContext* moc = sharedManagedObjectContext();
+    [HttpMobileBannerRequest getAllBanners]
+    .then(^(NSArray* newBanners){
+        for(BannerDTO* dto in newBanners){
+            [promises addObject:[NSURLConnection GET:dto.image]];
+            
+        }
+        PMKJoin(promises).then(^(NSArray* data){
+            for(NSArray* detail in data){
+                //if (detail.count == 3) {
+                    NSHTTPURLResponse* response = detail[1];
+                    NSData* imageData = detail[2];
+                    for(BannerDTO* dto in newBanners){
+                        if ([dto.image isEqualToString:response.URL.absoluteString]) {
+                            dto.data = imageData;
+                            break;
+                        }
+                    }
+                //}
+            }
+            
+            [Banner removeAllBannersWithManagedObjectContext:moc];
+            for(BannerDTO* dto in newBanners){
+                [Banner createWithBannerDTO:dto andManagedObjectContext:moc];
+                
+            }
+            [moc save:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kBannerImagesDownloadSuccessBroadCast object:nil];
+            
+            //[UserCenter defaultCenter].banners = ;//[nBanners enco];
+            
+            
+            
+        });
+    });
+}
+
 
 @end

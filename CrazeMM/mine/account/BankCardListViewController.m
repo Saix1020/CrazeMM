@@ -2,7 +2,7 @@
 //  BankCardListViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/21.
+//  Created by Mao Mao on 16/5/21.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -139,11 +139,7 @@
             .catch(^(NSError* error){
                 [self showAlertViewWithMessage:error.localizedDescription];
             });
-        } andCancelCallback:^(id x){
-            @strongify(self);
-
-        }];
-        
+        } andCancelCallback:nil];
         
     }
     

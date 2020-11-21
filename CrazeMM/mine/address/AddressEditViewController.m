@@ -2,7 +2,7 @@
 //  AddressEditViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/26.
+//  Created by Mao Mao on 16/4/26.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -170,32 +170,28 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 
 -(void)saveAddress:(id)sender
 {
-//    @"address.contact" : addrDto.contact,
-//    @"address.mobile" : addrDto.mobile,
-//    @"address.pid" : @(addrDto.pid),
-//    @"address.cid": @(addrDto.cid),
-//    @"address.did": @(addrDto.did),
-//    @"address.street": addrDto.street,
-//    @"address.zipCode" : addrDto.zipCode,
-//    @"address.isDefault" : @(addrDto.isDefault)
+    [self.view endEditing:YES];
 
     AddrDTO* newAddrDTO = [[AddrDTO alloc] init];
     newAddrDTO.contact = self.receiverCell.value;
     newAddrDTO.mobile = self.mobileCell.value;
     newAddrDTO.pid = self.selectedRegionDto.id;
     newAddrDTO.cid = self.selectedCityDto.id;
-    newAddrDTO.did = self.selectedAreaDto.id;
+    newAddrDTO.did = self.selectedAreaDto?self.selectedAreaDto.id:0;
     newAddrDTO.street =self.addressCell.value;
     newAddrDTO.zipCode = self.zipCell.value;
     newAddrDTO.isDefault = self.defaultCheckboxCell.checkBox.on;
+    BaseHttpRequest* request;
     if (self.isEditingAddr) {
-        // not support yet
         newAddrDTO.uid = self.address.uid;
+        newAddrDTO.id = self.address.id;
+        request = [[HttpAddressUpdateRequest alloc] initWithAddrDto:newAddrDTO];
     }
     else {
         newAddrDTO.uid = -1;
+        request = [[HttpAddressSaveRequest alloc] initWithAddrDto:newAddrDTO];
     }
-    HttpAddressSaveRequest* request = [[HttpAddressSaveRequest alloc] initWithAddrDto:newAddrDTO];
+    
     [request request]
     .then(^(id responseObj){
         if (!request.response.ok) {
@@ -234,41 +230,26 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
         return [RACSignal empty];
     }];
     
-    HttpAllRegionRequest* request = [[HttpAllRegionRequest alloc] init];
     self.regionCell.textFieldCell.enabled = NO;
-    [request request]
-    .then(^(id responseObj){
-        if (request.response.ok) {
-            HttpAllRegionResponse* response = (HttpAllRegionResponse*)request.response;
-            self.regionDto = response.regionDtos;
+    [HttpAllRegionRequest getAllRegions].then(^(NSArray* allRegions){
+        self.regionDto = allRegions;
+        [self setupCityPicker];
+        self.regionCell.textFieldCell.enabled = YES;
+        if (self.address){
+            self.selectedRegionDto = [self findRegion];
+            self.selectedCityDto = [self findCity];
+            self.selectedAreaDto = [self findArea];
+            self.provinceIndex = [self.regionDto indexOfObject:self.selectedRegionDto];
+            self.cityIndex = [self.selectedRegionDto.cities indexOfObject:self.selectedCityDto];
+            self.areaIndex = [self.selectedCityDto.areas indexOfObject:self.selectedAreaDto];
             
-            [self setupCityPicker];
-            self.regionCell.textFieldCell.enabled = YES;
-            if (self.address){
-                self.selectedRegionDto = [self findRegion];
-                self.selectedCityDto = [self findCity];
-                self.selectedAreaDto = [self findArea];
-                self.provinceIndex = [self.regionDto indexOfObject:self.selectedRegionDto];
-                self.cityIndex = [self.selectedRegionDto.cities indexOfObject:self.selectedCityDto];
-                self.areaIndex = [self.selectedCityDto.areas indexOfObject:self.selectedAreaDto];
-                
-                [self.cityPicker selectRow:self.provinceIndex inComponent:0 animated:NO];
-                [self.cityPicker selectRow:self.cityIndex inComponent:1 animated:NO];
-                [self.cityPicker selectRow:self.areaIndex inComponent:2 animated:NO];
-                
-                self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
-            }
+            [self.cityPicker selectRow:self.provinceIndex inComponent:0 animated:NO];
+            [self.cityPicker selectRow:self.cityIndex inComponent:1 animated:NO];
+            [self.cityPicker selectRow:self.areaIndex inComponent:2 animated:NO];
             
-
+            self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
         }
-        else {
-            //[self showAlertViewWithMessage:request.response.errorMsg];
-        }
-    })
-    .catch(^(NSError* error){
-        //[self showAlertViewWithMessage:error.localizedDescription];
     });
-
     
     self.tableView = [[TPKeyboardAvoidingTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
@@ -281,7 +262,8 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.frame = self.view.frame;
-//    @weakify(self);
+    
+    self.navigationController.confirmString = @"确定放弃修改吗?";
 }
 
 -(RegionDTO*)findRegion
@@ -459,9 +441,14 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
     self.selectedCityDto = self.selectedRegionDto.cities[self.cityIndex];
     NSInteger areaIndex = [self.cityPicker selectedRowInComponent:2];
     self.areaIndex = areaIndex;
-    self.selectedAreaDto = self.selectedCityDto.areas[areaIndex];
+    if (self.selectedCityDto.areas.count>areaIndex) {
+        self.selectedAreaDto = self.selectedCityDto.areas[areaIndex];
+    }
+    else {
+        self.selectedAreaDto = nil;
+    }
 
-    self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
+    self.regionCell.textFieldCell.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto?self.selectedAreaDto.name:@""];
 }
 
 
@@ -532,9 +519,9 @@ typedef NS_ENUM(NSInteger, AddrEditingTableViewRow){
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.text.length == 0) {
-        self.selectedRegionDto = self.regionDto[0];
-        self.selectedCityDto = self.selectedRegionDto.cities[0];
-        self.selectedAreaDto = self.selectedCityDto.areas[0];
+        self.selectedRegionDto = self.regionDto.firstObject;
+        self.selectedCityDto = self.selectedRegionDto.cities.firstObject;
+        self.selectedAreaDto = self.selectedCityDto.areas.firstObject;
 
         textField.text = [NSString stringWithFormat:@"%@ %@ %@", self.selectedRegionDto.name, self.selectedCityDto.name, self.selectedAreaDto.name];
 

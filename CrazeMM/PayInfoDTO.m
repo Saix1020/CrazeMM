@@ -2,7 +2,7 @@
 //  PayDetailDTO.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/15.
+//  Created by Mao Mao on 16/5/15.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -26,6 +26,7 @@
         self.ORDERID = dict[@"ORDERID"];
         self.CLIENTIP = dict[@"CLIENTIP"];
         self.CURCODE = dict[@"CURCODE"];
+        self.TIMEOUT = dict[@"TIMEOUT"];
         self.BRANCHID = dict[@"BRANCHID"];
         self.TXCODE = dict[@"TXCODE"];
     }
@@ -47,6 +48,7 @@
             "&TXCODE=%@"
             "&MAC=%@"
             "&TYPE=%ld"
+            "&TIMEOUT=%@"
             "&GATEWAY=%@"
             "&CLIENTIP=%@",
             self.MERCHANTID,
@@ -60,6 +62,7 @@
             self.TXCODE,
             self.MAC,
             self.TYPE,
+            self.TIMEOUT,
             self.GATEWAY,
             self.CLIENTIP];
 }

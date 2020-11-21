@@ -2,7 +2,7 @@
 //  MineBuyViewController.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/20.
+//  Created by Mao Mao on 16/5/20.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -12,6 +12,6 @@
 
 // we also use SupplyListCell here.
 
-@interface MineBuyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineEditViewControllerDelegate>
+@interface MineBuyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineEditViewControllerDelegate, ListViewControllerDelegate>
 
 @end

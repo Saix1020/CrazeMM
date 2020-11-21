@@ -3,16 +3,12 @@
 
 #import "_SearchHistory.h"
 
-const struct SearchHistoryAttributes SearchHistoryAttributes = {
-	.keyword = @"keyword",
-};
-
 @implementation SearchHistoryID
 @end
 
 @implementation _SearchHistory
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"SearchHistory" inManagedObjectContext:moc_];
 }
@@ -38,5 +34,11 @@ const struct SearchHistoryAttributes SearchHistoryAttributes = {
 
 @dynamic keyword;
 
+@end
+
+@implementation SearchHistoryAttributes 
++ (NSString *)keyword {
+	return @"keyword";
+}
 @end
 

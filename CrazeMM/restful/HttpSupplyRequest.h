@@ -2,7 +2,7 @@
 //  HttpSupplyRequest.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/4.
+//  Created by Mao Mao on 16/5/4.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -14,7 +14,10 @@
 
 -(instancetype)initWithPageNumber:(NSUInteger)pageNumber;
 
-@property (nonatomic)  NSInteger pageNumber;
+//@property (nonatomic)  NSInteger pageNumber;
+
+//http://b.189mm.com/rest/supply?pn=1&keywords=&minprice=&maxprice=&brands=&colors=&network=&volume=&sort=
+
 
 @end
 
@@ -24,3 +27,5 @@
 //@property  (nonatomic, readonly) NSString* goodImage;
 
 @end
+
+

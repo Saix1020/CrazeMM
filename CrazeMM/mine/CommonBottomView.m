@@ -2,7 +2,7 @@
 //  PayBottomView.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/24.
+//  Created by Mao Mao on 16/4/24.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -19,7 +19,15 @@
     self.selectAllCheckBox.on = NO  ;
     self.selectAllCheckBox.animationDuration = 0.f;
 
+    self.addtionalButton.hidden = YES;
+    
     [self fomartTotalPriceLabel];
+}
+
+-(void)setSelectedAll:(BOOL)selectedAll
+{
+    _selectedAll = selectedAll;
+    self.selectAllCheckBox.on = selectedAll;
 }
 
 -(void)setTotalPrice:(CGFloat)totalPrice
@@ -189,5 +197,12 @@
     }
 }
 
+
+
+-(void)reset
+{
+    self.selectedAll = NO;
+    self.totalPrice = 0;
+}
 
 @end

@@ -2,7 +2,7 @@
 //  AccountSummaryCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/27.
+//  Created by Mao Mao on 16/4/27.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -33,7 +33,7 @@
     RACSignal* fronzenMoneySignal = RACObserve(self, frozenMoney);
     RACSignal* signal = [RACSignal combineLatest:@[aviliableMoneySignal, fronzenMoneySignal]];
     [signal subscribeNext:^(id x){
-        self.amountMoneyLabel.text = [NSString stringWithFormat:@"%.2f", self.money + self.frozenMoney];
+        self.amountMoneyLabel.text = [NSString stringWithFormat:@"%.02f", self.money + self.frozenMoney];
     }];
 }
 
@@ -45,13 +45,15 @@
 -(void)setMoney:(CGFloat)money
 {
     _money = money;
-    self.aviliableMoney.text = [NSString stringWithFormat:@"%.2f元", money];
+    self.aviliableMoney.text = [NSString stringWithFormat:@"%.02f元", money];
+    
+    
 }
 
 -(void)setFrozenMoney:(CGFloat)frozenMoney
 {
     _frozenMoney = frozenMoney;
-    self.fronzenMoney.text = [NSString stringWithFormat:@"%.2f元", _frozenMoney];
+    self.fronzenMoney.text = [NSString stringWithFormat:@"%.02f元", _frozenMoney];
     
 }
 

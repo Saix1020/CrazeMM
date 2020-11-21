@@ -2,7 +2,7 @@
 //  OrderDefine.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/7.
+//  Created by Mao Mao on 16/5/7.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -17,7 +17,8 @@ typedef NS_ENUM(NSInteger, MMOrderSubType){
     kOrderSubTypePay = 0,
     kOrderSubTypeReceived,
     kOrderSubTypeConfirmed,
-    kOrderSubTypeSend
+    kOrderSubTypeSend,
+    kOrderSubTypeAll
 };
 
 // Will this state code be changed?
@@ -26,9 +27,16 @@ typedef NS_ENUM(NSInteger, MMOrderState){
     PAYTIMEOUT = 700, //支付超时
     TOBECONFIRMED = 401, //待确认
     TOBEPAID = 100, //待付款
+    PAYING = 101,
     TOBERECEIVED = 300,//待签收
     TOBESENT = 200,// 待发货
     TOBESETTLED = 400, //待结款
+    ORDERCLOSE = 600, //
+    CANCELED = 103, // 取消
+    DELETED = 501, // 删除
+    PAYBACK = 102, //
+    RETURNING = 800, //
+    ARBITRATING = 900, //
     
     // TOBEPAID -> TOBESENT(PAYCOMPLETE) -> TOBERECEIVED(SENTCOMPLETE) -> TOBESETTLED(RECEIVECOMPLETE) -> TOBECONFIRMED -> COMPLETED(CONFIRMEDCOMPLETE)
     WAITFORPAY = TOBEPAID,
@@ -36,6 +44,7 @@ typedef NS_ENUM(NSInteger, MMOrderState){
     RECEIVECOMPLETE = TOBESETTLED,
     SENTCOMPLETE = TOBERECEIVED,
     CONFIRMEDCOMPLETE = COMPLETED,
+    
 };
 
 
@@ -46,7 +55,8 @@ typedef struct {
 }MMOrderListStyle;
 
 @interface  OrderDefine: NSObject
-
++(NSDictionary*)allOrderStateMap;
++(NSArray*)allOrderState;
 +(NSString*)orderStateToStringWithType:(MMOrderType)type andState:(MMOrderState)state;
 @end
 

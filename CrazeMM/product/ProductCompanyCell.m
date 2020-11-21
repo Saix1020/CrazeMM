@@ -2,7 +2,7 @@
 //  ProductMiddleCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/25.
+//  Created by Mao Mao on 16/4/25.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -63,7 +63,7 @@
     self.companyNameLabel.text = [NSString stringWithFormat:@"%@ (%@)", productDetailDto.users.username, productDetailDto.users.typeName];
     self.checkedImage.hidden = !(productDetailDto.users.validateState == 300);
     self.locationLabel.text = [NSString stringWithFormat:@"成交单数: %ld", productDetailDto.users.successOrderCount];
-    
+    // TODO set user image
     [self.logoImageView setImageWithURL:[NSURL URLWithString:COMB_URL(@"/weui/images/product.jpg")] placeholderImage:[@"logo-2" image]];
 }
 

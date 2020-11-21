@@ -3,17 +3,12 @@
 
 #import "_UserInfo.h"
 
-const struct UserInfoAttributes UserInfoAttributes = {
-	.logged = @"logged",
-	.name = @"name",
-};
-
 @implementation UserInfoID
 @end
 
 @implementation _UserInfo
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"UserInfo" inManagedObjectContext:moc_];
 }
@@ -51,7 +46,7 @@ const struct UserInfoAttributes UserInfoAttributes = {
 }
 
 - (void)setLoggedValue:(BOOL)value_ {
-	[self setLogged:[NSNumber numberWithBool:value_]];
+	[self setLogged:@(value_)];
 }
 
 - (BOOL)primitiveLoggedValue {
@@ -60,10 +55,19 @@ const struct UserInfoAttributes UserInfoAttributes = {
 }
 
 - (void)setPrimitiveLoggedValue:(BOOL)value_ {
-	[self setPrimitiveLogged:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveLogged:@(value_)];
 }
 
 @dynamic name;
 
+@end
+
+@implementation UserInfoAttributes 
++ (NSString *)logged {
+	return @"logged";
+}
++ (NSString *)name {
+	return @"name";
+}
 @end
 

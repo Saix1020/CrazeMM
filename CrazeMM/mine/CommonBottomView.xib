@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -43,10 +45,23 @@
                         <rect key="frame" x="74" y="7" width="138" height="26"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDw-gU-TZK">
+                        <rect key="frame" x="121" y="0.0" width="100" height="40"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="1l2-ck-TPO"/>
+                            <constraint firstAttribute="width" constant="100" id="Je2-Fv-EwJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="F4P-ol-pRq" firstAttribute="centerY" secondItem="3fs-9R-AK2" secondAttribute="centerY" id="7AT-19-PIZ"/>
                     <constraint firstItem="3fs-9R-AK2" firstAttribute="leading" secondItem="F4P-ol-pRq" secondAttribute="trailing" constant="8" symbolic="YES" id="CeW-ZB-3Ch"/>
+                    <constraint firstItem="xDw-gU-TZK" firstAttribute="firstBaseline" secondItem="3fs-9R-AK2" secondAttribute="baseline" id="EPV-FW-q8X"/>
                     <constraint firstItem="F4P-ol-pRq" firstAttribute="centerY" secondItem="x3u-lA-llK" secondAttribute="centerY" id="FHw-Ve-Eyz"/>
                     <constraint firstItem="vCC-9a-TVD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="OTD-7K-hNi"/>
                     <constraint firstItem="F4P-ol-pRq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="PF7-pC-5ha"/>
@@ -56,12 +71,16 @@
                     <constraint firstItem="vCC-9a-TVD" firstAttribute="centerY" secondItem="x3u-lA-llK" secondAttribute="centerY" id="TzE-TX-587"/>
                     <constraint firstItem="F4P-ol-pRq" firstAttribute="leading" secondItem="x3u-lA-llK" secondAttribute="trailing" constant="8" symbolic="YES" id="aIw-To-Hk1"/>
                     <constraint firstItem="vCC-9a-TVD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hLj-JN-DRS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xDw-gU-TZK" secondAttribute="trailing" constant="91" id="i7c-qf-gWw"/>
                     <constraint firstItem="x3u-lA-llK" firstAttribute="leading" secondItem="vCC-9a-TVD" secondAttribute="trailing" constant="8" symbolic="YES" id="iNs-Ej-FAF"/>
                     <constraint firstItem="x3u-lA-llK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="rlP-sr-h9U"/>
+                    <constraint firstItem="xDw-gU-TZK" firstAttribute="baseline" secondItem="3fs-9R-AK2" secondAttribute="firstBaseline" id="s43-JZ-VCe"/>
+                    <constraint firstItem="xDw-gU-TZK" firstAttribute="top" secondItem="3fs-9R-AK2" secondAttribute="top" id="w1u-IR-MYt"/>
                     <constraint firstItem="3fs-9R-AK2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ywE-Au-xex"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addtionalButton" destination="xDw-gU-TZK" id="ewm-rT-Iqt"/>
                 <outlet property="confirmButton" destination="3fs-9R-AK2" id="yDY-p8-Uxd"/>
                 <outlet property="selectAllCheckBox" destination="vCC-9a-TVD" id="oi3-Lc-HkI"/>
                 <outlet property="selectAllLabel" destination="x3u-lA-llK" id="v1Q-xr-vQ9"/>

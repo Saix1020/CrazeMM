@@ -2,7 +2,7 @@
 //  WaitForPayCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/24.
+//  Created by Mao Mao on 16/4/24.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -14,9 +14,40 @@
 @property (nonatomic, strong) UILabel* companyLabel;
 @property (nonatomic, strong) UIImageView* companyIcon;
 
+@property (nonatomic, strong) UILabel* statusLabel;
+@property (nonatomic, strong) UILabel* flagLabel;
 @end
 
 @implementation OrderListCell
+
+-(UILabel*)statusLabel
+{
+    if (!_statusLabel) {
+        _statusLabel = [[UILabel alloc]init];
+        [self.contentView addSubview:_statusLabel];
+        _statusLabel.font = [UIFont systemFontOfSize:12.f];
+        _statusLabel.textColor = [UIColor grayColor];
+    }
+    return _statusLabel;
+}
+
+-(UILabel*)flagLabel
+{
+    if (!_flagLabel) {
+        _flagLabel = [[UILabel alloc] init];
+        _flagLabel.backgroundColor = [UIColor UIColorFromRGB:0xbddcfa];//
+        _flagLabel.font = [UIFont systemFontOfSize:12.f];
+
+        _flagLabel.layer.cornerRadius = 4.f;
+        _flagLabel.clipsToBounds = YES;
+        _flagLabel.textColor = [UIColor UIColorFromRGB:0x3972a2];
+        
+        [self.contentView addSubview:_flagLabel];
+
+    }
+    
+    return _flagLabel;
+}
 
 -(UILabel*)companyLabel
 {
@@ -138,6 +169,27 @@
     else {
         self.orderLabel.text = @"订单号: 123456";
     }
+    [self.orderLabel sizeToFit];
+}
+
+-(void)fomartStatusLabel
+{
+    NSMutableString* string = [[NSMutableString alloc]init];
+    if (self.orderDetailDTO.isSerial) {
+        [string appendString:@"带串码 "];
+    }
+    if (self.orderDetailDTO.isOriginal) {
+        [string appendString:@"原装 "];
+    }
+    if (self.orderDetailDTO.isOriginalBox) {
+        [string appendString:@"原封箱 "];
+    }
+    if (self.orderDetailDTO.isBrushMachine) {
+        [string appendString:@"已刷机"];
+    }
+    
+    self.statusLabel.text = string;
+    [self.statusLabel sizeToFit];
 }
 
 -(void)fomartProductDescLabel
@@ -155,12 +207,25 @@
     _orderDetailDTO = orderDetailDTO;
     [self fomartOrderLabel];
     [self fomartProductDescLabel];
-    self.amountLabel.text = [NSString stringWithFormat:@"数量: %ld", _orderDetailDTO.quantity];
-    self.priceLabel.text = [NSString stringWithFormat:@"定价: %.02f", _orderDetailDTO.price];
+    NSMutableString* amountLabelString = [[NSMutableString alloc] initWithFormat:@"数量: %ld", _orderDetailDTO.quantity ];
+    if (NotNilAndNull(orderDetailDTO.depotDto) && orderDetailDTO.depotDto.name.length>0) {
+        [amountLabelString appendString:[NSString stringWithFormat:@" (%@)", orderDetailDTO.depotDto.name]];
+    }
+    else {
+        [amountLabelString appendString:[NSString stringWithFormat:@" (%@)", @"卖家发货"]];
+
+    }
+    self.amountLabel.text = amountLabelString;
+    self.priceLabel.text = [NSString stringWithFormat:@"单台定价: %.02f", _orderDetailDTO.price];
     if (!_orderDetailDTO.isAony) {
         [self fomartCompanyLabel];
     }
+    
+    self.flagLabel.text = [NSString stringWithFormat:@" %@ ", orderDetailDTO.stateLabel];
+    [self.flagLabel sizeToFit];
+    
     [self fomartTotalPriceLabel];
+    [self fomartStatusLabel];
     [self layoutAllSubvies];
 }
 
@@ -178,6 +243,10 @@
         self.orderLabel.x = self.selectedCheckBox.right + 4.f;
     }
     
+    self.flagLabel.x = self.orderLabel.right + 4.f;
+    self.flagLabel.height = self.orderLabel.height;
+    self.flagLabel.bottom = self.orderLabel.bottom;
+    
     self.companyWithIconLabel.width = screenWidth - 8.f - self.companyWithIconLabel.x;
     self.companyLabel.right = self.companyWithIconLabel.width;
     self.companyIcon.right = self.companyLabel.x - 4.f;
@@ -188,11 +257,21 @@
     
     self.productDescLabel.x = 8.f;
     self.productDescLabel.width = screenWidth - 8.f*2;
+    
+    self.statusLabel.x = 8.f;
+    self.statusLabel.width = screenWidth - 8.f*2;
+    self.statusLabel.y = self.productDescLabel.bottom;
+    
     self.amountLabel.x = 8.f;
-    self.productDescLabel.width = screenWidth - 8.f*2;
+    self.amountLabel.y = self.statusLabel.bottom + 4.f;
+    self.amountLabel.width = screenWidth - 8.f*2;
+    
     self.priceLabel.x = 8.f;
+    self.priceLabel.y = self.amountLabel.bottom + 4.f;
     self.priceLabel.width = screenWidth - 8.f*2;
+    
     self.backgroundLabel.x = 0.f;
+    self.backgroundLabel.y = self.priceLabel.bottom + 4.f;
     self.backgroundLabel.width = screenWidth ;
     
     self.totalPriceLabel.right = self.backgroundLabel.width-8.f;
@@ -209,7 +288,7 @@
 
 +(CGFloat)cellHeight
 {
-    return 150.f + 8.f;
+    return 150.f + 8.f + 16.f;
 }
 
 -(void)layoutSubviews

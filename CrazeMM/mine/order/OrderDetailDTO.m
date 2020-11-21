@@ -2,7 +2,7 @@
 //  OrderDetailDTO.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/7.
+//  Created by Mao Mao on 16/5/7.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -33,6 +33,30 @@
         self.goodImage = dict[@"goodImage"];
         self.updateTime = dict[@"updateTime"];
         self.userName = dict[@"userName"];
+        
+        self.isBrushMachine = [dict[@"isBrushMachine"] integerValue] == 1;
+        self.isOriginal = [dict[@"isOriginal"] integerValue] == 1;
+        self.isOriginalBox = [dict[@"isOriginalBox"] integerValue] == 1;
+        self.isSerial = [dict[@"isSerial"] integerValue] == 1;
+        
+        self.stateLabel = dict[@"stateLabel"];
+        
+        if ([dict[@"stock"] isKindOfClass:[NSNumber class]]) {
+            self.stock = nil;
+        }
+        else {
+            self.stock = dict[@"stock"];
+        }
+        
+        if (NotNilAndNull(dict[@"depot"])) {
+            self.depotDto = [[DepotDTO alloc] initWith:dict[@"depot"]];
+        }
+        
+        else if (NotNilAndNull(self.stock)) {
+            self.depotDto = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
+        }
+
+        
         self.selected = NO;
     }
     return self;
@@ -52,10 +76,16 @@
         self.goodImage = statusDto.goodImage;
         self.updateTime = statusDto.updateTime;
         self.userName = statusDto.userName;
+        self.stock = statusDto.stock;
+        self.depotDto = statusDto.depot;
         self.selected = NO;
     }
     return self;
 }
 
+-(float)totalPrice
+{
+    return self.price * self.quantity;
+}
 
 @end

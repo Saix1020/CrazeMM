@@ -2,7 +2,7 @@
 //  SupplyViewController.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/26.
+//  Created by Mao Mao on 16/4/26.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -11,7 +11,8 @@
 #import "CommonOrderListViewController.h"
 #import "SupplyListCell.h"
 #import "MineSupplyEditViewController.h"
+#import "CommonOrderListViewController.h"
 
-@interface SupplyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineEditViewControllerDelegate>
+@interface SupplyViewController : CommonOrderListViewController<SupplyListCellDelegate, MineEditViewControllerDelegate, ListViewControllerDelegate>
 
 @end

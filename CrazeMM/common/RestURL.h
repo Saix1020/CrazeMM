@@ -2,7 +2,7 @@
 //  HttpRequestURL.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/27.
+//  Created by Mao Mao on 16/4/27.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -10,8 +10,9 @@
 #define HttpRequestURL_h
 
 #define SCHEME @"http://"
-#define HOSTNAME @"b.189mm.com"
+#define HOSTNAME @"b.189mm.net"//"b.189mm.com"
 #define FULL_HOSTNAME [NSString stringWithFormat:@"%@%@",SCHEME, HOSTNAME]
+#define WEB_HOSTNAME [NSString stringWithFormat:@"%@%@/we",SCHEME, HOSTNAME]
 #define COMB_URL_ALL(path, params)     [NSString stringWithFormat:@"%@%@%@%@%@", SCHEME, HOSTNAME, (path), (params).length>0?@"?" : @"", (params)]
 #define COMB_URL(path) COMB_URL_ALL(path, @"")
 #define LOGIN_METHORD @"POST"
@@ -28,7 +29,11 @@
 
 
 #define IBSB_PAY_URL @"https://ibsbjstar.ccb.com.cn/app/ccbMain"
-#define HTTP_HEADER_REFERER_URL @"http://b.189mm.com/"
+#define HTTP_HEADER_ORIGIN_URL @"http://b.189mm.net"
+#define HTTP_HEADER_REFERER_URL HTTP_HEADER_ORIGIN_URL"/ui/"
+
+#define CustomErrorDomain @"com.189mm"
+
 
 
 #endif /* HttpRequestURL_h */

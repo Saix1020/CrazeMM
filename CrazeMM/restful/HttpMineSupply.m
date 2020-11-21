@@ -2,11 +2,12 @@
 //  HttpMineSupply.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/16.
+//  Created by Mao Mao on 16/5/16.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import "HttpMineSupply.h"
+#import "MineStockDTO.h"
 
 @implementation HttpMineSupplyRequest
 
@@ -42,7 +43,7 @@
     if (self) {
         self.params = [@{
                          @"pn" : @(pageNumber),
-                         @"state" : @(kStateSoldOut),
+                         @"state" : [@[@(kStateSoldOut), @(150)] componentsJoinedByString:@","], //  已认购
                          } mutableCopy];
     }
     
@@ -108,7 +109,6 @@
         NSLog(@"%@", dto);
         [self.productDTOs  addObject:dto];
     }
-    
 }
 
 -(NSUInteger)pageNumber
@@ -204,6 +204,246 @@
         [self.productDTOs  addObject:dto];
     }
     
+}
+
+@end
+
+
+@implementation HttpMineStockRequest
+
+-(instancetype)initWithPageNumber:(NSInteger)pageNumber
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"pn" : @(pageNumber),
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+-(instancetype)initWithPageNumber:(NSInteger)pageNumber andStatus:(NSString*)status
+{
+    self = [self initWithPageNumber:pageNumber];
+    if (self) {
+        self.params[@"state"] = status;
+    }
+    return self;
+}
+
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/stock");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpMineStockResponse class];
+}
+
+@end
+
+@implementation HttpMineStockResponse
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    self.stockDTOs = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary* dict in self.stockList) {
+        MineStockDTO* dto = [[MineStockDTO alloc] initWith:dict];
+        NSLog(@"%@", dto);
+        [self.stockDTOs  addObject:dto];
+    }
+    
+}
+
+-(NSUInteger)pageNumber
+{
+    if (self.all && self.all[@"page"]) {
+        NSNumber* number = self.all[@"page"][@"pageNumber"];
+        return [number integerValue];
+    }
+    
+    return 0;
+}
+
+-(NSUInteger)totalPage
+{
+    
+    if (self.all && self.all[@"page"]) {
+        NSNumber* number = self.all[@"page"][@"totalPage"];
+        return [number integerValue];
+    }
+    
+    return 0;
+}
+
+-(NSUInteger)totalRow
+{
+    if (self.all && self.all[@"page"]) {
+        NSNumber* number = self.all[@"page"][@"totalRow"];
+        return [number integerValue];
+    }
+    
+    return 0;
+}
+
+-(NSArray*)stockList
+{
+    if (self.all && self.all[@"page"]) {
+        NSArray* stockList = self.all[@"page"][@"list"];
+        return stockList;
+    }
+    
+    return @[];
+}
+
+
+@end
+
+
+@implementation HttpMineSupplyDetailRequest
+
+-(instancetype)initWithId:(NSInteger)sid
+{
+    self = [super init];
+    if (self) {
+        self.sid = sid;
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/supply/detail/%ld", self.sid];
+    return COMB_URL(absUrl);
+}
+
+-(NSString*)method{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpMineSupplyDetailResponse class];
+}
+
+@end
+
+@implementation HttpMineSupplyDetailResponse
+
+-(NSDictionary*)supply
+{
+    return  self.all?self.all[@"supply"]:@{};
+}
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    
+    self.supplyDtailDto = [[MineSupplyDetailDTO alloc] initWith:self.supply];
+}
+
+@end
+
+
+@implementation HttpMineBuyDetailRequest
+
+-(instancetype)initWithId:(NSInteger)sid
+{
+    self = [super init];
+    if (self) {
+        self.bid = sid;
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/buy/detail/%ld", self.bid];
+    return COMB_URL(absUrl);
+}
+
+-(NSString*)method{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpMineBuyDetailResponse class];
+}
+
+@end
+
+@implementation HttpMineBuyDetailResponse
+
+-(NSDictionary*)buy
+{
+    return  self.all?self.all[@"buy"]:@{};
+}
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    
+    self.buyDetailDto = [[MineBuyDetailDTO alloc] initWith:self.buy];
+}
+
+@end
+
+@implementation HttpSupplyForMidifyRequest
+
+-(instancetype)initWithId:(NSInteger)id
+{
+    self = [super init];
+    if(self){
+        self.id = id;
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* path = [NSString stringWithFormat:@"/rest/supply/supplyForModify/%ld", self.id];
+    return COMB_URL(path);
+}
+
+-(Class)responseClass
+{
+    return [HttpSupplyForMidifyResponse class];
+}
+
+@end
+
+@implementation HttpSupplyForMidifyResponse
+
+-(NSDictionary*)data
+{
+    if (self.all) {
+        return self.all[@"supply"];
+    }
+    
+    return nil;
+}
+
+-(void)parserResponse
+{
+    self.goodCreateInfo = [[GoodCreateInfo alloc] initWith:self.data];
 }
 
 @end

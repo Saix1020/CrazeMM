@@ -2,7 +2,7 @@
 //  AddrDTO.h
 //  CrazeMM
 //
-//  Created by saix on 16/5/12.
+//  Created by Mao Mao on 16/5/12.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -22,5 +22,7 @@
 @property (nonatomic, copy) NSString* contact;
 @property (nonatomic, copy) NSString* mobile;
 @property (nonatomic, copy) NSString* region;
+
+@property (nonatomic, readonly) NSString* address;
 
 @end

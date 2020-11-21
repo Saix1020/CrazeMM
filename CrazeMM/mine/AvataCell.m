@@ -2,7 +2,7 @@
 //  AvataCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/22.
+//  Created by Mao Mao on 16/4/22.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -31,13 +31,13 @@
 -(void)setMoney:(CGFloat)money
 {
     _money = money;
-    self.moneyLabel.text = [NSString stringWithFormat:@"账户可用余额: %.2f元", money];
+    self.moneyLabel.text = [NSString stringWithFormat:@"账户可用余额: %.02f元", money];
 }
 
 -(void)setFrozenMoney:(CGFloat)frozenMoney
 {
     _frozenMoney = frozenMoney;
-    self.frozenLabel.text = [NSString stringWithFormat:@"账户冻结余额: %.2f元", _frozenMoney];
+    self.frozenLabel.text = [NSString stringWithFormat:@"账户冻结余额: %.02f元", _frozenMoney];
 
 }
 

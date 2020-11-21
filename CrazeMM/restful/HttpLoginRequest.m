@@ -2,13 +2,23 @@
 //  HttpLoginRequest.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/28.
+//  Created by Mao Mao on 16/4/28.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import "HttpLoginRequest.h"
 
 @implementation HttpLoginRequest
+
+-(AFHTTPSessionManager*)manager
+{
+    AFHTTPSessionManager* mgr = [super manager];
+    
+    mgr.requestSerializer.timeoutInterval = 10.0f; // set timeout 10s
+    
+    return mgr;
+}
+
 
 -(instancetype)init
 {
@@ -77,6 +87,11 @@
 
 -(AFPromise*)login
 {
+    // set login time out
+    [self.manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+    self.manager.requestSerializer.timeoutInterval = 30.f;
+    [self.manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+
     return [super request];
 }
 
@@ -109,13 +124,13 @@
         return [NSString stringWithFormat:@"剩余尝试机会: %d", [leftTime intValue]]; ;
     }
     else {
-        return nil;
+        return @"";
     }
 }
 
 -(NSString*)errorMsg
 {
-    return [NSString stringWithFormat:@"%@: %@", [super errorMsg], [self errorDetail]];
+    return [NSString stringWithFormat:@"%@ %@", [super errorMsg], [self errorDetail]];
 }
 
 

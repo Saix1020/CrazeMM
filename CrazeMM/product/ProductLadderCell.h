@@ -2,7 +2,7 @@
 //  ProductLadderCell.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/24.
+//  Created by Mao Mao on 16/4/24.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet ProductFlageView *flageView;
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
+@property (weak, nonatomic) IBOutlet UILabel *stockLabel2;
 @property (weak, nonatomic) IBOutlet UIView*browserDealView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;

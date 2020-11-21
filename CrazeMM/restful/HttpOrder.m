@@ -2,7 +2,7 @@
 //  HttpOrder.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/7.
+//  Created by Mao Mao on 16/5/7.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -10,19 +10,42 @@
 
 @implementation HttpOrderRequest
 
-
 -(instancetype)initWithOrderListType:(MMOrderListStyle)type andPage:(NSUInteger)pn
 {
     self = [super init];
     if (self) {
+        NSString* orderStatus;
+        if (type.orderState == TOBESETTLED) {
+//            orderStatus = [NSString stringWithFormat:@"%ld,%u,%u", TOBESETTLED, 401u, 500u];
+            orderStatus = [NSString stringWithFormat:@"%ld", TOBESETTLED];
+        }
+        else {
+            orderStatus = [NSString stringWithFormat:@"%ld", type.orderState];
+
+        }
+        
         self.params = [@{
                          @"t" : type.orderType==kOrderTypeBuy? @"b" : @"s",
                          @"pn" : @(pn),
-                         @"state" : @(type.orderState)
+                         @"state" : orderStatus
                         } mutableCopy];
     }
     return self;
 }
+
+-(instancetype)initWithOrderListType:(MMOrderListStyle)type andPage:(NSUInteger)pn andConditions:(NSDictionary*)conditions
+{
+    self = [self initWithOrderListType:type andPage:pn];
+    if (self) {
+        
+        //complex=&cbegin=&cend=&ubegin=&uend=
+        
+        [self.params addEntriesFromDictionary:conditions];
+    }
+    
+    return self;
+}
+
 
 -(NSString*)url
 {
@@ -61,75 +84,135 @@
     }
     return self;
 }
-
--(void)parserResponse
+-(BaseListDTO*)makeDtoWith:(NSDictionary*)dict
 {
-    if (!self.all) {
-        return;
-    }
-    self.orderDetailDTOs = [[NSMutableArray alloc] init];
-    
-    if (!self.orderLists) {
-        return;
-    }
-    for (NSDictionary* dict in self.orderLists) {
-        OrderDetailDTO* dto = [[OrderDetailDTO alloc] initWithOrderDetail:dict];
-        NSLog(@"%@", dto);
-        [self.orderDetailDTOs  addObject:dto];
-    }
+    return [[OrderDetailDTO alloc] initWithOrderDetail:dict];
 }
 
--(NSDictionary*)page
+-(NSArray*)orderDetailDTOs
 {
-    if (self.all) {
-        id page = self.all[@"page"];
-        if ([page isKindOfClass:[NSNull class]]) {
-            return nil;
-        }
-        return self.all[@"page"];
-    }
-    return nil;
+    return self.dtos;
 }
 
--(NSUInteger)pageNumber
+//-(void)parserResponse
+//{
+//    if (!self.all) {
+//        return;
+//    }
+//    self.orderDetailDTOs = [[NSMutableArray alloc] init];
+//    
+//    if (!self.orderLists) {
+//        return;
+//    }
+//    for (NSDictionary* dict in self.orderLists) {
+//        OrderDetailDTO* dto = [[OrderDetailDTO alloc] initWithOrderDetail:dict];
+//        NSLog(@"%@", dto);
+//        [self.orderDetailDTOs  addObject:dto];
+//    }
+//}
+
+//-(NSDictionary*)page
+//{
+//    if (self.all) {
+//        id page = self.all[@"page"];
+//        if ([page isKindOfClass:[NSNull class]]) {
+//            return nil;
+//        }
+//        return self.all[@"page"];
+//    }
+//    return nil;
+//}
+//
+//-(NSUInteger)pageNumber
+//{
+//    if (self.all && self.page) {
+//        NSNumber* number = self.all[@"page"][@"pageNumber"];
+//        return [number integerValue];
+//    }
+//    
+//    return 0;
+//}
+//
+//-(NSUInteger)totalPage
+//{
+//    
+//    if (self.all && self.page) {
+//        NSNumber* number = self.all[@"page"][@"totalPage"];
+//        return [number integerValue];
+//    }
+//    
+//    return 0;
+//}
+//
+//-(NSUInteger)totalRow
+//{
+//    if (self.all && self.page) {
+//        NSNumber* number = self.all[@"page"][@"totalRow"];
+//        return [number integerValue];
+//    }
+//    
+//    return 0;
+//}
+//
+//-(NSArray*)orderLists
+//{
+//    if (self.all && self.page) {
+//        NSArray* orderLists = self.all[@"page"][@"list"];
+//        return orderLists;
+//    }
+//    
+//    return @[];
+//}
+
+
+@end
+
+@implementation HttpAllBuyOrderRequest
+
+-(instancetype)initWithPage:(NSInteger)pn
 {
-    if (self.all && self.page) {
-        NSNumber* number = self.all[@"page"][@"pageNumber"];
-        return [number integerValue];
+    MMOrderListStyle style = {
+        .orderType = kOrderTypeBuy
+    };
+    self = [super initWithOrderListType:style andPage:pn];
+    if (self) {
+        self.params[@"state"] = @"all";
+        self.params[@"t"] = @"b";
     }
     
-    return 0;
+    return self;
 }
 
--(NSUInteger)totalPage
+-(instancetype)initWithPage:(NSInteger)pn andConditions:(NSDictionary *)conditions
 {
-    
-    if (self.all && self.page) {
-        NSNumber* number = self.all[@"page"][@"totalPage"];
-        return [number integerValue];
-    }
-    
-    return 0;
+    self = [self initWithPage:pn];
+    [self.params addEntriesFromDictionary:conditions];
+    return self;
 }
 
--(NSUInteger)totalRow
+@end
+
+@implementation HttpAllSupplyOrderRequest
+
+-(instancetype)initWithPage:(NSInteger)pn
 {
-    if (self.all && self.page) {
-        NSNumber* number = self.all[@"page"][@"totalRow"];
-        return [number integerValue];
+    MMOrderListStyle style = {
+        .orderType = kOrderTypeBuy
+    };
+    self = [super initWithOrderListType:style andPage:pn];
+    if (self) {
+        self.params[@"state"] = @"all";
+        self.params[@"t"] = @"s";
     }
     
-    return 0;
+    return self;
 }
 
--(NSArray*)orderLists
+-(instancetype)initWithPage:(NSInteger)pn andConditions:(NSDictionary *)conditions
 {
-    if (self.all && self.page) {
-        NSArray* orderLists = self.all[@"page"][@"list"];
-        return orderLists;
-    }
-    
-    return @[];
+    self = [self initWithPage:pn];
+    [self.params addEntriesFromDictionary:conditions];
+    return self;
 }
 
 

@@ -2,7 +2,7 @@
 //  BuyItemCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/18.
+//  Created by Mao Mao on 16/4/18.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -118,7 +118,7 @@
     [self fomartTimeLeftLabel];
     
 //    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
-    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[@"ph_phone" image]];
+    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[@"product_placehoder.png" image]];
     self.statusLabel.text = productDescDTO.status;
     @weakify(self);
     

@@ -2,7 +2,7 @@
 //  ProductDetailCell.h
 //  CrazeMM
 //
-//  Created by saix on 16/4/25.
+//  Created by Mao Mao on 16/4/25.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 #import "ArrowView.h"
 
 @interface ProductDetailCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *stockLabel;
 @property (weak, nonatomic) IBOutlet UIView *seperatorLine;
 @property (weak, nonatomic) IBOutlet UILabel *browserLabel;
 @property (weak, nonatomic) IBOutlet UILabel *buyLabel;

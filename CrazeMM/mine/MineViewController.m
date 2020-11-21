@@ -2,7 +2,7 @@
 //  MineViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/18.
+//  Created by Mao Mao on 16/4/18.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -23,8 +23,20 @@
 #import "HttpOrderSummary.h"
 #import "HttpLogout.h"
 #import "MineBuyViewController.h"
-
-
+#import "AddressesViewController.h"
+#import "MineStockViewController.h"
+#import "HttpBalance.h"
+#import "AllOrderListViewController.h"
+#import "HttpUserInfo.h"
+#import "MortgageViewController.h"
+#import "PersonalInfoViewController.h"
+#import "PayInfoViewController.h"
+#import "BuyToBePaidListViewController.h"
+#import "BuyToBeReceiveListViewController.h"
+#import "BuyAllListViewController.h"
+#import "SupplyToBePaidListViewController.h"
+#import "SupplyToBeSentListViewController.h"
+#import "SupplyAllListViewController.h"
 
 @interface MineViewController()
 
@@ -47,20 +59,24 @@
     if ([UserCenter defaultCenter].isLogined) {
         return @[
                  @"我的账户",
+                 @"我的库存",
                  @"我的供货",
                  @"我的求购",
-//                 @"我的抵押",
-//                 @"我的站内信息",
+                 @"我的抵押",
+                 @"我的支付记录",
+                 //                 @"我的站内信息",
                  @"我的收货地址",
-//                 @"我的自提人"
+                 //                 @"我的自提人"
                  ];
     }
     else {
         return @[
                  @"我的账户",
+                 @"我的库存",
                  @"我的供货",
                  @"我的求购",
                  @"我的抵押",
+                 @"我的支付记录",
                  ];
     }
     
@@ -70,10 +86,13 @@
     if ([UserCenter defaultCenter].isLogined) {
         return @[
                  @"account",
-                 @"gonghuo",
-                 @"qiugou",
+                 @"stock",
+                 @"ico_supply",
+                 @"ico_buy",
                  @"diya",
-                 @"info",
+                 //@"icon_mortgage",
+                 @"mine_card",
+//                 @"info",
                  @"addr",
                  @"ziti"
                  ];
@@ -81,9 +100,11 @@
     else {
         return @[
                  @"account",
-                 @"gonghuo",
-                 @"qiugou",
+                 @"stock",
+                 @"ico_supply",
+                 @"ico_buy",
                  @"diya",
+                 @"mine_card"
                  ];
     }
     
@@ -97,14 +118,14 @@
         [self.cancelButton setTitle:@"退出" forState:UIControlStateNormal];
         [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.cancelButton.backgroundColor = [UIColor redColor];
-//        self.cancelButton.layer.cornerRadius = 4.f;
+        //        self.cancelButton.layer.cornerRadius = 4.f;
         self.cancelButton.clipsToBounds = YES;
         self.cancelButton.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 40);
         
         [self.cancelButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-
+        
         [_logoutCell addSubview:self.cancelButton];
-
+        
     }
     
     return _logoutCell;
@@ -128,7 +149,7 @@
         }];
         
         _noLoginCell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        
     }
     
     return _noLoginCell;
@@ -162,8 +183,8 @@
 {
     if(!_contactCell){
         _contactCell = [[[NSBundle mainBundle]loadNibNamed:@"ContactCell" owner:nil options:nil] firstObject];
-//        _contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        //        _contactCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
     }
     
     return _contactCell;
@@ -178,7 +199,7 @@
         [_segmentCell setTitles:@[@"我买的货", @"我卖的货"] andIcons:@[@"buy_product", @"sell_product"]];
         _segmentCell.selectionStyle = UITableViewCellSelectionStyleNone;
         _segmentCell.segment.delegate = self;
-
+        
     }
     
     return _segmentCell;
@@ -220,7 +241,7 @@
                                                  name:kLogoutSuccessBroadCast
                                                object:nil];
     
-
+    
     
 }
 
@@ -237,7 +258,7 @@
                             if (logoutRequest.response.ok) {
                                 [[UserCenter defaultCenter] setLogouted];
                                 [self.tableView reloadData];
-//                                [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast object:nil userInfo:nil];
+                                //                                [[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessBroadCast object:nil userInfo:nil];
                             }
                             else {
                                 [self showAlertViewWithMessage:@"注销失败!"];
@@ -286,7 +307,36 @@
                 
             }
         });
+        
+        HttpBalanceRequest* balanceRequest = [[HttpBalanceRequest alloc] init];
+        [balanceRequest request]
+        .then(^(id responseObj){
+            HttpBalanceResponse* response = (HttpBalanceResponse*)balanceRequest.response;
+            self.avataCell.money = response.balanceDto.money;
+            self.avataCell.frozenMoney = response.balanceDto.freezeMoney;
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
+        
+        HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
+        [userInfoRequest request]
+        .then(^(id responseObj){
+            NSLog(@"%@", responseObj);
+            if (userInfoRequest.response.ok) {
+                HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)userInfoRequest.response;
+                [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
+                self.avataCell.nameLabel.text = userInfoResponse.mineUserInfoDto.username;
+            }
+            else {
+                [self showAlertViewWithMessage:userInfoRequest.response.errorMsg];
+            }
+        })
+        .catch(^(NSError* error){
+            [self showAlertViewWithMessage:error.localizedDescription];
+        });
 
+        
     }
 }
 
@@ -297,14 +347,14 @@
             return @[
                      @{
                          @"name" : @"待付款",
-                         @"number" : @(self.orderSummary.tobepaid)
+                         @"number" : @(self.orderSummary.buy_tobepaid)
                          },
                      @{
                          @"name" : @"待签收",
-                         @"number" : @(self.orderSummary.tobereceived)
+                         @"number" : @(self.orderSummary.buy_tobereceived)
                          },
                      @{
-                         @"name" : @"其他",
+                         @"name" : @"所有买货",
                          @"number" : @(-1)
                          },
                      
@@ -313,15 +363,15 @@
         else {
             return @[
                      @{
+                         @"name" : @"待付款",
+                         @"number" : @(self.orderSummary.supply_tobepaid) // TODO, need new data
+                         },
+                     @{
                          @"name" : @"待发货",
-                         @"number" : @(self.orderSummary.tobesent)
+                         @"number" : @(self.orderSummary.supply_tobesent)
                          },
                      @{
-                         @"name" : @"待确认",
-                         @"number" : @(self.orderSummary.tobeconfirmed)
-                         },
-                     @{
-                         @"name" : @"其他",
+                         @"name" : @"所有卖货",
                          @"number" : @(-1)
                          },
                      
@@ -340,7 +390,7 @@
                          @"number" : @(0)
                          },
                      @{
-                         @"name" : @"其他",
+                         @"name" : @"所有买货",
                          @"number" : @(-1)
                          },
                      
@@ -357,7 +407,7 @@
                          @"number" : @(0)
                          },
                      @{
-                         @"name" : @"其他",
+                         @"name" : @"所有卖货",
                          @"number" : @(-1)
                          },
                      
@@ -370,7 +420,6 @@
 {
     [super viewDidAppear:animated];
     [self.tabBarController setTabBarHidden:NO animated:YES];
-    
 }
 
 #pragma -- mark tableview Delegate
@@ -445,13 +494,13 @@
             return self.noLoginCell;
         }
     }
-
+    
     switch (section) {
         case kSectionOverview:
         {
             switch (row) {
                 case 0:
-                    self.avataCell.nameLabel.text = [[UserCenter defaultCenter] userName];
+                    self.avataCell.nameLabel.text = [UserCenter defaultCenter].displayName;
                     self.avataCell.frozenMoney = 0;
                     self.avataCell.money = 0;
                     return self.avataCell;
@@ -494,7 +543,7 @@
     }
     
     //cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
     return cell;
 }
 
@@ -514,7 +563,7 @@
             default:
                 break;
         }
-
+        
     }
     else {
         switch (section) {
@@ -538,10 +587,15 @@
 {
     if (![UserCenter defaultCenter].isLogined) {
         switch (indexPath.section) {
+                //    kSectionInfo,
+                // kSectionContact,
+            case kSectionOverview:
             case kSectionInfo:
+//            case kSectionContact:
             {
-//                MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-//                [self.navigationController pushViewController:mineSellProductVC animated:YES];
+                LoginViewController* loginVC = [[LoginViewController alloc] init];
+                loginVC.nextVC = self;
+                [self.navigationController pushViewController:loginVC animated:YES];
                 return;
             }
                 break;
@@ -553,9 +607,23 @@
     
     
     switch (indexPath.section) {
+        case kSectionOverview:
+        {
+            PersonalInfoViewController* infoVC = [[PersonalInfoViewController alloc] init];
+            [self.navigationController pushViewController:infoVC animated:YES];
+            
+            return;
+
+        }
         case kSectionInfo:
         {
             if (indexPath.row == 1) {
+                MineStockViewController* stockVC = [[MineStockViewController alloc] init];
+                [self.navigationController pushViewController:stockVC animated:YES];
+                
+                return;
+            }
+            else if (indexPath.row == 2) {
                 SupplyViewController* supplyVC = [[SupplyViewController alloc] init];
                 [self.navigationController pushViewController:supplyVC animated:YES];
                 
@@ -567,16 +635,30 @@
                 
                 return;
             }
-            else if(indexPath.row== 2){
+            else if(indexPath.row== 3){
                 MineBuyViewController* mineBuyVC = [[MineBuyViewController alloc] init];
                 [self.navigationController pushViewController:mineBuyVC animated:YES];
                 return;
-
+                
             }
-//
-//            MineSellProductViewController* mineSellProductVC = [[MineSellProductViewController alloc] init];
-//            [self.navigationController pushViewController:mineSellProductVC animated:YES];
-            
+            else if(indexPath.row== 4){
+                MortgageViewController* mortgageVC = [[MortgageViewController alloc] init];
+                [self.navigationController pushViewController:mortgageVC animated:YES];
+                return;
+                
+            }
+            else if(indexPath.row== 5){       //payinfo
+                PayInfoViewController* payInfoVC = [[PayInfoViewController alloc] init];
+                [self.navigationController pushViewController:payInfoVC animated:YES];
+                return;
+                
+            }
+            else if(indexPath.row== 6){
+                AddressesViewController* addrVC = [[AddressesViewController alloc] init];
+                [self.navigationController pushViewController:addrVC animated:YES];
+                return;
+                
+            }
             
         }
             break;
@@ -586,14 +668,14 @@
             if ([[UIApplication sharedApplication] canOpenURL:url]) {
                 [[UIApplication sharedApplication] openURL:url];
             }
-
+            
         }
             break;
         default:
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -601,7 +683,7 @@
     if (section == kSectionOverview) {
         return 0.f;
     }
-
+    
     return 12.f;
 }
 
@@ -609,6 +691,11 @@
 - (void)segment:(CustomSegment *)segment didSelectAtIndex:(NSInteger)index;
 {
     self.orderStatusCell.titleArray = [self titleArray];
+    if (![UserCenter defaultCenter].isLogined) {
+        LoginViewController* loginVC = [[LoginViewController alloc] init];
+        loginVC.nextVC = self;
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
 }
 
 #pragma -- mark order status cell delegate
@@ -617,7 +704,7 @@
     MMOrderType orderType;
     MMOrderSubType orderSubType;
     
-
+    
     if (self.segmentCell.segment.currentIndex == 0) {
         orderType = kOrderTypeBuy;
         
@@ -629,28 +716,68 @@
                 orderSubType = kOrderSubTypeReceived;
                 break;
             default:
-                orderSubType = kOrderSubTypePay;
+                orderSubType = kOrderSubTypeAll;
                 break;
         }
     }
-    else {
+    else  {
         orderType = kOrderTypeSupply;
         switch (index) {
             case 1:
-                orderSubType = kOrderSubTypeSend;
+                orderSubType = kOrderSubTypePay;
                 break;
             case 2:
-                orderSubType = kOrderSubTypeConfirmed;
-                break;
-            default:
                 orderSubType = kOrderSubTypeSend;
                 break;
+            default:
+                orderSubType = kOrderSubTypeAll;
+                break;
+        }
+        
+    }
+    NewOrderListViewController* vc;
+    if(orderType == kOrderTypeBuy){
+        if(orderSubType == kOrderSubTypePay){
+            vc = [[BuyToBePaidListViewController alloc] init];
+        }
+        else if(orderSubType == kOrderSubTypeReceived){
+            vc = [[BuyToBeReceiveListViewController alloc] init];
+        }
+        else {
+            vc = [[BuyAllListViewController alloc] init];
+        }
+        
+        if (vc) {
+            [self.navigationController pushViewController:vc animated:YES];
         }
 
     }
+    else if(orderType == kOrderTypeSupply){
+        if(orderSubType == kOrderSubTypePay){
+            vc = [[SupplyToBePaidListViewController alloc] init];
+        }
+        else if(orderSubType == kOrderSubTypeSend){
+            vc = [[SupplyToBeSentListViewController alloc] init];
+        }
+        else {
+            vc = [[SupplyAllListViewController alloc] init];
+        }
+        
+        if (vc) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
     
-    OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
-    [self.navigationController pushViewController:orderListVC animated:YES];
+    else if (orderSubType!=kOrderSubTypeAll) {
+        OrderListViewController* orderListVC = [[OrderListViewController alloc] initWithOrderType:orderType andSubType:orderSubType];
+        [self.navigationController pushViewController:orderListVC animated:YES];
+    }
+    else {
+        AllOrderListViewController* allOrderListVC = [[AllOrderListViewController alloc] initWithOrderType:orderType];
+        [self.navigationController pushViewController:allOrderListVC animated:YES];
+
+    }
+    
 }
 
 

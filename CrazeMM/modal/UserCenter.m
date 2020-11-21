@@ -2,7 +2,7 @@
 //  UserCenter.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/24.
+//  Created by Mao Mao on 16/4/24.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -30,6 +30,38 @@ static UserCenter *defaultUserCenter = nil;
         }
     }
     return defaultUserCenter;
+}
+
+-(NSString*)displayName
+{
+    if (NotNilAndNull(self.userInfoDto.username) && self.userInfoDto.username.length > 0) {
+        return self.userInfoDto.username;
+    }
+    else if(NotNilAndNull(self.userInfoDto.mobile) && self.userInfoDto.mobile.length > 0){
+        return self.userInfoDto.mobile;
+    }
+    else if(NotNilAndNull(self.userInfoDto.email) && self.userInfoDto.email.length > 0) {
+        return self.userInfoDto.email;
+    }
+    else {
+        return @"";
+    }
+}
+
+-(NSString*)mobile
+{
+    return self.userInfoDto.mobile;
+}
+
+-(NSString*)email
+{
+    return self.userInfoDto.email;
+}
+
+-(void)setUserInfoDto:(MineUserInfoDTO *)userInfoDto
+{
+    _userInfoDto = userInfoDto;
+//    self.userName = self.displayName;
 }
 
 -(void)setLogined
@@ -112,6 +144,17 @@ static UserCenter *defaultUserCenter = nil;
 -(NSString*)userName
 {
     return [self.keyChainWrapper  objectForKey:(id)kSecAttrAccount];
+}
+
+-(NSArray*)banners
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"189MM-Banner"];
+}
+
+-(void)setBanners:(NSArray *)banners
+{
+    [[NSUserDefaults standardUserDefaults] setObject:banners forKey:@"189MM-Banner"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

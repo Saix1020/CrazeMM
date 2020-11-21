@@ -2,7 +2,7 @@
 //  SupplyListCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/27.
+//  Created by Mao Mao on 16/4/27.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -50,6 +50,10 @@
     
     //[self.shareButton setim:<#(nullable UIColor *)#> forState:<#(UIControlState)#>]
 
+    self.flagLabel.backgroundColor = [UIColor UIColorFromRGB:0xbddcfa];//
+    self.flagLabel.layer.cornerRadius = 4.f;
+    self.flagLabel.clipsToBounds = YES;
+    self.flagLabel.textColor = [UIColor UIColorFromRGB:0x3972a2];
 
 }
 
@@ -90,6 +94,7 @@
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(0);
 
             [self.offButton setTitle:@"下架" forState:UIControlStateNormal];
+            self.flagLabel.text = @" 在售 ";
             break;
         case kOffShelfStyle:
             self.shareButton.hidden = YES;
@@ -99,52 +104,61 @@
             [self.offButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             self.offButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
             [self.offButton setTitle:@"上架" forState:UIControlStateNormal];
+            self.flagLabel.text = @" 已下架 ";
             break;
         case kDealStyle:
             self.backgroundView.hidden = YES;
             self.offButton.hidden = YES;
             self.shareButton.hidden = YES;
             self.selectCheckBox.hidden = YES;
+            self.flagLabel.text = @" 已成交 ";
+//            self.shareButton.hidden = NO;
+//            [self.shareButton setTitle:@"" forState:<#(UIControlState)#>]
             break;
         default:
             break;
     }
-    NSLayoutConstraint* constraint = nil;
-    for (constraint in self.contentView.constraints) {
-        if (constraint.firstItem == self.titleLabel
-            && constraint.secondItem == self.contentView
-            && constraint.firstAttribute == NSLayoutAttributeLeading
-            && constraint.secondAttribute == NSLayoutAttributeLeading) {
-            break;
-        }
+    
+    
+    if (self.selectCheckBox.hidden) {
+        self.titleLabelLeadingContraint.constant = -16.f;
     }
-    if (constraint) {
-        [self.contentView removeConstraint:constraint];
-        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel
-                                                                     attribute:NSLayoutAttributeLeading
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self.contentView
-                                                                     attribute:NSLayoutAttributeLeading
-                                                                    multiplier:1.0 constant:self.selectCheckBox.hidden?8.f:32.f]];
-        [self setNeedsUpdateConstraints];
-
+    else {
+        self.titleLabelLeadingContraint.constant = 8.f;
     }
+    [self updateConstraints];
 }
 
 -(void)setMineSupplyProductDto:(MineSupplyProductDTO *)mineSupplyProductDto
 {
+    
     _mineSupplyProductDto = mineSupplyProductDto;
     
     self.titleLabel.text = [NSString stringWithFormat:@"供货单号: %ld", mineSupplyProductDto.id];
     self.dateLabel.text = mineSupplyProductDto.createTime;
     self.productLabel.text = mineSupplyProductDto.goodName;
-    self.numberLabel.text = [NSString stringWithFormat:@"数量: %ld", mineSupplyProductDto.quantity];
+    NSMutableString* numberLabelText = [[NSMutableString alloc] initWithFormat:@"数量: %ld", mineSupplyProductDto.quantity];
+//    self.numberLabel.text = [NSString stringWithFormat:@"数量: %ld", mineSupplyProductDto.quantity];
+    if (![mineSupplyProductDto isKindOfClass:[MineBuyProductDTO class]]) {
+        if(mineSupplyProductDto.stock){
+            [numberLabelText appendString:[NSString stringWithFormat:@" (%@)", mineSupplyProductDto.depotDto.name]];
+            if(mineSupplyProductDto.mortgageId!=0){
+                [numberLabelText appendString:[NSString stringWithFormat:@"(%@)", @"抵押"]];
+                self.additionalLabel.text = [NSString stringWithFormat:@"抵押编号: %ld", mineSupplyProductDto.mortgageId];
+            }
+        }
+        else {
+            [numberLabelText appendString:@" (卖家发货)"];
+        }
+    }
+    self.numberLabel.text = numberLabelText;
     self.priceLabel.text = [NSString stringWithFormat:@"单台定价: ￥%.02f", mineSupplyProductDto.price];
     [self fomartPriceLabel];
     self.selectCheckBox.on = mineSupplyProductDto.selected;
     
     if (self.style == kOffShelfStyle) {
-        NSString* title = mineSupplyProductDto.state==400 ? @"已过期" : @"已下架";
+        // issue #1
+        NSString* title = mineSupplyProductDto.state==400 ? @"已下架" : @"已过期";
         self.shareButton.hidden = NO;
         self.shareButton.userInteractionEnabled = NO;
         [self.shareButton setTitle:title forState:UIControlStateNormal];
@@ -155,11 +169,93 @@
         self.shareButton.userInteractionEnabled = YES;
     }
     
+    [self fomartStatusLabel];
+    self.flagLabel.text = [NSString stringWithFormat:@" %@ ", self.mineSupplyProductDto.stateLabel];
+    
+}
+
+-(void)setMineStockDto:(MineStockDTO *)mineStockDto
+{
+    _mineStockDto = mineStockDto;
+    self.titleLabel.text = [NSString stringWithFormat:@"编号: %ld", mineStockDto.id];
+    self.dateLabel.text = mineStockDto.updateTime;
+    self.productLabel.text = mineStockDto.goodName;    
+    NSMutableString* numberLabelText = [[NSMutableString alloc] initWithFormat:@"数量: %ld", mineStockDto.presale];
+    [numberLabelText appendString:[NSString stringWithFormat:@" (%@)", mineStockDto.depotName]];
+    self.numberLabel.text = numberLabelText;
+
+    
+    self.priceLabel.text = [NSString stringWithFormat:@"单台定价: ￥%.02f", mineStockDto.inprice];
+    [self fomartPriceLabel];
+    self.selectCheckBox.on = mineStockDto.selected;
+    [self fomartPriceLabel];
+    
+    self.shareButton.hidden = NO;
+    self.shareButton.userInteractionEnabled = NO;
+    [self.shareButton setTitle:mineStockDto.depotDto.name forState:UIControlStateNormal];
+
+    [self fomartStatusLabel];
+
+}
+
+-(void)fomartStatusLabel
+{
+    NSMutableString* string = [[NSMutableString alloc]init];
+    if (self.mineSupplyProductDto){
+        if (self.mineSupplyProductDto.isSerial) {
+            [string appendString:@"带串码 "];
+        }
+        if (self.mineSupplyProductDto.isOriginal) {
+            [string appendString:@"原装 "];
+        }
+        if (self.mineSupplyProductDto.isOriginalBox) {
+            [string appendString:@"原封箱 "];
+        }
+        if (self.mineSupplyProductDto.isBrushMachine) {
+            [string appendString:@"已刷机"];
+        }
+        if (string.length==0) {
+            self.numberLabelTopConstraint.constant = -18.f;
+            
+        }
+        else {
+            self.numberLabelTopConstraint.constant = -1.f;
+            
+        }
+    }
+    else {
+        if (self.mineStockDto.isSerial) {
+            [string appendString:@"带串码 "];
+        }
+        if (self.mineStockDto.isOriginal) {
+            [string appendString:@"原装 "];
+        }
+        if (self.mineStockDto.isOriginalBox) {
+            [string appendString:@"原封箱 "];
+        }
+        if (self.mineStockDto.isBrushMachine) {
+            [string appendString:@"已刷机"];
+
+        }
+        if (string.length==0) {
+            self.numberLabelTopConstraint.constant = -18.f;
+            
+        }
+        else {
+            self.numberLabelTopConstraint.constant = -1.f;
+            
+        }
+        
+    }
+
+    self.statusLabel.text = string;
+    [self updateConstraints];
+
 }
 
 +(CGFloat)cellHeight
 {
-    return 150.f;
+    return 160.f;
 }
 
 -(void)buttonClicked:(UIButton*)button

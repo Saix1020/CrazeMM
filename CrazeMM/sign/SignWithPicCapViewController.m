@@ -2,7 +2,7 @@
 //  SignWithPicCapViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/2.
+//  Created by Mao Mao on 16/5/2.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -43,7 +43,7 @@
 -(void)initAllViews
 {
     CGFloat maxWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat maxHeigth = [UIScreen mainScreen].bounds.size.height;
+//    CGFloat maxHeigth = [UIScreen mainScreen].bounds.size.height;
     self.line1.width =  maxWidth - 2*16.f;
     self.line2.width = maxWidth - 2*16.f;
     self.line3.width = maxWidth - 2*16.f;
@@ -141,7 +141,7 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    TPKeyboardAvoidingScrollView* view = (TPKeyboardAvoidingScrollView*)self.view;
+//    TPKeyboardAvoidingScrollView* view = (TPKeyboardAvoidingScrollView*)self.view;
     //view.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, view.contentSize.height);
 }
 

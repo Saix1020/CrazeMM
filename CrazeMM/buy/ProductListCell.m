@@ -2,7 +2,7 @@
 //  ProductListCell.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/2.
+//  Created by Mao Mao on 16/5/2.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -141,7 +141,7 @@
 
 -(void)layoutAllSubviews
 {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     
     self.phoneImageView.frame = CGRectMake(kImageViewStartX, kImageViewStartY, 100.f, 100.f);
     self.statusLabel.frame = CGRectMake(kStatusLabelStartX, kStatusLabelStartY, 30.f, 16.f);
@@ -187,7 +187,7 @@
     self.timeLeftLabel.text = [NSDateComponents timeLabelString:361345]; // 4 days 4 hours 22 mins
     [self fomartTimeLeftLabel];
     
-    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
+    self.phoneImageView.image = [UIImage imageNamed:@"product_placehoder.png"];
     self.statusLabel.text = @"正常";
 }
 
@@ -215,7 +215,7 @@
     [self fomartTimeLeftLabel];
     
     //    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
-    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[UIImage imageNamed:@"prod_placeholder.jpg"]];
+    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[UIImage imageNamed:@"product_placehoder.png"]];
     self.statusLabel.text = productDescDTO.status;
     if([self.statusLabel.text isEqualToString:@"已过期"]){
         self.statusLabel.backgroundColor = [UIColor redColor];

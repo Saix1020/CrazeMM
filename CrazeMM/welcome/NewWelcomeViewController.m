@@ -2,12 +2,13 @@
 //  NewWelcomeViewController.m
 //  CrazeMM
 //
-//  Created by saix on 16/4/29.
+//  Created by Mao Mao on 16/4/29.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
 #import "NewWelcomeViewController.h"
 #import "HttpLoginRequest.h"
+#import "HttpUserInfo.h"
 
 @interface NewWelcomeViewController ()
 
@@ -31,7 +32,17 @@
             request.response = [[HttpLoginResponse alloc] initWith:response];
             
             if (request.response.ok) {
+                [sharedApplicationDelegate() getGlobSharedInstances];
                 [[UserCenter defaultCenter] setLogined];
+//                HttpUserInfoRequest* userInfoRequest = [[HttpUserInfoRequest alloc] init];
+//                [userInfoRequest request]
+//                .then(^(id responseObj){
+//                    NSLog(@"%@", responseObj);
+//                    if (request.response.ok) {
+//                        HttpUserInfoResponse* userInfoResponse = (HttpUserInfoResponse*)request.response;
+//                        [UserCenter defaultCenter].userInfoDto = userInfoResponse.mineUserInfoDto;
+//                    }
+//                });
             }
             
             [self presentTabBarController];

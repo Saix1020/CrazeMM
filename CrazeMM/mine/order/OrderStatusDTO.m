@@ -2,7 +2,7 @@
 //  OrderStatusDTO.m
 //  CrazeMM
 //
-//  Created by saix on 16/5/12.
+//  Created by Mao Mao on 16/5/12.
 //  Copyright © 2016年 189. All rights reserved.
 //
 
@@ -32,6 +32,21 @@
         for (NSDictionary* log in dict[@"logs"]) {
             [self.logs addObject:[[OrderLogDTO alloc] initWith:log]];
         }
+        
+        if (NotNilAndNull(dict[@"stock"])) {
+            self.stock = dict[@"stock"];
+        }
+        
+        if (NotNilAndNull(dict[@"depot"])) {
+            self.depot = [[DepotDTO alloc] initWith:dict[@"depot"]];
+        }
+        else if(NotNilAndNull(self.stock[@"depot"])){
+            self.depot = [[DepotDTO alloc] initWith:self.stock[@"depot"]];
+        }
+        
+        self.lastPayNo = dict[@"lastPayNo"];
+        
+
     }
     return self;
 }
@@ -45,17 +60,16 @@
 {
     self = [super initWith:dict];
     if (self) {
-        self.uid = [dict[@"uid"] integerValue];
-        self.oldState = [dict[@"oldState"] integerValue];
-        self.oid = [dict[@"oid"] integerValue];
-        self.newState = [dict[@"newState"] integerValue];
-        
-        self.stateLabelNew = dict[@"newStateLabel"];
-        self.createTime = dict[@"createTime"];
         self.comment = dict[@"comment"];
         self.userName = dict[@"userName"];
+        
     }
     return self;
+}
+
+-(NSString*)description
+{
+    return [NSString stringWithFormat:@"【%@】%@ %@\n %@", self.stateLabelNew, self.userName, self.comment, self.createTime];
 }
 
 @end
