@@ -18,6 +18,7 @@
 #import "HttpOrderRemove.h"
 #import "HttpOrderOperation.h"
 #import "OrderSendViewController.h"
+#import "HttpOrderCancel.h"
 
 
 #define kSegmentCellHeight 40.f
@@ -167,11 +168,35 @@
     return self;
 }
 
+-(BOOL)isMixed:(NSArray*)selectedDtos
+{
+    if (selectedDtos.count==0) {
+        return NO;
+    }
+    
+    OrderDetailDTO* firstDto = selectedDtos[0];
+    BOOL hasStock = NO;
+    if (firstDto.stock) {
+        hasStock = YES;
+    }
+    
+    for (OrderDetailDTO* dto in selectedDtos){
+        if (dto.stock) {
+            if (!hasStock) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+}
+
 -(void)handleButtomButtonClicked:(UIButton*)send
 {
     NSInteger segmentIndex = self.segmentCell.segment.currentIndex;
     NSMutableArray* operatorDtos = [[NSMutableArray alloc] init];
     NSMutableArray* operatorDtoIds = [[NSMutableArray alloc] init];
+    
     for (OrderDetailDTO* dto in self.dataSource) {
         if (dto.selected) {
             [operatorDtos addObject:dto];
@@ -193,6 +218,12 @@
                             [self showAlertViewWithMessage:@"请选择待付款的商品"];
                             break;
                         }
+                        
+                        if ([self isMixed:operatorDtos]) {
+                            [self showAlertViewWithMessage:@"不支持将卖家发货的订单与库存订单合并支付"];
+                            break;
+                        }
+                        
                         PayViewController* payVC = [[PayViewController alloc] initWithOrderDetailDTOs:operatorDtos];
                         [self.navigationController pushViewController:payVC animated:YES];
                     }
@@ -360,6 +391,11 @@
     }
 }
 
+//-(BOOL)isMixed:(NSArray*)selectedOrders
+//{
+//    
+//}
+
 -(void)setIsRefreshing:(BOOL)isRefreshing
 {
     _isRefreshing = isRefreshing;
@@ -511,7 +547,7 @@
 
 -(AnyPromise*)getOrderList
 {
-    HttpOrderRequest* orderRequest = [[HttpOrderRequest alloc]initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
+    HttpOrderRequest* orderRequest = [[HttpOrderRequest alloc] initWithOrderListType:self.orderListStyle andPage:self.orderListPageNumber+1];
     return [orderRequest request]
     .then(^(id responseObject){
         NSLog(@"%@", responseObject);
@@ -639,6 +675,12 @@
          (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))
         ) {
             cell.reactiveButton.hidden = NO;
+        [cell.reactiveButton setTitle:@"重新激活" forState:UIControlStateNormal];
+
+    }
+    else if((self.currentSegmentIndex==0 && (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))){
+        cell.reactiveButton.hidden = NO;
+        [cell.reactiveButton setTitle:@"撤销" forState:UIControlStateNormal];
     }
     else {
         cell.reactiveButton.hidden = YES;
@@ -832,28 +874,63 @@
 #pragma -- mark order list cell delegate
 -(void)reactiveButtonClicked:(OrderDetailDTO *)orderDetailDTO
 {
-    @weakify(self);
-    [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要激活订单: %ld 吗?", orderDetailDTO.id]
-                    withOKCallback:^(id x){
-                        @strongify(self);
-                        HttpOrderReactiveRequest* request = [[HttpOrderReactiveRequest alloc] initWithOid:orderDetailDTO.id];
-                        [request request]
-                        .then(^(id responseObj){
-                            if (request.response.ok) {
-                                [self.dataSource removeObject:orderDetailDTO];
-                                [self.tableView reloadData];
-                            }
-                            else {
-                                [self showAlertViewWithMessage:request.response.errorMsg];
-                            }
-                        })
-                        .catch(^(NSError* error){
-                            [self showAlertViewWithMessage:error.localizedDescription];
-                        });
-                    }
-                 andCancelCallback:^(id x){
-                     
-                 }];
+    
+    if ((self.currentSegmentIndex == 1 &&
+         (self.orderType==kOrderTypeBuy && self.subType == kOrderSubTypePay))
+        ) {
+        @weakify(self);
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要激活订单: %ld 吗?", orderDetailDTO.id]
+                        withOKCallback:^(id x){
+                            @strongify(self);
+                            HttpOrderReactiveRequest* request = [[HttpOrderReactiveRequest alloc] initWithOid:orderDetailDTO.id];
+                            [request request]
+                            .then(^(id responseObj){
+                                if (request.response.ok) {
+                                    [self.dataSource removeObject:orderDetailDTO];
+                                    [self.tableView reloadData];
+                                    [self showAlertViewWithMessage:@"激活成功"];
+                                }
+                                else {
+                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                }
+                            })
+                            .catch(^(NSError* error){
+                                [self showAlertViewWithMessage:error.localizedDescription];
+                            });
+                        }
+                     andCancelCallback:^(id x){
+                         
+                     }];
+    }
+    else {
+        
+        @weakify(self);
+        [self showAlertViewWithMessage:[NSString stringWithFormat:@"确认要撤销订单: %ld 吗?", orderDetailDTO.id]
+                        withOKCallback:^(id x){
+                            @strongify(self);
+                            HttpOrderCancelRequest* request = [[HttpOrderCancelRequest alloc] initWithOderId:orderDetailDTO.id];
+                            [request request]
+                            .then(^(id responseObj){
+                                NSLog(@"%@", responseObj);
+                                if (request.response.ok) {
+                                    [self.dataSource removeObject:orderDetailDTO];
+                                    [self.tableView reloadData];
+                                    [self showAlertViewWithMessage:@"撤销成功"];
+                                }
+                                else {
+                                    [self showAlertViewWithMessage:request.response.errorMsg];
+                                }
+                            })
+                            .catch(^(NSError* error){
+                                [self showAlertViewWithMessage:error.localizedDescription];
+                            })
+                            .finally(^(){
+                            });
+                        }
+                     andCancelCallback:nil];
+    }
+    
+    
 }
 
 

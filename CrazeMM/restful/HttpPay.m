@@ -10,9 +10,9 @@
 
 @implementation HttpPayInfoRequest
 
--(AFHTTPRequestOperationManager*)manager
+-(AFHTTPSessionManager*)manager
 {
-    AFHTTPRequestOperationManager* manager = super.manager;
+    AFHTTPSessionManager* manager = super.manager;
     [manager.requestSerializer setValue:@"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36" forHTTPHeaderField:@"User-Agent"];
     return manager;
 }
@@ -27,6 +27,19 @@
                         } mutableCopy];
     }
     return self;
+}
+
+-(instancetype)initWithPayPrice:(CGFloat)price andTarget:(NSString*)target
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"t" : @(price),
+                         @"target" : target
+                         } mutableCopy];
+    }
+    return self;
+
 }
 
 -(NSString*)url
@@ -73,11 +86,51 @@
     
     return self;
 }
-
+-(instancetype)initWithPayNo:(NSString*)payNo andMethod:(NSInteger)method andMoney:(CGFloat)money
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"no" : payNo,
+                         @"method": @(method),
+                         @"money": @(money)
+                         } mutableCopy];
+    }
+    
+    return self;
+}
 
 -(NSString*)url
 {
-        return COMB_URL(@"/rest/pay");
+    return COMB_URL(@"/rest/pay");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+@end
+
+@implementation HttpRechargeRequest
+
+-(instancetype)initWithPayNo:(NSString*)payNo andMethod:(NSInteger)method andMoney:(CGFloat)money
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"no" : payNo,
+                         @"method": @(method),
+                         @"money": @(money)
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/recharge");
 }
 
 -(NSString*)method
@@ -137,6 +190,67 @@
 -(BOOL)paySuccess
 {
     return NotNilAndNull(self.endTime) && self.procSuc && self.isSuc;
+}
+
+@end
+
+@implementation HttpBlancePayRequest
+
+-(instancetype)initWithAmount:(float)amount andOrders:(NSArray *)orders andPayPassword:(NSString *)payPassword andAddrId:(NSInteger)addrId
+{
+    
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"amount" : @(amount),
+                         @"orders": [orders componentsJoinedByString:@","],
+                         @"payPassword": payPassword,
+                         @"addrId" : @(addrId)
+                         } mutableCopy];
+    }
+    return self;
+}
+
+-(BOOL)needToken
+{
+    return YES;
+}
+
+-(NSString*)tokenName
+{
+    return @"balance_pay_token";
+}
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/balance/pay");
+}
+
+-(NSString*)method
+{
+    return @"POST";
+}
+
+-(Class)responseClass
+{
+    return [HttpBlancePayResponse class];
+}
+
+@end
+
+
+@implementation HttpBlancePayResponse
+
+-(void)parserResponse
+{
+    if (NotNilAndNull(self.all[@"stock"])) {
+        self.stockDetailDtos = [[NSMutableArray alloc] init];
+        NSArray* stocks = self.all[@"stock"];
+        for (NSDictionary* stock in stocks) {
+            StockDetailDTO* stockDetail = [[StockDetailDTO alloc] initWith:stock];
+            [self.stockDetailDtos addObject:stockDetail];
+        }
+    }
 }
 
 @end

@@ -19,6 +19,8 @@
     self.selectAllCheckBox.on = NO  ;
     self.selectAllCheckBox.animationDuration = 0.f;
 
+    self.addtionalButton.hidden = YES;
+    
     [self fomartTotalPriceLabel];
 }
 

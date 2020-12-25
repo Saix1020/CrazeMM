@@ -27,3 +27,12 @@
 @property (nonatomic, strong) NSMutableArray* orderDetailDTOs;
 
 @end
+
+@interface HttpAllBuyOrderRequest : HttpOrderRequest
+-(instancetype)initWithPage:(NSInteger)pn;
+@end
+
+@interface HttpAllSupplyOrderRequest : HttpOrderRequest
+-(instancetype)initWithPage:(NSInteger)pn;
+
+@end

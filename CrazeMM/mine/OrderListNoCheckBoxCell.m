@@ -46,6 +46,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.needHeadView = YES;
+    
+    self.productDescLabel.font = [UIFont boldSystemFontOfSize:15.f];
 }
 
 -(void)fomartTotalPriceLabel
@@ -133,7 +135,7 @@
         self.productDescLabel.text = self.orderDetailDTO.goodName;
     }
     else {
-        self.productDescLabel.text = @"苹果-iPhone6 (金色/16G/全网通)";
+//        self.productDescLabel.text = @"苹果-iPhone6 (金色/16G/全网通)";
     }
 }
 
@@ -143,7 +145,7 @@
     [self fomartOrderLabel];
     [self fomartProductDescLabel];
     self.amountLabel.text = [NSString stringWithFormat:@"数量: %ld", _orderDetailDTO.quantity];
-    self.priceLabel.text = [NSString stringWithFormat:@"定价: %.02f", _orderDetailDTO.price];
+    self.priceLabel.text = [NSString stringWithFormat:@"单台定价: %.02f", _orderDetailDTO.price];
     if (!_orderDetailDTO.isAony) {
         [self fomartCompanyLabel];
     }

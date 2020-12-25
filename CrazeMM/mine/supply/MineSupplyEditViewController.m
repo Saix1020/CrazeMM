@@ -27,7 +27,6 @@
 
 @property (nonatomic, strong) RACDisposable* watcher;
 
-@property (nonatomic) BOOL enableSubEdit;
 @property (nonatomic) NSNumber* enableSubEditX;
 
 @end

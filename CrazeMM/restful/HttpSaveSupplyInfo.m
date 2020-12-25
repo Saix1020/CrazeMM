@@ -8,11 +8,6 @@
 
 #import "HttpSaveSupplyInfo.h"
 
-@implementation GoodCreateInfo
-
-
-@end
-
 @implementation HttpSaveSupplyInfoRequest
 
 -(instancetype)initWithGoodInfo:(GoodCreateInfo*)goodCreateInfo
@@ -129,3 +124,5 @@
 }
 
 @end
+
+

@@ -7,6 +7,7 @@
 //
 
 #import "HttpMineSupply.h"
+#import "MineStockDTO.h"
 
 @implementation HttpMineSupplyRequest
 
@@ -204,6 +205,156 @@
         [self.productDTOs  addObject:dto];
     }
     
+}
+
+@end
+
+
+@implementation HttpMineStockRequest
+
+-(instancetype)initWithPageNumber:(NSInteger)pageNumber
+{
+    self = [super init];
+    if (self) {
+        self.params = [@{
+                         @"pn" : @(pageNumber),
+                         } mutableCopy];
+    }
+    
+    return self;
+}
+
+-(instancetype)initWithPageNumber:(NSInteger)pageNumber andStatus:(NSString*)status
+{
+    self = [self initWithPageNumber:pageNumber];
+    if (self) {
+        self.params[@"state"] = status;
+    }
+    return self;
+}
+
+
+-(NSString*)url
+{
+    return COMB_URL(@"/rest/stock");
+}
+
+-(NSString*)method
+{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpMineStockResponse class];
+}
+
+@end
+
+@implementation HttpMineStockResponse
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    self.stockDTOs = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary* dict in self.stockList) {
+        MineStockDTO* dto = [[MineStockDTO alloc] initWith:dict];
+        NSLog(@"%@", dto);
+        [self.stockDTOs  addObject:dto];
+    }
+    
+}
+
+-(NSUInteger)pageNumber
+{
+    if (self.all && self.all[@"page"]) {
+        NSNumber* number = self.all[@"page"][@"pageNumber"];
+        return [number integerValue];
+    }
+    
+    return 0;
+}
+
+-(NSUInteger)totalPage
+{
+    
+    if (self.all && self.all[@"page"]) {
+        NSNumber* number = self.all[@"page"][@"totalPage"];
+        return [number integerValue];
+    }
+    
+    return 0;
+}
+
+-(NSUInteger)totalRow
+{
+    if (self.all && self.all[@"page"]) {
+        NSNumber* number = self.all[@"page"][@"totalRow"];
+        return [number integerValue];
+    }
+    
+    return 0;
+}
+
+-(NSArray*)stockList
+{
+    if (self.all && self.all[@"page"]) {
+        NSArray* stockList = self.all[@"page"][@"list"];
+        return stockList;
+    }
+    
+    return @[];
+}
+
+
+@end
+
+
+@implementation HttpMineStockDetailRequest
+
+-(instancetype)initWithId:(NSInteger)sid
+{
+    self = [super init];
+    if (self) {
+        self.sid = sid;
+    }
+    return self;
+}
+
+-(NSString*)url
+{
+    NSString* absUrl = [NSString stringWithFormat:@"/rest/supply/detail/%ld", self.sid];
+    return COMB_URL(absUrl);
+}
+
+-(NSString*)method{
+    return @"GET";
+}
+
+-(Class)responseClass
+{
+    return [HttpMineStockDetailResponse class];
+}
+
+@end
+
+@implementation HttpMineStockDetailResponse
+
+-(NSDictionary*)supply
+{
+    return  self.all?self.all[@"supply"]:@{};
+}
+
+-(void)parserResponse
+{
+    if (!self.all) {
+        return;
+    }
+    
+    self.supplyDtailDto = [[MineSupplyDetailDTO alloc] initWith:self.supply];
 }
 
 @end

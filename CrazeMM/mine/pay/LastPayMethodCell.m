@@ -12,10 +12,10 @@
 
 - (void)awakeFromNib {
     
-    [self.accessoryButton setImage:[UIImage imageNamed:@"arrow_left"] forState:UIControlStateNormal];
+    [self.accessoryButton setImage:[UIImage imageNamed:@"icon_pulldown"] forState:UIControlStateNormal];
     self.accessoryButton.tintColor = [UIColor light_Black_Color];
 
-
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -27,6 +27,16 @@
 +(CGFloat)cellHeight
 {
     return 44.f;
+}
+
+-(void)setPayWay:(NSString *)payWay
+{
+    self.payWayLabel.text = payWay;
+}
+
+-(NSString*)payWay
+{
+    return self.payWayLabel.text;
 }
 
 @end

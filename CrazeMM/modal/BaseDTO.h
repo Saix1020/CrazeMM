@@ -19,3 +19,10 @@
 -(NSDictionary *)encode;
 
 @end
+
+
+@interface BaseListDTO : BaseDTO
+
+@property (nonatomic) BOOL selected;
+@property (nonatomic, readonly) float totalPrice;
+@end

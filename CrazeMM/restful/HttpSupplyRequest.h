@@ -14,7 +14,10 @@
 
 -(instancetype)initWithPageNumber:(NSUInteger)pageNumber;
 
-@property (nonatomic)  NSInteger pageNumber;
+//@property (nonatomic)  NSInteger pageNumber;
+
+//http://b.189mm.com/rest/supply?pn=1&keywords=&minprice=&maxprice=&brands=&colors=&network=&volume=&sort=
+
 
 @end
 

@@ -8,8 +8,16 @@
 
 #import "SearchListCell.h"
 #import "NSAttributedString+Utils.h"
+#import "UITableView+FDTemplateLayoutCell.h"
+
 
 #define kMaxTitleLength 36
+#define kMaxTitleHeight 72.f
+#define kPriceLabelHeight 24.f
+#define kTypeLabelWidth 44.f
+#define kTypeLabelHeight 18.f
+
+
 
 @interface SearchListCell()
 @property(nonatomic, strong) UIImageView* clockView;
@@ -17,6 +25,7 @@
 @property(nonatomic, strong) UIView* topSeperatorView;
 @property(nonatomic, strong) UIView* buttonLine;
 @property(nonatomic, strong) UIView* topLine;
+@property (readwrite, strong, nonatomic) SearchResultDTO* searchResultDTO;
 
 @end
 
@@ -66,6 +75,13 @@
     return _typeLabel;
 }
 
+//-(UILabel*)createTimeLabel
+//{
+//    if (!_createTimeLabel) {
+//        _createTimeLabel = [UILabel]
+//    }
+//}
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andResultItem:(NSUInteger) item
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -95,6 +111,12 @@
     return self;
 }
 
+-(void)setSearchResultDTO:(SearchResultDTO *)searchResultDTO andTypeName:(NSString*)typeName
+{
+    self.typeName = typeName;
+    self.searchResultDTO = searchResultDTO;
+}
+
 -(void)setSearchResultDTO:(SearchResultDTO *)searchResultDTO
 {
     _searchResultDTO = searchResultDTO;
@@ -102,8 +124,16 @@
     [self fomartTitleLabel];
     [self fomartPriceLabel];
 
+    self.createTimeLabel.text = [NSString stringWithFormat:@"发布时间: %@", searchResultDTO.createTime];
+    [self.createTimeLabel sizeToFit];
 //    self.titleLabel.text = searchResultDTO.goodName;
-    self.arrivalTime.text = [NSString stringWithFormat:@"到货周期: %@", searchResultDTO.deadlineStr];
+    
+    if (NotNilAndNull(self.searchResultDTO.stock)) {
+        self.stockLabel.text = [NSString stringWithFormat:@"所在仓库: %@", self.searchResultDTO.depotDto.name ];
+    }
+    else {
+        self.arrivalTime.text = [NSString stringWithFormat:@"卖家发货: %@", searchResultDTO.deadlineStr]; 
+    }
     
     if ([self.typeName isEqualToString:@"供货"]) {
         self.scopeLabel.text = [NSString stringWithFormat:@"供货范围: %@", searchResultDTO.region];
@@ -130,7 +160,7 @@
         self.companyLabel.text = searchResultDTO.userName;
     }
     
-    if (searchResultDTO.isActive && searchResultDTO.duration > 0) {
+    if (searchResultDTO.isActive && searchResultDTO.millisecond > 0) {
         self.countdownLabel.hidden = YES;
         self.leftTimeLabel.hidden = NO;
         [self fomartTimeLeftLabel];
@@ -138,13 +168,14 @@
     else {
         self.countdownLabel.hidden = NO;
         self.leftTimeLabel.hidden = YES;
-
+        [self fomartCountDownLabel];
     }
     
     self.previewAndTransctionsLabels.strings = @[[NSString stringWithFormat:@"浏览: %ld", searchResultDTO.views],
                                                  [NSString stringWithFormat:@"意向: %ld", searchResultDTO.intentions]];
     
     self.typeLabel.textLabel.text = self.typeName;
+    self.fd_enforceFrameLayout = YES;
 
     [self layoutAllLabels];
 
@@ -171,7 +202,13 @@
     self.arrivalTime.numberOfLines = 1;
     self.arrivalTime.adjustsFontSizeToFitWidth = YES;
     self.arrivalTime.textColor = RGBCOLOR(131, 131, 131);
+    self.stockLabel = self.arrivalTime;
     
+    self.createTimeLabel = [[UILabel alloc] init];
+    self.createTimeLabel.font = [UIFont systemFontOfSize:13];
+    self.createTimeLabel.numberOfLines = 1;
+    self.createTimeLabel.adjustsFontSizeToFitWidth = YES;
+    self.createTimeLabel.textColor = RGBCOLOR(131, 131, 131);
     
     self.scopeLabel = [[UILabel alloc] init];
     self.scopeLabel.font = [UIFont systemFontOfSize:13];
@@ -194,10 +231,6 @@
     
     self.countdownLabel = [[M80AttributedLabel alloc] init];
     self.countdownLabel.backgroundColor = [UIColor lightGrayColor188];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:@"已成交"];
-    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
-    [self.countdownLabel appendAttributedText:attributedText];
-    [self.countdownLabel sizeToFit];
     self.countdownLabel.textAlignment = kCTTextAlignmentCenter;
     self.countdownLabel.hidden = YES;
     
@@ -217,6 +250,7 @@
     [self.contentView addSubview:self.priceLabel];
     [self.contentView addSubview:self.seperatorLine];
     [self.contentView addSubview:self.arrivalTime];
+    [self.contentView addSubview:self.createTimeLabel];
     [self.contentView addSubview:self.companyLabel];
     [self.contentView addSubview:self.companyImageView];
     [self.contentView addSubview:self.scopeLabel];
@@ -236,6 +270,15 @@
 
 }
 
+-(void)fomartCountDownLabel
+{
+    self.countdownLabel.text = @"";
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:self.searchResultDTO.stateLabel];
+    [attributedText m80_setFont:[UIFont systemFontOfSize:12.f]];
+    [self.countdownLabel appendAttributedText:attributedText];
+    [self.countdownLabel sizeToFit];
+}
+
 -(void)fomartTitleLabel
 {
     self.titleLabel.text = @"";
@@ -248,8 +291,17 @@
     }
     
     self.titleLabel.text = title;
+    //[self.titleLabel sizeToFit];
+    
+    CGSize size = [self.titleLabel.text boundingRectWithFont:self.titleLabel.font andWidth:self.titleLabel.width];
+    
+//    if (ceil(size.height) > kMaxTitleHeight) {
+//        self.titleLabel.height = kMaxTitleHeight;
+//    }
+//    else {
+//        self.titleLabel.height = ceil(size.height);
+//    }
     [self.titleLabel sizeToFit];
-
 }
 
 
@@ -299,7 +351,6 @@
     }
 //    NSString* detailString = self.priceLabel.text;
     self.priceLabel.text = @"";
-    
     self.priceLabel.textAlignment = NSTextAlignmentCenter;
 
     
@@ -319,10 +370,6 @@
     NSInteger index = 0;
     for (NSString *text in components)
     {
-//        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc]initWithString:text];
-//        [attributedText m80_setFont:[fonts objectAtIndex:index]];
-//        [attributedText m80_setTextColor:[colors objectAtIndex:index]];
-//        [self.priceLabel appendAttributedText:attributedText];
         [stringWithAttrs addObject:@{@"string" : text,
                                      @"attributes" : @{NSForegroundColorAttributeName:[colors objectAtIndex:index],
                                                        NSFontAttributeName : [fonts objectAtIndex:index]}
@@ -337,7 +384,7 @@
 
 -(void)layoutAllLabels
 {
-    [self.priceLabel sizeToFit];
+//    [self.priceLabel sizeToFit];
     //[self.typeLabel sizeToFit];
     
     CGRect bounds = self.contentView.bounds;
@@ -345,14 +392,20 @@
     CGFloat y = 16.f;
     self.previewAndTransctionsLabels.frame = CGRectMake(bounds.size.width-50-16.f, y, 50, 60);
     self.titleLabel.frame = CGRectMake(16.f, y,
-                                       bounds.size.width-70-16.f*2, self.titleLabel.height+6.f);
+                                       bounds.size.width-70-16.f*2,
+                                       self.titleLabel.height+6.f);
     y += self.titleLabel.frame.size.height + 4.f;
     
     
-    self.priceLabel.frame = CGRectMake(16.f, y,
-                                       self.priceLabel.frame.size.width, self.priceLabel.height);
-    self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.priceLabel.frame)+4.f, self.priceLabel.center.y - self.typeLabel.frame.size.height/2,
-                                      43.f, 18.f);
+    self.priceLabel.frame = CGRectMake(16.f,
+                                       y,
+                                       self.priceLabel.frame.size.width,
+                                       kPriceLabelHeight);
+    
+    self.typeLabel.frame = CGRectMake(CGRectGetMaxX(self.priceLabel.frame)+4.f,
+                                      self.priceLabel.center.y - self.typeLabel.frame.size.height/2,
+                                      kTypeLabelWidth,
+                                      kTypeLabelHeight);
     self.typeLabel.y = self.titleLabel.bottom+6.f;
     //self.typeLabel.height = self.priceLabel.height;
     
@@ -361,6 +414,10 @@
     self.seperatorLine.frame = CGRectMake(16.f, y, bounds.size.width-2*16.f, 1);
     
     y += self.seperatorLine.frame.size.height+12.f;
+    
+    self.createTimeLabel.frame = CGRectMake(16.f, y, bounds.size.width-2*16.f, self.createTimeLabel.height);
+    y += self.createTimeLabel.frame.size.height-4.f;
+
     self.arrivalTime.frame = CGRectMake(16.f, y,
                                         bounds.size.width-2*16.f, 24.f);
     
@@ -386,11 +443,34 @@
     
     self.buttonLine.y = y-1.0f;
     
-    self.height = y;
+    self.height = self.countdownLabel.bottom;
 
 }
 
++(CGFloat)cellHeightWithDTO:(SearchResultDTO*)dto
+{
+    CGFloat height = 16.f;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    CGSize size = [dto.goodName boundingRectWithFont:[UIFont systemFontOfSize:20.f] andWidth:screenWidth-70-16.f*2];
+    if (size.height > 72.f) {
+        size.height = 72.f;
+    }
 
+    height += ceil(size.height) + 4.f;
+    height += kPriceLabelHeight + 12.f + 1.f + 12.f;
+    height += 24.f;
+    
+    size = [[NSString stringWithFormat:@"供货范围: %@", dto.region]
+            boundingRectWithFont:[UIFont systemFontOfSize:13]
+            andWidth:screenWidth-16.f*2];
+    
+    height += ceil(size.height) + 12.f;
+    height += 24.f + 4.f;
+
+    
+    return height;
+}
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -402,5 +482,9 @@
     return 204.f;
 }
 
+-(CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, self.height);
+}
 
 @end

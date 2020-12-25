@@ -12,9 +12,9 @@
 
 -(BOOL)needLogin
 {
-    AFHTTPRequestOperation* request = self.userInfo[AFHTTPRequestOperationErrorKey];
+    NSURLSessionTask* request = self.userInfo[AFHTTPRequestOperationErrorKey];
     if (request) {
-        NSHTTPURLResponse* response = request.response;
+        NSHTTPURLResponse* response = (NSHTTPURLResponse*)request.response;
         if (response.statusCode == 401 && (response.allHeaderFields[@"login"] && [response.allHeaderFields[@"login"] isEqualToString:@"unLogin"])) {
             return YES;
         }

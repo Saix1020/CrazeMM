@@ -188,19 +188,19 @@
 -(void)commInit
 {
     if (!self.productDto) {
-        self.titleLabel.text = @"飞利浦 -V387 飞利浦 -V387飞利浦 -V387";
-        self.timeLeftLabel.text = @"10 天 18 小时 20 分钟";
-        self.priceLabel.text = @"2200.00起 18台";
-        NSString* urls = @[@"http://www.189mm.com:8080/upload/good/1475.jpg", @"http://www.189mm.com:8080/upload/good/1647.png?_=3b9619dcc788ed6ef05b916a4f6692a3", @"http://www.189mm.com:8080/upload/good/1705.png?_=781962cd0d057171985ca3cc834f99cd"][arc4random()%3];
-        [self.phoneImageView setImageWithURL:[NSURL URLWithString:urls] placeholderImage:[@"ph_phone" image]];
+        self.titleLabel.text = @"";
+        self.timeLeftLabel.text = @"";
+        self.priceLabel.text = @"";
+        [self.phoneImageView setImage:[@"product_placehoder.jpg" image]];
     }
     else {
-        self.titleLabel.text = self.productDto.goodName;
         NSString* goodImge = self.productDto.goodImage;
         if (![goodImge hasPrefix:@"http"]) {
             goodImge = COMB_URL(goodImge);
         }
-        [self.phoneImageView setImageWithURL:[NSURL URLWithString:goodImge] placeholderImage:[@"ph_phone" image]];
+        [self.phoneImageView setImageWithURL:[NSURL URLWithString:goodImge] placeholderImage:[@"product_placehoder.jpg" image]];
+        self.titleLabel.text = self.productDto.goodName;
+
     }
 
     [self fomartPriceLabel];
@@ -283,8 +283,8 @@
         quantity = [NSString stringWithFormat:@"%ld", self.productDto.quantity];
     }
     else {
-        price = @"1020";
-        quantity = @"100";
+        price = @"";
+        quantity = @"";
     }
     NSArray* priceComp = [NSString  formatePrice:self.productDto.price];
     NSString* string = [priceComp[0] stringByReplacingOccurrencesOfString:@"," withString:@""];
@@ -318,15 +318,17 @@
 
 -(void)fomartTimeLabel
 {
-    if (self.productDto && !self.productDto.isActive) {
+    if (self.productDto && (!self.productDto.isActive || self.productDto.millisecond<0)) {
         self.timeLeftLabel.attributedText = nil;
         self.timeLeftLabel.text = [NSString stringWithFormat:@"%@发布", self.productDto.createTime];
         [self.timeLeftLabel sizeToFit];
+        self.clockIcon.frame = CGRectZero;
         return;
     }
     
+    self.clockIcon.frame = CGRectMake(0, 0, 16, 16);
     NSArray *colors = @[[UIColor redColor], [UIColor blackColor]];
-    NSString* timeLeftString = @"10 天 18 小时 20 分钟";
+    NSString* timeLeftString = @"";//@"10 天 18 小时 20 分钟";
     
     if (self.productDto){
         timeLeftString = [NSString leftTimeString:self.productDto.millisecond];

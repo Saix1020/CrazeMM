@@ -118,7 +118,7 @@
     [self fomartTimeLeftLabel];
     
 //    self.phoneImageView.image = [UIImage imageNamed:@"prod_placeholder.jpg"];
-    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[@"ph_phone" image]];
+    [self.phoneImageView setImageWithURL:[NSURL URLWithString:productDescDTO.imageURL] placeholderImage:[@"product_placehoder.jpg" image]];
     self.statusLabel.text = productDescDTO.status;
     @weakify(self);
     

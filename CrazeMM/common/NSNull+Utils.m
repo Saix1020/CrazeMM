@@ -25,5 +25,28 @@
     return NO;
 }
 
+-(NSString*)description
+{
+    return @"";
+}
+
+-(NSInteger)length
+{
+    return 0;
+}
+
+-(NSInteger)count
+{
+    return 0;
+}
+
+- (void)setValue:(nullable id)value forKey:(NSString *)key
+{
+    return;
+}
+- (nullable id)valueForKey:(NSString *)key
+{
+    return nil;
+}
 
 @end

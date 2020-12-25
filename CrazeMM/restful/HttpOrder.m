@@ -15,10 +15,19 @@
 {
     self = [super init];
     if (self) {
+        NSString* orderStatus;
+        if (type.orderState == TOBESETTLED) {
+            orderStatus = [NSString stringWithFormat:@"%ld,%u,%u", TOBESETTLED, 401u, 500u];
+        }
+        else {
+            orderStatus = [NSString stringWithFormat:@"%ld", type.orderState];
+
+        }
+        
         self.params = [@{
                          @"t" : type.orderType==kOrderTypeBuy? @"b" : @"s",
                          @"pn" : @(pn),
-                         @"state" : @(type.orderState)
+                         @"state" : orderStatus
                         } mutableCopy];
     }
     return self;
@@ -132,5 +141,41 @@
     return @[];
 }
 
+
+@end
+
+@implementation HttpAllBuyOrderRequest
+
+-(instancetype)initWithPage:(NSInteger)pn
+{
+    MMOrderListStyle style = {
+        .orderType = kOrderTypeBuy
+    };
+    self = [super initWithOrderListType:style andPage:pn];
+    if (self) {
+        self.params[@"state"] = @"all";
+        self.params[@"t"] = @"b";
+    }
+    
+    return self;
+}
+
+@end
+
+@implementation HttpAllSupplyOrderRequest
+
+-(instancetype)initWithPage:(NSInteger)pn
+{
+    MMOrderListStyle style = {
+        .orderType = kOrderTypeBuy
+    };
+    self = [super initWithOrderListType:style andPage:pn];
+    if (self) {
+        self.params[@"state"] = @"all";
+        self.params[@"t"] = @"s";
+    }
+    
+    return self;
+}
 
 @end

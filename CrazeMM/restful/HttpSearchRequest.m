@@ -59,6 +59,62 @@
     return self;
 }
 
+-(instancetype)initWithPageNumber:(NSUInteger)pageNumber andKeywords:(NSArray*)keywords andSorts:(SearchSortType)sortType andCategory:(SearchCategory)categrory andMinPrice:(float)minPrice andMaxPrice:(float)maxPrice  andBrands:(NSArray*)brands andColors:(NSArray*)colors andNetworks:(NSArray*)networks andVolumes:(NSArray*)volumes
+{
+    self = [super init];
+    if (self) {
+        self.pageNumber = pageNumber;
+        self.sortType = sortType;
+        self.categrory = categrory;
+        self.keywords = keywords;
+        
+        self.params =  [@{
+                          @"pn" : @(self.pageNumber),
+                          } mutableCopy];
+        if (self.keywords && self.keywords.count>0) {
+            [self.params setValue:[self.keywords componentsJoinedByString:@","] forKey: @"keywords"];
+        }
+        if (self.sortType != kComprehensiveSortType) {
+            [self.params setValue:@(self.sortType)
+                           forKey:@"sort"];
+        }
+        
+        if (minPrice>=0) {
+            [self.params setValue:@(minPrice)
+                           forKey:@"minprice"];
+
+        }
+        
+        if (maxPrice>=0) {
+            [self.params setValue:@(maxPrice)
+                           forKey:@"maxprice"];
+            
+        }
+        
+        if (brands && brands.count>0) {
+            [self.params setValue:[brands componentsJoinedByString:@","] forKey: @"brands"];
+
+        }
+        if (colors && colors.count>0) {
+            [self.params setValue:[colors componentsJoinedByString:@","] forKey: @"colors"];
+            
+        }
+        if (networks && networks.count>0) {
+            [self.params setValue:[networks componentsJoinedByString:@","] forKey: @"network"];
+            
+        }
+        if (volumes && volumes.count>0) {
+            [self.params setValue:[volumes componentsJoinedByString:@","] forKey: @"volume"];
+            
+        }
+    }
+    
+    return self;
+}
+
+
+
+
 -(NSString*)url
 {
     if (self.categrory == kSupplySearch) {

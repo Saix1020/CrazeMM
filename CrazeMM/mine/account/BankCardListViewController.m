@@ -139,11 +139,7 @@
             .catch(^(NSError* error){
                 [self showAlertViewWithMessage:error.localizedDescription];
             });
-        } andCancelCallback:^(id x){
-            @strongify(self);
-
-        }];
-        
+        } andCancelCallback:nil];
         
     }
     

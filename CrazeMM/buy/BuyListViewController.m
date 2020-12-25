@@ -24,6 +24,7 @@
 #import "BuyProductViewController.h"
 #import "BuyProductDTO.h"
 #import "HttpAddIntention.h"
+#import "RealReachability.h"
 
 #define kTableViewHeadHeight 128.f
 #define kCarouselImageViewWidth 300.f
@@ -168,6 +169,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
 //    [self.tableView registerNib:[UINib nibWithNibName:@"BuyItemCell" bundle:nil] forCellReuseIdentifier:@"BuyItemCell"];
     [self.view addSubview:self.tableView];
     
@@ -176,8 +178,6 @@
     [self.tableView setTableFooterView:view];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
-
-
     
     // add some mock data
     for (int i=0; i<10; i++) {
@@ -328,6 +328,7 @@
             [self.dataSource addObjectsFromArray:response.productDTOs];
             [self.tableView reloadData];
         }
+        return response;
     })
     .catch(^(NSError* error){
         if ([error needLogin]) {
@@ -381,11 +382,8 @@
     [self.tableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+-(void)popRecommendView
 {
-    [super viewDidAppear:animated];
-    [self.tabBarController setTabBarHidden:NO animated:YES];
-    
     if (![[UserCenter defaultCenter] isLogined]) {
         @weakify(self);
         [self.productRecommendAlertView showWithDidAddContentBlock:^(UIView *contentView) {
@@ -407,14 +405,20 @@
                 [self.productRecommendAlertView dismiss];
                 
                 [self.navigationController pushViewController:[[SignViewController alloc] init] animated:YES];
-
+                
                 
                 return [RACSignal empty];
             }];
         }];
-
+        
     }
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tabBarController setTabBarHidden:NO animated:YES];
+    [self popRecommendView];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -533,6 +537,7 @@
     if (!cell) {
         cell = [[ProductSummaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ProductSummaryCell"];
         cell.cellType = @"求购";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.productDto = [self.dataSource objectAtIndex:indexPath.row];
     return cell;

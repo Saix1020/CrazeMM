@@ -178,6 +178,22 @@
 
     self.price = productDetailDto.price;
     [self fomartAmountPrice];
+    
+    if (!productDetailDto.isSplit) {
+        self.addButton.enabled = NO;
+        self.subButton.enabled = NO;
+        self.amountTextField.userInteractionEnabled = NO;
+        self.addButton.tintColor = [UIColor whiteColor];
+        self.subButton.tintColor = [UIColor whiteColor];
+
+    }
+    else {
+        self.addButton.enabled = YES;
+        self.subButton.enabled = YES;
+        self.amountTextField.userInteractionEnabled = YES;
+        self.addButton.tintColor = [UIColor darkGrayColor];
+        self.subButton.tintColor = [UIColor darkGrayColor];
+    }
 }
 
 @end

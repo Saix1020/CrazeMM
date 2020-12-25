@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BEMCheckBox.h"
 #import "M80AttributedLabel.h"
+#import "StockDetailDTO.h"
 @interface PaySuccessProductCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *productTitleLabel;
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet M80AttributedLabel *totalPriceLabel;
 @property (weak, nonatomic) IBOutlet UIView *backgroundLabel;
 
+@property (nonatomic, strong) StockDetailDTO* stockDetailDto;
 
 +(CGFloat)cellHeight;
 

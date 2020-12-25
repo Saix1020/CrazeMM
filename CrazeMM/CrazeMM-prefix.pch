@@ -38,7 +38,6 @@
 #import "BaseNavigationController.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
-#import "AFNetworking+PromiseKit.h"
 #import "RestURL.h"
 #import "MMTimer.h"
 #import "BaseHttpRequest.h"
@@ -46,6 +45,7 @@
 #import "UIViewController+TTModalView.h"
 #import "KeychainItemWrapper.h"
 #import "LoginViewController.h"
+#import "UINavigationController+BackConfirmSupport.h"
 
 
 
